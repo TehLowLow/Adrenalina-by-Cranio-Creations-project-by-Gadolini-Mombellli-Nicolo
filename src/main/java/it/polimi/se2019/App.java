@@ -3,7 +3,7 @@ package it.polimi.se2019;
 /**
  * Hello world!
  * Bella fra
- * Dany97 was here ! ! ! !
+ * Dany97 was here
  *
  *
  * lolepls è stato qui
