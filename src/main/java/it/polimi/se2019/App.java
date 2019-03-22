@@ -1,12 +1,11 @@
 package it.polimi.se2019;
 
 /**
- * Hello world!
- * Bella fra
- * Dany97 was here
+ *   Lorenzo Gadolini
+ *   Gioele Mombelli
+ *   Daniele Nicolò
  *
- *
- * lolepls è stato qui
+ *   Progetto di Ingegneria del Software, A.A 2018/19
  */
 public class App 
 {
