@@ -1,6 +1,6 @@
 package it.polimi.se2019.Model;
 
-public class Stdboard extends Board {
+public class Stdboard extends Playerboard{
 
     /**
      * This class represents the standard game board, and tracks if the player can use enhanced actions, and who took
