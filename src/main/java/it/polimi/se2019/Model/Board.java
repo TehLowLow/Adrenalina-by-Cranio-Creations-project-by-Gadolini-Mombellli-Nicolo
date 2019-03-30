@@ -81,7 +81,7 @@ public class Board {
      *  Constructor of the board.
      */
 
-    public Board(){
+    public Board(Map map){
         /**/
     }
 
@@ -134,6 +134,22 @@ public class Board {
         return this.weaponDeck;
     }
 
+    /**
+     * Returns a reference to the discarded loot deck.
+     * @return the ArrayList that represents the pile of discarded loots.
+     */
+    public ArrayList <Loot> getDiscardedLoot(){
+        return discardedLoot;
+    }
+
+    /**
+     * Returns a reference to the discarded power ups deck.
+     * @return the ArrayList that represents the pile of discarded loots.
+     */
+    public ArrayList <Powerup> getDiscardedPowerUps(){
+        return discardedPowerUps;
+    }
+
 
     /**
      *  ---------------------- SETTERS
@@ -176,6 +192,21 @@ public class Board {
         this.lootDeck = lootDeck;
     }
 
+    /**
+     * This method sets the deck of discarded ammo tiles.
+     * @param discardedLoot reference to the ArrayList of discarded ammo tiles.
+     */
+    public void setDiscardedLoot(ArrayList <Loot> discardedLoot){
+
+    }
+
+    /**
+     * This method sets the deck of discarded ammo tiles.
+     * @param discardedPowerUps reference to the ArrayList of discarded ammo tiles.
+     */
+    public void setDiscardedPowerUps(ArrayList <Powerup> discardedPowerUps){
+
+    }
 
     /**
      * This method sets the deck of weapons.
