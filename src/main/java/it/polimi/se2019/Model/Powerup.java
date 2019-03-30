@@ -1,13 +1,15 @@
 package it.polimi.se2019.Model;
 
+/**
+ * This class represents the Powerups.
+ * Powerups are objects that can be used in two ways:
+ *
+ 1) A player can use their effects;
+ 2) A player can use their trade value instead of the ammo cubes.
+ *
+ */
 public class Powerup {
 
-
-    /**
-     * Powerups are objects that can used in two ways:
-        1) A player can use their effects;
-        2) A player can use their trade value instead of the ammo cubes
-     */
 
     /**
     --------------------FIELDS------------------------------

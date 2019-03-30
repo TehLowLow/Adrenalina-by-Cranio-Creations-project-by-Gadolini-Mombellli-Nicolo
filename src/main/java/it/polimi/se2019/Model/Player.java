@@ -1,17 +1,23 @@
 package it.polimi.se2019.Model;
 
+/**
+ * This class is used to represent the players.
+ */
 public class Player {
 
     /**
     --------------------FIELDS-----------------------
     Here there is the player's nickname, his position and his score.
-    Furthermore there is the board where the player is and the player's position on the map
+    Furthermore there is the playerboard assigned to the player.
      */
 
     private String nickname;
 
     private Playerboard playerboard;
 
+    /**
+     * This field is true if the player is the first player.
+     */
     private boolean firstPlayer;
 
     private Cell position;

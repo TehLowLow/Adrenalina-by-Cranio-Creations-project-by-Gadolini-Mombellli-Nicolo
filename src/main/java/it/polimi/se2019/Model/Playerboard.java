@@ -2,6 +2,9 @@ package it.polimi.se2019.Model;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents the player board.
+ */
 public class Playerboard {
 
     /**

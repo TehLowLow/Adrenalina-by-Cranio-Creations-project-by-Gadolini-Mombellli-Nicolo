@@ -2,11 +2,12 @@ package it.polimi.se2019.Model;
 
 import java.util.ArrayList;
 
+/**
+ This class represents a Room.
+ A room is part of a map. It's made by a few cells and
+ it has a colour.
+ */
 public class Room {
-    /**
-    A room is part of a map. It's made up by a few cells and
-    it has a colour
-     */
 
 
     /**

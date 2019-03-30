@@ -1,12 +1,12 @@
 package it.polimi.se2019.Model;
 
-public class MortalBlow {
+/**
+ The mortal blow is a track placed on the main board that represents the kills of the game. It can be filled with
+ skulls and tokens.
+ When all the skull/token are placed on this track, FinalFrenzy mode starts.
+ */
 
-    /**
-    The mortal blow is a track placed on the main board that represents the kills of the game. It can be filled with
-    skulls and tokens.
-    When all the skull/token are placed on this track, FinalFrenzy mode starts.
-     */
+public class MortalBlow {
 
 
     /**

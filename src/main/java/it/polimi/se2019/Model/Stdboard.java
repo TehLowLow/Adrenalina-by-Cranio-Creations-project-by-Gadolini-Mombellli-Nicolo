@@ -1,16 +1,60 @@
 package it.polimi.se2019.Model;
 
+
+/**
+ * This class represents the standard game board, and tracks if the player can use enhanced actions, and who took
+ * the player's First Blood
+ */
 public class Stdboard extends Playerboard{
 
     /**
-     * This class represents the standard game board, and tracks if the player can use enhanced actions, and who took
-     * the player's First Blood
+     *  ---------------------- FIELDS ----------------------
      */
-
    private Token firstBlood;
    private int boardPointValue;
    private boolean enhancedLoot;
    private boolean enhancedShoot;
+
+    /**
+     *  ---------------------- METHODS ----------------------
+     */
+
+
+    /**
+     *  ---------------------- GETTERS
+     */
+
+
+    /**
+     * Returns  the token of the player that first attacked this board
+     * @return a token containing the attacking player
+     */
+    public Token getFirstBlood(){return firstBlood;}
+
+    /**
+     * Returns the maximum value of a player board in order to calculate every player's corresponding points when the owner
+     * of the board dies
+     * @return the poins value of the board.
+     */
+    public int getBoardPointValue(){return boardPointValue;}
+
+    /**
+     * Check to verify if a player has access to his enhanced loot action
+     * @return true or false if the player can or cannot use enhanced loot
+     */
+    public boolean hasEnhancedLoot(){return enhancedLoot;}
+
+    /**
+     * Check to verify if a player has access to his enhanced shoot action
+     * @return true or false if the player can or cannot use enhanced shoot
+     */
+    public boolean hasEnhancedShoot(){return enhancedShoot;}
+
+
+    /**
+     *  ---------------------- SETTERS
+     */
+
 
     /**
      * Sets the first blood of a player
@@ -18,11 +62,6 @@ public class Stdboard extends Playerboard{
      */
    public void setFirstBlood(Token fb){this.firstBlood = fb;}
 
-    /**
-     * Returns  the token of the player that first attacked this board
-     * @return a token containing the attacking player
-     */
-   public Token getFirstBlood(){return firstBlood;}
 
     /**
      * Tracks the value of the redeem of a board, and everytime decreases following the red skull marker rules
@@ -31,18 +70,7 @@ public class Stdboard extends Playerboard{
      */
    public void setBoardPointValue(int val){this.boardPointValue = val;}
 
-    /**
-     * Return the maximum value of a player board in order to calculate every player's corresponding points when the owner
-     * of the board dies
-     * @return the poins value of the board.
-     */
-   public int getBoardPointValue(){return boardPointValue;}
 
-    /**
-     * Check to verify if a player has access to his enhanced loot action
-     * @return true or false if the player can or cannot use enhanced loot
-     */
-   public boolean hasEnhancedLoot(){return enhancedLoot;}
 
     /**
      * Sets the  bVal to true if a player sustained enough damage to be allowed to use the enhanced action
@@ -50,11 +78,6 @@ public class Stdboard extends Playerboard{
      */
    public void setEnhancedLoot(boolean bVal){this.enhancedLoot = bVal;}
 
-    /**
-     * Check to verify if a player has access to his enhanced shoot action
-     * @return true or false if the player can or cannot use enhanced shoot
-     */
-   public boolean hasEnhancedShoot(){return enhancedShoot;}
 
     /**
      * Sets the  bVal to true if a player sustained enough damage to be allowed to use the enhanced action
