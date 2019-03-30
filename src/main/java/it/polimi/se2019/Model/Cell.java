@@ -16,9 +16,9 @@ public abstract class Cell {
      * Connections on the four directions.
      */
     private Cell upConnection;
-    private Cell downDirection;
-    private Cell leftDirection;
-    private Cell rightDirection;
+    private Cell downConnection;
+    private Cell leftConnection;
+    private Cell rightConnection;
 
     /**
      *  ---------------------- METHODS  ----------------------
@@ -32,17 +32,16 @@ public abstract class Cell {
         return upConnection;
     }
 
-    public Cell getDownDirection() {
-        return downDirection;
+    public Cell getDownConnection() {
+        return downConnection;
     }
 
-    public Cell getLeftDirection() {
-        return leftDirection;
+    public Cell getLeftConnection() {
+        return leftConnection;
     }
 
-
-    public Cell getRightDirection() {
-        return rightDirection;
+    public Cell getRightConnection() {
+        return rightConnection;
     }
 
 
@@ -54,17 +53,20 @@ public abstract class Cell {
         this.upConnection = upConnection;
     }
 
-    public void setDownDirection(Cell downDirection) {
-        this.downDirection = downDirection;
+
+    public void setDownConnection(Cell downConnection) {
+        this.downConnection = downConnection;
     }
 
 
-    public void setLeftDirection(Cell leftDirection) {
-        this.leftDirection = leftDirection;
+    public void setLeftConnection(Cell leftConnection) {
+        this.leftConnection = leftConnection;
     }
 
 
-    public void setRightDirection(Cell rightDirection) {
-        this.rightDirection = rightDirection;
+    public void setRightConnection(Cell rightConnection) {
+        this.rightConnection = rightConnection;
     }
+
+
 }

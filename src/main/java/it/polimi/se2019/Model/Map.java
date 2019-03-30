@@ -9,7 +9,20 @@ package it.polimi.se2019.Model;
 
 public class Map {
 
+    /**
+     * ---------------------- FIELDS
+     * They are used to represent the structure of a map. The mapID is unique for each map.
+     * It is possible to have some rooms set to NULL, if the map doesn't have a room of that specific colour.
+     */
+
+    /**
+     * ID of the map.
+     */
     private Integer mapID;
+
+    /**
+     * Rooms of the map.
+     */
     private Room greenRoom;
     private Room redRoom;
     private Room yellowRoom;

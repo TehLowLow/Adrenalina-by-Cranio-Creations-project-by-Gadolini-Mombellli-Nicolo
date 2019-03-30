@@ -13,7 +13,6 @@ public class Frenzyboard extends Playerboard {
     /**
      * Represents the value of the board.
      */
-
     private int boardValue;
 
     /**
