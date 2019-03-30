@@ -55,13 +55,13 @@ public abstract class Effect {
      * This method calls the algorithm that applies the specific effect.
      */
 
+
     /**
      * This is the algorithm of the specific effect. It is an abstract method because it must be defined
      * by the class that implements Effect.
      * @param user the Player that wants to apply the effect.
      * @param target the target of the effect. It can be the user itself.
      */
-
     public abstract void applyEffect(Player user, Player target);
 
 }

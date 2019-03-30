@@ -15,6 +15,7 @@ public class Loot {
      */
    private Rybamount rewardValue;
 
+
     /**
      * If an ammo tile contains a power up, this must be set to true.
      */
