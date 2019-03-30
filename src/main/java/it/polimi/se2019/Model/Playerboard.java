@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Playerboard {
 
-    /*
+    /**
     ----------------------------FIELDS-----------------------------
     Playerboard contains the champion's name, his weapons, his ammo cubes and powerups.
     It tracks also the damage tokens and the markers that other players have placed.
@@ -24,7 +24,7 @@ public class Playerboard {
 
 
 
-    /*
+    /**
     -----------------------------METHODS---------------------
      */
 
@@ -32,7 +32,7 @@ public class Playerboard {
 
 
 
-    /*
+    /**
     ----------------------------GETTERS----------------------
      */
 
@@ -51,7 +51,7 @@ public class Playerboard {
 
 
 
-    /*
+    /**
     -----------------------SETTERS----------------------------
      */
 

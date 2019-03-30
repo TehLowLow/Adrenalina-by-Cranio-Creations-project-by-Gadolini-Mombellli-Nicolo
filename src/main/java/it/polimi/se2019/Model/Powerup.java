@@ -3,12 +3,13 @@ package it.polimi.se2019.Model;
 public class Powerup {
 
 
-    /*Powerups are objects that can used in two ways:
+    /**
+     * Powerups are objects that can used in two ways:
         1) A player can use their effects;
         2) A player can use their trade value instead of the ammo cubes
      */
 
-    /*
+    /**
     --------------------FIELDS------------------------------
     PowerUp contains his name, his trade value in terms of "Rybamounts".
     It has also the effect and a description of the card.
@@ -25,13 +26,13 @@ public class Powerup {
 
 
 
-    /*
+    /**
     --------------------METHODS---------------------------
      */
 
 
 
-    /*
+    /**
     -------------------GETTERS----------------------------
      */
 
@@ -47,7 +48,7 @@ public class Powerup {
 
 
 
-    /*
+    /**
     -----------------------SETTERS---------------------------
      */
 

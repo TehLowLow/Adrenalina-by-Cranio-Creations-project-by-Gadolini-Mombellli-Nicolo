@@ -2,7 +2,7 @@ package it.polimi.se2019.Model;
 
 public class Player {
 
-    /*
+    /**
     --------------------FIELDS-----------------------
     Here there is the player's nickname, his position and his score.
     Furthermore there is the board where the player is and the player's position on the map
@@ -18,14 +18,14 @@ public class Player {
 
     private int score;
 
-    /*
+    /**
     -----------------------METHODS------------------------------
      */
 
 
 
 
-    /*
+    /**
     ----------------------GETTERS------------------------------
      */
 
@@ -43,7 +43,7 @@ public class Player {
 
 
 
-    /*
+    /**
     ------------------------SETTERS----------------------------
      */
 
