@@ -60,7 +60,7 @@ public class Player {
 
     public void setPosition(Cell position){this.position = position;}
 
-    public void setFirstPlayer(boolean firstPlayer){this.firstPlayer = firstPlayer;}
+    public void setFirstPlayer(){this.firstPlayer = true;}
 
     public void setScore(int score){this.score = score;}
 
