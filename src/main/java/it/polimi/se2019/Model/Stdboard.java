@@ -10,10 +10,29 @@ public class Stdboard extends Playerboard{
     /*
      *  ---------------------- FIELDS ----------------------
      */
-   private Token firstBlood;
-   private int boardPointValue;
-   private boolean enhancedLoot;
-   private boolean enhancedShoot;
+
+    /**
+     * this Token is the first placed on the Playerboard and Token's colour represents the player who has done it.
+     */
+
+    private Token firstBlood;
+
+    /**
+     * this int represents the value a Playerboard has when his player is killed.
+     */
+
+    private int boardPointValue;
+
+    /**
+     * this boolean is 1 if the player has enabled enhancedLoot mode, 0 otherwise.
+     */
+
+    private boolean enhancedLoot;
+
+    /**
+     * this boolean is 1 if the player has enabled enhancedShoot mode, 0 otherwise.
+     */
+    private boolean enhancedShoot;
 
     /*
      *  ---------------------- METHODS ----------------------

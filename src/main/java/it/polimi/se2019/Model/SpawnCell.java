@@ -3,7 +3,7 @@ package it.polimi.se2019.Model;
 import java.util.ArrayList;
 
 /**
- * This class is the implementation of the class Cell, it is responsible for holding memory of the player spawn
+ * This class is the extension of the class Cell, it is responsible for holding memory of the player spawn
  * point and the weapon shop.
  */
 
@@ -12,6 +12,11 @@ public class SpawnCell extends Cell{
     /*
      *  ---------------------- FIELDS ----------------------
      */
+
+    /**
+     * this arraylist represents the available weapons in the spawn cell
+     */
+
     private ArrayList<Weapon> availableWeapons;
 
     /*
@@ -23,7 +28,7 @@ public class SpawnCell extends Cell{
      *  ---------------------- GETTERS
      */
 
-    /*
+    /**
      * @return the arraylist that holds memory of the three weapon in the spawn cell.
      */
     public ArrayList<Weapon> getAvailableWeapons(){return availableWeapons;}
