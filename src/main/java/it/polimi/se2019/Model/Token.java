@@ -9,6 +9,9 @@ public class Token {
      *  ---------------------- FIELDS ----------------------
      */
 
+    /**
+     * Name of a champion
+     */
     private String championName;
 
     /*
@@ -30,6 +33,10 @@ public class Token {
      * ---------------------- SETTERS
      */
 
+    /**
+     * Sets the name of the champion that owns the token
+     * @param championName is the name of the owner
+     */
     public void setChampionName(String championName) {
         this.championName = championName;
     }

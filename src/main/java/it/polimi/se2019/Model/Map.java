@@ -20,9 +20,10 @@ public class Map {
      */
     private Integer mapID;
 
-    /**
+    /*
      * Rooms of the map.
      */
+
     private Room greenRoom;
     private Room redRoom;
     private Room yellowRoom;
@@ -37,10 +38,18 @@ public class Map {
 
     /*
      * ---------------------- CONSTRUCTOR
-     * Instead of using setters, there is a custom constructor for the Map objects that assigns the
-     * various rooms.
      */
 
+    /**
+     * Custom constructor of the Map object.
+     * @param mapID Unique ID which identifies a map.
+     * @param greenRoom Pointer to the green room. It can also be NULL.
+     * @param redRoom Pointer to the red room. It can also be NULL.
+     * @param yellowRoom Pointer to the yellow room. It can also be NULL.
+     * @param whiteRoom Pointer to the white room. It can also be NULL.
+     * @param purpleRoom Pointer to the purple room. It can also be NULL.
+     * @param blueRoom Pointer to the blue room. It can also be NULL.
+     */
     public Map(Integer mapID, Room greenRoom, Room redRoom, Room yellowRoom, Room whiteRoom, Room purpleRoom, Room blueRoom) {
         this.mapID = mapID;
         this.greenRoom = greenRoom;
@@ -55,30 +64,59 @@ public class Map {
      *  ---------------------- GETTERS
      */
 
+    /**
+     * Getter of MapID.
+     * @return the mapID.
+     */
     public Integer getMapID() {
         return mapID;
     }
 
+    /**
+     * Getter of the Green Room.
+     * @return Green room if it exists, NULL otherwise.
+     */
     public Room getGreenRoom() {
         return greenRoom;
     }
 
+    /**
+     * Getter of the Red Room.
+     * @return Red room if it exists, NULL otherwise.
+     */
     public Room getRedRoom() {
         return redRoom;
     }
 
+    /**
+     * Getter of the Yellow Room.
+     * @return Yellow room if it exists, NULL otherwise.
+     */
     public Room getYellowRoom() {
         return yellowRoom;
     }
 
+
+    /**
+     * Getter of the White Room.
+     * @return White room if it exists, NULL otherwise.
+     */
     public Room getWhiteRoom() {
         return whiteRoom;
     }
 
+    /**
+     * Getter of the Purple Room.
+     * @return Purple room if it exists, NULL otherwise.
+     */
     public Room getPurpleRoom() {
         return purpleRoom;
     }
 
+    /**
+     * Getter of the Blue Room.
+     * @return Blue room if it exists, NULL otherwise.
+     */
     public Room getBlueRoom() {
         return blueRoom;
     }

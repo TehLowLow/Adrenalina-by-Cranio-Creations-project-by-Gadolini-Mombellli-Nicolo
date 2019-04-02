@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Board {
 
-    /**
+    /*
      * ----------------------FIELDS----------------------
      * --------------------------------------------------
      *
@@ -66,13 +66,13 @@ public class Board {
     private Map map;
 
 
-    /**
+    /*
      * ----------------------METHODS----------------------
      * ----------------------------------------------------
      *
      */
 
-    /**
+    /*
      * ---------------------- CONSTRUCTORS
      */
 
@@ -86,7 +86,7 @@ public class Board {
     }
 
 
-    /**
+    /*
      * ---------------------- GETTERS
      */
 
@@ -151,7 +151,7 @@ public class Board {
     }
 
 
-    /**
+    /*
      *  ---------------------- SETTERS
      */
 
@@ -217,7 +217,7 @@ public class Board {
     }
 
 
-    /**
+    /*
      *  ---------------------- SHUFFLING METHODS
      *  Methods that perform a shuffle of a given deck.
      */
@@ -238,3 +238,5 @@ public class Board {
 
 
 }
+
+

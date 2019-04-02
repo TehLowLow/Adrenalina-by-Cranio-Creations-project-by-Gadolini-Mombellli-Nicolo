@@ -6,7 +6,7 @@ package it.polimi.se2019.Model;
 
 public class LootCell extends Cell {
 
-    /**
+    /*
      * ---------------------- FIELDS ----------------------
      * The connections are all inherited from Cell class.
     */
@@ -18,18 +18,26 @@ public class LootCell extends Cell {
 
 
 
-    /**
+    /*
      * ---------------------- METHODS ----------------------
     */
 
-    /**
+    /*
      * ---------------------- GETTERS AND SETTERS
      */
 
+    /**
+     * Returns the loot available in a cell
+     * @return the loot card
+     */
     public Loot getLoot() {
         return lootAvailable;
     }
 
+    /**
+     * Checks if a loot has been taken or not, and proceeds to refill the cell
+     * @param lootAvailable
+     */
     public void setLoot(Loot lootAvailable) {
         this.lootAvailable = lootAvailable;
     }

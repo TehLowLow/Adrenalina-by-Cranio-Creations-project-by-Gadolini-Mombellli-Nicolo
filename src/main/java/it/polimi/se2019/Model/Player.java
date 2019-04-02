@@ -11,8 +11,14 @@ public class Player {
     Furthermore there is the playerboard assigned to the player.
      */
 
+    /**
+     * Every player is identified by their choosen nickname, saved as a String.
+     */
     private String nickname;
 
+    /**
+     * Every player has a playerboard, represented by this field.
+     */
     private Playerboard playerboard;
 
     /**
@@ -20,8 +26,14 @@ public class Player {
      */
     private boolean firstPlayer;
 
+    /**
+     * Cell where the player currently is.
+     */
     private Cell position;
 
+    /**
+     * Score of the player.
+     */
     private int score;
 
     /*
@@ -36,14 +48,34 @@ public class Player {
      */
 
 
+    /**
+     * Getter for the nickname field.
+     * @return the nickname of the Player.
+     */
     public String getNickname() {return nickname;}
 
+    /**
+     * Getter for the playerboard field.
+     * @return Playerboard of the player.
+     */
     public Playerboard getPlayerboard() {return playerboard;}
 
+    /**
+     * Getter of the position of the player.
+     * @return the Cell where the player currently is.
+     */
     public Cell getPosition() {return position;}
 
+    /**
+     * Checks if the player is the First Player.
+     * @return true if the player is the First Player.
+     */
     public boolean isFirstPlayer(){return firstPlayer;}
 
+    /**
+     * Getter for the score field.
+     * @return the score of the player.
+     */
     public int getScore(){return score;}
 
 
@@ -54,14 +86,33 @@ public class Player {
      */
 
 
+    /**
+     * Setter for the nickname field.
+     * @param nickname Nickname of the Player.
+     */
     public void setNickname(String nickname){this.nickname = nickname;}
 
+    /**
+     * Setter for the Playerboard field.
+     * @param playerboard the playerbord that must be assigned to the Player.
+     */
     public void setPlayerboard(Playerboard playerboard){this.playerboard = playerboard;}
 
+    /**
+     * Setter for the position field.
+     * @param position the Cell where the player currently is.
+     */
     public void setPosition(Cell position){this.position = position;}
 
+    /**
+     * Sets the player as first player.
+     */
     public void setFirstPlayer(){this.firstPlayer = true;}
 
+    /**
+     * Sets the score of the player.
+     * @param score Score that must be set.
+     */
     public void setScore(int score){this.score = score;}
 
 }

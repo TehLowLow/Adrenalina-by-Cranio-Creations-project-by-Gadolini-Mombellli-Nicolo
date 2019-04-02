@@ -6,7 +6,7 @@ package it.polimi.se2019.Model;
 
 public abstract class Effect {
 
-    /**
+    /*
      * ---------------------- FIELDS  ----------------------
      * They represent the cost on red/blue/yellow ammo cubes, the name of the effect and its description.
      */
@@ -15,11 +15,11 @@ public abstract class Effect {
     private String name;
     private String description;
 
-    /**
+    /*
      * ---------------------- METHODS  ----------------------
      */
 
-    /**
+    /*
      * ---------------------- GETTERS
      */
     public Rybamount getCost() {
@@ -34,23 +34,35 @@ public abstract class Effect {
         return description;
     }
 
-    /**
+    /*
      * ---------------------- SETTERS
      */
 
+    /**
+     * Sets the cost of a specified effect.
+     * @param cost is the cost of the effect
+     */
     public void setCost(Rybamount cost) {
         this.cost = cost;
     }
 
+    /**
+     * Sets the name of the effect
+     * @param name is the name of the effect
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Sets the description of an effect
+     * @param description is the description of the effect
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
+    /*
      * ---------------------- APPLY EFFECT
      * This method calls the algorithm that applies the specific effect.
      */
