@@ -12,13 +12,38 @@ public class Weapon {
      *  ---------------------- FIELDS ----------------------
      */
 
+    /**
+     * Name of the weapon.
+     */
     private String name;
+
+    /**
+     * Recharge cost of the weapon. It does not comprehend the price of the weapon.
+     */
     private Rybamount rechargeCost;
+    /**
+     * Price of the weapon.
+     */
     private Rybamount price;
+    /**
+     * Description of the weapon.
+     */
     private String description;
+    /**
+     * If true, the weapon is loaded.
+     */
     private boolean loaded;
+    /**
+     * Base effect of the weapon.
+     */
     private Effect baseEffect;
+    /**
+     * Alternative effect of the weapon. This represents the different fire modes.
+     */
     private Effect alternativeEffect;
+    /**
+     * Optional effects of the weapon.
+     */
     private ArrayList <Effect> optionalEffect;
 
     /*
