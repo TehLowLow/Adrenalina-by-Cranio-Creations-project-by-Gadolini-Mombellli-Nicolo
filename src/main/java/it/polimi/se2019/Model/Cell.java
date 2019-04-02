@@ -12,7 +12,7 @@ public abstract class Cell {
      *  looking at the game board having the Killshot track on the top left corner.
      */
 
-    /**
+    /*
      * Connections on the four directions, stored in a Connection Object.
      */
     private Connection upConnection;
