@@ -33,7 +33,7 @@ public class Weapon {
 
 
     /**
-     * This method reads the name of tthe card and returns it to the caller
+     * This method reads the name of the card and returns it to the caller
      * @return the name of the weapon
      */
     public String getName(){return name;}

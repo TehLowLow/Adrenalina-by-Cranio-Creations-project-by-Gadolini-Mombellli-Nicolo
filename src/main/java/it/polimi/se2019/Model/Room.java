@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class Room {
 
 
-    /**
+    /*
     --------------------FIELDS-----------------------------
     Here there are represented the cells and the colour.
      */
@@ -21,13 +21,13 @@ public class Room {
 
 
 
-    /**
+    /*
     ---------------------METHODS---------------------------
      */
 
 
 
-    /**
+    /*
     --------------------GETTERS-----------------------------
      */
 
@@ -37,7 +37,7 @@ public class Room {
 
 
 
-    /**
+    /*
     ---------------------SETTERS----------------------------
      */
 

@@ -9,7 +9,7 @@ package it.polimi.se2019.Model;
 public class MortalBlow {
 
 
-    /**
+    /*
     *------------------------FIELDS-----------------------------
     * Here there are the possible way to fill the mortal blow
      */
@@ -21,7 +21,7 @@ public class MortalBlow {
     private Player killer;
 
 
-    /**
+    /*
     -------------------------METHODS----------------------------
      */
 
@@ -29,7 +29,7 @@ public class MortalBlow {
 
 
 
-    /**
+    /*
     -------------------------GETTERS----------------------------
      */
 
@@ -48,7 +48,7 @@ public class MortalBlow {
 
 
 
-    /**
+    /*
     ------------------------SETTERS------------------------------
      */
 

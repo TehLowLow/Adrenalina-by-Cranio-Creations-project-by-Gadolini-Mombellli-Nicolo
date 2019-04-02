@@ -39,6 +39,8 @@ public class SpawnCell extends Cell{
      * Sets the three  weapons in the spawn cell during the init of the game.
      * @param weapons is the arraylist of weapons loaded in the room
      */
-    public void setAvailableWeapons(ArrayList<Weapon> weapons){}
+    public void setAvailableWeapons(ArrayList<Weapon> weapons){
+        this.availableWeapons = weapons;
+    }
 
     }

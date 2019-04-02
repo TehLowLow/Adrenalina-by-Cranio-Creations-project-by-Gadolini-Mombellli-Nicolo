@@ -9,7 +9,7 @@ package it.polimi.se2019.Model;
 
 public class Map {
 
-    /**
+    /*
      * ---------------------- FIELDS
      * They are used to represent the structure of a map. The mapID is unique for each map.
      * It is possible to have some rooms set to NULL, if the map doesn't have a room of that specific colour.
@@ -31,11 +31,11 @@ public class Map {
     private Room blueRoom;
 
 
-    /**
+    /*
      * ---------------------- METHODS
      */
 
-    /**
+    /*
      * ---------------------- CONSTRUCTOR
      * Instead of using setters, there is a custom constructor for the Map objects that assigns the
      * various rooms.
@@ -51,7 +51,7 @@ public class Map {
         this.blueRoom = blueRoom;
     }
 
-    /**
+    /*
      *  ---------------------- GETTERS
      */
 
