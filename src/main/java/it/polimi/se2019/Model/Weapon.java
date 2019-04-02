@@ -147,6 +147,7 @@ public class Weapon {
  *  TODO: modificato identificatore per reload(), da bool a void.
  *  TODO: spelling check per errori nei commenti e nelle descrizioni dei metodi
  *  TODO: check dell uml, la classe stdboard ha degli errori nelle specifiche dei metodi da correggere
+ *  TODO: creare constructor per Stdboard
  */
 
 
