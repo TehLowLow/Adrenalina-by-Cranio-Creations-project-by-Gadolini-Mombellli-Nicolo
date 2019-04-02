@@ -5,18 +5,18 @@ package it.polimi.se2019.Model;
  */
 public class Token {
 
-    /**
+    /*
      *  ---------------------- FIELDS ----------------------
      */
 
     private String championName;
 
-    /**
+    /*
      *  ---------------------- METHODS ----------------------
      */
 
 
-    /**
+    /*
      *  ---------------------- GETTERS
      */
 
@@ -26,7 +26,7 @@ public class Token {
      */
     public String getChampionName(){return championName;}
 
-    /**
+    /*
      * ---------------------- SETTERS
      */
 
