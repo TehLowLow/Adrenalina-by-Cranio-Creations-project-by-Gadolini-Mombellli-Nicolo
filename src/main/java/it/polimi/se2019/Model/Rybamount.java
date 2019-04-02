@@ -5,7 +5,7 @@ package it.polimi.se2019.Model;
  */
 public class Rybamount {
 
-    /**
+    /*
      * ---------------------- FIELDS ----------------------
      * The amount of cubes of each colour is represented with an int.
      */
@@ -13,11 +13,11 @@ public class Rybamount {
     private int yellowCubes;
     private int blueCubes;
 
-    /**
+    /*
      *   ---------------------- METHODS ----------------------
      */
 
-    /**
+    /*
      *  ---------------------- GETTERS
      */
 
@@ -33,7 +33,7 @@ public class Rybamount {
         return blueCubes;
     }
 
-    /**
+    /*
      *  ---------------------- SETTERS
      */
 

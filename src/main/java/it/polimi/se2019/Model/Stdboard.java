@@ -7,7 +7,7 @@ package it.polimi.se2019.Model;
  */
 public class Stdboard extends Playerboard{
 
-    /**
+    /*
      *  ---------------------- FIELDS ----------------------
      */
    private Token firstBlood;
@@ -15,12 +15,12 @@ public class Stdboard extends Playerboard{
    private boolean enhancedLoot;
    private boolean enhancedShoot;
 
-    /**
+    /*
      *  ---------------------- METHODS ----------------------
      */
 
 
-    /**
+    /*
      *  ---------------------- GETTERS
      */
 
@@ -51,7 +51,7 @@ public class Stdboard extends Playerboard{
     public boolean hasEnhancedShoot(){return enhancedShoot;}
 
 
-    /**
+    /*
      *  ---------------------- SETTERS
      */
 
