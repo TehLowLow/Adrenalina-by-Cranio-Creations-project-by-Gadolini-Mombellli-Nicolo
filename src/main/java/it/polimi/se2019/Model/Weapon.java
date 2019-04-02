@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Weapon {
 
-    /**
+    /*
      *  ---------------------- FIELDS ----------------------
      */
 
@@ -21,19 +21,19 @@ public class Weapon {
     private Effect alternativeEffect;
     private ArrayList <Effect> optionalEffect;
 
-    /**
+    /*
      *  ---------------------- METHODS ----------------------
      */
 
 
 
-    /**
+    /*
      *  ---------------------- GETTERS
      */
 
 
     /**
-     * This method reads the name of tthe card and returns it to the caller
+     * This method reads the name of the card and returns it to the caller
      * @return the name of the weapon
      */
     public String getName(){return name;}
@@ -82,7 +82,7 @@ public class Weapon {
 
 
 
-    /**
+    /*
      *  ---------------------- SETTERS
      */
 
@@ -143,7 +143,7 @@ public class Weapon {
 
 
 
-/**
+/*
  *  TODO: modificato identificatore per reload(), da bool a void.
  *  TODO: spelling check per errori nei commenti e nelle descrizioni dei metodi
  *  TODO: check dell uml, la classe stdboard ha degli errori nelle specifiche dei metodi da correggere

@@ -3,11 +3,11 @@ package it.polimi.se2019.Model;
 
 /**
  * This class represents the standard game board, and tracks if the player can use enhanced actions, and who took
- * the player's First Blood
+ * the player's First Blood.
  */
 public class Stdboard extends Playerboard{
 
-    /**
+    /*
      *  ---------------------- FIELDS ----------------------
      */
    private Token firstBlood;
@@ -15,12 +15,12 @@ public class Stdboard extends Playerboard{
    private boolean enhancedLoot;
    private boolean enhancedShoot;
 
-    /**
+    /*
      *  ---------------------- METHODS ----------------------
      */
 
 
-    /**
+    /*
      *  ---------------------- GETTERS
      */
 
@@ -42,7 +42,7 @@ public class Stdboard extends Playerboard{
      * Check to verify if a player has access to his enhanced loot action
      * @return true or false if the player can or cannot use enhanced loot
      */
-    public boolean hasEnhancedLoot(){return enhancedLoot;}
+    public boolean hasEnhancedLoot(){return enhancedLoot; }
 
     /**
      * Check to verify if a player has access to his enhanced shoot action
@@ -51,7 +51,7 @@ public class Stdboard extends Playerboard{
     public boolean hasEnhancedShoot(){return enhancedShoot;}
 
 
-    /**
+    /*
      *  ---------------------- SETTERS
      */
 

@@ -11,7 +11,7 @@ package it.polimi.se2019.Model;
 public class Powerup {
 
 
-    /**
+    /*
     --------------------FIELDS------------------------------
     PowerUp contains his name, his trade value in terms of "Rybamounts".
     It has also the effect and a description of the card.
@@ -28,13 +28,13 @@ public class Powerup {
 
 
 
-    /**
+    /*
     --------------------METHODS---------------------------
      */
 
 
 
-    /**
+    /*
     -------------------GETTERS----------------------------
      */
 
@@ -50,7 +50,7 @@ public class Powerup {
 
 
 
-    /**
+    /*
     -----------------------SETTERS---------------------------
      */
 

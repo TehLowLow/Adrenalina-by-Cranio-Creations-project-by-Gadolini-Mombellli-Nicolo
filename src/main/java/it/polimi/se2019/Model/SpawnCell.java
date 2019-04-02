@@ -9,28 +9,28 @@ import java.util.ArrayList;
 
 public class SpawnCell extends Cell{
 
-    /**
+    /*
      *  ---------------------- FIELDS ----------------------
      */
     private ArrayList<Weapon> availableWeapons;
 
-    /**
+    /*
      *  ---------------------- METHODS ----------------------
      */
 
 
-    /**
+    /*
      *  ---------------------- GETTERS
      */
 
-    /**
+    /*
      * @return the arraylist that holds memory of the three weapon in the spawn cell.
      */
     public ArrayList<Weapon> getAvailableWeapons(){return availableWeapons;}
 
 
 
-    /**
+    /*
      *  ---------------------- SETTERS
      */
 
@@ -39,6 +39,8 @@ public class SpawnCell extends Cell{
      * Sets the three  weapons in the spawn cell during the init of the game.
      * @param weapons is the arraylist of weapons loaded in the room
      */
-    public void setAvailableWeapons(ArrayList<Weapon> weapons){}
+    public void setAvailableWeapons(ArrayList<Weapon> weapons){
+        this.availableWeapons = weapons;
+    }
 
     }
