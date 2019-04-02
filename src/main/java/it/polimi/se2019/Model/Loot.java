@@ -6,7 +6,7 @@ package it.polimi.se2019.Model;
 
 public class Loot {
 
-    /**
+    /*
      *  ---------------------- FIELDS ----------------------
      */
 
@@ -21,31 +21,43 @@ public class Loot {
      */
    private boolean powerUp;
 
-    /**
+    /*
      * ---------------------- GETTERS
      */
 
+    /**
+     * Return the reward that a player is given from a loot card
+     * @return
+     */
     public Rybamount getRewardValue() {
         return rewardValue;
     }
 
 
     /**
-     *
+     *Check if a player has any powerup in hand
      * @return true if the ammo tile contains also a power up.
      */
     public boolean hasPowerUp() {
         return powerUp;
     }
 
-    /**
+    /*
      * ---------------------- SETTERS
      */
 
+    /**
+     * Sets the reward given by a loot card
+     * @param rewardValue is the list of rewards, that can either be multiple ammos or a powerup
+     */
     public void setRewardValue(Rybamount rewardValue) {
         this.rewardValue = rewardValue;
     }
 
+    /**
+     * Sets the powerup to true if the loot card rewards a player with it
+     * @param powerUp
+     */
     public void setPowerUp(boolean powerUp) {
         this.powerUp = powerUp;
     }

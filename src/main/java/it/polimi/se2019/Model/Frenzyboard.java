@@ -6,27 +6,35 @@ package it.polimi.se2019.Model;
  */
 public class Frenzyboard extends Playerboard {
 
-    /**
+    /*
      * ---------------------- FIELDS ----------------------
      */
 
     /**
-     * Represents the value of the board.
+     * Represents the value of the Playerboard.
      */
     private int boardValue;
 
-    /**
+    /*
      *  ---------------------- GETTERS
      */
 
+    /**
+     * Returns the value of the playerboard during the turn
+     * @return the board value
+     */
     public int getBoardValue() {
         return boardValue;
     }
 
-    /**
+    /*
      *  ---------------------- SETTERS
      */
 
+    /**
+     * Sets the Playerboard value during the Frenzy Mode
+     * @param boardValue is the new frenzy vaue of a player's Board.
+     */
     public void setBoardValue(int boardValue) {
         this.boardValue = boardValue;
     }
