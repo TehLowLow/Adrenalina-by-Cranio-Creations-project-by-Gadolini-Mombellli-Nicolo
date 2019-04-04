@@ -15,7 +15,16 @@ public class Room {
     Here there are represented the cells and the colour.
      */
 
+    /**
+     * This arraylist represents the cells the Room is made of.
+     */
+
     private ArrayList<Cell> cells;
+
+    /**
+     * It represents the Room's colour.
+     */
+
 
     private Integer colour;
 
@@ -31,7 +40,19 @@ public class Room {
     --------------------GETTERS-----------------------------
      */
 
+    /**
+     * Getter for the Room's colour.
+     * @return the Room's colour.
+     */
+
+
     public Integer getColour() {return colour;}
+
+
+    /**
+     * Getter for the Room's cells.
+     * @return the array of the Room's cells.
+     */
 
     public ArrayList<Cell> getCells() {return cells;}
 
@@ -41,8 +62,18 @@ public class Room {
     ---------------------SETTERS----------------------------
      */
 
+    /**
+     * Setter for the Room's colour.
+     * @param colour is the colour of the Room
+     */
 
     public void setColour(Integer colour) {this.colour = colour;}
+
+    /**
+     * Setter for the Room's cells.
+     * @param cells is an array representing the Room's cells.
+     */
+
 
     public void setCells(ArrayList<Cell> cells) {this.cells = cells;}
 
