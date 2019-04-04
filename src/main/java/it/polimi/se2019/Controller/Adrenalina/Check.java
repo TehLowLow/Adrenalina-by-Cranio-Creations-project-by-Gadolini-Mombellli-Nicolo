@@ -119,5 +119,6 @@ public class Check {
 // piu dati e più parametri.
 
 
+//TODO: (@Lollo): Uniformare il codice con lo stile di commmenti deciso dal gruppo.
 
 }
