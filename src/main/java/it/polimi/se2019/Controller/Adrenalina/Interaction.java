@@ -129,7 +129,7 @@ public class Interaction {
 
 
     /**
-     * this methos gives to a player the cubes corresponding
+     * this method gives to a player the cubes corresponding
      * to the picked up loot
      * @param player is the player who receives the cubes
      */
