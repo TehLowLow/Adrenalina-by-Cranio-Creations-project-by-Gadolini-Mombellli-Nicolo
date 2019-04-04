@@ -12,6 +12,8 @@ public class Match {
 
     private ArrayList<Player> players;
 
+    private Board board;
+
 
     /**
      * When called, this method starts the match.
@@ -35,5 +37,13 @@ public class Match {
      */
     public void setPlayers(ArrayList <Player> players){
         this.players = players;
+    }
+
+    /**
+     * Setter for the board used in the current match.
+     * @param board the board used in the current match.
+     */
+    public void setBoard(Board board){
+        this.board = board;
     }
 }
