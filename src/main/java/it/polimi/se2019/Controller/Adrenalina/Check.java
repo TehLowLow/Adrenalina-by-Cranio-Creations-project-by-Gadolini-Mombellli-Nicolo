@@ -60,6 +60,20 @@ public class Check {
     public Rybamount availableRybamount(Player player){}
 
     /**
+     * Checks if a player has sustained enough damage to use enhanced pickup.
+     * @param player is the player to be checked.
+     * @return true if the player has sustained enough damage.
+     */
+    public boolean availablleEnhancedPickUp(Player player){}
+
+    /**
+     * Checks if a player has sustained enough damage to use enhanced shoot.
+     * @param player is the player to be checked.
+     * @return true if the player has sustained enough damage.
+     */
+    public boolean availableEnhancedShoot(Player player){}
+
+    /**
      * Runs to limit the total amount of ammo per color to 3 ammos.
      * @param player is the player to be checked.
      */
