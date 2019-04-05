@@ -19,8 +19,12 @@ public class Check {
     public int death(Player damaged){}
 
 
-    //TODO
-    public int obtainedPoints(Player player){}
+    /**
+     * When a player kills another player, this method resolves the board and assigns the players
+     * their scores.
+     * @param killed the defeated player whose board needs to be resolved.
+     */
+    public void resolveBoard(Player killed, ArrayList <Player> players){}
 
     /**
      * Checks if the player that is being attacked has markers to add to the total damage.
@@ -30,9 +34,9 @@ public class Check {
     public void markers(Player active, Player passive){}
 
     /**
-     * TODO
-     * @param attacker
-     * @param defender
+     * Checks the amount of damages dealt to a player by another player.
+     * @param attacker player that has dealt the damages.
+     * @param defender player that has taken the damages.
      */
     public void damages(Player attacker, Player defender){}
 
@@ -87,7 +91,7 @@ public class Check {
 
     /**
      * Runs to limit the total amount of powerup a player is holding to 3.
-     * @param player is the player to bec checked.
+     * @param player is the player to be checked.
      */
     public void limitPowerUp(Player player){}
 
@@ -118,21 +122,9 @@ public class Check {
      * (or a chart with the points of all the players).
      * @return the winner.
      */
-    public Player winner(){}
+    public Player winner(){ }
 
 
 
-//TODO (@Lollo):
-// Il metodo obtainedPoints non è chiaro se ritorni solo il valore massimo della board di un player
-// oppure se deve ritornare un array di player per assegnare a ogni player dei punti o se ritornare altri dati per il
-// calcolo del punteggio. Chiedere chiarimenti
-//
-
-
-//TODO (@Lollo) : Il metodo damage non è chiaro se debba o meno risolvere il danno. Se deve risolvere il danno servono
-// piu dati e più parametri.
-
-
-//TODO: (@Lollo): Uniformare il codice con lo stile di commmenti deciso dal gruppo.
 
 }
