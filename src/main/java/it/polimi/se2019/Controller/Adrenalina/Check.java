@@ -16,7 +16,9 @@ public class Check {
      * @return an int value. 0 if the player hasn't been damaged enough to die, 1 if the player receives damage only to
      * die, 2 if the attacker overkills.
      */
-    public int death(Player damaged){}
+    public int death(Player damaged){
+        return 0;
+    }
 
 
     /**
@@ -46,7 +48,9 @@ public class Check {
      * @param weapon the weapon to be checked.
      * @return true if a player can afofrd a weapon.
      */
-    public boolean affordableWeapon(Player buyer, Weapon weapon){}
+    public boolean affordableWeapon(Player buyer, Weapon weapon){
+        return true;
+    }
 
     /**
      * Checks if a player can afford to reload a weapon that is holding.
@@ -54,28 +58,36 @@ public class Check {
      * @param weapon the weapon to reload.
      * @return true if the player can afford to reload.
      */
-    public boolean affordableReload(Player player, Weapon weapon){}
+    public boolean affordableReload(Player player, Weapon weapon){
+        return true;
+    }
 
     /**
      * Checks the total amount of ammo of a player
      * @param player plyer to be checked
      * @return the amount of ammos
      */
-    public Rybamount availableRybamount(Player player){}
+    public Rybamount availableRybamount(Player player){
+        return new Rybamount();
+    }
 
     /**
      * Checks if a player has sustained enough damage to use enhanced pickup.
      * @param player is the player to be checked.
      * @return true if the player has sustained enough damage.
      */
-    public boolean availablleEnhancedPickUp(Player player){}
+    public boolean availablleEnhancedPickUp(Player player){
+        return true;
+    }
 
     /**
      * Checks if a player has sustained enough damage to use enhanced shoot.
      * @param player is the player to be checked.
      * @return true if the player has sustained enough damage.
      */
-    public boolean availableEnhancedShoot(Player player){}
+    public boolean availableEnhancedShoot(Player player){
+        return true;
+    }
 
     /**
      * Runs to limit the total amount of ammo per color to 3 ammos.
@@ -107,14 +119,18 @@ public class Check {
      * @param player is the player that needs the fow check.
      * @return all the others players that are in the fov.
      */
-    public ArrayList <Player> visiblePlayers (Player player){}
+    public ArrayList <Player> visiblePlayers (Player player){
+        return new ArrayList<Player>();
+    }
 
     /**
      * Returns all the cells that are a maximum of n steps away from player.
      * @param player is the player that wants the check to move.
      * @return an arraylist of reachable cells.
      */
-    public ArrayList <Cell> reachableCells (Player player){}
+    public ArrayList <Cell> reachableCells (Player player){
+        return new ArrayList<Cell>();
+    }
 
     /**
      * This method runs after the final frenzy, and checks (/resolve) all the last points remaining on the board.
@@ -122,7 +138,10 @@ public class Check {
      * (or a chart with the points of all the players).
      * @return the winner.
      */
-    public Player winner(){ }
+    public Player winner(){
+
+        return new Player();
+    }
 
 
 

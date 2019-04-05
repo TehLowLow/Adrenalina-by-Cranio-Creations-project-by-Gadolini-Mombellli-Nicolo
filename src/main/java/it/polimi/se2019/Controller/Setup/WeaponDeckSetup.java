@@ -8,12 +8,14 @@ public class WeaponDeckSetup {
 
     public ArrayList<Weapon> build() {
 
-        ArrayList <Weapon> weaponDeck = new ArrayList<Weapon>();
+        ArrayList<Weapon> weaponDeck = new ArrayList<Weapon>();
 
         FlamethrowerBuilder flamethrowerBuilder = new FlamethrowerBuilder();
         Weapon flamethrower = flamethrowerBuilder.build();
 
         weaponDeck.add(flamethrower);
+
+        return weaponDeck;
 
     }
 
