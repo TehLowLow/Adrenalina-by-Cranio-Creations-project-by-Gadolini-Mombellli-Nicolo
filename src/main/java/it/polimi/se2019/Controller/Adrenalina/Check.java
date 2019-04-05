@@ -38,7 +38,7 @@ public class Check {
      * @param attacker player that has dealt the damages.
      * @param defender player that has taken the damages.
      */
-    public void damages(Player attacker, Player defender){}
+    private void damages(Player attacker, Player defender){}
 
     /**
      * Checks if a buyer can afford a weapon found in the spawn room. If not, returns false.
