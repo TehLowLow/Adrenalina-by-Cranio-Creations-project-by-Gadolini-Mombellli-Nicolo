@@ -2,14 +2,16 @@ package it.polimi.se2019.Controller.Adrenalina;
 
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Powerup;
+import it.polimi.se2019.View.View;
 import it.polimi.se2019.Model.Weapon;
 
 import java.util.ArrayList;
 
+/**
+ * This class represents the player's turn in the match
+ */
+
 public class Turn {
-    /**
-     * This class represents the player's turn in the match
-     */
 
     /*
     ------------FIELDS-------------------------
@@ -21,7 +23,11 @@ public class Turn {
 
     private ArrayList<Powerup> drewPowerUp;
 
+    private View view;
 
+    private Action action;
+
+    private Interaction interaction;
     /**
      * switchedWeapon is used to save the weapon before checking it
      */
@@ -83,7 +89,10 @@ public class Turn {
      * this method allows the player to play a standard turn
      * @param player is the player who has to play the turn
      */
-    public void standard(Player player){}
+    public void standard(Player player){
+
+
+    }
 
 
     /**

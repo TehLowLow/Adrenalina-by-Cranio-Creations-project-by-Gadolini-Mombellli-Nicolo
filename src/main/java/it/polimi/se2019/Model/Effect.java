@@ -1,5 +1,7 @@
 package it.polimi.se2019.Model;
 
+import java.util.ArrayList;
+
 /**
  * This class represents an effect of a weapon or a power up.
  */
@@ -75,5 +77,13 @@ public abstract class Effect {
      * @param target the target of the effect. It can be the user itself.
      */
     public abstract void applyEffect(Player user, Player target);
+
+    /**
+     * This returns the possible targets of an effect.
+     * @param user the Player thant wants to use the effect.
+     * @param map the Map where the targets must be searched.
+     * @return an ArrayList of possible targets.
+     */
+    public abstract ArrayList<Player> getTargets(Player user, Map map);
 
 }
