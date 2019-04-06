@@ -5,10 +5,10 @@ public class BoardSetup {
 
     public Board build(){
 
-        Board board = new Board(new Map(null, null, null, null,null,null,null ));
+        Board board = new Board();
 
         WeaponDeckSetup weaponDeckSetup = new WeaponDeckSetup();
-        MapSetup mapSetup = new MapSetup();
+        Map1Setup map1Setup = new Map1Setup();
         board.setWeaponDeck(weaponDeckSetup.build());
         return board;
 
@@ -16,5 +16,3 @@ public class BoardSetup {
 
 
 }
-
-//TODO: MODIFICARE IL COSTRUTTORE DI BOARD, TOGLIERE IL PARAMETRO MAP, E INSERIRE PER ESSO GETTERS E SETTERS.
