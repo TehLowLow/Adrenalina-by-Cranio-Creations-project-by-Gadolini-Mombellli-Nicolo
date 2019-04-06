@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Adrenalina;
 import it.polimi.se2019.Model.*;
+import it.polimi.se2019.View.View;
+
 import java.util.ArrayList;
 
 
@@ -10,9 +12,40 @@ import java.util.ArrayList;
  */
 public class Match {
 
+    /*
+    * ---------- FIELDS ----------
+     */
+
+
+    /**
+     * ArrayList of players who take part to the match.
+     */
     private ArrayList<Player> players;
 
+    /**
+     * Board used for the match.
+     */
     private Board board;
+
+    /**
+     * View that manages the interaction with the user by showing information and receiving inputs.
+     */
+    private View view;
+
+    /*
+    * ---------- METHODS ----------
+     */
+
+
+    /**
+     * Constructor for the Match class. It just creates an instance of View.
+     */
+    public Match(){
+
+        this.view = new View();
+
+    }
+
 
 
     /**
@@ -28,6 +61,8 @@ public class Match {
      * After this final loop, the methods for checking the winner are called, and then the match ends.
      */
     public void play(){
+
+        view.message.title();
 
     }
 
