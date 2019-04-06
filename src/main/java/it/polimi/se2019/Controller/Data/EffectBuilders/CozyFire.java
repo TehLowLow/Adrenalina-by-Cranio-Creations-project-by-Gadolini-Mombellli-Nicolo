@@ -6,6 +6,10 @@ import it.polimi.se2019.Model.Player;
 
 import java.util.ArrayList;
 
+/*Alternative effect for the Furnace*/
+
+
+
 public class CozyFire {
 
     private Effect cozyFire = new Effect() {

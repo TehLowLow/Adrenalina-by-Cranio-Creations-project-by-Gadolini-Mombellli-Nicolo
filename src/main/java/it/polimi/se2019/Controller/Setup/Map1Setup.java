@@ -7,12 +7,21 @@ public class Map1Setup {
     public Map build(){
 
         Map1Builder map1Builder = new Map1Builder();
-        Map map1 = new Map();
-        map1 = map1Builder.build();
 
+        map1Builder.build();
 
+        Map map1 = new Map(1, map1Builder.yellowRoom);
+
+        return map1;
 
     }
+
+
+
+
+
+
+
 
 
 

@@ -6,6 +6,8 @@ import it.polimi.se2019.Model.Player;
 
 import java.util.ArrayList;
 
+/*Alernative effect for Flamethrower */
+
 public class BBQMode {
 
 

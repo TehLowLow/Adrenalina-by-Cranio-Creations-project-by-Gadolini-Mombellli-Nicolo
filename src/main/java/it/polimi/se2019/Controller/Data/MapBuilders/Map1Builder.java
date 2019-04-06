@@ -6,7 +6,7 @@ public class Map1Builder {
 
 
 
-    public Map build(){
+    public void build(){
 
         /*
         ------------------YELLOW ROOM-------------------
@@ -18,11 +18,8 @@ public class Map1Builder {
         yellowRoom = yellowRoomBuilder.build();
 
 
-        private Map map1 = new Map(yellowRoom);
+        /*costruttori di stanze rosse, blu, verde...*/
 
-
-
-        return map1;
     }
 
 }
