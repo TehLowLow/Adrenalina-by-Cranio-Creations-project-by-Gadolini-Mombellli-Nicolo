@@ -4,8 +4,16 @@ import  it.polimi.se2019.Model.*;
 
 import java.util.ArrayList;
 
+/**
+ * Creates all the weapon cards.
+ */
+
 public class WeaponDeckSetup {
 
+    /**
+     * Creates all the instances of weapons, and then collects them in an ArrayList, to be used as a deck.
+     * @return an ArrayList of weapons.
+     */
     public ArrayList<Weapon> build() {
 
         ArrayList<Weapon> weaponDeck = new ArrayList<Weapon>();

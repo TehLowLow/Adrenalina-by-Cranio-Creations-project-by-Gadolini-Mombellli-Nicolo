@@ -4,7 +4,17 @@ import it.polimi.se2019.Controller.Data.PowerUpBuilder.*;
 
 import java.util.ArrayList;
 
+
+/**
+ * Creates the deck containing all the power ups
+ */
+
 public class PowerUpDeckSetup {
+
+    /**
+     * Creates an instance of all the PowerUp cards.
+     * @return an ArrayList of PowerUps as a deck.
+     */
 
     public ArrayList<Powerup> build(){
 

@@ -5,8 +5,16 @@ import it.polimi.se2019.Model.*;
 
 import java.util.ArrayList;
 
+/**
+ * Creates all the cells instances, dividing each one into a loot cell or a spawn cell.
+ */
 public class CellSetup {
 
+
+    /**
+     * Builds every cell of every color of a map.
+     * @return an ArrayList containing all the cells.
+     */
     public ArrayList<Cell> build(){
 
         ArrayList<Cell> Room = new ArrayList<Cell>();
