@@ -8,6 +8,10 @@ import it.polimi.se2019.Model.*;
  */
 public class Action {
 
+    private Check check;
+    private InputCheck inputCheck;
+    private Interaction interaction;
+
     /*
     METHODS
      */
@@ -68,11 +72,13 @@ public class Action {
      */
 
     /**
-     * This method implements the enhanced "move" action.
+     * This method implements the enhanced "move" action. It is not different from the standard "move"
+     * action, but it has a dedicated method for future different implementations.
      * @param player the Player that performs the move action.
      */
     private void enhancedMove(Player player){
 
+        this.move(player);
     }
 
     /**

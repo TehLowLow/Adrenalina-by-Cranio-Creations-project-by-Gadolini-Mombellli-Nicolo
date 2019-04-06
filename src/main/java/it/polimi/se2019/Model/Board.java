@@ -73,20 +73,6 @@ public class Board {
      */
 
     /*
-     * ---------------------- CONSTRUCTORS
-     */
-
-
-    /**
-     *  Constructor of the board.
-     */
-
-    public Board(Map map){
-        /**/
-    }
-
-
-    /*
      * ---------------------- GETTERS
      */
 
@@ -107,6 +93,13 @@ public class Board {
         return this.doubleKill;
     }
 
+    /**
+     * Gets the map of the board.
+     * @return reference to the map.
+     */
+    public Map getMap(){
+        return this.map;
+    }
 
     /**
      * Returns a reference to the power up deck.
@@ -165,6 +158,13 @@ public class Board {
     }
 
 
+    /**
+     * Sets a map on the board.
+     * @param map the map that must be set.
+     */
+    public void setMap(Map map){
+        this.map = map;
+    }
     /**
      * Sets the token to keep track of the player that did a double kill.
      * @param doubleKillAuthor Token of the author of the double kill.
@@ -235,6 +235,7 @@ public class Board {
     public void shufflePowerUpDeck(){
 
     }
+
 
 
 }

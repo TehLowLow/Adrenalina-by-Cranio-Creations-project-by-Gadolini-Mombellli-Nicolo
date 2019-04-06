@@ -4,11 +4,13 @@ import it.polimi.se2019.Model.*;
 
 import java.util.ArrayList;
 
+/**
+ * this class contains the methods to manage the links
+ * with all the game's elements, such as drawing, discarding...
+ */
 public class Interaction {
-    /**
-     * this class contains the methods to manage the links
-     * with all the game's elements, such as drawing, discarding...
-     */
+
+    private Check check;
 
     /*
     ----------------------METHODS--------------------------------

@@ -12,10 +12,20 @@ import java.util.ArrayList;
  */
 public class Match {
 
+
     /*
     * ---------- FIELDS ----------
      */
 
+    /**
+     * Turn is a parameter that holds a Turn object.
+     */
+    private Turn turn;
+
+    /**
+     * This is needed to perform various checks.
+     */
+    private Check check;
 
     /**
      * ArrayList of players who take part to the match.
@@ -26,6 +36,7 @@ public class Match {
      * Board used for the match.
      */
     private Board board;
+
 
     /**
      * View that manages the interaction with the user by showing information and receiving inputs.
@@ -38,11 +49,12 @@ public class Match {
 
 
     /**
-     * Constructor for the Match class. It just creates an instance of View.
+     * Constructor for the Match class. It just creates an instance of View and Turn.
      */
     public Match(){
 
         this.view = new View();
+        this.turn = new Turn();
 
     }
 
@@ -62,7 +74,7 @@ public class Match {
      */
     public void play(){
 
-        view.message.title();
+
 
     }
 
