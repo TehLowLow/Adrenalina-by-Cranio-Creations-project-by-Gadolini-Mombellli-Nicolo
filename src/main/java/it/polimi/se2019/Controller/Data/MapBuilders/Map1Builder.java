@@ -4,7 +4,7 @@ import it.polimi.se2019.Controller.Data.RoomBuilders.*;
 
 public class Map1Builder {
 
-   public Room yellowRoom;
+    public Room yellowRoom;
 
     public void build(){
 
@@ -12,9 +12,9 @@ public class Map1Builder {
         ------------------YELLOW ROOM-------------------
          */
 
-        YellowRoomBuilder yellowRoomBuilder = new YellowRoomBuilder();
+        YellowRoomBuilder yellowRoomBuilder = new YellowRoomBuilder();;
 
-        yellowRoom = new Room();
+        Room yellowRoom = new Room();
         yellowRoom = yellowRoomBuilder.build();
 
 
