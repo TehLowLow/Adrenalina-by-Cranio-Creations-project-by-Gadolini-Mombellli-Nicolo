@@ -11,8 +11,6 @@ public class Main {
         BoardSetup boardSetup = new BoardSetup();
         newMatch.setBoard(boardSetup.build());
 
-
-
     }
 
 }
