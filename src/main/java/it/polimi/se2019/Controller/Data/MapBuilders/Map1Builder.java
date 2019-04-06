@@ -4,7 +4,7 @@ import it.polimi.se2019.Controller.Data.RoomBuilders.*;
 
 public class Map1Builder {
 
-    //private Map map1 = new Map();
+
 
     public Map build(){
 
@@ -16,6 +16,9 @@ public class Map1Builder {
 
         Room yellowRoom = new Room();
         yellowRoom = yellowRoomBuilder.build();
+
+
+        private Map map1 = new Map(yellowRoom);
 
 
 
