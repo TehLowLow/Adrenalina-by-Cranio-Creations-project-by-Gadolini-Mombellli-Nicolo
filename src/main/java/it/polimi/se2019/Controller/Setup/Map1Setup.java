@@ -16,10 +16,8 @@ public class Map1Setup {
 
         Map1Builder map1Builder = new Map1Builder();
 
-        map1Builder.build();
 
-        return new Map(1, map1Builder.yellowRoom);
-
+        return map1Builder.build();
 
 
     }
