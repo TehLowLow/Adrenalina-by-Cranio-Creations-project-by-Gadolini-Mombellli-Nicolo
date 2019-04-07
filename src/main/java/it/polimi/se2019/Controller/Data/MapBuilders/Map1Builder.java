@@ -14,7 +14,7 @@ public class Map1Builder {
         ------------------YELLOW ROOM-------------------
          */
 
-        YellowRoomBuilder yellowRoomBuilder = new YellowRoomBuilder();;
+        YellowRoomBuilder yellowRoomBuilder = new YellowRoomBuilder();
 
         Room yellowRoom = new Room();
         yellowRoom = yellowRoomBuilder.build();
