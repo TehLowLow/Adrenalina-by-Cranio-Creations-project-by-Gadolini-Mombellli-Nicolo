@@ -6,12 +6,23 @@ import it.polimi.se2019.Model.*;
  */
 public class YellowLootCellBuilder {
 
+    /*
+     *--------------------------FIELDS----------------------
+     */
+
+    /**
+     * This field will contain the yellowLootCell as an instance of LootCell
+     */
     private LootCell yellowLootCell = new LootCell();
+
+    /*
+     *---------------------------METHODS---------------------
+     */
 
 
     /**
-     * Builder method that assigns the four connection of this cell.
-     * @return
+     * Builder method that assigns the four connection of this cell and sets its loot.
+     * @return the yellowLootCell object, with all its connections and its loot initialized.
      */
     public LootCell build(){
 
