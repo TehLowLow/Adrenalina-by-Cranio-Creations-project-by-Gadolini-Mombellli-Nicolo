@@ -5,7 +5,7 @@ import  it.polimi.se2019.Model.*;
 import java.util.ArrayList;
 
 /**
- * Creates all the weapon cards.
+ * Creates all the weapon cards and collects them on a Deck.
  */
 
 public class WeaponDeckSetup {
