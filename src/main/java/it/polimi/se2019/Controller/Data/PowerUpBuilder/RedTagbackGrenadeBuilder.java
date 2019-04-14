@@ -14,10 +14,12 @@ public class RedTagbackGrenadeBuilder {
 
 
     /**
-     * redVenomGrenade is an instance of Powerup.
+     * red Tagback grenade is an instance of Powerup.
      */
 
-    private Powerup redVenomGrenade = new Powerup();
+    private Powerup rTagback = new Powerup();
+    private Effect eff;
+    private String cDesc;
 
     /*
     -------------------METHODS------------------------
@@ -26,14 +28,24 @@ public class RedTagbackGrenadeBuilder {
 
     /**
      * This method builds the object, setting all its fields.
-     * @return red venom grenade reference.
+     * @return red tagback grenade reference.
      */
 
 
     public Powerup build(){
 
-        redVenomGrenade.setName("Red Venom Grenade");
-        return redVenomGrenade;
+        Rybamount tValue = new Rybamount();
+
+        tValue.setRedCubes(1);
+        tValue.setBlueCubes(0);
+        tValue.setYellowCubes(0);
+
+        rTagback.setName("Red Tagback Grenade");
+        rTagback.setTradeValue(tValue);
+        rTagback.setCardDescription(cDesc);
+        rTagback.setEffect(eff);
+
+        return rTagback;
 
 
     }

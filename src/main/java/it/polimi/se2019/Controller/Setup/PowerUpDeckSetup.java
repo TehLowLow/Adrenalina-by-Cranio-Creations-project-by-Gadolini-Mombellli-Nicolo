@@ -17,9 +17,26 @@ public class PowerUpDeckSetup {
      * @return an ArrayList of PowerUps as a deck.
      */
 
-    public ArrayList<Powerup> build(){
 
-        ArrayList<Powerup> powerupDeck = new ArrayList<Powerup>();
+
+        private ArrayList<Powerup> powerupDeck = new ArrayList<>();
+
+        private BlueNewtonBuilder bNewton = new BlueNewtonBuilder();
+        private BlueTagbackGrenadeBuilder bTagback = new BlueTagbackGrenadeBuilder();
+        private BlueTargetingScopeBuilder btScope = new BlueTargetingScopeBuilder();
+        private BlueTeleporterBuilder bTeleport = new BlueTeleporterBuilder();
+        private RedNewtonBuilder rNewton = new RedNewtonBuilder();
+        private RedTagbackGrenadeBuilder rTagback = new RedTagbackGrenadeBuilder();
+        private RedTargetingScopeBuilder rtScope = new RedTargetingScopeBuilder();
+        private RedTeleporterBuilder rTeleport = new RedTeleporterBuilder();
+        private YellowNewtonBuilder yNewton = new YellowNewtonBuilder();
+        private YellowTagbackGrenadeBuilder yTagback = new YellowTagbackGrenadeBuilder();
+        private YellowTargetingScopeBuilder ytScope = new YellowTargetingScopeBuilder();
+        private YellowTeleporterBuilder yTeleport = new YellowTeleporterBuilder();
+
+
+
+    public ArrayList<Powerup> build(){
 
 
         /*
@@ -27,32 +44,27 @@ public class PowerUpDeckSetup {
         we have to build 3 different cards
          */
 
-        /*
-        -----------------------VENOM GRENADE----------------------
-        */
+        for(int i = 0; i<2; i++) {
 
-        RedTagbackGrenadeBuilder redTagbackGrenadeBuilder = new RedTagbackGrenadeBuilder();
-        Powerup redVenomGrenade = redTagbackGrenadeBuilder.build();
-
-        powerupDeck.add(redVenomGrenade);
-
-
-        BlueTagbackGrenadeBuilder blueTagbackGrenadeBuilder = new BlueTagbackGrenadeBuilder();
-        Powerup blueVenomGrenade = blueTagbackGrenadeBuilder.build();
-
-        powerupDeck.add(blueVenomGrenade);
-
-        YellowTagbackGrenadeBuilder yellowTagbackGrenadeBuilder = new YellowTagbackGrenadeBuilder();
-        Powerup yellowVenomGrenade = yellowTagbackGrenadeBuilder.build();
-
-        powerupDeck.add(yellowVenomGrenade);
-
-
+            powerupDeck.add(bNewton.build());
+            powerupDeck.add(bTagback.build());
+            powerupDeck.add(btScope.build());
+            powerupDeck.add(bTeleport.build());
+            powerupDeck.add(rNewton.build());
+            powerupDeck.add(rTagback.build());
+            powerupDeck.add(rtScope.build());
+            powerupDeck.add(rTeleport.build());
+            powerupDeck.add(yNewton.build());
+            powerupDeck.add(yTagback.build());
+            powerupDeck.add(ytScope.build());
+            powerupDeck.add(yTeleport.build());
+        }
 
 
         return powerupDeck;
     }
 
-
-
+//TODO: aggiungere JDocs ai singoli builder, come riferimento prendere BlueNewtonBuilder.
+//      aggiungere JDocs e sistemare il deckbuilder
+//      implementare codice per caricare le descrizioni da Json.
 }

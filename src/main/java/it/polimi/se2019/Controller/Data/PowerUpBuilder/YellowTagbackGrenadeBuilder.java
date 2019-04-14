@@ -1,38 +1,39 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
-import it.polimi.se2019.Model.*;
+
+import it.polimi.se2019.Model.Effect;
+import it.polimi.se2019.Model.Powerup;
+import it.polimi.se2019.Model.Rybamount;
 
 /**
- * This class creates the powerup Red Venom Grenade.
+ * Builds the Yellow Tagback Grenade powerup.
+ * The italian name of this card is "Granata Venom ".
  */
 
 public class YellowTagbackGrenadeBuilder {
 
-    /*
-    ---------------------FIELDS-------------------------
-     */
+
+    private Powerup yTagback= new Powerup();
+    private Effect eff;
+    private String cDesc;
 
     /**
-     * yellowVenomGrenade is an instance of Powerup.
-     */
-
-
-    private Powerup yellowVenomGrenade = new Powerup();
-
-    /*
-    -------------------METHODS------------------------
-     */
-
-
-    /**
-     * This method builds the object, setting all its fields.
-     * @return yellow venom grenade reference.
+     * Builds and sets a yTagback object
+     * @return reference of the yTagback
      */
 
     public Powerup build(){
+        Rybamount tValue = new Rybamount();
 
-        yellowVenomGrenade.setName("Red Venom Grenade");
-        return yellowVenomGrenade;
+        tValue.setYellowCubes(1);
+        tValue.setRedCubes(0);
+        tValue.setBlueCubes(0);
 
+        yTagback.setName("Yellow Tagback Grenade");
+        yTagback.setTradeValue(tValue);
+        yTagback.setCardDescription(cDesc);
+        yTagback.setEffect(eff);
+
+        return yTagback;
 
     }
 }

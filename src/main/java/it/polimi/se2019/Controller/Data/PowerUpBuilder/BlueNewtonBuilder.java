@@ -11,6 +11,7 @@ import it.polimi.se2019.Model.Rybamount;
 
 public class BlueNewtonBuilder {
 
+
     private Powerup bNewton = new Powerup();
     private Effect eff;
     private String cText;
