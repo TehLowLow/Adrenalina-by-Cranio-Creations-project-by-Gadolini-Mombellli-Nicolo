@@ -5,7 +5,7 @@ import it.polimi.se2019.Model.*;
  * This class creates the powerup Blue Venom Grenade.
  */
 
-public class BlueVenomGrenadeBuilder {
+public class BlueTagbackGrenadeBuilder {
 
     /*
      * ----------------FIELDS-----------------------------
@@ -16,7 +16,9 @@ public class BlueVenomGrenadeBuilder {
      * blueVenomGrenade is an instance of Powerup.
      */
 
-    private Powerup blueVenomGrenade = new Powerup();
+    private Powerup bTagback = new Powerup();
+    private Effect eff;
+    private String cDesc;
 
     /*
     -------------------METHODS------------------------
@@ -30,8 +32,17 @@ public class BlueVenomGrenadeBuilder {
 
     public Powerup build(){
 
-        blueVenomGrenade.setName("Blue Venom Grenade");
-        return blueVenomGrenade;
+        Rybamount tValue = new Rybamount();
+
+        tValue.setBlueCubes(1);
+        tValue.setYellowCubes(0);
+        tValue.setRedCubes(0);
+
+        bTagback.setName("Blue Tagback Grenade");
+        bTagback.setTradeValue(tValue);
+        bTagback.setCardDescription(cDesc);
+        bTagback.setEffect(eff);
+        return bTagback;
 
 
     }

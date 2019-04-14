@@ -5,7 +5,7 @@ import it.polimi.se2019.Model.*;
  * This class creates the powerup Red Venom Grenade.
  */
 
-public class YellowVenomGrenadeBuilder {
+public class YellowTagbackGrenadeBuilder {
 
     /*
     ---------------------FIELDS-------------------------

@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 
 /**
- * Creates the deck containing all the power ups
+ * Creates the deck containing all the power ups. Every power up is created twice for every color, for a total of 6 for
+ * each power up.
  */
 
 public class PowerUpDeckSetup {
@@ -30,19 +31,19 @@ public class PowerUpDeckSetup {
         -----------------------VENOM GRENADE----------------------
         */
 
-        RedVenomGrenadeBuilder redVenomGrenadeBuilder = new RedVenomGrenadeBuilder();
-        Powerup redVenomGrenade = redVenomGrenadeBuilder.build();
+        RedTagbackGrenadeBuilder redTagbackGrenadeBuilder = new RedTagbackGrenadeBuilder();
+        Powerup redVenomGrenade = redTagbackGrenadeBuilder.build();
 
         powerupDeck.add(redVenomGrenade);
 
 
-        BlueVenomGrenadeBuilder blueVenomGrenadeBuilder = new BlueVenomGrenadeBuilder();
-        Powerup blueVenomGrenade = blueVenomGrenadeBuilder.build();
+        BlueTagbackGrenadeBuilder blueTagbackGrenadeBuilder = new BlueTagbackGrenadeBuilder();
+        Powerup blueVenomGrenade = blueTagbackGrenadeBuilder.build();
 
         powerupDeck.add(blueVenomGrenade);
 
-        YellowVenomGrenadeBuilder yellowVenomGrenadeBuilder = new YellowVenomGrenadeBuilder();
-        Powerup yellowVenomGrenade = yellowVenomGrenadeBuilder.build();
+        YellowTagbackGrenadeBuilder yellowTagbackGrenadeBuilder = new YellowTagbackGrenadeBuilder();
+        Powerup yellowVenomGrenade = yellowTagbackGrenadeBuilder.build();
 
         powerupDeck.add(yellowVenomGrenade);
 
