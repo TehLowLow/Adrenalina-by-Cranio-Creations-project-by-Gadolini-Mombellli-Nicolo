@@ -28,8 +28,31 @@ public class YbbBuilder {
      */
 
     public Loot build(){
-        //ybb.setRewardValue();
-        ybb.hasPowerUp();
+
+        /*
+        setting the Rybamount corresponding to the loot.
+         */
+
+        /*
+         * ybbRybamount is a Rybamount instance that has to be filled with 2 blue cubes and 1 yellow cube.
+         */
+        Rybamount ybbRybamount = new Rybamount();
+
+        /*
+        ------ybbRybamount setters-----------
+         */
+
+        ybbRybamount.setBlueCubes(2);
+        ybbRybamount.setYellowCubes(1);
+        ybbRybamount.setRedCubes(0);
+
+        /*
+        -----ybb loot setters-----------------
+         */
+        ybb.setRewardValue(ybbRybamount);
+
+        ybb.setPowerUp(false);
+
         return ybb;
     }
 
