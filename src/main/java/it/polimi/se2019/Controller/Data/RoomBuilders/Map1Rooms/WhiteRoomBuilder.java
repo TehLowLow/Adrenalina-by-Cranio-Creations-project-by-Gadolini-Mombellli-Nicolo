@@ -26,7 +26,7 @@ public class WhiteRoomBuilder {
         //Up connection:
 
         lootCell1.getUpConnection().setType(Connection.DOOR);
-        lootCell1.getUpConnection().setConnectedCell(null);
+
 
         //Right connection
 
@@ -36,24 +36,24 @@ public class WhiteRoomBuilder {
         //Down connection
 
         lootCell1.getDownConnection().setType(Connection.EDGE);
-        lootCell1.getDownConnection().setConnectedCell(null);
+
 
         //Left connection
 
         lootCell1.getLeftConnection().setType(Connection.EDGE);
-        lootCell1.getLeftConnection().setConnectedCell(null);
+
 
         //Loot cell 2
 
         //Up connection
 
         lootCell2.getUpConnection().setType(Connection.WALL);
-        lootCell2.getUpConnection().setConnectedCell(null);
+
 
         //Down connection
 
         lootCell2.getDownConnection().setType(Connection.EDGE);
-        lootCell2.getDownConnection().setConnectedCell(null);
+
 
         //Left connection
 
@@ -63,7 +63,7 @@ public class WhiteRoomBuilder {
         //Right connection
 
         lootCell2.getRightConnection().setType(Connection.DOOR);
-        lootCell2.getRightConnection().setConnectedCell(null);
+
 
 
         cells.add(lootCell1);

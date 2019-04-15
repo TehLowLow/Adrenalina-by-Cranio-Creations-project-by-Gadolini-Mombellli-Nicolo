@@ -55,17 +55,17 @@ public class YellowRoomBuilder {
 
         //Right connection
         spawnCell.getRightConnection().setType(Connection.EDGE);
-        spawnCell.getRightConnection().setConnectedCell(null);
+
 
 
         //Down connection
         spawnCell.getDownConnection().setType(Connection.EDGE);
-        spawnCell.getDownConnection().setConnectedCell(null);
+
 
 
         //Left connection
         spawnCell.getLeftConnection().setType(Connection.DOOR);
-        spawnCell.getLeftConnection().setConnectedCell(null);
+
 
 
         //Up connection
@@ -79,13 +79,13 @@ public class YellowRoomBuilder {
         //Right Connection
 
         lootCell.getRightConnection().setType(Connection.EDGE);
-        lootCell.getRightConnection().setConnectedCell(null);
+
 
 
         //Left Connection
 
         lootCell.getLeftConnection().setType(Connection.DOOR);
-        lootCell.getLeftConnection().setConnectedCell(null);
+
 
 
         //Down connection
@@ -97,7 +97,7 @@ public class YellowRoomBuilder {
         //Up connection
 
         lootCell.getUpConnection().setType(Connection.EDGE);
-        lootCell.getUpConnection().setConnectedCell(null);
+
 
 
         //Aggiungo le celle nell'arraylist della stanza

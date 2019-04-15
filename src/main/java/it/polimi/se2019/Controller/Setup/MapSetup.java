@@ -1,6 +1,6 @@
 package it.polimi.se2019.Controller.Setup;
 import it.polimi.se2019.Model.*;
-import it.polimi.se2019.Controller.Data.MapBuilders.Map1Builder;
+import it.polimi.se2019.Controller.Data.MapBuilders.*;
 
 /**
  * Creates a map instance, gathering all the rooms.
@@ -14,10 +14,10 @@ public class MapSetup {
      */
     public Map build() {
 
-        Map1Builder map1Builder = new Map1Builder();
+        Map2Builder map2Builder = new Map2Builder();
 
 
-        return map1Builder.build();
+        return map2Builder.build();
 
 
     }

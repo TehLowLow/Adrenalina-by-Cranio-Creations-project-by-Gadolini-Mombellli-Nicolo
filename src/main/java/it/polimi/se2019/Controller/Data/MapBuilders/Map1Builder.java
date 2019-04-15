@@ -1,6 +1,5 @@
 package it.polimi.se2019.Controller.Data.MapBuilders;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Map1Rooms.*;
-import java.util.Iterator;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.View.*;
 
@@ -50,14 +49,8 @@ public class Map1Builder {
          BlueRoomBuilder blueRoomBuilder = new BlueRoomBuilder();
          Room blueRoom = blueRoomBuilder.build();
 
-          /*
-        ---------------- PURPLE ROOM ---------------------
-         */
 
-          PurpleRoomBuilder purpleRoomBuilder = new PurpleRoomBuilder();
-          Room purpleRoom = purpleRoomBuilder.build();
-
-          Map map1 =  new Map(1, null, redRoom, yellowRoom, whiteRoom, purpleRoom, blueRoom);
+          Map map1 =  new Map(1, null, redRoom, yellowRoom, whiteRoom, null, blueRoom);
 
           this.connectRooms(map1);
 
@@ -82,12 +75,12 @@ public class Map1Builder {
            if (yellowCell.getName() == "lootCell"){
 
 
-               for(Cell purpleCell: purple.getCells()){
+               for(Cell redCell: red.getCells()){
 
-                   if(purpleCell.getName() == "lootCell2"){
+                   if(redCell.getName() == "lootCell2"){
 
-                       yellowCell.getLeftConnection().setConnectedCell(purpleCell);
-                       purpleCell.getRightConnection().setConnectedCell(yellowCell);
+                       yellowCell.getLeftConnection().setConnectedCell(redCell);
+                       redCell.getRightConnection().setConnectedCell(yellowCell);
                    }
                }
 
@@ -113,24 +106,24 @@ public class Map1Builder {
 
            if(whiteCell.getName() == "lootCell1"){
 
-               for(Cell purpleCell : purple.getCells()){
+               for(Cell redCell : red.getCells()){
 
-                   if(purpleCell.getName() == "lootCell1"){
+                   if(redCell.getName() == "lootCell1"){
 
-                       whiteCell.getUpConnection().setConnectedCell(purpleCell);
-                       purpleCell.getDownConnection().setConnectedCell(whiteCell);
+                       whiteCell.getUpConnection().setConnectedCell(redCell);
+                       redCell.getDownConnection().setConnectedCell(whiteCell);
                    }
                }
            }
 
            if(whiteCell.getName() == "lootCell2"){
 
-               for(Cell purpleCell : purple.getCells()){
+               for(Cell redCell : red.getCells()){
 
-                   if(purpleCell.getName() == "lootCell2"){
+                   if(redCell.getName() == "lootCell2"){
 
-                       whiteCell.getUpConnection().setConnectedCell(purpleCell);
-                       purpleCell.getDownConnection().setConnectedCell(whiteCell);
+                       whiteCell.getUpConnection().setConnectedCell(redCell);
+                       redCell.getDownConnection().setConnectedCell(whiteCell);
 
                    }
 
@@ -143,20 +136,23 @@ public class Map1Builder {
 
            if(blueCell.getName() == "lootCell1"){
 
-               Cell redCell = red.getCells().get(0);
-               redCell.getUpConnection().setConnectedCell(blueCell);
-               blueCell.getDownConnection().setConnectedCell(redCell);
+               for(Cell redCell : red.getCells()) {
 
+                    if(redCell.getName()== "spawnCell")
+                   redCell.getUpConnection().setConnectedCell(blueCell);
+                   blueCell.getDownConnection().setConnectedCell(redCell);
+
+               }
            }
 
            if(blueCell.getName() == "lootCell2"){
 
-               for(Cell purpleCell : purple.getCells()){
+               for(Cell redCell : red.getCells()){
 
-                   if(purpleCell.getName() == "lootCell1"){
+                   if(redCell.getName() == "lootCell1"){
 
-                       blueCell.getDownConnection().setConnectedCell(purpleCell);
-                       purpleCell.getUpConnection().setConnectedCell(blueCell);
+                       blueCell.getDownConnection().setConnectedCell(redCell);
+                       redCell.getUpConnection().setConnectedCell(blueCell);
                    }
                }
 
@@ -164,24 +160,16 @@ public class Map1Builder {
 
            if(blueCell.getName() == "spawnCell"){
 
-               for(Cell purpleCell : purple.getCells()){
-                   if(purpleCell.getName()== "lootCell2"){
-                       purpleCell.getUpConnection().setConnectedCell(blueCell);
-                       blueCell.getDownConnection().setConnectedCell(purpleCell);
+               for(Cell redCell : red.getCells()){
+                   if(redCell.getName()== "lootCell2"){
+                       redCell.getUpConnection().setConnectedCell(blueCell);
+                       blueCell.getDownConnection().setConnectedCell(redCell);
                    }
                }
 
            }
        }
 
-      for(Cell purpleCell : purple.getCells()){
-
-           if(purpleCell.getName() == "lootCell1"){
-               Cell redSpawnCell = red.getCells().get(0);
-               purpleCell.getLeftConnection().setConnectedCell(redSpawnCell);
-               redSpawnCell.getRightConnection().setConnectedCell(purpleCell);
-           }
-       }
 
     }
 

@@ -34,17 +34,17 @@ public class BlueRoomBuilder {
         //Up connection
 
         lootCell1.getUpConnection().setType(Connection.EDGE);
-        lootCell1.getUpConnection().setConnectedCell(null);
+
 
         //Down connection
 
         lootCell1.getDownConnection().setType(Connection.DOOR);
-        lootCell1.getDownConnection().setConnectedCell(null);
+
 
         //Left connection
 
         lootCell1.getLeftConnection().setType(Connection.EDGE);
-        lootCell1.getLeftConnection().setConnectedCell(null);
+
 
         //Right connection
 
@@ -56,12 +56,12 @@ public class BlueRoomBuilder {
         //Up connection
 
         lootCell2.getUpConnection().setType(Connection.EDGE);
-        lootCell2.getUpConnection().setConnectedCell(null);
+
 
         //Down connection
 
         lootCell2.getDownConnection().setType(Connection.WALL);
-        lootCell2.getDownConnection().setConnectedCell(null);
+
 
         //Left connection
 
@@ -78,12 +78,12 @@ public class BlueRoomBuilder {
         //Up connection
 
         spawnCell.getUpConnection().setType(Connection.EDGE);
-        spawnCell.getUpConnection().setConnectedCell(null);
+
 
         //Down connection
 
         spawnCell.getDownConnection().setType(Connection.DOOR);
-        spawnCell.getDownConnection().setConnectedCell(null);
+
 
         //Left connection
 
@@ -93,7 +93,7 @@ public class BlueRoomBuilder {
         //Right connection
 
         spawnCell.getRightConnection().setType(Connection.EDGE);
-        spawnCell.getRightConnection().setConnectedCell(null);
+
 
 
         cells.add(spawnCell);
