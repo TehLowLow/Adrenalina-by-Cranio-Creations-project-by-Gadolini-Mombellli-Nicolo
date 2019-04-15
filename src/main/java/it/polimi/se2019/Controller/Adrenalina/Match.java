@@ -74,7 +74,8 @@ public class Match {
      */
     public void play(){
 
-
+        View view = new View();
+        view.printer.map(this.board);
 
     }
 
@@ -91,6 +92,8 @@ public class Match {
      * @param board the board used in the current match.
      */
     public void setBoard(Board board){
+
         this.board = board;
+
     }
 }

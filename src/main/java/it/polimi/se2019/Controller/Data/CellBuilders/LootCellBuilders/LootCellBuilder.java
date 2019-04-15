@@ -2,18 +2,18 @@ package it.polimi.se2019.Controller.Data.CellBuilders.LootCellBuilders;
 import it.polimi.se2019.Model.*;
 
 /**
- * This class builds a Yellow Loot Cell.
+ * This class builds a Loot Cell.
  */
-public class YellowLootCellBuilder {
+public class LootCellBuilder {
 
     /*
      *--------------------------FIELDS----------------------
      */
 
     /**
-     * This field will contain the yellowLootCell as an instance of LootCell
+     * This field will contain the lootCell as an instance of LootCell
      */
-    private LootCell yellowLootCell = new LootCell();
+    private LootCell lootCell;
 
     /*
      *---------------------------METHODS---------------------
@@ -26,15 +26,16 @@ public class YellowLootCellBuilder {
      */
     public LootCell build(){
 
-        /*
-        yellowLootCell.setDownConnection();
-        yellowLootCell.setLeftConnection();
-        yellowLootCell.setRightConnection();
-        yellowLootCell.setUpConnection();
-        yellowLootCell.setLoot();
-        */
+        lootCell = new LootCell();
 
-        return yellowLootCell;
+        lootCell.setDownConnection(new Connection());
+        lootCell.setLeftConnection(new Connection());
+        lootCell.setRightConnection(new Connection());
+        lootCell.setUpConnection(new Connection());
+        //lootCell.setLoot();
+
+
+        return lootCell;
 
     }
 

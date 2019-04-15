@@ -2,21 +2,21 @@ package it.polimi.se2019.Controller.Data.CellBuilders.SpawnCellBuilders;
 import it.polimi.se2019.Model.*;
 
 /**
- * This class builds a Yellow Spawn Cell
+ * This class builds a Spawn Cell
  */
 
-public class YellowSpawnCellBuilder {
+public class SpawnCellBuilder {
 
     /*
     -------------------FIELDS----------------------
      */
 
     /**
-     * This field will contain the yellowSpawnCell, whose object is an instance of SpawnCell
+     * This field will contain the Spawn Cell, whose object is an instance of SpawnCell
      */
 
 
-    private SpawnCell yellowSpawnCell = new SpawnCell();
+    private SpawnCell spawnCell;
 
     /*
     ---------------------METHODS----------------------------
@@ -30,15 +30,15 @@ public class YellowSpawnCellBuilder {
 
     public SpawnCell build(){
 
-      /*
-        yellowSpawnCell.setDownConnection();
-        yellowSpawnCell.setLeftConnection();
-        yellowSpawnCell.setDownConnection();
-        yellowSpawnCell.setRightConnection();
-        yellowSpawnCell.setAvailableWeapons();
-      */
+        spawnCell = new SpawnCell();
+        spawnCell.setDownConnection(new Connection());
+        spawnCell.setLeftConnection(new Connection());
+        spawnCell.setUpConnection(new Connection());
+        spawnCell.setRightConnection(new Connection());
+        //spawnCell.setAvailableWeapons();
 
-      return yellowSpawnCell;
+
+      return spawnCell;
 
     }
 

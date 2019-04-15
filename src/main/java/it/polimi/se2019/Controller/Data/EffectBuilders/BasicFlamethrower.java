@@ -23,6 +23,7 @@ public class BasicFlamethrower {
         public void applyEffect(Player user, Player target) {
 
 
+
         }
 
             /**

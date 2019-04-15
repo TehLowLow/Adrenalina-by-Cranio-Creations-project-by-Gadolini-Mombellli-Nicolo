@@ -21,6 +21,11 @@ public class Connection {
      * Edge: The room has a direction that points out the edge of the map.
      */
 
+     public static final String FREE = "free";
+     public static final String DOOR = "door";
+     public static final String WALL = "wall";
+     public static final String EDGE = "edge";
+
     private String type;
 
     /**
@@ -33,24 +38,24 @@ public class Connection {
      * Returns the type of the obstacle between two cells
      * @return a string containing the type of the obstacle
      */
-    private  String getType(){return type;}
+    public  String getType(){return type;}
 
     /**
      * Sets the type of obstacle between rooms
      * @param tp contains the type
      */
-    private void setType(String tp){this.type = tp;}
+    public void setType(String tp){this.type = tp;}
 
     /**
      * Returns the cell on the other side of the obstacle
      * @return a cell object
      */
-    private Cell getConnectedCell(){return connectedCell;}
+    public Cell getConnectedCell(){return connectedCell;}
 
     /**
      * Sets the connected cell on the other side of the obstacle
      * @param connect stores the cell to be set.
      */
-    private void setConnectedCell(Cell connect){this.connectedCell = connect;}
+    public void setConnectedCell(Cell connect){this.connectedCell = connect;}
 
 }

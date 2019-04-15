@@ -21,6 +21,17 @@ public abstract class Cell {
     private Connection rightConnection;
 
     /*
+    Name that identifies the cell.
+     */
+    private String name;
+
+    /*
+    Colour of the cell
+     */
+
+    private int colour;
+
+    /*
      *  ---------------------- METHODS  ----------------------
      */
 
@@ -58,10 +69,41 @@ public abstract class Cell {
         return rightConnection;
     }
 
+    /**
+     * Getter for the cell's name.
+     * @return the name of the cell.
+     */
+    public String getName(){
+        return this.name;
+    }
+
+    /**
+     * Getter for the cell's colour.
+     */
+
+    public int getColour(){
+        return this.colour;
+    }
 
     /*
      * ---------------------- SETTERS
      */
+
+    /**
+     * Sets the name of the cell.
+     * @param name the name of the cell.
+     */
+    public void setName(String name){
+        this.name = name;
+    }
+
+    /**
+     * Sets the colour of the cell. It is needed by the view.
+     * @param colour: the color that must be assigned.
+     */
+    public void setColour(int colour){
+        this.colour = colour;
+    }
 
     /**
      * Sets the upper connection of a room
@@ -99,6 +141,5 @@ public abstract class Cell {
     public void setRightConnection(Connection rightConnection) {
         this.rightConnection = rightConnection;
     }
-
 
 }

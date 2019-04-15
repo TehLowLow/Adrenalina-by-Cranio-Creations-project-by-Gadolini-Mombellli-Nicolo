@@ -1,6 +1,5 @@
 package it.polimi.se2019.Controller.Setup;
 import  it.polimi.se2019.Controller.Data.LootBuilders.*;
-import it.polimi.se2019.Controller.Data.RoomBuilders.YellowRoomBuilder;
 import  it.polimi.se2019.Model.*;
 
 import java.util.ArrayList;

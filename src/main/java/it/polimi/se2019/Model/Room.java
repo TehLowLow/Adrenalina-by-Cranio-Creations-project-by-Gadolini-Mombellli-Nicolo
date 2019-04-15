@@ -7,6 +7,8 @@ import java.util.ArrayList;
  A room is part of a map. It's made by a few cells and
  it has a colour.
  */
+
+
 public class Room {
 
 
