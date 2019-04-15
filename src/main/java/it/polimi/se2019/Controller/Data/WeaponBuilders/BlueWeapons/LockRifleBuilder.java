@@ -1,6 +1,5 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons;
 
-
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
