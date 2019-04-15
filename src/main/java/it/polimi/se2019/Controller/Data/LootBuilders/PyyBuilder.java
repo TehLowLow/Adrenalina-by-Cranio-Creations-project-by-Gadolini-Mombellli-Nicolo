@@ -12,11 +12,7 @@ public class PyyBuilder {
      * There is the Loot object that will contain pyy.
      */
 
-    /**
-     * pyy object as an instance of Loot.
-     */
-
-    private Loot pyy = new Loot();
+    private Loot pyy;
 
     /*
      * ----------------------METHODS-------------------------------
@@ -28,6 +24,12 @@ public class PyyBuilder {
      */
 
     public Loot build(){
+
+        /*
+         * pyy object as an instance of Loot.
+         */
+
+        pyy = new Loot();
 
         /*
         setting the Rybamount corresponding to the loot.

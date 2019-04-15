@@ -12,11 +12,7 @@ public class BrrBuilder {
      * There is the Loot object that will contain brr.
      */
 
-    /**
-     * brr object as an instance of Loot.
-     */
-
-    private Loot brr = new Loot();
+    private Loot brr;
 
     /*
      * ----------------------METHODS-------------------------------
@@ -28,6 +24,13 @@ public class BrrBuilder {
      */
 
     public Loot build(){
+
+        /*
+         * brr object as an instance of Loot.
+         */
+
+        brr = new Loot();
+
 
         /*
         setting the Rybamount corresponding to the loot.

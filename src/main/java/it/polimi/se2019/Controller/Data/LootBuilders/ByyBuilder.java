@@ -12,11 +12,7 @@ public class ByyBuilder {
      * There is the Loot object that will contain byy.
      */
 
-    /**
-     * byy object as an instance of Loot.
-     */
-
-    private Loot byy = new Loot();
+    private Loot byy;
 
     /*
      * ----------------------METHODS-------------------------------
@@ -28,6 +24,14 @@ public class ByyBuilder {
      */
 
     public Loot build(){
+
+        /*
+         * byy object as an instance of Loot.
+         */
+
+        byy = new Loot();
+
+
 
         /*
         setting the Rybamount corresponding to the loot.

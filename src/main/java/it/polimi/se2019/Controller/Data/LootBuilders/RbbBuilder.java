@@ -12,11 +12,7 @@ public class RbbBuilder {
      * There is the Loot object that will contain rbb.
      */
 
-    /**
-     * rbb object as an instance of Loot.
-     */
-
-    private Loot rbb = new Loot();
+    private Loot rbb;
 
     /*
      * ----------------------METHODS-------------------------------
@@ -28,6 +24,12 @@ public class RbbBuilder {
      */
 
     public Loot build(){
+
+        /*
+         * rbb object as an instance of Loot.
+         */
+
+        rbb = new Loot();
 
         /*
         setting the Rybamount corresponding to the loot.

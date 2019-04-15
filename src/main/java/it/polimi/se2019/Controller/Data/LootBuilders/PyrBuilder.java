@@ -12,11 +12,7 @@ public class PyrBuilder {
      * There is the Loot object that will contain pyr.
      */
 
-    /**
-     * pyr object as an instance of Loot.
-     */
-
-    private Loot pyr = new Loot();
+    private Loot pyr;
 
     /*
      * ----------------------METHODS-------------------------------
@@ -28,6 +24,12 @@ public class PyrBuilder {
      */
 
     public Loot build(){
+
+        /*
+         * pyr object as an instance of Loot.
+         */
+
+        pyr = new Loot();
 
         /*
         setting the Rybamount corresponding to the loot.

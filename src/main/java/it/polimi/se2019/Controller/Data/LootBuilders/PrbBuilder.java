@@ -12,11 +12,8 @@ public class PrbBuilder {
      * There is the Loot object that will contain prb.
      */
 
-    /**
-     * prb object as an instance of Loot.
-     */
+    private Loot prb;
 
-    private Loot prb = new Loot();
 
     /*
      * ----------------------METHODS-------------------------------
@@ -28,6 +25,13 @@ public class PrbBuilder {
      */
 
     public Loot build(){
+
+        /*
+         * prb object as an instance of Loot.
+         */
+
+        prb = new Loot();
+
 
         /*
         setting the Rybamount corresponding to the loot.

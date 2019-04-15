@@ -12,11 +12,7 @@ public class YrrBuilder {
      * There is the Loot object that will contain yrr.
      */
 
-    /**
-     * yrr object as an instance of Loot.
-     */
-
-    private Loot yrr = new Loot();
+    private Loot yrr;
 
     /*
      * ----------------------METHODS-------------------------------
@@ -28,6 +24,12 @@ public class YrrBuilder {
      */
 
     public Loot build(){
+
+        /*
+         * yrr object as an instance of Loot.
+         */
+
+        yrr = new Loot();
 
         /*
         setting the Rybamount corresponding to the loot.

@@ -12,11 +12,7 @@ public class PybBuilder {
      * There is the Loot object that will contain pyb.
      */
 
-    /**
-     * pyb object as an instance of Loot.
-     */
-
-    private Loot pyb = new Loot();
+    private Loot pyb;
 
     /*
      * ----------------------METHODS-------------------------------
@@ -28,6 +24,12 @@ public class PybBuilder {
      */
 
     public Loot build(){
+
+        /*
+         * pyb object as an instance of Loot.
+         */
+
+        pyb = new Loot();
 
         /*
         setting the Rybamount corresponding to the loot.

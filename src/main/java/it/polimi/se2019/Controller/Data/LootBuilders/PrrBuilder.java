@@ -12,11 +12,7 @@ public class PrrBuilder {
      * There is the Loot object that will contain prr.
      */
 
-    /**
-     * prr object as an instance of Loot.
-     */
-
-    private Loot prr = new Loot();
+    private Loot prr;
 
     /*
      * ----------------------METHODS-------------------------------
@@ -28,6 +24,12 @@ public class PrrBuilder {
      */
 
     public Loot build(){
+
+        /*
+         * prr object as an instance of Loot.
+         */
+
+        prr = new Loot();
 
         /*
         setting the Rybamount corresponding to the loot.
