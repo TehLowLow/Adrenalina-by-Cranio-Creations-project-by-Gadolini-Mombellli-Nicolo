@@ -38,7 +38,7 @@ public class BlueTagbackGrenadeBuilder {
         tValue.setYellowCubes(0);
         tValue.setRedCubes(0);
 
-        bTagback.setName("Blue Tagback Grenade");
+        bTagback.setName("Granata Venom Blu");
         bTagback.setTradeValue(tValue);
         bTagback.setCardDescription(cDesc);
         bTagback.setEffect(eff);

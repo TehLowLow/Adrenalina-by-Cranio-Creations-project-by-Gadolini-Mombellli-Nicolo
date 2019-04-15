@@ -20,7 +20,7 @@ public class RedTeleporterBuilder {
         tValue.setBlueCubes(0);
         tValue.setYellowCubes(0);
 
-        rTeleport.setName("Red Teleporter");
+        rTeleport.setName("Teletrasporto Rosso");
         rTeleport.setTradeValue(tValue);
         rTeleport.setCardDescription(cDesc);
         rTeleport.setEffect(eff);

@@ -27,7 +27,7 @@ public class RedNewtonBuilder {
         tValue.setBlueCubes(0);
         tValue.setYellowCubes(0);
 
-        rNewton.setName("Red Newton");
+        rNewton.setName("Raggio Cinetico Rosso");
         rNewton.setTradeValue(tValue);
         rNewton.setCardDescription(cDesc);
         rNewton.setEffect(eff);

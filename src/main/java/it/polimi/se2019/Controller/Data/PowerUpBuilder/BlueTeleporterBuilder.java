@@ -27,7 +27,7 @@ public class BlueTeleporterBuilder {
         tValue.setRedCubes(0);
         tValue.setYellowCubes(0);
 
-        bTeleport.setName("Blue Teleporter");
+        bTeleport.setName("Teletrasporto Blu");
         bTeleport.setTradeValue(tValue);
         bTeleport.setCardDescription(cDesc);
         bTeleport.setEffect(eff);

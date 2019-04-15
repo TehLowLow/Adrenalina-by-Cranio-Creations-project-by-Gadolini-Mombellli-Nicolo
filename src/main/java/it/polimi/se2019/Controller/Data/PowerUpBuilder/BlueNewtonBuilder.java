@@ -30,7 +30,7 @@ public class BlueNewtonBuilder {
 
 
 
-        bNewton.setName("Blue Newton");
+        bNewton.setName("Raggio Cinetico Blu");
         bNewton.setTradeValue(tValue);
         bNewton.setCardDescription(cText);
         bNewton.setEffect(eff);

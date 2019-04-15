@@ -1,0 +1,61 @@
+{
+  "weapons": [
+    {
+      "name": "Distruttore",
+      "description": "Dai 2 danni e 1 marchio a 1 bersaglio che puoi vedere.",
+      "price": [
+        {
+          "redCubes": 0,
+          "yellowCubes": 0,
+          "blueCubes": 1
+        }
+      ],
+      "rechargeCost": [
+        {
+          "redCubes": 0,
+          "yellowCubes": 0,
+          "blueCubes": 2
+        }
+      ]
+    },
+    {
+      "name": "Mitragliatrice",
+      "description": "Scegli 1 o 2 bersagli che puoi vedere e dai 1 danno a entrambi. NOTA: Se hai dato entrambi i punti aggiuntivi di danno, devono essere dati a 2 bersagli diversi. Se puoi vedere solo 2 bersagli, dai 2 danni a entrambi se usi entrambi gli fetti opzionali. Se usil' effetto ase solo su 1 bersaglio, puoi comunque uasreil tripode di supporto per dare 1 danno aggiuntivo.",
+      "price": [
+        {
+          "redCubes": 1,
+          "yellowCubes": 0,
+          "blueCubes": 0
+        }
+      ],
+      "rechargeCost": [
+        {
+          "redCubes": 1,
+          "yellowCubes": 0,
+          "blueCubes": 1
+        }
+      ]
+    },
+    {
+      "name": "Torpedine",
+      "description": "Dai 2 danni a un bersaglio che puoi vedere. NOTA: Questa carta limita l'ordine in cui puoi utilizzare i suoi effetti (molte non lo fanno). Inoltre ogni bersaglio deve essere un giocatore differente.",
+      "price": [
+        {
+          "redCubes": 1,
+          "yellowCubes": 0,
+          "blueCubes": 0
+        }
+      ],
+      "rechargeCost": [
+        {
+          "redCubes": 1,
+          "yellowCubes": 0,
+          "blueCubes": 1
+        }
+      ]
+    },
+    {
+      "...": "..."
+    }
+  ]
+}

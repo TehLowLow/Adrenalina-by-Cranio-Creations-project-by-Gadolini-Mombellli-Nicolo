@@ -26,7 +26,7 @@ public class YellowNewtonBuilder {
 
 
 
-        yNewton.setName("Yellow Newton");
+        yNewton.setName("Raggio Cinetico Giallo");
         yNewton.setTradeValue(tValue);
         yNewton.setCardDescription(cDesc);
         yNewton.setEffect(eff);

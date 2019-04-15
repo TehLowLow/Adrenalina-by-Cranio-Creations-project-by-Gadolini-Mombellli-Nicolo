@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders;
 import it.polimi.se2019.Model.*;
+import com.google.gson.Gson;
 
 /**
  * This class builds the weapon Flamethrower.
@@ -28,5 +29,15 @@ public class FlamethrowerBuilder {
 
 
     }
+
+    //Gson test
+
+
+
+
+
+
+
+
 
 }

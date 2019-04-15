@@ -40,7 +40,7 @@ public class RedTagbackGrenadeBuilder {
         tValue.setBlueCubes(0);
         tValue.setYellowCubes(0);
 
-        rTagback.setName("Red Tagback Grenade");
+        rTagback.setName("Granata Venom Rossa");
         rTagback.setTradeValue(tValue);
         rTagback.setCardDescription(cDesc);
         rTagback.setEffect(eff);

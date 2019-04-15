@@ -28,7 +28,7 @@ public class YellowTagbackGrenadeBuilder {
         tValue.setRedCubes(0);
         tValue.setBlueCubes(0);
 
-        yTagback.setName("Yellow Tagback Grenade");
+        yTagback.setName("Granata Venom Gialla");
         yTagback.setTradeValue(tValue);
         yTagback.setCardDescription(cDesc);
         yTagback.setEffect(eff);

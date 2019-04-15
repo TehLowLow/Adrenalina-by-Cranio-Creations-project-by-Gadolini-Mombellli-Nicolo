@@ -20,7 +20,7 @@ public class RedTargetingScopeBuilder {
         tValue.setBlueCubes(0);
         tValue.setYellowCubes(0);
 
-        rtScope.setName("Red Targeting Scope");
+        rtScope.setName("Mirino Rosso");
         rtScope.setTradeValue(tValue);
         rtScope.setCardDescription(cDesc);
         rtScope.setEffect(eff);

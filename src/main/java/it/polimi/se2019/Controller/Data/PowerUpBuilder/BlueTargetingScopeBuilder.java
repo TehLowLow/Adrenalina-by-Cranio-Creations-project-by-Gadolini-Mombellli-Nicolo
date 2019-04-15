@@ -28,7 +28,7 @@ public class BlueTargetingScopeBuilder {
         tValue.setYellowCubes(0);
 
 
-        btScope.setName("Blue Targeting Scope");
+        btScope.setName("Mirino Blu");
         btScope.setTradeValue(tValue);
         btScope.setCardDescription(cDesc);
         btScope.setEffect(eff);

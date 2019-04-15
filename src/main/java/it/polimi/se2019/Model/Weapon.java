@@ -18,7 +18,7 @@ public class Weapon {
     private String name;
 
     /**
-     * Recharge cost of the weapon. It does not comprehend the price of the weapon.
+     * Recharge cost of the weapon. It does not include the price of the weapon.
      */
     private Rybamount rechargeCost;
     /**

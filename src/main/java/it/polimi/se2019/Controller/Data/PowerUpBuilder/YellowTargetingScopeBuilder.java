@@ -20,7 +20,7 @@ public class YellowTargetingScopeBuilder {
         tValue.setRedCubes(0);
         tValue.setBlueCubes(0);
 
-        ytScope.setName("Yellow Targeting Scope");
+        ytScope.setName("Mirino Giallo");
         ytScope.setTradeValue(tValue);
         ytScope.setCardDescription(cDesc);
         ytScope.setEffect(eff);
