@@ -25,10 +25,7 @@ public class Weapon {
      * Price of the weapon.
      */
     private Rybamount price;
-    /**
-     * Description of the weapon.
-     */
-    private String description;
+
     /**
      * If true, the weapon is loaded.
      */
@@ -65,17 +62,20 @@ public class Weapon {
 
 
     /**
-     * This methods reads the cost of reloading the weapon, and returns it to the caller
+     * This method reads the cost of reloading the weapon, and returns it to the caller
      * @return is the cost for reloading
      */
     public Rybamount getRechargeCost(){return rechargeCost;}
 
 
     /**
-     * Returns the description of a card
-     * @return a string containing the description
+     * This method reads the price, in terms of rybamount, of the weapon and returns it.
+     * @return the price of the weapon
      */
-    public String getDescription(){return description;}
+
+    public Rybamount getPrice(){return price;}
+
+
 
 
     /**
@@ -127,12 +127,11 @@ public class Weapon {
     public void setRechargeCost(Rybamount rCost){}
 
 
-
     /**
-     * This method reads the description of the weapon from file and sets it
-     * @param desc is the description of the card
+     * This method sets the price of the weapon
+     * @param price is the price of the weapon in terms of rybamount
      */
-    public void setDescription(String desc){}
+    public void setPrice(Rybamount price){}
 
 
 
