@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Setup;
-import  it.polimi.se2019.Controller.Data.WeaponBuilders.*;
+import it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons.FlamethrowerBuilder;
+import it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons.FurnaceBuilder;
+import it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons.HeatseekerBuilder;
 import  it.polimi.se2019.Model.*;
 
 import java.util.ArrayList;

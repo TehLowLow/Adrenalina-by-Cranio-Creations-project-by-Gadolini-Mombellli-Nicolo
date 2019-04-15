@@ -1,4 +1,4 @@
-package it.polimi.se2019.Controller.Data.WeaponBuilders;
+package it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons;
 import it.polimi.se2019.Model.*;
 
 /**
