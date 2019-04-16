@@ -1,4 +1,4 @@
-package it.polimi.se2019.Controller.Data.RoomBuilders.Map3Rooms;
+package it.polimi.se2019.Controller.Data.RoomBuilders.Map4Rooms;
 import it.polimi.se2019.Controller.Data.CellBuilders.LootCellBuilders.LootCellBuilder;
 import it.polimi.se2019.Controller.Data.CellBuilders.SpawnCellBuilders.SpawnCellBuilder;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
@@ -41,7 +41,7 @@ public class BlueRoomBuilder {
         spawnCell.getLeftConnection().setConnectedCell(lootCell);
 
         //Right connection
-        spawnCell.getRightConnection().setType(Connection.EDGE);
+        spawnCell.getRightConnection().setType(Connection.DOOR);
 
 
         //lootCell

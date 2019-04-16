@@ -14,10 +14,10 @@ public class MapSetup {
      */
     public Map build() {
 
-        Map3Builder map3Builder = new Map3Builder();
+        Map4Builder map4Builder = new Map4Builder();
 
 
-        return map3Builder.build();
+        return map4Builder.build();
 
 
     }

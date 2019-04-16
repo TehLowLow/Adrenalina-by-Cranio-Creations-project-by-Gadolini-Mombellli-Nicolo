@@ -1,29 +1,29 @@
-package it.polimi.se2019.Controller.Data.RoomBuilders.Map3Rooms;
+package it.polimi.se2019.Controller.Data.RoomBuilders.Map4Rooms;
 import it.polimi.se2019.Controller.Data.CellBuilders.LootCellBuilders.LootCellBuilder;
 import it.polimi.se2019.Controller.Data.CellBuilders.SpawnCellBuilders.SpawnCellBuilder;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
-
 import java.util.ArrayList;
 
-public class BlueRoomBuilder {
 
+public class RedRoomBuilder {
 
+    private Room redRoom;
 
     public Room build(){
 
-        Room blueRoom = new Room();
-        ArrayList <Cell> cells = new ArrayList<Cell>();
+        redRoom = new Room();
+        ArrayList<Cell> cells = new ArrayList<Cell>();
 
         SpawnCellBuilder spawnCellBuilder = new SpawnCellBuilder();
         LootCellBuilder lootCellBuilder = new LootCellBuilder();
 
         Cell spawnCell = spawnCellBuilder.build();
-        spawnCell.setColour(Colour.BLUE);
+        spawnCell.setColour(Colour.RED);
         spawnCell.setName("spawnCell");
 
         Cell lootCell = lootCellBuilder.build();
-        lootCell.setColour(Colour.BLUE);
+        lootCell.setColour(Colour.RED);
         lootCell.setName("lootCell");
 
 
@@ -31,18 +31,17 @@ public class BlueRoomBuilder {
 
         //Up connection
 
-        spawnCell.getUpConnection().setType(Connection.EDGE);
+        spawnCell.getUpConnection().setType(Connection.FREE);
+        spawnCell.getUpConnection().setConnectedCell(lootCell);
 
         //Down connection
         spawnCell.getDownConnection().setType(Connection.DOOR);
 
         //Left connection
-        spawnCell.getLeftConnection().setType(Connection.FREE);
-        spawnCell.getLeftConnection().setConnectedCell(lootCell);
+        spawnCell.getLeftConnection().setType(Connection.EDGE);
 
         //Right connection
-        spawnCell.getRightConnection().setType(Connection.EDGE);
-
+        spawnCell.getRightConnection().setType(Connection.WALL);
 
         //lootCell
 
@@ -50,25 +49,21 @@ public class BlueRoomBuilder {
         lootCell.getUpConnection().setType(Connection.EDGE);
 
         //Down connection
-        lootCell.getDownConnection().setType(Connection.DOOR);
-
+        lootCell.getDownConnection().setType(Connection.FREE);
+        lootCell.getDownConnection().setConnectedCell(spawnCell);
 
         //Left connection
-        lootCell.getLeftConnection().setType(Connection.DOOR);
+        lootCell.getLeftConnection().setType(Connection.EDGE);
 
         //Right connection
-        lootCell.getRightConnection().setType(Connection.FREE);
-        lootCell.getRightConnection().setConnectedCell(spawnCell);
-
+        lootCell.getRightConnection().setType(Connection.DOOR);
 
         cells.add(spawnCell);
         cells.add(lootCell);
 
-        blueRoom.setCells(cells);
-        blueRoom.setColour(Colour.BLUE);
-        return blueRoom;
-
+        redRoom.setCells(cells);
+        redRoom.setColour(Colour.RED);
+        return redRoom;
     }
 
 }
-
