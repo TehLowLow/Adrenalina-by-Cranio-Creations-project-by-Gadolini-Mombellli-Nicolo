@@ -22,7 +22,39 @@ public class FurnaceBuilder {
      */
     public Weapon build(){
 
-        furnace.setName("Furnace");
+        /*
+        setting the name of the weapon
+         */
+
+        furnace.setName("Vulcanizzatore");
+
+        /*
+        setting the recharge cost of the weapon
+         */
+        Rybamount rechargeCost = new Rybamount();
+        rechargeCost.setRedCubes(1);
+        rechargeCost.setYellowCubes(0);
+        rechargeCost.setBlueCubes(1);
+        furnace.setRechargeCost(rechargeCost);
+
+        /*
+        setting the price of the weapon
+         */
+
+        Rybamount price = new Rybamount();
+        price.setBlueCubes(1);
+        price.setYellowCubes(0);
+        price.setRedCubes(0);
+        furnace.setPrice(price);
+
+        /*
+        the weapon, at the beginning, is loaded
+         */
+
+        furnace.setLoaded(true);
+
+
+
         return furnace;
 
 
