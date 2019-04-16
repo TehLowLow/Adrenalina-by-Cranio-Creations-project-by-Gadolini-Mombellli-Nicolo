@@ -22,7 +22,37 @@ public class HeatseekerBuilder {
      */
     public Weapon build(){
 
-        heatseeker.setName("Furnace");
+        /*
+        setting the name of the weapon
+         */
+        heatseeker.setName("Razzo Termico");
+
+
+        /*
+        setting the recharge cost of the weapon
+         */
+        Rybamount rechargeCost = new Rybamount();
+        rechargeCost.setRedCubes(2);
+        rechargeCost.setYellowCubes(1);
+        rechargeCost.setBlueCubes(0);
+        heatseeker.setRechargeCost(rechargeCost);
+
+        /*
+        setting the price of the weapon
+         */
+
+        Rybamount price = new Rybamount();
+        price.setBlueCubes(0);
+        price.setYellowCubes(1);
+        price.setRedCubes(1);
+        heatseeker.setPrice(price);
+
+        /*
+        the weapon, at the beginning, is loaded
+         */
+
+        heatseeker.setLoaded(true);
+
         return heatseeker;
 
 
