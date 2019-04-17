@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 
 
-public class Board {
+public class Board implements java.io.Serializable{
 
     /*
      * ----------------------FIELDS----------------------

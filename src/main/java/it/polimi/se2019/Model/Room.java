@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 
 
-public class Room {
+public class Room implements java.io.Serializable {
 
 
     /*

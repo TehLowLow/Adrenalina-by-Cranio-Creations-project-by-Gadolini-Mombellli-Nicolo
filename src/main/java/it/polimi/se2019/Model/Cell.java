@@ -4,7 +4,7 @@ package it.polimi.se2019.Model;
  * This abstract class represents a single square, with four connections pointing at other squares.
  */
 
-public abstract class Cell {
+public abstract class Cell implements java.io.Serializable{
 
     /*
      *  ---------------------- FIELDS  ----------------------

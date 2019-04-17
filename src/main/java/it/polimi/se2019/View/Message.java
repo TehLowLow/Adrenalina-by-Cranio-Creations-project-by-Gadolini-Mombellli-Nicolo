@@ -21,4 +21,8 @@ public class Message {
     public void mappaCompletata(){
         System.out.println("Costruzione mappa completata.");
     }
+
+    public void scegliMappa(){
+        System.out.println("Scegli in quale mappa combattere: 1 - 2 - 3 - 4");
+    }
 }

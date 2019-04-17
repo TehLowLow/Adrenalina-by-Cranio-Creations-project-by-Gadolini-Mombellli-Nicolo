@@ -7,7 +7,7 @@ package it.polimi.se2019.Model;
  *
  */
 
-public class Map {
+public class Map implements java.io.Serializable {
 
     /*
      * ---------------------- FIELDS

@@ -10,7 +10,7 @@ package it.polimi.se2019.Model;
  * as edge has no more rooms.
  */
 
-public class Connection {
+public class Connection implements java.io.Serializable {
 
      /**
      * Type stores the information of a connection.
