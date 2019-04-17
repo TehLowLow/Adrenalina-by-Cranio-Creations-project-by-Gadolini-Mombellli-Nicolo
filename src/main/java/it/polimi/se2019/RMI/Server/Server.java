@@ -97,7 +97,8 @@ public class Server implements ServerInterface {
         }
 
         if(players.size()==3){
-            checkAlive(players);
+            CheckAlive checkAlive = new CheckAlive(30, players);
+            checkAlive.check();
         }
 
         System.out.println("-----");
@@ -111,7 +112,7 @@ public class Server implements ServerInterface {
 
     public synchronized void ping(String nickname) {
 
-        System.out.println(nickname + " è ancora vivo.");
+        //System.out.println(nickname + " è ancora vivo.");
         for (Player player : players) {
             if (player.getNickname().equals(nickname)) {
                 player.setConnectionAlive(true);
@@ -120,50 +121,5 @@ public class Server implements ServerInterface {
 
     }
 
-    public synchronized void checkAlive(ArrayList<Player> players) {
-
-        boolean start = false;
-        int ETA = 30;
-
-        while (!start) {
-
-            try {
-
-                sleep(2000);
-                ETA = ETA - 2;
-                System.out.println(ETA);
-                for(Player player : players){
-
-                    if(player.isConnected()){
-                        player.setConnectionAlive(false);
-                    }
-
-                    else{
-                        players.remove(player);
-                    }
-
-                }
-
-
-                if(players.size()<3){
-
-                    break;
-
-                }
-
-                if(ETA==0){
-                    start = true;
-                    System.out.println("Inizio partita!");
-                }
-
-
-            }
-            catch(Exception e){
-
-            }
-
-        }
-
-    }
-
 }
+
