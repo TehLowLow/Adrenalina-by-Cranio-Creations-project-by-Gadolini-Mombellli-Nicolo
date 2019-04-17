@@ -67,23 +67,23 @@ public class Printer {
                 System.out.println("---");
                 System.out.println("Nome: " + cell.getName());
 
-                if(upConnection.getType() == Connection.EDGE){
+                if(upConnection.getType().equals(Connection.EDGE)){
                     System.out.println("Connessione in alto: limite della mappa.");
                 }
 
-               if(upConnection.getType() == Connection.DOOR){
+               if(upConnection.getType().equals(Connection.DOOR)){
                    System.out.println("Connessione in alto: tramite porta verso " +
                                        upConnection.getConnectedCell().getName() +
                                        " della stanza di colore " +
                                        this.colour(upConnection.getConnectedCell().getColour()));
                }
 
-               if(upConnection.getType() == Connection.FREE){
+               if(upConnection.getType().equals(Connection.FREE)){
                    System.out.println("Connessione in alto: libera verso " +
                                        upConnection.getConnectedCell().getName());
                }
 
-               if(upConnection.getType() == Connection.WALL){
+               if(upConnection.getType().equals((Connection.WALL))){
                    System.out.println("Connessione in alto: ostruita da un muro, oltre il quale si trova la cella "
                                       + upConnection.getConnectedCell().getName() +
                                       " della stanza di colore " +
@@ -93,23 +93,23 @@ public class Printer {
 
 
 
-                if(downConnection.getType() == Connection.EDGE){
+                if(downConnection.getType().equals(Connection.EDGE)){
                     System.out.println("Connessione in basso: limite della mappa.");
                 }
 
-                if(downConnection.getType() == Connection.DOOR){
+                if(downConnection.getType().equals(Connection.DOOR)){
                     System.out.println("Connessione in basso: tramite porta verso "
                            + downConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
                             this.colour(downConnection.getConnectedCell().getColour()));
                 }
 
-                if(downConnection.getType() == Connection.FREE){
+                if(downConnection.getType().equals(Connection.FREE)){
                     System.out.println("Connessione in basso: libera verso "
                                       + downConnection.getConnectedCell().getName());
                 }
 
-                if(downConnection.getType() == Connection.WALL){
+                if(downConnection.getType().equals(Connection.WALL)){
                     System.out.println("Connessione in basso: ostruita da un muro, oltre il quale si trova la cella "
                             + downConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
@@ -119,23 +119,23 @@ public class Printer {
 
 
 
-                if(leftConnection.getType() == Connection.EDGE){
+                if(leftConnection.getType().equals(Connection.EDGE)){
                     System.out.println("Connessione a sinistra: limite della mappa.");
                 }
 
-                if(leftConnection.getType() == Connection.DOOR){
+                if(leftConnection.getType().equals(Connection.DOOR)){
                     System.out.println("Connessione a sinistra: tramite porta verso "
                             + leftConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
                             this.colour(leftConnection.getConnectedCell().getColour()));
                 }
 
-                if(leftConnection.getType() == Connection.FREE){
+                if(leftConnection.getType().equals(Connection.FREE)){
                     System.out.println("Connessione a sinistra: libera verso "
                             + leftConnection.getConnectedCell().getName());
                 }
 
-                if(leftConnection.getType() == Connection.WALL){
+                if(leftConnection.getType().equals(Connection.WALL)){
                     System.out.println("Connessione a sinistra: ostruita da un muro, oltre il quale si trova la cella "
                             + leftConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
@@ -145,23 +145,23 @@ public class Printer {
 
 
 
-                if(rightConnection.getType() == Connection.EDGE){
+                if(rightConnection.getType().equals(Connection.EDGE)){
                     System.out.println("Connessione a destra: limite della mappa.");
                 }
 
-                if(rightConnection.getType() == Connection.DOOR){
+                if(rightConnection.getType().equals(Connection.DOOR)){
                     System.out.println("Connessione a destra: tramite porta verso "
                             + rightConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
                             this.colour(rightConnection.getConnectedCell().getColour()));
                 }
 
-                if(rightConnection.getType() == Connection.FREE){
+                if(rightConnection.getType().equals(Connection.FREE)){
                     System.out.println("Connessione a destra: libera verso "
                             + rightConnection.getConnectedCell().getName());
                 }
 
-                if(rightConnection.getType() == Connection.WALL){
+                if(rightConnection.getType().equals(Connection.WALL)){
                     System.out.println("Connessione a destra: ostruita da un muro, oltre il quale si trova la cella "
                             + rightConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
