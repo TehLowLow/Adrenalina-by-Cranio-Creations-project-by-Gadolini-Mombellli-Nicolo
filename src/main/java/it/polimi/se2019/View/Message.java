@@ -2,9 +2,9 @@ package it.polimi.se2019.View;
 
 public class Message {
 
-    public void start(){
+    public String start(){
 
-        System.out.println("Benvenuto in Adrenalina!");
+        return new String("Benvenuto in Adrenalina!");
 
     }
 

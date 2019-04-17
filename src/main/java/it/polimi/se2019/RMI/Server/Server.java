@@ -7,9 +7,14 @@ import it.polimi.se2019.Model.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
+
+import static java.lang.Thread.sleep;
 
 public class Server implements ServerInterface {
 
+
+    static ArrayList<Player> players;
 
     public static void main(String[] args) {
 
@@ -21,6 +26,7 @@ public class Server implements ServerInterface {
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.rebind(nome, stub);
             System.out.println("Questo server è lavato e pronto per essere mangiato.");
+            players = new ArrayList<>();
 
 
         } catch (Exception e) {
@@ -32,10 +38,10 @@ public class Server implements ServerInterface {
     }
 
 
-    public void sendMessage() {
+    public String sendMessage() {
 
         View view = new View();
-        view.message.start();
+        return view.message.start();
 
     }
 
@@ -76,5 +82,88 @@ public class Server implements ServerInterface {
         return null;
     }
 
+    public synchronized void login(String nickname) {
+
+        Player player = new Player();
+        player.setNickname(nickname);
+        players.add(player);
+        System.out.println("Si è aggiunto il giocatore " + nickname);
+        System.out.println("Per ora i giocatori sono:");
+
+        for (Player giocatore : players) {
+
+            System.out.println(giocatore.getNickname());
+
+        }
+
+        if(players.size()==3){
+            checkAlive(players);
+        }
+
+        System.out.println("-----");
+    }
+
+    public int startTimer(int time) {
+
+
+        return time;
+    }
+
+    public synchronized void ping(String nickname) {
+
+        System.out.println(nickname + " è ancora vivo.");
+        for (Player player : players) {
+            if (player.getNickname().equals(nickname)) {
+                player.setConnectionAlive(true);
+            }
+        }
+
+    }
+
+    public synchronized void checkAlive(ArrayList<Player> players) {
+
+        boolean start = false;
+        int ETA = 30;
+
+        while (!start) {
+
+            try {
+
+                sleep(2000);
+                ETA = ETA - 2;
+                System.out.println(ETA);
+                for(Player player : players){
+
+                    if(player.isConnected()){
+                        player.setConnectionAlive(false);
+                    }
+
+                    else{
+                        players.remove(player);
+                    }
+
+                }
+
+
+                if(players.size()<3){
+
+                    break;
+
+                }
+
+                if(ETA==0){
+                    start = true;
+                    System.out.println("Inizio partita!");
+                }
+
+
+            }
+            catch(Exception e){
+
+            }
+
+        }
+
+    }
 
 }

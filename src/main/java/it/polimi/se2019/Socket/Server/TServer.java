@@ -34,8 +34,10 @@ public class TServer extends Thread {
                 System.out.println(in.readUTF());
 
                 DataOutputStream out = new DataOutputStream(door.getOutputStream());
+                out.writeUTF("Ciao Client, sono il server e ti ho beccato!");
 
                 sSocket.close();
+                sSocket = new ServerSocket(9999);
 
             } catch (IOException e) {
 

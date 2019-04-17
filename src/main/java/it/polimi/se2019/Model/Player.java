@@ -36,6 +36,12 @@ public class Player {
      */
     private int score;
 
+    /**
+     * If it's true, the player is connected to the server and reay to be assigned to a match.
+     */
+
+    private boolean connectionAlive;
+
     /*
     -----------------------METHODS------------------------------
      */
@@ -79,9 +85,15 @@ public class Player {
     public int getScore(){return score;}
 
 
+    /**
+     * Getter for the conectionAlive field.
+     * @return true if the player is connnected.
+     */
+    public boolean isConnected() {
+        return connectionAlive;
+    }
 
-
-    /*
+/*
     ------------------------SETTERS----------------------------
      */
 
@@ -115,4 +127,19 @@ public class Player {
      */
     public void setScore(int score){this.score = score;}
 
+    /**
+     * Sets the first player.
+     * @param firstPlayer
+     */
+    public void setFirstPlayer(boolean firstPlayer) {
+        this.firstPlayer = firstPlayer;
+    }
+
+    /**
+     * Setter for the connectionAlive field.
+     * @param connectionAlive
+     */
+    public void setConnectionAlive(boolean connectionAlive) {
+        this.connectionAlive = connectionAlive;
+    }
 }
