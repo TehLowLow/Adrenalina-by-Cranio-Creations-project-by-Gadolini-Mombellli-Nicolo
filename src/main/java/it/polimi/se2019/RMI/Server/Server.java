@@ -1,4 +1,5 @@
 package it.polimi.se2019.RMI.Server;
+
 import it.polimi.se2019.Controller.Data.MapBuilders.*;
 import it.polimi.se2019.View.*;
 import it.polimi.se2019.Model.*;
@@ -10,10 +11,9 @@ import java.rmi.server.UnicastRemoteObject;
 public class Server implements ServerInterface {
 
 
-
     public static void main(String[] args) {
 
-        try{
+        try {
 
             String nome = "Server";
             Server server = new Server();
@@ -23,8 +23,7 @@ public class Server implements ServerInterface {
             System.out.println("Questo server è lavato e pronto per essere mangiato.");
 
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.err.println("Errore!");
             e.printStackTrace();
             return;
@@ -33,16 +32,16 @@ public class Server implements ServerInterface {
     }
 
 
-    public void sendMessage(){
+    public void sendMessage() {
 
         View view = new View();
         view.message.start();
 
     }
 
-    public Map buildMap(String map){
+    public Map buildMap(String map) {
 
-        if(map.equals("1")){
+        if (map.equals("1")) {
 
             Map1Builder mapBuilder = new Map1Builder();
 
@@ -50,7 +49,7 @@ public class Server implements ServerInterface {
 
         }
 
-        if(map.equals("2")){
+        if (map.equals("2")) {
 
             Map2Builder mapBuilder = new Map2Builder();
 
@@ -58,7 +57,7 @@ public class Server implements ServerInterface {
 
         }
 
-        if(map.equals("3")){
+        if (map.equals("3")) {
 
             Map3Builder mapBuilder = new Map3Builder();
 
@@ -66,7 +65,7 @@ public class Server implements ServerInterface {
 
         }
 
-        if(map.equals("4")){
+        if (map.equals("4")) {
 
             Map4Builder mapBuilder = new Map4Builder();
 
