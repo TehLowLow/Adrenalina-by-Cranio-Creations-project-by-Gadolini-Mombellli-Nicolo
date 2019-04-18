@@ -17,7 +17,17 @@ public class BlueTagbackGrenadeBuilder {
      */
 
     private Powerup bTagback = new Powerup();
+
+    /**
+     * eff represents the effect of the powerup.
+     */
+
     private Effect eff;
+
+    /**
+     * cDesc is the description of the card
+     */
+
     private String cDesc;
 
     /*
@@ -32,11 +42,19 @@ public class BlueTagbackGrenadeBuilder {
 
     public Powerup build(){
 
+        /*
+        setting the trade value rybamount
+         */
+
         Rybamount tValue = new Rybamount();
 
         tValue.setBlueCubes(1);
         tValue.setYellowCubes(0);
         tValue.setRedCubes(0);
+
+        /*
+        setting the fields of the Powerup
+         */
 
         bTagback.setName("Granata Venom Blu");
         bTagback.setTradeValue(tValue);

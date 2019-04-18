@@ -10,9 +10,29 @@ import it.polimi.se2019.Model.Rybamount;
  */
 public class BlueTargetingScopeBuilder {
 
+    /*
+    ---------FIELDS----------
+     */
+
+    /**
+     * btScope is an instance of powerup
+     */
+
     private Powerup btScope = new Powerup();
+
+    /**
+     * eff is the effect of the powerup
+     */
     private Effect eff;
+
+    /**
+     * cDesc is the description of the card
+     */
     private String cDesc;
+
+    /*
+    ------------METHODS--------------
+     */
 
 
     /**
@@ -21,12 +41,20 @@ public class BlueTargetingScopeBuilder {
      */
     public Powerup build() {
 
+        /*
+        setting the trade value of the powerup
+         */
+
         Rybamount tValue = new Rybamount();
 
         tValue.setBlueCubes(1);
         tValue.setRedCubes(0);
         tValue.setYellowCubes(0);
 
+
+        /*
+        setting the fields of the powerup
+         */
 
         btScope.setName("Mirino Blu");
         btScope.setTradeValue(tValue);
