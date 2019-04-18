@@ -11,12 +11,23 @@ import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 
-public class Server implements ServerInterface {
+public class Server extends Thread implements ServerInterface {
 
 
     static ArrayList<Player> players;
 
     public static void main(String[] args) {
+
+        players = new ArrayList<>();
+
+        Thread s = new Server();
+        s.run();
+
+    }
+
+
+    public synchronized void run() {
+
 
         try {
 
@@ -26,14 +37,14 @@ public class Server implements ServerInterface {
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.rebind(nome, stub);
             System.out.println("Questo server è lavato e pronto per essere mangiato.");
-            players = new ArrayList<>();
-
+            //notifyAll();
 
         } catch (Exception e) {
             System.err.println("Errore!");
             e.printStackTrace();
-            return;
+
         }
+
 
     }
 
@@ -96,7 +107,7 @@ public class Server implements ServerInterface {
 
         }
 
-        if(players.size()==3){
+        if (players.size() == 3) {
             CheckAlive checkAlive = new CheckAlive(30, players);
             checkAlive.check();
         }
