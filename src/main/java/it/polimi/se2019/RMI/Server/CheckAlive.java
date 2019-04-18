@@ -41,9 +41,7 @@ public class CheckAlive extends Thread {
                     } else {
                         players.remove(player);
                     }
-
                 }
-
 
                 if (players.size() < 3) {
 
@@ -51,11 +49,12 @@ public class CheckAlive extends Thread {
 
                 }
 
-                if (ETA <= 0) {
+                if (ETA <= 0 || players.size()==5) {
+
                     start = true;
                     System.out.println("Inizio partita!");
-                }
 
+                }
 
             } catch (Exception e) {
 

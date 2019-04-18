@@ -24,7 +24,6 @@ public class Client extends Thread {
         t.start();
     }
 
-
     public synchronized void run() {
 
         Server = connect();
@@ -38,6 +37,7 @@ public class Client extends Thread {
         Client client = new Client();
 
         client.chooseNickname(Server);
+
         try {
             while (!Server.logIn(nickname, pass)) {
 
@@ -54,6 +54,7 @@ public class Client extends Thread {
         heartbeat.beat();
     }
 
+//----------------------------------------------------------------------------------------------------
 
     /*Il server dopo unn delay iniziale di 0.5s tenta la connessione al registry. Se tale connessione fallisce, stampa
     errore e rientra nel while, aspetta 0.5s e poi riprova. Nel momento in cui si connette cambia il bool connected (failsafe)
@@ -86,6 +87,7 @@ public class Client extends Thread {
         return null;
     }
 
+//----------------------------------------------------------------------------------------------------
 
     public void chooseMap(ServerInterface server) {
 
@@ -106,7 +108,7 @@ public class Client extends Thread {
             e.printStackTrace();
         }
     }
-
+//----------------------------------------------------------------------------------------------------
     public void chooseNickname(ServerInterface server) {
 
         Scanner scanner = new Scanner(System.in);

@@ -162,7 +162,6 @@ public class Map1Builder {
                         redCell.getUpConnection().setConnectedCell(blueCell);
                     }
                 }
-
             }
 
             if (blueCell.getName().equals("spawnCell")) {
@@ -176,8 +175,5 @@ public class Map1Builder {
 
             }
         }
-
-
     }
-
 }

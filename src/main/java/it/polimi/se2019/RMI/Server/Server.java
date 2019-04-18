@@ -48,13 +48,16 @@ public class Server extends Thread implements ServerInterface {
 
     }
 
+    //----------------------------------------------------------------------------------------------------
     public String sendMessage() {
 
         View view = new View();
         return view.message.start();
 
     }
+//----------------------------------------------------------------------------------------------------
 
+    @Deprecated
     public synchronized void login(String nickname) {
 
         Player player = new Player();
@@ -69,13 +72,16 @@ public class Server extends Thread implements ServerInterface {
 
         }
 
-        if (players.size() == 3) {
+        if (players.size() == 3) { //TODO aggiungi timer al logIn
             CheckAlive checkAlive = new CheckAlive(30, players);
             checkAlive.check();
         }
 
         System.out.println("-----");
     }
+
+
+//----------------------------------------------------------------------------------------------------
 
     public synchronized void ping(String nickname) {
 
@@ -85,72 +91,74 @@ public class Server extends Thread implements ServerInterface {
                 player.setConnectionAlive(true);
             }
         }
-
     }
 
+//----------------------------------------------------------------------------------------------------
 
     public Map buildMap(String map) {
 
         if (map.equals("1")) {
-
             Map1Builder mapBuilder = new Map1Builder();
-
             return mapBuilder.build();
-
         }
 
         if (map.equals("2")) {
-
             Map2Builder mapBuilder = new Map2Builder();
-
             return mapBuilder.build();
-
         }
 
         if (map.equals("3")) {
-
             Map3Builder mapBuilder = new Map3Builder();
-
             return mapBuilder.build();
 
         }
 
         if (map.equals("4")) {
-
             Map4Builder mapBuilder = new Map4Builder();
-
             return mapBuilder.build();
-
         }
 
         return null;
     }
 
-    public synchronized boolean logIn(String user, String pass){
+    //----------------------------------------------------------------------------------------------------
+    public synchronized boolean logIn(String user, String pass) {
 
         String verify = new String();
+        CheckTable checkTable = new CheckTable();
 
         if (logInTable.get(user) == null) {
 
             logInTable.put(user, pass);
+            Player player = new Player();
+            player.setNickname(user);
+            players.add(player);
             System.out.println("Aggiunto" + " " + user);
+            if (players.size() == 3) {
+                CheckAlive checkAlive = new CheckAlive(30, players);
+                checkAlive.check();
+            }
             return true;
 
-        } else {
-            verify = (String) logInTable.get(user);
+        } else if (checkTable.checker(user, players)) {
 
+            return false; //Il player sta tentando di accedere due volte
+
+        } else {
+
+            verify = (String) logInTable.get(user); //il player si è disconnesso e vuole riaccedere
             if (verify.equals(pass)) {
 
                 return true;
-
-            } else {
-
-                return false;
             }
-
         }
 
+        return false;
     }
+//----------------------------------------------------------------------------------------------------
+
+
+
+
 
 }
-

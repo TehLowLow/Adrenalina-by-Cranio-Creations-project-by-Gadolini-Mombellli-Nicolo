@@ -11,7 +11,7 @@ public interface ServerInterface extends Remote {
 
     public Map buildMap(String map) throws RemoteException;
 
-    public void login(String nickname) throws RemoteException;
+    //public void login(String nickname) throws RemoteException;
 
     public void ping(String nickname) throws RemoteException;
 
