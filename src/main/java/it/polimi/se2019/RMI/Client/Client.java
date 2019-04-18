@@ -7,11 +7,13 @@ import it.polimi.se2019.Model.*;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Scanner;
 
 public class Client extends Thread {
 
     private View view;
     private static String nickname;
+    private static String pass;
     ServerInterface Server;
     String nome = "Server";
 
@@ -21,7 +23,6 @@ public class Client extends Thread {
         Thread t = new Client();
         t.start();
     }
-
 
 
     public synchronized void run() {
@@ -35,7 +36,19 @@ public class Client extends Thread {
         }
 
         Client client = new Client();
+
         client.chooseNickname(Server);
+        try {
+            while (!Server.logIn(nickname, pass)) {
+
+                sleep(1000);
+                client.chooseNickname(Server);
+            }
+
+        } catch (Exception e) {
+            System.err.println("riprova");
+        }
+
         //client.chooseMap(server);
         Heartbeat heartbeat = new Heartbeat(Server, nickname);
         heartbeat.beat();
@@ -74,8 +87,6 @@ public class Client extends Thread {
     }
 
 
-
-
     public void chooseMap(ServerInterface server) {
 
         view = new View();
@@ -98,16 +109,12 @@ public class Client extends Thread {
 
     public void chooseNickname(ServerInterface server) {
 
-        View view = new View();
+        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Inserisci il tuo nickname:");
-        nickname = view.parser.parse();
-
-        try {
-            server.login(nickname);
-        } catch (Exception e) {
-            System.out.println("Eccezione!");
-        }
+        nickname = scanner.nextLine();
+        System.out.println("Inserisci la tua password:");
+        pass = scanner.nextLine();
 
     }
 }

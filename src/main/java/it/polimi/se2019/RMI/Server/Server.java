@@ -8,6 +8,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import static java.lang.Thread.sleep;
 
@@ -15,6 +16,7 @@ public class Server extends Thread implements ServerInterface {
 
 
     static ArrayList<Player> players;
+    public static Hashtable logInTable = new Hashtable();
 
     public static void main(String[] args) {
 
@@ -28,7 +30,6 @@ public class Server extends Thread implements ServerInterface {
 
     public synchronized void run() {
 
-
         try {
 
             String nome = "Server";
@@ -37,7 +38,7 @@ public class Server extends Thread implements ServerInterface {
             Registry registry = LocateRegistry.createRegistry(1099);
             registry.rebind(nome, stub);
             System.out.println("Questo server è lavato e pronto per essere mangiato.");
-            //notifyAll();
+
 
         } catch (Exception e) {
             System.err.println("Errore!");
@@ -45,9 +46,7 @@ public class Server extends Thread implements ServerInterface {
 
         }
 
-
     }
-
 
     public String sendMessage() {
 
@@ -55,6 +54,40 @@ public class Server extends Thread implements ServerInterface {
         return view.message.start();
 
     }
+
+    public synchronized void login(String nickname) {
+
+        Player player = new Player();
+        player.setNickname(nickname);
+        players.add(player);
+        System.out.println("Si è aggiunto il giocatore " + nickname);
+        System.out.println("Per ora i giocatori sono:");
+
+        for (Player giocatore : players) {
+
+            System.out.println(giocatore.getNickname());
+
+        }
+
+        if (players.size() == 3) {
+            CheckAlive checkAlive = new CheckAlive(30, players);
+            checkAlive.check();
+        }
+
+        System.out.println("-----");
+    }
+
+    public synchronized void ping(String nickname) {
+
+        //System.out.println(nickname + " è ancora vivo.");
+        for (Player player : players) {
+            if (player.getNickname().equals(nickname)) {
+                player.setConnectionAlive(true);
+            }
+        }
+
+    }
+
 
     public Map buildMap(String map) {
 
@@ -93,41 +126,28 @@ public class Server extends Thread implements ServerInterface {
         return null;
     }
 
-    public synchronized void login(String nickname) {
+    public synchronized boolean logIn(String user, String pass){
 
-        Player player = new Player();
-        player.setNickname(nickname);
-        players.add(player);
-        System.out.println("Si è aggiunto il giocatore " + nickname);
-        System.out.println("Per ora i giocatori sono:");
+        String verify = new String();
 
-        for (Player giocatore : players) {
+        if (logInTable.get(user) == null) {
 
-            System.out.println(giocatore.getNickname());
+            logInTable.put(user, pass);
+            System.out.println("Aggiunto" + " " + user);
+            return true;
 
-        }
+        } else {
+            verify = (String) logInTable.get(user);
 
-        if (players.size() == 3) {
-            CheckAlive checkAlive = new CheckAlive(30, players);
-            checkAlive.check();
-        }
+            if (verify.equals(pass)) {
 
-        System.out.println("-----");
-    }
+                return true;
 
-    public int startTimer(int time) {
+            } else {
 
-
-        return time;
-    }
-
-    public synchronized void ping(String nickname) {
-
-        //System.out.println(nickname + " è ancora vivo.");
-        for (Player player : players) {
-            if (player.getNickname().equals(nickname)) {
-                player.setConnectionAlive(true);
+                return false;
             }
+
         }
 
     }

@@ -15,4 +15,6 @@ public interface ServerInterface extends Remote {
 
     public void ping(String nickname) throws RemoteException;
 
+    public boolean logIn(String user, String pass) throws  RemoteException;
+
 }
