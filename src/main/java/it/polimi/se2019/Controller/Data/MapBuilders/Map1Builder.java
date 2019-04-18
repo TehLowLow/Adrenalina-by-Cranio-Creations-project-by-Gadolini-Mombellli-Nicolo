@@ -61,10 +61,15 @@ public class Map1Builder {
 
     }
 
+
+    /**
+     * connects the rooms together, arranging doors and walls
+     * @param map is the map where the rooms are connected
+     */
     private void connectRooms(Map map) {
 
 
-        //Questo metodo si occupa di connettere tra loro le varie stanze, sistemando porte e muri.
+
 
         Room yellow = map.getYellowRoom();
         Room purple = map.getPurpleRoom();
