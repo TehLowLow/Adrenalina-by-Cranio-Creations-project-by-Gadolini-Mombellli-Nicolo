@@ -3,7 +3,19 @@ import it.polimi.se2019.Controller.Data.RoomBuilders.Map3Rooms.*;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.View.*;
 
+
+/**
+ * This class creates a builder for the Map number 3.
+ * Its purpose is to produce a fully working map with every room complete with cells. To achieve this,
+ * it will call various builders for the rooms.
+ */
 public class Map3Builder {
+
+    /**
+     * Builder method for the Map 3. It will produce an instance of Map corresponding to the Map number 3.
+     *
+     * @return an instance of Map corresponding to the map number 3.
+     */
 
     public Map build(){
 
@@ -54,9 +66,13 @@ public class Map3Builder {
 
     }
 
+    /**
+     * connects the rooms together, arranging doors and walls
+     * @param map is the map where the rooms are connected
+     */
+
     private void connectRooms(Map map){
 
-        //Questo metodo si occupa di connettere tra loro le varie stanze, sistemando porte e muri.
 
         Room yellow = map.getYellowRoom();
         Room purple = map.getPurpleRoom();

@@ -4,14 +4,47 @@ import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Rybamount;
 
+/**
+ * This class builds the Yellow Teleport
+ */
+
 public class YellowTeleporterBuilder {
 
+    /*
+    -----------FIELDS-----------
+     */
+
+    /**
+     * yTeleport is an instance of Powerup
+     */
+
     private Powerup yTeleport = new Powerup();
+
+    /**
+     * eff is the effect of the powerup;
+     */
     private Effect eff;
+
+    /**
+     * cDesc is the card description
+     */
     private String cDesc;
 
 
+    /*
+    ------------METHODS-----------
+     */
+
+    /**
+     * builder method for the Yellow Teleport
+     * @return the reference of the Powerup
+     */
+
     public Powerup build(){
+
+        /*
+        setting the trade value rybamount
+         */
 
 
         Rybamount tValue = new Rybamount();
@@ -19,6 +52,10 @@ public class YellowTeleporterBuilder {
         tValue.setYellowCubes(1);
         tValue.setRedCubes(0);
         tValue.setBlueCubes(0);
+
+        /*
+        setting the fields of the Powerup
+         */
 
         yTeleport.setName("Teletrasporto Giallo");
         yTeleport.setTradeValue(tValue);

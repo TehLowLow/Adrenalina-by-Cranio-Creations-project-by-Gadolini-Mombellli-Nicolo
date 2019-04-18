@@ -1,5 +1,6 @@
 package it.polimi.se2019.Model;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents the game board.
@@ -227,12 +228,16 @@ public class Board implements java.io.Serializable{
      */
     public void shuffleLootDeck(){
 
+        Collections.shuffle(lootDeck);
+
     }
 
     /**
      * Shuffles the deck of power ups.
      */
     public void shufflePowerUpDeck(){
+
+        Collections.shuffle(weaponDeck);
 
     }
 

@@ -11,12 +11,43 @@ import it.polimi.se2019.Model.Rybamount;
  */
 public class YellowNewtonBuilder {
 
+    /*
+    -----------FIELDS-------------
+     */
+
+    /**
+     * yNewton is an instance of Powerup
+     */
+
     private Powerup yNewton = new Powerup();
+
+    /**
+     * eff is the effect of the Powerup
+     */
     private Effect eff;
+
+
+    /**
+     * cDesc is the card description
+     */
     private String cDesc;
+
+    /*
+    ------------METHODS-----------------
+     */
+
+
+    /**
+     * builder method for the Yellow Newton
+     * @return the reference to the Powerup
+     */
 
 
     public Powerup build(){
+
+        /*
+        setting the trade value rybamount
+         */
 
         Rybamount tValue = new Rybamount();
 
@@ -24,7 +55,9 @@ public class YellowNewtonBuilder {
         tValue.setRedCubes(0);
         tValue.setBlueCubes(0);
 
-
+        /*
+        setting the fields of the Powerup
+         */
 
         yNewton.setName("Raggio Cinetico Giallo");
         yNewton.setTradeValue(tValue);

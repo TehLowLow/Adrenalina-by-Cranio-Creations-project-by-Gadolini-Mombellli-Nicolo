@@ -12,9 +12,29 @@ import it.polimi.se2019.Model.Rybamount;
 public class YellowTagbackGrenadeBuilder {
 
 
+    /*
+    ----------FIELDS------------
+     */
+
+    /**
+     * yTagback is an instance of Powerup
+     */
+
     private Powerup yTagback= new Powerup();
+
+    /**
+     * eff is the effect of the Powerup
+     */
     private Effect eff;
+
+    /**
+     * cDesc is the card description
+     */
     private String cDesc;
+
+    /*
+    -------------METHODS--------
+     */
 
     /**
      * Builds and sets a yTagback object
@@ -22,11 +42,20 @@ public class YellowTagbackGrenadeBuilder {
      */
 
     public Powerup build(){
+
+        /*
+        setting the trade value rybamount
+         */
+
         Rybamount tValue = new Rybamount();
 
         tValue.setYellowCubes(1);
         tValue.setRedCubes(0);
         tValue.setBlueCubes(0);
+
+        /*
+        setting the fields of the Powerup
+         */
 
         yTagback.setName("Granata Venom Gialla");
         yTagback.setTradeValue(tValue);
