@@ -22,6 +22,10 @@ public class CyberBladeBuilder {
 
     private Weapon cBlade = new Weapon();
 
+    /*
+    ----------------METHODS----------------
+     */
+
     /**
      * builder method that will build the weapon
      * @return the reference to the cBlade object, with all its fields initialized
