@@ -51,7 +51,7 @@ public class CheckAlive extends Thread {
 
                 }
 
-                if (ETA == 0) {
+                if (ETA <= 0) {
                     start = true;
                     System.out.println("Inizio partita!");
                 }

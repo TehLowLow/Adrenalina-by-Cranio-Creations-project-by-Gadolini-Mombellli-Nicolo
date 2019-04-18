@@ -36,6 +36,8 @@ public class TServer extends Thread {
                 DataOutputStream out = new DataOutputStream(door.getOutputStream());
                 out.writeUTF("Ciao Client, sono il server e ti ho beccato!");
 
+                out.writeUTF("Ciao client, sono il server");
+
                 sSocket.close();
                 sSocket = new ServerSocket(9999);
 

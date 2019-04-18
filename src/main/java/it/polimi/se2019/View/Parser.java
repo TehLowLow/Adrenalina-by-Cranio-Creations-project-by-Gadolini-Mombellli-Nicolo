@@ -15,6 +15,7 @@ public class Parser {
         input = scanIn.nextLine();
 
         scanIn.close();
+        //System.out.println(input);
 
         return input;
     }
