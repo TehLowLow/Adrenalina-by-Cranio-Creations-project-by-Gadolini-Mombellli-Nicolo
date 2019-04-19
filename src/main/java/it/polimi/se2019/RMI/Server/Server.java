@@ -60,12 +60,11 @@ public class Server extends Thread implements ServerInterface {
         }
     }
 
-
     //----------------------------------------------------------------------------------------------------
 
     public synchronized boolean logIn(String user, String pass) {
 
-        String verify = new String();
+        String verify;
         CheckTable checkTable = new CheckTable();
 
         if (logInTable.get(user) == null) {

@@ -32,7 +32,9 @@ public class CheckAlive extends Thread {
             try {
                 sleep(2000);
                 eta = eta - 2;
-                System.out.println(eta);
+                if (eta % 10 == 0 && eta != 0) {
+                    System.out.println("mancano " + eta + " secondi");
+                }
                 checker(players);
 
             } catch (Exception e) {
@@ -42,11 +44,11 @@ public class CheckAlive extends Thread {
             }
 
             if (players.size() < 3) {
+                System.out.println("Troppi giocatori disconnessi, attendere.");
                 break;
             }
 
             if (eta <= 0 || players.size() == 5) {
-
                 start = true;
                 System.out.println("Inizio partita!");
 
