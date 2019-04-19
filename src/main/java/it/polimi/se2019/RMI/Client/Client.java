@@ -4,18 +4,19 @@ import it.polimi.se2019.RMI.Server.ServerInterface;
 import it.polimi.se2019.View.*;
 import it.polimi.se2019.Model.*;
 
-import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
-public class Client extends Thread {
+public class Client extends Thread implements ClientInterface {
 
     private View view;
-    private static String nickname;
+    private static final int serverPort = 2000;
+    static int clientPort;
+    static String nickname;
     private static String pass;
-    ServerInterface Server;
-    String nome = "Server";
+    private ServerInterface Server;
+    private String nome = "Server";
 
 
     public static void main(String[] args) {
@@ -24,36 +25,52 @@ public class Client extends Thread {
         t.start();
     }
 
+    @Override
     public synchronized void run() {
 
         Server = connect();
 
-        try {
-            System.out.println(Server.sendMessage());
-        } catch (Exception e) {
-            System.err.println("errore");
-        }
-
         Client client = new Client();
+        client.chooseNickname();
 
-        client.chooseNickname(Server);
+        System.err.println(nickname);//debug
+        System.err.println(pass);//debug
 
-        try {
+        try {  //routine di login
             while (!Server.logIn(nickname, pass)) {
 
                 sleep(1000);
-                client.chooseNickname(Server);
+                client.chooseNickname();
             }
 
         } catch (Exception e) {
-            System.err.println("riprova");
+            System.err.println("riprova routine login");
         }
 
-        //client.chooseMap(server);
+
+        try { //richiede una porta su cui fare callback
+            clientPort = Server.firstFreePort(nickname);
+        } catch (Exception e) {
+            System.err.println("eccezione su freeclientports");
+        }
+
+
         Heartbeat heartbeat = new Heartbeat(Server, nickname);
         heartbeat.beat();
-    }
 
+        //routine di handshake
+
+        Thread t = new Handshake();
+        t.start();
+        try {
+            Server.initCallback(nickname, clientPort);
+        } catch (Exception e) {
+            System.err.println("Errore initcallback");
+
+            //client.chooseMap(server);
+
+        }
+    }
 //----------------------------------------------------------------------------------------------------
 
     /*Il server dopo unn delay iniziale di 0.5s tenta la connessione al registry. Se tale connessione fallisce, stampa
@@ -63,17 +80,17 @@ public class Client extends Thread {
     private ServerInterface connect() {
 
         boolean connected = false;
-        ServerInterface server;
+
 
         while (!connected) {
 
             try {
 
                 sleep(500);
-                Registry registry = LocateRegistry.getRegistry(1099);
-                server = (ServerInterface) registry.lookup(nome);
+                Registry registry = LocateRegistry.getRegistry(serverPort);
+                Server = (ServerInterface) registry.lookup(nome);
                 connected = true;
-                return server;
+                return Server;
 
             } catch (java.rmi.ConnectException e) {
 
@@ -81,7 +98,7 @@ public class Client extends Thread {
 
             } catch (Exception e) {
 
-                System.err.println("Eccezione");
+                System.err.println("Eccezione connect");
             }
         }
         return null;
@@ -94,11 +111,11 @@ public class Client extends Thread {
         view = new View();
 
         view.message.scegliMappa();
-        String mappa_scelta = view.parser.parse();
+        String mappaScelta = view.parser.parse();
 
         try {
 
-            Map mappa = server.buildMap(mappa_scelta);
+            Map mappa = server.buildMap(mappaScelta);
             Board board = new Board();
             board.setMap(mappa);
 
@@ -108,8 +125,10 @@ public class Client extends Thread {
             e.printStackTrace();
         }
     }
+
 //----------------------------------------------------------------------------------------------------
-    public void chooseNickname(ServerInterface server) {
+
+    public void chooseNickname() {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -119,4 +138,14 @@ public class Client extends Thread {
         pass = scanner.nextLine();
 
     }
+
+//----------------------------------------------------------------------------------------------------
+
+    public void serverMessage(String msg) {
+
+        System.out.println(msg);
+
+    }
+
+
 }

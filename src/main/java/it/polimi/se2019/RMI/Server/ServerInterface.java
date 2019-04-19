@@ -7,14 +7,16 @@ import java.rmi.RemoteException;
 
 public interface ServerInterface extends Remote {
 
-    public String sendMessage() throws RemoteException;
+   //public String sendMessage() throws RemoteException;
 
     public Map buildMap(String map) throws RemoteException;
-
-    //public void login(String nickname) throws RemoteException;
 
     public void ping(String nickname) throws RemoteException;
 
     public boolean logIn(String user, String pass) throws  RemoteException;
+
+    public int firstFreePort(String string) throws RemoteException;
+
+    public void initCallback(String string, int port) throws  RemoteException;
 
 }
