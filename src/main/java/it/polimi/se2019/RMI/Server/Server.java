@@ -134,7 +134,7 @@ public class Server extends Thread implements ServerInterface {
         try {
             Registry registry = LocateRegistry.getRegistry(port);
             client = (ClientInterface) registry.lookup(nick);
-            client.serverMessage("ciao client benvenuto sul server di adrenalina");
+            client.serverMessage("Ciao " + nick +", benvenuto sul server di Adrenalina");
         } catch (Exception e) {
             System.err.println("Errore callBack");
         }
