@@ -17,7 +17,30 @@ public class Check {
      * die, 2 if the attacker overkills.
      */
     public int death(Player damaged){
-        return 0;
+
+        /*
+        saving the number of the damages on the playerboard
+         */
+
+        int damage = damaged.getPlayerboard().getDamage().size();
+
+        /*
+        checking the damage
+         */
+
+
+        if (damage == 11){
+            return 1;
+        }
+
+        if (damage > 11){
+            return 2;
+        }
+
+        else{
+            return 0;
+        }
+
     }
 
 
@@ -26,7 +49,80 @@ public class Check {
      * their scores.
      * @param killed the defeated player whose board needs to be resolved.
      */
-    public void resolveBoard(Player killed, ArrayList <Player> players){}
+    public void resolveBoard(Player killed, ArrayList <Player> players){
+
+        ArrayList<Player> killers = new ArrayList<Player>();
+
+        ArrayList<Integer> tokenCounter = new ArrayList<Integer>();
+
+        ArrayList<Token>  damages = new ArrayList<Token>();
+        damages = killed.getPlayerboard().getDamage();
+
+        int playerCounter = 0;
+
+        /*
+        First blood
+         */
+
+        for (Player player1:players){
+            if (player1.getNickname().equals(damages.get(0).getChampionName())){
+                /*
+                aggiungo un punto a chi ha fatto il primo sangue
+                 */
+                player1.setScore(player1.getScore() + 1);
+            }
+        }
+
+        /*
+        assigning the points to the killers
+         */
+
+        for (Player player:players){
+            for (Token damage:damages){
+                if (player.getNickname().equals(damage.getChampionName())){
+
+                    /*
+                    Ogni volta che nell'arraylist damage trovo un token di un determinato giocatore aumento il
+                    suo contatore di token.
+                     */
+
+                    tokenCounter.set(playerCounter, tokenCounter.get(playerCounter) + 1);
+
+                }
+            }
+            playerCounter++;
+        }
+
+        /*
+        placing the kill and overkill tokens on the MortalBlow track
+         */
+
+
+
+
+        /*
+        changing the value of the playerboard
+         */
+
+        killed.getPlayerboard().getPlayerboardValue().remove(0);
+
+
+        /*
+        clearing the damages
+         */
+
+        for (Token damage:damages){
+            int counter = 0;
+            damages.set(counter, null);
+
+            counter++;
+        }
+
+
+
+
+
+    }
 
     /**
      * Checks if the player that is being attacked has markers to add to the total damage.
@@ -46,9 +142,12 @@ public class Check {
      * Checks if a buyer can afford a weapon found in the spawn room. If not, returns false.
      * @param buyer the buyer of the weapon.
      * @param weapon the weapon to be checked.
-     * @return true if a player can afofrd a weapon.
+     * @return true if a player can afford a weapon.
      */
     public boolean affordableWeapon(Player buyer, Weapon weapon){
+
+
+
         return true;
     }
 
