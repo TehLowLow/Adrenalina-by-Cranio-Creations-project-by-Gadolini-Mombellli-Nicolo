@@ -8,6 +8,12 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
+/**
+ * This class is the main client class that interacts with the network and the server.
+ * This class on startup builds a connection with the server, then logs in the user, and prints the messages that the server sends.
+ */
+
+
 public class Client extends Thread implements ClientInterface {
 
     private View view;
@@ -66,9 +72,6 @@ public class Client extends Thread implements ClientInterface {
             Server.initCallback(nickname, clientPort);
         } catch (Exception e) {
             System.err.println("Errore initcallback");
-
-            //client.chooseMap(server);
-
         }
     }
 //----------------------------------------------------------------------------------------------------
@@ -76,6 +79,11 @@ public class Client extends Thread implements ClientInterface {
     /*Il server dopo unn delay iniziale di 0.5s tenta la connessione al registry. Se tale connessione fallisce, stampa
     errore e rientra nel while, aspetta 0.5s e poi riprova. Nel momento in cui si connette cambia il bool connected (failsafe)
     e ritorna il server al thread.
+     */
+
+    /**
+     * Establishes the connection to the registry bound o the server.
+     * @return the serverinterface conneted to the regitry.
      */
     private ServerInterface connect() {
 
@@ -106,9 +114,10 @@ public class Client extends Thread implements ClientInterface {
 
 //----------------------------------------------------------------------------------------------------
 
-    public void chooseMap(ServerInterface server) {
+    @Deprecated
+    public void chooseMap(ServerInterface server){}
 
-        view = new View();
+   /*     view = new View();
 
         view.message.scegliMappa();
         String mappaScelta = view.parser.parse();
@@ -125,10 +134,13 @@ public class Client extends Thread implements ClientInterface {
             e.printStackTrace();
         }
     }
-
+*/
 //----------------------------------------------------------------------------------------------------
 
-    public void chooseNickname() {
+    /**
+     * Sends username and password to the validation system on the server.
+     */
+    private void chooseNickname() {
 
         Scanner scanner = new Scanner(System.in);
 
@@ -141,6 +153,10 @@ public class Client extends Thread implements ClientInterface {
 
 //----------------------------------------------------------------------------------------------------
 
+    /**
+     * Is the remote method that can be invoked by the server to print all the data coming from server.
+     * @param msg is the string coming from the server.
+     */
     public void serverMessage(String msg) {
 
         System.out.println(msg);
