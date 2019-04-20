@@ -143,6 +143,16 @@ public class Check {
         return new Player();
     }
 
+    public boolean isSpawn(Cell cell){
+
+        if(cell.getName().equals("spawnCell")){
+            return true;
+        }
+
+        return false;
+
+    }
+
 
 
 
