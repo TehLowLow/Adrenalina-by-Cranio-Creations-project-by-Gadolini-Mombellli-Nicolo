@@ -12,7 +12,7 @@ public class Player {
      */
 
     /**
-     * Every player is identified by their choosen nickname, saved as a String.
+     * Every player is identified by their chosen nickname, saved as a String.
      */
     private String nickname;
 
@@ -37,10 +37,12 @@ public class Player {
     private int score;
 
     /**
-     * If it's true, the player is connected to the server and reay to be assigned to a match.
+     * If it's true, the player is connected to the server and ready to be assigned to a match.
      */
 
     private boolean connectionAlive;
+
+
 
     /*
     -----------------------METHODS------------------------------
