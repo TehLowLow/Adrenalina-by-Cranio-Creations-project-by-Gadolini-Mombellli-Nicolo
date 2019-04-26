@@ -12,7 +12,7 @@ public class Player {
      */
 
     /**
-     * Every player is identified by their choosen nickname, saved as a String.
+     * Every player is identified by their chosen nickname, saved as a String.
      */
     private String nickname;
 

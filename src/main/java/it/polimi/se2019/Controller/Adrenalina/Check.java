@@ -17,7 +17,30 @@ public class Check {
      * die, 2 if the attacker overkills.
      */
     public int death(Player damaged){
-        return 0;
+
+        /*
+        saving the number of the damages on the playerboard
+         */
+
+        int damage = damaged.getPlayerboard().getDamage().size();
+
+        /*
+        checking the damage
+         */
+
+
+        if (damage == 11){
+            return 1;
+        }
+
+        if (damage > 11){
+            return 2;
+        }
+
+        else{
+            return 0;
+        }
+
     }
 
 
@@ -26,30 +49,151 @@ public class Check {
      * their scores.
      * @param killed the defeated player whose board needs to be resolved.
      */
-    public void resolveBoard(Player killed, ArrayList <Player> players){}
+    public void resolveBoard(Player killed, ArrayList <Player> players){
+
+        ArrayList<Player> killers = new ArrayList<Player>();
+
+        ArrayList<Integer> tokenCounter = new ArrayList<Integer>();
+
+        ArrayList<Token>  damages = new ArrayList<Token>();
+        damages = killed.getPlayerboard().getDamage();
+
+        int playerCounter = 0;
+
+        /*
+        First blood
+         */
+
+        for (Player player1:players){
+            if (player1.getNickname().equals(damages.get(0).getChampionName())){
+                /*
+                aggiungo un punto a chi ha fatto il primo sangue
+                 */
+                player1.setScore(player1.getScore() + 1);
+            }
+        }
+
+        /*
+        assigning the points to the killers
+         */
+
+        for (Player player:players){
+            for (Token damage:damages){
+                if (player.getNickname().equals(damage.getChampionName())){
+
+                    /*
+                    Ogni volta che nell'arraylist damage trovo un token di un determinato giocatore aumento il
+                    suo contatore di token.
+                     */
+
+                    tokenCounter.set(playerCounter, tokenCounter.get(playerCounter) + 1);
+
+                }
+            }
+            playerCounter++;
+        }
+
+
+
+
+        /*
+        placing the kill and overkill tokens on the MortalBlow track
+         */
+
+
+
+
+        /*
+        changing the value of the playerboard
+         */
+
+        killed.getPlayerboard().getPlayerboardValue().remove(0);
+
+
+        /*
+        clearing the damages
+         */
+
+        for (Token damage:damages){
+            int counter = 0;
+            damages.set(counter, null);
+
+            counter++;
+        }
+
+
+
+
+
+    }
 
     /**
      * Checks if the player that is being attacked has markers to add to the total damage.
      * @param active is the attacker, used to look for attacker's markers.
      * @param passive is the player being attacked that needs te markers check to resolve total damage.
      */
-    public void markers(Player active, Player passive){}
+    public void markers(Player active, Player passive){
+
+
+        /*
+        counter
+        */
+
+        int counter=0;
+
+        for (Token marker: passive.getPlayerboard().getMarker()){
+
+
+            if (marker.getChampionName().equals(active.getNickname())){
+
+                /*
+                aggiunge il marker ai danni
+                 */
+
+                passive.getPlayerboard().getDamage().add(counter, marker);
+
+                /*
+                lo rimuove dai marker
+                 */
+
+                passive.getPlayerboard().getMarker().remove(counter);
+
+            }
+
+
+        counter++;
+
+
+        }
+
+    }
 
     /**
      * Checks the amount of damages dealt to a player by another player.
      * @param attacker player that has dealt the damages.
      * @param defender player that has taken the damages.
      */
-    private void damages(Player attacker, Player defender){}
+    private void damages(Player attacker, Player defender){
+
+    }
 
     /**
      * Checks if a buyer can afford a weapon found in the spawn room. If not, returns false.
      * @param buyer the buyer of the weapon.
      * @param weapon the weapon to be checked.
-     * @return true if a player can afofrd a weapon.
+     * @return true if a player can afford a weapon.
      */
     public boolean affordableWeapon(Player buyer, Weapon weapon){
-        return true;
+
+        if     (buyer.getPlayerboard().getAmmoCubes().getBlue() >= weapon.getPrice().getBlue() &&
+                buyer.getPlayerboard().getAmmoCubes().getRed() >= weapon.getPrice().getRed() &&
+                buyer.getPlayerboard().getAmmoCubes().getYellow() >= weapon.getPrice().getYellow()) {
+
+            return true;
+
+        }
+
+        else {return false;}
     }
 
     /**
@@ -59,12 +203,22 @@ public class Check {
      * @return true if the player can afford to reload.
      */
     public boolean affordableReload(Player player, Weapon weapon){
-        return true;
+
+        if     (player.getPlayerboard().getAmmoCubes().getBlue() >= weapon.getRechargeCost().getBlue() &&
+                player.getPlayerboard().getAmmoCubes().getRed() >= weapon.getRechargeCost().getRed() &&
+                player.getPlayerboard().getAmmoCubes().getYellow() >= weapon.getRechargeCost().getYellow()) {
+
+            return true;
+
+        }
+
+        else {return false;}
+
     }
 
     /**
      * Checks the total amount of ammo of a player
-     * @param player plyer to be checked
+     * @param player player to be checked
      * @return the amount of ammos
      */
     public Rybamount availableRybamount(Player player){
@@ -77,7 +231,12 @@ public class Check {
      * @return true if the player has sustained enough damage.
      */
     public boolean availablleEnhancedPickUp(Player player){
-        return true;
+
+        if (player.getPlayerboard().getDamage().size() >= 3){
+            return true;
+        }
+
+        else {return false;}
     }
 
     /**
@@ -86,33 +245,87 @@ public class Check {
      * @return true if the player has sustained enough damage.
      */
     public boolean availableEnhancedShoot(Player player){
-        return true;
+
+        if (player.getPlayerboard().getDamage().size() >= 6){
+            return true;
+        }
+
+        else {return false;}
+
     }
 
     /**
-     * Runs to limit the total amount of ammo per color to 3 ammos.
+     * Runs to limit the total amount of ammo per color to 3 ammos. For example, if a player has more than 3 red
+     * ammo cubes this method will return the amount of cubes to 3.
      * @param player is the player to be checked.
      */
-    public void limitAmmoCubes(Player player){}
+    public void limitAmmoCubes(Player player){
+
+        if (player.getPlayerboard().getAmmoCubes().getYellow() > 3){
+            player.getPlayerboard().getAmmoCubes().setYellowCubes(3);
+        }
+
+        if (player.getPlayerboard().getAmmoCubes().getRed() > 3){
+            player.getPlayerboard().getAmmoCubes().setRedCubes(3);
+        }
+
+        if (player.getPlayerboard().getAmmoCubes().getBlue() > 3){
+            player.getPlayerboard().getAmmoCubes().setBlueCubes(3);
+        }
+
+    }
 
     /**
-     * Runs to limit the total amount of weapon a player is holding to 3.
+     * Checks if a player has reached the limit of weapons he can keep.
      * @param player is the player to be checked.
+     * @return true if the player already has got 3 weapons
      */
-    public void limitWeapon(Player player){}
+    public boolean limitWeapon(Player player){
+
+        if (player.getPlayerboard().getWeapons().size() >= 3){
+            return true;
+        }
+
+        else {return false;}
+    }
 
     /**
-     * Runs to limit the total amount of powerup a player is holding to 3.
+     * Checks if a player has reached the limit of powerUps he can keep
      * @param player is the player to be checked.
      */
-    public void limitPowerUp(Player player){}
+    public boolean limitPowerUp(Player player){
+
+        if (player.getPlayerboard().getPowerups().size() >= 3){
+            return true;
+        }
+
+        else {return false;}
+    }
 
     /**
      * A player can place up to 3 markers on each enemy playerboard, and the player can have up to 3 marker from each
      * other player. This method runs to check if the number of markers has reached limit and fix it.
      * @param player is the player to be checked.
      */
-    public void limitMarkers(Player player){}
+    public void limitMarkers(Player player){
+
+        /*
+        DA SISTEMARE, SERVIREBBE ARRAY DI GIOCATORI
+
+        ArrayList<Token> markers = player.getPlayerboard().getMarker();
+
+        for (Player foe: )
+
+        int samePlayerTokens = 0;
+
+        for (Token marker:markers){
+
+
+
+        }
+
+        */
+    }
 
     /**
      * Returns an arraylist containing all the players in the field of view of a player.
@@ -141,6 +354,16 @@ public class Check {
     public Player winner(){
 
         return new Player();
+    }
+
+    public boolean isSpawn(Cell cell){
+
+        if(cell.getName().equals("spawnCell")){
+            return true;
+        }
+
+        return false;
+
     }
 
 

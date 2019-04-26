@@ -45,6 +45,13 @@ public class Playerboard {
     private ArrayList<Weapon> weapons;
 
 
+    /**
+     * It represents the points the player take when they kill this playerboard's owner.
+     */
+
+    private ArrayList<Integer> playerboardValue;
+
+
 
     /*
     -----------------------------METHODS---------------------
@@ -95,6 +102,13 @@ public class Playerboard {
     public ArrayList<Weapon> getWeapons() {return weapons;}
 
 
+    /**
+     * Getter for the Playerboard value
+     * @return an ArrayList that contains the points corresponding to the value.
+     */
+    public ArrayList<Integer> getPlayerboardValue() {return playerboardValue;}
+
+
 
 
     /*
@@ -137,6 +151,12 @@ public class Playerboard {
      * @param weapons an ArrayList of Weapons.
      */
     public void setWeapons(ArrayList<Weapon> weapons) {this.weapons = weapons;}
+
+    /**
+     * Setter for the playerboard value
+     * @param playerboardValue is an ArrayList of values.
+     */
+    public void setPlayerboardValue(ArrayList<Integer> playerboardValue) {this.playerboardValue = playerboardValue;}
 
 
 }
