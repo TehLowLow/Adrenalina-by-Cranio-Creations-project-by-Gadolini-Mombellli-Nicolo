@@ -1,8 +1,6 @@
-package it.polimi.se2019.RMI.Client;
+package it.polimi.se2019.Network.Deprecated;
 
-import it.polimi.se2019.RMI.Server.ServerInterface;
 import it.polimi.se2019.View.*;
-import it.polimi.se2019.Model.*;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -14,7 +12,7 @@ import java.util.Scanner;
  */
 
 
-public class Client extends Thread implements ClientInterface {
+public class Clientrmi extends Thread implements ClientInterface {
 
     private View view;
     private static final int serverPort = 2000;
@@ -27,22 +25,29 @@ public class Client extends Thread implements ClientInterface {
 
     public static void main(String[] args) {
 
-        Thread t = new Client();
-        t.start();
+        Clientrmi c = new Clientrmi();
+        c.start();
     }
 
     @Override
     public synchronized void run() {
 
+        clientInit(this);
+
+    }
+//----------------------------------------------------------------------------------------------------
+
+    public void clientInit(Clientrmi client) {
+
         Server = connect();
 
-        Client client = new Client();
         client.chooseNickname();
 
         System.err.println(nickname);//debug
         System.err.println(pass);//debug
 
         try {  //routine di login
+
             while (!Server.logIn(nickname, pass)) {
 
                 sleep(1000);
@@ -55,26 +60,27 @@ public class Client extends Thread implements ClientInterface {
 
 
         try { //richiede una porta su cui fare callback
+
             clientPort = Server.firstFreePort(nickname);
         } catch (Exception e) {
             System.err.println("eccezione su freeclientports");
         }
 
 
-        Heartbeat heartbeat = new Heartbeat(Server, nickname);
-        heartbeat.beat();
-
-        //routine di handshake
-
         Thread t = new Handshake();
         t.start();
+
         try {
             Server.initCallback(nickname, clientPort);
         } catch (Exception e) {
             System.err.println("Errore initcallback");
         }
+
     }
+
+
 //----------------------------------------------------------------------------------------------------
+
 
     /*Il server dopo unn delay iniziale di 0.5s tenta la connessione al registry. Se tale connessione fallisce, stampa
     errore e rientra nel while, aspetta 0.5s e poi riprova. Nel momento in cui si connette cambia il bool connected (failsafe)
@@ -83,6 +89,7 @@ public class Client extends Thread implements ClientInterface {
 
     /**
      * Establishes the connection to the registry bound o the server.
+     *
      * @return the serverinterface conneted to the regitry.
      */
     private ServerInterface connect() {
@@ -115,7 +122,8 @@ public class Client extends Thread implements ClientInterface {
 //----------------------------------------------------------------------------------------------------
 
     @Deprecated
-    public void chooseMap(ServerInterface server){}
+    public void chooseMap(ServerInterface server) {
+    }
 
    /*     view = new View();
 
@@ -155,6 +163,7 @@ public class Client extends Thread implements ClientInterface {
 
     /**
      * Is the remote method that can be invoked by the server to print all the data coming from server.
+     *
      * @param msg is the string coming from the server.
      */
     public void serverMessage(String msg) {
@@ -163,5 +172,13 @@ public class Client extends Thread implements ClientInterface {
 
     }
 
+//----------------------------------------------------------------------------------------------------
+
+    public void pingClient() {
+
+        System.out.println("Eccomi"); //debug
+
+
+    }
 
 }

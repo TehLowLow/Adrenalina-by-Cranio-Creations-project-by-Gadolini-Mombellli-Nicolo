@@ -1,6 +1,4 @@
-package it.polimi.se2019.RMI.Server;
-
-import it.polimi.se2019.Model.*;
+package it.polimi.se2019.Network.Deprecated;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -19,7 +17,7 @@ public interface ServerInterface extends Remote {
      * @param nickname is the name of the client that is pinging.
      * @throws RemoteException
      */
-    public void ping(String nickname) throws RemoteException;
+   // public void ping(String nickname) throws RemoteException;
 
     /**
      * Checks the username and password of any client that tries to connect to a game, either starting or already started

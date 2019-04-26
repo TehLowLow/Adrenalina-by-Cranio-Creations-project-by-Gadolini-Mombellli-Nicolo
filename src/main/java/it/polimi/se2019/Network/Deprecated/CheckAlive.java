@@ -1,4 +1,4 @@
-package it.polimi.se2019.RMI.Server;
+package it.polimi.se2019.Network.Deprecated;
 
 import it.polimi.se2019.Model.Player;
 

@@ -1,6 +1,4 @@
-package it.polimi.se2019.RMI.Client;
-
-import it.polimi.se2019.RMI.Server.ServerInterface;
+package it.polimi.se2019.Network.Deprecated;
 
 public class Heartbeat extends Thread {
 
@@ -27,7 +25,7 @@ public class Heartbeat extends Thread {
             while (true) {
 
                 sleep(500);
-                server.ping(nickname);
+              //  server.ping(nickname);
             }
         } catch (Exception e) {
             System.err.println("Errore di hearthbeat.");
