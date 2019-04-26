@@ -1,12 +1,12 @@
-package it.polimi.se2019.RMI.Client;
+package it.polimi.se2019.Network.Deprecated;
 
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
-import static it.polimi.se2019.RMI.Client.Client.clientPort;
-import static it.polimi.se2019.RMI.Client.Client.nickname;
+import static it.polimi.se2019.Network.Deprecated.Clientrmi.clientPort;
+import static it.polimi.se2019.Network.Deprecated.Clientrmi.nickname;
 
 public class Handshake extends Thread {
 
@@ -21,7 +21,7 @@ public class Handshake extends Thread {
 
 
         try {
-            Client client = new Client();
+            Clientrmi client = new Clientrmi();
             ClientInterface stub = (ClientInterface) UnicastRemoteObject.exportObject(client, clientPort);
             Registry registry = LocateRegistry.createRegistry(clientPort);
             registry.rebind(nick, stub);

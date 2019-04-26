@@ -1,4 +1,4 @@
-package it.polimi.se2019.RMI.Client;
+package it.polimi.se2019.Network.Deprecated;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -11,7 +11,10 @@ public interface ClientInterface extends Remote {
      * @param s is the message string
      * @throws RemoteException
      */
-    public void serverMessage(String s) throws RemoteException;
+     void serverMessage(String s) throws RemoteException;
+
+
+     void pingClient() throws RemoteException;
 
 
 }

@@ -1,8 +1,5 @@
-package it.polimi.se2019.RMI.Server;
+package it.polimi.se2019.Network.Deprecated;
 
-import it.polimi.se2019.Controller.Data.MapBuilders.*;
-import it.polimi.se2019.RMI.Client.ClientInterface;
-import it.polimi.se2019.View.*;
 import it.polimi.se2019.Model.*;
 
 import java.rmi.registry.LocateRegistry;
@@ -23,12 +20,15 @@ public class Server extends Thread implements ServerInterface {
 
 
     /**
-     * COntains all the players that are logging in before the start of the game.
+     * Contains all the players that are logging in before the start of the game.
      */
-    static ArrayList<Player> players;
+    static ArrayList<Player> players = new ArrayList<>();
+
+    static ArrayList<ClientInterface> clients = new ArrayList<>();
+    ;
 
     /**
-     *Keeps track of every new connection from any new unregistered user.
+     * Keeps track of every new connection from any new unregistered user.
      */
     public static Hashtable logInTable = new Hashtable();
 
@@ -55,9 +55,7 @@ public class Server extends Thread implements ServerInterface {
 
     public static void main(String[] args) {
 
-        players = new ArrayList<>();
-
-        Thread s = new Server();
+        Server s = new Server();
         s.run();
 
     }
@@ -66,7 +64,7 @@ public class Server extends Thread implements ServerInterface {
     @Override
     public synchronized void run() {
 
-        serverInit();
+        serverInit(this);
 
     }
 
@@ -77,12 +75,11 @@ public class Server extends Thread implements ServerInterface {
      * Starts a server registry where all the clients will be pushing messages.
      */
 
-    private void serverInit() {
+    private void serverInit(Server server) {
 
         try { //avvio il server registry
 
             String nome = "Server";
-            Server server = new Server();
             ServerInterface stub = (ServerInterface) UnicastRemoteObject.exportObject(server, PORT);
             Registry registry = LocateRegistry.createRegistry(PORT);
             registry.rebind(nome, stub);
@@ -96,12 +93,15 @@ public class Server extends Thread implements ServerInterface {
         }
     }
 
+    //Passo in RMI.Clientrmi
+
     //----------------------------------------------------------------------------------------------------
 
     /**
      * Is the validation system that checks the login data from every user, and decides if they are a new user, a
      * disconnected user that wants to reconnect or a user that is trying to double-connect from two separate clients with
      * the same username and password.
+     *
      * @param user is the username the player wants to use, and it must be unique.
      * @param pass is the player's password used for validation purposes
      * @return true if the player is granted access.
@@ -127,8 +127,10 @@ public class Server extends Thread implements ServerInterface {
             System.out.println("Aggiunto" + " " + user);
 
             if (players.size() == 3) {
-                CheckAlive checkAlive = new CheckAlive(30, players);
-                checkAlive.check();
+
+                Lobby lobby = new Lobby();
+                lobby.start();
+
             }
             return true;
 
@@ -146,8 +148,8 @@ public class Server extends Thread implements ServerInterface {
                 player.setConnectionAlive(true);
                 players.add(player);
                 if (players.size() == 3) {
-                    CheckAlive checkAlive = new CheckAlive(30, players);
-                    checkAlive.check();
+                    Lobby lobby = new Lobby();
+                    lobby.start();
                 }
                 return true;
             }
@@ -167,6 +169,7 @@ public class Server extends Thread implements ServerInterface {
     /**
      * Returns the associated static port of a user, allowing them to load a registry in that same port for callback
      * purposes.
+     *
      * @param nick is the name of the player that needs his port.
      * @return the port.
      */
@@ -179,28 +182,8 @@ public class Server extends Thread implements ServerInterface {
 //----------------------------------------------------------------------------------------------------
 
     /**
-     * IS the main method that looks up for the client callback registry and establishes connection.
-     * @param nick is the player to connect to.
-     * @param port is the port where to look for the client's registry.
-     */
-    private synchronized void callBack(String nick, int port) {
-
-        ClientInterface client;
-
-        try {
-            Registry registry = LocateRegistry.getRegistry(port);
-            client = (ClientInterface) registry.lookup(nick);
-            client.serverMessage("Ciao " + nick +", benvenuto sul server di Adrenalina");
-        } catch (Exception e) {
-            System.err.println("Errore callBack");
-        }
-    }
-
-
-//----------------------------------------------------------------------------------------------------
-
-    /**
      * Is the method that is called from the client, to notify the server that the registry is ready to be contacted.
+     *
      * @param nick is the name of the client to call back.
      * @param port is the port number for registry lookup.
      */
@@ -210,67 +193,34 @@ public class Server extends Thread implements ServerInterface {
 
     }
 
-//----------------------------------------------------------------------------------------------------
-
-
-    @Deprecated
-    public synchronized void login(String nickname) {
-
-        Player player = new Player();
-        player.setNickname(nickname);
-        players.add(player);
-        System.out.println("Si è aggiunto il giocatore " + nickname);
-        System.out.println("Per ora i giocatori sono:");
-
-        for (Player giocatore : players) {
-
-            System.out.println(giocatore.getNickname());
-
-        }
-
-        if (players.size() == 3) {
-            CheckAlive checkAlive = new CheckAlive(30, players);
-            checkAlive.check();
-        }
-
-        System.out.println("-----");
-    }
-
 
 //----------------------------------------------------------------------------------------------------
 
-    @Deprecated
-    public synchronized void ping(String nickname) {
+    /**
+     * IS the main method that looks up for the client callback registry and establishes connection.
+     *
+     * @param nick is the player to connect to.
+     * @param port is the port where to look for the client's registry.
+     */
+    public synchronized void callBack(String nick, int port) {
 
-        //System.out.println(nickname + " è ancora vivo.");
-        for (Player player : players) {
-            if (player.getNickname().equals(nickname)) {
-                player.setConnectionAlive(true);
-            }
+        ClientInterface client;
+
+        try {
+            Registry registry = LocateRegistry.getRegistry(port);
+            client = (ClientInterface) registry.lookup(nick);
+            client.serverMessage("Ciao " + nick + ", benvenuto sul server di Adrenalina"); //debug
+            clients.add(client);//trasforma in hash
+        } catch (Exception e) {
+            System.err.println("Errore callBack");
+            e.printStackTrace();
         }
     }
+
+//TODO Modificare per creare Hashtable di player,client
+
+
 
 //----------------------------------------------------------------------------------------------------
 
-    @Deprecated
-    public Map buildMap(String map) {  //da pensare con dual channel rmi
-
-        if (map.equals("1")) {
-            return new Map1Builder().build();
-        }
-
-        if (map.equals("2")) {
-            return new Map2Builder().build();
-        }
-
-        if (map.equals("3")) {
-            return new Map3Builder().build();
-        }
-
-        if (map.equals("4")) {
-
-            return new Map4Builder().build();
-        }
-        return null;
-    }
 }

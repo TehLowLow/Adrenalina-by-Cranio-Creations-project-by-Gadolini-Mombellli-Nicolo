@@ -1,4 +1,4 @@
-package it.polimi.se2019.Socket.Server;
+package it.polimi.se2019.Network.Deprecated;
 
 import java.net.*;
 import java.io.*;
@@ -34,7 +34,7 @@ public class TServer extends Thread {
                 System.out.println(in.readUTF());
 
                 DataOutputStream out = new DataOutputStream(door.getOutputStream());
-                out.writeUTF("Ciao Client, sono il server e ti ho beccato!");
+                out.writeUTF("Ciao Clientrmi, sono il server e ti ho beccato!");
 
                 out.writeUTF("Ciao client, sono il server");
 

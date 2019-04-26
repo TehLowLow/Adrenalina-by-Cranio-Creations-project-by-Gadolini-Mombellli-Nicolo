@@ -1,4 +1,6 @@
-package it.polimi.se2019.Socket.Server;
+package it.polimi.se2019.Network.Deprecated;
+
+import it.polimi.se2019.Network.Deprecated.TServer;
 
 public class Main {
 

@@ -42,7 +42,9 @@ public class Player {
 
     private boolean connectionAlive;
 
+    private int connectionTech;
 
+    private int PORT;
 
     /*
     -----------------------METHODS------------------------------

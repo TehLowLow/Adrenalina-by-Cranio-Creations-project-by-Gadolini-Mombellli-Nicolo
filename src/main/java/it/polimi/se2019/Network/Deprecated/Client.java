@@ -1,4 +1,4 @@
-package it.polimi.se2019.Socket.Client;
+package it.polimi.se2019.Network.Deprecated;
 
 import java.net.*;
 import java.io.*;
