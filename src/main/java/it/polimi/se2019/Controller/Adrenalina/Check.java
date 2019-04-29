@@ -4,6 +4,8 @@ import it.polimi.se2019.Model.*;
 
 import java.util.ArrayList;
 
+import static it.polimi.se2019.Model.Connection.*;
+
 /**
  * This class contains all the methods used to check if an interaction during the game is legit.
  */
@@ -172,9 +174,21 @@ public class Check {
      * Checks the amount of damages dealt to a player by another player.
      * @param attacker player that has dealt the damages.
      * @param defender player that has taken the damages.
+     * @return the amount of damage received by the attacker.
      */
-    private void damages(Player attacker, Player defender){
+    private int damages(Player attacker, Player defender){
 
+        int damagesAmount = 0;
+
+        ArrayList<Token> damages = defender.getPlayerboard().getDamage();
+
+        for (Token damage:damages){
+            if (damage.getChampionName().equals(attacker.getNickname())){
+                damagesAmount++;
+            }
+        }
+
+        return damagesAmount;
     }
 
     /**
@@ -217,20 +231,11 @@ public class Check {
     }
 
     /**
-     * Checks the total amount of ammo of a player
-     * @param player player to be checked
-     * @return the amount of ammos
-     */
-    public Rybamount availableRybamount(Player player){
-        return new Rybamount();
-    }
-
-    /**
      * Checks if a player has sustained enough damage to use enhanced pickup.
      * @param player is the player to be checked.
      * @return true if the player has sustained enough damage.
      */
-    public boolean availablleEnhancedPickUp(Player player){
+    public boolean availableEnhancedPickUp(Player player){
 
         if (player.getPlayerboard().getDamage().size() >= 3){
             return true;
@@ -339,10 +344,154 @@ public class Check {
     /**
      * Returns all the cells that are a maximum of n steps away from player.
      * @param player is the player that wants the check to move.
+     * @param steps is the number of steps to do.
      * @return an arraylist of reachable cells.
      */
-    public ArrayList <Cell> reachableCells (Player player){
-        return new ArrayList<Cell>();
+    public ArrayList <Cell> reachableCells (Player player, int steps){
+
+        ArrayList<Cell> reachableCells = new ArrayList<>();
+
+        Cell position = player.getPosition();
+
+        if (steps==1){
+
+            /*
+            controllo solo le celle raggiungibili dalla posizione del player
+             */
+
+            if (position.getUpConnection().getType().equals(DOOR) || position.getUpConnection().getType().equals(FREE)){
+
+                reachableCells.add(position.getUpConnection().getConnectedCell());
+
+            }
+
+            if (position.getRightConnection().getType().equals(DOOR) || position.getRightConnection().getType().equals(FREE)){
+
+                reachableCells.add(position.getUpConnection().getConnectedCell());
+
+            }
+
+            if (position.getLeftConnection().getType().equals(DOOR) || position.getLeftConnection().getType().equals(FREE)){
+
+                reachableCells.add(position.getUpConnection().getConnectedCell());
+
+            }
+
+            if (position.getDownConnection().getType().equals(DOOR) || position.getDownConnection().getType().equals(FREE)){
+
+                reachableCells.add(position.getUpConnection().getConnectedCell());
+
+            }
+
+        }
+
+
+        if (steps > 1){
+
+            /*
+            prima controllo la mia posizione
+             */
+
+            if (position.getUpConnection().getType().equals(DOOR) || position.getUpConnection().getType().equals(FREE)){
+
+                reachableCells.add(position.getUpConnection().getConnectedCell());
+
+            }
+
+            if (position.getRightConnection().getType().equals(DOOR) || position.getRightConnection().getType().equals(FREE)){
+
+                reachableCells.add(position.getUpConnection().getConnectedCell());
+
+            }
+
+            if (position.getLeftConnection().getType().equals(DOOR) || position.getLeftConnection().getType().equals(FREE)){
+
+                reachableCells.add(position.getUpConnection().getConnectedCell());
+
+            }
+
+            if (position.getDownConnection().getType().equals(DOOR) || position.getDownConnection().getType().equals(FREE)){
+
+                reachableCells.add(position.getUpConnection().getConnectedCell());
+
+            }
+
+            /*
+            poi controllo le celle raggiungibili da quelle arrivabili dopo il primo step
+             */
+
+            for (int i=0; i<steps-1; i++){
+
+                ArrayList<Cell> copiesToCheck = reachableCells;
+
+                for (Cell cell:copiesToCheck){
+
+                    if (cell.getUpConnection().getType().equals(DOOR) || cell.getUpConnection().getType().equals(FREE)){
+
+                    /*
+                    se la cella raggiungibile non è già presente nell'array, essa viene aggiunta.
+                     */
+
+                        if(!reachableCells.contains(cell.getUpConnection().getConnectedCell())){
+
+                            reachableCells.add(cell.getUpConnection().getConnectedCell());
+
+                        }
+
+                    }
+
+                    if (cell.getRightConnection().getType().equals(DOOR) || cell.getRightConnection().getType().equals(FREE)){
+
+                    /*
+                    se la cella raggiungibile non è già presente nell'array, essa viene aggiunta.
+                     */
+
+                        if(!reachableCells.contains(cell.getRightConnection().getConnectedCell())){
+
+                            reachableCells.add(cell.getRightConnection().getConnectedCell());
+
+                        }
+
+                    }
+
+                    if (cell.getLeftConnection().getType().equals(DOOR) || cell.getLeftConnection().getType().equals(FREE)){
+
+                    /*
+                    se la cella raggiungibile non è già presente nell'array, essa viene aggiunta.
+                     */
+
+                        if(!reachableCells.contains(cell.getLeftConnection().getConnectedCell())){
+
+                            reachableCells.add(cell.getLeftConnection().getConnectedCell());
+
+                        }
+
+                    }
+
+                    if (cell.getDownConnection().getType().equals(DOOR) || cell.getDownConnection().getType().equals(FREE)){
+
+                    /*
+                    se la cella raggiungibile non è già presente nell'array, essa viene aggiunta.
+                     */
+
+                        if(!reachableCells.contains(cell.getDownConnection().getConnectedCell())){
+
+                            reachableCells.add(cell.getDownConnection().getConnectedCell());
+
+                        }
+
+                    }
+
+
+
+                }
+
+            }
+
+        }
+
+        return reachableCells;
+
     }
 
     /**
