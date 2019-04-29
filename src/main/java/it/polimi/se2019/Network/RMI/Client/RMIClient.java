@@ -2,6 +2,7 @@ package it.polimi.se2019.Network.RMI.Client;
 
 import it.polimi.se2019.Network.Client;
 import it.polimi.se2019.Network.RMI.Server.RMIServerInterface;
+import it.polimi.se2019.View.Parser;
 
 
 import java.rmi.registry.LocateRegistry;
@@ -9,9 +10,11 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 
 
+
+
 import static it.polimi.se2019.Network.Server.RMIPORT;
 
-public class RMIClient extends Client implements Runnable {
+public class RMIClient extends Client implements Runnable, RMIClientInterface {
 
     RMIServerInterface Server;
     boolean connected = false;
@@ -86,5 +89,21 @@ public class RMIClient extends Client implements Runnable {
 
         }
 
+
+        public String sendMsgWithAnswer(String msg){
+
+            System.out.println(msg);
+
+            Parser parser = new Parser();
+            return parser.parse();
+
+        }
+
+
+        public void sendMsg(String msg){
+
+            System.out.println(msg);
+
+        }
 
     }

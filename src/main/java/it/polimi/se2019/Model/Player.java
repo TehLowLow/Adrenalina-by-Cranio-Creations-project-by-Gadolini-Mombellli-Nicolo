@@ -42,7 +42,11 @@ public class Player {
 
     private boolean connectionAlive;
 
-    private int connectionTech;
+
+    /**
+     * It describes the type of connection.
+     */
+    private String connectionTech;
 
     private int PORT;
 
@@ -97,6 +101,11 @@ public class Player {
         return connectionAlive;
     }
 
+
+    public String getConnectionTech(){return connectionTech;}
+
+    public int getPORT(){return PORT;}
+
 /*
     ------------------------SETTERS----------------------------
      */
@@ -142,4 +151,9 @@ public class Player {
     public void setConnectionAlive(boolean connectionAlive) {
         this.connectionAlive = connectionAlive;
     }
+
+    public void setConnectionTech(String connectionTech){ this.connectionTech = connectionTech;}
+
+    public void setPORT(int PORT){ this.PORT = PORT;}
+
 }

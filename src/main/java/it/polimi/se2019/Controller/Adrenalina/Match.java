@@ -1,8 +1,14 @@
 package it.polimi.se2019.Controller.Adrenalina;
+import it.polimi.se2019.Controller.Setup.MapSetup;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.View.View;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+
+import static it.polimi.se2019.Network.Server.*;
 
 
 /**
@@ -74,8 +80,7 @@ public class Match {
      */
     public void play(){
 
-        View view = new View();
-        view.printer.map(this.board);
+        chooseMap();
 
     }
 
@@ -94,6 +99,57 @@ public class Match {
     public void setBoard(Board board){
 
         this.board = board;
+
+    }
+
+    public void chooseMap(){
+
+        ArrayList<Integer> voti = new ArrayList<>();
+
+
+        /*
+        valore del voto
+         */
+        int value;
+
+        InputCheck inputCheck = new InputCheck();
+
+        for (Player player:connectedPlayers){
+
+            String chosenMap = updateWithAnswer(player, view.message.scegliMappa());
+
+            while (!inputCheck.checkMapInput(chosenMap)){
+
+                update(player, view.message.inputError());
+                chosenMap = updateWithAnswer(player, view.message.scegliMappa());
+
+            }
+
+            value = Integer.parseInt(chosenMap);
+
+            /*
+            aumento il contatore alla posizione del voto ricevuto
+             */
+
+            voti.set(value, voti.get(value) + 1);
+
+
+
+
+        }
+
+        int max = Collections.max(voti);
+
+        int mapNumber = voti.indexOf(max) + 1;
+
+        MapSetup map1Setup = new MapSetup();
+        board.setMap(map1Setup.build(mapNumber));
+
+        for (Player player:connectedPlayers){
+
+            update(player, "La mappa scelta è la numero " + mapNumber);
+
+        }
 
     }
 }

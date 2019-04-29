@@ -1,9 +1,14 @@
 package it.polimi.se2019.Network;
 
-import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Controller.*;
+import it.polimi.se2019.Controller.Adrenalina.*;
+import it.polimi.se2019.Controller.Setup.BoardSetup;
+import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Network.RMI.Client.RMIClient;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.RMI.Server.RMIServer;
 import it.polimi.se2019.Network.Socket.Server.SocketServer;
+import it.polimi.se2019.View.Parser;
 
 import java.net.ServerSocket;
 import java.util.ArrayList;
@@ -23,12 +28,70 @@ public class Server {
     public static CopyOnWriteArrayList<Player> connectedPlayers = new CopyOnWriteArrayList<>();
 
 
+    public static String updateWithAnswer(Player player, String msg){
+
+        if (player.getConnectionTech().equalsIgnoreCase("rmi")){
+
+            RMIClient client = (RMIClient) playerClient.get(player);
+
+            return client.sendMsgWithAnswer(msg);
+
+
+
+
+        }
+
+        if (player.getConnectionTech().equalsIgnoreCase("socket")){
+            return null;
+        }
+
+        return null;
+
+
+    }
+
+
+    public static void update(Player player, String msg){
+
+        if (player.getConnectionTech().equalsIgnoreCase("rmi")){
+
+            RMIClient client = (RMIClient) playerClient.get(player);
+
+
+
+        }
+
+
+        if (player.getConnectionTech().equalsIgnoreCase("socket")){
+
+
+
+        }
+
+    }
+
+
     public static void main(String[] args) {
 
         //all avvio del server devono accadere due cose:
         //1) il server avvia i thread di inizializzazione delle connessioni dedicate alla partita
         //2) il server avvia altre due connessioni (una socket e una rmi) helpers, connessioni dedicate esclusivamente
         //   al login dei player.
+
+        /*
+        AVVIO PARTITA
+         */
+
+        Match newMatch = new Match();
+
+        BoardSetup boardSetup = new BoardSetup();
+        newMatch.setBoard(boardSetup.build());
+
+        /*
+        SCELTA DELLA MAPPA
+         */
+
+
 
 
     }
