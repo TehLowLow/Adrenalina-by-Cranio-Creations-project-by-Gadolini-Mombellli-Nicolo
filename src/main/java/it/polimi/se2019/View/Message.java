@@ -38,8 +38,22 @@ public class Message {
         System.out.println("Costruzione mappa completata.");
     }
 
-    public void scegliMappa() {
-        System.out.println("Scegli in quale mappa combattere: 1 - 2 - 3 - 4");
+    /*
+    SCELTA MAPPA
+     */
+
+    public String scegliMappa() {
+        return "Scegli in quale mappa combattere: 1 - 2 - 3 - 4";
     }
+
+    /*
+    INPUT
+     */
+
+    public String inputError(){
+        return "Input Errato!!";
+    }
+
+
 }
 

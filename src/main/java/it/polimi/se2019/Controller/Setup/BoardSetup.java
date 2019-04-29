@@ -20,8 +20,7 @@ public class BoardSetup {
         WeaponDeckSetup weaponDeckSetup = new WeaponDeckSetup();
         board.setWeaponDeck(weaponDeckSetup.build());
 
-        MapSetup map1Setup = new MapSetup();
-        board.setMap(map1Setup.build());
+
 
         LootDeckSetup lootDeckSetup = new LootDeckSetup();
         board.setLootDeck(lootDeckSetup.build());

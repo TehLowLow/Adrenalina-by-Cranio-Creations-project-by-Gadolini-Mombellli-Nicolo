@@ -67,5 +67,15 @@ public class InputCheck {
         return -1;
     }
 
+    public static boolean checkMapInput(String input){
+        if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4")){
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
 
 }
