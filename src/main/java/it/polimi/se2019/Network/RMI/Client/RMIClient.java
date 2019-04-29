@@ -70,6 +70,8 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
 
             return null;
 
+
+            //TODO
         }
 
         private synchronized void credentials () {
