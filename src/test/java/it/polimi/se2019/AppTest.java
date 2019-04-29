@@ -1,7 +1,6 @@
 package it.polimi.se2019;
-import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+
 
 
 /**
@@ -12,10 +11,10 @@ public class AppTest
     /**
      * Rigorous Test :-)
      */
-    @Test
-    public void shouldAnswerWithTrue()
+    //@Test
+    //public void shouldAnswerWithTrue()
     {
-        assertTrue( true );
+       // assertTrue( true );
     }
 
 }

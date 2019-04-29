@@ -42,3 +42,4 @@ public class Message {
         System.out.println("Scegli in quale mappa combattere: 1 - 2 - 3 - 4");
     }
 }
+

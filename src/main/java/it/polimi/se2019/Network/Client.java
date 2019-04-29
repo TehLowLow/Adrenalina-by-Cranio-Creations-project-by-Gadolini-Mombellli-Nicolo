@@ -36,11 +36,6 @@ public class Client {
 
     private static void initConnection(String string) {
 
-        //Tutto questo avviene una volta che il server è avviato, percui devo gestire la storia di non far crashare il client
-        //se nessun server è attivo.
-        //Per convenzione se la stringa viene accettata non permetto di cambiarla, percui initConnection prova a connettersi
-        //su quella data tecnologia fino a quando non ci riesce.
-        //Il server in caso di lobby al completo (con 5 player) ammette il login ma lo termina da remoto.
 
         if (string.equalsIgnoreCase("socket")) {
 
@@ -66,6 +61,9 @@ public class Client {
 //----------------------------------------------------------------------------------------------------
 
 
+    //TODO: è per forza necessario incapsulare i messaggi socket in un oggetto, perchè devo contenere da qualche parte l' informazione
+    //      "è un messaggio da stampare a schermo", "è un messaggio a cui serve una risposta", "è un messaggio di servizio (ping, aggiornamentti o
+    //      roba in background)"
 }
 
 

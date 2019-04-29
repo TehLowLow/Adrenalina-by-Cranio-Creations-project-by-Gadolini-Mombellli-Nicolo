@@ -1,17 +1,23 @@
 package it.polimi.se2019.Network.RMI.Client;
 
+import it.polimi.se2019.Network.Client;
 import it.polimi.se2019.Network.RMI.Server.RMIServerInterface;
+
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
+
 import static it.polimi.se2019.Network.Server.RMIPORT;
 
-public class RMIClient extends Thread {
+public class RMIClient extends Client implements Runnable {
 
     RMIServerInterface Server;
     boolean connected = false;
+    boolean logged = false;
+    String User;
+    String psw;
 
     @Override
     public void run() {
@@ -20,41 +26,65 @@ public class RMIClient extends Thread {
 
         Server = connect();
 
-        while (true) {
+        while (!logged) {
+
+            credentials();
+
+            try {
+                logged = Server.logIn(User, psw);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+            while (true) {
+
+                Scanner scanner = new Scanner(System.in);
+                try {
+
+                    Server.sendMsg("Clientrmi RMI: " + scanner.nextLine());
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+
+        private RMIServerInterface connect () {
+
+            while (!connected) {
+
+                try {
+                    Registry registry = LocateRegistry.getRegistry(RMIPORT);
+                    RMIServerInterface rServer = (RMIServerInterface) registry.lookup("Server");
+
+                    connected = true;
+
+                    return rServer;
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return null;
+
+        }
+
+        private synchronized void credentials () {
 
             Scanner scanner = new Scanner(System.in);
 
-            try {
+            System.out.println("Inserisci lo Username");
+            User = scanner.nextLine();
+            System.out.println("inserisci password");
+            psw = scanner.nextLine();
 
-                Server.sendMsg("Clientrmi RMI: " + scanner.nextLine());
 
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
 
-    }
-
-
-    private RMIServerInterface connect() {
-
-        while (!connected) {
-
-            try {
-                Registry registry = LocateRegistry.getRegistry(RMIPORT);
-                RMIServerInterface rServer = (RMIServerInterface) registry.lookup("Server");
-
-                connected = true;
-
-                return rServer;
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
 
     }
-
-
-}

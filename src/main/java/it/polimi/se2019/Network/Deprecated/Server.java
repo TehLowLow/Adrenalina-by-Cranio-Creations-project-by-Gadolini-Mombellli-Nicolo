@@ -128,8 +128,8 @@ public class Server extends Thread implements ServerInterface {
 
             if (players.size() == 3) {
 
-                Lobby lobby = new Lobby();
-                lobby.start();
+               // Lobby lobby = new Lobby();
+               // lobby.start();
 
             }
             return true;
@@ -148,8 +148,8 @@ public class Server extends Thread implements ServerInterface {
                 player.setConnectionAlive(true);
                 players.add(player);
                 if (players.size() == 3) {
-                    Lobby lobby = new Lobby();
-                    lobby.start();
+                   // Lobby lobby = new Lobby();
+                   //  lobby.start();
                 }
                 return true;
             }

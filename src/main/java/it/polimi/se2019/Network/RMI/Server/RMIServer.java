@@ -1,15 +1,17 @@
 package it.polimi.se2019.Network.RMI.Server;
 
-import java.rmi.Remote;
+import it.polimi.se2019.Network.RMI.RMILogger;
+import it.polimi.se2019.Network.Server;
+
+
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Scanner;
 
-import static it.polimi.se2019.Network.Server.RMIPORT;
 
-public class RMIServer extends Thread implements RMIServerInterface {
+
+public class RMIServer extends Server implements RMIServerInterface, Runnable {
 
 
     @Override
@@ -36,9 +38,16 @@ public class RMIServer extends Thread implements RMIServerInterface {
 
 
     public void sendMsg(String msg) throws RemoteException {
-
         System.out.println(msg);
+    }
 
+
+    public synchronized boolean logIn(String u, String p) {
+
+        RMILogger logger = new RMILogger();
+
+
+        return true;
 
     }
 

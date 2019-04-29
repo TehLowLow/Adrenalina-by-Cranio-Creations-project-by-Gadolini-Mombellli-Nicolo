@@ -24,7 +24,7 @@ public class Player {
     /**
      * This field is true if the player is the first player.
      */
-    private boolean firstPlayer;
+    private boolean firstPlayer = false;
 
     /**
      * Cell where the player currently is.
@@ -120,10 +120,6 @@ public class Player {
      */
     public void setPosition(Cell position){this.position = position;}
 
-    /**
-     * Sets the player as first player.
-     */
-    public void setFirstPlayer(){this.firstPlayer = true;}
 
     /**
      * Sets the score of the player.
