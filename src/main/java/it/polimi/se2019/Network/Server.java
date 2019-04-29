@@ -4,6 +4,7 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.RMI.Server.RMIServer;
 import it.polimi.se2019.Network.Socket.Server.SocketServer;
+import it.polimi.se2019.Network.Socket.SocketLogger;
 
 import java.net.ServerSocket;
 import java.util.ArrayList;
@@ -15,7 +16,9 @@ public class Server {
 
     public static final int RMIPORT = 2100;
     public static final int SOCKETPORT = 2200;
-    public static final int LOGINPORT = 9999;
+    public static final int LOGINSOCKETPORT = 9999;
+    public static final int LOGINRMIPORT = 8888;
+    public static volatile boolean matchStarted = false;
     public static ServerSocket loginSocket;
     public static ServerSocket gameSocketl;
     public static Hashtable registrations = new Hashtable();  //associazione user psw
@@ -29,6 +32,43 @@ public class Server {
         //1) il server avvia i thread di inizializzazione delle connessioni dedicate alla partita
         //2) il server avvia altre due connessioni (una socket e una rmi) helpers, connessioni dedicate esclusivamente
         //   al login dei player.
+
+
+        //Avvio il logger di rmi
+        Runnable loggerRMI = new RMILogger();
+        Thread loginRMI = new Thread(loggerRMI);
+        loginRMI.start();
+
+
+        //Avvio logger socket
+
+        Runnable loggerSocket = new SocketLogger();
+        Thread loginSocket = new Thread(loggerSocket);
+        loginSocket.start();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }

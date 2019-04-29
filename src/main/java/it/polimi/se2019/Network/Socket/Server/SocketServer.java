@@ -21,10 +21,7 @@ public class SocketServer extends Server implements Runnable {
         //TODO devo ancora gestire il fatto che occupato un thread ne devo creare un altro per ascoltare successive richieste.
         //Per ora il server genera un solo thread, utile per testare la validità del codice.
 
-        Logger logger = new Logger();
-        logger.start();
 
-        System.out.println("Login started");
 
     }
 

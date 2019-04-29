@@ -9,6 +9,7 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 
 
+import static com.sun.javaws.JnlpxArgs.verify;
 import static it.polimi.se2019.Network.Server.RMIPORT;
 
 public class RMIClient extends Client implements Runnable {
@@ -28,13 +29,7 @@ public class RMIClient extends Client implements Runnable {
 
         while (!logged) {
 
-            credentials();
-
-            try {
-                logged = Server.logIn(User, psw);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            verify();
 
         }
 
@@ -70,21 +65,9 @@ public class RMIClient extends Client implements Runnable {
                     e.printStackTrace();
                 }
             }
+
             return null;
 
         }
-
-        private synchronized void credentials () {
-
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Inserisci lo Username");
-            User = scanner.nextLine();
-            System.out.println("inserisci password");
-            psw = scanner.nextLine();
-
-
-        }
-
 
     }

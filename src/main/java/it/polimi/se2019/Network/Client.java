@@ -26,10 +26,7 @@ public class Client {
     private static String input() {
 
         Scanner scanner = new Scanner(System.in);
-
         return scanner.nextLine();
-
-
     }
 
 //----------------------------------------------------------------------------------------------------
@@ -40,14 +37,16 @@ public class Client {
         if (string.equalsIgnoreCase("socket")) {
 
             //avvia una connessione socket
+            Runnable clientSocket = new SocketClient();
+            Thread sClient = new Thread(clientSocket);
             sClient.start();
-
 
         } else if (string.equalsIgnoreCase("RMI")) {
 
             //avvia una connessione RMI
+            Runnable clientRMI = new RMIClient();
+            Thread rClient = new Thread(clientRMI);
             rClient.start();
-
 
         } else {
 
@@ -55,8 +54,6 @@ public class Client {
             System.err.println("input invalido, riscrivi attentamente che connessione desideri");
 
         }
-
-
     }
 //----------------------------------------------------------------------------------------------------
 
