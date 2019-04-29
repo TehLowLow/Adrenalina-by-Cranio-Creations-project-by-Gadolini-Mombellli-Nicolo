@@ -1,7 +1,9 @@
 package it.polimi.se2019.Network.RMI.Client;
 
 import it.polimi.se2019.Network.Client;
+import it.polimi.se2019.Network.RMI.RMILoggerInterface;
 import it.polimi.se2019.Network.RMI.Server.RMIServerInterface;
+import it.polimi.se2019.View.Parser;
 
 
 import java.rmi.registry.LocateRegistry;
@@ -13,7 +15,8 @@ import static it.polimi.se2019.Network.Server.RMIPORT;
 
 public class RMIClient extends Client implements Runnable, RMIClientInterface {
 
-    RMIServerInterface Server;
+    RMILoggerInterface Logger;
+
     boolean connected = false;
     boolean logged = false;
     String User;
@@ -24,11 +27,11 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
 
         System.out.println("hai avviato una connessione RMI");
 
-        Server = connect();
+        Logger = connect();
 
         while (!logged) {
 
-            verify();
+            //Logger.verify();
 
         }
 
@@ -38,7 +41,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
                 Scanner scanner = new Scanner(System.in);
                 try {
 
-                    Server.sendMsg("Clientrmi RMI: " + scanner.nextLine());
+                    //Logger.sendMsg("Clientrmi RMI: " + scanner.nextLine());
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -48,7 +51,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
         }
 
 
-        private RMIServerInterface connect () {
+        private RMILoggerInterface connect () {
 
             while (!connected) {
 
@@ -58,7 +61,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
 
                     connected = true;
 
-                    return rServer;
+                    //return rServer;
 
                 } catch (Exception e) {
                     e.printStackTrace();
