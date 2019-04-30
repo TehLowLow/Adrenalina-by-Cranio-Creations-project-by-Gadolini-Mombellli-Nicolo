@@ -55,21 +55,15 @@ public class Check {
      */
     public void resolveBoard(Player killed, Board board, Player killer, boolean overkill){
 
-        ArrayList<Player> killers = new ArrayList<Player>();
-
-        ArrayList<Integer> tokenCounter = new ArrayList<Integer>();
-
         ArrayList<Token>  damages = new ArrayList<Token>();
         damages = killed.getPlayerboard().getDamage();
-
-        int playerCounter = 0;
 
         /*
         First blood
          */
 
         for (Player player1:connectedPlayers){
-            if (player1.getNickname().equals(damages.get(0).getChampionName())){
+            if (player1.getPlayerboard().getChampionName().equals(damages.get(0).getChampionName())){
                 /*
                 aggiungo un punto a chi ha fatto il primo sangue
                  */
@@ -103,7 +97,7 @@ public class Check {
 
             for (Token damage: damages){
 
-                if (damage.getChampionName().equals(player.getNickname())){
+                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())){
 
                     playerScore.score ++;
 
@@ -125,7 +119,7 @@ public class Check {
 
             for (Player player:connectedPlayers) {
 
-                if (damage.getChampionName().equals(player.getNickname())) {
+                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
 
                     if (!whoShotFirst.contains(player)) {
 
@@ -174,11 +168,11 @@ public class Check {
 
         int playerboardCounter = 0;
 
-        for(PlayerWithScore player: playersWithScore){
+        for(PlayerWithScore attacker: playersWithScore){
 
-            if(player.score != 0){
+            if(attacker.score != 0){
 
-                killer.setScore(killer.getScore() + killed.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
+                attacker.player.setScore(killer.getScore() + killed.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
 
                 playerboardCounter++;
             }

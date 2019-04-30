@@ -118,4 +118,7 @@ public class Turn {
     public void frenzy(Player player){}
 
 
+    //TODO ricordarsi di assegnare i punti aggiuntivi per le doublekill
+
+
 }
