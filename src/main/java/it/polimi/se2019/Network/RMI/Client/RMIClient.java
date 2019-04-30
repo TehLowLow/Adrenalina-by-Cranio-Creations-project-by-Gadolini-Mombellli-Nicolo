@@ -11,6 +11,7 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 
 
+import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
 import static it.polimi.se2019.Network.Server.RMIPORT;
 
 public class RMIClient extends Client implements Runnable, RMIClientInterface {
@@ -93,8 +94,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
 
         Parser parser = new Parser();
         return parser.parse();
-            System.out.println(msg);
-            return Parser.parse();
+
 
     }
 
