@@ -81,6 +81,27 @@ public class Message {
     }
 
     /*
+    SCELTA STANZA
+     */
+
+    public static String scegliStanza(ArrayList <Integer> rooms){
+
+        String str = "Scegli una stanza tra:";
+
+        for(Integer room : rooms){
+
+            str = str + "\n" + Printer.colour(room);
+
+
+        }
+
+        return str;
+    }
+
+    public static String stanzaNonVisibile(){
+        return "Non puoi vedere questa stanza! Scegline un'altra.";
+    }
+    /*
     INPUT
      */
 
@@ -89,7 +110,7 @@ public class Message {
     }
 
     public static String nessunBersaglio(){
-        return "Nessun bersaglio disponibile!";
+        return "Nessun bersaglio disponibile qui!";
     }
 
 

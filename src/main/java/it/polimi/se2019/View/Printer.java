@@ -190,7 +190,7 @@ public class Printer {
      * This method converts an integer representing a colour to a string.
      * @param colour
      */
-    private static String colour(int colour){
+    public static String colour(int colour){
 
         if(colour == Colour.BLUE){
             return "blu";
