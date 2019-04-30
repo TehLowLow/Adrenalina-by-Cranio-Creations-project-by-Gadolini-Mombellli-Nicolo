@@ -16,7 +16,7 @@ public class BBQMode extends Effect{
         /**
          * Applies the alternative effect of the Flamethrower.
          * @param user the Player that wants to apply the effect.
-         * @param target the target of the effect. It can be the user itself.
+         * @param targets the target of the effect. It can be the user itself.
          */
 
         @Override
