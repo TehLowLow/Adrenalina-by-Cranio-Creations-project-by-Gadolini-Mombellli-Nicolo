@@ -91,7 +91,7 @@ public class Server {
         SCELTA DELLA MAPPA
          */
 
-
+        newMatch.play();
 
 
 

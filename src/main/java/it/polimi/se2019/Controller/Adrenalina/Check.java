@@ -1,9 +1,11 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
 import it.polimi.se2019.Model.*;
-import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.Controller.Adrenalina.Interaction;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import static it.polimi.se2019.Model.Connection.*;
 import static it.polimi.se2019.Network.Server.connectedPlayers;
@@ -20,7 +22,7 @@ public class Check {
      * @return an int value. 0 if the player hasn't been damaged enough to die, 1 if the player receives damage only to
      * die, 2 if the attacker overkills.
      */
-    public int death(Player damaged){
+    public int death(Player damaged) {
 
         /*
         saving the number of the damages on the playerboard
@@ -33,15 +35,13 @@ public class Check {
          */
 
 
-        if (damage == 11){
+        if (damage == 11) {
             return 1;
         }
 
-        if (damage > 11){
+        if (damage > 11) {
             return 2;
-        }
-
-        else{
+        } else {
             return 0;
         }
 
@@ -62,12 +62,13 @@ public class Check {
         ArrayList<Token>  damages = new ArrayList<Token>();
         damages = killed.getPlayerboard().getDamage();
 
-
         int playerCounter = 0;
 
+        /*
+        First blood
+         */
 
-        for (Player player1: connectedPlayers){
-
+        for (Player player1:connectedPlayers){
             if (player1.getNickname().equals(damages.get(0).getChampionName())){
                 /*
                 aggiungo un punto a chi ha fatto il primo sangue
@@ -80,15 +81,117 @@ public class Check {
         assigning the points to the killers
          */
 
-        
+        class PlayerWithScore{
 
 
 
+            Player player;
+            int score;
+
+
+        }
+
+        ArrayList<PlayerWithScore>  playersWithScore = new ArrayList<>();
+
+        for (Player player : connectedPlayers){
+
+            PlayerWithScore playerScore = new PlayerWithScore();
+
+            playerScore.player = player;
+
+            playerScore.score = 0;
+
+            for (Token damage: damages){
+
+                if (damage.getChampionName().equals(player.getNickname())){
+
+                    playerScore.score ++;
+
+                }
+
+            }
+
+            playersWithScore.add(playerScore);
+
+        }
+
+        /*
+        creo un array ordinato per ordine temporale di sparo
+         */
+
+        ArrayList<Player> whoShotFirst = new ArrayList<>();
+
+        for (Token damage: damages){
+
+            for (Player player:connectedPlayers) {
+
+                if (damage.getChampionName().equals(player.getNickname())) {
+
+                    if (!whoShotFirst.contains(player)) {
+
+                        whoShotFirst.add(player);
+
+                    }
+
+                }
+            }
+        }
+
+
+        Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
+            @Override
+            public int compare(PlayerWithScore o1, PlayerWithScore o2) {
+
+                if (o1.score > o2.score){
+
+                    return 1;
+
+                }
+
+                if (o1.score == o2.score){
+
+                    if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)){
+                        return 1;
+                    }
+
+                    if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)){
+                        return -1;
+                    }
+
+
+
+                }
+
+                if (o1.score < o2.score){
+                    return -1;
+                }
+
+                else {return 0;}
+            }
+        };
+
+        Collections.sort(playersWithScore, comparator);
+
+        int playerboardCounter = 0;
+
+        for(PlayerWithScore player: playersWithScore){
+
+            if(player.score != 0){
+
+                killer.setScore(killer.getScore() + killed.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
+
+                playerboardCounter++;
+            }
+
+        }
 
         /*
         placing the kill and overkill tokens on the MortalBlow track
          */
 
+        Interaction interaction = new Interaction();
+
+        interaction.claimSkull(board, killer, killed, overkill);
 
 
 
@@ -104,10 +207,7 @@ public class Check {
          */
 
         for (Token damage:damages){
-            int counter = 0;
-            damages.set(counter, null);
-
-            counter++;
+            damages.remove(damage);
         }
 
 
@@ -297,35 +397,94 @@ public class Check {
     /**
      * A player can place up to 3 markers on each enemy playerboard, and the player can have up to 3 marker from each
      * other player. This method runs to check if the number of markers has reached limit and fix it.
-     * @param player is the player to be checked.
+     * @param defender is who has the markers to check
+     * @param attacker is who gives the markers
      */
-    public void limitMarkers(Player player){
+    public void limitMarkers(Player defender, Player attacker){
 
-        /*
-        DA SISTEMARE, SERVIREBBE ARRAY DI GIOCATORI
+        ArrayList<Token> markers = defender.getPlayerboard().getMarker();
 
-        ArrayList<Token> markers = player.getPlayerboard().getMarker();
+        int attackerMarkers = 0;
 
-        for (Player foe: )
 
-        int samePlayerTokens = 0;
+        for (Token marker:markers) {
 
-        for (Token marker:markers){
+            if (marker.getChampionName().equals(attacker.getNickname())){
+                attackerMarkers++;
+            }
+        }
+
+        if (attackerMarkers>3){
+            attackerMarkers = 3;
+        }
+
+
+    }
+
+    /**
+     * Returns an arraylist containing all the players in the field of view of a player.
+     * @param player is the player that needs the fov check.
+     * @return all the others players that are in the fov.
+     */
+    public ArrayList <Player> visiblePlayers (Player player){
+
+        ArrayList<Player> visiblePlayers = new ArrayList<Player>();
+
+        for (Player player1:connectedPlayers){
+
+
+            /*
+            tra i visibili non ci deve essere lui stesso
+             */
+            if (!player1.equals(player)){
+
+
+
+                if (player.getPosition().getColour() == player1.getPosition().getColour()){
+                    if(!visiblePlayers.contains(player1)){
+                        visiblePlayers.add(player1);
+                    }
+                }
+
+                if (player.getPosition().getUpConnection().getType().equals(DOOR)){
+                    if (player1.getPosition().getColour() == player.getPosition().getUpConnection().getConnectedCell().getColour()){
+                        if(!visiblePlayers.contains(player1)){
+                            visiblePlayers.add(player1);
+                        }
+                    }
+                }
+
+                if (player.getPosition().getRightConnection().getType().equals(DOOR)){
+                    if (player1.getPosition().getColour() == player.getPosition().getRightConnection().getConnectedCell().getColour()){
+                        if(!visiblePlayers.contains(player1)){
+                            visiblePlayers.add(player1);
+                        }
+                    }
+                }
+
+                if (player.getPosition().getLeftConnection().getType().equals(DOOR)){
+                    if (player1.getPosition().getColour() == player.getPosition().getLeftConnection().getConnectedCell().getColour()){
+                        if(!visiblePlayers.contains(player1)){
+                            visiblePlayers.add(player1);
+                        }
+                    }
+                }
+
+                if (player.getPosition().getDownConnection().getType().equals(DOOR)){
+                    if (player1.getPosition().getColour() == player.getPosition().getDownConnection().getConnectedCell().getColour()){
+                        if(!visiblePlayers.contains(player1)){
+                            visiblePlayers.add(player1);
+                        }
+                    }
+                }
+            }
 
 
 
         }
 
-        */
-    }
+    return visiblePlayers;
 
-    /**
-     * Returns an arraylist containing all the players in the field of view of a player.
-     * @param player is the player that needs the fow check.
-     * @return all the others players that are in the fov.
-     */
-    public ArrayList <Player> visiblePlayers (Player player){
-        return new ArrayList<Player>();
     }
 
     /**
@@ -407,9 +566,15 @@ public class Check {
             poi controllo le celle raggiungibili da quelle arrivabili dopo il primo step
              */
 
-            for (int i=0; i<steps-1; i++){
 
-                ArrayList<Cell> copiesToCheck = reachableCells;
+
+            for (int i=1; i<steps-1; i++){
+
+                ArrayList<Cell> copiesToCheck = new ArrayList<>();
+
+                for (Cell cell:reachableCells){
+                    copiesToCheck.add(cell);
+                }
 
                 for (Cell cell:copiesToCheck){
 
@@ -502,32 +667,6 @@ public class Check {
 
     }
 
-    public boolean canBeUsedSTD(Player user, Weapon weapon){
-
-        return weapon.getBaseEffect().hasTargets(user);
-
-    }
-
-    public boolean canBeUsedAlternative(Player user, Weapon weapon){
-
-        if(weapon.getAlternativeEffect()!=null){
-
-            return weapon.getAlternativeEffect().hasTargets(user);
-
-        }
-
-        else{
-
-            for(Effect effect : weapon.getOptionalEffect()){
-                if(!effect.hasTargets(user)){
-                    return true;
-                }
-            }
-        }
-
-        return false;
-
-    }
 
 
 
