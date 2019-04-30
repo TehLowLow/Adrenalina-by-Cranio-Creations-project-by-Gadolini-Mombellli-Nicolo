@@ -23,7 +23,7 @@ public class TagBackGrenadeEffect extends Effect {
         //Da riscrivere tenendo conto che i targets sono in un array.
     }
 
-    public ArrayList<Player> getTargets(Player player, Map map){
+    public ArrayList<Player> getTargets(Player player){
 
 
         Cell current_cell = player.getPosition();

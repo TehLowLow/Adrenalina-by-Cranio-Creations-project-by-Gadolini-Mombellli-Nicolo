@@ -39,12 +39,11 @@ public class BasicFurnace extends Effect{
         /**
          * Looks for the target (or targets) of the Furnace.
          * @param user the Player thant wants to use the effect.
-         * @param map the Map where the targets must be searched.
          * @return
          */
 
         @Override
-        public ArrayList<Player> getTargets(Player user, Map map) {
+        public ArrayList<Player> getTargets(Player user) {
 
             //Dichiaro un array di giocatori, che conterrà i bersagli.
             ArrayList <Player> targets = new ArrayList<>();
@@ -67,7 +66,7 @@ public class BasicFurnace extends Effect{
             //Se non c'è nessuno, informo il giocatore e gli faccio ripetere la scelta.
             if(targets.size()==0){
                 Server.update(user, Message.nessunBersaglio());
-                return getTargets(user, map);
+                return getTargets(user);
             }
 
             //Altrimenti, ritorno i bersagli.

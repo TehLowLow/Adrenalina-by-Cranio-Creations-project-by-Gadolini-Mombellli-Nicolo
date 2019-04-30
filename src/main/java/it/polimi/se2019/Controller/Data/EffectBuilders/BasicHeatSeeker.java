@@ -27,12 +27,11 @@ public class BasicHeatSeeker extends Effect {
         /**
          * Looks for the target of the Heatseeker.
          * @param user the Player thant wants to use the effect.
-         * @param map the Map where the targets must be searched.
          * @return
          */
 
         @Override
-        public ArrayList<Player> getTargets(Player user, Map map) {
+        public ArrayList<Player> getTargets(Player user) {
             return null;
         }
 

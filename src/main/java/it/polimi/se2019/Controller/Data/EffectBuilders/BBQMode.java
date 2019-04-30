@@ -55,12 +55,11 @@ public class BBQMode extends Effect{
         /**
          * Looks for the target (or targets) of the alternative effect
          * @param user the Player thant wants to use the effect.
-         * @param map the Map where the targets must be searched.
          * @return
          */
 
         @Override
-        public ArrayList<Player> getTargets(Player user, Map map) {
+        public ArrayList<Player> getTargets(Player user) {
 
             //Lista di bersagli: alla fine conterrà i giocatori da colpire con applyEffect.
             ArrayList<Player> targets = new ArrayList<>();
@@ -95,7 +94,7 @@ public class BBQMode extends Effect{
                     catch (NoTargetException e) {
 
                         Server.update(user, Message.nessunBersaglio());
-                        return getTargets(user, map);
+                        return getTargets(user);
 
                     }
 
@@ -124,7 +123,7 @@ public class BBQMode extends Effect{
                 else {
 
                     Server.update(user, Message.direzioneOstruita());
-                    return getTargets(user, map);
+                    return getTargets(user);
 
                 }
 
@@ -145,7 +144,7 @@ public class BBQMode extends Effect{
                     catch (NoTargetException e) {
 
                         Server.update(user, Message.nessunBersaglio());
-                        return getTargets(user, map);
+                        return getTargets(user);
 
                     }
 
@@ -175,7 +174,7 @@ public class BBQMode extends Effect{
                 else {
 
                     Server.update(user, Message.direzioneOstruita());
-                    return getTargets(user, map);
+                    return getTargets(user);
 
                 }
 
@@ -196,7 +195,7 @@ public class BBQMode extends Effect{
                     catch (NoTargetException e) {
 
                         Server.update(user, Message.nessunBersaglio());
-                        return getTargets(user, map);
+                        return getTargets(user);
 
                     }
 
@@ -226,7 +225,7 @@ public class BBQMode extends Effect{
                 else {
 
                     Server.update(user, Message.direzioneOstruita());
-                    return getTargets(user, map);
+                    return getTargets(user);
 
                 }
 
@@ -246,7 +245,7 @@ public class BBQMode extends Effect{
                     catch (NoTargetException e) {
 
                         Server.update(user, Message.nessunBersaglio());
-                        return getTargets(user, map);
+                        return getTargets(user);
 
                     }
 
@@ -276,7 +275,7 @@ public class BBQMode extends Effect{
                 else {
 
                     Server.update(user, Message.direzioneOstruita());
-                    return getTargets(user, map);
+                    return getTargets(user);
 
                 }
 

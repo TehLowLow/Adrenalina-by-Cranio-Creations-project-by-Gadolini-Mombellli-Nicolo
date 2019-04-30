@@ -26,16 +26,15 @@ public class CozyFire extends Effect {
         /**
          * Looks for the target (or targets) of the alternative effect.
          * @param user the Player thant wants to use the effect.
-         * @param map the Map where the targets must be searched.
          * @return
          */
 
         @Override
-        public ArrayList<Player> getTargets(Player user, Map map) {
+        public ArrayList<Player> getTargets(Player user) {
             return null;
         }
 
-        public boolean hasTargets(Player user){return false;};
+        public boolean hasTargets(Player user){return false;}
 
 
 

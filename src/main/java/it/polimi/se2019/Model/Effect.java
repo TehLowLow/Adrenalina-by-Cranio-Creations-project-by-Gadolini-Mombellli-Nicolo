@@ -81,10 +81,9 @@ public abstract class Effect {
     /**
      * This returns the possible targets of an effect.
      * @param user the Player thant wants to use the effect.
-     * @param map the Map where the targets must be searched.
      * @return an ArrayList of possible targets.
      */
-    public abstract ArrayList<Player> getTargets(Player user, Map map/*ArrayList <Player> players*/);
+    public abstract ArrayList<Player> getTargets(Player user);
 
     public abstract boolean hasTargets(Player user);
 

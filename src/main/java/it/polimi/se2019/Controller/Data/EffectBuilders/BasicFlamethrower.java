@@ -44,12 +44,11 @@ public class BasicFlamethrower extends Effect {
      * Looks for the target (or targets) of the Flamethrower.
      *
      * @param user the Player thant wants to use the effect.
-     * @param map  the Map where the targets must be searched.
      * @return an arraylist of targets. The effect must be applied to them.
      */
 
     @Override
-    public ArrayList<Player> getTargets(Player user, Map map) {
+    public ArrayList<Player> getTargets(Player user) {
 
         //Lista di bersagli: alla fine conterrà i giocatori da colpire con applyEffect.
         ArrayList<Player> targets = new ArrayList<>();
@@ -84,7 +83,7 @@ public class BasicFlamethrower extends Effect {
                 catch (NoTargetException e) {
 
                     Server.update(user, Message.nessunBersaglio());
-                    return getTargets(user, map);
+                    return getTargets(user);
 
                 }
 
@@ -113,7 +112,7 @@ public class BasicFlamethrower extends Effect {
             else {
 
                 Server.update(user, Message.direzioneOstruita());
-                return getTargets(user, map);
+                return getTargets(user);
 
             }
 
@@ -134,7 +133,7 @@ public class BasicFlamethrower extends Effect {
                 catch (NoTargetException e) {
 
                     Server.update(user, Message.nessunBersaglio());
-                    return getTargets(user, map);
+                    return getTargets(user);
 
                 }
 
@@ -164,7 +163,7 @@ public class BasicFlamethrower extends Effect {
             else {
 
                 Server.update(user, Message.direzioneOstruita());
-                return getTargets(user, map);
+                return getTargets(user);
 
             }
 
@@ -185,7 +184,7 @@ public class BasicFlamethrower extends Effect {
                 catch (NoTargetException e) {
 
                     Server.update(user, Message.nessunBersaglio());
-                    return getTargets(user, map);
+                    return getTargets(user);
 
                 }
 
@@ -215,7 +214,7 @@ public class BasicFlamethrower extends Effect {
             else {
 
                 Server.update(user, Message.direzioneOstruita());
-                return getTargets(user, map);
+                return getTargets(user);
 
             }
 
@@ -235,7 +234,7 @@ public class BasicFlamethrower extends Effect {
                 catch (NoTargetException e) {
 
                     Server.update(user, Message.nessunBersaglio());
-                    return getTargets(user, map);
+                    return getTargets(user);
 
                 }
 
@@ -265,7 +264,7 @@ public class BasicFlamethrower extends Effect {
             else {
 
                 Server.update(user, Message.direzioneOstruita());
-                return getTargets(user, map);
+                return getTargets(user);
 
             }
 
