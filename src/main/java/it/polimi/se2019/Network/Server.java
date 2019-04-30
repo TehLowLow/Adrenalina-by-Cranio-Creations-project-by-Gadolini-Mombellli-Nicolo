@@ -94,7 +94,7 @@ public class Server {
         SCELTA DELLA MAPPA
          */
 
-
+        newMatch.play();
 
 
         //Avvio il logger di rmi
