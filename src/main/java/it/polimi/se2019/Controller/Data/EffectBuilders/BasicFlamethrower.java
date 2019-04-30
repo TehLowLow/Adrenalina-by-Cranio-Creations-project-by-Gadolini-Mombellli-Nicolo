@@ -45,7 +45,7 @@ public class BasicFlamethrower extends Effect {
      *
      * @param user the Player thant wants to use the effect.
      * @param map  the Map where the targets must be searched.
-     * @return
+     * @return an arraylist of targets. The effect must be applied to them.
      */
 
     @Override
@@ -73,7 +73,7 @@ public class BasicFlamethrower extends Effect {
 
 
             //Se in alto rispetto alla posizione non ho un muro o il bordo della mappa, proseguo.
-            if (position.getUpConnection().getType() != Connection.WALL && position.getUpConnection().getType() != Connection.EDGE) {
+            if (!position.getUpConnection().getType().equals(Connection.WALL) && !position.getUpConnection().getType().equals(Connection.EDGE)) {
 
                 //Provo a vedere se trovo un bersaglio nella casella in alto. Se non lo trovo, lancio eccezione e chiamo nuovamente getTargets.
                 try {
@@ -91,7 +91,7 @@ public class BasicFlamethrower extends Effect {
                 //Se non è stata sollevata l'eccezione, cerco un bersaglio nella casella ancora successiva a quella del precedente bersaglio, se possibile..
                 Player firstTarget = targets.get(0);
 
-                if(firstTarget.getPosition().getUpConnection().getType() == Connection.WALL || firstTarget.getPosition().getUpConnection().getType() == Connection.EDGE){
+                if(firstTarget.getPosition().getUpConnection().getType().equals(Connection.WALL) || firstTarget.getPosition().getUpConnection().getType().equals(Connection.EDGE)){
 
                     //Se entro qui, non c'è un'ulteriore casella. Ritorno l'array di bersagli.
                     return targets;
@@ -112,7 +112,7 @@ public class BasicFlamethrower extends Effect {
             //Se non posso sparare verso l'alto, eseguo questo else, ritornando il risultato di una nuova chiamata di getTargets.
             else {
 
-                Message.direzioneOstruita();
+                Server.update(user, Message.direzioneOstruita());
                 return getTargets(user, map);
 
             }
@@ -123,7 +123,7 @@ public class BasicFlamethrower extends Effect {
         if (direction.equalsIgnoreCase("basso")) {
 
             //Se in basso rispetto alla posizione non ho un muro o il bordo della mappa, proseguo.
-            if (position.getDownConnection().getType() != Connection.WALL && position.getDownConnection().getType() != Connection.EDGE) {
+            if (!position.getDownConnection().getType().equals(Connection.WALL) && !position.getDownConnection().getType().equals(Connection.EDGE)) {
 
                 //Provo a vedere se trovo un bersaglio nella casella in basso. Se non lo trovo, lancio eccezione e chiamo nuovamente getTargets.
                 try {
@@ -142,7 +142,7 @@ public class BasicFlamethrower extends Effect {
                 // sempre nella stessa direzione, se possibile..
                 Player firstTarget = targets.get(0);
 
-                if(firstTarget.getPosition().getDownConnection().getType() == Connection.WALL || firstTarget.getPosition().getDownConnection().getType() == Connection.EDGE){
+                if(firstTarget.getPosition().getDownConnection().getType().equals(Connection.WALL) || firstTarget.getPosition().getDownConnection().getType().equals(Connection.EDGE)){
 
                     //Se entro qui, non c'è un'ulteriore casella. Ritorno l'array di bersagli.
                     return targets;
@@ -163,7 +163,7 @@ public class BasicFlamethrower extends Effect {
             //Se non posso sparare verso il basso, eseguo questo else, ritornando il risultato di una nuova chiamata di getTargets.
             else {
 
-                Message.direzioneOstruita();
+                Server.update(user, Message.direzioneOstruita());
                 return getTargets(user, map);
 
             }
@@ -174,7 +174,7 @@ public class BasicFlamethrower extends Effect {
         if (direction.equalsIgnoreCase("sinistra")) {
 
             //Se a sinistra rispetto alla posizione non ho un muro o il bordo della mappa, proseguo.
-            if (position.getLeftConnection().getType() != Connection.WALL && position.getLeftConnection().getType() != Connection.EDGE) {
+            if (!position.getLeftConnection().getType().equals(Connection.WALL) && !position.getLeftConnection().getType().equals(Connection.EDGE)) {
 
                 //Provo a vedere se trovo un bersaglio nella casella a sinistra. Se non lo trovo, lancio eccezione e chiamo nuovamente getTargets.
                 try {
@@ -193,7 +193,7 @@ public class BasicFlamethrower extends Effect {
                 // sempre nella stessa direzione, se possibile..
                 Player firstTarget = targets.get(0);
 
-                if(firstTarget.getPosition().getLeftConnection().getType() == Connection.WALL || firstTarget.getPosition().getLeftConnection().getType() == Connection.EDGE){
+                if(firstTarget.getPosition().getLeftConnection().getType().equals(Connection.WALL) || firstTarget.getPosition().getLeftConnection().getType().equals(Connection.EDGE)){
 
                     //Se entro qui, non c'è un'ulteriore casella. Ritorno l'array di bersagli.
                     return targets;
@@ -214,7 +214,7 @@ public class BasicFlamethrower extends Effect {
             //Se non posso sparare verso sinistra, eseguo questo else, ritornando il risultato di una nuova chiamata di getTargets.
             else {
 
-                Message.direzioneOstruita();
+                Server.update(user, Message.direzioneOstruita());
                 return getTargets(user, map);
 
             }
@@ -224,7 +224,7 @@ public class BasicFlamethrower extends Effect {
         if (direction.equalsIgnoreCase("destra")) {
 
             //Se a destra rispetto alla posizione non ho un muro o il bordo della mappa, proseguo.
-            if (position.getRightConnection().getType() != Connection.WALL && position.getRightConnection().getType() != Connection.EDGE) {
+            if (!position.getRightConnection().getType().equals(Connection.WALL) && !position.getRightConnection().getType().equals(Connection.EDGE)) {
 
                 //Provo a vedere se trovo un bersaglio nella casella a destra. Se non lo trovo, lancio eccezione e chiamo nuovamente getTargets.
                 try {
@@ -243,7 +243,7 @@ public class BasicFlamethrower extends Effect {
                 // sempre nella stessa direzione, se possibile..
                 Player firstTarget = targets.get(0);
 
-                if(firstTarget.getPosition().getRightConnection().getType() == Connection.WALL || firstTarget.getPosition().getRightConnection().getType() == Connection.EDGE){
+                if(firstTarget.getPosition().getRightConnection().getType().equals(Connection.WALL) || firstTarget.getPosition().getRightConnection().getType().equals(Connection.EDGE)){
 
                     //Se entro qui, non c'è un'ulteriore casella. Ritorno l'array di bersagli.
                     return targets;
@@ -264,7 +264,7 @@ public class BasicFlamethrower extends Effect {
             //Se non posso sparare verso il basso, eseguo questo else, ritornando il risultato di una nuova chiamata di getTargets.
             else {
 
-                Message.direzioneOstruita();
+                Server.update(user, Message.direzioneOstruita());
                 return getTargets(user, map);
 
             }
@@ -288,7 +288,7 @@ public class BasicFlamethrower extends Effect {
         //Con un ciclo, cerco tutti i giocatori che si trovano in quella cella. Li metto per il momento nell'array di targets.
         for (Player player : Server.connectedPlayers) {
 
-            if (player.getNickname() != user.getNickname()) {
+            if (player.getNickname().equalsIgnoreCase(user.getNickname())) {
                 if (player.getPosition().equals(position)) {
 
                     targets.add(player);
@@ -326,7 +326,6 @@ public class BasicFlamethrower extends Effect {
                 if (possibleTarget == null) {
 
                     Server.update(user, Message.bersaglioNonValido());
-                    continue;
 
                 }
 
