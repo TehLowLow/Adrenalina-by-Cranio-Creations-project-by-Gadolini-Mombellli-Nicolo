@@ -40,4 +40,3 @@ public class BBQMode {
 }
 
 
-//TODO: controllare e decidere regole visibilità del costruttore, nelle basic è private.

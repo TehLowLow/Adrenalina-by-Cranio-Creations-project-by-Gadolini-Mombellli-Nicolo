@@ -8,6 +8,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.Callable;
 
 import static it.polimi.se2019.Network.Server.*;
 
@@ -15,10 +16,17 @@ public class SocketLogger implements Logger, Runnable {
 
     private String userName;
     private String passWord;
-    private ServerSocket sSocket;
     private Socket logMeIn;
+    private ServerSocket mySocket;
     private DataInputStream in;
     private DataOutputStream out;
+
+
+    public SocketLogger(ServerSocket serverSocket) {
+
+        this.mySocket = serverSocket;
+
+    }
 
 
     @Override
@@ -26,34 +34,19 @@ public class SocketLogger implements Logger, Runnable {
 
         //Esegue sempre ascoltando sulla porta helper. Accetta una connessione per un login e risponde con accesso consentito o negato
 
-        {
-
-            logMeIn = initServer();
-
-            in = inStream(logMeIn);
-            out = outStream(logMeIn);
-
-            logIn();
-
-
-        }
-    }
-
-
-    private Socket initServer() {//TODO 2
 
         try {
-
-            sSocket = new ServerSocket(LOGINSOCKETPORT);
-            System.out.println("Server online listening on port " + LOGINSOCKETPORT);
-
-            return sSocket.accept();
-
-
+            logMeIn = mySocket.accept();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+
+        System.out.println("Son dentro al thread di login");
+
+        in = inStream(logMeIn);
+        out = outStream(logMeIn);
+
+        logIn();
     }
 
 
@@ -61,15 +54,12 @@ public class SocketLogger implements Logger, Runnable {
     public void logIn() {
 
         try {
-
             out.writeUTF("Inserisci username: ");
             userName = in.readUTF();
             out.writeUTF("Inserisci la password: ");
             passWord = in.readUTF();
 
-
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

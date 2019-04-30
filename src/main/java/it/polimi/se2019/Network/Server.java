@@ -10,6 +10,7 @@ import it.polimi.se2019.Network.Socket.SocketLogger;
 import org.jetbrains.annotations.NotNull;
 
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -26,48 +27,25 @@ public class Server {
 
     public static volatile boolean matchStarted = false;
 
+    public static ServerSocket loginSocket;
+
 
     public static Hashtable registrations = new Hashtable();  //associazione user psw
     public static Hashtable playerClient = new Hashtable();  //associazione fra giocatore e suo client
     public static CopyOnWriteArrayList<Player> connectedPlayers = new CopyOnWriteArrayList<>();  //Arraylist di player connessi.
 
 
-    public static String updateWithAnswer(Player player, String msg) {
+    private static ServerSocket initServer() {
 
-        if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
+        try {
 
-            RMIClient client = (RMIClient) playerClient.get(player);
-
-            return client.sendMsgWithAnswer(msg);
-
-
+            ServerSocket sSocket = new ServerSocket(LOGINSOCKETPORT);
+            System.out.println("Server online listening on port " + LOGINSOCKETPORT);
+            return sSocket;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        if (player.getConnectionTech().equalsIgnoreCase("socket")) {
-            return null;
-        }
-
         return null;
-
-
-    }
-
-
-    public static void update(Player player, String msg) {
-
-        if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
-
-            RMIClient client = (RMIClient) playerClient.get(player);
-
-
-        }
-
-
-        if (player.getConnectionTech().equalsIgnoreCase("socket")) {
-
-
-        }
-
     }
 
 
@@ -109,29 +87,64 @@ public class Server {
 
 
         //Avvio thread pool logger di socket
-
         ExecutorService logExec = Executors.newFixedThreadPool(5);
-
+        loginSocket = initServer();
 
         for (int i = 0; i < 5; i++) {
+            logExec.execute(new SocketLogger(loginSocket));
+        }
 
 
-            Runnable loggerSocket = () -> {
-                new RMILogger();
-            };
-            logExec.submit(loggerSocket);
-        } //Submitto i worker correttamente ma non li avvio.
+        System.out.println("avviato i thread");
 
-        Match newMatch = new Match();
+        for (Player player : connectedPlayers) {
 
-        BoardSetup boardSetup = new BoardSetup();
-        newMatch.setBoard(boardSetup.build());
+            System.out.println(player.getNickname());
+
+        }
+    }
 
 
+    public static String updateWithAnswer(Player player, String msg) {
 
-   /* = new SocketLogger();
+        if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
 
-        loginSocket.start();*/
+            RMIClient client = (RMIClient) playerClient.get(player);
+
+            return client.sendMsgWithAnswer(msg);
+
+
+        }
+
+        if (player.getConnectionTech().equalsIgnoreCase("socket")) {
+            return null;
+        }
+
+        return null;
+
 
     }
+
+
+    public static void update(Player player, String msg) {
+
+        if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
+
+            RMIClient client = (RMIClient) playerClient.get(player);
+
+
+        }
+
+
+        if (player.getConnectionTech().equalsIgnoreCase("socket")) {
+
+
+        }
+
+    }
+
+
+
+
+
 }

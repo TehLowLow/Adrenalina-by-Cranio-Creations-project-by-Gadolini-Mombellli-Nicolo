@@ -34,7 +34,7 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
     }
 
 
-    private void initServer(RMILogger LoginRMI) {
+    private synchronized void initServer(RMILogger LoginRMI) {
 
         try { //avvio il server registry
 
@@ -55,7 +55,7 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
 
     @Override
-    public synchronized void verify(String u, String p) { //TODO 1
+    public synchronized void verify(String u, String p) {
 
 
         this.userName = u;
@@ -146,7 +146,7 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 }
 
 
-//TODO 1: verify non è del tutto concorrenziale, come per socket se un utente avvia un client e poi va afk, blocca tutti gli altri.
+
 //TODO 2: failsafe per evitare aggiunte sopra i 5 giocatori, da rivedere una volta creato il thread per la verifica delle connessioni.
 //TODO 3: tutti i println sono stampati sulla cli del server come debug, i metodi che dovranno ritornare roba all' utente dovranno sfruttare i canali di rete.
 //TODO 4: BUG Uno user che sbaglia la psw viene disconnesso dal registry, invece dovrebbe rimanere connesso. Inoltre il server lo rileva come doppia connessione BUG

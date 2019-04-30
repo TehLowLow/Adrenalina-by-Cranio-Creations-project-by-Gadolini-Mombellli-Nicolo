@@ -2,9 +2,7 @@ package it.polimi.se2019.Network.RMI.Client;
 
 import it.polimi.se2019.Network.Client;
 import it.polimi.se2019.Network.RMI.RMILoggerInterface;
-import it.polimi.se2019.Network.RMI.Server.RMIServerInterface;
 import it.polimi.se2019.View.Parser;
-
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -53,7 +51,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
     }
 
 
-    private RMILoggerInterface connect() {
+    private synchronized RMILoggerInterface connect() {
 
         while (!connected) {
 
