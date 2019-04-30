@@ -9,7 +9,6 @@ import java.net.Socket;
 import java.util.Scanner;
 
 
-
 public class SocketClient extends Client implements Runnable {
 
 
@@ -40,9 +39,9 @@ public class SocketClient extends Client implements Runnable {
 
             }
 
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
+
         }
 
     }

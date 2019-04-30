@@ -4,14 +4,14 @@ package it.polimi.se2019.Network.RMI;
 import it.polimi.se2019.Model.Player;
 
 import it.polimi.se2019.Network.Logger;
-import org.jetbrains.annotations.Contract;
+import it.polimi.se2019.Network.Server;
 
-import java.io.DataInput;
-import java.io.DataInputStream;
+
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
+
 
 import static it.polimi.se2019.Network.Server.*;
 
@@ -20,8 +20,6 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
     private String userName;
     private String passWord;
-
-
 
 
     @Override
@@ -57,28 +55,31 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
 
     @Override
-    public synchronized void verify() {
+    public synchronized void verify(String u, String p) { //TODO 1
 
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Inserisci il tuo username: ");
-        userName = scanner.nextLine();
-        System.out.println("Inserisci la tua password: ");
-        passWord = scanner.nextLine();
 
-        logIn(userName, passWord);
+        this.userName = u;
+        this.passWord = p;
 
-        //Lo metto synch percchè devo testare l' interazione dello scanner concorrenziale.
-        //Se uno scrive lo username, e poi un' altro client invoca verify e scrive lo username cosa accade?
-
+        logIn();
 
     }
 
 
     @Override
-    public synchronized void logIn(String u, String p) {
+    public synchronized void logIn() {
 
+        if (checkConnections()) {
 
-        checkConnections();
+            System.out.println("Accesso al game server consentito");
+
+            //Metodo per reindirizzare al game server
+
+        } else {
+
+            System.out.println("Connessione rifiutata");//TODO 3
+
+        }
     }
 
 
@@ -103,13 +104,11 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
             //aggiungi un nuovo player e registra i suoi dati, inoltre viene aggiunto all' array di connessi.
 
-            Player player = new Player();
-            player.setNickname(userName);
-            player.setConnectionAlive(true);
-            registrations.put(userName, passWord);
-            connectedPlayers.add(player);
-            System.out.println("Aggiunto " + userName + " all' elenco di player connessi!");
-            return true;
+            if (connectedSize() < 5) {   //TODO 2
+
+                newPlayer(userName,passWord,"RMI");
+                return true;
+            }
 
 
         }
@@ -145,3 +144,9 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
 
 }
+
+
+//TODO 1: verify non è del tutto concorrenziale, come per socket se un utente avvia un client e poi va afk, blocca tutti gli altri.
+//TODO 2: failsafe per evitare aggiunte sopra i 5 giocatori, da rivedere una volta creato il thread per la verifica delle connessioni.
+//TODO 3: tutti i println sono stampati sulla cli del server come debug, i metodi che dovranno ritornare roba all' utente dovranno sfruttare i canali di rete.
+//TODO 4: BUG Uno user che sbaglia la psw viene disconnesso dal registry, invece dovrebbe rimanere connesso. Inoltre il server lo rileva come doppia connessione BUG

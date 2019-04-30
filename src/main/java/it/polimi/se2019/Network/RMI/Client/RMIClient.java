@@ -11,6 +11,7 @@ import java.rmi.registry.Registry;
 import java.util.Scanner;
 
 
+import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
 import static it.polimi.se2019.Network.Server.RMIPORT;
 
 public class RMIClient extends Client implements Runnable, RMIClientInterface {
@@ -31,76 +32,65 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
 
         while (!logged) {
 
-            //Logger.verify();
-
-        }
-
-
-            while (true) {
+            try {
 
                 Scanner scanner = new Scanner(System.in);
-                try {
 
-                    //Logger.sendMsg("Clientrmi RMI: " + scanner.nextLine());
+                System.out.println("inserisci username");
+                User = scanner.nextLine();
+                System.out.println("Inserisci psw");
+                psw = scanner.nextLine();
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                Logger.verify(User, psw);
+                logged = true;
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-        }
-
-
-        private RMILoggerInterface connect () {
-
-            while (!connected) {
-
-                try {
-                    Registry registry = LocateRegistry.getRegistry(RMIPORT);
-                    RMIServerInterface rServer = (RMIServerInterface) registry.lookup("Server");
-
-                    connected = true;
-
-                    //return rServer;
-
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-
-            return null;
-
-
-
-        }
-
-        private synchronized void credentials () {
-
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Inserisci lo Username");
-            User = scanner.nextLine();
-            System.out.println("inserisci password");
-            psw = scanner.nextLine();
-
-
-        }
-
-
-        public String sendMsgWithAnswer(String msg){
-
-            System.out.println(msg);
-
-            Parser parser = new Parser();
-            return parser.parse();
-
-        }
-
-
-        public void sendMsg(String msg){
-
-            System.out.println(msg);
 
         }
 
     }
+
+
+    private RMILoggerInterface connect() {
+
+        while (!connected) {
+
+            try {
+                Registry registry = LocateRegistry.getRegistry(LOGINRMIPORT);
+                RMILoggerInterface rServer = (RMILoggerInterface) registry.lookup("LoginRMI");
+                return rServer;
+
+            } catch (Exception e) {
+
+                System.out.println("Ritento la connessione");
+                //e.printStackTrace();
+            }
+        }
+
+        return null;
+
+
+
+
+    }
+
+
+    public String sendMsgWithAnswer(String msg) {
+
+        System.out.println(msg);
+
+        Parser parser = new Parser();
+        return parser.parse();
+
+    }
+
+
+    public void sendMsg(String msg) {
+
+        System.out.println(msg);
+
+    }
+
+}

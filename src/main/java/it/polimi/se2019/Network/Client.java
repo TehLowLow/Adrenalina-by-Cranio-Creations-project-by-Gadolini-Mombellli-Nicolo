@@ -15,7 +15,7 @@ public class Client {
 
     public static void main(String[] args) {
 
-        System.out.println("Scegli come connetterti al server. Digita 'socket' o 'RMI':  ");
+        System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
         response = input();
         initConnection(response);//qua vengono lanciati i thread.
 

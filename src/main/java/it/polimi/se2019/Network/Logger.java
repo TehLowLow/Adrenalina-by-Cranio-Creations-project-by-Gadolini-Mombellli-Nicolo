@@ -4,7 +4,7 @@ package it.polimi.se2019.Network;
 public interface Logger {
 
 
-    void logIn(String u, String p);
+    void logIn();
 
     boolean checkConnections();
 
