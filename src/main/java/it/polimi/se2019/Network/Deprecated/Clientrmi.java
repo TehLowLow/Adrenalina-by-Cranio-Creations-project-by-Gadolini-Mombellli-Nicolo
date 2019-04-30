@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 public class Clientrmi extends Thread implements ClientInterface {
 
-    private View view;
     private static final int serverPort = 2000;
     static int clientPort;
     static String nickname;
@@ -125,10 +124,10 @@ public class Clientrmi extends Thread implements ClientInterface {
     public void chooseMap(ServerInterface server) {
     }
 
-   /*     view = new View();
+   /*
 
-        view.message.scegliMappa();
-        String mappaScelta = view.parser.parse();
+        Message.scegliMappa();
+        String mappaScelta = Parser.parse();
 
         try {
 
@@ -136,7 +135,7 @@ public class Clientrmi extends Thread implements ClientInterface {
             Board board = new Board();
             board.setMap(mappa);
 
-            view.printer.map(board);
+            Printer.map(board);
         } catch (Exception e) {
             System.err.println("Errore nella mappa!");
             e.printStackTrace();

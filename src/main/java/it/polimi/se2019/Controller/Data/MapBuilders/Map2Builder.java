@@ -18,8 +18,7 @@ public class Map2Builder {
 
     public Map build(){
 
-        View view = new View();
-        view.message.avvioMappa();
+        Message.avvioMappa();
 
         /*
         ------------------YELLOW ROOM-------------------
@@ -62,7 +61,7 @@ public class Map2Builder {
 
        this.connectRooms(map2);
 
-        view.message.mappaCompletata();
+        Message.mappaCompletata();
         return map2;
 
     }

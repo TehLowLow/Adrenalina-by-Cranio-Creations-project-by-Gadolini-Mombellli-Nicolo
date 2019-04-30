@@ -9,18 +9,17 @@ import java.util.ArrayList;
 /**
  * Contains the @Override of the methods of Effect.java, and builds the Furnace.
  */
-public class BasicFurnace {
+public class BasicFurnace extends Effect{
 
-    private Effect basicFurnace = new Effect() {
 
         /**
          * Applies the effect of the Furnace to the target (or targets).
          * @param user the Player that wants to apply the effect.
-         * @param target the target of the effect. It can be the user itself.
+         * @param targets the target of the effect. It can be the user itself.
          */
 
         @Override
-        public void applyEffect(Player user, Player target) {
+        public void applyEffect(Player user, ArrayList<Player> targets) {
 
         }
 
@@ -36,6 +35,7 @@ public class BasicFurnace {
         public ArrayList<Player> getTargets(Player user, Map map) {
             return null;
         }
-    };
+
+        public boolean hasTargets(Player player){return false;}
 
 }

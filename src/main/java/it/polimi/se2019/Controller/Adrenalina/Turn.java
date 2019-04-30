@@ -2,7 +2,7 @@ package it.polimi.se2019.Controller.Adrenalina;
 
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Powerup;
-import it.polimi.se2019.View.View;
+import it.polimi.se2019.View.*;
 import it.polimi.se2019.Model.Weapon;
 
 import java.util.ArrayList;
@@ -23,7 +23,6 @@ public class Turn {
 
     private ArrayList<Powerup> drewPowerUp;
 
-    private View view;
 
     private Action action;
 

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 /**
  * Alternative effect for the Flamethrower.
  */
-public class BBQMode {
+public class BBQMode extends Effect{
 
 
-    public Effect bbqMode = new Effect() {
+
 
         /**
          * Applies the alternative effect of the Flamethrower.
@@ -20,7 +20,7 @@ public class BBQMode {
          */
 
         @Override
-        public void applyEffect(Player user, Player target) {
+        public void applyEffect(Player user,  ArrayList <Player> targets) {
 
         }
 
@@ -35,7 +35,8 @@ public class BBQMode {
         public ArrayList<Player> getTargets(Player user, Map map) {
             return null;
         }
-    };
+
+        public boolean hasTargets(Player user){return false;}
 
 }
 

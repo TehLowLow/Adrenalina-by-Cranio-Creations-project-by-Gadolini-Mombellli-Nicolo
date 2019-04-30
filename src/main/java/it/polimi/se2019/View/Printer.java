@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Printer {
 
 
-    public void map(Board board){
+    public static void map(Board board){
 
         System.out.println("Sto per stampare la mappa.");
 
@@ -54,7 +54,7 @@ public class Printer {
         for(Room room : printableRooms){
 
             System.out.println("/////////////////////");
-            System.out.println("La stanza di colore " + this.colour(room.getColour())
+            System.out.println("La stanza di colore " + colour(room.getColour())
             + " è composta dalle seguenti celle:");
 
             for(Cell cell : room.getCells()){
@@ -75,7 +75,7 @@ public class Printer {
                    System.out.println("Connessione in alto: tramite porta verso " +
                                        upConnection.getConnectedCell().getName() +
                                        " della stanza di colore " +
-                                       this.colour(upConnection.getConnectedCell().getColour()));
+                                       colour(upConnection.getConnectedCell().getColour()));
                }
 
                if(upConnection.getType().equals(Connection.FREE)){
@@ -87,7 +87,7 @@ public class Printer {
                    System.out.println("Connessione in alto: ostruita da un muro, oltre il quale si trova la cella "
                                       + upConnection.getConnectedCell().getName() +
                                       " della stanza di colore " +
-                                      this.colour(upConnection.getConnectedCell().getColour()));
+                                      colour(upConnection.getConnectedCell().getColour()));
                }
 
 
@@ -101,7 +101,7 @@ public class Printer {
                     System.out.println("Connessione in basso: tramite porta verso "
                            + downConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
-                            this.colour(downConnection.getConnectedCell().getColour()));
+                            colour(downConnection.getConnectedCell().getColour()));
                 }
 
                 if(downConnection.getType().equals(Connection.FREE)){
@@ -113,7 +113,7 @@ public class Printer {
                     System.out.println("Connessione in basso: ostruita da un muro, oltre il quale si trova la cella "
                             + downConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
-                            this.colour(downConnection.getConnectedCell().getColour()));
+                            colour(downConnection.getConnectedCell().getColour()));
                 }
 
 
@@ -127,7 +127,7 @@ public class Printer {
                     System.out.println("Connessione a sinistra: tramite porta verso "
                             + leftConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
-                            this.colour(leftConnection.getConnectedCell().getColour()));
+                            colour(leftConnection.getConnectedCell().getColour()));
                 }
 
                 if(leftConnection.getType().equals(Connection.FREE)){
@@ -139,7 +139,7 @@ public class Printer {
                     System.out.println("Connessione a sinistra: ostruita da un muro, oltre il quale si trova la cella "
                             + leftConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
-                            this.colour(leftConnection.getConnectedCell().getColour()));
+                            colour(leftConnection.getConnectedCell().getColour()));
                 }
 
 
@@ -153,7 +153,7 @@ public class Printer {
                     System.out.println("Connessione a destra: tramite porta verso "
                             + rightConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
-                            this.colour(rightConnection.getConnectedCell().getColour()));
+                            colour(rightConnection.getConnectedCell().getColour()));
                 }
 
                 if(rightConnection.getType().equals(Connection.FREE)){
@@ -165,7 +165,7 @@ public class Printer {
                     System.out.println("Connessione a destra: ostruita da un muro, oltre il quale si trova la cella "
                             + rightConnection.getConnectedCell().getName() +
                             " della stanza di colore " +
-                            this.colour(rightConnection.getConnectedCell().getColour()));
+                            colour(rightConnection.getConnectedCell().getColour()));
                 }
 
 
@@ -190,7 +190,7 @@ public class Printer {
      * This method converts an integer representing a colour to a string.
      * @param colour
      */
-    public String colour(int colour){
+    private static String colour(int colour){
 
         if(colour == Colour.BLUE){
             return "blu";

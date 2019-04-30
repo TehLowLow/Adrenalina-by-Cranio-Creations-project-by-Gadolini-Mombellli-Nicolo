@@ -50,6 +50,11 @@ public class Player {
 
     private int PORT;
 
+    /**
+     * This is the name of the RMI registry or the IP address of the client who has this player.
+     */
+    private String address;
+
     /*
     -----------------------METHODS------------------------------
      */

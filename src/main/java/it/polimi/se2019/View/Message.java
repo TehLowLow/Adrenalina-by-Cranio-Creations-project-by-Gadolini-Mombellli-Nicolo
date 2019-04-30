@@ -1,40 +1,44 @@
 package it.polimi.se2019.View;
 
+import it.polimi.se2019.Model.Player;
+
+import java.util.ArrayList;
+
 public class Message {
 
-    public String start() {
+    public static String start() {
 
         return new String("Benvenuto in Adrenalina!");
 
     }
 
-    public String askForUser() {
+    public static String askForUser() {
 
         return new String("Username:");
 
     }
 
-    public String askForPsw() {
+    public static String askForPsw() {
 
         return new String("Password");
     }
 
-    public String logged() {
+    public static String logged() {
 
         return new String("Login Effettuato");
     }
 
     //--- DEBUG MESSAGES ---//
 
-    public void boardCompletata() {
+    public static void boardCompletata() {
         System.out.println("Costruzione board completa.");
     }
 
-    public void avvioMappa() {
+    public static void avvioMappa() {
         System.out.println("Avvio costruzione mappa...");
     }
 
-    public void mappaCompletata() {
+    public static void mappaCompletata() {
         System.out.println("Costruzione mappa completata.");
     }
 
@@ -42,16 +46,50 @@ public class Message {
     SCELTA MAPPA
      */
 
-    public String scegliMappa() {
+    public static String scegliMappa() {
         return "Scegli in quale mappa combattere: 1 - 2 - 3 - 4";
+    }
+
+    /*
+    SCELTA DIREZIONE
+     */
+
+    public static String scegliDirezione(){
+        return "In quale direzione vuoi sparare?\nalto\nbasso\nsinistra\ndestra";
+    }
+    public static String direzioneOstruita(){
+        return "Non puoi sparare in questa direzione! Scegline un'altra.";
+    }
+
+    /*
+    SCELTA BERSAGLIO
+     */
+
+    public static String scegliBersaglio(ArrayList <Player> players){
+
+        String string = "Scegli un bersaglio tra:\n";
+
+        for(Player player : players){
+            string = string + player.getNickname() + "\n";
+        }
+
+        return string;
+    }
+
+    public static String bersaglioNonValido(){
+        return "Hai inserito un bersaglio non valido. Scegline uno tra quelli disponibili.";
     }
 
     /*
     INPUT
      */
 
-    public String inputError(){
-        return "Input Errato!!";
+    public static String inputError(){
+        return "Input Errato!";
+    }
+
+    public static String nessunBersaglio(){
+        return "Nessun bersaglio disponibile!";
     }
 
 

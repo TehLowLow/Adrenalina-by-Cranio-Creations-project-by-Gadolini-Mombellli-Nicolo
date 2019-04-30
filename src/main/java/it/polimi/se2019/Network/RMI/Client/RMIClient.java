@@ -90,9 +90,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
         public String sendMsgWithAnswer(String msg){
 
             System.out.println(msg);
-
-            Parser parser = new Parser();
-            return parser.parse();
+            return Parser.parse();
 
         }
 

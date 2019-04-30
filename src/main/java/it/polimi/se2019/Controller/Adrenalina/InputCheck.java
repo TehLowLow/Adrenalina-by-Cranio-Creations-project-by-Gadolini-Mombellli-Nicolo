@@ -1,6 +1,9 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
 
+import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Network.Server;
+
 /**
  * This class analyzes the input strings provided by the user.
  */
@@ -75,6 +78,28 @@ public class InputCheck {
         else {
             return false;
         }
+    }
+
+    public static boolean directionCheck (String input){
+
+        if(input.equalsIgnoreCase("alto") || input.equalsIgnoreCase("basso") || input.equalsIgnoreCase("sinistra") || input.equalsIgnoreCase("destra"))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean nicknameCheck(String input){
+
+        for(Player player : Server.connectedPlayers){
+
+            if(player.getNickname().equalsIgnoreCase(input)){
+                return true;
+            }
+
+        }
+
+        return false;
     }
 
 
