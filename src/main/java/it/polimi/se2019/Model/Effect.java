@@ -74,9 +74,9 @@ public abstract class Effect {
      * This is the algorithm of the specific effect. It is an abstract method because it must be defined
      * by the class that implements Effect.
      * @param user the Player that wants to apply the effect.
-     * @param target the target of the effect. It can be the user itself.
+     * @param targets the targets of the effect. It can be the user itself.
      */
-    public abstract void applyEffect(Player user, Player target);
+    public abstract void applyEffect(Player user, ArrayList <Player> targets);
 
     /**
      * This returns the possible targets of an effect.
@@ -84,6 +84,10 @@ public abstract class Effect {
      * @param map the Map where the targets must be searched.
      * @return an ArrayList of possible targets.
      */
-    public abstract ArrayList<Player> getTargets(Player user, Map map);
+    public abstract ArrayList<Player> getTargets(Player user, Map map/*ArrayList <Player> players*/);
+
+    public abstract boolean hasTargets(Player user);
+
 
 }
+

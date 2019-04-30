@@ -9,18 +9,18 @@ import java.util.ArrayList;
 /**
  * Contains the @Override of the methods of Effect.java, and builds the Heatseeker.
  */
-public class BasicHeatSeeker {
+public class BasicHeatSeeker extends Effect {
 
-    private Effect basicHeatSeeker = new Effect() {
+
 
         /**
          * Applies the effect of the Heatseeker to the target.
          * @param user the Player that wants to apply the effect.
-         * @param target the target of the effect. It can be the user itself.
+         * @param targets the target of the effect. It can be the user itself.
          */
 
         @Override
-        public void applyEffect(Player user, Player target) {
+        public void applyEffect(Player user,  ArrayList <Player> targets) {
 
         }
 
@@ -35,6 +35,6 @@ public class BasicHeatSeeker {
         public ArrayList<Player> getTargets(Player user, Map map) {
             return null;
         }
-    };
 
+        public boolean hasTargets(Player user){return false;}
 }

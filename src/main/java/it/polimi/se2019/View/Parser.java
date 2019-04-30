@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Parser {
 
-    public String parse(){
+    public static String parse(){
         /*
          Legge ciò che è stato digitato dall'utente e lo restituisce.
          */

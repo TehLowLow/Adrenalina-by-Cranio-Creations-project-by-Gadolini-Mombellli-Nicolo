@@ -2,14 +2,15 @@ package it.polimi.se2019.Network.RMI.Client;
 
 import it.polimi.se2019.Network.Client;
 import it.polimi.se2019.Network.RMI.RMILoggerInterface;
+import it.polimi.se2019.Network.RMI.Server.RMIServerInterface;
 import it.polimi.se2019.View.Parser;
+
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
 
-import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
 import static it.polimi.se2019.Network.Server.RMIPORT;
 
 public class RMIClient extends Client implements Runnable, RMIClientInterface {
@@ -71,6 +72,17 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
 
 
 
+        }
+
+        private synchronized void credentials () {
+
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Inserisci lo Username");
+            User = scanner.nextLine();
+            System.out.println("inserisci password");
+            psw = scanner.nextLine();
+
 
     }
 
@@ -81,6 +93,8 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface {
 
         Parser parser = new Parser();
         return parser.parse();
+            System.out.println(msg);
+            return Parser.parse();
 
     }
 

@@ -19,8 +19,7 @@ public class Map4Builder {
 
     public Map build(){
 
-        View view = new View();
-        view.message.avvioMappa();
+       Message.avvioMappa();
 
         /*
         ------------------YELLOW ROOM-------------------
@@ -70,7 +69,7 @@ public class Map4Builder {
 
         this.connectRooms(map4);
 
-        view.message.mappaCompletata();
+        Message.mappaCompletata();
         return map4;
 
     }

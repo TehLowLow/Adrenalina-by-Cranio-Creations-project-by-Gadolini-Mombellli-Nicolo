@@ -1,7 +1,7 @@
 package it.polimi.se2019.Controller.Adrenalina;
 import it.polimi.se2019.Controller.Setup.MapSetup;
 import it.polimi.se2019.Model.*;
-import it.polimi.se2019.View.View;
+import it.polimi.se2019.View.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,10 +44,6 @@ public class Match {
     private Board board;
 
 
-    /**
-     * View that manages the interaction with the user by showing information and receiving inputs.
-     */
-    private View view;
 
     /*
     * ---------- METHODS ----------
@@ -55,11 +51,10 @@ public class Match {
 
 
     /**
-     * Constructor for the Match class. It just creates an instance of View and Turn.
+     * Constructor for the Match class. It just creates an instance of Turn.
      */
     public Match(){
 
-        this.view = new View();
         this.turn = new Turn();
 
     }
@@ -116,12 +111,12 @@ public class Match {
 
         for (Player player:connectedPlayers){
 
-            String chosenMap = updateWithAnswer(player, view.message.scegliMappa());
+            String chosenMap = updateWithAnswer(player, Message.scegliMappa());
 
             while (!inputCheck.checkMapInput(chosenMap)){
 
-                update(player, view.message.inputError());
-                chosenMap = updateWithAnswer(player, view.message.scegliMappa());
+                update(player, Message.inputError());
+                chosenMap = updateWithAnswer(player, Message.scegliMappa());
 
             }
 
