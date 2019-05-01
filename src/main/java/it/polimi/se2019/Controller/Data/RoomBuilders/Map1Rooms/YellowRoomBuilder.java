@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * This class is an example for the builder of a room. Every room is represented by an arraylist of
  * cells, and it has a colour as an identifier.
  */
+
 public class YellowRoomBuilder {
 
     /*

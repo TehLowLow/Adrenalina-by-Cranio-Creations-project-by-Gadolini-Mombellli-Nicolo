@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 public interface RMILoggerInterface extends Remote {
 
 
-    void verify() throws RemoteException;
+    void verify(String u, String p) throws RemoteException;
 
 
 

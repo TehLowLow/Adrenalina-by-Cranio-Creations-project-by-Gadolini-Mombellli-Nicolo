@@ -15,7 +15,7 @@ public class Client {
 
     public static void main(String[] args) {
 
-        System.out.println("Scegli come connetterti al server. Digita 'socket' o 'RMI':  ");
+        System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
         response = input();
         initConnection(response);//qua vengono lanciati i thread.
 
@@ -58,9 +58,6 @@ public class Client {
 //----------------------------------------------------------------------------------------------------
 
 
-    //TODO: è per forza necessario incapsulare i messaggi socket in un oggetto, perchè devo contenere da qualche parte l' informazione
-    //      "è un messaggio da stampare a schermo", "è un messaggio a cui serve una risposta", "è un messaggio di servizio (ping, aggiornamentti o
-    //      roba in background)"
 }
 
 

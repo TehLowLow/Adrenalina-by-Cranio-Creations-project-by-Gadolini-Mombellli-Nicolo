@@ -8,6 +8,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.Callable;
 
 import static it.polimi.se2019.Network.Server.*;
 
@@ -15,9 +16,17 @@ public class SocketLogger implements Logger, Runnable {
 
     private String userName;
     private String passWord;
-    private ServerSocket sSocket;
+    private Socket logMeIn;
+    private ServerSocket mySocket;
     private DataInputStream in;
     private DataOutputStream out;
+
+
+    public SocketLogger(ServerSocket serverSocket) {
+
+        this.mySocket = serverSocket;
+
+    }
 
 
     @Override
@@ -26,45 +35,39 @@ public class SocketLogger implements Logger, Runnable {
         //Esegue sempre ascoltando sulla porta helper. Accetta una connessione per un login e risponde con accesso consentito o negato
 
 
-        initServer();
+        try {
+            logMeIn = mySocket.accept();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        System.out.println("Son dentro al thread di login");
 
+        in = inStream(logMeIn);
+        out = outStream(logMeIn);
+
+        logIn();
     }
 
 
-    private synchronized void initServer() {
+    @Override
+    public void logIn() {
 
         try {
-
-            ServerSocket sSocket = new ServerSocket(LOGINSOCKETPORT);
-            System.out.println("Server online listening on port " + LOGINSOCKETPORT);
-            Socket logIn = sSocket.accept();
-            DataOutputStream out = new DataOutputStream(logIn.getOutputStream());
-            DataInputStream in = new DataInputStream(logIn.getInputStream());
             out.writeUTF("Inserisci username: ");
             userName = in.readUTF();
             out.writeUTF("Inserisci la password: ");
             passWord = in.readUTF();
 
-            logIn(userName, passWord);
-
-            logIn.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-    }
-
-    @Override
-    public synchronized void logIn(String u, String p) {
-
 
         if (checkConnections()) {
 
             try {
                 out.writeInt(SOCKETPORT);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -78,56 +81,49 @@ public class SocketLogger implements Logger, Runnable {
 
 
     @Override
-    public synchronized boolean checkConnections() {
+    public boolean checkConnections() {
 
-
+        //Il player non si è mai connesso
         if (registrations.get(userName) == null) {
-
+            //Se il match è gia iniziato rifiuto la connessione
             if (matchStarted) {
-
                 try {
                     out.writeUTF("Partita gia iniziata, non è possibile accedere");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
                 return false;
 
+                //Se il match è ancora in fase di lobby lo aggiungo fra i player
+            } else if (connectedSize() < 5) {  //TODO 1
+
+                newPlayer(userName, passWord, "Socket");
+
+                try {
+                    out.writeUTF("Aggiunto " + userName);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return true;
             }
-
-            Player player = new Player();
-            player.setNickname(userName);
-            player.setConnectionAlive(true);
-            registrations.put(userName, passWord);
-            connectedPlayers.add(player);
-            try {
-                out.writeUTF("Aggiunto " + userName);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
         }
 
+        //Se il player compare fra i giocatori che si son gia registrati una volta devo verificare che sia disconnesso (evito double connection)
         for (Player player : connectedPlayers) {
 
             if (player.getNickname().equals(userName)) {
 
                 try {
                     out.writeUTF("Un player è gia connesso con queste credenziali");
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
                 return false;
-
             }
-
-
         }
 
 
+        //Se si è gia connesso ma non compare fra i connessi, gli permetto di riconnettersi
         if (registrations.get(userName) != null && passWord.equals(registrations.get(userName))) {
 
             try {
@@ -135,26 +131,61 @@ public class SocketLogger implements Logger, Runnable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return true;
 
 
         } else {
-
-
             try {
                 out.writeUTF("Password errata!");
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return false;
-
-
         }
 
     }
 
 
+    private DataInputStream inStream(Socket socket) {
+        try {
+
+            return new DataInputStream(socket.getInputStream());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    private DataOutputStream outStream(Socket socket) {
+
+        try {
+            return new DataOutputStream(socket.getOutputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+
+
+/*
+
+Login server si avvia e avvia una thread pool di 5 logger, i logger come concorrenza avranno solamente il metodo che fa
+il check sull arraylist di login e sull' aggiunta dei client nell' array di login.
+I singoli thread si occuperanno di gestire i client socket, chiedere username e password e verificare che siano o meno
+gia presenti/abbiano inserito credenziali corrette. Una volta verificato queste due cose in maniera concorrenziale risponderanno
+al client con la porta di gioco, e il client proverà a connettersi continuamente al server di gioco fino a quando non verrà avviato dal
+daemon thread che tiene il timer di inizio partita (il timer deve essere inzializzato dalla finestra del main server una volta
+avviato, ancora prima di aprire le connessioni ai logger).
+ */
+
+
 }
 
+
+//TODO 1, 2: vedi todo di RMILogger

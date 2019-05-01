@@ -23,8 +23,8 @@ public class TagBackGrenadeEffect extends Effect {
         //Da riscrivere tenendo conto che i targets sono in un array.
     }
 
-    public ArrayList<Player> getTargets(Player player, Map map){
-        //TODO: Implementare la ricerca dei bersagli una volta programmata la mappa e il suo funzionamento.
+    public ArrayList<Player> getTargets(Player player){
+
 
         Cell current_cell = player.getPosition();
 

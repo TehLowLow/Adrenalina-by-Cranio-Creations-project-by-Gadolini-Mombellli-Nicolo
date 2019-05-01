@@ -397,7 +397,7 @@ public class Check {
      * @param defender is who has the markers to check
      * @param attacker is who gives the markers
      */
-    public void limitMarkers(Player defender, Player attacker){
+    public static void limitMarkers(Player defender, Player attacker){
 
         ArrayList<Token> markers = defender.getPlayerboard().getMarker();
 
@@ -423,7 +423,7 @@ public class Check {
      * @param player is the player that needs the fov check.
      * @return all the others players that are in the fov.
      */
-    public ArrayList <Player> visiblePlayers (Player player){
+    public static ArrayList <Player> visiblePlayers (Player player){
 
         ArrayList<Player> visiblePlayers = new ArrayList<Player>();
 
@@ -490,7 +490,7 @@ public class Check {
      * @param steps is the number of steps to do.
      * @return an arraylist of reachable cells.
      */
-    public ArrayList <Cell> reachableCells (Player player, int steps){
+     public static ArrayList <Cell> reachableCells (Player player, int steps){
 
         ArrayList<Cell> reachableCells = new ArrayList<>();
 

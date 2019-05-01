@@ -1,6 +1,6 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
-
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 
@@ -102,6 +102,42 @@ public class InputCheck {
         return false;
     }
 
+    /*
+    Questo metodo controlla se l'utente ha digitato una stringa valida e ritorna l'intero corrispondente al colore.
+    Se la stringa è invalida, ritorna -1.
+     */
+    public static int colourCheck(String input){
+
+        if(input.equalsIgnoreCase("blu")){
+            return Colour.BLUE;
+        }
+
+        if(input.equalsIgnoreCase("giallo")){
+            return Colour.YELLOW;
+        }
+
+        if(input.equalsIgnoreCase("rosso")){
+            return Colour.RED;
+        }
+
+        if(input.equalsIgnoreCase("bianco")){
+            return Colour.WHITE;
+        }
+
+        if(input.equalsIgnoreCase("viola")){
+            return Colour.PURPLE;
+        }
+        if(input.equalsIgnoreCase("verde")){
+            return Colour.GREEN;
+        }
+
+        return -1;
+    }
+
+
+
+
+    
     /*
     serve nella scelta del numero di teschi da mettere nel tracciato colpo mortale
      */
