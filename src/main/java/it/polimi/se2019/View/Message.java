@@ -1,6 +1,8 @@
 package it.polimi.se2019.View;
 
-import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Network.Server;
 
 import java.util.ArrayList;
 
@@ -101,6 +103,112 @@ public class Message {
     public static String stanzaNonVisibile(){
         return "Non puoi vedere questa stanza! Scegline un'altra.";
     }
+
+    /*
+    SCELTA CELLA
+     */
+
+    //Scelta cella per Furnace Weapon. Se una cella non contiene giocatori, non viene mostrata tra quelle disponibili.
+    public static String scegliCellaFurnace(ArrayList <Cell> cells, Player user){
+
+        String str = "Scegli una cella (digitando 'alto', 'basso', 'sinistra' o 'destra') tra:";
+
+
+        for(Cell cell : cells){
+
+
+            if(user.getPosition().getUpConnection().equals(cell)){
+
+               for(Player target : Server.connectedPlayers){
+                   if(target.getPosition().equals(cell)){
+                       str = str + "\n" + "- Cella in alto: ";
+                   }
+               }
+
+               for(Player target : Server.connectedPlayers){
+
+                   if(target.getPosition().equals(cell)){
+                       str = str + target.getNickname() + " ";
+                   }
+
+               }
+
+               str = str + '\n';
+
+           }
+
+            if(user.getPosition().getDownConnection().equals(cell)){
+
+                for(Player target : Server.connectedPlayers){
+                    if(target.getPosition().equals(cell)){
+                        str = str + "\n" + "- Cella in basso: ";
+                    }
+                }
+
+                for(Player target : Server.connectedPlayers){
+
+                    if(target.getPosition().equals(cell)){
+                        str = str + target.getNickname() + " ";
+                    }
+
+                }
+
+                str = str + '\n';
+
+            }
+
+            if(user.getPosition().getLeftConnection().equals(cell)){
+
+                for(Player target : Server.connectedPlayers){
+                    if(target.getPosition().equals(cell)){
+                        str = str + "\n" + "- Cella a sinistra: ";
+                    }
+                }
+
+                for(Player target : Server.connectedPlayers){
+
+                    if(target.getPosition().equals(cell)){
+                        str = str + target.getNickname() + " ";
+                    }
+
+                }
+
+                str = str + '\n';
+
+            }
+
+            if(user.getPosition().getRightConnection().equals(cell)){
+
+                for(Player target : Server.connectedPlayers){
+                    if(target.getPosition().equals(cell)){
+                        str = str + "\n" + "- Cella a destra: ";
+                    }
+                }
+
+                for(Player target : Server.connectedPlayers){
+
+                    if(target.getPosition().equals(cell)){
+                        str = str + target.getNickname() + " ";
+                    }
+
+                }
+
+                str = str + '\n';
+
+            }
+
+
+        }
+
+
+        return str;
+    }
+
+    public static String cellaNonDisponibile(){
+        return "Errore: scegli una cella disponibile.";
+    }
+
+
     /*
     INPUT
      */
