@@ -137,7 +137,7 @@ public class InputCheck {
 
 
 
-    
+
     /*
     serve nella scelta del numero di teschi da mettere nel tracciato colpo mortale
      */
