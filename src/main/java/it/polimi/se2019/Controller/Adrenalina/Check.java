@@ -9,6 +9,9 @@ import java.util.Comparator;
 
 import static it.polimi.se2019.Model.Connection.*;
 import static it.polimi.se2019.Network.Server.connectedPlayers;
+import static it.polimi.se2019.Network.Server.update;
+
+import it.polimi.se2019.Model.Board.*;
 
 /**
  * This class contains all the methods used to check if an interaction during the game is legit.
@@ -227,7 +230,7 @@ public class Check {
         for (Token marker: passive.getPlayerboard().getMarker()){
 
 
-            if (marker.getChampionName().equals(active.getNickname())){
+            if (marker.getChampionName().equals(active.getPlayerboard().getChampionName())){
 
                 /*
                 aggiunge il marker ai danni
@@ -264,7 +267,7 @@ public class Check {
         ArrayList<Token> damages = defender.getPlayerboard().getDamage();
 
         for (Token damage:damages){
-            if (damage.getChampionName().equals(attacker.getNickname())){
+            if (damage.getChampionName().equals(attacker.getPlayerboard().getChampionName())){
                 damagesAmount++;
             }
         }
@@ -403,7 +406,7 @@ public class Check {
 
         for (Token marker:markers) {
 
-            if (marker.getChampionName().equals(attacker.getNickname())){
+            if (marker.getChampionName().equals(attacker.getPlayerboard().getChampionName())){
                 attackerMarkers++;
             }
         }
@@ -640,16 +643,653 @@ public class Check {
 
     }
 
+    public void resolveFrenzyboard(Player killed, Player killer, Board board, boolean overkill){
+
+
+        ArrayList<Token>  damages = new ArrayList<Token>();
+        damages = killed.getPlayerboard().getDamage();
+
+
+
+
+        /*
+        assigning the points to the killers
+         */
+
+        class PlayerWithScore{
+
+
+
+            Player player;
+            int score;
+
+
+        }
+
+        ArrayList<PlayerWithScore>  playersWithScore = new ArrayList<>();
+
+        for (Player player : connectedPlayers){
+
+            PlayerWithScore playerScore = new PlayerWithScore();
+
+            playerScore.player = player;
+
+            playerScore.score = 0;
+
+            for (Token damage: damages){
+
+                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())){
+
+                    playerScore.score ++;
+
+                }
+
+            }
+
+            playersWithScore.add(playerScore);
+
+        }
+
+        /*
+        creo un array ordinato per ordine temporale di sparo
+         */
+
+        ArrayList<Player> whoShotFirst = new ArrayList<>();
+
+        for (Token damage: damages){
+
+            for (Player player:connectedPlayers) {
+
+                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
+
+                    if (!whoShotFirst.contains(player)) {
+
+                        whoShotFirst.add(player);
+
+                    }
+
+                }
+            }
+        }
+
+
+        Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
+            @Override
+            public int compare(PlayerWithScore o1, PlayerWithScore o2) {
+
+                if (o1.score > o2.score){
+
+                    return 1;
+
+                }
+
+                if (o1.score == o2.score){
+
+                    if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)){
+                        return 1;
+                    }
+
+                    if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)){
+                        return -1;
+                    }
+
+
+
+                }
+
+                if (o1.score < o2.score){
+                    return -1;
+                }
+
+                else {return 0;}
+            }
+        };
+
+        Collections.sort(playersWithScore, comparator);
+
+        int playerboardCounter = 0;
+
+        for(PlayerWithScore attacker: playersWithScore){
+
+            if(attacker.score != 0){
+
+                attacker.player.setScore(killer.getScore() + killed.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
+
+                playerboardCounter++;
+            }
+
+        }
+
+
+        /*
+        aggiungo i token kill e overkill al tracciato colpo mortale
+         */
+
+        MortalBlow kill = new MortalBlow();
+        kill.setKiller(killer);
+        kill.setSkull(false);
+        kill.setOverkill(overkill);
+
+        board.getMortalBlowTrack().add(kill);
+
+
+
+         /*
+        clearing the damages
+         */
+
+        for (Token damage:damages){
+            damages.remove(damage);
+        }
+
+    }
+
+
+
+
     /**
      * This method runs after the final frenzy, and checks (/resolve) all the last points remaining on the board.
      * Then it proceeds to sum up the points of each player and declare a winner
      * (or a chart with the points of all the players).
      * @return the winner.
+     * @param board is the board to solve.
      */
-    public Player winner(){
+    public Player winner(Board board){
 
-        return new Player();
+        /*
+        risolvo le finalfrenzy playerboard
+         */
+
+        for (Player player:connectedPlayers){
+
+            ArrayList<Token>  damages = new ArrayList<Token>();
+            damages = player.getPlayerboard().getDamage();
+
+
+            /*
+            primo sangue se la board non è frenzy
+             */
+
+            if (player.getPlayerboard().isFrenzyboard() == false){
+
+                for (Player attacker:connectedPlayers){
+                    if (attacker.getPlayerboard().getChampionName().equals(damages.get(0).getChampionName())){
+                /*
+                aggiungo un punto a chi ha fatto il primo sangue
+                 */
+                        attacker.setScore(attacker.getScore() + 1);
+                    }
+                }
+
+            }
+
+
+
+
+        /*
+        assigning the points to the killers
+         */
+
+            class PlayerWithScore{
+
+
+
+                Player player;
+                int score;
+
+
+            }
+
+            ArrayList<PlayerWithScore>  playersWithScore = new ArrayList<>();
+
+            for (Player attacker : connectedPlayers){
+
+                PlayerWithScore playerScore = new PlayerWithScore();
+
+                playerScore.player = attacker;
+
+                playerScore.score = 0;
+
+                for (Token damage: damages){
+
+                    if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())){
+
+                        playerScore.score ++;
+
+                    }
+
+                }
+
+                playersWithScore.add(playerScore);
+
+            }
+
+        /*
+        creo un array ordinato per ordine temporale di sparo
+         */
+
+            ArrayList<Player> whoShotFirst = new ArrayList<>();
+
+            for (Token damage: damages){
+
+                for (Player player1:connectedPlayers) {
+
+                    if (damage.getChampionName().equals(player1.getPlayerboard().getChampionName())) {
+
+                        if (!whoShotFirst.contains(player1)) {
+
+                            whoShotFirst.add(player1);
+
+                        }
+
+                    }
+                }
+            }
+
+
+            Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
+                @Override
+                public int compare(PlayerWithScore o1, PlayerWithScore o2) {
+
+                    if (o1.score > o2.score){
+
+                        return 1;
+
+                    }
+
+                    if (o1.score == o2.score){
+
+                        if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)){
+                            return 1;
+                        }
+
+                        if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)){
+                            return -1;
+                        }
+
+
+
+                    }
+
+                    if (o1.score < o2.score){
+                        return -1;
+                    }
+
+                    else {return 0;}
+                }
+            };
+
+            Collections.sort(playersWithScore, comparator);
+
+            int playerboardCounter = 0;
+
+            for(PlayerWithScore attacker: playersWithScore){
+
+                if(attacker.score != 0){
+
+                    attacker.player.setScore(attacker.player.getScore() + player.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
+
+                    playerboardCounter++;
+                }
+
+            }
+
+        }
+
+
+
+        /*
+        risoluzione tracciato colpo mortale
+         */
+
+        class PlayerWithKills{
+
+
+
+            Player player;
+            int kills;
+
+
+        }
+
+        ArrayList<PlayerWithKills>  playersWithKills = new ArrayList<>();
+
+        for (Player killer : connectedPlayers){
+
+            PlayerWithKills playerKills = new PlayerWithKills();
+
+            playerKills.player = killer;
+
+            playerKills.kills = 0;
+
+            for (MortalBlow mortalBlow: board.getMortalBlowTrack()){
+
+                if (mortalBlow.getKiller().equals(killer)){
+
+                    playerKills.kills ++;
+
+                    if(mortalBlow.isOverkill() == true){
+                        playerKills.kills ++;
+                    }
+
+                }
+
+            }
+
+            playersWithKills.add(playerKills);
+
+        }
+
+
+        /*
+        creo un array ordinato per ordine temporale di uccisioni
+         */
+
+        ArrayList<Player> whoKilledFirst = new ArrayList<>();
+
+        for (MortalBlow mortalBlow: board.getMortalBlowTrack()){
+
+            for (Player killer:connectedPlayers) {
+
+                if (mortalBlow.getKiller().equals(killer)) {
+
+                    if (!whoKilledFirst.contains(killer)) {
+
+                        whoKilledFirst.add(killer);
+
+                    }
+
+                }
+            }
+        }
+
+        /*
+        creo il comparatore per le parità
+         */
+
+        Comparator<PlayerWithKills> comparator1 = new Comparator<PlayerWithKills>() {
+            @Override
+            public int compare(PlayerWithKills o1, PlayerWithKills o2) {
+
+                if (o1.kills > o2.kills) {
+
+                    return 1;
+
+                }
+
+                if (o1.kills == o2.kills) {
+
+                    if (whoKilledFirst.indexOf(o1.player) < whoKilledFirst.indexOf(o2.player)) {
+                        return 1;
+                    }
+
+                    if (whoKilledFirst.indexOf(o1.player) > whoKilledFirst.indexOf(o2.player)) {
+                        return -1;
+                    }
+
+
+                }
+
+                if (o1.kills < o2.kills) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        };
+
+        Collections.sort(playersWithKills, comparator1);
+
+        int mortalBlowCounter = 0;
+
+        for(PlayerWithKills killer: playersWithKills){
+
+            if(killer.kills != 0){
+
+                killer.player.setScore(killer.player.getScore() + board.getMortalBlowTrackValue().get(mortalBlowCounter));
+
+                mortalBlowCounter++;
+            }
+
+        }
+
+
+
+        /*
+        controllo dei punti, risoluzione parità e calcolo del vincitore
+         */
+
+        class PotentialWinner{
+
+            Player player;
+
+            int points;
+
+
+            int scoreOnMortalBlowTrack;
+
+            boolean tie;
+
+        }
+
+        /*
+        ora viene creato un array dei possibili vincitori che contiene in ogni posto un giocatore,
+        i suoi punti totali e i suoi punti ottenuti nel tracciato colpo mortale(questi ultimi servono a gestire
+        un'eventuale situazione di parità)
+         */
+
+        ArrayList<PotentialWinner> potentialWinners = new ArrayList<>();
+
+        for (Player player: connectedPlayers){
+
+            PotentialWinner potentialWinner = new PotentialWinner();
+
+            potentialWinner.points = player.getScore();
+
+            potentialWinner.player = player;
+
+            /*
+            inizialmente setto a false il flag parità di ogni potenziale vincitore
+             */
+
+            potentialWinner.tie = false;
+
+
+            /*
+            all'inizio deve valere zero perchè se non lo modifico dentro il for poi si fotte
+             */
+            potentialWinner.scoreOnMortalBlowTrack = 0;
+
+            mortalBlowCounter = 0;
+
+            /*
+            qui viene assegnato ad ogni player il suo punteggio nel tracciato colpo mortale
+             */
+
+            for(PlayerWithKills killer: playersWithKills){
+
+                if(killer.kills != 0){
+
+                    if (killer.equals(player)){
+
+                        potentialWinner.scoreOnMortalBlowTrack = board.getMortalBlowTrackValue().get(mortalBlowCounter);
+
+                    }
+
+                    mortalBlowCounter++;
+                }
+
+            }
+
+            potentialWinners.add(potentialWinner);
+
+        }
+
+
+
+        /*
+        comparatore per poter ordinare Potential Winners prima in base ai punti totali e poi in base a
+        quelli ottenuti nel tracciato colpo mortale
+         */
+
+
+        Comparator<PotentialWinner> potentialWinnerComparator = new Comparator<PotentialWinner>() {
+            @Override
+            public int compare(PotentialWinner o1, PotentialWinner o2) {
+
+                if (o1.points > o2.points){
+                    return 1;
+                }
+
+                if (o1.points == o2.points){
+
+                    if (o1.scoreOnMortalBlowTrack > o2.scoreOnMortalBlowTrack){
+
+                        return 1;
+
+                    }
+
+                    if (o1.scoreOnMortalBlowTrack == o2.scoreOnMortalBlowTrack){
+
+                        /*
+                        mi segno che i 2 player sono in parità tra di loro
+                         */
+                        o1.tie = true;
+                        o2.tie = true;
+
+                        return 0;
+
+                    }
+
+                    else {
+                        return -1;
+                    }
+
+
+
+                }
+
+                if (o1.points < o2.points){
+                    return -1;
+                }
+
+                return 0;
+            }
+        };
+
+        /*
+        ora l'ordinamento in base al comparator appena creato
+         */
+
+        Collections.sort(potentialWinners, potentialWinnerComparator);
+
+
+        /*
+        adesso viene stabilito il vincitore
+         */
+
+        Player winner = new Player();
+
+        /*
+        caso di un solo vincitore
+         */
+
+        if (potentialWinners.get(0).tie == false){
+
+            winner = potentialWinners.get(0).player;
+
+            /*
+            notifico a tutti il nome del vincitore
+             */
+
+            for (Player player:connectedPlayers){
+
+                update(player, "Il vincitore è" + winner.getNickname());
+
+            }
+
+
+        }
+
+        /*
+        caso di parità
+         */
+
+
+        if (potentialWinners.get(0).tie == true){
+
+            winner = null;
+
+            /*
+            notifico ai giocatori chi sono i vincitori
+             */
+
+            PotentialWinner firstWinner = new PotentialWinner();
+
+            firstWinner = potentialWinners.get(0);
+
+            for (Player player:connectedPlayers){
+
+                update(player, "I vincitori sono:");
+
+                /*
+                stampo primo vincitore
+                 */
+
+                update(player, "" + firstWinner.player.getNickname());
+
+                /*
+                stampo gli altri
+                 */
+
+                for (PotentialWinner potentialWinner: potentialWinners){
+                    if (potentialWinner.points == firstWinner.points && potentialWinner.scoreOnMortalBlowTrack == firstWinner.scoreOnMortalBlowTrack){
+
+                        update(player, "" + potentialWinner.player.getNickname());
+
+                    }
+
+                }
+
+            }
+
+        }
+
+
+        /*
+        notifico a tutti i giocatori la classifica finale
+         */
+
+        for (Player player: connectedPlayers){
+
+            update(player, "Classifica Finale:");
+
+            for (PotentialWinner potentialWinner:potentialWinners){
+
+                /*
+                faccio vedere per ogni giocatore il nome, il punteggio totale e quello sul tracciato colpo mortale
+                 */
+
+                update(player, "Nome: " + potentialWinner.player.getNickname() + " Punteggio Totale: " + potentialWinner.points + " Punti tracciato colpo mortale " + potentialWinner.scoreOnMortalBlowTrack);
+
+            }
+        }
+
+    /*
+    infine ritorno il vincitore (///////POTREBBE NON SERVIRE///////)
+     */
+
+    return winner;
+
     }
+
+
+    /**
+     * Verifies if a cell is a spawn or not
+     * @param cell is the cell to check
+     * @return true if it's a spawn, false otherwise
+     */
+
 
     public boolean isSpawn(Cell cell){
 

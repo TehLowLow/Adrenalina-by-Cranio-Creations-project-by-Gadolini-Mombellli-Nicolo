@@ -102,5 +102,19 @@ public class InputCheck {
         return false;
     }
 
+    /*
+    serve nella scelta del numero di teschi da mettere nel tracciato colpo mortale
+     */
+
+    public static boolean checkSkullsInput(String input){
+        if (input.equals("5") || input.equals("6") || input.equals("7") || input.equals("8")){
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
 
 }

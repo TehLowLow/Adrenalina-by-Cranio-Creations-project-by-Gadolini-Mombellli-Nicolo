@@ -27,6 +27,13 @@ public class Board implements java.io.Serializable{
 
 
     /**
+     * It's the value of the mortalBlowTrack. It's used at the end of the game to assign the points.
+     */
+
+    private ArrayList<Integer> mortalBlowTrackValue;
+
+
+    /**
      * Keeps track of the player that did a double kill.
      */
     private Token doubleKill;
@@ -145,17 +152,26 @@ public class Board implements java.io.Serializable{
     }
 
 
+    /**
+     * Getter for mortalBlowTrack value
+     * @return an Arraylist containing the points related to the mortalBlow track
+     */
+
+    public ArrayList<Integer> getMortalBlowTrackValue(){
+        return mortalBlowTrackValue;
+    }
+
     /*
      *  ---------------------- SETTERS
      */
 
     /**
-     * Sets a Killshot on the Killshot track when performed by a player.
-     * @param mortalBlow This contains all the information about the killer, such as
+     * Setter method for mortal blow track
+     * @param mortalBlowTrack is the track of the mortal blow, that contains all the information about the killer, such as
      *                   its identifier and the overkill flag.
      */
-    public void setMortalBlow(MortalBlow mortalBlow){
-        /**/
+    public void setMortalBlowTrack(ArrayList<MortalBlow> mortalBlowTrack){
+        this.mortalBlowTrack = mortalBlowTrack;
     }
 
 
@@ -217,6 +233,9 @@ public class Board implements java.io.Serializable{
         this.weaponDeck = weaponDeck;
     }
 
+    public void setMortalBlowTrackValue(ArrayList<Integer> mortalBlowTrackValue) {
+        this.mortalBlowTrackValue = mortalBlowTrackValue;
+    }
 
     /*
      *  ---------------------- SHUFFLING METHODS

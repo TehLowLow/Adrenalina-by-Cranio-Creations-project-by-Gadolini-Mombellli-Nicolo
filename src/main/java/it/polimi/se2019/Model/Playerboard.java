@@ -52,6 +52,11 @@ public class Playerboard {
     private ArrayList<Integer> playerboardValue;
 
 
+    /**
+     * It's true if the board is frenzyboard, false otherwise
+     */
+
+    private boolean frenzyboard;
 
     /*
     -----------------------------METHODS---------------------
@@ -108,7 +113,14 @@ public class Playerboard {
      */
     public ArrayList<Integer> getPlayerboardValue() {return playerboardValue;}
 
+    /**
+     * Getter for the Frenzyboard
+     * @return true if the playerboard has turned in frenzyboard, false otherwise
+     */
 
+    public boolean isFrenzyboard() {
+        return frenzyboard;
+    }
 
 
     /*
@@ -158,6 +170,13 @@ public class Playerboard {
      */
     public void setPlayerboardValue(ArrayList<Integer> playerboardValue) {this.playerboardValue = playerboardValue;}
 
+
+    /**
+     * Setter for the frenzyboard.
+     * @param frenzyboard is a boolean representing the frenzyboard
+     */
+
+    public void setFrenzyboard(boolean frenzyboard){this.frenzyboard = frenzyboard;}
 
 }
 

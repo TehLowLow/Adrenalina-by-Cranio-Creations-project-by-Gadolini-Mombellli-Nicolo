@@ -1,6 +1,8 @@
 package it.polimi.se2019.Controller.Setup;
 import it.polimi.se2019.Model.*;
 
+import java.util.ArrayList;
+
 /**
  * Creates the final board merging all the data coming from the other Setups classes.
  */
@@ -19,7 +21,6 @@ public class BoardSetup {
 
         WeaponDeckSetup weaponDeckSetup = new WeaponDeckSetup();
         board.setWeaponDeck(weaponDeckSetup.build());
-
 
 
         LootDeckSetup lootDeckSetup = new LootDeckSetup();

@@ -92,6 +92,14 @@ public class Message {
         return "Nessun bersaglio disponibile!";
     }
 
+    /*
+    SCELTA NUMERO TESCHI
+     */
+
+    public static String scegliNumeroTeschi(){ return "Scegli un numero di teschi da piazzare nel tracciato colpo mortale tra 5 e 8.";}
+
+
+
 
 }
 

@@ -311,7 +311,7 @@ public class Interaction {
 
     public void turnPlayerboard(Player player){
 
-        Frenzyboard frenzyboard = new Frenzyboard();
+        Playerboard frenzyboard = new Playerboard();
 
         Playerboard oldBoard = player.getPlayerboard();
 
@@ -321,6 +321,15 @@ public class Interaction {
         frenzyboard.setPowerups(oldBoard.getPowerups());
         frenzyboard.setMarker(oldBoard.getMarker());
         frenzyboard.setDamage(new ArrayList<Token>());
+
+        ArrayList<Integer> frenzyValue = new ArrayList<Integer>();
+        frenzyValue.add(2);
+        frenzyValue.add(1);
+        frenzyValue.add(1);
+        frenzyValue.add(1);
+
+        frenzyboard.setPlayerboardValue(frenzyValue);
+
 
         player.setPlayerboard(frenzyboard);
 
