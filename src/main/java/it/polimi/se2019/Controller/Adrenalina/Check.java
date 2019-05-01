@@ -1110,7 +1110,7 @@ public class Check {
 
                 if(killer.kills != 0){
 
-                    if (killer.equals(player)){
+                    if (killer.player.equals(player)){
 
                         potentialWinner.scoreOnMortalBlowTrack = board.getMortalBlowTrackValue().get(mortalBlowCounter);
 
