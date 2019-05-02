@@ -794,7 +794,7 @@ public class Check {
      * @return the winner.
      * @param board is the board to solve.
      */
-    public Player winner(Board board){
+    public void winner(Board board){
 
         /*
         risolvo le finalfrenzy playerboard
@@ -1275,11 +1275,7 @@ public class Check {
             }
         }
 
-    /*
-    infine ritorno il vincitore (///////POTREBBE NON SERVIRE///////)
-     */
 
-    return winner;
 
     }
 

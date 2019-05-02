@@ -1,4 +1,5 @@
 package it.polimi.se2019.Controller.Adrenalina;
+
 import it.polimi.se2019.Controller.Setup.MapSetup;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.View.*;
@@ -14,13 +15,12 @@ import static it.polimi.se2019.Network.Server.*;
 /**
  * This class represents a single match of Adrenalina.
  * Its purpose is to iterate through the players and make them play a turn.
- *
  */
 public class Match {
 
 
     /*
-    * ---------- FIELDS ----------
+     * ---------- FIELDS ----------
      */
 
     /**
@@ -46,19 +46,18 @@ public class Match {
 
 
     /*
-    * ---------- METHODS ----------
+     * ---------- METHODS ----------
      */
 
 
     /**
      * Constructor for the Match class. It just creates an instance of Turn.
      */
-    public Match(){
+    public Match() {
 
         this.turn = new Turn();
 
     }
-
 
 
     /**
@@ -73,7 +72,7 @@ public class Match {
      * by making them perform their last Final Frenzy turn.
      * After this final loop, the methods for checking the winner are called, and then the match ends.
      */
-    public void play(){
+    public void play() {
 
         chooseMap();
 
@@ -81,23 +80,25 @@ public class Match {
 
     /**
      * Setter for the ArrayList of players that take part at the Match.
+     *
      * @param players ArrayList of players.
      */
-    public void setPlayers(ArrayList <Player> players){
+    public void setPlayers(ArrayList<Player> players) {
         this.players = players;
     }
 
     /**
      * Setter for the board used in the current match.
+     *
      * @param board the board used in the current match.
      */
-    public void setBoard(Board board){
+    public void setBoard(Board board) {
 
         this.board = board;
 
     }
 
-    public void chooseMap(){
+    public void chooseMap() {
 
         ArrayList<Integer> voti = new ArrayList<>();
 
@@ -119,11 +120,11 @@ public class Match {
 
         InputCheck inputCheck = new InputCheck();
 
-        for (Player player:connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             String chosenMap = updateWithAnswer(player, Message.scegliMappa());
 
-            while (!inputCheck.checkMapInput(chosenMap)){
+            while (!inputCheck.checkMapInput(chosenMap)) {
 
                 update(player, Message.inputError());
                 chosenMap = updateWithAnswer(player, Message.scegliMappa());
@@ -139,8 +140,6 @@ public class Match {
             voti.set(value, voti.get(value) + 1);
 
 
-
-
         }
 
         int max = Collections.max(voti);
@@ -150,7 +149,7 @@ public class Match {
         MapSetup mapSetup = new MapSetup();
         board.setMap(mapSetup.build(mapNumber));
 
-        for (Player player:connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             update(player, "La mappa scelta è la numero " + mapNumber);
 
@@ -165,7 +164,7 @@ public class Match {
      * the votes, approximated by excess.
      */
 
-    public void chooseSkulls(){
+    public void chooseSkulls() {
 
         ArrayList<Integer> preferenze = new ArrayList<>();
 
@@ -179,11 +178,11 @@ public class Match {
 
         InputCheck inputCheck = new InputCheck();
 
-        for (Player player:connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             String chosenSkullNumber = updateWithAnswer(player, Message.scegliNumeroTeschi());
 
-            while (!inputCheck.checkSkullsInput(chosenSkullNumber)){
+            while (!inputCheck.checkSkullsInput(chosenSkullNumber)) {
 
                 update(player, Message.inputError());
                 chosenSkullNumber = updateWithAnswer(player, Message.scegliNumeroTeschi());
@@ -205,9 +204,9 @@ public class Match {
          */
 
         float average;
-        int sum=0;
+        int sum = 0;
 
-        for (int number: preferenze){
+        for (int number : preferenze) {
             sum = sum + number;
         }
 
@@ -228,7 +227,7 @@ public class Match {
         ArrayList<MortalBlow> mortalBlowTrack = new ArrayList<>();
 
 
-        for (int i=0; i<nSkulls; i++){
+        for (int i = 0; i < nSkulls; i++) {
 
             MortalBlow skull = new MortalBlow();
 
@@ -245,12 +244,11 @@ public class Match {
         notifico ai giocatori il numero di teschi con cui giocheranno
          */
 
-        for (Player player:connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             update(player, "Il numero di teschi scelto per iniziare la partita è " + nSkulls);
 
         }
-
 
 
     }
