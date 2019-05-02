@@ -16,6 +16,7 @@ public class BlueRoomBuilderTest {
     @Test
     public void CorrectColourTest() {
 
+
         BlueRoomBuilder blueRoomBuilder = new BlueRoomBuilder();
         Room blueRoom = blueRoomBuilder.build();
 

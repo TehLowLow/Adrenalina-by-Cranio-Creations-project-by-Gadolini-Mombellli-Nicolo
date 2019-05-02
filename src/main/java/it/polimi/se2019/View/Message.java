@@ -79,7 +79,7 @@ public class Message {
     }
 
     public static String bersaglioNonValido(){
-        return "Hai inserito un bersaglio non valido. Scegline uno tra quelli disponibili.";
+        return "Hai inserito un bersaglio non valido, non fare il furbo. Scegline uno tra quelli disponibili.";
     }
 
     /*
@@ -204,7 +204,7 @@ public class Message {
         return str;
     }
 
-    public static String scegliCellaVortex(ArrayList <Cell> cells, Player user){
+    public static String scegliCellaVortex(ArrayList <Cell> cells){
 
         String str = "Scegli la cella dove aprire il vortex indicandone il numero.\n";
 

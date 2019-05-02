@@ -144,9 +144,6 @@ public class InputCheck {
     }
 
 
-
-
-
     /*
     serve nella scelta del numero di teschi da mettere nel tracciato colpo mortale
      */
@@ -163,13 +160,28 @@ public class InputCheck {
 
 
     public static boolean yesOrNo(String input){
-        if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("no")){
+
+        if (input.equalsIgnoreCase("si")){
             return true;
+        }
+
+        if(input.equalsIgnoreCase("no")){
+            return false;
         }
 
         else {
             return false;
         }
+    }
+
+    public static boolean correctYesNo(String input){
+
+        if(input.equalsIgnoreCase("si") || input.equalsIgnoreCase("no")){
+            return false;
+        }
+
+        return false;
+
     }
 
 
