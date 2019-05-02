@@ -268,7 +268,14 @@ public class Message {
 
     public static String scegliNumeroTeschi(){ return "Scegli un numero di teschi da piazzare nel tracciato colpo mortale tra 5 e 8.";}
 
+    /*
+    SCELTA EFFETTO
+     */
 
+     public static String usaEffetto(){
+
+         return "Vuoi usare l'effetto opzionale?";
+     }
 
 
 }

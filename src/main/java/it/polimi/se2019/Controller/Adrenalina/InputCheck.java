@@ -162,4 +162,15 @@ public class InputCheck {
     }
 
 
+    public static boolean yesOrNo(String input){
+        if (input.equalsIgnoreCase("yes") || input.equalsIgnoreCase("no")){
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }
+
+
 }
