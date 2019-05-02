@@ -210,7 +210,7 @@ public class Match {
             sum = sum + number;
         }
 
-        average = (sum / preferenze.size());
+        average = ( ((float) sum )/ preferenze.size());
 
         /*
         approssimo per eccesso (ceil è un metodo della libreria java.Math che ritorna l'approx per eccesso

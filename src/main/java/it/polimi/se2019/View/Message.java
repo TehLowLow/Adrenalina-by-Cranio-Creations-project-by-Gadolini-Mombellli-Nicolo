@@ -253,6 +253,15 @@ public class Message {
         return "Nessun bersaglio disponibile qui!";
     }
 
+
+    /*
+    NOTIFICA AL BERSAGLIO COLPITO
+     */
+
+    public static String colpito(Player attacker){
+        return "Sei stato colpito da " + attacker;
+    }
+
     /*
     SCELTA NUMERO TESCHI
      */
