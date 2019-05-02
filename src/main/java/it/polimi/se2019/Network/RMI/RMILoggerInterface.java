@@ -6,7 +6,9 @@ import java.rmi.RemoteException;
 public interface RMILoggerInterface extends Remote {
 
 
-    void verify(String u, String p) throws RemoteException;
+    int verify(String u, String p) throws RemoteException;
+
+    int getGamePort(String s) throws RemoteException;
 
 
 

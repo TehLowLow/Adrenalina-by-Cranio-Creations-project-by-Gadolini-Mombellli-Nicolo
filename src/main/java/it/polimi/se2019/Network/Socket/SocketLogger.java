@@ -2,13 +2,13 @@ package it.polimi.se2019.Network.Socket;
 
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Logger;
-import org.jetbrains.annotations.Contract;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.Callable;
+import java.util.AbstractList;
+import java.util.ArrayList;
 
 import static it.polimi.se2019.Network.Server.*;
 
@@ -20,12 +20,13 @@ public class SocketLogger implements Logger, Runnable {
     private ServerSocket mySocket;
     private DataInputStream in;
     private DataOutputStream out;
+    private int SOCKETPORT = 2200;
+    private int clientPort;
+    private Player temp;
 
 
     public SocketLogger(ServerSocket serverSocket) {
-
         this.mySocket = serverSocket;
-
     }
 
 
@@ -33,15 +34,11 @@ public class SocketLogger implements Logger, Runnable {
     public void run() {
 
         //Esegue sempre ascoltando sulla porta helper. Accetta una connessione per un login e risponde con accesso consentito o negato
-
-
         try {
             logMeIn = mySocket.accept();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        System.out.println("Son dentro al thread di login");
 
         in = inStream(logMeIn);
         out = outStream(logMeIn);
@@ -51,13 +48,13 @@ public class SocketLogger implements Logger, Runnable {
 
 
     @Override
-    public void logIn() {
+    public int logIn() {
 
         try {
             out.writeUTF("Inserisci username: ");
-            userName = in.readUTF();
+            userName = in.readUTF();  //TODO non ho check sull' input, posso premere anche solo invio e me lo accetta.
             out.writeUTF("Inserisci la password: ");
-            passWord = in.readUTF();
+            passWord = in.readUTF();  //TODO uguale
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,6 +64,7 @@ public class SocketLogger implements Logger, Runnable {
 
             try {
                 out.writeInt(SOCKETPORT);
+                return 1;
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -76,6 +74,8 @@ public class SocketLogger implements Logger, Runnable {
 
         //utilizza checkconnections per verificare se l' utente sia o meno valido
         //Se true ritorno all utente la porta socket su cui connettersi alla vera partita.
+
+        return 0;
 
     }
 
@@ -97,10 +97,12 @@ public class SocketLogger implements Logger, Runnable {
                 //Se il match è ancora in fase di lobby lo aggiungo fra i player
             } else if (connectedSize() < 5) {  //TODO 1
 
-                newPlayer(userName, passWord, "Socket");
+                temp = newPlayer(userName, passWord, "Socket");
 
                 try {
                     out.writeUTF("Aggiunto " + userName);
+                    out.writeInt(temp.getPORT());
+                    out.writeInt(SOCKETPORT);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -135,6 +137,8 @@ public class SocketLogger implements Logger, Runnable {
 
 
         } else {
+
+
             try {
                 out.writeUTF("Password errata!");
             } catch (Exception e) {

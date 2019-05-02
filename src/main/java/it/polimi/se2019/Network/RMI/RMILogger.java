@@ -21,6 +21,9 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
     private String userName;
     private String passWord;
 
+    private int RMIPORT = 2100;
+    Player temp;
+
 
     @Override
     public void run() {
@@ -55,38 +58,28 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
 
     @Override
-    public synchronized void verify(String u, String p) {
-
+    public synchronized int verify(String u, String p) {
 
         this.userName = u;
         this.passWord = p;
 
-        logIn();
+        return logIn();
 
     }
 
 
     @Override
-    public synchronized void logIn() {
+    public synchronized int logIn() {
 
         if (checkConnections()) {
-
             System.out.println("Accesso al game server consentito");
-
-            //Metodo per reindirizzare al game server
-
+            return RMIPORT;
         } else {
-
             System.out.println("Connessione rifiutata");//TODO 3
-
+            return -1;
         }
     }
 
-
-    //Dentro qua devo inserire il metodo che se accetto la connessione ritorno al chiamante la nuova porta privata
-    // e il nome dello stub su cui gestire la partita.
-    //Ritorno solo i dati perche il Server si occupa da solo dell' apertura dell altro registry, i client dovranno solo
-    // connettersi.
 
     @Override
     public synchronized boolean checkConnections() {
@@ -94,19 +87,14 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
         if (registrations.get(userName) == null) {
 
             if (matchStarted) {
-
-
                 System.out.println("Partita iniziata, non è possibile aggiungere giocatori");
                 return false;
-
-
             }
 
             //aggiungi un nuovo player e registra i suoi dati, inoltre viene aggiunto all' array di connessi.
 
             if (connectedSize() < 5) {   //TODO 2
-
-                newPlayer(userName,passWord,"RMI");
+                temp = newPlayer(userName, passWord, "RMI");
                 return true;
             }
 
@@ -138,13 +126,23 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
             return false;
 
         }
+    }
 
+    public synchronized int getGamePort(String s) {
 
+        for (Player player : connectedPlayers) {
+
+            if (player.getNickname().equals(s)) {
+
+                return player.getPORT();
+
+            }
+        }
+        return 0;
     }
 
 
 }
-
 
 
 //TODO 2: failsafe per evitare aggiunte sopra i 5 giocatori, da rivedere una volta creato il thread per la verifica delle connessioni.

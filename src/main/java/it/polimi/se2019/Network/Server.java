@@ -1,33 +1,40 @@
 package it.polimi.se2019.Network;
 
 
-import it.polimi.se2019.Controller.Adrenalina.*;
-import it.polimi.se2019.Controller.Setup.BoardSetup;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.RMI.Client.RMIClient;
 import it.polimi.se2019.Network.RMI.RMILogger;
+import it.polimi.se2019.Network.RMI.Server.RMIServer;
+
+import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
-import org.jetbrains.annotations.NotNull;
+
+
 
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.*;
 
 
 public class Server {
 
-    public static final int RMIPORT = 2100;
-    public static final int SOCKETPORT = 2200;
+
+    private static volatile int clientPort = 4000;
 
     public static final int LOGINSOCKETPORT = 9999;
     public static final int LOGINRMIPORT = 8888;
+
+    public static final int RMIPORT = 2100;
+    public static final int SOCKETPORT = 2200;
 
     private static int lobbyTimer;
 
     public static volatile boolean matchStarted = false;
 
-    public static ServerSocket loginSocket;
+    private static ServerSocket loginSocket;
+    private static ServerSocket gameSocket;
+
+    public static boolean start = false;
 
 
     public static Hashtable registrations = new Hashtable();  //associazione user psw
@@ -35,12 +42,12 @@ public class Server {
     public static CopyOnWriteArrayList<Player> connectedPlayers = new CopyOnWriteArrayList<>();  //Arraylist di player connessi.
 
 
-    private static ServerSocket initServer() {
+    private static ServerSocket initServer(int port) {
 
         try {
 
-            ServerSocket sSocket = new ServerSocket(LOGINSOCKETPORT);
-            System.out.println("Server online listening on port " + LOGINSOCKETPORT);
+            ServerSocket sSocket = new ServerSocket(port);
+            System.out.println("Server online listening on port " + port);
             return sSocket;
         } catch (Exception e) {
             e.printStackTrace();
@@ -54,17 +61,22 @@ public class Server {
 
     }
 
-    public static synchronized void newPlayer(String u, String p, String connection) {
+    public static synchronized Player newPlayer(String u, String p, String connection) {
 
         Player player = new Player();
         player.setNickname(u);
         player.setConnectionAlive(true);
         player.setConnectionTech(connection);
+        player.setPORT(calcPorts());
         registrations.put(u, p);
         connectedPlayers.add(player);
 
+        return player;
 
     }
+
+
+
 
 
     public static void main(String[] args) {
@@ -73,6 +85,9 @@ public class Server {
         //1) il server avvia i thread di inizializzazione delle connessioni dedicate alla partita
         //2) il server avvia altre due connessioni (una socket e una rmi) helpers, connessioni dedicate esclusivamente
         //   al login dei player.
+
+
+        System.out.println((char)27 + "[33m");
 
 
         Scanner scanner = new Scanner(System.in);
@@ -88,20 +103,39 @@ public class Server {
 
         //Avvio thread pool logger di socket
         ExecutorService logExec = Executors.newFixedThreadPool(5);
-        loginSocket = initServer();
+        loginSocket = initServer(LOGINSOCKETPORT);
 
         for (int i = 0; i < 5; i++) {
-            logExec.execute(new SocketLogger(loginSocket));
+            logExec.execute(new SocketLogger(loginSocket));  //Problema: resto in wait sulthread di login, trovare un modo per caricare i 5 thread e poi eseguirli in un altro flusso
+            //di controllo.
         }
 
-
-        System.out.println("avviato i thread");
+        //Da breakkare nel caso finisca il tempo per il login
 
         for (Player player : connectedPlayers) {
 
             System.out.println(player.getNickname());
 
         }
+
+        //avvio il server di gioco
+
+        Runnable gameServer = new RMIServer();
+        Thread game = new Thread(gameServer);
+        game.start();
+
+        ExecutorService gameExec = Executors.newFixedThreadPool(5);  //Aggiungendo al game server
+
+        gameSocket = initServer(SOCKETPORT);
+
+
+        for (int i = 0; i < 5; i++) {
+
+            gameExec.submit(new SocketServer(gameSocket));
+
+        }
+
+
     }
 
 
@@ -110,10 +144,7 @@ public class Server {
         if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
 
             RMIClient client = (RMIClient) playerClient.get(player);
-
             return client.sendMsgWithAnswer(msg);
-
-
         }
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
@@ -131,20 +162,19 @@ public class Server {
         if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
 
             RMIClient client = (RMIClient) playerClient.get(player);
-
-
         }
 
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
-
-
         }
 
     }
 
+    private static synchronized int calcPorts() {
 
-
+        clientPort = clientPort + 100;
+        return clientPort;
+    }
 
 
 }

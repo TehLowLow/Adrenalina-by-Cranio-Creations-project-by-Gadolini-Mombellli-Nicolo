@@ -12,13 +12,15 @@ public class Client {
     private static String response;
     static SocketClient sClient = new SocketClient();
     static RMIClient rClient = new RMIClient();
+    private static volatile int myPort = 4000;
 
     public static void main(String[] args) {
 
+
+        //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.
         System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
         response = input();
         initConnection(response);//qua vengono lanciati i thread.
-
     }
 
 //----------------------------------------------------------------------------------------------------
@@ -37,6 +39,7 @@ public class Client {
         if (string.equalsIgnoreCase("socket")) {
 
             //avvia una connessione socket
+
             Runnable clientSocket = new SocketClient();
             Thread sClient = new Thread(clientSocket);
             sClient.start();
@@ -44,6 +47,7 @@ public class Client {
         } else if (string.equalsIgnoreCase("RMI")) {
 
             //avvia una connessione RMI
+
             Runnable clientRMI = new RMIClient();
             Thread rClient = new Thread(clientRMI);
             rClient.start();
@@ -56,6 +60,8 @@ public class Client {
         }
     }
 //----------------------------------------------------------------------------------------------------
+
+
 
 
 }
