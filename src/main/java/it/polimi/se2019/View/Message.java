@@ -204,8 +204,40 @@ public class Message {
         return str;
     }
 
+    public static String scegliCellaVortex(ArrayList <Cell> cells, Player user){
+
+        String str = "Scegli la cella dove aprire il vortex indicandone il numero.\n";
+
+
+        for(Cell cell : cells){
+
+            str = str + "Numero " + cells.indexOf(cell) + ")";
+            str = str + "Stanza di colore " + Printer.colour(cell.getColour());
+            str = str + ", cella: " + cell.getName();
+            str = str + '\n';
+
+        }
+
+        return str;
+
+    }
+
     public static String cellaNonDisponibile(){
         return "Errore: scegli una cella disponibile.";
+    }
+
+    public static String cellaVortexNonDisponibile(){
+        return "Errore: aprire il vortice qui non avrebbe alcun effetto! Scegli un'altra cella.";
+    }
+
+    /*
+    VORTEX
+     */
+
+    public static String vortexAperto(){
+
+        return "Hai creato un vortice!";
+
     }
 
 

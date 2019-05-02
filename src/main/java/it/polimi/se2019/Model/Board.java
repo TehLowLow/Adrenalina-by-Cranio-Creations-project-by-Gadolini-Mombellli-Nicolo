@@ -71,7 +71,7 @@ public class Board implements java.io.Serializable{
     /**
      * Represents the map.
      */
-    private Map map;
+    private static Map map;
 
 
     /*
@@ -105,8 +105,8 @@ public class Board implements java.io.Serializable{
      * Gets the map of the board.
      * @return reference to the map.
      */
-    public Map getMap(){
-        return this.map;
+    public static Map getMap(){
+        return map;
     }
 
     /**

@@ -134,6 +134,15 @@ public class InputCheck {
         return -1;
     }
 
+    /*
+    Questo metodo controlla se l'utente ha digitato un numero valido.
+     */
+    public static int numberCheck(String input) throws NumberFormatException{
+
+        int result = Integer.parseInt(input);
+        return result;
+    }
+
 
 
 
