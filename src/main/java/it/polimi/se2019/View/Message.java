@@ -60,7 +60,43 @@ public class Message {
         return "In quale direzione vuoi sparare?\nalto\nbasso\nsinistra\ndestra";
     }
     public static String direzioneOstruita(){
-        return "Non puoi sparare in questa direzione! Scegline un'altra.";
+        return "Questa direzione è ostruita! Scegline un'altra.";
+    }
+
+    public static String spostaBersaglio(Player target, ArrayList <Cell> cells){
+
+        String str = "In quale direzione vuoi spostare il bersaglio?\n";
+
+        for(Cell cell : cells){
+
+            if(target.getPosition().getUpConnection().getType().equalsIgnoreCase(Connection.FREE) || target.getPosition().getUpConnection().getType().equalsIgnoreCase(Connection.DOOR)){
+                if(target.getPosition().getUpConnection().getConnectedCell().equals(cell)){
+                    str = str + "alto\n";
+                }
+            }
+
+            if(target.getPosition().getDownConnection().getType().equalsIgnoreCase(Connection.FREE) || target.getPosition().getDownConnection().getType().equalsIgnoreCase(Connection.DOOR)){
+                if(target.getPosition().getDownConnection().getConnectedCell().equals(cell)){
+                    str = str + "basso\n";
+                }
+            }
+
+            if(target.getPosition().getLeftConnection().getType().equalsIgnoreCase(Connection.FREE) || target.getPosition().getLeftConnection().getType().equalsIgnoreCase(Connection.DOOR)){
+                if(target.getPosition().getLeftConnection().getConnectedCell().equals(cell)){
+                    str = str + "sinistra\n";
+                }
+            }
+
+            if(target.getPosition().getRightConnection().getType().equalsIgnoreCase(Connection.FREE) || target.getPosition().getRightConnection().getType().equalsIgnoreCase(Connection.DOOR)){
+                if(target.getPosition().getRightConnection().getConnectedCell().equals(cell)){
+                    str = str + "destra\n";
+                }
+            }
+
+        }
+
+        return str;
+
     }
 
     /*
@@ -222,6 +258,25 @@ public class Message {
 
     }
 
+    public static String scegliCella(ArrayList <Cell> cells){
+
+        String str = "Scegli una cella indicandone il numero.\n";
+
+
+        for(Cell cell : cells){
+
+            str = str + "Numero " + cells.indexOf(cell) + ")";
+            str = str + "Stanza di colore " + Printer.colour(cell.getColour());
+            str = str + ", cella: " + cell.getName();
+            str = str + '\n';
+
+        }
+
+        return str;
+
+    }
+
+
     public static String cellaNonDisponibile(){
         return "Errore: scegli una cella disponibile.";
     }
@@ -272,11 +327,25 @@ public class Message {
     SCELTA EFFETTO
      */
 
-     public static String usaEffetto(){
+     public static String usareEffettoOpzionale(){
 
          return "Vuoi usare l'effetto opzionale?";
      }
 
+     public static String usareEffettoBase(){
 
+         return "Vuoi usare l'effetto base?";
+     }
+
+    public static String lanciaGranateScegliEffetto() {
+
+         return "Vuoi usare l'effetto base o la granata extra?\nDigita 'base' per l'effetto base, 'extra' per la granata extra.";
+
+    }
+
+    public static String mancaRYB(){
+
+         return "Non hai abbastanza cubi munizione per questa azione!";
+    }
 }
 

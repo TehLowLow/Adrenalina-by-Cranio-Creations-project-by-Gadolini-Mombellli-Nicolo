@@ -16,18 +16,7 @@ public class BasicFlamethrower extends Effect {
 
     public void applyEffect(Player user, ArrayList<Player> targets) {
 
-        for (Player target : targets) {
-
-            Token damage = new Token();
-            damage.setChampionName(user.getPlayerboard().getChampionName());
-
-            ArrayList<Token> damages = target.getPlayerboard().getDamage();
-
-            damages.add(damage);
-
-            target.getPlayerboard().setDamage(damages);
-
-        }
+        GrenadeLauncher.giveDamage(user, targets);
 
     }
 

@@ -184,5 +184,15 @@ public class InputCheck {
 
     }
 
+    public static boolean baseEffectGrenadeLauncher(String input){
+
+        if(input.equalsIgnoreCase("base") || input.equalsIgnoreCase("extra") ){
+            return true;
+        }
+
+        return false;
+
+    }
+
 
 }

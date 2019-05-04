@@ -2,13 +2,13 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
-import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 import java.util.ArrayList;
 
 
+import static it.polimi.se2019.Controller.Adrenalina.Check.visibleSquares;
 import static it.polimi.se2019.Model.Connection.DOOR;
 
 public class VortexCannon extends Effect {
@@ -62,7 +62,7 @@ public class VortexCannon extends Effect {
 
         while(!answerReceived){
 
-            answer = Server.updateWithAnswer(user, Message.usaEffetto());
+            answer = Server.updateWithAnswer(user, Message.usareEffettoBase());
 
             if(!InputCheck.correctYesNo(answer)){
                 Server.update(user, Message.inputError());
@@ -177,7 +177,7 @@ public class VortexCannon extends Effect {
 
             while(!answerReceived){
 
-                answer = Server.updateWithAnswer(user, Message.usaEffetto());
+                answer = Server.updateWithAnswer(user, Message.usareEffettoBase());
 
                 if(!InputCheck.correctYesNo(answer)){
                     Server.update(user, Message.inputError());
@@ -259,7 +259,7 @@ public class VortexCannon extends Effect {
 
         //Estraggo i quadrati che può vedere:
 
-        ArrayList <Cell> targetSquares = getVisibleSquares(user);
+        ArrayList <Cell> targetSquares = Check.visibleSquares(user);
 
         //Rimuovo quello dell'utente:
         targetSquares.remove(user.getPosition());
@@ -383,7 +383,7 @@ public class VortexCannon extends Effect {
 
         //Prima di tutto, si ottengono i quadrati che l'utente può vedere, ma non il proprio quadrato.
 
-        ArrayList <Cell> visibleSquares = getVisibleSquares(user);
+        ArrayList <Cell> visibleSquares = visibleSquares(user);
         visibleSquares.remove(user.getPosition());
 
         //Ad essi, devo aggiungere i quadrati a distanza unitaria.
@@ -409,73 +409,6 @@ public class VortexCannon extends Effect {
 
 
         return false;
-    }
-
-    public ArrayList <Cell> getVisibleSquares(Player user){
-
-        ArrayList<Cell> visibleSquares = new ArrayList<>();
-
-        Cell position = user.getPosition();
-
-        int room = position.getColour();
-
-
-        addVisibleCells(visibleSquares, room);
-
-        if (position.getUpConnection().getType().equalsIgnoreCase(DOOR)) {
-
-            room = position.getUpConnection().getConnectedCell().getColour();
-            addVisibleCells(visibleSquares, room);
-
-        }
-
-        if (position.getDownConnection().getType().equalsIgnoreCase(DOOR)) {
-
-            room = position.getDownConnection().getConnectedCell().getColour();
-            addVisibleCells(visibleSquares, room);
-
-        }
-
-        if (position.getLeftConnection().getType().equalsIgnoreCase(DOOR)) {
-            room = position.getLeftConnection().getConnectedCell().getColour();
-            addVisibleCells(visibleSquares, room);
-        }
-
-        if (position.getRightConnection().getType().equalsIgnoreCase(DOOR)) {
-            room = position.getRightConnection().getConnectedCell().getColour();
-            addVisibleCells(visibleSquares, room);
-        }
-
-        return visibleSquares;
-
-    }
-
-    private void addVisibleCells(ArrayList<Cell> visibleSquares, int room) {
-
-        if (room == Colour.RED) {
-            visibleSquares.addAll(Board.getMap().getRedRoom().getCells());
-        }
-
-        if (room == Colour.YELLOW) {
-            visibleSquares.addAll(Board.getMap().getYellowRoom().getCells());
-        }
-
-        if (room == Colour.BLUE) {
-            visibleSquares.addAll(Board.getMap().getBlueRoom().getCells());
-        }
-
-        if (room == Colour.WHITE) {
-            visibleSquares.addAll(Board.getMap().getWhiteRoom().getCells());
-        }
-
-        if (room == Colour.GREEN) {
-            visibleSquares.addAll(Board.getMap().getGreenRoom().getCells());
-        }
-
-        if (room == Colour.PURPLE) {
-            visibleSquares.addAll(Board.getMap().getPurpleRoom().getCells());
-        }
-
     }
 
     private void addUnitDistance(ArrayList <Cell> cells){
