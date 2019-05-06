@@ -66,6 +66,7 @@ public class Cyberblade extends Effect {
             }
 
             useStep = InputCheck.yesOrNo(answer);
+            hasChosen = true;
 
         }
 

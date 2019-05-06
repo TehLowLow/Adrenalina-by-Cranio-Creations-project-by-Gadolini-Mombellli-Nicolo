@@ -188,7 +188,7 @@ public class Message {
         for(Cell cell : cells){
 
 
-            if(user.getPosition().getUpConnection().equals(cell)){
+            if(user.getPosition().getUpConnection().getConnectedCell().equals(cell)){
 
                for(Player target : Server.connectedPlayers){
                    if(target.getPosition().equals(cell)){
@@ -208,7 +208,7 @@ public class Message {
 
            }
 
-            if(user.getPosition().getDownConnection().equals(cell)){
+            if(user.getPosition().getDownConnection().getConnectedCell().equals(cell)){
 
                 for(Player target : Server.connectedPlayers){
                     if(target.getPosition().equals(cell)){
@@ -228,7 +228,7 @@ public class Message {
 
             }
 
-            if(user.getPosition().getLeftConnection().equals(cell)){
+            if(user.getPosition().getLeftConnection().getConnectedCell().equals(cell)){
 
                 for(Player target : Server.connectedPlayers){
                     if(target.getPosition().equals(cell)){
@@ -248,7 +248,7 @@ public class Message {
 
             }
 
-            if(user.getPosition().getRightConnection().equals(cell)){
+            if(user.getPosition().getRightConnection().getConnectedCell().equals(cell)){
 
                 for(Player target : Server.connectedPlayers){
                     if(target.getPosition().equals(cell)){

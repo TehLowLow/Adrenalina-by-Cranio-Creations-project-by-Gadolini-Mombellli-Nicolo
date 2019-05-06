@@ -54,7 +54,7 @@ public class GrenadeLauncher extends Effect {
 
         //Se sceglie l'effetto base:
 
-        if(base = true) {
+        if(base == true) {
 
 
             //--Chiamo metodo per effetto base.
@@ -121,7 +121,7 @@ public class GrenadeLauncher extends Effect {
 
         //Se sceglie granata extra:
 
-        if(base = false) {
+        if(base == false) {
 
 
 
@@ -151,7 +151,7 @@ public class GrenadeLauncher extends Effect {
                  }
 
                  if(useEffect){
-                     ArrayList baseTargets = getTargets(user);
+                     ArrayList <Player> baseTargets = getTargets(user);
                      applyBaseEffect(user, baseTargets);
                  }
 

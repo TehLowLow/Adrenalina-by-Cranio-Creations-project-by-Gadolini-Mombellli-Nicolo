@@ -106,25 +106,25 @@ public class RocketFistMode extends Effect {
         boolean canMove = false;
 
         if(direction.equalsIgnoreCase("up")){
-            if(user.getPosition().getUpConnection().equals(Connection.DOOR) || user.getPosition().getUpConnection().equals(Connection.FREE)){
+            if(user.getPosition().getUpConnection().getType().equals(Connection.DOOR) || user.getPosition().getUpConnection().getType().equals(Connection.FREE)){
                 canMove = true;
             }
         }
 
         if(direction.equalsIgnoreCase("down")){
-            if(user.getPosition().getDownConnection().equals(Connection.DOOR) || user.getPosition().getDownConnection().equals(Connection.FREE)){
+            if(user.getPosition().getDownConnection().getType().equals(Connection.DOOR) || user.getPosition().getDownConnection().getType().equals(Connection.FREE)){
                 canMove = true;
             }
         }
 
         if(direction.equalsIgnoreCase("left")){
-            if(user.getPosition().getLeftConnection().equals(Connection.DOOR) || user.getPosition().getLeftConnection().equals(Connection.FREE)){
+            if(user.getPosition().getLeftConnection().getType().equals(Connection.DOOR) || user.getPosition().getLeftConnection().getType().equals(Connection.FREE)){
                 canMove = true;
             }
         }
 
         if(direction.equalsIgnoreCase("right")){
-            if(user.getPosition().getRightConnection().equals(Connection.DOOR) || user.getPosition().getRightConnection().equals(Connection.FREE)){
+            if(user.getPosition().getRightConnection().getType().equals(Connection.DOOR) || user.getPosition().getRightConnection().getType().equals(Connection.FREE)){
                 canMove = true;
             }
         }
