@@ -374,5 +374,23 @@ public class Message {
          return "Vuoi usare i razzi portatili adesso?";
 
     }
+
+    public static String usaShadowStep(){
+
+         return "Vuoi usare il passo d'ombra adesso?";
+
+    }
+
+    public static String payWithPowerUp(ArrayList <Powerup> powerups){
+
+        String str = "Scegli un power up da scartare per pagare il costo indicandone il numero.\n";
+
+        for(Powerup powerup : powerups){
+            str = str + powerups.indexOf(powerup) + ") " + powerup.getName() + "\n";
+        }
+
+        return str;
+
+    }
 }
 

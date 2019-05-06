@@ -315,6 +315,41 @@ public class Check {
 
     }
 
+
+    /**
+     * Generic check: if the player can afford the cost,returns true.
+     * @param player the buyer
+     * @param cost the cost
+     * @return true if the player can afford the cost
+     */
+    public static boolean affordable(Player player, Rybamount cost){
+
+        int blueAvailable = player.getPlayerboard().getAmmoCubes().getBlue();
+        int yellowAvailable = player.getPlayerboard().getAmmoCubes().getYellow();
+        int redAvailable = player.getPlayerboard().getAmmoCubes().getRed();
+
+        ArrayList <Powerup> playerPowerups = player.getPlayerboard().getPowerups();
+
+        for(Powerup powerup : playerPowerups){
+
+            blueAvailable = blueAvailable + powerup.getTradeValue().getBlue();
+            yellowAvailable = yellowAvailable + powerup.getTradeValue().getYellow();
+            redAvailable = redAvailable + powerup.getTradeValue().getYellow();
+
+        }
+
+        int yellowCost = cost.getYellow();
+        int blueCost = cost.getBlue();
+        int redCost = cost.getRed();
+
+        if(yellowCost>yellowAvailable || redCost>yellowAvailable || blueCost>blueAvailable){
+            return false;
+        }
+
+        return true;
+
+    }
+
     /**
      * Checks if a player has sustained enough damage to use enhanced pickup.
      * @param player is the player to be checked.
