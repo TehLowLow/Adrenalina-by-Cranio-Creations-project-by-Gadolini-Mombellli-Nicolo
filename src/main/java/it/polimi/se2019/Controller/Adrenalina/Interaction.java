@@ -1,6 +1,12 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
+import it.polimi.se2019.Controller.Adrenalina.Exceptions.*;
+
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.View.Message;
+import jdk.internal.util.xml.impl.Input;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -23,35 +29,39 @@ public class Interaction {
      * the board
      * @param player is who has to draw the powerUp
      * @param board is "Adrenalina" main board
+     * @throws EmptyDeckException when there are no more powerUps on the deck.
+     * @throws LimitPowerUpException if the player has already 3 power ups
      */
 
-    public void drawPowerUp(Player player, Board board){
+    public void drawPowerUp(Player player, Board board) throws EmptyDeckException, LimitPowerUpException{
 
         ArrayList <Powerup> powerUpDeck = board.getPowerUpDeck();
 
         if(powerUpDeck.size()>0){
 
-            if(/*check.limitPowerUp(player)*/true){
+            if(check.limitPowerUp(player)){
 
-                //Lancio eccezione
+                LimitPowerUpException e = new LimitPowerUpException();
+                throw (e);
 
             }
 
-            /*if(!check.limitPowerUp(player)){
+            else {
 
-                ArrayList <Powerup> powerUps = player.getPlayerboard().getPowerups();
+                ArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
                 Powerup drawnPowerUp = board.getPowerUpDeck().get(0);
                 board.getPowerUpDeck().remove(drawnPowerUp);
                 powerUps.add(drawnPowerUp);
                 player.getPlayerboard().setPowerups(powerUps);
 
-            }*/
+            }
 
         }
 
         if (powerUpDeck.size()==0){
 
-            //Lancio eccezione
+            EmptyDeckException e = new EmptyDeckException();
+            throw(e);
         }
 
     }
@@ -260,13 +270,87 @@ public class Interaction {
      * @param billRybamount are the cubes to pay
      */
 
-    public void pay(Player player, Rybamount billRybamount){
+    public static void pay(Player player, Rybamount billRybamount){
 
         Rybamount playerRybAmount = player.getPlayerboard().getAmmoCubes();
-        playerRybAmount.setYellowCubes(playerRybAmount.getYellow() - billRybamount.getYellow());
-        playerRybAmount.setRedCubes(playerRybAmount.getRed() - billRybamount.getRed());
-        playerRybAmount.setBlueCubes(playerRybAmount.getBlue() - billRybamount.getBlue());
+        int yellowAvailable = playerRybAmount.getYellow();
+        int redAvailable = playerRybAmount.getRed();
+        int blueAvailable = playerRybAmount.getBlue();
 
+        int yellowCost = billRybamount.getYellow();
+        int blueCost = billRybamount.getBlue();
+        int redCost = billRybamount.getBlue();
+
+       while(yellowAvailable<yellowCost){
+           yellowAvailable = yellowAvailable + convertPowerUp(player, Colour.YELLOW);
+       }
+
+       while(redAvailable<redCost){
+           redAvailable = redAvailable + convertPowerUp(player, Colour.RED);
+       }
+
+       while(blueAvailable<blueCost){
+           blueAvailable = blueAvailable + convertPowerUp(player, Colour.BLUE);
+       }
+
+        playerRybAmount.setYellowCubes(yellowAvailable-yellowCost);
+        playerRybAmount.setRedCubes(redAvailable-redCost);
+        playerRybAmount.setBlueCubes(blueAvailable-blueCost);
+
+    }
+
+    private static int convertPowerUp(Player player, int colour){
+
+        ArrayList <Powerup> discardable = new ArrayList<Powerup>();
+        ArrayList <Powerup> availablePowerups = player.getPlayerboard().getPowerups();
+
+
+        for(Powerup powerup : availablePowerups){
+
+            if(colour == Colour.RED){
+                if(powerup.getTradeValue().getRed()==1){
+                    discardable.add(powerup);
+                }
+            }
+            if(colour == Colour.YELLOW){
+                if(powerup.getTradeValue().getYellow()==1){
+                    discardable.add(powerup);
+                }
+            }
+            if(colour == Colour.BLUE){
+                if(powerup.getTradeValue().getBlue()==1){
+                    discardable.add(powerup);
+                }
+            }
+
+
+        }
+
+        boolean chosen = false;
+        int index = 0;
+        while(!chosen){
+
+            String chosenPU = Server.updateWithAnswer(player, Message.payWithPowerUp(discardable));
+
+            try{
+                index = InputCheck.numberCheck(chosenPU);
+                if(index<0 || index > discardable.size()-1){
+                    Server.update(player, Message.inputError());
+                    continue;
+                }
+                chosen = true;
+            }catch(NumberFormatException e){
+                Server.update(player, Message.inputError());
+                continue;
+            }
+
+
+        }
+
+        Powerup toRemove = discardable.get(index);
+        player.getPlayerboard().getPowerups().remove(toRemove);
+
+        return 1;
     }
 
     /**

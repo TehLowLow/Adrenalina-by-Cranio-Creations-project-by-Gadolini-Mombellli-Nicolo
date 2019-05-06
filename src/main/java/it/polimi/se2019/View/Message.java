@@ -56,8 +56,34 @@ public class Message {
     SCELTA DIREZIONE
      */
 
-    public static String scegliDirezione(){
-        return "In quale direzione vuoi sparare?\nalto\nbasso\nsinistra\ndestra";
+    public static String scegliDirezioneSparo(){
+        return "In quale direzione vuoi sparare?\n- alto\n- basso\n- sinistra\n- destra";
+    }
+
+    public static String scegliDirezioneMossa(Player user, ArrayList <Cell> reachables){
+
+        String str = "In quale direzione vuoi muoverti?\n";
+
+        for(Cell cell : reachables){
+
+            if(cell.equals(user.getPosition().getUpConnection().getConnectedCell())){
+                str = str + "- Alto\n";
+            }
+
+            if(cell.equals(user.getPosition().getLeftConnection().getConnectedCell())){
+                str = str + "- Sinistra\n";
+            }
+
+            if(cell.equals(user.getPosition().getDownConnection().getConnectedCell())){
+                str = str + "- Basso\n";
+            }
+            if(cell.equals(user.getPosition().getRightConnection().getConnectedCell())){
+                str = str + "- Destra\n";
+            }
+
+        }
+
+        return str;
     }
     public static String direzioneOstruita(){
         return "Questa direzione è ostruita! Scegline un'altra.";
@@ -162,7 +188,7 @@ public class Message {
         for(Cell cell : cells){
 
 
-            if(user.getPosition().getUpConnection().equals(cell)){
+            if(user.getPosition().getUpConnection().getConnectedCell().equals(cell)){
 
                for(Player target : Server.connectedPlayers){
                    if(target.getPosition().equals(cell)){
@@ -182,7 +208,7 @@ public class Message {
 
            }
 
-            if(user.getPosition().getDownConnection().equals(cell)){
+            if(user.getPosition().getDownConnection().getConnectedCell().equals(cell)){
 
                 for(Player target : Server.connectedPlayers){
                     if(target.getPosition().equals(cell)){
@@ -202,7 +228,7 @@ public class Message {
 
             }
 
-            if(user.getPosition().getLeftConnection().equals(cell)){
+            if(user.getPosition().getLeftConnection().getConnectedCell().equals(cell)){
 
                 for(Player target : Server.connectedPlayers){
                     if(target.getPosition().equals(cell)){
@@ -222,7 +248,7 @@ public class Message {
 
             }
 
-            if(user.getPosition().getRightConnection().equals(cell)){
+            if(user.getPosition().getRightConnection().getConnectedCell().equals(cell)){
 
                 for(Player target : Server.connectedPlayers){
                     if(target.getPosition().equals(cell)){
@@ -374,5 +400,39 @@ public class Message {
          return "Vuoi usare i razzi portatili adesso?";
 
     }
+
+    public static String usaShadowStep(){
+
+         return "Vuoi usare il passo d'ombra adesso?";
+
+    }
+
+    public static String useDice(){
+
+         return "Vuoi attivare la modalità sminuzzare?";
+
+    }
+
+    public static String payWithPowerUp(ArrayList <Powerup> powerups){
+
+        String str = "Scegli un power up da scartare per pagare il costo indicandone il numero.\n";
+
+        for(Powerup powerup : powerups){
+            str = str + powerups.indexOf(powerup) + ") " + powerup.getName() + "\n";
+        }
+
+        return str;
+
+    }
+
+    public static String vuoiSpostartiAncora(){
+         return "Vuoi spostarti ancora?";
+    }
+
+    public static String direzioneSenzaBersagli(){
+
+         return "Qui non colpiresti nessuno!";
+    }
+
 }
 
