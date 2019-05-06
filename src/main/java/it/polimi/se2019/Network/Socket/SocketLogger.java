@@ -7,8 +7,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.AbstractList;
-import java.util.ArrayList;
+
 
 import static it.polimi.se2019.Network.Server.*;
 
@@ -64,6 +63,7 @@ public class SocketLogger implements Logger, Runnable {
 
             try {
                 out.writeInt(SOCKETPORT);
+
                 return 1;
 
             } catch (Exception e) {

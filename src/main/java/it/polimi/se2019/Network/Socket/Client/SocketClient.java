@@ -17,9 +17,10 @@ public class SocketClient extends Client implements Runnable {
 
     private boolean connected = false;
 
-    Socket client;
-    int gamePort;
-    int localPort;
+    private Socket client;
+    private int gamePort;
+    private int localPort;
+    private byte address[] = {127, 0, 0, 1};
 
     private static DataOutputStream out;
     private static DataInputStream in;
@@ -30,7 +31,7 @@ public class SocketClient extends Client implements Runnable {
 
         System.out.println("hai avviato una connessione socket");
 
-        connect(LOGINSOCKETPORT);
+        connectLogger();
 
         try {
 
@@ -53,15 +54,23 @@ public class SocketClient extends Client implements Runnable {
             e.printStackTrace();
         }
 
+        //Inserire qua ascii code per resettare la cli
 
-
-        connect(gamePort);  //Risolvere il problema di connettersi con la propria porta statica
+        connectGame();  //Risolvere il problema di connettersi con la propria porta statica
 
         streamInit();
+
+        try {
+            out.writeUTF("Connesso alla partita, fai partire sto timer");
+            System.out.println(in.readUTF());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
-    private void connect(int serverport) {
+    private synchronized void connectLogger() {
 
 
         //Il ciclo while evita che il client crashi perchè la connessione è non disponibile.
@@ -69,7 +78,7 @@ public class SocketClient extends Client implements Runnable {
 
             try {
 
-                client = new Socket("localhost", serverport);
+                client = new Socket("localhost", LOGINSOCKETPORT);
                 connected = true;
 
             } catch (ConnectException e) {
@@ -80,7 +89,26 @@ public class SocketClient extends Client implements Runnable {
                 e.printStackTrace();
             }
         }
+
     }
+
+
+    private synchronized void connectGame() {
+
+        connected = false; //Test per resettare connected, da decidere se inserirlo da qualche altra parte.
+
+        while (!connected) {
+
+            try {
+                InetAddress gameserver = InetAddress.getByAddress(address);
+                client = new Socket("localhost", SOCKETPORT, gameserver, localPort);
+                connected = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     private void streamInit() {
 
