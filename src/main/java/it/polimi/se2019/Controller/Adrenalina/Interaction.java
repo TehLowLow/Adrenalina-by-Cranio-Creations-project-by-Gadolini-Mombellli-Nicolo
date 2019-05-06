@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
+import it.polimi.se2019.Controller.Adrenalina.Exceptions.*;
+
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
@@ -27,35 +29,39 @@ public class Interaction {
      * the board
      * @param player is who has to draw the powerUp
      * @param board is "Adrenalina" main board
+     * @throws EmptyDeckException when there are no more powerUps on the deck.
+     * @throws LimitPowerUpException if the player has already 3 power ups
      */
 
-    public void drawPowerUp(Player player, Board board){
+    public void drawPowerUp(Player player, Board board) throws EmptyDeckException, LimitPowerUpException{
 
         ArrayList <Powerup> powerUpDeck = board.getPowerUpDeck();
 
         if(powerUpDeck.size()>0){
 
-            if(/*check.limitPowerUp(player)*/true){
+            if(check.limitPowerUp(player)){
 
-                //Lancio eccezione
+                LimitPowerUpException e = new LimitPowerUpException();
+                throw (e);
 
             }
 
-            /*if(!check.limitPowerUp(player)){
+            else {
 
-                ArrayList <Powerup> powerUps = player.getPlayerboard().getPowerups();
+                ArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
                 Powerup drawnPowerUp = board.getPowerUpDeck().get(0);
                 board.getPowerUpDeck().remove(drawnPowerUp);
                 powerUps.add(drawnPowerUp);
                 player.getPlayerboard().setPowerups(powerUps);
 
-            }*/
+            }
 
         }
 
         if (powerUpDeck.size()==0){
 
-            //Lancio eccezione
+            EmptyDeckException e = new EmptyDeckException();
+            throw(e);
         }
 
     }
@@ -264,7 +270,7 @@ public class Interaction {
      * @param billRybamount are the cubes to pay
      */
 
-    public void pay(Player player, Rybamount billRybamount){
+    public static void pay(Player player, Rybamount billRybamount){
 
         Rybamount playerRybAmount = player.getPlayerboard().getAmmoCubes();
         int yellowAvailable = playerRybAmount.getYellow();
@@ -293,7 +299,7 @@ public class Interaction {
 
     }
 
-    private int convertPowerUp(Player player, int colour){
+    private static int convertPowerUp(Player player, int colour){
 
         ArrayList <Powerup> discardable = new ArrayList<Powerup>();
         ArrayList <Powerup> availablePowerups = player.getPlayerboard().getPowerups();

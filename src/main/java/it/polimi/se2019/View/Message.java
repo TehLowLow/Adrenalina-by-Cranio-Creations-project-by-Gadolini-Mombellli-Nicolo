@@ -56,8 +56,34 @@ public class Message {
     SCELTA DIREZIONE
      */
 
-    public static String scegliDirezione(){
+    public static String scegliDirezioneSparo(){
         return "In quale direzione vuoi sparare?\nalto\nbasso\nsinistra\ndestra";
+    }
+
+    public static String scegliDirezioneMossa(Player user, ArrayList <Cell> reachables){
+
+        String str = "In quale direzione vuoi muoverti?\n";
+
+        for(Cell cell : reachables){
+
+            if(cell.equals(user.getPosition().getUpConnection().getConnectedCell())){
+                str = str + "- Alto\n";
+            }
+
+            if(cell.equals(user.getPosition().getLeftConnection().getConnectedCell())){
+                str = str + "- Sinistra\n";
+            }
+
+            if(cell.equals(user.getPosition().getDownConnection().getConnectedCell())){
+                str = str + "- Basso\n";
+            }
+            if(cell.equals(user.getPosition().getRightConnection().getConnectedCell())){
+                str = str + "- Destra\n";
+            }
+
+        }
+
+        return str;
     }
     public static String direzioneOstruita(){
         return "Questa direzione è ostruita! Scegline un'altra.";
@@ -378,6 +404,12 @@ public class Message {
     public static String usaShadowStep(){
 
          return "Vuoi usare il passo d'ombra adesso?";
+
+    }
+
+    public static String useDice(){
+
+         return "Vuoi attivare la modalità sminuzzare?";
 
     }
 

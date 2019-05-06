@@ -32,7 +32,7 @@ public class BasicFlamethrower extends Effect {
 
         while (!foundFirst) {
 
-            direction = Server.updateWithAnswer(user, Message.scegliDirezione());
+            direction = Server.updateWithAnswer(user, Message.scegliDirezioneSparo());
 
             if (!InputCheck.directionCheck(direction)) {
                 Server.update(user, Message.inputError());
