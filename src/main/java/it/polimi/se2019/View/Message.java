@@ -123,6 +123,10 @@ public class Message {
         return "Hai inserito un bersaglio non valido, non fare il furbo. Scegline uno tra quelli disponibili.";
     }
 
+    public static String scegliAltroBersaglio(){
+        return "Vuoi scegliere un altro bersaglio?";
+    }
+
     /*
     SCELTA STANZA
      */

@@ -16,12 +16,10 @@ import static it.polimi.se2019.Network.Server.*;
 public class LockRifleEffect extends Effect {
 
 
-
-
     @Override
     public void applyEffect(Player user, ArrayList<Player> targets) {
 
-        for (Player target:targets){
+        for (Player target : targets) {
 
             ArrayList<Token> damages = target.getPlayerboard().getDamage();
             ArrayList<Token> markers = target.getPlayerboard().getMarker();
@@ -47,25 +45,25 @@ public class LockRifleEffect extends Effect {
             ora effetto opzionale
              */
 
-            if(canUseOptionalEffect(user)){
+            if (canUseOptionalEffect(user)) {
 
-                String answer = updateWithAnswer(user, Message.usaEffetto());
+                String answer = updateWithAnswer(user, Message.usareEffettoOpzionale());
 
-                while(!yesOrNo(answer)){
+                while (!yesOrNo(answer)) {
 
                     update(user, Message.inputError());
 
-                    answer = updateWithAnswer(user, Message.usaEffetto());
+                    answer = updateWithAnswer(user, Message.usareEffettoOpzionale());
 
                 }
 
-                if (answer.equalsIgnoreCase("no")){
+                if (answer.equalsIgnoreCase("no")) {
 
                     return;
 
                 }
 
-                if (answer.equalsIgnoreCase("yes")){
+                if (answer.equalsIgnoreCase("yes")) {
 
 
                     applyOptionalEffect(user, getOptionalEffectTargets(user, targets, getTargets(user)));
@@ -82,7 +80,14 @@ public class LockRifleEffect extends Effect {
     @Override
     public ArrayList<Player> getTargets(Player user) {
 
+
         ArrayList<Player> targets = new ArrayList<>();
+
+        if (!hasTargets(user)) {
+
+            return targets;
+
+        }
 
         ArrayList<Player> possibleTargets = new ArrayList<>();
 
@@ -94,7 +99,7 @@ public class LockRifleEffect extends Effect {
         controllo validità dell'input dell'utente
          */
 
-        while (!InputCheck.nicknameCheck(chosenTarget)){
+        while (!InputCheck.nicknameCheck(chosenTarget)) {
 
             update(user, Message.bersaglioNonValido());
 
@@ -102,68 +107,7 @@ public class LockRifleEffect extends Effect {
 
         }
 
-        while(!possibleTargets.contains(chosenTarget)){
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-
-        }
-
-
-        for (Player player: connectedPlayers){
-
-            if(player.getNickname().equals(chosenTarget)){
-
-                targets.add(player);
-
-            }
-
-        }
-
-    return targets;
-
-
-    }
-
-    @Override
-    public boolean hasTargets(Player user) {
-
-        if (Check.visiblePlayers(user).size() != 0){
-            return true;
-        }
-
-        return false;
-    }
-
-    public ArrayList<Player> getOptionalEffectTargets(Player user, ArrayList<Player> alreadyHit, ArrayList<Player> visiblePlayers){
-
-        ArrayList<Player> possibleTargets = new ArrayList<>();
-
-        ArrayList<Player> targets = new ArrayList<>();
-
-        for (Player player: visiblePlayers){
-            if (!alreadyHit.contains(player)){
-                possibleTargets.add(player);
-            }
-        }
-
-        String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        /*
-        controllo validità dell'input dell'utente
-         */
-
-        while (!InputCheck.nicknameCheck(chosenTarget)){
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        }
-
-        while(!possibleTargets.contains(chosenTarget)){
+        while (!possibleTargets.contains(chosenTarget)) {
 
             update(user, Message.bersaglioNonValido());
 
@@ -173,9 +117,9 @@ public class LockRifleEffect extends Effect {
         }
 
 
-        for (Player player: connectedPlayers){
+        for (Player player : connectedPlayers) {
 
-            if(player.getNickname().equals(chosenTarget)){
+            if (player.getNickname().equals(chosenTarget)) {
 
                 targets.add(player);
 
@@ -186,14 +130,73 @@ public class LockRifleEffect extends Effect {
         return targets;
 
 
+    }
+
+    @Override
+    public boolean hasTargets(Player user) {
+
+        if (Check.visiblePlayers(user).size() != 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public ArrayList<Player> getOptionalEffectTargets(Player user, ArrayList<Player> alreadyHit, ArrayList<Player> visiblePlayers) {
+
+        ArrayList<Player> possibleTargets = new ArrayList<>();
+
+        ArrayList<Player> targets = new ArrayList<>();
+
+        for (Player player : visiblePlayers) {
+            if (!alreadyHit.contains(player)) {
+                possibleTargets.add(player);
+            }
+        }
+
+        String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
+
+        /*
+        controllo validità dell'input dell'utente
+         */
+
+        while (!InputCheck.nicknameCheck(chosenTarget)) {
+
+            update(user, Message.bersaglioNonValido());
+
+            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
+
+        }
+
+        while (!possibleTargets.contains(chosenTarget)) {
+
+            update(user, Message.bersaglioNonValido());
+
+            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
+
+
+        }
+
+
+        for (Player player : connectedPlayers) {
+
+            if (player.getNickname().equals(chosenTarget)) {
+
+                targets.add(player);
+
+            }
+
+        }
+
+        return targets;
 
 
     }
 
 
-    public void applyOptionalEffect(Player user, ArrayList<Player> targets){
+    public void applyOptionalEffect(Player user, ArrayList<Player> targets) {
 
-        for (Player target:targets) {
+        for (Player target : targets) {
 
             ArrayList<Token> markers = target.getPlayerboard().getMarker();
 
@@ -207,19 +210,19 @@ public class LockRifleEffect extends Effect {
 
             update(target, Message.colpito(user));
 
-            user.getPlayerboard().getAmmoCubes().setRedCubes(user.getPlayerboard().getAmmoCubes().getRed()-1);
+            user.getPlayerboard().getAmmoCubes().setRedCubes(user.getPlayerboard().getAmmoCubes().getRed() - 1);
         }
 
 
     }
 
-    public boolean canUseOptionalEffect(Player user){
+    public boolean canUseOptionalEffect(Player user) {
 
         int redCubes = user.getPlayerboard().getAmmoCubes().getRed();
 
-        if (redCubes >= 1){
+        if (redCubes >= 1) {
 
-            if (Check.visiblePlayers(user).size() > 1){
+            if (Check.visiblePlayers(user).size() > 1) {
 
                 return true;
 
@@ -232,9 +235,6 @@ public class LockRifleEffect extends Effect {
 
 
     }
-
-
-
 
 
 }
