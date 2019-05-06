@@ -21,7 +21,7 @@ public class RMIServer extends Server implements RMIServerInterface, Runnable {
         try { //avvio il server registry
 
             RMIServer server = new RMIServer();
-            String nome = "Server";
+            String nome = "GameRMI";
             Registry registry = LocateRegistry.createRegistry(RMIPORT);
             RMIServerInterface stub = (RMIServerInterface) UnicastRemoteObject.exportObject(server, RMIPORT);
             registry.rebind(nome, stub);
@@ -34,19 +34,21 @@ public class RMIServer extends Server implements RMIServerInterface, Runnable {
 
         }
 
+
+
     }
 
 
-    public void sendMsg(String msg) throws RemoteException {
+    public void sendMsg(String msg){
+
         System.out.println(msg);
+
     }
 
 
     public synchronized boolean logIn(String u, String p) {
 
         RMILogger logger = new RMILogger();
-
-
         return true;
 
     }
