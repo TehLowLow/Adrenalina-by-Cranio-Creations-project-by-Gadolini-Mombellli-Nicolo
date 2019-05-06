@@ -3,6 +3,7 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Adrenalina.Interaction;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
@@ -77,31 +78,7 @@ public class Cyberblade extends Effect {
     //l'effetto secondario (se può).
     private void baseEffect(Player user, ArrayList <Player> targets){
 
-        boolean hasChosen = false;
-        Player target = new Player();
-
-        while(!hasChosen){
-
-            String targetNickname = Server.updateWithAnswer(user, Message.scegliBersaglio(targets));
-
-            if(!InputCheck.nicknameCheck(targetNickname)){
-                Server.update(user,Message.inputError());
-            }
-
-            for(Player possibleTarget : targets){
-
-                if(possibleTarget.getNickname().equalsIgnoreCase(targetNickname)){
-                    target = possibleTarget;
-                    hasChosen = true;
-                    continue;
-                }
-
-
-            }
-
-            Server.update(user, Message.bersaglioNonValido());
-
-        }
+        Player target = ChoosePlayer.one(user, targets);
 
         givedamage(user, target);
 
@@ -120,6 +97,7 @@ public class Cyberblade extends Effect {
         diceCost.setYellowCubes(1);
         diceCost.setRedCubes(0);
         diceCost.setBlueCubes(0);
+        boolean hasChosen = false;
 
         if(Check.affordable(user, diceCost)){
 
@@ -129,7 +107,6 @@ public class Cyberblade extends Effect {
                 return;
             }
 
-            hasChosen = false;
             boolean useDice = false;
 
             while(!hasChosen){

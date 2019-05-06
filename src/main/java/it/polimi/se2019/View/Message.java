@@ -57,7 +57,7 @@ public class Message {
      */
 
     public static String scegliDirezioneSparo(){
-        return "In quale direzione vuoi sparare?\nalto\nbasso\nsinistra\ndestra";
+        return "In quale direzione vuoi sparare?\n- alto\n- basso\n- sinistra\n- destra";
     }
 
     public static String scegliDirezioneMossa(Player user, ArrayList <Cell> reachables){
@@ -424,5 +424,15 @@ public class Message {
         return str;
 
     }
+
+    public static String vuoiSpostartiAncora(){
+         return "Vuoi spostarti ancora?";
+    }
+
+    public static String direzioneSenzaBersagli(){
+
+         return "Qui non colpiresti nessuno!";
+    }
+
 }
 

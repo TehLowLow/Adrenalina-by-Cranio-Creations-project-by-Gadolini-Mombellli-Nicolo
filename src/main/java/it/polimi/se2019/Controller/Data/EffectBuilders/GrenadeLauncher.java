@@ -8,7 +8,7 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
-
+import  it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.*;
 import java.util.ArrayList;
 
 public class GrenadeLauncher extends Effect {
@@ -268,11 +268,7 @@ public class GrenadeLauncher extends Effect {
     static void giveDamage(Player user, ArrayList<Player> targets) {
         for(Player target : targets){
 
-            Token d = new Token();
-            d.setChampionName(user.getPlayerboard().getChampionName());
-            ArrayList<Token> damages = target.getPlayerboard().getDamage();
-            damages.add(d);
-            target.getPlayerboard().setDamage(damages);
+            Damage.giveDamage(1, user, target);
 
         }
     }
@@ -282,11 +278,7 @@ public class GrenadeLauncher extends Effect {
         //assegno un danno al bersaglio in targets.
 
         Player target = targets.get(0);
-        Token damage = new Token();
-        damage.setChampionName(user.getPlayerboard().getChampionName());
-        ArrayList <Token> damages = target.getPlayerboard().getDamage();
-        damages.add(damage);
-        target.getPlayerboard().setDamage(damages);
+      Damage.giveDamage(1, user, target);
 
         //Chiamo metodo per spostare il bersaglio.
 
