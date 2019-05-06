@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Alternative effect for the Furnace
  */
 
-public class CozyFire extends Effect {
+public class CozyFireMode extends Effect {
 
 
 

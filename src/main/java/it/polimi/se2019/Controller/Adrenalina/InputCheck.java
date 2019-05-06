@@ -4,6 +4,8 @@ import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 
+import java.util.ArrayList;
+
 /**
  * This class analyzes the input strings provided by the user.
  */
@@ -144,9 +146,6 @@ public class InputCheck {
     }
 
 
-
-
-
     /*
     serve nella scelta del numero di teschi da mettere nel tracciato colpo mortale
      */
@@ -159,6 +158,56 @@ public class InputCheck {
         else {
             return false;
         }
+    }
+
+
+    public static boolean yesOrNo(String input){
+
+        if (input.equalsIgnoreCase("si")){
+            return true;
+        }
+
+        if(input.equalsIgnoreCase("no")){
+            return false;
+        }
+
+        else {
+            return false;
+        }
+    }
+
+    public static boolean correctYesNo(String input){
+
+        if(input.equalsIgnoreCase("si") || input.equalsIgnoreCase("no")){
+            return false;
+        }
+
+        return false;
+
+    }
+
+    public static boolean baseEffectGrenadeLauncher(String input){
+
+        if(input.equalsIgnoreCase("base") || input.equalsIgnoreCase("extra") ){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public static boolean availablePlayer(String nickname, ArrayList <Player> players){
+
+        for(Player player : players){
+
+            if(player.getNickname().equalsIgnoreCase(nickname))
+                return true;
+
+        }
+
+        return false;
+
+
     }
 
 
