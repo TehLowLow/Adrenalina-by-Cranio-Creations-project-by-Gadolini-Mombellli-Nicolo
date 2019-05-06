@@ -10,7 +10,4 @@ public interface RMILoggerInterface extends Remote {
 
     int getGamePort(String s) throws RemoteException;
 
-
-
-
 }

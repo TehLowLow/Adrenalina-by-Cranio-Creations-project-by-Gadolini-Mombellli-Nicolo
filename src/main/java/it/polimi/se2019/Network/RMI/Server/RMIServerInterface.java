@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 public interface RMIServerInterface extends Remote {
 
 
-    public void sendMsg(String msg) throws RemoteException;
+    void sendMsg(String msg) throws RemoteException;
 
     boolean logIn(String u, String p)throws RemoteException;
 

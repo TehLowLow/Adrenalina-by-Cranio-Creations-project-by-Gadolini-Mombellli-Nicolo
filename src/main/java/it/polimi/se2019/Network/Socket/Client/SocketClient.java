@@ -21,6 +21,9 @@ public class SocketClient extends Client implements Runnable {
     int gamePort;
     int localPort;
 
+    private static DataOutputStream out;
+    private static DataInputStream in;
+
 
     @Override
     public void run() {
@@ -33,8 +36,7 @@ public class SocketClient extends Client implements Runnable {
 
             Scanner scanner = new Scanner(System.in);
 
-            DataOutputStream out = new DataOutputStream(client.getOutputStream());
-            DataInputStream in = new DataInputStream(client.getInputStream());
+            streamInit();
 
             System.out.println(in.readUTF());   //inserisci user
             out.writeUTF(scanner.nextLine());   //mando user
@@ -47,12 +49,15 @@ public class SocketClient extends Client implements Runnable {
             System.out.println(gamePort);
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        connect(gamePort);
+
+
+        connect(gamePort);  //Risolvere il problema di connettersi con la propria porta statica
+
+        streamInit();
     }
 
 
@@ -74,8 +79,18 @@ public class SocketClient extends Client implements Runnable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         }
+    }
+
+    private void streamInit() {
+
+        try {
+            out = new DataOutputStream(client.getOutputStream());
+            in = new DataInputStream(client.getInputStream());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

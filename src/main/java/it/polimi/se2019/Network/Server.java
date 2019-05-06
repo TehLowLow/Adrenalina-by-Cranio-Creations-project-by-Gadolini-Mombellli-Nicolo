@@ -10,7 +10,6 @@ import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
 
 
-
 import java.net.ServerSocket;
 import java.util.*;
 import java.util.concurrent.*;
@@ -20,23 +19,15 @@ public class Server {
 
 
     private static volatile int clientPort = 4000;
-
     public static final int LOGINSOCKETPORT = 9999;
     public static final int LOGINRMIPORT = 8888;
-
     public static final int RMIPORT = 2100;
-    public static final int SOCKETPORT = 2200;
-
+    private static final int SOCKETPORT = 2200;
     private static int lobbyTimer;
-
     public static volatile boolean matchStarted = false;
-
     private static ServerSocket loginSocket;
     private static ServerSocket gameSocket;
-
     public static boolean start = false;
-
-
     public static Hashtable registrations = new Hashtable();  //associazione user psw
     public static Hashtable playerClient = new Hashtable();  //associazione fra giocatore e suo client
     public static CopyOnWriteArrayList<Player> connectedPlayers = new CopyOnWriteArrayList<>();  //Arraylist di player connessi.
@@ -49,8 +40,11 @@ public class Server {
             ServerSocket sSocket = new ServerSocket(port);
             System.out.println("Server online listening on port " + port);
             return sSocket;
+
         } catch (Exception e) {
+
             e.printStackTrace();
+
         }
         return null;
     }
@@ -58,7 +52,6 @@ public class Server {
 
     public static synchronized int connectedSize() {
         return connectedPlayers.size();
-
     }
 
     public static synchronized Player newPlayer(String u, String p, String connection) {
@@ -71,12 +64,11 @@ public class Server {
         registrations.put(u, p);
         connectedPlayers.add(player);
 
+        System.out.println("Ho aggiunto " + u);
+
         return player;
 
     }
-
-
-
 
 
     public static void main(String[] args) {
@@ -87,7 +79,7 @@ public class Server {
         //   al login dei player.
 
 
-        System.out.println((char)27 + "[33m");
+        //System.out.println((char) 27 + "[33m");  esempio di ascii colore
 
 
         Scanner scanner = new Scanner(System.in);
@@ -106,36 +98,23 @@ public class Server {
         loginSocket = initServer(LOGINSOCKETPORT);
 
         for (int i = 0; i < 5; i++) {
-            logExec.execute(new SocketLogger(loginSocket));  //Problema: resto in wait sulthread di login, trovare un modo per caricare i 5 thread e poi eseguirli in un altro flusso
-            //di controllo.
+            logExec.execute(new SocketLogger(loginSocket));
         }
 
-        //Da breakkare nel caso finisca il tempo per il login
-
-        for (Player player : connectedPlayers) {
-
-            System.out.println(player.getNickname());
-
-        }
 
         //avvio il server di gioco
-
         Runnable gameServer = new RMIServer();
         Thread game = new Thread(gameServer);
         game.start();
 
-        ExecutorService gameExec = Executors.newFixedThreadPool(5);  //Aggiungendo al game server
+        ExecutorService gamePool = Executors.newFixedThreadPool(5);  //Aggiungendo al game server
 
         gameSocket = initServer(SOCKETPORT);
 
 
         for (int i = 0; i < 5; i++) {
-
-            gameExec.submit(new SocketServer(gameSocket));
-
+            gamePool.submit(new SocketServer(gameSocket));
         }
-
-
     }
 
 
@@ -164,8 +143,10 @@ public class Server {
             RMIClient client = (RMIClient) playerClient.get(player);
         }
 
-
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
+
+            //Cose
+
         }
 
     }
@@ -174,6 +155,7 @@ public class Server {
 
         clientPort = clientPort + 100;
         return clientPort;
+
     }
 
 

@@ -4,13 +4,11 @@ package it.polimi.se2019.Network.RMI;
 import it.polimi.se2019.Model.Player;
 
 import it.polimi.se2019.Network.Logger;
-import it.polimi.se2019.Network.Server;
 
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Scanner;
 
 
 import static it.polimi.se2019.Network.Server.*;
@@ -21,18 +19,15 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
     private String userName;
     private String passWord;
 
-    private int RMIPORT = 2100;
+
     Player temp;
 
 
     @Override
     public void run() {
-
-
         //In questo thread devo avviare un registry, accettare una connessione alla volta, e verificare il login.
 
         initServer(this);
-
 
     }
 
@@ -71,8 +66,9 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
     @Override
     public synchronized int logIn() {
 
-        if (checkConnections()) {
-            System.out.println("Accesso al game server consentito");
+        boolean value = checkConnections();
+
+        if (value) {
             return RMIPORT;
         } else {
             System.out.println("Connessione rifiutata");//TODO 3

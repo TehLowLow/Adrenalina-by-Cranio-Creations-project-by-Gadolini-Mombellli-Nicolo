@@ -1,9 +1,9 @@
 package it.polimi.se2019.Network.RMI.Client;
 
-public interface RMIClientInterface {
+import java.rmi.Remote;
+import java.rmi.RemoteException;
 
-    public String sendMsgWithAnswer(String msg);
+public interface RMIClientInterface extends Remote {
 
-    public void sendMsg(String msg);
-
-}
+    String sendMsgWithAnswer(String msg) throws RemoteException;
+  }
