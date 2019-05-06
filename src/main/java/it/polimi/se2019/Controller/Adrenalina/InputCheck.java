@@ -4,6 +4,8 @@ import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 
+import java.util.ArrayList;
+
 /**
  * This class analyzes the input strings provided by the user.
  */
@@ -191,6 +193,20 @@ public class InputCheck {
         }
 
         return false;
+
+    }
+
+    public static boolean availablePlayer(String nickname, ArrayList <Player> players){
+
+        for(Player player : players){
+
+            if(player.getNickname().equalsIgnoreCase(nickname))
+                return true;
+
+        }
+
+        return false;
+
 
     }
 

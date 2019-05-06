@@ -296,7 +296,7 @@ public class GrenadeLauncher extends Effect {
         
     }
 
-    private void moveTarget(Player user, Player target) {
+    public static void moveTarget(Player user, Player target) {
 
         boolean chosen = false;
 
@@ -336,7 +336,7 @@ public class GrenadeLauncher extends Effect {
 
     }
 
-    public Cell getCell(Player target, String direction){
+    public static Cell getCell(Player target, String direction){
 
         if(direction.equalsIgnoreCase("alto")){
             return target.getPosition().getUpConnection().getConnectedCell();

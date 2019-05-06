@@ -99,6 +99,11 @@ public class Message {
 
     }
 
+    public static String vuoiSpostare(){
+        return "Vuoi spostare il bersaglio?";
+    }
+
+
     /*
     SCELTA BERSAGLIO
      */
@@ -346,6 +351,24 @@ public class Message {
     public static String mancaRYB(){
 
          return "Non hai abbastanza cubi munizione per questa azione!";
+    }
+
+    public static String usaTestata(){
+
+         return "Vuoi usare la testata a frammentazione?";
+    }
+
+
+    public static String usareRazzi(){
+
+         return "Vuoi utilizzare i razzi? Potrai attivarli prima o dopo l'effetto base.";
+
+    }
+
+    public static String usaRazziPortatiliPrima(){
+
+         return "Vuoi usare i razzi portatili adesso?";
+
     }
 }
 
