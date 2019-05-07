@@ -3,28 +3,50 @@ package it.polimi.se2019.Network.Socket.Server;
 import it.polimi.se2019.Network.Logger;
 import it.polimi.se2019.Network.Server;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.channels.ServerSocketChannel;
 
 
 public class SocketServer extends Server implements Runnable {
 
-    private ServerSocket gameSocket;
+    ServerSocket mySocket;
+    Socket gamerChannel;
+    DataInputStream in;
+    DataOutputStream out;
 
+    public SocketServer(ServerSocket s) {
 
-    public SocketServer(ServerSocket game){
-
-        this.gameSocket = game;
-
+        this.mySocket = s;
     }
 
 
-
-
     @Override
+
     public void run() {
 
-        //Deve gestire solamente le connessioni dopo la lobby, quindi per prima cosa genera una fixed pool di thread, e li passa ai player
+        try {
+            gamerChannel = mySocket.accept(); //da salvare per creare una sorta di playerclient hash
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            in = new DataInputStream(gamerChannel.getInputStream());
+            out = new DataOutputStream((gamerChannel.getOutputStream()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            System.out.println(in.readUTF());
+            out.writeUTF("Eccomi");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

@@ -1,8 +1,8 @@
 package it.polimi.se2019.Network;
 
 
-import it.polimi.se2019.Model.*;
-import it.polimi.se2019.Network.RMI.Client.RMIClient;
+
+import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.RMI.Server.RMIServer;
 
@@ -22,7 +22,7 @@ public class Server {
     public static final int LOGINSOCKETPORT = 9999;
     public static final int LOGINRMIPORT = 8888;
     public static final int RMIPORT = 2100;
-    private static final int SOCKETPORT = 2200;
+    public static final int SOCKETPORT = 2200;
     private static int lobbyTimer;
     public static volatile boolean matchStarted = false;
     private static ServerSocket loginSocket;
@@ -79,7 +79,7 @@ public class Server {
         //   al login dei player.
 
 
-        //System.out.println((char) 27 + "[33m");  esempio di ascii colore
+        System.out.println((char) 27 + "[38;5;160m"); // esempio di ascii colore
 
 
         Scanner scanner = new Scanner(System.in);
@@ -122,8 +122,7 @@ public class Server {
 
         if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
 
-            RMIClient client = (RMIClient) playerClient.get(player);
-            return client.sendMsgWithAnswer(msg);
+
         }
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
@@ -140,7 +139,7 @@ public class Server {
 
         if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
 
-            RMIClient client = (RMIClient) playerClient.get(player);
+
         }
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
@@ -157,6 +156,20 @@ public class Server {
         return clientPort;
 
     }
+
+
+
+    /*
+    Per gestire le connessioni devo ricordarmi di inserire nel daemon thread che controlla i connessi una regola tale
+    per cui a circa 5/10 secondi dalla fine imposto il match come "iniziato". Questo previene falsi positivi di client
+    che aprono la connessione e poi vanno afk falsando il numero di connessi con registeredPlayers.
+    Con sto sgamo impedisco che cio accada chiudendo preventivamente le iscrizioni a pochi secondi dalla fine cosi che
+    ogni user possa con calma finire la registrazione.
+
+
+    Pensare per il futuro di inserire anche un timer per la registrazione, cosi da impedire ulteriormente casini legati
+    al login
+     */
 
 
 }
