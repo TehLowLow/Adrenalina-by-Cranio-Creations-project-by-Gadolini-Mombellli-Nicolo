@@ -5,9 +5,11 @@ import it.polimi.se2019.Network.Client;
 import it.polimi.se2019.Network.RMI.RMILoggerInterface;
 import it.polimi.se2019.Network.RMI.Server.RMIServerInterface;
 import it.polimi.se2019.View.Parser;
+
 import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
 import static it.polimi.se2019.Network.Server.RMIPORT;
 
+import java.rmi.NoSuchObjectException;
 import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -15,13 +17,12 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
 
 
-
 public class RMIClient extends Client implements Runnable, RMIClientInterface, Remote {
 
-    private static RMILoggerInterface Logger;
-    private static RMILoggerInterface rServer;
-    private static RMIServerInterface Game;
-    private static RMIServerInterface gServer;
+    private static volatile RMILoggerInterface Logger;
+    private static volatile RMILoggerInterface rServer;
+    private static volatile RMIServerInterface Game;
+    private static volatile RMIServerInterface gServer;
 
     private boolean connected = false;
     private boolean logged = false;
@@ -54,18 +55,24 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
                     value = Logger.verify(user, psw);
 
+                    if (value != -1) {
+                        localPort = Logger.getGamePort(user);
+                        System.out.println("la mia porta di gioco è " + localPort);
+                        logged = true;
+                    }
+
                 } catch (NullPointerException e) {
 
                     System.out.println("Null Pointer su Login.verify");
 
                 }
 
-                if (value != -1) {
+                catch(NoSuchObjectException e){
 
-                    localPort = Logger.getGamePort(user);
-                    System.out.println("la mia porta di gioco è " + localPort);
-                    logged = true;
+                    e.printStackTrace();
+
                 }
+
 
             } catch (Exception e) {
                 //
@@ -108,7 +115,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
                 } catch (Exception e) {
 
-                    System.out.println("Ritento la connessione cazzo");
+                    System.out.println("Ritento la connessione");
                     e.printStackTrace();
                 }
 

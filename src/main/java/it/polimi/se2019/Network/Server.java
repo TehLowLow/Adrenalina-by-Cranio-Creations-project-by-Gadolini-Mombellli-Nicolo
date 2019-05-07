@@ -1,7 +1,6 @@
 package it.polimi.se2019.Network;
 
 
-
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.RMI.Server.RMIServer;
@@ -33,7 +32,7 @@ public class Server {
     public static CopyOnWriteArrayList<Player> connectedPlayers = new CopyOnWriteArrayList<>();  //Arraylist di player connessi.
 
 
-    private static ServerSocket initServer(int port) {
+    private synchronized static ServerSocket initServer(int port) {
 
         try {
 
@@ -79,7 +78,7 @@ public class Server {
         //   al login dei player.
 
 
-        System.out.println((char) 27 + "[38;5;160m"); // esempio di ascii colore
+       // System.out.println((char) 27 + "[33m"); // esempio di ascii colore
 
 
         Scanner scanner = new Scanner(System.in);

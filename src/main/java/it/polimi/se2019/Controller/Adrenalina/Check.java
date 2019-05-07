@@ -22,6 +22,7 @@ public class Check {
 
     /**
      * Checks if a player has sustained enough damage to be declared dead.
+     *
      * @param damaged is the player that receives damage.
      * @return an int value. 0 if the player hasn't been damaged enough to die, 1 if the player receives damage only to
      * die, 2 if the attacker overkills.
@@ -55,19 +56,20 @@ public class Check {
     /**
      * When a player kills another player, this method resolves the board and assigns the players
      * their scores.
+     *
      * @param killed the defeated player whose board needs to be resolved.
      */
-    public void resolveBoard(Player killed, Board board, Player killer, boolean overkill){
+    public void resolveBoard(Player killed, Board board, Player killer, boolean overkill) {
 
-        ArrayList<Token>  damages = new ArrayList<Token>();
+        ArrayList<Token> damages = new ArrayList<Token>();
         damages = killed.getPlayerboard().getDamage();
 
         /*
         First blood
          */
 
-        for (Player player1:connectedPlayers){
-            if (player1.getPlayerboard().getChampionName().equals(damages.get(0).getChampionName())){
+        for (Player player1 : connectedPlayers) {
+            if (player1.getPlayerboard().getChampionName().equals(damages.get(0).getChampionName())) {
                 /*
                 aggiungo un punto a chi ha fatto il primo sangue
                  */
@@ -79,8 +81,7 @@ public class Check {
         assigning the points to the killers
          */
 
-        class PlayerWithScore{
-
+        class PlayerWithScore {
 
 
             Player player;
@@ -89,9 +90,9 @@ public class Check {
 
         }
 
-        ArrayList<PlayerWithScore>  playersWithScore = new ArrayList<>();
+        ArrayList<PlayerWithScore> playersWithScore = new ArrayList<>();
 
-        for (Player player : connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             PlayerWithScore playerScore = new PlayerWithScore();
 
@@ -99,11 +100,11 @@ public class Check {
 
             playerScore.score = 0;
 
-            for (Token damage: damages){
+            for (Token damage : damages) {
 
-                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())){
+                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
 
-                    playerScore.score ++;
+                    playerScore.score++;
 
                 }
 
@@ -119,9 +120,9 @@ public class Check {
 
         ArrayList<Player> whoShotFirst = new ArrayList<>();
 
-        for (Token damage: damages){
+        for (Token damage : damages) {
 
-            for (Player player:connectedPlayers) {
+            for (Player player : connectedPlayers) {
 
                 if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
 
@@ -140,31 +141,30 @@ public class Check {
             @Override
             public int compare(PlayerWithScore o1, PlayerWithScore o2) {
 
-                if (o1.score > o2.score){
+                if (o1.score > o2.score) {
 
                     return 1;
 
                 }
 
-                if (o1.score == o2.score){
+                if (o1.score == o2.score) {
 
-                    if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)){
+                    if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)) {
                         return 1;
                     }
 
-                    if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)){
+                    if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)) {
                         return -1;
                     }
 
 
-
                 }
 
-                if (o1.score < o2.score){
+                if (o1.score < o2.score) {
                     return -1;
+                } else {
+                    return 0;
                 }
-
-                else {return 0;}
             }
         };
 
@@ -172,9 +172,9 @@ public class Check {
 
         int playerboardCounter = 0;
 
-        for(PlayerWithScore attacker: playersWithScore){
+        for (PlayerWithScore attacker : playersWithScore) {
 
-            if(attacker.score != 0){
+            if (attacker.score != 0) {
 
                 attacker.player.setScore(killer.getScore() + killed.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
 
@@ -204,34 +204,32 @@ public class Check {
         clearing the damages
          */
 
-        for (Token damage:damages){
+        for (Token damage : damages) {
             damages.remove(damage);
         }
-
-
-
 
 
     }
 
     /**
      * Checks if the player that is being attacked has markers to add to the total damage.
-     * @param active is the attacker, used to look for attacker's markers.
+     *
+     * @param active  is the attacker, used to look for attacker's markers.
      * @param passive is the player being attacked that needs te markers check to resolve total damage.
      */
-    public void markers(Player active, Player passive){
+    public void markers(Player active, Player passive) {
 
 
         /*
         counter
         */
 
-        int counter=0;
+        int counter = 0;
 
-        for (Token marker: passive.getPlayerboard().getMarker()){
+        for (Token marker : passive.getPlayerboard().getMarker()) {
 
 
-            if (marker.getChampionName().equals(active.getPlayerboard().getChampionName())){
+            if (marker.getChampionName().equals(active.getPlayerboard().getChampionName())) {
 
                 /*
                 aggiunge il marker ai danni
@@ -248,7 +246,7 @@ public class Check {
             }
 
 
-        counter++;
+            counter++;
 
 
         }
@@ -257,18 +255,19 @@ public class Check {
 
     /**
      * Checks the amount of damages dealt to a player by another player.
+     *
      * @param attacker player that has dealt the damages.
      * @param defender player that has taken the damages.
      * @return the amount of damage received by the attacker.
      */
-    private int damages(Player attacker, Player defender){
+    private int damages(Player attacker, Player defender) {
 
         int damagesAmount = 0;
 
         ArrayList<Token> damages = defender.getPlayerboard().getDamage();
 
-        for (Token damage:damages){
-            if (damage.getChampionName().equals(attacker.getPlayerboard().getChampionName())){
+        for (Token damage : damages) {
+            if (damage.getChampionName().equals(attacker.getPlayerboard().getChampionName())) {
                 damagesAmount++;
             }
         }
@@ -278,59 +277,62 @@ public class Check {
 
     /**
      * Checks if a buyer can afford a weapon found in the spawn room. If not, returns false.
-     * @param buyer the buyer of the weapon.
+     *
+     * @param buyer  the buyer of the weapon.
      * @param weapon the weapon to be checked.
      * @return true if a player can afford a weapon.
      */
-    public boolean affordableWeapon(Player buyer, Weapon weapon){
+    public boolean affordableWeapon(Player buyer, Weapon weapon) {
 
-        if     (buyer.getPlayerboard().getAmmoCubes().getBlue() >= weapon.getPrice().getBlue() &&
+        if (buyer.getPlayerboard().getAmmoCubes().getBlue() >= weapon.getPrice().getBlue() &&
                 buyer.getPlayerboard().getAmmoCubes().getRed() >= weapon.getPrice().getRed() &&
                 buyer.getPlayerboard().getAmmoCubes().getYellow() >= weapon.getPrice().getYellow()) {
 
             return true;
 
+        } else {
+            return false;
         }
-
-        else {return false;}
     }
 
     /**
      * Checks if a player can afford to reload a weapon that is holding.
+     *
      * @param player the player that wants to reload.
      * @param weapon the weapon to reload.
      * @return true if the player can afford to reload.
      */
-    public boolean affordableReload(Player player, Weapon weapon){
+    public boolean affordableReload(Player player, Weapon weapon) {
 
-        if     (player.getPlayerboard().getAmmoCubes().getBlue() >= weapon.getRechargeCost().getBlue() &&
+        if (player.getPlayerboard().getAmmoCubes().getBlue() >= weapon.getRechargeCost().getBlue() &&
                 player.getPlayerboard().getAmmoCubes().getRed() >= weapon.getRechargeCost().getRed() &&
                 player.getPlayerboard().getAmmoCubes().getYellow() >= weapon.getRechargeCost().getYellow()) {
 
             return true;
 
+        } else {
+            return false;
         }
-
-        else {return false;}
 
     }
 
 
     /**
      * Generic check: if the player can afford the cost,returns true.
+     *
      * @param player the buyer
-     * @param cost the cost
+     * @param cost   the cost
      * @return true if the player can afford the cost
      */
-    public static boolean affordable(Player player, Rybamount cost){
+    public static boolean affordable(Player player, Rybamount cost) {
 
         int blueAvailable = player.getPlayerboard().getAmmoCubes().getBlue();
         int yellowAvailable = player.getPlayerboard().getAmmoCubes().getYellow();
         int redAvailable = player.getPlayerboard().getAmmoCubes().getRed();
 
-        ArrayList <Powerup> playerPowerups = player.getPlayerboard().getPowerups();
+        ArrayList<Powerup> playerPowerups = player.getPlayerboard().getPowerups();
 
-        for(Powerup powerup : playerPowerups){
+        for (Powerup powerup : playerPowerups) {
 
             blueAvailable = blueAvailable + powerup.getTradeValue().getBlue();
             yellowAvailable = yellowAvailable + powerup.getTradeValue().getYellow();
@@ -342,7 +344,7 @@ public class Check {
         int blueCost = cost.getBlue();
         int redCost = cost.getRed();
 
-        if(yellowCost>yellowAvailable || redCost>yellowAvailable || blueCost>blueAvailable){
+        if (yellowCost > yellowAvailable || redCost > yellowAvailable || blueCost > blueAvailable) {
             return false;
         }
 
@@ -352,49 +354,52 @@ public class Check {
 
     /**
      * Checks if a player has sustained enough damage to use enhanced pickup.
+     *
      * @param player is the player to be checked.
      * @return true if the player has sustained enough damage.
      */
-    public boolean availableEnhancedPickUp(Player player){
+    public boolean availableEnhancedPickUp(Player player) {
 
-        if (player.getPlayerboard().getDamage().size() >= 3){
+        if (player.getPlayerboard().getDamage().size() >= 3) {
             return true;
+        } else {
+            return false;
         }
-
-        else {return false;}
     }
 
     /**
      * Checks if a player has sustained enough damage to use enhanced shoot.
+     *
      * @param player is the player to be checked.
      * @return true if the player has sustained enough damage.
      */
-    public boolean availableEnhancedShoot(Player player){
+    public boolean availableEnhancedShoot(Player player) {
 
-        if (player.getPlayerboard().getDamage().size() >= 6){
+        if (player.getPlayerboard().getDamage().size() >= 6) {
             return true;
+        } else {
+            return false;
         }
-
-        else {return false;}
 
     }
 
     /**
      * Runs to limit the total amount of ammo per color to 3 ammos. For example, if a player has more than 3 red
      * ammo cubes this method will return the amount of cubes to 3.
+     *
      * @param player is the player to be checked.
      */
-    public void limitAmmoCubes(Player player){
+    public void limitAmmoCubes(Player player) {
 
-        if (player.getPlayerboard().getAmmoCubes().getYellow() > 3){
+        if (player.getPlayerboard().getAmmoCubes().getYellow() > 3) {
             player.getPlayerboard().getAmmoCubes().setYellowCubes(3);
         }
 
-        if (player.getPlayerboard().getAmmoCubes().getRed() > 3){
+        if (player.getPlayerboard().getAmmoCubes().getRed() > 3) {
             player.getPlayerboard().getAmmoCubes().setRedCubes(3);
         }
 
-        if (player.getPlayerboard().getAmmoCubes().getBlue() > 3){
+        if (player.getPlayerboard().getAmmoCubes().getBlue() > 3) {
             player.getPlayerboard().getAmmoCubes().setBlueCubes(3);
         }
 
@@ -402,52 +407,55 @@ public class Check {
 
     /**
      * Checks if a player has reached the limit of weapons he can keep.
+     *
      * @param player is the player to be checked.
      * @return true if the player already has got 3 weapons
      */
-    public boolean limitWeapon(Player player){
+    public boolean limitWeapon(Player player) {
 
-        if (player.getPlayerboard().getWeapons().size() >= 3){
+        if (player.getPlayerboard().getWeapons().size() >= 3) {
             return true;
+        } else {
+            return false;
         }
-
-        else {return false;}
     }
 
     /**
      * Checks if a player has reached the limit of powerUps he can keep
+     *
      * @param player is the player to be checked.
      */
-    public boolean limitPowerUp(Player player){
+    public boolean limitPowerUp(Player player) {
 
-        if (player.getPlayerboard().getPowerups().size() >= 3){
+        if (player.getPlayerboard().getPowerups().size() >= 3) {
             return true;
+        } else {
+            return false;
         }
-
-        else {return false;}
     }
 
     /**
      * A player can place up to 3 markers on each enemy playerboard, and the player can have up to 3 marker from each
      * other player. This method runs to check if the number of markers has reached limit and fix it.
+     *
      * @param defender is who has the markers to check
      * @param attacker is who gives the markers
      */
-    public static void limitMarkers(Player defender, Player attacker){
+    public static void limitMarkers(Player defender, Player attacker) {
 
         ArrayList<Token> markers = defender.getPlayerboard().getMarker();
 
         int attackerMarkers = 0;
 
 
-        for (Token marker:markers) {
+        for (Token marker : markers) {
 
-            if (marker.getChampionName().equals(attacker.getPlayerboard().getChampionName())){
+            if (marker.getChampionName().equals(attacker.getPlayerboard().getChampionName())) {
                 attackerMarkers++;
             }
         }
 
-        if (attackerMarkers>3){
+        if (attackerMarkers > 3) {
             attackerMarkers = 3;
         }
 
@@ -456,56 +464,56 @@ public class Check {
 
     /**
      * Returns an arraylist containing all the players in the field of view of a player.
+     *
      * @param player is the player that needs the fov check.
      * @return all the others players that are in the fov.
      */
-    public static ArrayList <Player> visiblePlayers (Player player){
+    public static ArrayList<Player> visiblePlayers(Player player) {
 
         ArrayList<Player> visiblePlayers = new ArrayList<Player>();
 
-        for (Player player1:connectedPlayers){
+        for (Player player1 : connectedPlayers) {
 
 
             /*
             tra i visibili non ci deve essere lui stesso
              */
-            if (!player1.equals(player)){
+            if (!player1.equals(player)) {
 
 
-
-                if (player.getPosition().getColour() == player1.getPosition().getColour()){
-                    if(!visiblePlayers.contains(player1)){
+                if (player.getPosition().getColour() == player1.getPosition().getColour()) {
+                    if (!visiblePlayers.contains(player1)) {
                         visiblePlayers.add(player1);
                     }
                 }
 
-                if (player.getPosition().getUpConnection().getType().equals(DOOR)){
-                    if (player1.getPosition().getColour() == player.getPosition().getUpConnection().getConnectedCell().getColour()){
-                        if(!visiblePlayers.contains(player1)){
+                if (player.getPosition().getUpConnection().getType().equals(DOOR)) {
+                    if (player1.getPosition().getColour() == player.getPosition().getUpConnection().getConnectedCell().getColour()) {
+                        if (!visiblePlayers.contains(player1)) {
                             visiblePlayers.add(player1);
                         }
                     }
                 }
 
-                if (player.getPosition().getRightConnection().getType().equals(DOOR)){
-                    if (player1.getPosition().getColour() == player.getPosition().getRightConnection().getConnectedCell().getColour()){
-                        if(!visiblePlayers.contains(player1)){
+                if (player.getPosition().getRightConnection().getType().equals(DOOR)) {
+                    if (player1.getPosition().getColour() == player.getPosition().getRightConnection().getConnectedCell().getColour()) {
+                        if (!visiblePlayers.contains(player1)) {
                             visiblePlayers.add(player1);
                         }
                     }
                 }
 
-                if (player.getPosition().getLeftConnection().getType().equals(DOOR)){
-                    if (player1.getPosition().getColour() == player.getPosition().getLeftConnection().getConnectedCell().getColour()){
-                        if(!visiblePlayers.contains(player1)){
+                if (player.getPosition().getLeftConnection().getType().equals(DOOR)) {
+                    if (player1.getPosition().getColour() == player.getPosition().getLeftConnection().getConnectedCell().getColour()) {
+                        if (!visiblePlayers.contains(player1)) {
                             visiblePlayers.add(player1);
                         }
                     }
                 }
 
-                if (player.getPosition().getDownConnection().getType().equals(DOOR)){
-                    if (player1.getPosition().getColour() == player.getPosition().getDownConnection().getConnectedCell().getColour()){
-                        if(!visiblePlayers.contains(player1)){
+                if (player.getPosition().getDownConnection().getType().equals(DOOR)) {
+                    if (player1.getPosition().getColour() == player.getPosition().getDownConnection().getConnectedCell().getColour()) {
+                        if (!visiblePlayers.contains(player1)) {
                             visiblePlayers.add(player1);
                         }
                     }
@@ -513,50 +521,50 @@ public class Check {
             }
 
 
-
         }
 
-    return visiblePlayers;
+        return visiblePlayers;
 
     }
 
     /**
      * Returns all the cells that are a maximum of n steps away from player.
+     *
      * @param player is the player that wants the check to move.
-     * @param steps is the number of steps to do.
+     * @param steps  is the number of steps to do.
      * @return an arraylist of reachable cells.
      */
-     public static ArrayList <Cell> reachableCells (Player player, int steps){
+    public static ArrayList<Cell> reachableCells(Player player, int steps) {
 
         ArrayList<Cell> reachableCells = new ArrayList<>();
 
         Cell position = player.getPosition();
 
-        if (steps==1){
+        if (steps == 1) {
 
             /*
             controllo solo le celle raggiungibili dalla posizione del player
              */
 
-            if (position.getUpConnection().getType().equals(DOOR) || position.getUpConnection().getType().equals(FREE)){
+            if (position.getUpConnection().getType().equals(DOOR) || position.getUpConnection().getType().equals(FREE)) {
 
                 reachableCells.add(position.getUpConnection().getConnectedCell());
 
             }
 
-            if (position.getRightConnection().getType().equals(DOOR) || position.getRightConnection().getType().equals(FREE)){
+            if (position.getRightConnection().getType().equals(DOOR) || position.getRightConnection().getType().equals(FREE)) {
 
                 reachableCells.add(position.getUpConnection().getConnectedCell());
 
             }
 
-            if (position.getLeftConnection().getType().equals(DOOR) || position.getLeftConnection().getType().equals(FREE)){
+            if (position.getLeftConnection().getType().equals(DOOR) || position.getLeftConnection().getType().equals(FREE)) {
 
                 reachableCells.add(position.getUpConnection().getConnectedCell());
 
             }
 
-            if (position.getDownConnection().getType().equals(DOOR) || position.getDownConnection().getType().equals(FREE)){
+            if (position.getDownConnection().getType().equals(DOOR) || position.getDownConnection().getType().equals(FREE)) {
 
                 reachableCells.add(position.getUpConnection().getConnectedCell());
 
@@ -565,31 +573,31 @@ public class Check {
         }
 
 
-        if (steps > 1){
+        if (steps > 1) {
 
             /*
             prima controllo la mia posizione
              */
 
-            if (position.getUpConnection().getType().equals(DOOR) || position.getUpConnection().getType().equals(FREE)){
+            if (position.getUpConnection().getType().equals(DOOR) || position.getUpConnection().getType().equals(FREE)) {
 
                 reachableCells.add(position.getUpConnection().getConnectedCell());
 
             }
 
-            if (position.getRightConnection().getType().equals(DOOR) || position.getRightConnection().getType().equals(FREE)){
+            if (position.getRightConnection().getType().equals(DOOR) || position.getRightConnection().getType().equals(FREE)) {
 
                 reachableCells.add(position.getUpConnection().getConnectedCell());
 
             }
 
-            if (position.getLeftConnection().getType().equals(DOOR) || position.getLeftConnection().getType().equals(FREE)){
+            if (position.getLeftConnection().getType().equals(DOOR) || position.getLeftConnection().getType().equals(FREE)) {
 
                 reachableCells.add(position.getUpConnection().getConnectedCell());
 
             }
 
-            if (position.getDownConnection().getType().equals(DOOR) || position.getDownConnection().getType().equals(FREE)){
+            if (position.getDownConnection().getType().equals(DOOR) || position.getDownConnection().getType().equals(FREE)) {
 
                 reachableCells.add(position.getUpConnection().getConnectedCell());
 
@@ -600,24 +608,23 @@ public class Check {
              */
 
 
-
-            for (int i=1; i<steps-1; i++){
+            for (int i = 1; i < steps - 1; i++) {
 
                 ArrayList<Cell> copiesToCheck = new ArrayList<>();
 
-                for (Cell cell:reachableCells){
+                for (Cell cell : reachableCells) {
                     copiesToCheck.add(cell);
                 }
 
-                for (Cell cell:copiesToCheck){
+                for (Cell cell : copiesToCheck) {
 
-                    if (cell.getUpConnection().getType().equals(DOOR) || cell.getUpConnection().getType().equals(FREE)){
+                    if (cell.getUpConnection().getType().equals(DOOR) || cell.getUpConnection().getType().equals(FREE)) {
 
                     /*
                     se la cella raggiungibile non è già presente nell'array, essa viene aggiunta.
                      */
 
-                        if(!reachableCells.contains(cell.getUpConnection().getConnectedCell())){
+                        if (!reachableCells.contains(cell.getUpConnection().getConnectedCell())) {
 
                             reachableCells.add(cell.getUpConnection().getConnectedCell());
 
@@ -625,13 +632,13 @@ public class Check {
 
                     }
 
-                    if (cell.getRightConnection().getType().equals(DOOR) || cell.getRightConnection().getType().equals(FREE)){
+                    if (cell.getRightConnection().getType().equals(DOOR) || cell.getRightConnection().getType().equals(FREE)) {
 
                     /*
                     se la cella raggiungibile non è già presente nell'array, essa viene aggiunta.
                      */
 
-                        if(!reachableCells.contains(cell.getRightConnection().getConnectedCell())){
+                        if (!reachableCells.contains(cell.getRightConnection().getConnectedCell())) {
 
                             reachableCells.add(cell.getRightConnection().getConnectedCell());
 
@@ -639,13 +646,13 @@ public class Check {
 
                     }
 
-                    if (cell.getLeftConnection().getType().equals(DOOR) || cell.getLeftConnection().getType().equals(FREE)){
+                    if (cell.getLeftConnection().getType().equals(DOOR) || cell.getLeftConnection().getType().equals(FREE)) {
 
                     /*
                     se la cella raggiungibile non è già presente nell'array, essa viene aggiunta.
                      */
 
-                        if(!reachableCells.contains(cell.getLeftConnection().getConnectedCell())){
+                        if (!reachableCells.contains(cell.getLeftConnection().getConnectedCell())) {
 
                             reachableCells.add(cell.getLeftConnection().getConnectedCell());
 
@@ -653,20 +660,19 @@ public class Check {
 
                     }
 
-                    if (cell.getDownConnection().getType().equals(DOOR) || cell.getDownConnection().getType().equals(FREE)){
+                    if (cell.getDownConnection().getType().equals(DOOR) || cell.getDownConnection().getType().equals(FREE)) {
 
                     /*
                     se la cella raggiungibile non è già presente nell'array, essa viene aggiunta.
                      */
 
-                        if(!reachableCells.contains(cell.getDownConnection().getConnectedCell())){
+                        if (!reachableCells.contains(cell.getDownConnection().getConnectedCell())) {
 
                             reachableCells.add(cell.getDownConnection().getConnectedCell());
 
                         }
 
                     }
-
 
 
                 }
@@ -679,10 +685,10 @@ public class Check {
 
     }
 
-    public void resolveFrenzyboard(Player killed, Player killer, Board board, boolean overkill){
+    public void resolveFrenzyboard(Player killed, Player killer, Board board, boolean overkill) {
 
 
-        ArrayList<Token>  damages = new ArrayList<Token>();
+        ArrayList<Token> damages = new ArrayList<Token>();
         damages = killed.getPlayerboard().getDamage();
 
 
@@ -692,8 +698,7 @@ public class Check {
         assigning the points to the killers
          */
 
-        class PlayerWithScore{
-
+        class PlayerWithScore {
 
 
             Player player;
@@ -702,9 +707,9 @@ public class Check {
 
         }
 
-        ArrayList<PlayerWithScore>  playersWithScore = new ArrayList<>();
+        ArrayList<PlayerWithScore> playersWithScore = new ArrayList<>();
 
-        for (Player player : connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             PlayerWithScore playerScore = new PlayerWithScore();
 
@@ -712,11 +717,11 @@ public class Check {
 
             playerScore.score = 0;
 
-            for (Token damage: damages){
+            for (Token damage : damages) {
 
-                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())){
+                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
 
-                    playerScore.score ++;
+                    playerScore.score++;
 
                 }
 
@@ -732,9 +737,9 @@ public class Check {
 
         ArrayList<Player> whoShotFirst = new ArrayList<>();
 
-        for (Token damage: damages){
+        for (Token damage : damages) {
 
-            for (Player player:connectedPlayers) {
+            for (Player player : connectedPlayers) {
 
                 if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
 
@@ -753,31 +758,30 @@ public class Check {
             @Override
             public int compare(PlayerWithScore o1, PlayerWithScore o2) {
 
-                if (o1.score > o2.score){
+                if (o1.score > o2.score) {
 
                     return 1;
 
                 }
 
-                if (o1.score == o2.score){
+                if (o1.score == o2.score) {
 
-                    if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)){
+                    if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)) {
                         return 1;
                     }
 
-                    if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)){
+                    if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)) {
                         return -1;
                     }
 
 
-
                 }
 
-                if (o1.score < o2.score){
+                if (o1.score < o2.score) {
                     return -1;
+                } else {
+                    return 0;
                 }
-
-                else {return 0;}
             }
         };
 
@@ -785,9 +789,9 @@ public class Check {
 
         int playerboardCounter = 0;
 
-        for(PlayerWithScore attacker: playersWithScore){
+        for (PlayerWithScore attacker : playersWithScore) {
 
-            if(attacker.score != 0){
+            if (attacker.score != 0) {
 
                 attacker.player.setScore(killer.getScore() + killed.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
 
@@ -814,31 +818,30 @@ public class Check {
         clearing the damages
          */
 
-        for (Token damage:damages){
+        for (Token damage : damages) {
             damages.remove(damage);
         }
 
     }
 
 
-
-
     /**
      * This method runs after the final frenzy, and checks (/resolve) all the last points remaining on the board.
      * Then it proceeds to sum up the points of each player and declare a winner
      * (or a chart with the points of all the players).
-     * @return the winner.
+     *
      * @param board is the board to solve.
+     * @return the winner.
      */
-    public void winner(Board board){
+    public void winner(Board board) {
 
         /*
         risolvo le finalfrenzy playerboard
          */
 
-        for (Player player:connectedPlayers){
+        for (Player player : connectedPlayers) {
 
-            ArrayList<Token>  damages = new ArrayList<Token>();
+            ArrayList<Token> damages = new ArrayList<Token>();
             damages = player.getPlayerboard().getDamage();
 
 
@@ -846,10 +849,10 @@ public class Check {
             primo sangue se la board non è frenzy
              */
 
-            if (player.getPlayerboard().isFrenzyboard() == false){
+            if (player.getPlayerboard().isFrenzyboard() == false) {
 
-                for (Player attacker:connectedPlayers){
-                    if (attacker.getPlayerboard().getChampionName().equals(damages.get(0).getChampionName())){
+                for (Player attacker : connectedPlayers) {
+                    if (attacker.getPlayerboard().getChampionName().equals(damages.get(0).getChampionName())) {
                 /*
                 aggiungo un punto a chi ha fatto il primo sangue
                  */
@@ -866,8 +869,7 @@ public class Check {
         assigning the points to the killers
          */
 
-            class PlayerWithScore{
-
+            class PlayerWithScore {
 
 
                 Player player;
@@ -876,9 +878,9 @@ public class Check {
 
             }
 
-            ArrayList<PlayerWithScore>  playersWithScore = new ArrayList<>();
+            ArrayList<PlayerWithScore> playersWithScore = new ArrayList<>();
 
-            for (Player attacker : connectedPlayers){
+            for (Player attacker : connectedPlayers) {
 
                 PlayerWithScore playerScore = new PlayerWithScore();
 
@@ -886,11 +888,11 @@ public class Check {
 
                 playerScore.score = 0;
 
-                for (Token damage: damages){
+                for (Token damage : damages) {
 
-                    if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())){
+                    if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
 
-                        playerScore.score ++;
+                        playerScore.score++;
 
                     }
 
@@ -906,9 +908,9 @@ public class Check {
 
             ArrayList<Player> whoShotFirst = new ArrayList<>();
 
-            for (Token damage: damages){
+            for (Token damage : damages) {
 
-                for (Player player1:connectedPlayers) {
+                for (Player player1 : connectedPlayers) {
 
                     if (damage.getChampionName().equals(player1.getPlayerboard().getChampionName())) {
 
@@ -927,31 +929,30 @@ public class Check {
                 @Override
                 public int compare(PlayerWithScore o1, PlayerWithScore o2) {
 
-                    if (o1.score > o2.score){
+                    if (o1.score > o2.score) {
 
                         return 1;
 
                     }
 
-                    if (o1.score == o2.score){
+                    if (o1.score == o2.score) {
 
-                        if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)){
+                        if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)) {
                             return 1;
                         }
 
-                        if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)){
+                        if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)) {
                             return -1;
                         }
 
 
-
                     }
 
-                    if (o1.score < o2.score){
+                    if (o1.score < o2.score) {
                         return -1;
+                    } else {
+                        return 0;
                     }
-
-                    else {return 0;}
                 }
             };
 
@@ -959,9 +960,9 @@ public class Check {
 
             int playerboardCounter = 0;
 
-            for(PlayerWithScore attacker: playersWithScore){
+            for (PlayerWithScore attacker : playersWithScore) {
 
-                if(attacker.score != 0){
+                if (attacker.score != 0) {
 
                     attacker.player.setScore(attacker.player.getScore() + player.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
 
@@ -978,8 +979,7 @@ public class Check {
         risoluzione tracciato colpo mortale
          */
 
-        class PlayerWithKills{
-
+        class PlayerWithKills {
 
 
             Player player;
@@ -988,9 +988,9 @@ public class Check {
 
         }
 
-        ArrayList<PlayerWithKills>  playersWithKills = new ArrayList<>();
+        ArrayList<PlayerWithKills> playersWithKills = new ArrayList<>();
 
-        for (Player killer : connectedPlayers){
+        for (Player killer : connectedPlayers) {
 
             PlayerWithKills playerKills = new PlayerWithKills();
 
@@ -998,14 +998,14 @@ public class Check {
 
             playerKills.kills = 0;
 
-            for (MortalBlow mortalBlow: board.getMortalBlowTrack()){
+            for (MortalBlow mortalBlow : board.getMortalBlowTrack()) {
 
-                if (mortalBlow.getKiller().equals(killer)){
+                if (mortalBlow.getKiller().equals(killer)) {
 
-                    playerKills.kills ++;
+                    playerKills.kills++;
 
-                    if(mortalBlow.isOverkill() == true){
-                        playerKills.kills ++;
+                    if (mortalBlow.isOverkill() == true) {
+                        playerKills.kills++;
                     }
 
                 }
@@ -1023,9 +1023,9 @@ public class Check {
 
         ArrayList<Player> whoKilledFirst = new ArrayList<>();
 
-        for (MortalBlow mortalBlow: board.getMortalBlowTrack()){
+        for (MortalBlow mortalBlow : board.getMortalBlowTrack()) {
 
-            for (Player killer:connectedPlayers) {
+            for (Player killer : connectedPlayers) {
 
                 if (mortalBlow.getKiller().equals(killer)) {
 
@@ -1078,9 +1078,9 @@ public class Check {
 
         int mortalBlowCounter = 0;
 
-        for(PlayerWithKills killer: playersWithKills){
+        for (PlayerWithKills killer : playersWithKills) {
 
-            if(killer.kills != 0){
+            if (killer.kills != 0) {
 
                 killer.player.setScore(killer.player.getScore() + board.getMortalBlowTrackValue().get(mortalBlowCounter));
 
@@ -1095,7 +1095,7 @@ public class Check {
         controllo dei punti, risoluzione parità e calcolo del vincitore
          */
 
-        class PotentialWinner{
+        class PotentialWinner {
 
             Player player;
 
@@ -1116,7 +1116,7 @@ public class Check {
 
         ArrayList<PotentialWinner> potentialWinners = new ArrayList<>();
 
-        for (Player player: connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             PotentialWinner potentialWinner = new PotentialWinner();
 
@@ -1142,11 +1142,11 @@ public class Check {
             qui viene assegnato ad ogni player il suo punteggio nel tracciato colpo mortale
              */
 
-            for(PlayerWithKills killer: playersWithKills){
+            for (PlayerWithKills killer : playersWithKills) {
 
-                if(killer.kills != 0){
+                if (killer.kills != 0) {
 
-                    if (killer.player.equals(player)){
+                    if (killer.player.equals(player)) {
 
                         potentialWinner.scoreOnMortalBlowTrack = board.getMortalBlowTrackValue().get(mortalBlowCounter);
 
@@ -1173,19 +1173,19 @@ public class Check {
             @Override
             public int compare(PotentialWinner o1, PotentialWinner o2) {
 
-                if (o1.points > o2.points){
+                if (o1.points > o2.points) {
                     return 1;
                 }
 
-                if (o1.points == o2.points){
+                if (o1.points == o2.points) {
 
-                    if (o1.scoreOnMortalBlowTrack > o2.scoreOnMortalBlowTrack){
+                    if (o1.scoreOnMortalBlowTrack > o2.scoreOnMortalBlowTrack) {
 
                         return 1;
 
                     }
 
-                    if (o1.scoreOnMortalBlowTrack == o2.scoreOnMortalBlowTrack){
+                    if (o1.scoreOnMortalBlowTrack == o2.scoreOnMortalBlowTrack) {
 
                         /*
                         mi segno che i 2 player sono in parità tra di loro
@@ -1195,17 +1195,14 @@ public class Check {
 
                         return 0;
 
-                    }
-
-                    else {
+                    } else {
                         return -1;
                     }
 
 
-
                 }
 
-                if (o1.points < o2.points){
+                if (o1.points < o2.points) {
                     return -1;
                 }
 
@@ -1230,7 +1227,7 @@ public class Check {
         caso di un solo vincitore
          */
 
-        if (potentialWinners.get(0).tie == false){
+        if (potentialWinners.get(0).tie == false) {
 
             winner = potentialWinners.get(0).player;
 
@@ -1238,7 +1235,7 @@ public class Check {
             notifico a tutti il nome del vincitore
              */
 
-            for (Player player:connectedPlayers){
+            for (Player player : connectedPlayers) {
 
                 update(player, "Il vincitore è" + winner.getNickname());
 
@@ -1252,7 +1249,7 @@ public class Check {
          */
 
 
-        if (potentialWinners.get(0).tie == true){
+        if (potentialWinners.get(0).tie == true) {
 
             winner = null;
 
@@ -1264,7 +1261,7 @@ public class Check {
 
             firstWinner = potentialWinners.get(0);
 
-            for (Player player:connectedPlayers){
+            for (Player player : connectedPlayers) {
 
                 update(player, "I vincitori sono:");
 
@@ -1278,8 +1275,8 @@ public class Check {
                 stampo gli altri
                  */
 
-                for (PotentialWinner potentialWinner: potentialWinners){
-                    if (potentialWinner.points == firstWinner.points && potentialWinner.scoreOnMortalBlowTrack == firstWinner.scoreOnMortalBlowTrack){
+                for (PotentialWinner potentialWinner : potentialWinners) {
+                    if (potentialWinner.points == firstWinner.points && potentialWinner.scoreOnMortalBlowTrack == firstWinner.scoreOnMortalBlowTrack) {
 
                         update(player, "" + potentialWinner.player.getNickname());
 
@@ -1296,11 +1293,11 @@ public class Check {
         notifico a tutti i giocatori la classifica finale
          */
 
-        for (Player player: connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             update(player, "Classifica Finale:");
 
-            for (PotentialWinner potentialWinner:potentialWinners){
+            for (PotentialWinner potentialWinner : potentialWinners) {
 
                 /*
                 faccio vedere per ogni giocatore il nome, il punteggio totale e quello sul tracciato colpo mortale
@@ -1312,20 +1309,20 @@ public class Check {
         }
 
 
-
     }
 
 
     /**
      * Verifies if a cell is a spawn or not
+     *
      * @param cell is the cell to check
      * @return true if it's a spawn, false otherwise
      */
 
 
-    public boolean isSpawn(Cell cell){
+    public boolean isSpawn(Cell cell) {
 
-        if(cell.getName().equals("spawnCell")){
+        if (cell.getName().equals("spawnCell")) {
             return true;
         }
 
@@ -1334,7 +1331,7 @@ public class Check {
     }
 
 
-    public static ArrayList <Cell> visibleSquares(Player user){
+    public static ArrayList<Cell> visibleSquares(Player user) {
 
         ArrayList<Cell> visibleSquares = new ArrayList<>();
 

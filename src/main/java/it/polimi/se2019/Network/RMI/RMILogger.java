@@ -110,18 +110,24 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
         }
 
 
-        if (registrations.get(userName) != null && passWord.equals(registrations.get(userName))) { //player disconnesso che tenta di riconnettersi.
+        if (registrations.get(userName) != null) { //player disconnesso che tenta di riconnettersi.
 
+            if (passWord.equals(registrations.get(userName))) {
 
-            System.out.println("Bentornato " + userName); //successo
-            return true;
+                System.out.println("Bentornato " + userName); //successo
+                return true;
+            } else {
 
-        } else {
+                System.out.println("password errata!"); //errore
+                return false;
 
-            System.out.println("password errata!"); //errore
-            return false;
-
+            }
         }
+
+        System.out.println("Errore nelle credenziali");
+        return false;
+
+
     }
 
     public synchronized int getGamePort(String s) {
