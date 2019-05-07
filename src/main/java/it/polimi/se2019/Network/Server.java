@@ -78,7 +78,7 @@ public class Server {
         //   al login dei player.
 
 
-       // System.out.println((char) 27 + "[33m"); // esempio di ascii colore
+        // System.out.println((char) 27 + "[33m"); // esempio di ascii colore
 
 
         Scanner scanner = new Scanner(System.in);
