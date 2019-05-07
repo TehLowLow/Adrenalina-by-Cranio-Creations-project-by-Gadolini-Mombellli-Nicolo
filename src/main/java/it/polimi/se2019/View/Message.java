@@ -434,5 +434,12 @@ public class Message {
          return "Qui non colpiresti nessuno!";
     }
 
+    public static String usareSlittamento(){
+         return "Vuoi attivare lo slittamento di fase ora?";
+    }
+
+    public static String usareSovraccarico(){
+         return "Vuoi usare il colpo sovraccarico?";
+    }
 }
 
