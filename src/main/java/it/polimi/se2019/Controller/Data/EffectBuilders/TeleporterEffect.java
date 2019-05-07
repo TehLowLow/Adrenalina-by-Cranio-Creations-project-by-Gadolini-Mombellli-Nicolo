@@ -73,7 +73,6 @@ public class TeleporterEffect extends Effect {
 
                 cellaValida = true;
                 user.setPosition(cell);
-                break;
 
             }
 
@@ -91,7 +90,6 @@ public class TeleporterEffect extends Effect {
 
                     cellaValida = true;
                     user.setPosition(cell);
-                    break;
 
                 }
 
