@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 
 import static it.polimi.se2019.Controller.Adrenalina.Check.visibleSquares;
-import static it.polimi.se2019.Model.Connection.DOOR;
 
 public class VortexCannon extends Effect {
 
