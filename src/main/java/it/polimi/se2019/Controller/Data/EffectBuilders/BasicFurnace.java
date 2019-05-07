@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
@@ -25,11 +26,7 @@ public class BasicFurnace extends Effect{
 
             for(Player target : targets){
 
-                ArrayList <Token> damages = target.getPlayerboard().getDamage();
-                Token newDamage = new Token();
-                newDamage.setChampionName(user.getPlayerboard().getChampionName());
-                damages.add(newDamage);
-                target.getPlayerboard().setDamage(damages);
+                Damage.giveDamage(1, user, target);
 
             }
 

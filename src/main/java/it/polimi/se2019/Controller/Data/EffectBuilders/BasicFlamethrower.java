@@ -161,7 +161,6 @@ public class BasicFlamethrower extends Effect {
     }
 
 
-
     protected static boolean directionFree(Cell cell, String direction) {
 
         if (direction.equalsIgnoreCase("alto")) {
