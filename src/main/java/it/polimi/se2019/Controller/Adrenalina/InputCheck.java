@@ -210,5 +210,20 @@ public class InputCheck {
 
     }
 
+    /*
+    SCELTA BERSAGLI PER TURRET TRIPOD (MACHINE GUN)
+     */
+
+    public static boolean chooseTurretTripodTarget(String input){
+
+        if (input.equalsIgnoreCase("0") || input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+
+            return true;
+
+        }
+
+        return false;
+
+    }
 
 }

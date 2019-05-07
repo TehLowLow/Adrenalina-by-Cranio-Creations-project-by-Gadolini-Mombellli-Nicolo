@@ -434,5 +434,12 @@ public class Message {
          return "Qui non colpiresti nessuno!";
     }
 
+
+    public static String scegliBersaglioTurretTripod(){
+
+         return "Scegli 0 per colpire il bersaglio dell'effetto base, 1 per colpire un altro bersaglio o 2 per colpirli tutti e due";
+
+    }
+
 }
 
