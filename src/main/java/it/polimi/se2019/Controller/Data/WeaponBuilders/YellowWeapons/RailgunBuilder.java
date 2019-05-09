@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicRailgun;
+import it.polimi.se2019.Controller.Data.EffectBuilders.PiercingMode;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -63,9 +65,8 @@ public class RailgunBuilder {
         rGun.setPrice(price);
         rGun.setRechargeCost(recharge);
         rGun.setLoaded(true);
-        rGun.setBaseEffect(null);
-        rGun.setAlternativeEffect(null);
-        rGun.setOptionalEffect(null);
+        rGun.setBaseEffect(new BasicRailgun());
+        rGun.setAlternativeEffect(new PiercingMode());
 
 
         return rGun;

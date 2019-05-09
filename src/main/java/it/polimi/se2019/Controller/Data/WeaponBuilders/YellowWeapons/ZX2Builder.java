@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicZX2;
+import it.polimi.se2019.Controller.Data.EffectBuilders.ScannerMode;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -59,9 +61,8 @@ public class ZX2Builder {
         zX.setPrice(price);
         zX.setRechargeCost(recharge);
         zX.setLoaded(true);
-        zX.setBaseEffect(null);
-        zX.setAlternativeEffect(null);
-        zX.setOptionalEffect(null);
+        zX.setBaseEffect(new BasicZX2());
+        zX.setAlternativeEffect(new ScannerMode());
 
 
         return zX;

@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicSledgehammer;
+import it.polimi.se2019.Controller.Data.EffectBuilders.PulverizeMode;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -60,9 +62,8 @@ public class SledgehammerBuilder {
         sHammer.setPrice(price);
         sHammer.setRechargeCost(recharge);
         sHammer.setLoaded(true);
-        sHammer.setBaseEffect(null);
-        sHammer.setAlternativeEffect(null);
-        sHammer.setOptionalEffect(null);
+        sHammer.setBaseEffect(new BasicSledgehammer());
+        sHammer.setAlternativeEffect(new PulverizeMode());
 
 
         return sHammer;

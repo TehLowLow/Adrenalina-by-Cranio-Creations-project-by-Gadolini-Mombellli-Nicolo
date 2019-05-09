@@ -1,5 +1,8 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicPowerGlove;
+import it.polimi.se2019.Controller.Data.EffectBuilders.PulverizeMode;
+import it.polimi.se2019.Controller.Data.EffectBuilders.RocketFistMode;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -60,9 +63,8 @@ public class PowerGloveBuilder {
         pGlove.setPrice(price);
         pGlove.setRechargeCost(recharge);
         pGlove.setLoaded(true);
-        pGlove.setBaseEffect(null);
-        pGlove.setAlternativeEffect(null);
-        pGlove.setOptionalEffect(null);
+        pGlove.setBaseEffect(new BasicPowerGlove());
+        pGlove.setAlternativeEffect(new RocketFistMode());
 
 
         return pGlove;

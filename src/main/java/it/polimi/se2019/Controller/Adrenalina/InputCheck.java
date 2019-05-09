@@ -226,4 +226,20 @@ public class InputCheck {
 
     }
 
+    /*
+    SCELTA CAMPIONE
+     */
+
+    public static boolean chooseChampion(String input){
+
+        if (input.equalsIgnoreCase("sprog") || input.equalsIgnoreCase("violetta") || input.equalsIgnoreCase("dozer") || input.equalsIgnoreCase("banshee") || input.equalsIgnoreCase(":D-strutt-or3")){
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
 }

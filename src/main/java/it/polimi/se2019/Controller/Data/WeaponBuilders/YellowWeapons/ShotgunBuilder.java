@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicShotgun;
+import it.polimi.se2019.Controller.Data.EffectBuilders.LongBarrelMode;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -59,10 +61,8 @@ public class ShotgunBuilder {
         shotgun.setPrice(price);
         shotgun.setRechargeCost(recharge);
         shotgun.setLoaded(true);
-        shotgun.setBaseEffect(null);
-        shotgun.setAlternativeEffect(null);
-        shotgun.setOptionalEffect(null);
-
+        shotgun.setBaseEffect(new BasicShotgun());
+        shotgun.setAlternativeEffect(new LongBarrelMode());
 
         return shotgun;
 

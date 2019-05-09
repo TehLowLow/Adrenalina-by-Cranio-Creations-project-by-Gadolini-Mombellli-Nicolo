@@ -75,6 +75,7 @@ public class Match {
     public void play() {
 
         chooseMap();
+        chooseSkulls();
 
     }
 
@@ -239,6 +240,7 @@ public class Match {
 
         }
 
+        Board.setMortalBlowTrack(mortalBlowTrack);
 
         /*
         notifico ai giocatori il numero di teschi con cui giocheranno
@@ -250,6 +252,62 @@ public class Match {
 
         }
 
+
+    }
+
+
+    public static void chooseChampion(){
+
+        ArrayList<String> champions = new ArrayList<>();
+
+        champions.add("Banshee");
+        champions.add(":D-strutt-or3");
+        champions.add("Dozer");
+        champions.add("Violetta");
+        champions.add("Sprog");
+
+        for (Player player:connectedPlayers){
+
+            update(player, "Scegli il tuo campione tra:");
+
+            for (String champion:champions){
+
+                update(player, "" + champion);
+
+            }
+
+            String scelta = updateWithAnswer(player, "Fai la tua scelta");
+
+            while (!InputCheck.chooseChampion(scelta)){
+
+                update(player, Message.inputError());
+                scelta = updateWithAnswer(player, "Fai la tua scelta");
+            }
+
+            for (String champion:champions){
+
+                if (scelta.equalsIgnoreCase(champion)){
+
+                    player.getPlayerboard().setChampionName(champion);
+
+                    champions.remove(champion);
+
+                    update(player, "Hai scelto " + champion);
+
+                }
+
+            }
+        }
+
+
+    }
+
+
+
+    public static void chooseFirstPlayer(){
+
+        Collections.shuffle(connectedPlayers);
+        connectedPlayers.get(0).setFirstPlayer(true);
 
     }
 
