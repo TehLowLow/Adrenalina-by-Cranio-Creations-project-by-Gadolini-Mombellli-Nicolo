@@ -108,7 +108,6 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
                     rServer = (RMILoggerInterface) registry.lookup("LoginRMI");
 
                     if (rServer != null) {
-
                         Logger = rServer;
                         connected = true;
                     }

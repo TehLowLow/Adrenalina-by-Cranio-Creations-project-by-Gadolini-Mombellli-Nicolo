@@ -448,5 +448,13 @@ public class Message {
     public static String usareSovraccarico(){
          return "Vuoi usare il colpo sovraccarico?";
     }
+
+    public static String scegliColoreAmmo(){
+         return "Scegli il colore di una munizione da scartare:\n- giallo\n- rosso\n- blu";
+    }
+
+    public static String cubiInsuff(){
+         return "Non hai abbastanza cubi munizione.";
+    }
 }
 

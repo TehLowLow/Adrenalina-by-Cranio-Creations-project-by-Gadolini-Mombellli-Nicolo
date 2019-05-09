@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicElectroschythe;
+import it.polimi.se2019.Controller.Data.EffectBuilders.ReaperMode;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -60,9 +62,9 @@ public class ElectroschytheBuilder {
         eScythe.setPrice(price);
         eScythe.setRechargeCost(recharge);
         eScythe.setLoaded(true);
-        eScythe.setBaseEffect(null);
-        eScythe.setAlternativeEffect(null);
-        eScythe.setOptionalEffect(null);
+        eScythe.setBaseEffect(new BasicElectroschythe());
+        eScythe.setAlternativeEffect(new ReaperMode());
+
 
 
         return eScythe;

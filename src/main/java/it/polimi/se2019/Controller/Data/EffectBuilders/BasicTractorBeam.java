@@ -6,7 +6,6 @@ import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlay
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Cell;
 import it.polimi.se2019.Model.Effect;
-import it.polimi.se2019.Model.LootCell;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;

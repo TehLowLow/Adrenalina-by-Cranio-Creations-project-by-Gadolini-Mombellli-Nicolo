@@ -61,7 +61,7 @@ public class SocketClient extends Client implements Runnable {
         streamInit();
 
         try {
-            out.writeUTF("Connesso alla partita, fai partire sto timer");
+            out.writeUTF("Connesso alla partita, fai partire il timer");
             System.out.println(in.readUTF());
         } catch (Exception e) {
             e.printStackTrace();

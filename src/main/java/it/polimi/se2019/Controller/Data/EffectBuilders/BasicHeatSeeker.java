@@ -1,6 +1,7 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Token;
@@ -28,21 +29,9 @@ public class BasicHeatSeeker extends Effect {
         public void applyEffect(Player user, ArrayList<Player> targets) {
 
 
-                Token d1 = new Token();
-                Token d2 = new Token();
-                Token d3 = new Token();
-
-                d1.setChampionName(user.getPlayerboard().getChampionName());
-                d2.setChampionName(user.getPlayerboard().getChampionName());
-                d3.setChampionName(user.getPlayerboard().getChampionName());
-
                 for (Player target : targets) {
 
-                        ArrayList<Token> damages = target.getPlayerboard().getDamage();
-                        damages.add(d1);
-                        damages.add(d2);
-                        damages.add(d3);
-                        target.getPlayerboard().setDamage(damages);
+                        Damage.giveDamage(1, user, target);
 
                 }
 

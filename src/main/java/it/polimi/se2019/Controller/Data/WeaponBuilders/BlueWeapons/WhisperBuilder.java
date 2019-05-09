@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.WhisperEffect;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -26,6 +27,7 @@ public class WhisperBuilder {
 
     /**
      * builder method for the whisper
+     *
      * @return the reference to the weapon whisper, with all its fields initialized
      */
 
@@ -60,11 +62,8 @@ public class WhisperBuilder {
         whisper.setPrice(price);
         whisper.setRechargeCost(recharge);
         whisper.setLoaded(true);
-        whisper.setBaseEffect(null);
+        whisper.setBaseEffect(new WhisperEffect());
         whisper.setAlternativeEffect(null);
-        whisper.setOptionalEffect(null);
-
-
         return whisper;
 
     }
