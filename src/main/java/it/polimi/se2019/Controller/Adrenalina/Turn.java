@@ -34,7 +34,6 @@ public class Turn {
     private Weapon switchedWeapon;
 
 
-
     /*
     -----------------METHODS--------------------
      */
@@ -70,52 +69,55 @@ public class Turn {
 
 
     /**
-     *
      * @param time is the max time usable for the turn.
      *             When it's over, the turn is skipped.
      */
-    public void timer(int time){}
-
-
-    /** this method allows the player to play the first turn
-     *
-     * @param player is the player who has to play the first turn
-     */
-    public void first(Player player){}
-
-
-    /**
-     * this method allows the player to play a standard turn
-     * @param player is the player who has to play the turn
-     */
-    public void standard(Player player){
-
-
+    public void timer(int time) {
     }
 
 
     /**
+     * this method allows the player to play the first turn
+     *
+     * @param player is the player who has to play the first turn
+     */
+    public void first(Player player) {
+    }
+
+
+    /**
+     * this method allows the player to play a standard turn
+     *
+     * @param player is the player who has to play the turn
+     */
+    public void standard(Player player) {    }
+
+
+    /**
      * allows the player to spawn in the map for the first time
+     *
      * @param player is the player that has to spawn
      */
 
-    public void firstSpawn(Player player){}
+    public void firstSpawn(Player player) {}
 
 
     /**
      * it allows the player to respawn in the map after his death
+     *
      * @param player is the player that has to respawn
      */
 
-    public void respawn(Player player){}
+    public void respawn(Player player) {  }
 
 
     /**
      * it allows the player to play his FinalFrenzy turn
+     *
      * @param player is who has to play the FinalFrenzy turn
      */
 
-    public void frenzy(Player player){}
+    public void frenzy(Player player) {  }
 
 
     //TODO ricordarsi di assegnare i punti aggiuntivi per le doublekill

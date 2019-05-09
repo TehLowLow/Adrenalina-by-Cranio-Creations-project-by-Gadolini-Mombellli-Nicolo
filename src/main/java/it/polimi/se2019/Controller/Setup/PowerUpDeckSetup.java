@@ -20,7 +20,6 @@ public class PowerUpDeckSetup {
 
 
         private ArrayList<Powerup> powerupDeck = new ArrayList<>();
-
         private BlueNewtonBuilder bNewton = new BlueNewtonBuilder();
         private BlueTagbackGrenadeBuilder bTagback = new BlueTagbackGrenadeBuilder();
         private BlueTargetingScopeBuilder btScope = new BlueTargetingScopeBuilder();
@@ -38,11 +37,6 @@ public class PowerUpDeckSetup {
 
     public ArrayList<Powerup> build(){
 
-
-        /*
-        methods to build the powerup deck -> every powerup can have 3 different colours. So, for each of them,
-        we have to build 3 different cards
-         */
 
         for(int i = 0; i<2; i++) {
 
@@ -64,7 +58,5 @@ public class PowerUpDeckSetup {
         return powerupDeck;
     }
 
-//TODO: aggiungere JDocs ai singoli builder, come riferimento prendere BlueNewtonBuilder.
-//      aggiungere JDocs e sistemare il deckbuilder
-//      implementare codice per caricare le descrizioni da Json.
+//TODO:  refactor, sposta i new nelle add.
 }
