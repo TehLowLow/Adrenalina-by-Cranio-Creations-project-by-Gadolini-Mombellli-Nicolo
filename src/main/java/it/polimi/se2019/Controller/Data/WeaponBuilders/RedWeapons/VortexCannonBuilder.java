@@ -1,4 +1,5 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons;
+import it.polimi.se2019.Controller.Data.EffectBuilders.VortexCannon;
 import it.polimi.se2019.Model.*;
 
 /**
@@ -54,6 +55,13 @@ public class VortexCannonBuilder {
         price.setRedCubes(0);
         price.setBlueCubes(1);
         vortexCannon.setPrice(price);
+
+        /*
+        Setting the effects
+         */
+
+        vortexCannon.setBaseEffect(new VortexCannon());
+        vortexCannon.setAlternativeEffect(null);
 
 
         /*

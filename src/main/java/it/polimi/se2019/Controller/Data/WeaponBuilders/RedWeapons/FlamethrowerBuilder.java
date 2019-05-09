@@ -1,4 +1,6 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons;
+import it.polimi.se2019.Controller.Data.EffectBuilders.BBQMode;
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicFlamethrower;
 import it.polimi.se2019.Model.*;
 
 
@@ -47,6 +49,12 @@ public class FlamethrowerBuilder {
         price.setYellowCubes(0);
         price.setRedCubes(0);
         flamethrower.setPrice(price);
+
+        /*
+        Setting the effect.
+         */
+        flamethrower.setBaseEffect(new BasicFlamethrower());
+        flamethrower.setAlternativeEffect(new BBQMode());
 
         /*
         the weapon, at the beginning, is loaded

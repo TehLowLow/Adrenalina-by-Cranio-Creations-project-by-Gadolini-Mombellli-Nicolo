@@ -1,4 +1,5 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GrenadeLauncher;
 import it.polimi.se2019.Model.*;
 
 /**
@@ -54,6 +55,13 @@ public class GrenadeLauncherBuilder {
         price.setRedCubes(0);
         price.setBlueCubes(0);
         grenadeLauncher.setPrice(price);
+
+        /*
+        Setting the effects
+         */
+
+        grenadeLauncher.setBaseEffect(new GrenadeLauncher());
+        grenadeLauncher.setAlternativeEffect(null);
 
 
         /*

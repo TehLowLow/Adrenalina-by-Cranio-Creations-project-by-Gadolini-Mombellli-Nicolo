@@ -1,4 +1,5 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons;
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicHeatSeeker;
 import it.polimi.se2019.Model.*;
 
 /**
@@ -46,6 +47,12 @@ public class HeatseekerBuilder {
         price.setYellowCubes(1);
         price.setRedCubes(1);
         heatseeker.setPrice(price);
+
+        /*
+        Sets the effect
+         */
+        heatseeker.setBaseEffect(new BasicHeatSeeker());
+        heatseeker.setAlternativeEffect(null);
 
         /*
         the weapon, at the beginning, is loaded

@@ -1,4 +1,6 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons;
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicHellion;
+import it.polimi.se2019.Controller.Data.EffectBuilders.NanoTracerMode;
 import it.polimi.se2019.Model.*;
 
 /**
@@ -52,6 +54,12 @@ public class HellionBuilder {
         price.setYellowCubes(1);
         price.setRedCubes(0);
         hellion.setPrice(price);
+
+        /*
+        Sets the effect
+         */
+        hellion.setBaseEffect(new BasicHellion());
+        hellion.setAlternativeEffect(new NanoTracerMode());
 
         /*
         the weapon, at the beginning, is loaded

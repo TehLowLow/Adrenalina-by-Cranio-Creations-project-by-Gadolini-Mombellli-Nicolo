@@ -256,8 +256,16 @@ public class Board implements java.io.Serializable{
      */
     public void shufflePowerUpDeck(){
 
-        Collections.shuffle(weaponDeck);
+        Collections.shuffle(powerUpDeck);
 
+    }
+
+    /**
+     * Shuffles the weapon deck
+     */
+
+    public void shuffleWeaponDeck(){
+        Collections.shuffle(weaponDeck);
     }
 
 

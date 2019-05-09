@@ -1,4 +1,5 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons;
+import it.polimi.se2019.Controller.Data.EffectBuilders.RocketLauncher;
 import it.polimi.se2019.Model.*;
 
 /**
@@ -55,6 +56,13 @@ public class RocketLauncherBuilder {
         price.setRedCubes(1);
         price.setBlueCubes(0);
         rocketLauncher.setPrice(price);
+
+        /*
+        Sets the effect
+         */
+
+        rocketLauncher.setBaseEffect(new RocketLauncher());
+        rocketLauncher.setAlternativeEffect(null);
 
         /*
         when picked up, the weapon is loaded

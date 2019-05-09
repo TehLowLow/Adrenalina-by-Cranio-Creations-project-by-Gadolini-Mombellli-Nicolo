@@ -27,7 +27,7 @@ public class Check {
      * @return an int value. 0 if the player hasn't been damaged enough to die, 1 if the player receives damage only to
      * die, 2 if the attacker overkills.
      */
-    public int death(Player damaged) {
+    public static int death(Player damaged) {
 
         /*
         saving the number of the damages on the playerboard
