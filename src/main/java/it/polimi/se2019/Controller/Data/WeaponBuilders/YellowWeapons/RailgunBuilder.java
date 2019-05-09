@@ -57,6 +57,13 @@ public class RailgunBuilder {
         recharge.setRedCubes(0);
         recharge.setYellowCubes(2);
 
+
+        Rybamount altPrice = new Rybamount();
+
+        altPrice.setBlueCubes(0);
+        altPrice.setRedCubes(0);
+        altPrice.setYellowCubes(0);
+
         /*
         setting the fields of the weapon
          */
@@ -67,7 +74,7 @@ public class RailgunBuilder {
         rGun.setLoaded(true);
         rGun.setBaseEffect(new BasicRailgun());
         rGun.setAlternativeEffect(new PiercingMode());
-
+        rGun.setAlternativeCost(altPrice);
 
         return rGun;
 

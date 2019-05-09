@@ -53,6 +53,13 @@ public class ZX2Builder {
         recharge.setRedCubes(1);
         recharge.setYellowCubes(1);
 
+
+        Rybamount altPrice = new Rybamount();
+
+        altPrice.setBlueCubes(0);
+        altPrice.setRedCubes(0);
+        altPrice.setYellowCubes(0);
+
         /*
         setting the fields of the weapon
          */
@@ -63,6 +70,7 @@ public class ZX2Builder {
         zX.setLoaded(true);
         zX.setBaseEffect(new BasicZX2());
         zX.setAlternativeEffect(new ScannerMode());
+        zX.setAlternativeCost(altPrice);
 
 
         return zX;

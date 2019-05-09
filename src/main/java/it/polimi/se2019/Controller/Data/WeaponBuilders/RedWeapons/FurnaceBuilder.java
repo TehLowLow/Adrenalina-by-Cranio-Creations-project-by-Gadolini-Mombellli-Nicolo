@@ -49,11 +49,18 @@ public class FurnaceBuilder {
         price.setRedCubes(0);
         furnace.setPrice(price);
 
+
+        Rybamount altPrice = new Rybamount();
+        altPrice.setBlueCubes(0);
+        altPrice.setRedCubes(0);
+        altPrice.setYellowCubes(0);
+
            /*
         Setting the effect.
          */
         furnace.setBaseEffect(new BasicFurnace());
         furnace.setAlternativeEffect(new CozyFireMode());
+        furnace.setAlternativeCost(altPrice);
 
         /*
         the weapon, at the beginning, is loaded

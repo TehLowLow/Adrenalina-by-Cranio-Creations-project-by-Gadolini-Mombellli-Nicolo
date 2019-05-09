@@ -53,6 +53,12 @@ public class ShotgunBuilder {
         recharge.setRedCubes(0);
         recharge.setYellowCubes(2);
 
+        Rybamount altPrice = new Rybamount();
+
+        altPrice.setBlueCubes(0);
+        altPrice.setRedCubes(0);
+        altPrice.setYellowCubes(0);
+
         /*
         setting the fields of the weapon
          */
@@ -63,6 +69,7 @@ public class ShotgunBuilder {
         shotgun.setLoaded(true);
         shotgun.setBaseEffect(new BasicShotgun());
         shotgun.setAlternativeEffect(new LongBarrelMode());
+        shotgun.setAlternativeCost(altPrice);
 
         return shotgun;
 

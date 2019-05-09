@@ -53,6 +53,12 @@ public class ShockwaveBuilder {
         recharge.setRedCubes(0);
         recharge.setYellowCubes(1);
 
+
+        Rybamount altPrice = new Rybamount();
+
+        altPrice.setBlueCubes(0);
+        altPrice.setRedCubes(0);
+        altPrice.setYellowCubes(1);
         /*
         setting the fields of the shockwave
          */
@@ -63,6 +69,7 @@ public class ShockwaveBuilder {
         shockwave.setLoaded(true);
         shockwave.setBaseEffect(new BasicShockwave());
         shockwave.setAlternativeEffect(new TsunamiMode());
+        shockwave.setAlternativeCost(altPrice);
 
 
         return shockwave;

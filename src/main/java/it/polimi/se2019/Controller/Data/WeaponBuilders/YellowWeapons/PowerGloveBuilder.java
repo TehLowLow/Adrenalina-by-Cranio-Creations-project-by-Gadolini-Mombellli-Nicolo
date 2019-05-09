@@ -55,6 +55,12 @@ public class PowerGloveBuilder {
         recharge.setRedCubes(0);
         recharge.setYellowCubes(1);
 
+        Rybamount altPrice = new Rybamount();
+
+        altPrice.setBlueCubes(1);
+        altPrice.setRedCubes(0);
+        altPrice.setYellowCubes(0);
+
         /*
         setting the fields of the Power Glove
          */
@@ -65,6 +71,7 @@ public class PowerGloveBuilder {
         pGlove.setLoaded(true);
         pGlove.setBaseEffect(new BasicPowerGlove());
         pGlove.setAlternativeEffect(new RocketFistMode());
+        pGlove.setAlternativeCost(altPrice);
 
 
         return pGlove;

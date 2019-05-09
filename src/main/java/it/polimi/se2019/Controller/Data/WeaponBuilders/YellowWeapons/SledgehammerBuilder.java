@@ -54,6 +54,12 @@ public class SledgehammerBuilder {
         recharge.setRedCubes(0);
         recharge.setYellowCubes(1);
 
+        Rybamount altPrice = new Rybamount();
+
+        altPrice.setBlueCubes(0);
+        altPrice.setRedCubes(1);
+        altPrice.setYellowCubes(0);
+
         /*
         setting the fields of the sledgehammer
          */
@@ -64,6 +70,7 @@ public class SledgehammerBuilder {
         sHammer.setLoaded(true);
         sHammer.setBaseEffect(new BasicSledgehammer());
         sHammer.setAlternativeEffect(new PulverizeMode());
+        sHammer.setAlternativeCost(altPrice);
 
 
         return sHammer;
