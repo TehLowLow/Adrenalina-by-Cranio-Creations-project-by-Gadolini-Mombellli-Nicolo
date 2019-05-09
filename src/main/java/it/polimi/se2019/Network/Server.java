@@ -106,7 +106,9 @@ public class Server {
         Thread game = new Thread(gameServer);
         game.start();
 
-        ExecutorService gamePool = Executors.newFixedThreadPool(5);  //Aggiungendo al game server
+
+        ExecutorService gamePool = Executors.newFixedThreadPool(5);
+
 
         gameSocket = initServer(SOCKETPORT);
 
@@ -114,6 +116,8 @@ public class Server {
         for (int i = 0; i < 5; i++) {
             gamePool.submit(new SocketServer(gameSocket));
         }
+
+
     }
 
 

@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.PlasmaGun;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -59,9 +60,8 @@ public class PlasmaGunBuilder {
         pGun.setPrice(price);
         pGun.setRechargeCost(recharge);
         pGun.setLoaded(true);
-        pGun.setBaseEffect(null);
+        pGun.setBaseEffect(new PlasmaGun());
         pGun.setAlternativeEffect(null);
-        pGun.setOptionalEffect(null);
 
 
         return pGun;

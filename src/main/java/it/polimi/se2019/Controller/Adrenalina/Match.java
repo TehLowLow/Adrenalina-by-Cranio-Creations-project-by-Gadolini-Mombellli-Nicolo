@@ -168,9 +168,6 @@ public class Match {
 
         ArrayList<Integer> preferenze = new ArrayList<>();
 
-
-
-
         /*
         valore del voto
          */
@@ -210,7 +207,7 @@ public class Match {
             sum = sum + number;
         }
 
-        average = ( ((float) sum )/ preferenze.size());
+        average = (((float) sum) / preferenze.size());
 
         /*
         approssimo per eccesso (ceil è un metodo della libreria java.Math che ritorna l'approx per eccesso
@@ -238,8 +235,6 @@ public class Match {
             mortalBlowTrack.add(skull);
 
         }
-
-
         /*
         notifico ai giocatori il numero di teschi con cui giocheranno
          */
@@ -252,6 +247,35 @@ public class Match {
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

@@ -17,16 +17,14 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
 
     private String userName;
+
     private String passWord;
-
-
     Player temp;
 
 
     @Override
     public void run() {
         //In questo thread devo avviare un registry, accettare una connessione alla volta, e verificare il login.
-
         initServer(this);
 
     }

@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.LockRifleEffect;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
@@ -61,10 +62,8 @@ public class LockRifleBuilder {
         lRifle.setPrice(price);
         lRifle.setRechargeCost(recharge);
         lRifle.setLoaded(true);
-        lRifle.setBaseEffect(null);
+        lRifle.setBaseEffect(new LockRifleEffect());
         lRifle.setAlternativeEffect(null);
-        lRifle.setOptionalEffect(null);
-
 
         return lRifle;
     }
