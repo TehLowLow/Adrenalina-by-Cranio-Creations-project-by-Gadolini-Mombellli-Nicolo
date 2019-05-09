@@ -685,6 +685,34 @@ public class Check {
 
     }
 
+    public static boolean checkStartFrenzy(){
+
+        ArrayList<MortalBlow> mortalBlows = Board.getMortalBlowTrack();
+        int mbCounter = 0;
+
+        for (MortalBlow mortalBlow:mortalBlows){
+
+            if(mortalBlow.isSkull()){
+
+                mbCounter++;
+
+            }
+
+
+        }
+
+        if (mbCounter == 0){
+            return true;
+        }
+
+
+        return false;
+
+
+    }
+
+
+
     public void resolveFrenzyboard(Player killed, Player killer, Board board, boolean overkill) {
 
 
