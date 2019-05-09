@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.Newton;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Rybamount;
@@ -59,8 +61,9 @@ public class RedNewtonBuilder {
 
         rNewton.setName("Raggio Cinetico Rosso");
         rNewton.setTradeValue(tValue);
+        rNewton.setColour(Colour.RED);
         rNewton.setCardDescription(cDesc);
-        rNewton.setEffect(eff);
+        rNewton.setEffect(new Newton());
 
         return rNewton;
 

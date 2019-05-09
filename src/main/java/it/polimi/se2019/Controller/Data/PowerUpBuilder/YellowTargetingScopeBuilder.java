@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.TargetingScopeEffect;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Rybamount;
@@ -58,7 +60,8 @@ public class YellowTargetingScopeBuilder {
         ytScope.setName("Mirino Giallo");
         ytScope.setTradeValue(tValue);
         ytScope.setCardDescription(cDesc);
-        ytScope.setEffect(eff);
+        ytScope.setEffect(new TargetingScopeEffect());
+        ytScope.setColour(Colour.YELLOW);
 
         return ytScope;
 

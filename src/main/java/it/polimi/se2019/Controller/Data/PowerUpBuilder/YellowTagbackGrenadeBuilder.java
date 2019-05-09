@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.TagBackGrenadeEffect;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Rybamount;
@@ -60,7 +62,8 @@ public class YellowTagbackGrenadeBuilder {
         yTagback.setName("Granata Venom Gialla");
         yTagback.setTradeValue(tValue);
         yTagback.setCardDescription(cDesc);
-        yTagback.setEffect(eff);
+        yTagback.setColour(Colour.YELLOW);
+        yTagback.setEffect(new TagBackGrenadeEffect());
 
         return yTagback;
 

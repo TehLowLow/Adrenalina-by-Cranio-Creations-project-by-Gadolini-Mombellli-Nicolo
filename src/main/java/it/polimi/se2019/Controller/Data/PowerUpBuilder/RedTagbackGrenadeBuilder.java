@@ -1,4 +1,6 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
+import it.polimi.se2019.Controller.Data.EffectBuilders.TagBackGrenadeEffect;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 
 /**
@@ -58,8 +60,9 @@ public class RedTagbackGrenadeBuilder {
 
         rTagback.setName("Granata Venom Rossa");
         rTagback.setTradeValue(tValue);
+        rTagback.setColour(Colour.RED);
         rTagback.setCardDescription(cDesc);
-        rTagback.setEffect(eff);
+        rTagback.setEffect(new TagBackGrenadeEffect());
 
         return rTagback;
 

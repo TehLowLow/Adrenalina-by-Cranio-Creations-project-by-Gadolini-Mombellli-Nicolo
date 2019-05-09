@@ -1,9 +1,13 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
 
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.Newton;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Rybamount;
+
+import java.text.CollationElementIterator;
 
 /**
  * This class creates 2 Yellow Newton  power ups, and adds them to the PUp deck.
@@ -62,7 +66,8 @@ public class YellowNewtonBuilder {
         yNewton.setName("Raggio Cinetico Giallo");
         yNewton.setTradeValue(tValue);
         yNewton.setCardDescription(cDesc);
-        yNewton.setEffect(eff);
+        yNewton.setColour(Colour.YELLOW);
+        yNewton.setEffect(new Newton());
 
         return yNewton;
     }

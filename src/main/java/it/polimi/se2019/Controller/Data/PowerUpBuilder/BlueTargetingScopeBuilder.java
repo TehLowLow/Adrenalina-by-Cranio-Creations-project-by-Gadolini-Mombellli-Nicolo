@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.TargetingScopeEffect;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Rybamount;
@@ -58,8 +60,9 @@ public class BlueTargetingScopeBuilder {
 
         btScope.setName("Mirino Blu");
         btScope.setTradeValue(tValue);
+        btScope.setColour(Colour.BLUE);
         btScope.setCardDescription(cDesc);
-        btScope.setEffect(eff);
+        btScope.setEffect(new TargetingScopeEffect());
 
         return btScope;
     }
