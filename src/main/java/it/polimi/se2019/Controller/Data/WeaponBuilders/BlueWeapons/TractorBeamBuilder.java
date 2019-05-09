@@ -53,6 +53,12 @@ public class TractorBeamBuilder {
         recharge.setRedCubes(0);
         recharge.setYellowCubes(0);
 
+        Rybamount altPrice = new Rybamount();
+
+        altPrice.setBlueCubes(0);
+        altPrice.setRedCubes(1);
+        altPrice.setYellowCubes(1);
+
         /*
         setting the fields of the weapon
          */
@@ -63,6 +69,7 @@ public class TractorBeamBuilder {
         tBeam.setLoaded(true);
         tBeam.setBaseEffect(new BasicTractorBeam());
         tBeam.setAlternativeEffect(new PunisherMode());
+        tBeam.setAlternativeCost(altPrice);
 
 
 

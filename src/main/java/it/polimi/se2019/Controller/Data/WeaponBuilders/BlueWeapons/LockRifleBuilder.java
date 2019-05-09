@@ -54,6 +54,8 @@ public class LockRifleBuilder {
         recharge.setRedCubes(0);
         recharge.setYellowCubes(0);
 
+
+
         /*
         setting the fields of the Lock Rifle
          */

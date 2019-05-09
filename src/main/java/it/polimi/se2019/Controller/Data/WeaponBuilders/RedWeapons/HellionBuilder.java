@@ -55,11 +55,18 @@ public class HellionBuilder {
         price.setRedCubes(0);
         hellion.setPrice(price);
 
+
+        Rybamount altPrice = new Rybamount();
+
+        altPrice.setBlueCubes(0);
+        altPrice.setRedCubes(1);
+        altPrice.setYellowCubes(0);
         /*
         Sets the effect
          */
         hellion.setBaseEffect(new BasicHellion());
         hellion.setAlternativeEffect(new NanoTracerMode());
+        hellion.setAlternativeCost(altPrice);
 
         /*
         the weapon, at the beginning, is loaded

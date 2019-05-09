@@ -50,11 +50,19 @@ public class FlamethrowerBuilder {
         price.setRedCubes(0);
         flamethrower.setPrice(price);
 
+
+
+        Rybamount altPrice = new Rybamount();
+        altPrice.setBlueCubes(0);
+        altPrice.setRedCubes(0);
+        altPrice.setYellowCubes(2);
+
         /*
         Setting the effect.
          */
         flamethrower.setBaseEffect(new BasicFlamethrower());
         flamethrower.setAlternativeEffect(new BBQMode());
+        flamethrower.setAlternativeCost(altPrice);
 
         /*
         the weapon, at the beginning, is loaded

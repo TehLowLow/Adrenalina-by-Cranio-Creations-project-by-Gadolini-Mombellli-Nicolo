@@ -302,7 +302,7 @@ public class Check {
      * @param weapon the weapon to reload.
      * @return true if the player can afford to reload.
      */
-    public boolean affordableReload(Player player, Weapon weapon) {
+    public static boolean affordableReload(Player player, Weapon weapon) {
 
         if (player.getPlayerboard().getAmmoCubes().getBlue() >= weapon.getRechargeCost().getBlue() &&
                 player.getPlayerboard().getAmmoCubes().getRed() >= weapon.getRechargeCost().getRed() &&

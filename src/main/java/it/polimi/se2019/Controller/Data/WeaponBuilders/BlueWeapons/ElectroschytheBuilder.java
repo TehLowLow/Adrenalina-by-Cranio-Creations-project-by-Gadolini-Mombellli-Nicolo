@@ -29,6 +29,7 @@ public class ElectroschytheBuilder {
 
     /**
      * builder method for ElectroSchythe
+     *
      * @return the reference to the weapon with all its fields initialized
      */
 
@@ -54,6 +55,12 @@ public class ElectroschytheBuilder {
         recharge.setRedCubes(0);
         recharge.setYellowCubes(0);
 
+        Rybamount altPrice = new Rybamount();
+
+        altPrice.setBlueCubes(1);
+        altPrice.setRedCubes(1);
+        altPrice.setYellowCubes(0);
+
         /*
         setting the fields of the weapon
          */
@@ -64,7 +71,7 @@ public class ElectroschytheBuilder {
         eScythe.setLoaded(true);
         eScythe.setBaseEffect(new BasicElectroschythe());
         eScythe.setAlternativeEffect(new ReaperMode());
-
+        eScythe.setAlternativeCost(altPrice);
 
 
         return eScythe;

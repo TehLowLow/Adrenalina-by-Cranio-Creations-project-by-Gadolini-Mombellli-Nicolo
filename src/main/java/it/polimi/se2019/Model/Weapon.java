@@ -44,6 +44,8 @@ public class Weapon {
      */
     private ArrayList<Effect> optionalEffect;
 
+    private Rybamount alternativeEffectCost;
+
     /*
      *  ---------------------- METHODS ----------------------
      */
@@ -125,6 +127,11 @@ public class Weapon {
         return optionalEffect;
     }
 
+    public Rybamount getAlternativeEffectCost(){
+
+        return this.alternativeEffectCost;
+
+    }
 
 
     /*
@@ -138,6 +145,9 @@ public class Weapon {
      * @param wName is the name of the weapon
      */
     public void setName(String wName) {
+
+        this.name = wName;
+
     }
 
 
@@ -147,6 +157,9 @@ public class Weapon {
      * @param rCost is the cost of the reload
      */
     public void setRechargeCost(Rybamount rCost) {
+
+        this.rechargeCost = rCost;
+
     }
 
 
@@ -156,6 +169,9 @@ public class Weapon {
      * @param price is the price of the weapon in terms of rybamount
      */
     public void setPrice(Rybamount price) {
+
+        this.price = price;
+
     }
 
 
@@ -165,6 +181,9 @@ public class Weapon {
      * @param effc is the name of the basic effect
      */
     public void setBaseEffect(Effect effc) {
+
+        this.baseEffect = effc;
+
     }
 
 
@@ -174,6 +193,9 @@ public class Weapon {
      * @param altEffc is an obj. containing the alternative effect to be used.
      */
     public void setAlternativeEffect(Effect altEffc) {
+
+        this.alternativeEffect = altEffc;
+
     }
 
     /**
@@ -183,6 +205,12 @@ public class Weapon {
 
     public void setLoaded(boolean loaded) {
         this.loaded = loaded;
+    }
+
+    public void setAlternativeCost(Rybamount aCost) {
+
+        this.alternativeEffectCost = aCost;
+
     }
 
 }

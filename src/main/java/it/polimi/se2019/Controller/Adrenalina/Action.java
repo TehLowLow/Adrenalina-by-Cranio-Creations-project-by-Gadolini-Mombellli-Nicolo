@@ -6,7 +6,6 @@ import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.Network.Server.*;
 import it.polimi.se2019.View.Message;
-import it.polimi.se2019.View.Parser;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,9 +22,6 @@ import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
 public class Action {
 
-    private Check check;
-    private InputCheck inputCheck;
-    private Interaction interaction;
     private int steps;
     private int cell;
     private ArrayList<Cell> reachable;
@@ -136,7 +132,7 @@ public class Action {
      */
     public void reload(Player player, Weapon weapon) {
 
-        if (check.affordableReload(player, weapon)) {
+        if (Check.affordableReload(player, weapon)) {
 
             Interaction.pay(player, weapon.getRechargeCost());
 
