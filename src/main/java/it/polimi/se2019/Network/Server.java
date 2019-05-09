@@ -153,6 +153,12 @@ public class Server {
 
     }
 
+
+
+    public static void updateAll(String msg){}
+
+
+
     private static synchronized int calcPorts() {
 
         clientPort = clientPort + 100;

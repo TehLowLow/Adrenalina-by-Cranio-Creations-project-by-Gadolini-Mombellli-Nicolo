@@ -9,6 +9,7 @@ import java.util.Collections;
 
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 
+import static it.polimi.se2019.Controller.Adrenalina.Check.checkStartFrenzy;
 import static it.polimi.se2019.Network.Server.*;
 
 
@@ -16,7 +17,7 @@ import static it.polimi.se2019.Network.Server.*;
  * This class represents a single match of Adrenalina.
  * Its purpose is to iterate through the players and make them play a turn.
  */
-public class Match {
+public class Match extends Thread {
 
 
     /*
@@ -31,7 +32,7 @@ public class Match {
     /**
      * This is needed to perform various checks.
      */
-    private Check check;
+    private Check check ;
 
     /**
      * ArrayList of players who take part to the match.
@@ -42,6 +43,10 @@ public class Match {
      * Board used for the match.
      */
     private Board board;
+
+    private boolean finish = false;
+
+    private static Interaction interaction = new Interaction();
 
 
 
@@ -56,6 +61,7 @@ public class Match {
     public Match() {
 
         this.turn = new Turn();
+
 
     }
 
@@ -72,11 +78,46 @@ public class Match {
      * by making them perform their last Final Frenzy turn.
      * After this final loop, the methods for checking the winner are called, and then the match ends.
      */
-    public void play() {
+    public void run() {
 
         chooseMap();
         chooseSkulls();
+        chooseChampion();
+        chooseFirstPlayer();
 
+        updateAll("Inizio partita");
+
+
+        for (Player player : connectedPlayers) {
+
+            Turn t = new Turn();
+            t.firstSpawn(player);
+            interaction.placeLoot(board);
+            interaction.placeWeapons(board);
+        }
+
+
+        while (!finish) {
+
+            for (Player player : connectedPlayers) {
+
+                Turn t = new Turn();
+                finish = checkStartFrenzy();
+                interaction.placeLoot(board);
+                interaction.placeWeapons(board);
+            }
+
+        }
+
+        for (Player player : connectedPlayers) {
+
+            Turn t = new Turn();
+            t.frenzy(player);
+
+        }
+
+        check = new Check();
+        check.winner(board);
     }
 
     /**
@@ -253,7 +294,7 @@ public class Match {
     }
 
 
-    public static void chooseChampion(){
+    public static void chooseChampion() {
 
         ArrayList<String> champions = new ArrayList<>();
 
@@ -263,11 +304,11 @@ public class Match {
         champions.add("Violetta");
         champions.add("Sprog");
 
-        for (Player player:connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             update(player, "Scegli il tuo campione tra:");
 
-            for (String champion:champions){
+            for (String champion : champions) {
 
                 update(player, "" + champion);
 
@@ -275,15 +316,15 @@ public class Match {
 
             String scelta = updateWithAnswer(player, "Fai la tua scelta");
 
-            while (!InputCheck.chooseChampion(scelta)){
+            while (!InputCheck.chooseChampion(scelta)) {
 
                 update(player, Message.inputError());
                 scelta = updateWithAnswer(player, "Fai la tua scelta");
             }
 
-            for (String champion:champions){
+            for (String champion : champions) {
 
-                if (scelta.equalsIgnoreCase(champion)){
+                if (scelta.equalsIgnoreCase(champion)) {
 
                     player.getPlayerboard().setChampionName(champion);
 
@@ -300,8 +341,7 @@ public class Match {
     }
 
 
-
-    public static void chooseFirstPlayer(){
+    public static void chooseFirstPlayer() {
 
         Collections.shuffle(connectedPlayers);
         connectedPlayers.get(0).setFirstPlayer(true);
