@@ -23,7 +23,7 @@ public class Board implements java.io.Serializable{
      * Represents the Killshot track as an ArrayList of Killshots.
      *
      */
-    private ArrayList<MortalBlow> mortalBlowTrack;
+    private static ArrayList<MortalBlow> mortalBlowTrack;
 
 
     /**
@@ -88,9 +88,9 @@ public class Board implements java.io.Serializable{
      * Gets the Killshot track.
      * @return the ArrayList of the Killshot track.
      */
-    public ArrayList <MortalBlow> getMortalBlowTrack(){
+    public static ArrayList <MortalBlow> getMortalBlowTrack(){
         /**/
-        return this.mortalBlowTrack;
+        return mortalBlowTrack;
     }
 
     /**
@@ -167,11 +167,11 @@ public class Board implements java.io.Serializable{
 
     /**
      * Setter method for mortal blow track
-     * @param mortalBlowTrack is the track of the mortal blow, that contains all the information about the killer, such as
+     * @param mBTrack is the track of the mortal blow, that contains all the information about the killer, such as
      *                   its identifier and the overkill flag.
      */
-    public void setMortalBlowTrack(ArrayList<MortalBlow> mortalBlowTrack){
-        this.mortalBlowTrack = mortalBlowTrack;
+    public static void setMortalBlowTrack(ArrayList<MortalBlow> mBTrack){
+        mortalBlowTrack = mBTrack;
     }
 
 

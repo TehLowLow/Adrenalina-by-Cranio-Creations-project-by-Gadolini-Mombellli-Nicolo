@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.THOR;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -59,9 +60,9 @@ public class THORBuilder {
         thor.setPrice(price);
         thor.setRechargeCost(recharge);
         thor.setLoaded(true);
-        thor.setBaseEffect(null);
+        thor.setBaseEffect(new THOR());
         thor.setAlternativeEffect(null);
-        thor.setOptionalEffect(null);
+
 
 
         return thor;

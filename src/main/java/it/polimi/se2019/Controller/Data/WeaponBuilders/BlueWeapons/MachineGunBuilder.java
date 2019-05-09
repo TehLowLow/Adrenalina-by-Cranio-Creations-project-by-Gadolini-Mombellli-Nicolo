@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.MachineGunEffect;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -59,9 +60,9 @@ public class MachineGunBuilder {
         mGun.setPrice(price);
         mGun.setRechargeCost(recharge);
         mGun.setLoaded(true);
-        mGun.setBaseEffect(null);
+        mGun.setBaseEffect(new MachineGunEffect());
         mGun.setAlternativeEffect(null);
-        mGun.setOptionalEffect(null);
+
 
 
         return mGun;

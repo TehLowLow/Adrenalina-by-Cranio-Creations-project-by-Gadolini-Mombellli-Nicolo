@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicTractorBeam;
+import it.polimi.se2019.Controller.Data.EffectBuilders.PunisherMode;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -59,9 +61,9 @@ public class TractorBeamBuilder {
         tBeam.setPrice(price);
         tBeam.setRechargeCost(recharge);
         tBeam.setLoaded(true);
-        tBeam.setBaseEffect(null);
-        tBeam.setAlternativeEffect(null);
-        tBeam.setOptionalEffect(null);
+        tBeam.setBaseEffect(new BasicTractorBeam());
+        tBeam.setAlternativeEffect(new PunisherMode());
+
 
 
         return tBeam;

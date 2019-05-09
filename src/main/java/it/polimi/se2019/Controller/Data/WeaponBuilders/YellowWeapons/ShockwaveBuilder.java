@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.BasicShockwave;
+import it.polimi.se2019.Controller.Data.EffectBuilders.TsunamiMode;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -59,9 +61,8 @@ public class ShockwaveBuilder {
         shockwave.setPrice(price);
         shockwave.setRechargeCost(recharge);
         shockwave.setLoaded(true);
-        shockwave.setBaseEffect(null);
-        shockwave.setAlternativeEffect(null);
-        shockwave.setOptionalEffect(null);
+        shockwave.setBaseEffect(new BasicShockwave());
+        shockwave.setAlternativeEffect(new TsunamiMode());
 
 
         return shockwave;

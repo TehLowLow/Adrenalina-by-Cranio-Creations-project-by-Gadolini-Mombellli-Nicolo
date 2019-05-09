@@ -2,12 +2,11 @@ package it.polimi.se2019.Network.Socket.Server;
 
 import it.polimi.se2019.Network.Logger;
 import it.polimi.se2019.Network.Server;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.nio.channels.ServerSocketChannel;
+
 
 
 public class SocketServer extends Server implements Runnable {

@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.Cyberblade;
+import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Weapon;
 
@@ -28,6 +30,7 @@ public class CyberBladeBuilder {
 
     /**
      * builder method that will build the weapon
+     *
      * @return the reference to the cBlade object, with all its fields initialized
      */
 
@@ -59,14 +62,12 @@ public class CyberBladeBuilder {
          */
 
 
-
         cBlade.setName("Spada Fotonica");
         cBlade.setPrice(price);
         cBlade.setRechargeCost(recharge);
         cBlade.setLoaded(true);
-        cBlade.setBaseEffect(null);
+        cBlade.setBaseEffect(new Cyberblade());
         cBlade.setAlternativeEffect(null);
-        cBlade.setOptionalEffect(null);
 
 
         return cBlade;
