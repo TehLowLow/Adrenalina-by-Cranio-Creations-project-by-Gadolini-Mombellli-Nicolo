@@ -4,6 +4,7 @@ import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
@@ -18,6 +19,14 @@ public class LockRifleEffect extends Effect {
 
     @Override
     public void applyEffect(Player user, ArrayList<Player> targets) {
+
+        if (targets.equals(null)){
+
+            update(user, Message.nessunBersaglio());
+            return;
+
+        }
+
 
         for (Player target : targets) {
 
@@ -85,7 +94,7 @@ public class LockRifleEffect extends Effect {
 
         if (!hasTargets(user)) {
 
-            return targets;
+            return null;
 
         }
 
@@ -218,9 +227,15 @@ public class LockRifleEffect extends Effect {
 
     public boolean canUseOptionalEffect(Player user) {
 
-        int redCubes = user.getPlayerboard().getAmmoCubes().getRed();
+        Rybamount cost = new Rybamount();
 
-        if (redCubes >= 1) {
+        cost.setRedCubes(1);
+        cost.setBlueCubes(0);
+        cost.setYellowCubes(0);
+
+
+
+        if (Check.affordable(user, cost)) {
 
             if (Check.visiblePlayers(user).size() > 1) {
 

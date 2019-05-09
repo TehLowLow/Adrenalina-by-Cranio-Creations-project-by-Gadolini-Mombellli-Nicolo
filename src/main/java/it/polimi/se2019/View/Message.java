@@ -434,12 +434,27 @@ public class Message {
          return "Qui non colpiresti nessuno!";
     }
 
+
+    public static String scegliBersaglioTurretTripod(){
+
+         return "Scegli 0 per colpire il bersaglio dell'effetto base, 1 per colpire un altro bersaglio o 2 per colpirli tutti e due";
+
+    }
+
     public static String usareSlittamento(){
          return "Vuoi attivare lo slittamento di fase ora?";
     }
 
     public static String usareSovraccarico(){
          return "Vuoi usare il colpo sovraccarico?";
+    }
+
+    public static String scegliColoreAmmo(){
+         return "Scegli il colore di una munizione da scartare:\n- giallo\n- rosso\n- blu";
+    }
+
+    public static String cubiInsuff(){
+         return "Non hai abbastanza cubi munizione.";
     }
 }
 

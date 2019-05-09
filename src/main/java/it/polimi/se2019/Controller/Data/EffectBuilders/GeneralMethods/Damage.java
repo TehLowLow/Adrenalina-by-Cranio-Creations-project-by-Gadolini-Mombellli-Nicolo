@@ -2,8 +2,11 @@ package it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods;
 
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Token;
+import it.polimi.se2019.View.Message;
 
 import java.util.ArrayList;
+
+import static it.polimi.se2019.Network.Server.update;
 
 public class Damage {
 
@@ -24,6 +27,8 @@ public class Damage {
 
         }
 
+        update(target, Message.colpito(user));
+
     }
 
     private static void giveOneMarker(Player user, Player target){
@@ -43,6 +48,8 @@ public class Damage {
             giveOneMarker(user, target);
 
         }
+
+        update(target, Message.colpito(user));
 
     }
 
