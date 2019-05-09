@@ -2,6 +2,7 @@ package it.polimi.se2019.Controller.Adrenalina;
 
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
 
 import java.util.ArrayList;
@@ -235,6 +236,28 @@ public class InputCheck {
         if (input.equalsIgnoreCase("sprog") || input.equalsIgnoreCase("violetta") || input.equalsIgnoreCase("dozer") || input.equalsIgnoreCase("banshee") || input.equalsIgnoreCase(":D-strutt-or3")){
 
             return true;
+
+        }
+
+        return false;
+
+    }
+
+
+
+    /*
+    SCELTA ARMA
+     */
+
+    public static boolean correctWeapon(String input, ArrayList<Weapon> weapons){
+
+        for (Weapon weapon:weapons){
+
+            if (input.equalsIgnoreCase(weapon.getName())){
+
+                return true;
+
+            }
 
         }
 

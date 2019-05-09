@@ -6,6 +6,8 @@ import it.polimi.se2019.Network.Server;
 
 import java.util.ArrayList;
 
+import static it.polimi.se2019.Network.Server.update;
+
 public class Message {
 
     public static String start() {
@@ -457,6 +459,26 @@ public class Message {
     public static String stepNumber(){ return "Quanti passi vuoi fare?";}
 
     public static  String movedTo(){ return "Ti sei spostato!" ;  }
+
+
+
+    /*
+    SPARARE
+     */
+
+    public static String scegliArma(ArrayList<Weapon> weapons){
+
+        String stringaFinale = "Scegli un'arma\n";;
+
+        for (Weapon weapon:weapons){
+
+             stringaFinale = stringaFinale + weapon.getName() + "\n";
+
+        }
+
+        return stringaFinale;
+
+    }
 
 }
 
