@@ -380,10 +380,7 @@ public class Message {
 
     }
 
-    public static String mancaRYB(){
 
-         return "Non hai abbastanza cubi munizione per questa azione!";
-    }
 
     public static String usaTestata(){
 
@@ -458,6 +455,11 @@ public class Message {
     public static String cubiInsuff(){
          return "Non hai abbastanza cubi munizione.";
     }
+
+    public static String stepNumber(){ return "Quanti passi vuoi fare?";}
+
+    public static  String movedTo(){ return "Ti sei spostato!" ;  }
+
 
 
     /*

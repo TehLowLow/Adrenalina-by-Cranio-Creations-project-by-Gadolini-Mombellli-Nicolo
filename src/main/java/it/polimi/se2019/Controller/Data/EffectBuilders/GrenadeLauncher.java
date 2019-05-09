@@ -42,7 +42,7 @@ public class GrenadeLauncher extends Effect {
             if(answer.equalsIgnoreCase("extra")){
 
                 if(user.getPlayerboard().getAmmoCubes().getRed()==0){
-                    Server.update(user, Message.mancaRYB());
+                    Server.update(user, Message.cubiInsuff());
                     continue;
                 }
                 chosen = true;

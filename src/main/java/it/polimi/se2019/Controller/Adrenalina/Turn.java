@@ -117,7 +117,15 @@ public class Turn {
      * @param player is who has to play the FinalFrenzy turn
      */
 
-    public void frenzy(Player player) {  }
+    public void frenzy(Player player) {
+
+
+
+
+
+
+
+    }
 
 
     //TODO ricordarsi di assegnare i punti aggiuntivi per le doublekill
