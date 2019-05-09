@@ -1,5 +1,8 @@
 package it.polimi.se2019.Model;
 
+import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
+
 /**
  * This class represents the Powerups.
  * Powerups are objects that can be used in two ways:
@@ -36,6 +39,8 @@ public class Powerup {
      * Effect of the power up.
      */
     private Effect effect;
+
+    private int colour;
 
 
 
@@ -76,6 +81,9 @@ public class Powerup {
      */
     public Effect getEffect() {return effect;}
 
+    public int getColour(){
+        return colour;
+    }
 
 
 
@@ -107,6 +115,12 @@ public class Powerup {
      * @param effect The effect of the power up.
      */
     public void setEffect(Effect effect) {this.effect = effect;}
+
+    public void setColour(int set){
+
+        colour = set;
+
+    }
 
 
 

@@ -1,4 +1,7 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
+import it.polimi.se2019.Controller.Data.EffectBuilders.TagBackGrenadeEffect;
+import it.polimi.se2019.Controller.Data.EffectBuilders.TargetingScopeEffect;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 
 /**
@@ -57,9 +60,10 @@ public class BlueTagbackGrenadeBuilder {
          */
 
         bTagback.setName("Granata Venom Blu");
+        bTagback.setColour(Colour.BLUE);
         bTagback.setTradeValue(tValue);
         bTagback.setCardDescription(cDesc);
-        bTagback.setEffect(eff);
+        bTagback.setEffect(new TagBackGrenadeEffect());
         return bTagback;
 
 

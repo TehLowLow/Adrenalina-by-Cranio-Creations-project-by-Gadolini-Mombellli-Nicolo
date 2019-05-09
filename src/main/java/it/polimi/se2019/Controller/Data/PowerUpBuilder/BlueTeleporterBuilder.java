@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.TeleporterEffect;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Rybamount;
@@ -60,7 +62,8 @@ public class BlueTeleporterBuilder {
         bTeleport.setName("Teletrasporto Blu");
         bTeleport.setTradeValue(tValue);
         bTeleport.setCardDescription(cDesc);
-        bTeleport.setEffect(eff);
+        bTeleport.setColour(Colour.BLUE);
+        bTeleport.setEffect(new TeleporterEffect());
 
         return bTeleport;
 

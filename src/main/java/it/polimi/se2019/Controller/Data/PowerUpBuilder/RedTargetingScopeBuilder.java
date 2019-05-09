@@ -1,5 +1,7 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.TargetingScopeEffect;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Rybamount;
@@ -61,7 +63,8 @@ public class RedTargetingScopeBuilder {
         rtScope.setName("Mirino Rosso");
         rtScope.setTradeValue(tValue);
         rtScope.setCardDescription(cDesc);
-        rtScope.setEffect(eff);
+        rtScope.setColour(Colour.RED);
+        rtScope.setEffect(new TargetingScopeEffect());
 
         return rtScope;
     }
