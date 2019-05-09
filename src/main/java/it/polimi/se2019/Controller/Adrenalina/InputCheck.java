@@ -265,4 +265,14 @@ public class InputCheck {
 
     }
 
+    public static boolean correctAction(String action){
+
+        if(action.equalsIgnoreCase("muovi") || action.equalsIgnoreCase("spara") || action.equalsIgnoreCase("raccogli")){
+            return true;
+        }
+
+        return false;
+
+    }
+
 }

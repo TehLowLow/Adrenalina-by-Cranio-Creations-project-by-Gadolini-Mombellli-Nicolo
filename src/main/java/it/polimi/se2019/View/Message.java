@@ -480,5 +480,25 @@ public class Message {
 
     }
 
+
+    public static String scegliAzione(){
+
+        return "Scegli un'azione tra:\nSpara\nMuovi\nRaccogli";
+
+    }
+
+    public static String noSparo(){
+         return "Non puoi sparare: da questa posizione non colpiresti nessuno!";
+    }
+
+    public static String vuoiMuovertiPU(){
+         return "Vuoi muoverti prima di raccogliere? (si/no)";
+    }
+
+    public static String limitePowerup(){
+         return "Non hai più spazio per raccogliere altri power up.";
+    }
 }
+
+
 

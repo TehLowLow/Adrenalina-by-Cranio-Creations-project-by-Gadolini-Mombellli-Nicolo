@@ -389,7 +389,7 @@ public class Check {
      *
      * @param player is the player to be checked.
      */
-    public void limitAmmoCubes(Player player) {
+    public static void limitAmmoCubes(Player player) {
 
         if (player.getPlayerboard().getAmmoCubes().getYellow() > 3) {
             player.getPlayerboard().getAmmoCubes().setYellowCubes(3);
@@ -425,7 +425,7 @@ public class Check {
      *
      * @param player is the player to be checked.
      */
-    public boolean limitPowerUp(Player player) {
+    public static boolean limitPowerUp(Player player) {
 
         if (player.getPlayerboard().getPowerups().size() >= 3) {
             return true;
@@ -851,7 +851,6 @@ public class Check {
         }
 
     }
-
 
     /**
      * This method runs after the final frenzy, and checks (/resolve) all the last points remaining on the board.
@@ -1358,7 +1357,6 @@ public class Check {
 
     }
 
-
     public static ArrayList<Cell> visibleSquares(Player user) {
 
         ArrayList<Cell> visibleSquares = new ArrayList<>();
@@ -1423,6 +1421,57 @@ public class Check {
         if (room == Colour.PURPLE) {
             visibleSquares.addAll(Board.getMap().getPurpleRoom().getCells());
         }
+
+    }
+
+    public static boolean canShot(Player player){
+
+        ArrayList <Weapon> playerWeapons = player.getPlayerboard().getWeapons();
+
+        for(Weapon weapon :playerWeapons){
+
+            if(weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))){
+
+                if(weapon.isLoaded()) {
+                    return true;
+                }
+
+            }
+        }
+
+
+
+        return false;
+
+    }
+
+    public static boolean canShotEnhanced(Player player){
+
+        Player fakePlayer = new Player();
+        fakePlayer.setPlayerboard(new Playerboard());
+        fakePlayer.setPosition(player.getPosition());
+        fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+
+        ArrayList <Cell> reachableCells = Check.reachableCells(player, 1);
+
+        for(Cell cell : reachableCells){
+
+            fakePlayer.setPosition(cell);
+
+            for(Weapon weapon : fakePlayer.getPlayerboard().getWeapons()){
+
+                if(weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))){
+
+                    if(weapon.isLoaded()) {
+                        return true;
+                    }
+
+                }
+            }
+
+        }
+
+        return false;
 
     }
 

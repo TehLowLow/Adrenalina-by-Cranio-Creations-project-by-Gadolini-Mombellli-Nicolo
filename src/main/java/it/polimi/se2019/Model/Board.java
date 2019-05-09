@@ -30,43 +30,43 @@ public class Board implements java.io.Serializable{
      * It's the value of the mortalBlowTrack. It's used at the end of the game to assign the points.
      */
 
-    private ArrayList<Integer> mortalBlowTrackValue;
+    private static ArrayList<Integer> mortalBlowTrackValue;
 
 
     /**
      * Keeps track of the player that did a double kill.
      */
-    private Token doubleKill;
+    private static Token doubleKill;
 
 
     /**
      * Represents the pile of power ups as an ArrayList.
      */
-    private ArrayList <Powerup> powerUpDeck;
+    private static ArrayList <Powerup> powerUpDeck;
 
 
     /**
      * Represents the pile of discarded power ups as an ArrayList
      */
-    private ArrayList <Powerup> discardedPowerUps;
+    private static ArrayList <Powerup> discardedPowerUps;
 
 
     /**
      * Represents the pile of ammo tiles as an ArrayList.
      */
-    private ArrayList <Loot> lootDeck;
+    private static ArrayList <Loot> lootDeck;
 
 
     /**
      * Represents the pile of used ammo tiles as an ArrayList.
      */
-    private ArrayList  <Loot> discardedLoot;
+    private static ArrayList  <Loot> discardedLoot;
 
 
     /**
      * Represents the pile of weapons as an ArrayList.
      */
-    private ArrayList <Weapon> weaponDeck;
+    private static ArrayList <Weapon> weaponDeck;
 
     /**
      * Represents the map.
@@ -97,8 +97,8 @@ public class Board implements java.io.Serializable{
      * Gets the token of the player that did a double kill.
      * @return the Token on the field doubleKill.
      */
-    public Token getDoubleKill(){
-        return this.doubleKill;
+    public static Token getDoubleKill(){
+        return doubleKill;
     }
 
     /**
@@ -113,8 +113,8 @@ public class Board implements java.io.Serializable{
      * Returns a reference to the power up deck.
      * @return the ArrayList that represents the power up deck.
      */
-    public ArrayList <Powerup> getPowerUpDeck(){
-        return this.powerUpDeck;
+    public static ArrayList <Powerup> getPowerUpDeck(){
+        return powerUpDeck;
     }
 
 
@@ -122,8 +122,8 @@ public class Board implements java.io.Serializable{
      * Returns a reference to the ammo tiles deck.
      * @return the ArrayList that represents the ammo tiles deck.
      */
-    public ArrayList <Loot> getLootDeck(){
-        return this.lootDeck;
+    public static ArrayList <Loot> getLootDeck(){
+        return lootDeck;
     }
 
 
@@ -131,15 +131,15 @@ public class Board implements java.io.Serializable{
      * Returns a reference to the weapon deck.
      * @return the ArrayList that represents the weapon deck.
      */
-    public ArrayList <Weapon> getWeaponDeck(){
-        return this.weaponDeck;
+    public static ArrayList <Weapon> getWeaponDeck(){
+        return weaponDeck;
     }
 
     /**
      * Returns a reference to the discarded loot deck.
      * @return the ArrayList that represents the pile of discarded loots.
      */
-    public ArrayList <Loot> getDiscardedLoot(){
+    public static ArrayList <Loot> getDiscardedLoot(){
         return discardedLoot;
     }
 
@@ -147,7 +147,7 @@ public class Board implements java.io.Serializable{
      * Returns a reference to the discarded power ups deck.
      * @return the ArrayList that represents the pile of discarded loots.
      */
-    public ArrayList <Powerup> getDiscardedPowerUps(){
+    public static ArrayList <Powerup> getDiscardedPowerUps(){
         return discardedPowerUps;
     }
 
@@ -157,7 +157,7 @@ public class Board implements java.io.Serializable{
      * @return an Arraylist containing the points related to the mortalBlow track
      */
 
-    public ArrayList<Integer> getMortalBlowTrackValue(){
+    public static ArrayList<Integer> getMortalBlowTrackValue(){
         return mortalBlowTrackValue;
     }
 
@@ -203,17 +203,19 @@ public class Board implements java.io.Serializable{
 
     /**
      * This method sets the deck of ammo tiles.
-     * @param lootDeck reference to the Arraylist of ammo tiles.
+     * @param newlootDeck reference to the Arraylist of ammo tiles.
      */
-    public void setLootDeck(ArrayList<Loot> lootDeck) {
-        this.lootDeck = lootDeck;
+    public static void setLootDeck(ArrayList<Loot> newlootDeck) {
+        lootDeck = newlootDeck;
     }
 
     /**
      * This method sets the deck of discarded ammo tiles.
-     * @param discardedLoot reference to the ArrayList of discarded ammo tiles.
+     * @param ndiscardedLoot reference to the ArrayList of discarded ammo tiles.
      */
-    public void setDiscardedLoot(ArrayList <Loot> discardedLoot){
+    public static void setDiscardedLoot(ArrayList <Loot> ndiscardedLoot){
+
+        discardedLoot = ndiscardedLoot;
 
     }
 
@@ -245,7 +247,7 @@ public class Board implements java.io.Serializable{
     /**
      * Shuffles the deck of ammo tiles.
      */
-    public void shuffleLootDeck(){
+    public static void shuffleLootDeck(){
 
         Collections.shuffle(lootDeck);
 
@@ -254,7 +256,7 @@ public class Board implements java.io.Serializable{
     /**
      * Shuffles the deck of power ups.
      */
-    public void shufflePowerUpDeck(){
+    public static void shufflePowerUpDeck(){
 
         Collections.shuffle(powerUpDeck);
 
@@ -264,7 +266,7 @@ public class Board implements java.io.Serializable{
      * Shuffles the weapon deck
      */
 
-    public void shuffleWeaponDeck(){
+    public static void shuffleWeaponDeck(){
         Collections.shuffle(weaponDeck);
     }
 
