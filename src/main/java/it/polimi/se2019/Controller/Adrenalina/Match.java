@@ -9,7 +9,7 @@ import java.util.Collections;
 
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 
-import static it.polimi.se2019.Controller.Adrenalina.Check.checkStartFrenzy;
+import static it.polimi.se2019.Controller.Adrenalina.Check.checkFrenzy;
 import static it.polimi.se2019.Network.Server.*;
 
 
@@ -102,7 +102,7 @@ public class Match extends Thread {
             for (Player player : connectedPlayers) {
 
                 Turn t = new Turn();
-                finish = checkStartFrenzy();
+                finish = checkFrenzy();
                 interaction.placeLoot(board);
                 interaction.placeWeapons(board);
             }

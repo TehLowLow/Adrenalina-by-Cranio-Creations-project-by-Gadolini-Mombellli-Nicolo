@@ -685,7 +685,7 @@ public class Check {
 
     }
 
-    public static boolean checkStartFrenzy(){
+    public static boolean checkFrenzy(){
 
         ArrayList<MortalBlow> mortalBlows = Board.getMortalBlowTrack();
         int mbCounter = 0;
