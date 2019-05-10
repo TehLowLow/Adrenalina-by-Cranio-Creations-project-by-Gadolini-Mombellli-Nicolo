@@ -275,4 +275,14 @@ public class InputCheck {
 
     }
 
+    public static boolean correctPowerUp(String powerup){
+
+        if(powerup.equalsIgnoreCase("Granata venom") || powerup.equalsIgnoreCase("Mirino") ||powerup.equalsIgnoreCase("Raggio cinetico") || powerup.equalsIgnoreCase("Teletrasporto")){
+            return true;
+        }
+
+        return false;
+
+    }
+
 }

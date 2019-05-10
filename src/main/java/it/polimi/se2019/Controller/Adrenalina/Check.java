@@ -59,7 +59,7 @@ public class Check {
      *
      * @param killed the defeated player whose board needs to be resolved.
      */
-    public void resolveBoard(Player killed, Board board, Player killer, boolean overkill) {
+    public static void resolveBoard(Player killed, Board board, Player killer, boolean overkill) {
 
         ArrayList<Token> damages = new ArrayList<Token>();
         damages = killed.getPlayerboard().getDamage();
@@ -217,7 +217,7 @@ public class Check {
      * @param active  is the attacker, used to look for attacker's markers.
      * @param passive is the player being attacked that needs te markers check to resolve total damage.
      */
-    public void markers(Player active, Player passive) {
+    public static void markers(Player active, Player passive) {
 
 
         /*
@@ -860,7 +860,7 @@ public class Check {
      * @param board is the board to solve.
      * @return the winner.
      */
-    public void winner(Board board) {
+    public static void winner(Board board) {
 
         /*
         risolvo le finalfrenzy playerboard
@@ -1475,5 +1475,65 @@ public class Check {
 
     }
 
+    public static boolean canShotEnhancedFrenzy(Player player){
+
+        Player fakePlayer = new Player();
+        fakePlayer.setPlayerboard(new Playerboard());
+        fakePlayer.setPosition(player.getPosition());
+        fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+
+        ArrayList <Cell> reachableCells = Check.reachableCells(player, 2);
+
+        for(Cell cell : reachableCells){
+
+            fakePlayer.setPosition(cell);
+
+            for(Weapon weapon : fakePlayer.getPlayerboard().getWeapons()){
+
+                if(weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))){
+
+                    if(weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
+                        return true;
+                    }
+
+                }
+            }
+
+        }
+
+        return false;
+
+    }
+
+
+    public static boolean canShotFrenzy(Player player){
+
+        Player fakePlayer = new Player();
+        fakePlayer.setPlayerboard(new Playerboard());
+        fakePlayer.setPosition(player.getPosition());
+        fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+
+        ArrayList <Cell> reachableCells = Check.reachableCells(player, 1);
+
+        for(Cell cell : reachableCells){
+
+            fakePlayer.setPosition(cell);
+
+            for(Weapon weapon : fakePlayer.getPlayerboard().getWeapons()){
+
+                if(weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))){
+
+                    if(weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
+                        return true;
+                    }
+
+                }
+            }
+
+        }
+
+        return false;
+
+    }
 
 }

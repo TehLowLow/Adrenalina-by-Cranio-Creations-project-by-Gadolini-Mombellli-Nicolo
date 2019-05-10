@@ -1,11 +1,14 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
-import it.polimi.se2019.Model.Player;
-import it.polimi.se2019.Model.Powerup;
+import it.polimi.se2019.Controller.Adrenalina.Exceptions.EmptyDeckException;
+import it.polimi.se2019.Controller.Adrenalina.Exceptions.LimitPowerUpException;
+import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
+import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.*;
-import it.polimi.se2019.Model.Weapon;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * This class represents the player's turn in the match
@@ -23,10 +26,14 @@ public class Turn {
 
     private ArrayList<Powerup> drewPowerUp;
 
+    private Board board = new Board();
 
-    private Action action;
 
-    private Interaction interaction;
+    /**
+     * At the end of the turn, those players must be respawned.
+     */
+
+    private ArrayList <Player> killedPlayers;
     /**
      * switchedWeapon is used to save the weapon before checking it
      */
@@ -82,6 +89,11 @@ public class Turn {
      * @param player is the player who has to play the first turn
      */
     public void first(Player player) {
+
+        firstSpawn(player);
+        standard(player);
+
+
     }
 
 
@@ -90,7 +102,43 @@ public class Turn {
      *
      * @param player is the player who has to play the turn
      */
-    public void standard(Player player) {    }
+    public void standard(Player player) {
+
+
+        Action.perform(player);
+
+        Action.reload(player);
+
+        //Risolvo la board e respawno i morti
+
+        ArrayList <Player> deadPlayers = new ArrayList<>();
+
+        for(Player dead : Server.connectedPlayers){
+
+            if(Check.death(dead)==0){
+                continue;
+            }
+            else{
+                deadPlayers.add(dead);
+            }
+
+        }
+
+        for(Player dead : deadPlayers){
+
+            boolean overkill = false;
+
+            if(Check.death(dead)==2){
+                overkill = true;
+            }
+
+            Check.resolveBoard(dead, board, player, overkill);
+            respawn(dead);
+
+        }
+
+
+    }
 
 
     /**
@@ -99,7 +147,85 @@ public class Turn {
      * @param player is the player that has to spawn
      */
 
-    public void firstSpawn(Player player) {}
+    private void firstSpawn(Player player) {
+
+        try {
+            Interaction.drawPowerUp(player);
+            Interaction.drawPowerUp(player);
+        }
+        catch (Exception e){
+
+        }
+
+        boolean chosen = false;
+
+        while(!chosen){
+
+            String powerUp = Server.updateWithAnswer(player, Message.scegliPowerUpSpawn(player.getPlayerboard().getPowerups()));
+
+            try{
+
+                int index = InputCheck.numberCheck(powerUp);
+
+                if(index>=0 && index <=1){
+
+                    chosen = true;
+                    Powerup chosenPU = player.getPlayerboard().getPowerups().get(index);
+                    Server.updateAll(Message.powerUpSpawnScelto(player, chosenPU));
+                    Interaction.discardPowerUp(player, chosenPU);
+
+                    if(chosenPU.getColour() == Colour.RED){
+
+                        ArrayList <Cell> spawnRoom = Board.getMap().getRedRoom().getCells();
+
+                        for(Cell cell : spawnRoom){
+                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
+                                player.setPosition(cell);
+                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
+                            }
+                        }
+
+
+                    }
+
+                    if(chosenPU.getColour() == Colour.BLUE){
+
+                        ArrayList <Cell> spawnRoom = Board.getMap().getBlueRoom().getCells();
+
+                        for(Cell cell : spawnRoom){
+                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
+                                player.setPosition(cell);
+                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
+                            }
+                        }
+
+
+                    }
+
+                    if(chosenPU.getColour() == Colour.YELLOW){
+
+                        ArrayList <Cell> spawnRoom = Board.getMap().getYellowRoom().getCells();
+
+                        for(Cell cell : spawnRoom){
+                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
+                                player.setPosition(cell);
+                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
+                            }
+                        }
+
+
+                    }
+
+                }
+
+                Server.update(player, Message.inputError());
+            }catch(NumberFormatException e){
+                Server.update(player, Message.inputError());
+            }
+
+        }
+
+    }
 
 
     /**
@@ -108,7 +234,100 @@ public class Turn {
      * @param player is the player that has to respawn
      */
 
-    public void respawn(Player player) {  }
+    public void respawn(Player player) {
+
+
+        try {
+
+            Interaction.drawPowerUp(player);
+        }
+
+        catch(EmptyDeckException e){
+                ArrayList <Loot> discarded = Board.getDiscardedLoot();
+                Collections.shuffle(discarded);
+                Board.setLootDeck(discarded);
+                Board.setDiscardedLoot(new ArrayList<Loot>());
+
+                ArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
+                Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
+                Board.getPowerUpDeck().remove(drawnPowerUp);
+                powerUps.add(drawnPowerUp);
+                player.getPlayerboard().setPowerups(powerUps);
+            }
+        catch(LimitPowerUpException e){
+                Server.update(player, Message.limitePowerup());
+            }
+
+        boolean chosen = false;
+
+        while(!chosen){
+
+            String powerUp = Server.updateWithAnswer(player, Message.scegliPowerUpSpawn(player.getPlayerboard().getPowerups()));
+
+            try{
+
+                int index = InputCheck.numberCheck(powerUp);
+
+                if(index>=0 && index <=player.getPlayerboard().getPowerups().size()-1){
+
+                    chosen = true;
+                    Powerup chosenPU = player.getPlayerboard().getPowerups().get(index);
+                    Server.updateAll(Message.powerUpSpawnScelto(player, chosenPU));
+                    Interaction.discardPowerUp(player, chosenPU);
+
+                    if(chosenPU.getColour() == Colour.RED){
+
+                        ArrayList <Cell> spawnRoom = Board.getMap().getRedRoom().getCells();
+
+                        for(Cell cell : spawnRoom){
+                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
+                                player.setPosition(cell);
+                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
+                            }
+                        }
+
+
+                    }
+
+                    if(chosenPU.getColour() == Colour.BLUE){
+
+                        ArrayList <Cell> spawnRoom = Board.getMap().getBlueRoom().getCells();
+
+                        for(Cell cell : spawnRoom){
+                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
+                                player.setPosition(cell);
+                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
+                            }
+                        }
+
+
+                    }
+
+                    if(chosenPU.getColour() == Colour.YELLOW){
+
+                        ArrayList <Cell> spawnRoom = Board.getMap().getYellowRoom().getCells();
+
+                        for(Cell cell : spawnRoom){
+                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
+                                player.setPosition(cell);
+                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
+                            }
+                        }
+
+
+                    }
+
+                }
+
+                Server.update(player, Message.inputError());
+            }catch(NumberFormatException e){
+                Server.update(player, Message.inputError());
+            }
+
+        }
+
+
+    }
 
 
     /**
@@ -117,11 +336,40 @@ public class Turn {
      * @param player is who has to play the FinalFrenzy turn
      */
 
-    public void frenzy(Player player) {
+    public void frenzy(Player player, boolean afterFirstPlayer) {
 
+        Action.performFrenzy(player, afterFirstPlayer);
 
+        Action.reload(player);
 
+        //Risolvo la board e respawno i morti
 
+        ArrayList <Player> deadPlayers = new ArrayList<>();
+
+        for(Player dead : Server.connectedPlayers){
+
+            if(Check.death(dead)==0){
+                continue;
+            }
+            else{
+                deadPlayers.add(dead);
+            }
+
+        }
+
+        for(Player dead : deadPlayers){
+
+            boolean overkill = false;
+
+            if(Check.death(dead)==2){
+                overkill = true;
+            }
+
+            Check.resolveBoard(dead, board, player, overkill);
+            respawn(dead);
+            Interaction.turnPlayerboard(dead);
+
+        }
 
 
 

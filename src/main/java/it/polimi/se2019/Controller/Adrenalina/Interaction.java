@@ -69,13 +69,12 @@ public class Interaction {
     /**
      * this method is used to allow the player to discard a powerUp
      * @param player is who has to discard the powerUp
-     * @param board is "Adrenalina" main board
      * @param powerUp is the power up that must be discarded
      */
 
-    public void discardPowerUp(Player player, Powerup powerUp, Board board){
+    public static void discardPowerUp(Player player, Powerup powerUp){
 
-        ArrayList <Powerup> discardedPowerUps = board.getDiscardedPowerUps();
+        ArrayList <Powerup> discardedPowerUps = Board.getDiscardedPowerUps();
         discardedPowerUps.add(powerUp);
         player.getPlayerboard().getPowerups().remove(powerUp);
 
@@ -391,7 +390,7 @@ public class Interaction {
      *               to turn
      */
 
-    public void turnPlayerboard(Player player){
+    public static void turnPlayerboard(Player player){
 
         Playerboard frenzyboard = new Playerboard();
 
