@@ -30,7 +30,7 @@ public class SocketServer extends Server implements Runnable {
         try {
             gamerChannel = mySocket.accept();
             playerClient.put(gamerChannel.getPort(), gamerChannel); //lego numero di porta e socket.
-            update(connectedPlayers.get(0), "ciao man, testo update");
+            update(connectedPlayers.get(0), "ciao man, testo update");   //TODO Attenzione al multithreading
             update(connectedPlayers.get(0), "Servizio di testing, attendere...");
             String response = updateWithAnswer(connectedPlayers.get(0), "Quanti anni hai?");
             System.out.println(response);
