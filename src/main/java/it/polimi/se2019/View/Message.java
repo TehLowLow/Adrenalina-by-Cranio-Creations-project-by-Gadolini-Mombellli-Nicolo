@@ -480,6 +480,16 @@ public class Message {
 
     }
 
+    /*
+    EFFETTO BASE O ALTERNATIVO
+     */
+
+    public static String scegliBaseAlternativo(){
+
+        return "Scegli se usare l'effetto base o quello alternativo";
+
+    }
+
 
     public static String scegliAzione(){
 
@@ -537,6 +547,16 @@ public class Message {
     public static String haiRicaricato(Weapon weapon){
 
         return "Hai ricaricato " + weapon.getName();
+
+    }
+
+    /*
+    Enhanced shot scelta movimento
+     */
+
+    public static String scegliMovimento(){
+
+        return "Scegli una direzione (su, giu, destra, sinistra) o se stare fermo (stop)";
 
     }
 }

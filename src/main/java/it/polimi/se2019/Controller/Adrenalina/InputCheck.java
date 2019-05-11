@@ -265,6 +265,21 @@ public class InputCheck {
 
     }
 
+
+    /*
+    SCELTA EFFETTO BASE O ALTERNATIVO
+     */
+
+    public static boolean correctBasicOrAlternative(String input){
+
+        if (input.equalsIgnoreCase("base") || input.equalsIgnoreCase("alternativo")){
+
+            return true;
+        }
+
+        return false;
+    }
+
     public static boolean correctAction(String action){
 
         if(action.equalsIgnoreCase("muovi") || action.equalsIgnoreCase("spara") || action.equalsIgnoreCase("raccogli")){
@@ -279,6 +294,22 @@ public class InputCheck {
 
         if(powerup.equalsIgnoreCase("Granata venom") || powerup.equalsIgnoreCase("Mirino") ||powerup.equalsIgnoreCase("Raggio cinetico") || powerup.equalsIgnoreCase("Teletrasporto")){
             return true;
+        }
+
+        return false;
+
+    }
+
+    /*
+    ENHANCED SHOT SCELTA MOVIMENTO
+     */
+
+    public static boolean correctMoveEnhancedShot(String input){
+
+        if (input.equalsIgnoreCase("stop") || input.equalsIgnoreCase("su") || input.equalsIgnoreCase("giu") || input.equalsIgnoreCase("destra") || input.equalsIgnoreCase("sinistra")){
+
+            return true;
+
         }
 
         return false;
