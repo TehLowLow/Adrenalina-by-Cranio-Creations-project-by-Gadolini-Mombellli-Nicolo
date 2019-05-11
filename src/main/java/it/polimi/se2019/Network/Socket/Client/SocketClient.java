@@ -21,6 +21,8 @@ public class SocketClient extends Client implements Runnable {
     private int gamePort;
     private int localPort;
     private byte address[] = {127, 0, 0, 1};
+    private int signal;
+    private String Update;
 
     private static DataOutputStream out;
     private static DataInputStream in;
@@ -60,13 +62,47 @@ public class SocketClient extends Client implements Runnable {
 
         streamInit();
 
-        try {
-            out.writeUTF("Connesso alla partita, fai partire il timer");
-            System.out.println(in.readUTF());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        while (true) {
 
+            //I messaggi sulla rete son di due tipi, quelli per cui un utente non deve rispondere e quelli
+            //che invece necessitano di interazione col server.
+            //Il primo tipo di messaggio ha codice "1", il secondo ha codice "2".
+            //Il server invia il codice e attende un echo dal client, ricevuto l' echo e verificato che sia il channel
+            //corretto, inizia a inviare i messaggi.
+
+
+            try {
+                signal = in.readInt();
+            } catch (Exception e) {
+                continue;
+            }
+
+            if (signal == 1) {
+
+                try { //update
+
+                    out.writeInt(signal);
+                    System.out.println(in.readUTF());
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            } else if (signal == 2) {//updatewithanswer
+
+                try {
+                    out.writeInt(signal);
+                    System.out.println(in.readUTF());
+                    Scanner scanner = new Scanner(System.in);
+                    out.writeUTF(scanner.nextLine());
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
     }
 
 

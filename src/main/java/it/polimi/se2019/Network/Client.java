@@ -19,8 +19,7 @@ public class Client {
 
         //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.
         System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
-        response = input();
-        initConnection(response);//qua vengono lanciati i thread.
+        initConnection();//qua vengono lanciati i thread.
     }
 
 //----------------------------------------------------------------------------------------------------
@@ -33,35 +32,47 @@ public class Client {
 
 //----------------------------------------------------------------------------------------------------
 
-    private static void initConnection(String string) {
+    private static void initConnection() {
+
+        boolean connected = false;
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (!connected) {
+
+            String string = scanner.nextLine();
+
+            if (string.equalsIgnoreCase("socket")) {
+
+                //avvia una connessione socket
+
+                connected = true;
+
+                Runnable clientSocket = new SocketClient();
+                Thread sClient = new Thread(clientSocket);
+                sClient.start();
 
 
-        if (string.equalsIgnoreCase("socket")) {
+            } else if (string.equalsIgnoreCase("RMI")) {
 
-            //avvia una connessione socket
+                //avvia una connessione RMI
 
-            Runnable clientSocket = new SocketClient();
-            Thread sClient = new Thread(clientSocket);
-            sClient.start();
-
-        } else if (string.equalsIgnoreCase("RMI")) {
-
-            //avvia una connessione RMI
-
-            Runnable clientRMI = new RMIClient();
+           /* Runnable clientRMI = new RMIClient();
             Thread rClient = new Thread(clientRMI);
-            rClient.start();
+            rClient.start();*/
 
-        } else {
+                System.out.println("Il servizio richiesto è momentaneamente non disponibile, utilizza la connessione socket");
 
-            //stampa la stringa di errore.
-            System.err.println("input invalido, riscrivi attentamente che connessione desideri");
 
+            } else {
+
+                //stampa la stringa di errore.
+                System.err.println("input invalido, riscrivi attentamente che connessione desideri");
+
+            }
         }
     }
 //----------------------------------------------------------------------------------------------------
-
-
 
 
 }

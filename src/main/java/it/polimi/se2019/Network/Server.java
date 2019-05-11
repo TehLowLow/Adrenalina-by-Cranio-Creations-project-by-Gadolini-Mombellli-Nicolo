@@ -9,7 +9,10 @@ import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
 
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.*;
 
@@ -62,6 +65,7 @@ public class Server {
         player.setPORT(calcPorts());
         registrations.put(u, p);
         connectedPlayers.add(player);
+
 
         System.out.println("Ho aggiunto " + u);
 
@@ -121,15 +125,27 @@ public class Server {
     }
 
 
-    public static String updateWithAnswer(Player player, String msg) {
+    public synchronized static String updateWithAnswer(Player player, String msg) {
 
-        if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
-
-
-        }
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
-            return null;
+
+            Socket stream = (Socket) playerClient.get(player.getPORT());
+
+            try {
+
+                DataOutputStream out = new DataOutputStream(stream.getOutputStream());
+                DataInputStream in = new DataInputStream(stream.getInputStream());
+                out.writeInt(2);
+                System.out.println(in.readInt());
+                out.writeUTF(msg);
+                return in.readUTF();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
         }
 
         return null;
@@ -138,25 +154,38 @@ public class Server {
     }
 
 
-    public static void update(Player player, String msg) {
+    public synchronized static void update(Player player, String msg) {
 
-        if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
-
-
-        }
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
+            Socket stream = (Socket) playerClient.get(player.getPORT());
 
-            //Cose
+            try {
 
+                DataOutputStream out = new DataOutputStream(stream.getOutputStream());
+                DataInputStream echo = new DataInputStream(stream.getInputStream());
+                out.writeInt(1);
+                System.out.println(echo.readInt());
+                out.writeUTF(msg);
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
 
+    public synchronized static void updateAll(String msg) {
 
-    public static void updateAll(String msg){}
+        /*for (Player player : connectedPlayers) {
 
+            update(player, "test di UpdateAll, resta in linea");
+
+        }*/
+
+
+    }
 
 
     private static synchronized int calcPorts() {
