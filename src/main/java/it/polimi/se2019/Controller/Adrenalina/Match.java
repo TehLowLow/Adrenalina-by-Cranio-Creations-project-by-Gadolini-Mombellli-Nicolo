@@ -6,6 +6,7 @@ import it.polimi.se2019.View.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 
@@ -85,13 +86,15 @@ public class Match extends Thread {
         chooseChampion();
         chooseFirstPlayer();
 
+        Player lastPlayer = new Player();
+
         updateAll("Inizio partita");
 
 
         for (Player player : connectedPlayers) {
 
             Turn t = new Turn();
-            t.firstSpawn(player);
+            t.first(player);
             interaction.placeLoot(board);
             interaction.placeWeapons(board);
         }
@@ -103,21 +106,73 @@ public class Match extends Thread {
 
                 Turn t = new Turn();
                 finish = checkFrenzy();
+                if(finish){
+                    continue;
+                }
                 interaction.placeLoot(board);
                 interaction.placeWeapons(board);
+                lastPlayer = player;
+
             }
 
         }
 
-        for (Player player : connectedPlayers) {
 
-            Turn t = new Turn();
-            t.frenzy(player);
+        //Devo riordinare l'array connectedPlayers in modo tale da avere l'ordine di esecuzione giusto.
+
+        CopyOnWriteArrayList <Player> newOrder = new CopyOnWriteArrayList<>();
+
+        boolean startCopy = false;
+
+        for(Player player : connectedPlayers){
+
+            if(player.equals(lastPlayer)){
+                startCopy = true;
+                continue;
+            }
+
+            if(startCopy){
+
+                newOrder.add(player);
+
+            }
 
         }
 
-        check = new Check();
-        check.winner(board);
+        for(Player player : connectedPlayers){
+
+            if(!newOrder.contains(player)){
+                newOrder.add(player);
+            }
+
+        }
+
+        connectedPlayers = newOrder;
+
+        //Controllo quali giocatori devono cambiare playerboard
+
+        for(Player player : connectedPlayers){
+            if(player.getPlayerboard().getDamage().size()==0){
+                Interaction.turnPlayerboard(player);
+            }
+        }
+
+        boolean afterFirstPlayer = false;
+
+        for (Player player : connectedPlayers) {
+
+            //Durante l'ultimo giro, se sono dopo il primo giocatore devo fare azioni diverse.
+            if(player.isFirstPlayer()){
+                afterFirstPlayer = true;
+            }
+
+            Turn t = new Turn();
+            t.frenzy(player, afterFirstPlayer);
+
+        }
+
+       Check.winner(board);
+
     }
 
     /**

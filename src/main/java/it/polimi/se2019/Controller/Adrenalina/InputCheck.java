@@ -265,4 +265,24 @@ public class InputCheck {
 
     }
 
+    public static boolean correctAction(String action){
+
+        if(action.equalsIgnoreCase("muovi") || action.equalsIgnoreCase("spara") || action.equalsIgnoreCase("raccogli")){
+            return true;
+        }
+
+        return false;
+
+    }
+
+    public static boolean correctPowerUp(String powerup){
+
+        if(powerup.equalsIgnoreCase("Granata venom") || powerup.equalsIgnoreCase("Mirino") ||powerup.equalsIgnoreCase("Raggio cinetico") || powerup.equalsIgnoreCase("Teletrasporto")){
+            return true;
+        }
+
+        return false;
+
+    }
+
 }

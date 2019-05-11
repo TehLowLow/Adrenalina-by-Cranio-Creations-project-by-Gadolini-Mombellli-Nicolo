@@ -28,18 +28,17 @@ public class Interaction {
      * this method is used to allow the player to draw a powerUp from
      * the board
      * @param player is who has to draw the powerUp
-     * @param board is "Adrenalina" main board
      * @throws EmptyDeckException when there are no more powerUps on the deck.
      * @throws LimitPowerUpException if the player has already 3 power ups
      */
 
-    public void drawPowerUp(Player player, Board board) throws EmptyDeckException, LimitPowerUpException{
+    public static void drawPowerUp(Player player) throws EmptyDeckException, LimitPowerUpException{
 
-        ArrayList <Powerup> powerUpDeck = board.getPowerUpDeck();
+        ArrayList <Powerup> powerUpDeck = Board.getPowerUpDeck();
 
         if(powerUpDeck.size()>0){
 
-            if(check.limitPowerUp(player)){
+            if(Check.limitPowerUp(player)){
 
                 LimitPowerUpException e = new LimitPowerUpException();
                 throw (e);
@@ -49,8 +48,8 @@ public class Interaction {
             else {
 
                 ArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
-                Powerup drawnPowerUp = board.getPowerUpDeck().get(0);
-                board.getPowerUpDeck().remove(drawnPowerUp);
+                Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
+                Board.getPowerUpDeck().remove(drawnPowerUp);
                 powerUps.add(drawnPowerUp);
                 player.getPlayerboard().setPowerups(powerUps);
 
@@ -70,13 +69,12 @@ public class Interaction {
     /**
      * this method is used to allow the player to discard a powerUp
      * @param player is who has to discard the powerUp
-     * @param board is "Adrenalina" main board
      * @param powerUp is the power up that must be discarded
      */
 
-    public void discardPowerUp(Player player, Powerup powerUp, Board board){
+    public static void discardPowerUp(Player player, Powerup powerUp){
 
-        ArrayList <Powerup> discardedPowerUps = board.getDiscardedPowerUps();
+        ArrayList <Powerup> discardedPowerUps = Board.getDiscardedPowerUps();
         discardedPowerUps.add(powerUp);
         player.getPlayerboard().getPowerups().remove(powerUp);
 
@@ -135,7 +133,6 @@ public class Interaction {
 
 
     }
-
 
 
 
@@ -393,7 +390,7 @@ public class Interaction {
      *               to turn
      */
 
-    public void turnPlayerboard(Player player){
+    public static void turnPlayerboard(Player player){
 
         Playerboard frenzyboard = new Playerboard();
 
@@ -434,7 +431,7 @@ public class Interaction {
      * @param loot is the loot picked up.
      */
 
-    public void giveRybamount(Player player, Loot loot){
+    public static void giveRybamount(Player player, Loot loot){
 
         Rybamount oldRybamount = player.getPlayerboard().getAmmoCubes();
 
@@ -442,7 +439,7 @@ public class Interaction {
         oldRybamount.setYellowCubes(loot.getRewardValue().getYellow() + oldRybamount.getYellow());
         oldRybamount.setRedCubes(loot.getRewardValue().getRed() + oldRybamount.getRed());
 
-        check.limitAmmoCubes(player);
+        Check.limitAmmoCubes(player);
 
     }
 

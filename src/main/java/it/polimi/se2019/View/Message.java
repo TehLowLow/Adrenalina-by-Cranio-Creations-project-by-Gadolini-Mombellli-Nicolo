@@ -480,5 +480,66 @@ public class Message {
 
     }
 
+
+    public static String scegliAzione(){
+
+        return "Scegli un'azione tra:\nSpara\nMuovi\nRaccogli";
+
+    }
+
+    public static String scegliAzioneFrenesiaFP(){
+
+        return "Scegli un'azione tra:\nSpara\nRaccogli";
+
+    }
+
+    public static String noSparo(){
+         return "Non puoi sparare: da questa posizione non colpiresti nessuno!";
+    }
+
+    public static String vuoiMuovertiPU(){
+         return "Vuoi muoverti prima di raccogliere? (si/no)";
+    }
+
+    public static String limitePowerup(){
+         return "Non hai più spazio per raccogliere altri power up.";
+    }
+
+    public static String scegliPowerUpSpawn(ArrayList <Powerup> powerups){
+
+        String str = "Scegli un powerup da scartare indicandone il numero. Spawnerai nella cella di quel colore.\n";
+
+        for(Powerup powerup : powerups){
+            str = str + powerups.indexOf(powerup) + ") " + powerup.getName() + "di colore " + Printer.colour(powerup.getColour()) + "\n";
+        }
+
+        return str;
+
+    }
+
+    public static String powerUpSpawnScelto(Player player, Powerup powerup){
+
+        return "Il giocatore " + player.getNickname() + " ha scelto di scartare " + powerup.getName() + " di colore "
+                + Printer.colour(powerup.getColour()) +  ".";
+
+    }
+
+    public static String spawn(Player player, int colour){
+
+        return "Il giocatore " + player.getNickname() + " è spawnato nella cella di colore " + Printer.colour(colour) + ".";
+
+    }
+
+    public static String vuoiRicaricare(){
+        return "Vuoi ricaricare qualche arma?";
+    }
+
+    public static String haiRicaricato(Weapon weapon){
+
+        return "Hai ricaricato " + weapon.getName();
+
+    }
 }
+
+
 
