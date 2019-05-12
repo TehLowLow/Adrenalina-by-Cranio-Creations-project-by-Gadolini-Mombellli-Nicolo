@@ -1141,6 +1141,7 @@ public class Action {
      * @param player the Player that performs the shot action.
      */
     private static void enhancedFrenzyShot(Player player) {
+
     }
 
 
