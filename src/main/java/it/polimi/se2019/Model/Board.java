@@ -177,10 +177,10 @@ public class Board implements java.io.Serializable{
 
     /**
      * Sets a map on the board.
-     * @param map the map that must be set.
+     * @param newmap the map that must be set.
      */
-    public void setMap(Map map){
-        this.map = map;
+    public static void setMap(Map newmap){
+        map = newmap;
     }
     /**
      * Sets the token to keep track of the player that did a double kill.

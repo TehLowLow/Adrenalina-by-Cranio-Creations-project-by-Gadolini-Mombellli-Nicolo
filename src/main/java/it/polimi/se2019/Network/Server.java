@@ -1,6 +1,7 @@
 package it.polimi.se2019.Network;
 
 
+import it.polimi.se2019.Controller.Adrenalina.Match;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.RMI.Server.RMIServer;
@@ -120,7 +121,6 @@ public class Server {
         for (int i = 0; i < 5; i++) {
             gamePool.submit(new SocketServer(gameSocket));
         }
-
 
     }
 
