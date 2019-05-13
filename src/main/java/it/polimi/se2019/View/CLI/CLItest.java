@@ -2,6 +2,8 @@ package it.polimi.se2019.View.CLI;
 
 import it.polimi.se2019.Controller.Data.MapBuilders.Map1Builder;
 import it.polimi.se2019.Controller.Data.MapBuilders.Map4Builder;
+import it.polimi.se2019.Controller.Data.MapBuilders.Map2Builder;
+import it.polimi.se2019.Controller.Data.MapBuilders.Map3Builder;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Cell;
@@ -29,11 +31,11 @@ public class CLItest {
         player4.setNickname("Luca");
         player5.setNickname("Kev");
 
-        player1.setPosition(Board.getMap().getYellowRoom().getCells().get(1));
-        player2.setPosition(Board.getMap().getRedRoom().getCells().get(0));
+        player1.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+        player2.setPosition(Board.getMap().getRedRoom().getCells().get(1));
         player3.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
-        player4.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
-        player5.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
+        player4.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
+        player5.setPosition(Board.getMap().getYellowRoom().getCells().get(0));
 
         Server.connectedPlayers.add(player1);
         Server.connectedPlayers.add(player2);

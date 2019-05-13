@@ -15,22 +15,22 @@ public class BoardSetup {
      * @return the complete map.
      */
 
-    public Board build(){
+    public void build(){
 
-        Board board = new Board();
+
 
         WeaponDeckSetup weaponDeckSetup = new WeaponDeckSetup();
-        board.setWeaponDeck(weaponDeckSetup.build());
+        Board.setWeaponDeck(weaponDeckSetup.build());
 
 
         LootDeckSetup lootDeckSetup = new LootDeckSetup();
-        board.setLootDeck(lootDeckSetup.build());
+        Board.setLootDeck(lootDeckSetup.build());
 
         PowerUpDeckSetup powerUpDeckSetup = new PowerUpDeckSetup();
-        board.setPowerUpDeck(powerUpDeckSetup.build());
+        Board.setPowerUpDeck(powerUpDeckSetup.build());
 
 
-        return board;
+
 
     }
 }

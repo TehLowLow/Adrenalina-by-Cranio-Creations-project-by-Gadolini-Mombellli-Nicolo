@@ -234,7 +234,7 @@ public class Match extends Thread {
             aumento il contatore alla posizione del voto ricevuto
              */
 
-            voti.set(value, voti.get(value) + 1);
+            voti.set((value - 1), voti.get(value - 1) + 1);
 
 
         }
@@ -351,7 +351,11 @@ public class Match extends Thread {
 
     public static void chooseChampion() {
 
-        ArrayList<String> champions = new ArrayList<>();
+        /*
+        QUA VIENE INIZIALIZZATA LA PLAYERBOARD
+         */
+
+        CopyOnWriteArrayList<String> champions = new CopyOnWriteArrayList<>();
 
         champions.add("Banshee");
         champions.add(":D-strutt-or3");
@@ -371,7 +375,7 @@ public class Match extends Thread {
 
             String scelta = updateWithAnswer(player, "Fai la tua scelta");
 
-            while (!InputCheck.chooseChampion(scelta)) {
+            while (!InputCheck.chooseChampion(scelta, champions)) {
 
                 update(player, Message.inputError());
                 scelta = updateWithAnswer(player, "Fai la tua scelta");
@@ -382,11 +386,13 @@ public class Match extends Thread {
 
                 if (scelta.equalsIgnoreCase(champion)) {
 
+                    player.setPlayerboard(new Playerboard());
+
                     player.getPlayerboard().setChampionName(champion);
 
-                    champions.remove(champion);
-
                     update(player, "Hai scelto " + champion);
+
+                    champions.remove(champion);
 
                 }
 
