@@ -6,6 +6,7 @@ import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class analyzes the input strings provided by the user.
@@ -231,11 +232,13 @@ public class InputCheck {
     SCELTA CAMPIONE
      */
 
-    public static boolean chooseChampion(String input){
+    public static boolean chooseChampion(String input, CopyOnWriteArrayList<String> champions){
 
-        if (input.equalsIgnoreCase("sprog") || input.equalsIgnoreCase("violetta") || input.equalsIgnoreCase("dozer") || input.equalsIgnoreCase("banshee") || input.equalsIgnoreCase(":D-strutt-or3")){
+        for (String champion:champions){
 
-            return true;
+            if (input.equalsIgnoreCase(champion)){
+                return true;
+            }
 
         }
 

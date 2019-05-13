@@ -2,6 +2,7 @@ package it.polimi.se2019.View.CLI;
 
 import it.polimi.se2019.Controller.Data.MapBuilders.Map1Builder;
 import it.polimi.se2019.Controller.Data.MapBuilders.Map2Builder;
+import it.polimi.se2019.Controller.Data.MapBuilders.Map3Builder;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Cell;
