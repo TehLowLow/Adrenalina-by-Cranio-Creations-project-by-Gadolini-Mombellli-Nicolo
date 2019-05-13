@@ -122,6 +122,14 @@ public class Server {
             gamePool.submit(new SocketServer(gameSocket));
         }
 
+        while(Server.connectedPlayers.size()<3){
+            continue;
+        }
+
+        Match match = new Match();
+        match.start();
+
+
     }
 
 
