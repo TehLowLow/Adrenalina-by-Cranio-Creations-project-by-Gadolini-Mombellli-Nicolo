@@ -193,11 +193,11 @@ public class Board implements java.io.Serializable{
 
     /**
      * This methods sets the power up deck.
-     * @param powerUpDeck reference to the deck that must be
+     * @param powUpDeck reference to the deck that must be
      *                    placed on the game board.
      */
-    public void setPowerUpDeck(ArrayList<Powerup> powerUpDeck) {
-        this.powerUpDeck = powerUpDeck;
+    public static void setPowerUpDeck(ArrayList<Powerup> powUpDeck) {
+        powerUpDeck = powUpDeck;
     }
 
 
@@ -223,16 +223,16 @@ public class Board implements java.io.Serializable{
      * This method sets the deck of discarded ammo tiles.
      * @param discardedPowerUps reference to the ArrayList of discarded ammo tiles.
      */
-    public void setDiscardedPowerUps(ArrayList <Powerup> discardedPowerUps){
+    public static void setDiscardedPowerUps(ArrayList <Powerup> discardedPowerUps){
 
     }
 
     /**
      * This method sets the deck of weapons.
-     * @param weaponDeck reference to the Arraylist of weapons.
+     * @param wDeck reference to the Arraylist of weapons.
      */
-    public void setWeaponDeck(ArrayList <Weapon> weaponDeck){
-        this.weaponDeck = weaponDeck;
+    public static void setWeaponDeck(ArrayList <Weapon> wDeck){
+        weaponDeck = wDeck;
     }
 
     public void setMortalBlowTrackValue(ArrayList<Integer> mortalBlowTrackValue) {
