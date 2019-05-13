@@ -554,19 +554,19 @@ public class Check {
 
             if (position.getRightConnection().getType().equals(DOOR) || position.getRightConnection().getType().equals(FREE)) {
 
-                reachableCells.add(position.getUpConnection().getConnectedCell());
+                reachableCells.add(position.getRightConnection().getConnectedCell()); //TODO TUTTI
 
             }
 
             if (position.getLeftConnection().getType().equals(DOOR) || position.getLeftConnection().getType().equals(FREE)) {
 
-                reachableCells.add(position.getUpConnection().getConnectedCell());
+                reachableCells.add(position.getLeftConnection().getConnectedCell()); //TODO UGUALI
 
             }
 
             if (position.getDownConnection().getType().equals(DOOR) || position.getDownConnection().getType().equals(FREE)) {
 
-                reachableCells.add(position.getUpConnection().getConnectedCell());
+                reachableCells.add(position.getDownConnection().getConnectedCell()); //TODO SONO
 
             }
 

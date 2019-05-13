@@ -4,7 +4,6 @@ import it.polimi.se2019.Controller.Adrenalina.Exceptions.EmptyDeckException;
 import it.polimi.se2019.Controller.Adrenalina.Exceptions.LimitPowerUpException;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
-import it.polimi.se2019.Network.Server.*;
 import it.polimi.se2019.View.Message;
 
 import java.util.ArrayList;
@@ -13,12 +12,6 @@ import java.util.Collections;
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
-import it.polimi.se2019.View.Message;
-
-import java.util.ArrayList;
-
-import static it.polimi.se2019.Network.Server.update;
-import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
 /**
  * This class collects all the actions that a player can perform, both in their standard version and
@@ -56,7 +49,7 @@ public class Action {
         possibleActions.add("Raccogli");
 
 
-        String chosenAction = new String();
+        String chosenAction;
         boolean actionPerformed = false;
 
         for (int actionNumber = 0; actionNumber < 2; actionNumber++) {
@@ -132,7 +125,7 @@ public class Action {
             possibleActions.add("Raccogli");
 
 
-            String chosenAction = new String();
+            String chosenAction;
             boolean actionPerformed = false;
 
             for (int actionNumber = 0; actionNumber < 2; actionNumber++) {
@@ -188,7 +181,7 @@ public class Action {
             possibleActions.add("Raccogli");
 
 
-            String chosenAction = new String();
+            String chosenAction;
             boolean actionPerformed = false;
 
 
@@ -492,7 +485,7 @@ public class Action {
      */
     private static void pickUp(Player player) {
 
-        String answer = new String();
+        String answer;
         boolean answered = false;
 
         while (!answered) {
@@ -817,16 +810,12 @@ public class Action {
             }
 
 
-
         }
 
         shot(player);
 
 
     }
-
-
-
 
 
     /**
@@ -836,7 +825,7 @@ public class Action {
      */
     private static void enhancedPickUp(Player player) {
 
-        String answer = new String();
+        String answer;
         boolean answered = false;
 
         while (!answered) {
@@ -1102,14 +1091,12 @@ public class Action {
             }
 
 
-
         }
         reload(player);
         shot(player);
 
 
     }
-
 
 
     /**

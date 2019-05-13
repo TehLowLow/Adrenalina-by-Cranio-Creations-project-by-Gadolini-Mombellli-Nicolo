@@ -26,25 +26,24 @@ public class Interaction {
     /**
      * this method is used to allow the player to draw a powerUp from
      * the board
+     *
      * @param player is who has to draw the powerUp
-     * @throws EmptyDeckException when there are no more powerUps on the deck.
+     * @throws EmptyDeckException    when there are no more powerUps on the deck.
      * @throws LimitPowerUpException if the player has already 3 power ups
      */
 
-    public static void drawPowerUp(Player player) throws EmptyDeckException, LimitPowerUpException{
+    public static void drawPowerUp(Player player) throws EmptyDeckException, LimitPowerUpException {
 
-        ArrayList <Powerup> powerUpDeck = Board.getPowerUpDeck();
+        ArrayList<Powerup> powerUpDeck = Board.getPowerUpDeck();
 
-        if(powerUpDeck.size()>0){
+        if (powerUpDeck.size() > 0) {
 
-            if(Check.limitPowerUp(player)){
+            if (Check.limitPowerUp(player)) {
 
                 LimitPowerUpException e = new LimitPowerUpException();
                 throw (e);
 
-            }
-
-            else {
+            } else {
 
                 ArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
                 Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
@@ -56,10 +55,10 @@ public class Interaction {
 
         }
 
-        if (powerUpDeck.size()==0){
+        if (powerUpDeck.size() == 0) {
 
             EmptyDeckException e = new EmptyDeckException();
-            throw(e);
+            throw (e);
         }
 
     }
@@ -67,13 +66,14 @@ public class Interaction {
 
     /**
      * this method is used to allow the player to discard a powerUp
-     * @param player is who has to discard the powerUp
+     *
+     * @param player  is who has to discard the powerUp
      * @param powerUp is the power up that must be discarded
      */
 
-    public static void discardPowerUp(Player player, Powerup powerUp){
+    public static void discardPowerUp(Player player, Powerup powerUp) {
 
-        ArrayList <Powerup> discardedPowerUps = Board.getDiscardedPowerUps();
+        ArrayList<Powerup> discardedPowerUps = Board.getDiscardedPowerUps();
         discardedPowerUps.add(powerUp);
         player.getPlayerboard().getPowerups().remove(powerUp);
 
@@ -83,31 +83,32 @@ public class Interaction {
     /**
      * this method draws a weapon from the deck and places
      * it on the board. It refills every empty weapon slot left.
+     *
      * @param board is "Adrenalina" main board
      */
 
-    public void placeWeapons(Board board){
+    public void placeWeapons(Board board) {
 
         Map map = board.getMap();
-        ArrayList <Weapon> weaponDeck = board.getWeaponDeck();
+        ArrayList<Weapon> weaponDeck = board.getWeaponDeck();
 
-        ArrayList <Room> spawnRooms = new ArrayList<Room>();
-        ArrayList <SpawnCell> spawnCells = new ArrayList <SpawnCell>();
+        ArrayList<Room> spawnRooms = new ArrayList<Room>();
+        ArrayList<SpawnCell> spawnCells = new ArrayList<SpawnCell>();
         spawnRooms.add(map.getBlueRoom());
         spawnRooms.add(map.getYellowRoom());
         spawnRooms.add(map.getRedRoom());
 
-        for(Room room : spawnRooms){
+        for (Room room : spawnRooms) {
 
-            ArrayList <Cell> cells = room.getCells();
+            ArrayList<Cell> cells = room.getCells();
 
-            for(Cell cell : cells){
+            for (Cell cell : cells) {
 
-                if(check.isSpawn(cell)){
+                if (check.isSpawn(cell)) {
 
                     //If the current cell is a spawn cell, it is casted to spawncell and added
                     //to the arraylist of spawncells.
-                    spawnCells.add((SpawnCell)cell);
+                    spawnCells.add((SpawnCell) cell);
 
                 }
 
@@ -115,11 +116,11 @@ public class Interaction {
 
         }
 
-        for(SpawnCell spawnCell : spawnCells){
+        for (SpawnCell spawnCell : spawnCells) {
 
             ArrayList availableWeapons = spawnCell.getAvailableWeapons();
 
-            if(availableWeapons.size()<3){
+            if (availableWeapons.size() < 3) {
 
                 Weapon drawnWeapon = board.getWeaponDeck().get(0);
                 availableWeapons.add(drawnWeapon);
@@ -134,13 +135,13 @@ public class Interaction {
     }
 
 
-
     /**
      * this method is used to recharge a unloaded weapon
+     *
      * @param weapon is the weapon to reload
      */
 
-    public void reloadWeapon(Weapon weapon){
+    public void reloadWeapon(Weapon weapon) {
 
         weapon.setLoaded(true);
 
@@ -150,11 +151,12 @@ public class Interaction {
     /**
      * this method allows the player to get a weapon
      * from the available weapons in the spawn point
+     *
      * @param player is the player who gets the weapon
      * @param weapon is the selected weapon
      */
 
-    public void getWeapon(Player player, SpawnCell spawnCell, Weapon weapon){
+    public void getWeapon(Player player, SpawnCell spawnCell, Weapon weapon) {
 
         player.getPlayerboard().getWeapons().add(weapon);
         spawnCell.getAvailableWeapons().remove(weapon);
@@ -166,30 +168,32 @@ public class Interaction {
      * weapon taken from the spawn cell.
      * the old player's weapon is placed instead of the
      * new one.
+     *
      * @param oldWeapon is the weapon that is placed on the board
      * @param newWeapon is the weapon taken by the player
      */
 
-    public void switchWeapon(Player player, Weapon oldWeapon, Weapon newWeapon, SpawnCell spawnCell){
+    public void switchWeapon(Player player, Weapon oldWeapon, Weapon newWeapon, SpawnCell spawnCell) {
 
-       player.getPlayerboard().getWeapons().add(newWeapon);
-       spawnCell.getAvailableWeapons().remove(newWeapon);
+        player.getPlayerboard().getWeapons().add(newWeapon);
+        spawnCell.getAvailableWeapons().remove(newWeapon);
 
-       player.getPlayerboard().getWeapons().remove(oldWeapon);
-       spawnCell.getAvailableWeapons().add(oldWeapon);
+        player.getPlayerboard().getWeapons().remove(oldWeapon);
+        spawnCell.getAvailableWeapons().add(oldWeapon);
 
     }
 
     /**
      * this method reloads on the board the Loots that
      * have been picked up during the turn
+     *
      * @param board is the main board
      */
 
-    public void placeLoot(Board board){
+    public void placeLoot(Board board) {
 
-        ArrayList <Room> rooms = new ArrayList<Room>();
-        ArrayList <LootCell> lootCells = new ArrayList<LootCell>();
+        ArrayList<Room> rooms = new ArrayList<Room>();
+        ArrayList<LootCell> lootCells = new ArrayList<LootCell>();
 
         Map map = board.getMap();
 
@@ -197,24 +201,24 @@ public class Interaction {
         rooms.add(map.getYellowRoom());
         rooms.add(map.getBlueRoom());
 
-        if(map.getWhiteRoom()!=null){
+        if (map.getWhiteRoom() != null) {
             rooms.add(map.getWhiteRoom());
         }
 
-        if(map.getPurpleRoom()!=null){
+        if (map.getPurpleRoom() != null) {
             rooms.add(map.getPurpleRoom());
         }
 
-        if(map.getGreenRoom()!=null){
+        if (map.getGreenRoom() != null) {
             rooms.add(map.getGreenRoom());
         }
 
-        for(Room room : rooms){
+        for (Room room : rooms) {
 
-            for(Cell cell : room.getCells()){
+            for (Cell cell : room.getCells()) {
 
-                if(!check.isSpawn(cell)){
-                    lootCells.add((LootCell)cell);
+                if (!check.isSpawn(cell)) {
+                    lootCells.add((LootCell) cell);
                 }
 
             }
@@ -222,16 +226,16 @@ public class Interaction {
 
         }
 
-        for(LootCell lootCell : lootCells){
+        for (LootCell lootCell : lootCells) {
 
-            if(lootCell.getLoot()==null){
+            if (lootCell.getLoot() == null) {
 
-                if(board.getLootDeck().size()>0){
+                if (board.getLootDeck().size() > 0) {
                     lootCell.setLoot(board.getLootDeck().get(0));
                     board.getLootDeck().remove(0);
                 }
 
-                if(board.getLootDeck().size()==0){
+                if (board.getLootDeck().size() == 0) {
 
                     this.recoverLoots(board);
                     lootCell.setLoot(board.getLootDeck().get(0));
@@ -248,11 +252,12 @@ public class Interaction {
 
     /**
      * this method discards a loot picked up in the turn
-     * @param cell is the cell where the loot has been picked up
+     *
+     * @param cell  is the cell where the loot has been picked up
      * @param board is the main board
      */
 
-    public void discardLoot(LootCell cell, Board board){
+    public void discardLoot(LootCell cell, Board board) {
 
         board.getLootDeck().add(cell.getLoot());
         cell.setLoot(null);
@@ -262,11 +267,12 @@ public class Interaction {
 
     /**
      * this method manages a player's rybamount payment
-     * @param player is who has to pay the cubes
+     *
+     * @param player        is who has to pay the cubes
      * @param billRybamount are the cubes to pay
      */
 
-    public static void pay(Player player, Rybamount billRybamount){
+    public static void pay(Player player, Rybamount billRybamount) {
 
         Rybamount playerRybAmount = player.getPlayerboard().getAmmoCubes();
         int yellowAvailable = playerRybAmount.getYellow();
@@ -277,44 +283,44 @@ public class Interaction {
         int blueCost = billRybamount.getBlue();
         int redCost = billRybamount.getBlue();
 
-       while(yellowAvailable<yellowCost){
-           yellowAvailable = yellowAvailable + convertPowerUp(player, Colour.YELLOW);
-       }
+        while (yellowAvailable < yellowCost) {
+            yellowAvailable = yellowAvailable + convertPowerUp(player, Colour.YELLOW);
+        }
 
-       while(redAvailable<redCost){
-           redAvailable = redAvailable + convertPowerUp(player, Colour.RED);
-       }
+        while (redAvailable < redCost) {
+            redAvailable = redAvailable + convertPowerUp(player, Colour.RED);
+        }
 
-       while(blueAvailable<blueCost){
-           blueAvailable = blueAvailable + convertPowerUp(player, Colour.BLUE);
-       }
+        while (blueAvailable < blueCost) {
+            blueAvailable = blueAvailable + convertPowerUp(player, Colour.BLUE);
+        }
 
-        playerRybAmount.setYellowCubes(yellowAvailable-yellowCost);
-        playerRybAmount.setRedCubes(redAvailable-redCost);
-        playerRybAmount.setBlueCubes(blueAvailable-blueCost);
+        playerRybAmount.setYellowCubes(yellowAvailable - yellowCost);
+        playerRybAmount.setRedCubes(redAvailable - redCost);
+        playerRybAmount.setBlueCubes(blueAvailable - blueCost);
 
     }
 
-    private static int convertPowerUp(Player player, int colour){
+    private static int convertPowerUp(Player player, int colour) {
 
-        ArrayList <Powerup> discardable = new ArrayList<Powerup>();
-        ArrayList <Powerup> availablePowerups = player.getPlayerboard().getPowerups();
+        ArrayList<Powerup> discardable = new ArrayList<Powerup>();
+        ArrayList<Powerup> availablePowerups = player.getPlayerboard().getPowerups();
 
 
-        for(Powerup powerup : availablePowerups){
+        for (Powerup powerup : availablePowerups) {
 
-            if(colour == Colour.RED){
-                if(powerup.getTradeValue().getRed()==1){
+            if (colour == Colour.RED) {
+                if (powerup.getTradeValue().getRed() == 1) {
                     discardable.add(powerup);
                 }
             }
-            if(colour == Colour.YELLOW){
-                if(powerup.getTradeValue().getYellow()==1){
+            if (colour == Colour.YELLOW) {
+                if (powerup.getTradeValue().getYellow() == 1) {
                     discardable.add(powerup);
                 }
             }
-            if(colour == Colour.BLUE){
-                if(powerup.getTradeValue().getBlue()==1){
+            if (colour == Colour.BLUE) {
+                if (powerup.getTradeValue().getBlue() == 1) {
                     discardable.add(powerup);
                 }
             }
@@ -324,18 +330,18 @@ public class Interaction {
 
         boolean chosen = false;
         int index = 0;
-        while(!chosen){
+        while (!chosen) {
 
             String chosenPU = Server.updateWithAnswer(player, Message.payWithPowerUp(discardable));
 
-            try{
+            try {
                 index = InputCheck.numberCheck(chosenPU);
-                if(index<0 || index > discardable.size()-1){
+                if (index < 0 || index > discardable.size() - 1) {
                     Server.update(player, Message.inputError());
                     continue;
                 }
                 chosen = true;
-            }catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 Server.update(player, Message.inputError());
                 continue;
             }
@@ -352,24 +358,25 @@ public class Interaction {
     /**
      * this method replaces a skull on the MortalBlow track
      * with the killer's Token
-     * @param board is the main board
-     * @param killer is the player who has to place his Token
-     * @param victim is the killed player
+     *
+     * @param board    is the main board
+     * @param killer   is the player who has to place his Token
+     * @param victim   is the killed player
      * @param overkill is a boolean that is 'true' in case of overkill,
      *                 'false' otherwise
      */
 
-    public void claimSkull(Board board, Player killer, Player victim, boolean overkill){
+    public void claimSkull(Board board, Player killer, Player victim, boolean overkill) {
 
-        ArrayList <MortalBlow> mortalBlowTrack = board.getMortalBlowTrack();
+        ArrayList<MortalBlow> mortalBlowTrack = board.getMortalBlowTrack();
 
         int lenght = mortalBlowTrack.size();
 
-        for(int i = 0; i<lenght; i++){
+        for (int i = 0; i < lenght; i++) {
 
             MortalBlow currentBlow = mortalBlowTrack.get(i);
 
-            if(currentBlow.isSkull()){
+            if (currentBlow.isSkull()) {
 
                 currentBlow.setKiller(killer);
                 currentBlow.setOverkill(overkill);
@@ -385,11 +392,12 @@ public class Interaction {
     /**
      * this method turns the playerboard at the beginning
      * of the FinalFrenzy mode
+     *
      * @param player is the player linked to the playerboard
      *               to turn
      */
 
-    public static void turnPlayerboard(Player player){
+    public static void turnPlayerboard(Player player) {
 
         Playerboard frenzyboard = new Playerboard();
 
@@ -422,15 +430,15 @@ public class Interaction {
      */
 
 
-
     /**
      * this method gives to a player the cubes corresponding
      * to the picked up loot
+     *
      * @param player is the player who receives the cubes
-     * @param loot is the loot picked up.
+     * @param loot   is the loot picked up.
      */
 
-    public static void giveRybamount(Player player, Loot loot){
+    public static void giveRybamount(Player player, Loot loot) {
 
         Rybamount oldRybamount = player.getPlayerboard().getAmmoCubes();
 
@@ -445,11 +453,12 @@ public class Interaction {
 
     /**
      * If the lootdeck is empty, this method recovers the discarded loots and puts them on the deck once again.
+     *
      * @param board the board.
      */
-    public void recoverLoots(Board board){
+    public void recoverLoots(Board board) {
 
-        ArrayList <Loot> newDeck = board.getDiscardedLoot();
+        ArrayList<Loot> newDeck = board.getDiscardedLoot();
         board.setLootDeck(newDeck);
         board.shuffleLootDeck();
 

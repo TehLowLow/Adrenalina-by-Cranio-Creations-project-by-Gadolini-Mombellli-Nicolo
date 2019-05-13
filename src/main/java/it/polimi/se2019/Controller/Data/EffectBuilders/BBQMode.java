@@ -56,7 +56,7 @@ public class BBQMode extends Effect {
         boolean foundFirst = false;
 
         Cell firstTargetCell = new LootCell();
-        String direction = new String();
+        String direction = new String() ;
 
         while (!foundFirst) {
 

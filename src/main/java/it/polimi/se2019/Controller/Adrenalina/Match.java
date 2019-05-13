@@ -83,7 +83,7 @@ public class Match extends Thread {
     public void run() {
 
         chooseMap();
-        chooseSkulls();
+        //chooseSkulls();
 
         /*
         inizializzo board
