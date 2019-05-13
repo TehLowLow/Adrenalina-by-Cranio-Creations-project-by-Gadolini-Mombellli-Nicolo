@@ -119,7 +119,7 @@ public class SocketClient extends Client implements Runnable {
 
             } catch (ConnectException e) {
 
-                System.err.println("ritento la connessione");
+                System.err.println( "ritento la connessione");
 
             } catch (Exception e) {
                 e.printStackTrace();

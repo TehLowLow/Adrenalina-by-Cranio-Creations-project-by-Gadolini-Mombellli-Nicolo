@@ -34,7 +34,7 @@ public class Match extends Thread {
     /**
      * This is needed to perform various checks.
      */
-    private Check check ;
+    private Check check;
 
     /**
      * ArrayList of players who take part to the match.
@@ -140,7 +140,7 @@ public class Match extends Thread {
 
                 Turn t = new Turn();
                 finish = checkFrenzy();
-                if(finish){
+                if (finish) {
                     continue;
                 }
                 interaction.placeLoot(board);
@@ -154,18 +154,18 @@ public class Match extends Thread {
 
         //Devo riordinare l'array connectedPlayers in modo tale da avere l'ordine di esecuzione giusto.
 
-        CopyOnWriteArrayList <Player> newOrder = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> newOrder = new CopyOnWriteArrayList<>();
 
         boolean startCopy = false;
 
-        for(Player player : connectedPlayers){
+        for (Player player : connectedPlayers) {
 
-            if(player.equals(lastPlayer)){
+            if (player.equals(lastPlayer)) {
                 startCopy = true;
                 continue;
             }
 
-            if(startCopy){
+            if (startCopy) {
 
                 newOrder.add(player);
 
@@ -173,9 +173,9 @@ public class Match extends Thread {
 
         }
 
-        for(Player player : connectedPlayers){
+        for (Player player : connectedPlayers) {
 
-            if(!newOrder.contains(player)){
+            if (!newOrder.contains(player)) {
                 newOrder.add(player);
             }
 
@@ -185,8 +185,8 @@ public class Match extends Thread {
 
         //Controllo quali giocatori devono cambiare playerboard
 
-        for(Player player : connectedPlayers){
-            if(player.getPlayerboard().getDamage().size()==0){
+        for (Player player : connectedPlayers) {
+            if (player.getPlayerboard().getDamage().size() == 0) {
                 Interaction.turnPlayerboard(player);
             }
         }
@@ -196,7 +196,7 @@ public class Match extends Thread {
         for (Player player : connectedPlayers) {
 
             //Durante l'ultimo giro, se sono dopo il primo giocatore devo fare azioni diverse.
-            if(player.isFirstPlayer()){
+            if (player.isFirstPlayer()) {
                 afterFirstPlayer = true;
             }
 
@@ -205,7 +205,7 @@ public class Match extends Thread {
 
         }
 
-       Check.winner(board);
+        Check.winner(board);
 
     }
 
@@ -413,6 +413,7 @@ public class Match extends Thread {
 
                 update(player, Message.inputError());
                 scelta = updateWithAnswer(player, "Fai la tua scelta");
+
             }
 
             for (String champion : champions) {
