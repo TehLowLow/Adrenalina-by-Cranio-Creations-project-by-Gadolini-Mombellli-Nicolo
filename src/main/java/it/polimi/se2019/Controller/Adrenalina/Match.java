@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
+import it.polimi.se2019.Controller.Setup.BoardSetup;
 import it.polimi.se2019.Controller.Setup.MapSetup;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.View.*;
@@ -83,6 +84,39 @@ public class Match extends Thread {
 
         chooseMap();
         chooseSkulls();
+
+        /*
+        inizializzo board
+         */
+
+        BoardSetup boardSetup = new BoardSetup();
+        boardSetup.build();
+
+        /*
+        inizializzo i player
+         */
+        for (Player player:connectedPlayers){
+
+            player.setPlayerboard(new Playerboard());
+            player.setScore(0);
+            player.getPlayerboard().setWeapons(new ArrayList<>());
+            player.getPlayerboard().setAmmoCubes(new Rybamount());
+            player.getPlayerboard().setMarker(new ArrayList<>());
+            player.getPlayerboard().setDamage(new ArrayList<>());
+            player.getPlayerboard().setFrenzyboard(false);
+
+            player.getPlayerboard().setPlayerboardValue(new ArrayList<>());
+            player.getPlayerboard().getPlayerboardValue().add(8);
+            player.getPlayerboard().getPlayerboardValue().add(6);
+            player.getPlayerboard().getPlayerboardValue().add(4);
+            player.getPlayerboard().getPlayerboardValue().add(2);
+            player.getPlayerboard().getPlayerboardValue().add(1);
+            player.getPlayerboard().getPlayerboardValue().add(1);
+
+            player.getPlayerboard().setPowerups(new ArrayList<>());
+
+        }
+
         chooseChampion();
         chooseFirstPlayer();
 
@@ -385,8 +419,6 @@ public class Match extends Thread {
 
                 if (scelta.equalsIgnoreCase(champion)) {
 
-                    player.setPlayerboard(new Playerboard());
-
                     player.getPlayerboard().setChampionName(champion);
 
                     update(player, "Hai scelto " + champion);
@@ -406,6 +438,11 @@ public class Match extends Thread {
 
         Collections.shuffle(connectedPlayers);
         connectedPlayers.get(0).setFirstPlayer(true);
+        for (Player player:connectedPlayers){
+
+            update(player, "Il primo giocatore è " + connectedPlayers.get(0).getNickname());
+
+        }
 
     }
 

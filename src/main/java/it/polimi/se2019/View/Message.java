@@ -520,7 +520,7 @@ public class Message {
         String str = "Scegli un powerup da scartare indicandone il numero. Spawnerai nella cella di quel colore.\n";
 
         for(Powerup powerup : powerups){
-            str = str + powerups.indexOf(powerup) + ") " + powerup.getName() + "di colore " + Printer.colour(powerup.getColour()) + "\n";
+            str = str + powerups.indexOf(powerup) + ") " + powerup.getName() + "\n";
         }
 
         return str;
@@ -529,8 +529,7 @@ public class Message {
 
     public static String powerUpSpawnScelto(Player player, Powerup powerup){
 
-        return "Il giocatore " + player.getNickname() + " ha scelto di scartare " + powerup.getName() + " di colore "
-                + Printer.colour(powerup.getColour()) +  ".";
+        return "Il giocatore " + player.getNickname() + " ha scelto di scartare " + powerup.getName();
 
     }
 

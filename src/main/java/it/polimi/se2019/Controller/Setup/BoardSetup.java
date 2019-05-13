@@ -29,6 +29,12 @@ public class BoardSetup {
         PowerUpDeckSetup powerUpDeckSetup = new PowerUpDeckSetup();
         Board.setPowerUpDeck(powerUpDeckSetup.build());
 
+        ArrayList<Powerup> discardedPowerUps = new ArrayList<>();
+        Board.setDiscardedPowerUps(discardedPowerUps);
+
+        ArrayList<Loot> discardedLoots = new ArrayList<>();
+        Board.setDiscardedLoot(discardedLoots);
+
 
 
 

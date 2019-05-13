@@ -8,7 +8,7 @@ import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 
 /**
