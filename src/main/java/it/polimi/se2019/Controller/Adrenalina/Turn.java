@@ -154,7 +154,7 @@ public class Turn {
             Interaction.drawPowerUp(player);
         }
         catch (Exception e){
-
+            System.out.println("Errore: mazzi non inizializzati");
         }
 
         boolean chosen = false;
@@ -217,8 +217,10 @@ public class Turn {
                     }
 
                 }
+                else {
+                    Server.update(player, Message.inputError());
+                }
 
-                Server.update(player, Message.inputError());
             }catch(NumberFormatException e){
                 Server.update(player, Message.inputError());
             }

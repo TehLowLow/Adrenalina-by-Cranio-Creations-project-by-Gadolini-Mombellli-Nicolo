@@ -21,13 +21,17 @@ public class BoardSetup {
 
         WeaponDeckSetup weaponDeckSetup = new WeaponDeckSetup();
         Board.setWeaponDeck(weaponDeckSetup.build());
-
+        Board.shuffleWeaponDeck();
 
         LootDeckSetup lootDeckSetup = new LootDeckSetup();
         Board.setLootDeck(lootDeckSetup.build());
+        Board.shuffleLootDeck();
 
         PowerUpDeckSetup powerUpDeckSetup = new PowerUpDeckSetup();
         Board.setPowerUpDeck(powerUpDeckSetup.build());
+        Board.shufflePowerUpDeck();
+
+
 
         ArrayList<Powerup> discardedPowerUps = new ArrayList<>();
         Board.setDiscardedPowerUps(discardedPowerUps);

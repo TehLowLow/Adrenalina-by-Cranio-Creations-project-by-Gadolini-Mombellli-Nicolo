@@ -221,9 +221,11 @@ public class Board implements java.io.Serializable{
 
     /**
      * This method sets the deck of discarded ammo tiles.
-     * @param discardedPowerUps reference to the ArrayList of discarded ammo tiles.
+     * @param newDiscardedPowerUps reference to the ArrayList of discarded ammo tiles.
      */
-    public static void setDiscardedPowerUps(ArrayList <Powerup> discardedPowerUps){
+    public static void setDiscardedPowerUps(ArrayList <Powerup> newDiscardedPowerUps){
+
+        discardedPowerUps = newDiscardedPowerUps;
 
     }
 
