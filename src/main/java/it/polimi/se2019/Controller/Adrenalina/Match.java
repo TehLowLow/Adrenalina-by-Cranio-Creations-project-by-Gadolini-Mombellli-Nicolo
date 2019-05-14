@@ -83,7 +83,7 @@ public class Match extends Thread {
     public void run() {
 
         chooseMap();
-        //chooseSkulls();
+        chooseSkulls();
 
         /*
         inizializzo board
@@ -148,6 +148,7 @@ public class Match extends Thread {
                 if (finish) {
                     continue;
                 }
+                t.standard(player);
                 interaction.placeLoot();
                 interaction.placeWeapons();
                 lastPlayer = player;

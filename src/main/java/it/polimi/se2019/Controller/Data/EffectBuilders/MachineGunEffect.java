@@ -140,13 +140,35 @@ public class MachineGunEffect extends Effect {
 
             }
 
-            while (!possibleTargets.contains(chosenTarget)) { //TODO
+            boolean valid = false;
+
+            for (Player target:targets){
+
+                if (target.getNickname().equalsIgnoreCase(chosenTarget)){
+
+                    valid = true;
+
+                }
+
+            }
+
+
+
+            while (!valid) {
 
                 update(user, Message.bersaglioNonValido());
 
                 chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
 
+                for (Player target:targets){
 
+                    if (target.getNickname().equalsIgnoreCase(chosenTarget)){
+
+                        valid = true;
+
+                    }
+
+                }
             }
 
 
@@ -203,13 +225,35 @@ public class MachineGunEffect extends Effect {
 
                 }
 
-                while (!possibleTargets.contains(chosenTarget)) { //TODO
+                valid = false;
+
+                for (Player target:targets){
+
+                    if (target.getNickname().equalsIgnoreCase(chosenTarget)){
+
+                        valid = true;
+
+                    }
+
+                }
+
+
+
+                while (!valid) {
 
                     update(user, Message.bersaglioNonValido());
 
                     chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
 
+                    for (Player target:targets){
 
+                        if (target.getNickname().equalsIgnoreCase(chosenTarget)){
+
+                            valid = true;
+
+                        }
+
+                    }
                 }
 
 
@@ -283,13 +327,35 @@ public class MachineGunEffect extends Effect {
 
         }
 
-        while (!possibleTargets.contains(chosenTarget)) { //TODO
+        boolean valid = false;
+
+        for (Player target:targets){
+
+            if (target.getNickname().equalsIgnoreCase(chosenTarget)){
+
+                valid = true;
+
+            }
+
+        }
+
+
+
+        while (!valid) {
 
             update(user, Message.bersaglioNonValido());
 
             chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
 
+            for (Player target:targets){
 
+                if (target.getNickname().equalsIgnoreCase(chosenTarget)){
+
+                    valid = true;
+
+                }
+
+            }
         }
 
 

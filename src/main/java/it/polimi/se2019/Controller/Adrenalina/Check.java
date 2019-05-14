@@ -477,44 +477,48 @@ public class Check {
              */
             if (!player1.equals(player)) {
 
+                if (player1.getPosition() != null){
 
-                if (player.getPosition().getColour() == player1.getPosition().getColour()) {
-                    if (!visiblePlayers.contains(player1)) {
-                        visiblePlayers.add(player1);
-                    }
-                }
-
-                if (player.getPosition().getUpConnection().getType().equals(DOOR)) {
-                    if (player1.getPosition().getColour() == player.getPosition().getUpConnection().getConnectedCell().getColour()) {
+                    if (player.getPosition().getColour() == player1.getPosition().getColour()) {
                         if (!visiblePlayers.contains(player1)) {
                             visiblePlayers.add(player1);
                         }
                     }
-                }
 
-                if (player.getPosition().getRightConnection().getType().equals(DOOR)) {
-                    if (player1.getPosition().getColour() == player.getPosition().getRightConnection().getConnectedCell().getColour()) {
-                        if (!visiblePlayers.contains(player1)) {
-                            visiblePlayers.add(player1);
+                    if (player.getPosition().getUpConnection().getType().equals(DOOR)) {
+                        if (player1.getPosition().getColour() == player.getPosition().getUpConnection().getConnectedCell().getColour()) {
+                            if (!visiblePlayers.contains(player1)) {
+                                visiblePlayers.add(player1);
+                            }
                         }
                     }
-                }
 
-                if (player.getPosition().getLeftConnection().getType().equals(DOOR)) {
-                    if (player1.getPosition().getColour() == player.getPosition().getLeftConnection().getConnectedCell().getColour()) {
-                        if (!visiblePlayers.contains(player1)) {
-                            visiblePlayers.add(player1);
+                    if (player.getPosition().getRightConnection().getType().equals(DOOR)) {
+                        if (player1.getPosition().getColour() == player.getPosition().getRightConnection().getConnectedCell().getColour()) {
+                            if (!visiblePlayers.contains(player1)) {
+                                visiblePlayers.add(player1);
+                            }
                         }
                     }
-                }
 
-                if (player.getPosition().getDownConnection().getType().equals(DOOR)) {
-                    if (player1.getPosition().getColour() == player.getPosition().getDownConnection().getConnectedCell().getColour()) {
-                        if (!visiblePlayers.contains(player1)) {
-                            visiblePlayers.add(player1);
+                    if (player.getPosition().getLeftConnection().getType().equals(DOOR)) {
+                        if (player1.getPosition().getColour() == player.getPosition().getLeftConnection().getConnectedCell().getColour()) {
+                            if (!visiblePlayers.contains(player1)) {
+                                visiblePlayers.add(player1);
+                            }
                         }
                     }
+
+                    if (player.getPosition().getDownConnection().getType().equals(DOOR)) {
+                        if (player1.getPosition().getColour() == player.getPosition().getDownConnection().getConnectedCell().getColour()) {
+                            if (!visiblePlayers.contains(player1)) {
+                                visiblePlayers.add(player1);
+                            }
+                        }
+                    }
+
                 }
+
             }
 
 
