@@ -2,7 +2,6 @@ package it.polimi.se2019.View.CLI;
 
 import it.polimi.se2019.Controller.Data.MapBuilders.Map1Builder;
 import it.polimi.se2019.Controller.Data.MapBuilders.Map4Builder;
-import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Cell;
 import it.polimi.se2019.Model.Player;
@@ -14,11 +13,11 @@ public class CLItest {
 
     public static void main(String[] args) {
 
-        Map1Builder map1 = new Map1Builder();
-        Board.setMap(map1.build());
+       // Map1Builder map1 = new Map1Builder();
+        //Board.setMap(map1.build());
 
-        //Map4Builder map4 = new Map4Builder();
-        //Board.setMap(map4.build());
+        Map4Builder map4 = new Map4Builder();
+        Board.setMap(map4.build());
 
 
         Player player1 = new Player();
@@ -34,7 +33,7 @@ public class CLItest {
         player5.setNickname("Kev");
 
         player1.setPosition(Board.getMap().getBlueRoom().getCells().get(0));
-        player2.setPosition(Board.getMap().getRedRoom().getCells().get(2));
+        player2.setPosition(Board.getMap().getRedRoom().getCells().get(1));
         player3.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
         player4.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
         player5.setPosition(Board.getMap().getYellowRoom().getCells().get(0));
@@ -45,8 +44,8 @@ public class CLItest {
         Server.connectedPlayers.add(player4);
         Server.connectedPlayers.add(player5);
 
-        System.out.println(Map1StringRep.map1);
-        //System.out.println(Map4Rep.map4);
+       // System.out.println(Map1StringRep.map1);
+        System.out.println(Map4Rep.map4);
         for (Player player : Server.connectedPlayers) {
 
             Cell cell = player.getPosition();
