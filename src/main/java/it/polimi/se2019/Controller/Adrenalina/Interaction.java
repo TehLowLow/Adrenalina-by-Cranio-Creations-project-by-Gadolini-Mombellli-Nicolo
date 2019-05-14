@@ -121,7 +121,7 @@ public class Interaction {
 
             ArrayList availableWeapons = spawnCell.getAvailableWeapons();
 
-            if (availableWeapons.size() < 3) {
+            while (availableWeapons.size() < 3) {
 
                 Weapon drawnWeapon = Board.getWeaponDeck().get(0);
                 availableWeapons.add(drawnWeapon);
