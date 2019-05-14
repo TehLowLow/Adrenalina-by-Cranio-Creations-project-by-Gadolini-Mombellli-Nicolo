@@ -1105,6 +1105,9 @@ public class Action {
      * @param player the Player that performs the pick up action.
      */
     private static void frenzyPickUp(Player player) {
+
+        enhancedPickUp(player);
+
     }
 
     /*
@@ -1119,6 +1122,13 @@ public class Action {
      * @param player the Player that performs the pick up action.
      */
     private static void enhancedFrenzyPickUp(Player player) {
+
+
+
+
+
+
+
 
     }
 

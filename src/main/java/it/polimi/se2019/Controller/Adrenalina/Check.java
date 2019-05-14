@@ -685,14 +685,14 @@ public class Check {
 
     }
 
-    public static boolean checkFrenzy(){
+    public static boolean checkFrenzy() {
 
         ArrayList<MortalBlow> mortalBlows = Board.getMortalBlowTrack();
         int mbCounter = 0;
 
-        for (MortalBlow mortalBlow:mortalBlows){
+        for (MortalBlow mortalBlow : mortalBlows) {
 
-            if(mortalBlow.isSkull()){
+            if (mortalBlow.isSkull()) {
 
                 mbCounter++;
 
@@ -701,7 +701,7 @@ public class Check {
 
         }
 
-        if (mbCounter == 0){
+        if (mbCounter == 0) {
             return true;
         }
 
@@ -710,7 +710,6 @@ public class Check {
 
 
     }
-
 
 
     public void resolveFrenzyboard(Player killed, Player killer, Board board, boolean overkill) {
@@ -1424,15 +1423,15 @@ public class Check {
 
     }
 
-    public static boolean canShot(Player player){
+    public static boolean canShot(Player player) {
 
-        ArrayList <Weapon> playerWeapons = player.getPlayerboard().getWeapons();
+        ArrayList<Weapon> playerWeapons = player.getPlayerboard().getWeapons();
 
-        for(Weapon weapon :playerWeapons){
+        for (Weapon weapon : playerWeapons) {
 
-            if(weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))){
+            if (weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))) {
 
-                if(weapon.isLoaded()) {
+                if (weapon.isLoaded()) {
                     return true;
                 }
 
@@ -1440,29 +1439,28 @@ public class Check {
         }
 
 
-
         return false;
 
     }
 
-    public static boolean canShotEnhanced(Player player){
+    public static boolean canShotEnhanced(Player player) {
 
         Player fakePlayer = new Player();
         fakePlayer.setPlayerboard(new Playerboard());
         fakePlayer.setPosition(player.getPosition());
         fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
 
-        ArrayList <Cell> reachableCells = Check.reachableCells(player, 1);
+        ArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
 
-        for(Cell cell : reachableCells){
+        for (Cell cell : reachableCells) {
 
             fakePlayer.setPosition(cell);
 
-            for(Weapon weapon : fakePlayer.getPlayerboard().getWeapons()){
+            for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
 
-                if(weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))){
+                if (weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))) {
 
-                    if(weapon.isLoaded()) {
+                    if (weapon.isLoaded()) {
                         return true;
                     }
 
@@ -1475,24 +1473,24 @@ public class Check {
 
     }
 
-    public static boolean canShotEnhancedFrenzy(Player player){
+    public static boolean canShotEnhancedFrenzy(Player player) {
 
         Player fakePlayer = new Player();
         fakePlayer.setPlayerboard(new Playerboard());
         fakePlayer.setPosition(player.getPosition());
         fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
 
-        ArrayList <Cell> reachableCells = Check.reachableCells(player, 2);
+        ArrayList<Cell> reachableCells = Check.reachableCells(player, 2);
 
-        for(Cell cell : reachableCells){
+        for (Cell cell : reachableCells) {
 
             fakePlayer.setPosition(cell);
 
-            for(Weapon weapon : fakePlayer.getPlayerboard().getWeapons()){
+            for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
 
-                if(weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))){
+                if (weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))) {
 
-                    if(weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
+                    if (weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
                         return true;
                     }
 
@@ -1506,24 +1504,24 @@ public class Check {
     }
 
 
-    public static boolean canShotFrenzy(Player player){
+    public static boolean canShotFrenzy(Player player) {
 
         Player fakePlayer = new Player();
         fakePlayer.setPlayerboard(new Playerboard());
         fakePlayer.setPosition(player.getPosition());
         fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
 
-        ArrayList <Cell> reachableCells = Check.reachableCells(player, 1);
+        ArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
 
-        for(Cell cell : reachableCells){
+        for (Cell cell : reachableCells) {
 
             fakePlayer.setPosition(cell);
 
-            for(Weapon weapon : fakePlayer.getPlayerboard().getWeapons()){
+            for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
 
-                if(weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))){
+                if (weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))) {
 
-                    if(weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
+                    if (weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
                         return true;
                     }
 
