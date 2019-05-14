@@ -126,7 +126,7 @@ public class WhisperEffect extends Effect {
 
         }
 
-        while (!possibleTargets.contains(chosenTarget)) {
+        while (!possibleTargets.contains(chosenTarget)) { //TODO
 
             update(user, Message.bersaglioNonValido());
 

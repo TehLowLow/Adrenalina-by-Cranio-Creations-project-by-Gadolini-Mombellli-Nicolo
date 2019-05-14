@@ -140,7 +140,7 @@ public class MachineGunEffect extends Effect {
 
             }
 
-            while (!possibleTargets.contains(chosenTarget)) {
+            while (!possibleTargets.contains(chosenTarget)) { //TODO
 
                 update(user, Message.bersaglioNonValido());
 
@@ -203,7 +203,7 @@ public class MachineGunEffect extends Effect {
 
                 }
 
-                while (!possibleTargets.contains(chosenTarget)) {
+                while (!possibleTargets.contains(chosenTarget)) { //TODO
 
                     update(user, Message.bersaglioNonValido());
 
@@ -283,7 +283,7 @@ public class MachineGunEffect extends Effect {
 
         }
 
-        while (!possibleTargets.contains(chosenTarget)) {
+        while (!possibleTargets.contains(chosenTarget)) { //TODO
 
             update(user, Message.bersaglioNonValido());
 
