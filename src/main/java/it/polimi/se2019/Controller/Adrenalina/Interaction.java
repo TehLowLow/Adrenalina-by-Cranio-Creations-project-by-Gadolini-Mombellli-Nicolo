@@ -189,16 +189,14 @@ public class Interaction {
     /**
      * this method reloads on the board the Loots that
      * have been picked up during the turn
-     *
-     * @param board is the main board
      */
 
-    public void placeLoot(Board board) {
+    public void placeLoot() {
 
         ArrayList<Room> rooms = new ArrayList<Room>();
         ArrayList<LootCell> lootCells = new ArrayList<LootCell>();
 
-        Map map = board.getMap();
+        Map map = Board.getMap();
 
         rooms.add(map.getRedRoom());
         rooms.add(map.getYellowRoom());
@@ -233,16 +231,16 @@ public class Interaction {
 
             if (lootCell.getLoot() == null) {
 
-                if (board.getLootDeck().size() > 0) {
-                    lootCell.setLoot(board.getLootDeck().get(0));
-                    board.getLootDeck().remove(0);
+                if (Board.getLootDeck().size() > 0) {
+                    lootCell.setLoot(Board.getLootDeck().get(0));
+                    Board.getLootDeck().remove(0);
                 }
 
-                if (board.getLootDeck().size() == 0) {
+                if (Board.getLootDeck().size() == 0) {
 
-                    this.recoverLoots(board);
-                    lootCell.setLoot(board.getLootDeck().get(0));
-                    board.getLootDeck().remove(0);
+                    this.recoverLoots();
+                    lootCell.setLoot(Board.getLootDeck().get(0));
+                    Board.getLootDeck().remove(0);
 
                 }
 
@@ -457,13 +455,12 @@ public class Interaction {
     /**
      * If the lootdeck is empty, this method recovers the discarded loots and puts them on the deck once again.
      *
-     * @param board the board.
      */
-    public void recoverLoots(Board board) {
+    public static void recoverLoots() {
 
-        ArrayList<Loot> newDeck = board.getDiscardedLoot();
-        board.setLootDeck(newDeck);
-        board.shuffleLootDeck();
+        ArrayList<Loot> newDeck = Board.getDiscardedLoot();
+        Board.setLootDeck(newDeck);
+        Board.shuffleLootDeck();
 
     }
 
