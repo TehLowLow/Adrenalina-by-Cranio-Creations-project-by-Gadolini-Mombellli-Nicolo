@@ -84,18 +84,15 @@ public class Server {
         //   al login dei player.
 
 
-        // System.out.println((char) 27 + "[33m"); // esempio di ascii colore
-
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Specificare timer per la durata della lobby (in secondi): ");
         lobbyTimer = scanner.nextInt();
 
 
-        //Avvio il logger di rmi
+       /* //Avvio il logger di rmi
         Runnable loggerRMI = new RMILogger();
         Thread loginRMI = new Thread(loggerRMI);
-        loginRMI.start();
+        loginRMI.start();*/
 
 
         //Avvio thread pool logger di socket
@@ -107,10 +104,10 @@ public class Server {
         }
 
 
-        //avvio il server di gioco
+      /*  //avvio il server di gioco
         Runnable gameServer = new RMIServer();
         Thread game = new Thread(gameServer);
-        game.start();
+        game.start();*/
 
 
         ExecutorService gamePool = Executors.newFixedThreadPool(5);

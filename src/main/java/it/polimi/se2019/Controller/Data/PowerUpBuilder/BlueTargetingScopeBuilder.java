@@ -20,7 +20,7 @@ public class BlueTargetingScopeBuilder {
      * btScope is an instance of powerup
      */
 
-    private Powerup btScope = new Powerup();
+    private Powerup btScope;
 
     /**
      * eff is the effect of the powerup
@@ -58,6 +58,7 @@ public class BlueTargetingScopeBuilder {
         setting the fields of the powerup
          */
 
+        btScope = new Powerup();
         btScope.setName("Mirino Blu");
         btScope.setTradeValue(tValue);
         btScope.setColour(Colour.BLUE);

@@ -1,4 +1,5 @@
 package it.polimi.se2019.Controller.Data.PowerUpBuilder;
+
 import it.polimi.se2019.Controller.Data.EffectBuilders.TagBackGrenadeEffect;
 import it.polimi.se2019.Controller.Data.EffectBuilders.TargetingScopeEffect;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
@@ -19,7 +20,7 @@ public class BlueTagbackGrenadeBuilder {
      * blueVenomGrenade is an instance of Powerup.
      */
 
-    private Powerup bTagback = new Powerup();
+    private Powerup bTagback;
 
     /**
      * eff represents the effect of the powerup.
@@ -40,10 +41,11 @@ public class BlueTagbackGrenadeBuilder {
 
     /**
      * This method builds the object, setting all its fields.
+     *
      * @return blue venom grenade reference.
      */
 
-    public Powerup build(){
+    public Powerup build() {
 
         /*
         setting the trade value rybamount
@@ -59,6 +61,7 @@ public class BlueTagbackGrenadeBuilder {
         setting the fields of the Powerup
          */
 
+        bTagback = new Powerup();
         bTagback.setName("Granata Venom Blu");
         bTagback.setColour(Colour.BLUE);
         bTagback.setTradeValue(tValue);

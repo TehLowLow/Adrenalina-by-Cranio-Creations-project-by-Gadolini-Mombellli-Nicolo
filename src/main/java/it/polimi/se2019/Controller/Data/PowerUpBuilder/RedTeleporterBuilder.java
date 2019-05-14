@@ -20,7 +20,7 @@ public class RedTeleporterBuilder {
      * rTeleport is an instance of Powerup
      */
 
-    private Powerup rTeleport = new Powerup();
+    private Powerup rTeleport;
 
     /**
      * eff is the effect of the Powerup
@@ -59,6 +59,7 @@ public class RedTeleporterBuilder {
         setting the fields of the Powerup
          */
 
+        rTeleport= new Powerup();
         rTeleport.setName("Teletrasporto Rosso");
         rTeleport.setTradeValue(tValue);
         rTeleport.setColour(Colour.RED);

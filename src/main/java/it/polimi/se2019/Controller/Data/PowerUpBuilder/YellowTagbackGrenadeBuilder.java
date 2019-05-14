@@ -22,7 +22,7 @@ public class YellowTagbackGrenadeBuilder {
      * yTagback is an instance of Powerup
      */
 
-    private Powerup yTagback= new Powerup();
+    private Powerup yTagback;
 
     /**
      * eff is the effect of the Powerup
@@ -59,6 +59,7 @@ public class YellowTagbackGrenadeBuilder {
         setting the fields of the Powerup
          */
 
+        yTagback= new Powerup();
         yTagback.setName("Granata Venom Gialla");
         yTagback.setTradeValue(tValue);
         yTagback.setCardDescription(cDesc);

@@ -19,7 +19,7 @@ public class RedTagbackGrenadeBuilder {
      * red Tagback grenade is an instance of Powerup.
      */
 
-    private Powerup rTagback = new Powerup();
+    private Powerup rTagback;
 
     /**
      * eff is the effect of the Powerup
@@ -58,6 +58,7 @@ public class RedTagbackGrenadeBuilder {
         setting the fields of the powerup
          */
 
+        rTagback= new Powerup();
         rTagback.setName("Granata Venom Rossa");
         rTagback.setTradeValue(tValue);
         rTagback.setColour(Colour.RED);

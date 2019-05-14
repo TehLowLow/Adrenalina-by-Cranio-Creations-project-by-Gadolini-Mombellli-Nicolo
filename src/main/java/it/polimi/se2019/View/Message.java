@@ -520,7 +520,9 @@ public class Message {
         String str = "Scegli un powerup da scartare indicandone il numero. Spawnerai nella cella di quel colore.\n";
 
         for(Powerup powerup : powerups){
+
             str = str + powerups.indexOf(powerup) + ") " + powerup.getName() + "\n";
+
         }
 
         return str;

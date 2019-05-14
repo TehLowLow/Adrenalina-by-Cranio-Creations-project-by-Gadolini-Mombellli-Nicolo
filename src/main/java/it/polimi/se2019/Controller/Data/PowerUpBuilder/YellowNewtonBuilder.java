@@ -23,7 +23,7 @@ public class YellowNewtonBuilder {
      * yNewton is an instance of Powerup
      */
 
-    private Powerup yNewton = new Powerup();
+    private Powerup yNewton;
 
     /**
      * eff is the effect of the Powerup
@@ -63,6 +63,7 @@ public class YellowNewtonBuilder {
         setting the fields of the Powerup
          */
 
+        yNewton= new Powerup();
         yNewton.setName("Raggio Cinetico Giallo");
         yNewton.setTradeValue(tValue);
         yNewton.setCardDescription(cDesc);
