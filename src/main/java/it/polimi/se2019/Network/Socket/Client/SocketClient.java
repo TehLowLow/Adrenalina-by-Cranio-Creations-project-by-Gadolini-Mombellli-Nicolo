@@ -1,5 +1,6 @@
 package it.polimi.se2019.Network.Socket.Client;
 
+import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Network.Client;
 
 import java.io.DataInputStream;
