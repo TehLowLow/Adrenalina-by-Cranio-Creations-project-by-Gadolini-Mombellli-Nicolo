@@ -101,6 +101,11 @@ public class Match extends Thread {
             player.setScore(0);
             player.getPlayerboard().setWeapons(new ArrayList<>());
             player.getPlayerboard().setAmmoCubes(new Rybamount());
+            player.getPlayerboard().getAmmoCubes().setBlueCubes(1);
+            player.getPlayerboard().getAmmoCubes().setRedCubes(1);
+            player.getPlayerboard().getAmmoCubes().setYellowCubes(1);
+
+
             player.getPlayerboard().setMarker(new ArrayList<>());
             player.getPlayerboard().setDamage(new ArrayList<>());
             player.getPlayerboard().setFrenzyboard(false);

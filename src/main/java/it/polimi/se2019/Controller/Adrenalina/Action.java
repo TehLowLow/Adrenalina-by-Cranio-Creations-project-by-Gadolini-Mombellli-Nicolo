@@ -9,6 +9,7 @@ import it.polimi.se2019.View.Message;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static it.polimi.se2019.Controller.Adrenalina.Interaction.selectShotMove;
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
