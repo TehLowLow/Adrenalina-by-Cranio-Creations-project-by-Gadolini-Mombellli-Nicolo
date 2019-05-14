@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class BasicShockwaveTest {
+public class BasicTractorBeamTest {
 
     @Test
     public void applyEffect() {
@@ -22,13 +22,17 @@ public class BasicShockwaveTest {
 
         ConfigurationTest.createTestConfiguration();
         Server.connectedPlayers.get(1).setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
-        Weapon shockwave = new Weapon();
-        shockwave.setBaseEffect(new BasicShockwave());
-        boolean result = shockwave.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+        Weapon weapon = new Weapon();
+        weapon.setBaseEffect(new BasicTractorBeam());
+        boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
+        assertEquals(result, true);
 
-        Server.connectedPlayers.get(1).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
-        result = shockwave.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
+        for(int i = 1; i<5; i++){
+
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getYellowRoom().getCells().get(1));
+        }
+
+        result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, true);
 
     }
