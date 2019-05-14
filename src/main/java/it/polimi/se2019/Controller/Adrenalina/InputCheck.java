@@ -21,13 +21,14 @@ public class InputCheck {
     /**
      * This method analyzes the input string typed by the user and determines what kind of standard action
      * must be performed.
+     *
      * @param input The input string typed by the user (for example, "shot")
      * @return -1 if the input string is not valid
-     *          0 if the player has chosen "shot"
-     *          1 if the player has chosen "move"
-     *          2 if the player has chosen "pick up"
+     * 0 if the player has chosen "shot"
+     * 1 if the player has chosen "move"
+     * 2 if the player has chosen "pick up"
      */
-    public int standardAction(String input){
+    public int standardAction(String input) {
 
         return -1;
     }
@@ -35,13 +36,14 @@ public class InputCheck {
     /**
      * This method analyzes the input string typed by the user and determines what kind of enhanced action
      * must be performed.
+     *
      * @param input The input string typed by the user (for example, "shot")
      * @return -1 if the input string is not valid
-     *          0 if the player has chosen "shot"
-     *          1 if the player has chosen "move"
-     *          2 if the player has chosen "pick up"
+     * 0 if the player has chosen "shot"
+     * 1 if the player has chosen "move"
+     * 2 if the player has chosen "pick up"
      */
-    public int enhancedAction(String input){
+    public int enhancedAction(String input) {
 
         return -1;
     }
@@ -49,13 +51,14 @@ public class InputCheck {
     /**
      * This method analyzes the input string typed by the user and determines what kind of frenzy action
      * must be performed.
+     *
      * @param input The input string typed by the user (for example, "shot")
      * @return -1 if the input string is not valid
-     *          0 if the player has chosen "shot"
-     *          1 if the player has chosen "move"
-     *          2 if the player has chosen "pick up"
+     * 0 if the player has chosen "shot"
+     * 1 if the player has chosen "move"
+     * 2 if the player has chosen "pick up"
      */
-    public int frenzyAction(String input){
+    public int frenzyAction(String input) {
 
         return -1;
     }
@@ -63,41 +66,39 @@ public class InputCheck {
     /**
      * This method analyzes the input string typed by the user and determines what kind of frenzy enhanced action
      * must be performed.
+     *
      * @param input The input string typed by the user (for example, "shot")
      * @return -1 if the input string is not valid
-     *          0 if the player has chosen "shot"
-     *          1 if the player has chosen "move"
-     *          2 if the player has chosen "pick up"
+     * 0 if the player has chosen "shot"
+     * 1 if the player has chosen "move"
+     * 2 if the player has chosen "pick up"
      */
-    public int frenzyEnhancedAction(String input){
+    public int frenzyEnhancedAction(String input) {
 
         return -1;
     }
 
-    public static boolean checkMapInput(String input){
-        if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4")){
+    public static boolean checkMapInput(String input) {
+        if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4")) {
             return true;
-        }
-
-        else {
+        } else {
             return false;
         }
     }
 
-    public static boolean directionCheck (String input){
+    public static boolean directionCheck(String input) {
 
-        if(input.equalsIgnoreCase("alto") || input.equalsIgnoreCase("basso") || input.equalsIgnoreCase("sinistra") || input.equalsIgnoreCase("destra"))
-        {
+        if (input.equalsIgnoreCase("alto") || input.equalsIgnoreCase("basso") || input.equalsIgnoreCase("sinistra") || input.equalsIgnoreCase("destra")) {
             return true;
         }
         return false;
     }
 
-    public static boolean nicknameCheck(String input){
+    public static boolean nicknameCheck(String input) {
 
-        for(Player player : Server.connectedPlayers){
+        for (Player player : Server.connectedPlayers) {
 
-            if(player.getNickname().equalsIgnoreCase(input)){
+            if (player.getNickname().equalsIgnoreCase(input)) {
                 return true;
             }
 
@@ -110,28 +111,28 @@ public class InputCheck {
     Questo metodo controlla se l'utente ha digitato una stringa valida e ritorna l'intero corrispondente al colore.
     Se la stringa è invalida, ritorna -1.
      */
-    public static int colourCheck(String input){
+    public static int colourCheck(String input) {
 
-        if(input.equalsIgnoreCase("blu")){
+        if (input.equalsIgnoreCase("blu")) {
             return Colour.BLUE;
         }
 
-        if(input.equalsIgnoreCase("giallo")){
+        if (input.equalsIgnoreCase("giallo")) {
             return Colour.YELLOW;
         }
 
-        if(input.equalsIgnoreCase("rosso")){
+        if (input.equalsIgnoreCase("rosso")) {
             return Colour.RED;
         }
 
-        if(input.equalsIgnoreCase("bianco")){
+        if (input.equalsIgnoreCase("bianco")) {
             return Colour.WHITE;
         }
 
-        if(input.equalsIgnoreCase("viola")){
+        if (input.equalsIgnoreCase("viola")) {
             return Colour.PURPLE;
         }
-        if(input.equalsIgnoreCase("verde")){
+        if (input.equalsIgnoreCase("verde")) {
             return Colour.GREEN;
         }
 
@@ -141,7 +142,7 @@ public class InputCheck {
     /*
     Questo metodo controlla se l'utente ha digitato un numero valido.
      */
-    public static int numberCheck(String input) throws NumberFormatException{
+    public static int numberCheck(String input) throws NumberFormatException {
 
         int result = Integer.parseInt(input);
         return result;
@@ -152,45 +153,38 @@ public class InputCheck {
     serve nella scelta del numero di teschi da mettere nel tracciato colpo mortale
      */
 
-    public static boolean checkSkullsInput(String input){
-        if (input.equals("5") || input.equals("6") || input.equals("7") || input.equals("8")){
+    public static boolean checkSkullsInput(String input) {
+        if (input.equals("5") || input.equals("6") || input.equals("7") || input.equals("8")) {
             return true;
-        }
-
-        else {
+        } else {
             return false;
         }
     }
 
 
-    public static boolean yesOrNo(String input){
+    public static boolean yesOrNo(String input) {
 
-        if (input.equalsIgnoreCase("si")){
+        if (input.equalsIgnoreCase("si")) {
             return true;
-        }
-
-        if(input.equalsIgnoreCase("no")){
+        } else if (input.equalsIgnoreCase("no")) {
             return false;
-        }
-
-        else {
+        } else {
             return false;
         }
     }
 
-    public static boolean correctYesNo(String input){
+    public static boolean correctYesNo(String input) {
 
-        if(input.equalsIgnoreCase("si") || input.equalsIgnoreCase("no")){
-            return false;
+        if (input.equalsIgnoreCase("si") || input.equalsIgnoreCase("no")) {
+            return true;
         }
-
         return false;
 
     }
 
-    public static boolean baseEffectGrenadeLauncher(String input){
+    public static boolean baseEffectGrenadeLauncher(String input) {
 
-        if(input.equalsIgnoreCase("base") || input.equalsIgnoreCase("extra") ){
+        if (input.equalsIgnoreCase("base") || input.equalsIgnoreCase("extra")) {
             return true;
         }
 
@@ -198,11 +192,11 @@ public class InputCheck {
 
     }
 
-    public static boolean availablePlayer(String nickname, ArrayList <Player> players){
+    public static boolean availablePlayer(String nickname, ArrayList<Player> players) {
 
-        for(Player player : players){
+        for (Player player : players) {
 
-            if(player.getNickname().equalsIgnoreCase(nickname))
+            if (player.getNickname().equalsIgnoreCase(nickname))
                 return true;
 
         }
@@ -216,9 +210,9 @@ public class InputCheck {
     SCELTA BERSAGLI PER TURRET TRIPOD (MACHINE GUN)
      */
 
-    public static boolean chooseTurretTripodTarget(String input){
+    public static boolean chooseTurretTripodTarget(String input) {
 
-        if (input.equalsIgnoreCase("0") || input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")){
+        if (input.equalsIgnoreCase("0") || input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")) {
 
             return true;
 
@@ -232,11 +226,11 @@ public class InputCheck {
     SCELTA CAMPIONE
      */
 
-    public static boolean chooseChampion(String input, CopyOnWriteArrayList<String> champions){
+    public static boolean chooseChampion(String input, CopyOnWriteArrayList<String> champions) {
 
-        for (String champion:champions){
+        for (String champion : champions) {
 
-            if (input.equalsIgnoreCase(champion)){
+            if (input.equalsIgnoreCase(champion)) {
                 return true;
             }
 
@@ -252,11 +246,11 @@ public class InputCheck {
     SCELTA ARMA
      */
 
-    public static boolean correctWeapon(String input, ArrayList<Weapon> weapons){
+    public static boolean correctWeapon(String input, ArrayList<Weapon> weapons) {
 
-        for (Weapon weapon:weapons){
+        for (Weapon weapon : weapons) {
 
-            if (input.equalsIgnoreCase(weapon.getName())){
+            if (input.equalsIgnoreCase(weapon.getName())) {
 
                 return true;
 
@@ -273,9 +267,9 @@ public class InputCheck {
     SCELTA EFFETTO BASE O ALTERNATIVO
      */
 
-    public static boolean correctBasicOrAlternative(String input){
+    public static boolean correctBasicOrAlternative(String input) {
 
-        if (input.equalsIgnoreCase("base") || input.equalsIgnoreCase("alternativo")){
+        if (input.equalsIgnoreCase("base") || input.equalsIgnoreCase("alternativo")) {
 
             return true;
         }
@@ -283,9 +277,9 @@ public class InputCheck {
         return false;
     }
 
-    public static boolean correctAction(String action){
+    public static boolean correctAction(String action) {
 
-        if(action.equalsIgnoreCase("muovi") || action.equalsIgnoreCase("spara") || action.equalsIgnoreCase("raccogli")){
+        if (action.equalsIgnoreCase("muovi") || action.equalsIgnoreCase("spara") || action.equalsIgnoreCase("raccogli")) {
             return true;
         }
 
@@ -293,9 +287,9 @@ public class InputCheck {
 
     }
 
-    public static boolean correctPowerUp(String powerup){
+    public static boolean correctPowerUp(String powerup) {
 
-        if(powerup.equalsIgnoreCase("Granata venom") || powerup.equalsIgnoreCase("Mirino") ||powerup.equalsIgnoreCase("Raggio cinetico") || powerup.equalsIgnoreCase("Teletrasporto")){
+        if (powerup.equalsIgnoreCase("Granata venom") || powerup.equalsIgnoreCase("Mirino") || powerup.equalsIgnoreCase("Raggio cinetico") || powerup.equalsIgnoreCase("Teletrasporto")) {
             return true;
         }
 
@@ -307,9 +301,9 @@ public class InputCheck {
     ENHANCED SHOT SCELTA MOVIMENTO
      */
 
-    public static boolean correctMoveEnhancedShot(String input){
+    public static boolean correctMoveEnhancedShot(String input) {
 
-        if (input.equalsIgnoreCase("stop") || input.equalsIgnoreCase("su") || input.equalsIgnoreCase("giu") || input.equalsIgnoreCase("destra") || input.equalsIgnoreCase("sinistra")){
+        if (input.equalsIgnoreCase("stop") || input.equalsIgnoreCase("su") || input.equalsIgnoreCase("giu") || input.equalsIgnoreCase("destra") || input.equalsIgnoreCase("sinistra")) {
 
             return true;
 

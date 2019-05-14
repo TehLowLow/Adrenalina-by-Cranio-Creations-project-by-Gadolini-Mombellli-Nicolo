@@ -493,7 +493,7 @@ public class Action {
 
             answer = Server.updateWithAnswer(player, Message.vuoiMuovertiPU());
 
-            if (InputCheck.correctYesNo(answer)) {
+            if (!InputCheck.correctYesNo(answer)) {
                 Server.update(player, Message.inputError());
                 continue;
             }

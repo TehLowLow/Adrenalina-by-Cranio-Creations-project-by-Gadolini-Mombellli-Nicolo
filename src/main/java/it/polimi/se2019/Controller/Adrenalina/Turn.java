@@ -89,11 +89,8 @@ public class Turn {
      * @param player is the player who has to play the first turn
      */
     public void first(Player player) {
-
         firstSpawn(player);
         standard(player);
-
-
     }
 
 
@@ -106,7 +103,7 @@ public class Turn {
 
 
         Action.perform(player);
-
+        Action.perform(player);
         Action.reload(player);
 
         //Risolvo la board e respawno i morti

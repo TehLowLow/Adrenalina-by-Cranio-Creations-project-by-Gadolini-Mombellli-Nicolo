@@ -14,8 +14,12 @@ public class CLItest {
 
     public static void main(String[] args) {
 
-        Map4Builder map4 = new Map4Builder();
-        Board.setMap(map4.build());
+        Map1Builder map1 = new Map1Builder();
+        Board.setMap(map1.build());
+
+        //Map4Builder map4 = new Map4Builder();
+        //Board.setMap(map4.build());
+
 
         Player player1 = new Player();
         Player player2 = new Player();
@@ -29,8 +33,8 @@ public class CLItest {
         player4.setNickname("Luca");
         player5.setNickname("Kev");
 
-        player1.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
-        player2.setPosition(Board.getMap().getRedRoom().getCells().get(1));
+        player1.setPosition(Board.getMap().getBlueRoom().getCells().get(0));
+        player2.setPosition(Board.getMap().getRedRoom().getCells().get(2));
         player3.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
         player4.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
         player5.setPosition(Board.getMap().getYellowRoom().getCells().get(0));
@@ -41,8 +45,8 @@ public class CLItest {
         Server.connectedPlayers.add(player4);
         Server.connectedPlayers.add(player5);
 
-        System.out.println(Map4Rep.map4);
-
+        System.out.println(Map1StringRep.map1);
+        //System.out.println(Map4Rep.map4);
         for (Player player : Server.connectedPlayers) {
 
             Cell cell = player.getPosition();

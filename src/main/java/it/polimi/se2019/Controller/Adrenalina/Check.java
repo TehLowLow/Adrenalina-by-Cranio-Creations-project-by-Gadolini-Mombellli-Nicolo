@@ -13,7 +13,6 @@ import static it.polimi.se2019.Network.Server.connectedPlayers;
 import static it.polimi.se2019.Network.Server.update;
 
 
-
 /**
  * This class contains all the methods used to check if an interaction during the game is legit.
  */
@@ -885,9 +884,6 @@ public class Check {
                 }
 
             }
-
-
-
 
         /*
         assigning the points to the killers
