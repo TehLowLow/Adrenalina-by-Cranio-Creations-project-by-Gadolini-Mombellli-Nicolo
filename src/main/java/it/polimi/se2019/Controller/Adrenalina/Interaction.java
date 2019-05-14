@@ -121,7 +121,7 @@ public class Interaction {
 
             ArrayList availableWeapons = spawnCell.getAvailableWeapons();
 
-            if (availableWeapons.size() < 3) {
+            while (availableWeapons.size() < 3) {
 
                 Weapon drawnWeapon = Board.getWeaponDeck().get(0);
                 availableWeapons.add(drawnWeapon);
@@ -276,7 +276,7 @@ public class Interaction {
 
         int yellowCost = billRybamount.getYellow();
         int blueCost = billRybamount.getBlue();
-        int redCost = billRybamount.getBlue();
+        int redCost = billRybamount.getRed();
 
         while (yellowAvailable < yellowCost) {
             yellowAvailable = yellowAvailable + convertPowerUp(player, Colour.YELLOW);

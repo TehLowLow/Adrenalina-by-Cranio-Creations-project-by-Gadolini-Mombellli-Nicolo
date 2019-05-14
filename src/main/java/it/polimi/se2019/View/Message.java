@@ -472,7 +472,7 @@ public class Message {
 
         for (Weapon weapon:weapons){
 
-             stringaFinale = stringaFinale + weapon.getName() + "\n";
+             stringaFinale += weapon.getName() + "\n";
 
         }
 
