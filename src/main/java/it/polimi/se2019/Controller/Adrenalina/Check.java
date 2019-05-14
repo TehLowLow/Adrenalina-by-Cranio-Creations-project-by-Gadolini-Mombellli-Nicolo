@@ -333,7 +333,7 @@ public class Check {
 
             blueAvailable = blueAvailable + powerup.getTradeValue().getBlue();
             yellowAvailable = yellowAvailable + powerup.getTradeValue().getYellow();
-            redAvailable = redAvailable + powerup.getTradeValue().getYellow();
+            redAvailable = redAvailable + powerup.getTradeValue().getRed();
 
         }
 
@@ -341,7 +341,7 @@ public class Check {
         int blueCost = cost.getBlue();
         int redCost = cost.getRed();
 
-        if (yellowCost > yellowAvailable || redCost > yellowAvailable || blueCost > blueAvailable) {
+        if (yellowCost > yellowAvailable || redCost > redAvailable || blueCost > blueAvailable) {
             return false;
         }
 
