@@ -10,6 +10,9 @@ import it.polimi.se2019.View.Message;
 
 import java.util.ArrayList;
 
+import static it.polimi.se2019.Network.Server.update;
+import static it.polimi.se2019.Network.Server.updateWithAnswer;
+
 /**
  * this class contains the methods to manage the links
  * with all the game's elements, such as drawing, discarding...
@@ -461,6 +464,170 @@ public class Interaction {
         ArrayList<Loot> newDeck = board.getDiscardedLoot();
         board.setLootDeck(newDeck);
         board.shuffleLootDeck();
+
+    }
+
+
+
+    public static void selectShotMove(Player player){
+
+        String sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+
+        while (!InputCheck.correctMoveEnhancedShot(sceltaMovimento)) {
+
+            update(player, Message.inputError());
+            sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+
+        }
+
+        boolean canShot = false;
+
+        while (!canShot) {
+
+            if (sceltaMovimento.equalsIgnoreCase("stop")) {
+
+                for (Weapon weapon : player.getPlayerboard().getWeapons()) {
+
+                    if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
+
+                        canShot = true;
+
+                    }
+
+                }
+
+                if (!canShot) {
+
+                    update(player, "Non puoi sparare");
+
+                    updateWithAnswer(player, Message.scegliMovimento());
+
+                }
+
+            }
+
+            if (sceltaMovimento.equalsIgnoreCase("su")) {
+
+                Player fakePlayer = new Player();
+
+                fakePlayer.setPosition(player.getPosition().getUpConnection().getConnectedCell());
+                fakePlayer.setPlayerboard(new Playerboard());
+                fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+
+                for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+
+                    if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+
+
+                        player.setPosition(fakePlayer.getPosition());
+                        canShot = true;
+
+                    }
+
+                }
+
+                if (!canShot) {
+
+                    update(player, "Non puoi sparare");
+
+                    updateWithAnswer(player, Message.scegliMovimento());
+
+                }
+
+            }
+
+
+            if (sceltaMovimento.equalsIgnoreCase("giu")) {
+
+                Player fakePlayer = new Player();
+
+                fakePlayer.setPosition(player.getPosition().getDownConnection().getConnectedCell());
+                fakePlayer.setPlayerboard(new Playerboard());
+                fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+
+                for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+
+                    if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+
+                        canShot = true;
+                        player.setPosition(fakePlayer.getPosition());
+
+                    }
+
+                }
+
+                if (!canShot) {
+
+                    update(player, "Non puoi sparare");
+
+                    updateWithAnswer(player, Message.scegliMovimento());
+
+                }
+
+            }
+
+
+            if (sceltaMovimento.equalsIgnoreCase("destra")) {
+
+                Player fakePlayer = new Player();
+
+                fakePlayer.setPosition(player.getPosition().getRightConnection().getConnectedCell());
+                fakePlayer.setPlayerboard(new Playerboard());
+                fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+
+                for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+
+                    if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+
+
+                        player.setPosition(fakePlayer.getPosition());
+                        canShot = true;
+
+                    }
+
+                }
+
+                if (!canShot) {
+
+                    update(player, "Non puoi sparare");
+
+                    updateWithAnswer(player, Message.scegliMovimento());
+
+                }
+
+            }
+
+            if (sceltaMovimento.equalsIgnoreCase("sinistra")) {
+
+                Player fakePlayer = new Player();
+
+                fakePlayer.setPosition(player.getPosition().getLeftConnection().getConnectedCell());
+                fakePlayer.setPlayerboard(new Playerboard());
+                fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+
+                for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+
+                    if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+
+                        canShot = true;
+                        player.setPosition(fakePlayer.getPosition());
+
+                    }
+
+                }
+
+                if (!canShot) {
+
+                    update(player, "Non puoi sparare");
+
+                    updateWithAnswer(player, Message.scegliMovimento());
+
+                }
+
+            }
+
+
+        }
 
     }
 
