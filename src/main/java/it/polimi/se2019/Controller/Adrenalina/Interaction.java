@@ -86,14 +86,12 @@ public class Interaction {
     /**
      * this method draws a weapon from the deck and places
      * it on the board. It refills every empty weapon slot left.
-     *
-     * @param board is "Adrenalina" main board
      */
 
-    public void placeWeapons(Board board) {
+    public static void placeWeapons() {
 
-        Map map = board.getMap();
-        ArrayList<Weapon> weaponDeck = board.getWeaponDeck();
+        Map map = Board.getMap();
+        ArrayList<Weapon> weaponDeck = Board.getWeaponDeck();
 
         ArrayList<Room> spawnRooms = new ArrayList<Room>();
         ArrayList<SpawnCell> spawnCells = new ArrayList<SpawnCell>();
@@ -107,7 +105,7 @@ public class Interaction {
 
             for (Cell cell : cells) {
 
-                if (check.isSpawn(cell)) {
+                if (Check.isSpawn(cell)) {
 
                     //If the current cell is a spawn cell, it is casted to spawncell and added
                     //to the arraylist of spawncells.
@@ -125,16 +123,12 @@ public class Interaction {
 
             if (availableWeapons.size() < 3) {
 
-                Weapon drawnWeapon = board.getWeaponDeck().get(0);
+                Weapon drawnWeapon = Board.getWeaponDeck().get(0);
                 availableWeapons.add(drawnWeapon);
-                board.getWeaponDeck().remove(drawnWeapon);
+                Board.getWeaponDeck().remove(drawnWeapon);
                 spawnCell.setAvailableWeapons(availableWeapons);
             }
-
-
         }
-
-
     }
 
 
@@ -191,7 +185,7 @@ public class Interaction {
      * have been picked up during the turn
      */
 
-    public void placeLoot() {
+    public static void placeLoot() {
 
         ArrayList<Room> rooms = new ArrayList<Room>();
         ArrayList<LootCell> lootCells = new ArrayList<LootCell>();
@@ -218,7 +212,7 @@ public class Interaction {
 
             for (Cell cell : room.getCells()) {
 
-                if (!check.isSpawn(cell)) {
+                if (!Check.isSpawn(cell)) {
                     lootCells.add((LootCell) cell);
                 }
 
@@ -238,7 +232,7 @@ public class Interaction {
 
                 if (Board.getLootDeck().size() == 0) {
 
-                    this.recoverLoots();
+                    recoverLoots();
                     lootCell.setLoot(Board.getLootDeck().get(0));
                     Board.getLootDeck().remove(0);
 
@@ -454,7 +448,6 @@ public class Interaction {
 
     /**
      * If the lootdeck is empty, this method recovers the discarded loots and puts them on the deck once again.
-     *
      */
     public static void recoverLoots() {
 
@@ -465,8 +458,7 @@ public class Interaction {
     }
 
 
-
-    public static void selectShotMove(Player player){
+    public static void selectShotMove(Player player) {
 
         String sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
 

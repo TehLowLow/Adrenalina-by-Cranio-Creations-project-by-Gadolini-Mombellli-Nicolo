@@ -39,7 +39,6 @@ public class PowerUpDeckSetup {
 
 
         for(int i = 0; i<2; i++) {
-
             powerupDeck.add(bNewton.build());
             powerupDeck.add(bTagback.build());
             powerupDeck.add(btScope.build());

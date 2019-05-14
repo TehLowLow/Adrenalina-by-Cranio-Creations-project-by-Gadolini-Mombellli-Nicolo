@@ -2,7 +2,7 @@ package it.polimi.se2019.Controller.Adrenalina;
 
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
-import it.polimi.se2019.Controller.Adrenalina.Interaction;
+
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +12,7 @@ import static it.polimi.se2019.Model.Connection.*;
 import static it.polimi.se2019.Network.Server.connectedPlayers;
 import static it.polimi.se2019.Network.Server.update;
 
-import it.polimi.se2019.Model.Board.*;
+
 
 /**
  * This class contains all the methods used to check if an interaction during the game is legit.
@@ -39,7 +39,6 @@ public class Check {
         checking the damage
          */
 
-
         if (damage == 11) {
             return 1;
         }
@@ -49,7 +48,6 @@ public class Check {
         } else {
             return 0;
         }
-
     }
 
 
@@ -1346,7 +1344,7 @@ public class Check {
      */
 
 
-    public boolean isSpawn(Cell cell) {
+    public static boolean isSpawn(Cell cell) {
 
         if (cell.getName().equals("spawnCell")) {
             return true;

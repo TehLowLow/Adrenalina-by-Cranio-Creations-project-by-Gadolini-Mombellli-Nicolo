@@ -134,8 +134,8 @@ public class Match extends Thread {
 
             Turn t = new Turn();
             t.first(player);
-            interaction.placeLoot(board);
-            interaction.placeWeapons(board);
+            interaction.placeLoot();
+            interaction.placeWeapons();
         }
 
 
@@ -148,8 +148,8 @@ public class Match extends Thread {
                 if (finish) {
                     continue;
                 }
-                interaction.placeLoot(board);
-                interaction.placeWeapons(board);
+                interaction.placeLoot();
+                interaction.placeWeapons();
                 lastPlayer = player;
 
             }

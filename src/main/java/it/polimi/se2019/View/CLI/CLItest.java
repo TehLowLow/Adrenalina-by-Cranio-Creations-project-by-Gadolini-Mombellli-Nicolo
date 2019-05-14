@@ -14,8 +14,8 @@ public class CLItest {
 
     public static void main(String[] args) {
 
-        Map1Builder map1Builder = new Map1Builder();
-        Board.setMap(map1Builder.build());
+        Map4Builder map4 = new Map4Builder();
+        Board.setMap(map4.build());
 
         Player player1 = new Player();
         Player player2 = new Player();
@@ -43,19 +43,14 @@ public class CLItest {
 
         System.out.println(Map4Rep.map4);
 
-        for(Player player : Server.connectedPlayers){
+        for (Player player : Server.connectedPlayers) {
 
             Cell cell = player.getPosition();
             int colour = cell.getColour();
             String cellName = cell.getName();
 
-            System.out.println(player.getNickname() + " si trova nella stanza " + cellName + " di colore " + Printer.colour(colour) + "." );
+            System.out.println(player.getNickname() + " si trova nella stanza " + cellName + " di colore " + Printer.colour(colour) + ".");
 
         }
-
-
-
-
     }
-
 }

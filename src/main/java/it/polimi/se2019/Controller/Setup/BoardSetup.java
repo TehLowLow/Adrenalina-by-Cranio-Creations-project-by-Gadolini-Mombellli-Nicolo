@@ -1,4 +1,6 @@
 package it.polimi.se2019.Controller.Setup;
+
+import it.polimi.se2019.Controller.Adrenalina.Interaction;
 import it.polimi.se2019.Model.*;
 
 import java.util.ArrayList;
@@ -11,13 +13,12 @@ public class BoardSetup {
 
 
     /**
-     *Creates the map from all the data.
+     * Creates the map from all the data.
+     *
      * @return the complete map.
      */
 
-    public void build(){
-
-
+    public void build() {
 
         WeaponDeckSetup weaponDeckSetup = new WeaponDeckSetup();
         Board.setWeaponDeck(weaponDeckSetup.build());
@@ -32,15 +33,16 @@ public class BoardSetup {
         Board.shufflePowerUpDeck();
 
 
-
         ArrayList<Powerup> discardedPowerUps = new ArrayList<>();
         Board.setDiscardedPowerUps(discardedPowerUps);
 
         ArrayList<Loot> discardedLoots = new ArrayList<>();
         Board.setDiscardedLoot(discardedLoots);
 
-
-
+        Interaction.placeLoot();
+        Interaction.placeWeapons();
 
     }
+
 }
+

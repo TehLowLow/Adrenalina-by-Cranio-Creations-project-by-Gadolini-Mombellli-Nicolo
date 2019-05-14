@@ -17,7 +17,7 @@ public class SpawnCell extends Cell{
      * this arraylist represents the available weapons in the spawn cell
      */
 
-    private ArrayList<Weapon> availableWeapons;
+    private ArrayList<Weapon> availableWeapons = new ArrayList<>();
 
     /*
      *  ---------------------- METHODS ----------------------
