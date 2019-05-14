@@ -276,7 +276,7 @@ public class Interaction {
 
         int yellowCost = billRybamount.getYellow();
         int blueCost = billRybamount.getBlue();
-        int redCost = billRybamount.getBlue();
+        int redCost = billRybamount.getRed();
 
         while (yellowAvailable < yellowCost) {
             yellowAvailable = yellowAvailable + convertPowerUp(player, Colour.YELLOW);
