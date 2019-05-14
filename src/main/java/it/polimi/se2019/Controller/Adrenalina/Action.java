@@ -331,7 +331,7 @@ public class Action {
             }
 
 
-            if (cell > 0 && cell < reachable.size()) {
+            if (cell >= 0 && cell < reachable.size()) {
 
                 player.setPosition(reachable.get(cell));
                 update(player, Message.movedTo());
