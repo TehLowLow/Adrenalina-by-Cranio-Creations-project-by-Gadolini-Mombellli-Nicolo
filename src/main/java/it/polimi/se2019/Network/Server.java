@@ -2,10 +2,11 @@ package it.polimi.se2019.Network;
 
 
 import it.polimi.se2019.Controller.Adrenalina.Match;
+import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.RMI.Server.RMIServer;
-
+import it.polimi.se2019.View.CLI.*;
 import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
 
@@ -169,6 +170,7 @@ public class Server {
             Socket stream = (Socket) playerClient.get(player.getPORT());
 
             try {
+
 
                 DataOutputStream out = new DataOutputStream(stream.getOutputStream());
                 DataInputStream echo = new DataInputStream(stream.getInputStream());
