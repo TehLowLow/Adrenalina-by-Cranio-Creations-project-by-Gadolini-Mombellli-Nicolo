@@ -9,13 +9,13 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BasicShockwave extends Effect {
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         for(Player target : targets){
             Damage.giveDamage(1, user, target);
@@ -24,11 +24,11 @@ public class BasicShockwave extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Cell> reachableCells = Check.reachableCells(user, 1);
-        ArrayList <Player> chosenTargets = new ArrayList();
-        ArrayList <Player> possibleTargets = new ArrayList();
+        CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList <Player> chosenTargets = new CopyOnWriteArrayList();
+        CopyOnWriteArrayList <Player> possibleTargets = new CopyOnWriteArrayList();
 
         for(Player target : Server.connectedPlayers){
 
@@ -91,7 +91,7 @@ public class BasicShockwave extends Effect {
 
     public boolean hasTargets(Player user){
 
-        ArrayList<Cell> reachableCells = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(user, 1);
 
         for(Player target : Server.connectedPlayers){
 

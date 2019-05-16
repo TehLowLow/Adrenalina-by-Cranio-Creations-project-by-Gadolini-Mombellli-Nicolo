@@ -9,15 +9,15 @@ import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BasicHellion extends Effect {
 
 
-    private ArrayList<Player> possibleTargets;
+    private CopyOnWriteArrayList<Player> possibleTargets;
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         Player target = targets.get(0);
 
@@ -25,7 +25,7 @@ public class BasicHellion extends Effect {
 
         damage.setChampionName(user.getPlayerboard().getChampionName());
 
-        ArrayList<Token> damages = target.getPlayerboard().getDamage();
+        CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
 
         damages.add(damage);
 
@@ -41,7 +41,7 @@ public class BasicHellion extends Effect {
 
                 Token marker = new Token();
                 marker.setChampionName(user.getPlayerboard().getChampionName());
-                ArrayList<Token> markers = other.getPlayerboard().getMarker();
+                CopyOnWriteArrayList<Token> markers = other.getPlayerboard().getMarker();
                 markers.add(marker);
                 other.getPlayerboard().setMarker(markers);
                 Check.limitMarkers(other, user);
@@ -53,9 +53,9 @@ public class BasicHellion extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Player> chosenTarget = new ArrayList<>();
+        CopyOnWriteArrayList<Player> chosenTarget = new CopyOnWriteArrayList<>();
 
         boolean found = false;
 
@@ -90,10 +90,10 @@ public class BasicHellion extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList<Cell> oneMoveAway = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList<Cell> oneMoveAway = Check.reachableCells(user, 1);
         oneMoveAway.add(user.getPosition());
 
-        possibleTargets = new ArrayList<>();
+        possibleTargets = new CopyOnWriteArrayList<>();
 
         for (Player target : Server.connectedPlayers) {
 

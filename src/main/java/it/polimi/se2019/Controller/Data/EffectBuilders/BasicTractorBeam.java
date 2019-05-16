@@ -10,19 +10,19 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BasicTractorBeam extends Effect {
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        ArrayList <Cell> visibleCells = Check.visibleSquares(user);
-        ArrayList <Cell> availableCells = new ArrayList<>();
+        CopyOnWriteArrayList <Cell> visibleCells = Check.visibleSquares(user);
+        CopyOnWriteArrayList <Cell> availableCells = new CopyOnWriteArrayList<>();
 
         Player target = targets.get(0);
-        ArrayList <Cell> targetCells = Check.reachableCells(target, 2);
+        CopyOnWriteArrayList <Cell> targetCells = Check.reachableCells(target, 2);
         targetCells.add(target.getPosition());
 
         for(Cell visibleCell : visibleCells){
@@ -49,7 +49,7 @@ public class BasicTractorBeam extends Effect {
     }
 
 
-    public Cell chooseCell(Player user, ArrayList <Cell> availableCells){
+    public Cell chooseCell(Player user, CopyOnWriteArrayList <Cell> availableCells){
 
 
         Cell chosenCell = null;
@@ -87,12 +87,12 @@ public class BasicTractorBeam extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList <Cell> visibleCells = Check.visibleSquares(user);
+        CopyOnWriteArrayList <Cell> visibleCells = Check.visibleSquares(user);
 
-        ArrayList <Player> targets = new ArrayList<>();
-        ArrayList <Player> chosenTargets = new ArrayList<>();
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList <Player> chosenTargets = new CopyOnWriteArrayList<>();
 
         Player fakePlayer = new Player();
         fakePlayer.setPosition(user.getPosition());
@@ -101,7 +101,7 @@ public class BasicTractorBeam extends Effect {
 
             fakePlayer.setPosition(visibleCell);
 
-            ArrayList <Cell> visibleFakeCells = Check.reachableCells(fakePlayer, 2);
+            CopyOnWriteArrayList <Cell> visibleFakeCells = Check.reachableCells(fakePlayer, 2);
 
             for(Player target : Server.connectedPlayers){
 
@@ -132,9 +132,9 @@ public class BasicTractorBeam extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList <Cell> visibleCells = Check.visibleSquares(user);
+        CopyOnWriteArrayList <Cell> visibleCells = Check.visibleSquares(user);
 
-        ArrayList <Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
 
         Player fakePlayer = new Player();
         fakePlayer.setPosition(user.getPosition());
@@ -143,7 +143,7 @@ public class BasicTractorBeam extends Effect {
 
             fakePlayer.setPosition(visibleCell);
 
-            ArrayList <Cell> visibleFakeCells = Check.reachableCells(fakePlayer, 2);
+            CopyOnWriteArrayList <Cell> visibleFakeCells = Check.reachableCells(fakePlayer, 2);
             visibleFakeCells.add(fakePlayer.getPosition());
 
             for(Player target : Server.connectedPlayers){

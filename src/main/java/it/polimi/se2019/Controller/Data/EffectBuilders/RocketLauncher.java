@@ -9,15 +9,15 @@ import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RocketLauncher extends Effect {
 
-    ArrayList<Player> warheadTargets;
+    CopyOnWriteArrayList<Player> warheadTargets;
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         //Verifico se l'utente ha il cubo blu per la mossa.
 
@@ -105,7 +105,7 @@ public class RocketLauncher extends Effect {
 
     private void applyRocketJump(Player user){
 
-        ArrayList <Cell> reachableCells = Check.reachableCells(user, 2);
+        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(user, 2);
 
         boolean chosen = false;
         int indexCell = 0;
@@ -136,7 +136,7 @@ public class RocketLauncher extends Effect {
 
     }
 
-    private void applyBaseEffect(Player user, ArrayList<Player> targets) {
+    private void applyBaseEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         //Applico effetto
 
@@ -146,7 +146,7 @@ public class RocketLauncher extends Effect {
         Token d2 = new Token();
         d1.setChampionName(user.getPlayerboard().getChampionName());
         d2.setChampionName(user.getPlayerboard().getChampionName());
-        ArrayList<Token> damages = target.getPlayerboard().getDamage();
+        CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
         damages.add(d1);
         damages.add(d2);
         target.getPlayerboard().setDamage(damages);
@@ -217,7 +217,7 @@ public class RocketLauncher extends Effect {
 
                 Token d = new Token();
                 d.setChampionName(user.getPlayerboard().getChampionName());
-                ArrayList<Token> damagesWarhead = warheadTarget.getPlayerboard().getDamage();
+                CopyOnWriteArrayList<Token> damagesWarhead = warheadTarget.getPlayerboard().getDamage();
                 damagesWarhead.add(d);
                 warheadTarget.getPlayerboard().setDamage(damagesWarhead);
 
@@ -235,9 +235,9 @@ public class RocketLauncher extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Player> chosenTarget = new ArrayList<>();
+        CopyOnWriteArrayList<Player> chosenTarget = new CopyOnWriteArrayList<>();
 
         warheadTargets = getVisibleOtherSquares(user);
 
@@ -267,9 +267,9 @@ public class RocketLauncher extends Effect {
 
     }
 
-    private ArrayList<Player> getVisibleOtherSquares(Player user) {
+    private CopyOnWriteArrayList<Player> getVisibleOtherSquares(Player user) {
 
-        ArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+        CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
 
         for (Player target : Server.connectedPlayers) {
 
@@ -289,7 +289,7 @@ public class RocketLauncher extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList<Player> visiblePlayers = getVisibleOtherSquares(user);
+        CopyOnWriteArrayList<Player> visiblePlayers = getVisibleOtherSquares(user);
 
         if (visiblePlayers.isEmpty()) {
 
@@ -297,7 +297,7 @@ public class RocketLauncher extends Effect {
 
                 Player fakePlayer = new Player();
 
-                ArrayList<Cell> reachableCells = Check.reachableCells(user, 2);
+                CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(user, 2);
 
                 for (Cell cell: reachableCells){
 

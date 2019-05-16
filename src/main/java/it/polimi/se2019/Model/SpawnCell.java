@@ -1,6 +1,6 @@
 package it.polimi.se2019.Model;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class is the extension of the class Cell, it is responsible for holding memory of the player spawn
@@ -14,10 +14,10 @@ public class SpawnCell extends Cell{
      */
 
     /**
-     * this arraylist represents the available weapons in the spawn cell
+     * this CopyOnWriteArrayList represents the available weapons in the spawn cell
      */
 
-    private ArrayList<Weapon> availableWeapons = new ArrayList<>();
+    private CopyOnWriteArrayList<Weapon> availableWeapons = new CopyOnWriteArrayList<>();
 
     /*
      *  ---------------------- METHODS ----------------------
@@ -29,9 +29,9 @@ public class SpawnCell extends Cell{
      */
 
     /**
-     * @return the arraylist that holds memory of the three weapon in the spawn cell.
+     * @return the CopyOnWriteArrayList that holds memory of the three weapon in the spawn cell.
      */
-    public ArrayList<Weapon> getAvailableWeapons(){return availableWeapons;}
+    public CopyOnWriteArrayList<Weapon> getAvailableWeapons(){return availableWeapons;}
 
 
 
@@ -42,9 +42,9 @@ public class SpawnCell extends Cell{
 
     /**
      * Sets the three  weapons in the spawn cell during the init of the game.
-     * @param weapons is the arraylist of weapons loaded in the room
+     * @param weapons is the CopyOnWriteArrayList of weapons loaded in the room
      */
-    public void setAvailableWeapons(ArrayList<Weapon> weapons){
+    public void setAvailableWeapons(CopyOnWriteArrayList<Weapon> weapons){
         this.availableWeapons = weapons;
     }
 

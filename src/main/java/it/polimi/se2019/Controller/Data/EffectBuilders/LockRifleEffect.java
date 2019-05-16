@@ -9,7 +9,7 @@ import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Controller.Adrenalina.InputCheck.yesOrNo;
 import static it.polimi.se2019.Network.Server.*;
@@ -18,7 +18,7 @@ public class LockRifleEffect extends Effect {
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         if (targets.equals(null)){
 
@@ -30,8 +30,8 @@ public class LockRifleEffect extends Effect {
 
         for (Player target : targets) {
 
-            ArrayList<Token> damages = target.getPlayerboard().getDamage();
-            ArrayList<Token> markers = target.getPlayerboard().getMarker();
+            CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
+            CopyOnWriteArrayList<Token> markers = target.getPlayerboard().getMarker();
 
             Token d1 = new Token();
             Token d2 = new Token();
@@ -87,10 +87,10 @@ public class LockRifleEffect extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
 
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         if (!hasTargets(user)) {
 
@@ -98,7 +98,7 @@ public class LockRifleEffect extends Effect {
 
         }
 
-        ArrayList<Player> possibleTargets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
 
         possibleTargets = Check.visiblePlayers(user);
 
@@ -173,11 +173,11 @@ public class LockRifleEffect extends Effect {
         return false;
     }
 
-    public ArrayList<Player> getOptionalEffectTargets(Player user, ArrayList<Player> alreadyHit, ArrayList<Player> visiblePlayers) {
+    public CopyOnWriteArrayList<Player> getOptionalEffectTargets(Player user, CopyOnWriteArrayList<Player> alreadyHit, CopyOnWriteArrayList<Player> visiblePlayers) {
 
-        ArrayList<Player> possibleTargets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
 
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         for (Player player : visiblePlayers) {
             if (!alreadyHit.contains(player)) {
@@ -247,11 +247,11 @@ public class LockRifleEffect extends Effect {
     }
 
 
-    public void applyOptionalEffect(Player user, ArrayList<Player> targets) {
+    public void applyOptionalEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         for (Player target : targets) {
 
-            ArrayList<Token> markers = target.getPlayerboard().getMarker();
+            CopyOnWriteArrayList<Token> markers = target.getPlayerboard().getMarker();
 
             Token m1 = new Token();
 

@@ -2,7 +2,7 @@ package it.polimi.se2019.Controller.Setup;
 import  it.polimi.se2019.Controller.Data.LootBuilders.*;
 import  it.polimi.se2019.Model.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Builds all the loot instances.
@@ -12,12 +12,12 @@ import java.util.ArrayList;
 public class LootDeckSetup {
 
     /**
-     * Creates all the single loots, and then returns them in an ArrayList.
-     * @return an ArrayList containing all the loots.
+     * Creates all the single loots, and then returns them in an CopyOnWriteArrayList.
+     * @return an CopyOnWriteArrayList containing all the loots.
      */
-    public ArrayList<Loot> build(){
+    public CopyOnWriteArrayList<Loot> build(){
 
-        ArrayList<Loot> lootDeck = new ArrayList<Loot>();
+        CopyOnWriteArrayList<Loot> lootDeck = new CopyOnWriteArrayList<Loot>();
 
         /*
         ----------------------YBB--------------------------------

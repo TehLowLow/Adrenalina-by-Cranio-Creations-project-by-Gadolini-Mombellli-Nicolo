@@ -5,7 +5,7 @@ import it.polimi.se2019.Controller.Setup.BoardSetup;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import org.junit.Test;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ConfigurationTest {
@@ -20,7 +20,7 @@ public class ConfigurationTest {
 
         BoardSetup boardSetup = new BoardSetup();
         boardSetup.build();
-        Board.setMortalBlowTrack(new ArrayList<MortalBlow>());
+        Board.setMortalBlowTrack(new CopyOnWriteArrayList<MortalBlow>());
 
         for(int i = 0; i<8; i++){
 
@@ -40,17 +40,17 @@ public class ConfigurationTest {
           player.setNickname("player" + i);
           player.setPlayerboard(new Playerboard());
           Playerboard playerboard = player.getPlayerboard();
-          playerboard.setDamage(new ArrayList<Token>());
-          playerboard.setMarker(new ArrayList<Token>());
-          playerboard.setPowerups(new ArrayList<Powerup>());
-          playerboard.setWeapons(new ArrayList<Weapon>());
+          playerboard.setDamage(new CopyOnWriteArrayList<Token>());
+          playerboard.setMarker(new CopyOnWriteArrayList<Token>());
+          playerboard.setPowerups(new CopyOnWriteArrayList<Powerup>());
+          playerboard.setWeapons(new CopyOnWriteArrayList<Weapon>());
           playerboard.setAmmoCubes(new Rybamount());
           playerboard.getAmmoCubes().setBlueCubes(0);
           playerboard.getAmmoCubes().setRedCubes(0);
           playerboard.getAmmoCubes().setYellowCubes(0);
           playerboard.setChampionName("champion" + 1);
           playerboard.setFrenzyboard(false);
-          ArrayList <Integer> pbvalue = new ArrayList<>();
+          CopyOnWriteArrayList <Integer> pbvalue = new CopyOnWriteArrayList<>();
           pbvalue.add(8);
           pbvalue.add(6);
           pbvalue.add(4);

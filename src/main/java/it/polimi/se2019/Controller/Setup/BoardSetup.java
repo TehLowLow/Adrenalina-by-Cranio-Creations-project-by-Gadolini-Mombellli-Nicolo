@@ -3,7 +3,7 @@ package it.polimi.se2019.Controller.Setup;
 import it.polimi.se2019.Controller.Adrenalina.Interaction;
 import it.polimi.se2019.Model.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Creates the final board merging all the data coming from the other Setups classes.
@@ -33,10 +33,10 @@ public class BoardSetup {
         Board.shufflePowerUpDeck();
 
 
-        ArrayList<Powerup> discardedPowerUps = new ArrayList<>();
+        CopyOnWriteArrayList<Powerup> discardedPowerUps = new CopyOnWriteArrayList<>();
         Board.setDiscardedPowerUps(discardedPowerUps);
 
-        ArrayList<Loot> discardedLoots = new ArrayList<>();
+        CopyOnWriteArrayList<Loot> discardedLoots = new CopyOnWriteArrayList<>();
         Board.setDiscardedLoot(discardedLoots);
 
         Interaction.placeLoot();

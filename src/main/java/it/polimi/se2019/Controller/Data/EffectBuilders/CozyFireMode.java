@@ -6,7 +6,7 @@ import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Alternative effect for the Furnace
@@ -23,7 +23,7 @@ public class CozyFireMode extends Effect {
          */
 
         @Override
-        public void applyEffect(Player user,  ArrayList <Player> targets) {
+        public void applyEffect(Player user,  CopyOnWriteArrayList <Player> targets) {
 
                 //Ad ogni bersaglio, assegno un danno e un marker.
                 for(Player target : targets) {
@@ -34,8 +34,8 @@ public class CozyFireMode extends Effect {
                         Token marker = new Token();
                         marker.setChampionName(user.getPlayerboard().getChampionName());
 
-                        ArrayList <Token> damages = target.getPlayerboard().getDamage();
-                        ArrayList <Token> markers = target.getPlayerboard().getMarker();
+                        CopyOnWriteArrayList <Token> damages = target.getPlayerboard().getDamage();
+                        CopyOnWriteArrayList <Token> markers = target.getPlayerboard().getMarker();
 
                         damages.add(damage);
                         markers.add(marker);
@@ -57,11 +57,11 @@ public class CozyFireMode extends Effect {
          */
 
         @Override
-        public ArrayList<Player> getTargets(Player user) {
+        public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
 
-                ArrayList <Cell> cells = targettableSquares(user);
-                ArrayList <Player> targets = new ArrayList<>();
+                CopyOnWriteArrayList <Cell> cells = targettableSquares(user);
+                CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
 
                 //Faccio scegliere una cella tra quelle disponibili.
                 Cell chosenCell = chooseCell(cells, user);
@@ -83,11 +83,11 @@ public class CozyFireMode extends Effect {
          * @param user the user
          * @return the chosen cell
          */
-        private Cell chooseCell(ArrayList <Cell> cells, Player user){
+        private Cell chooseCell(CopyOnWriteArrayList <Cell> cells, Player user){
 
 
               //Lista di direzioni disponibili.
-              ArrayList <String> availableDirections = new ArrayList<>();
+              CopyOnWriteArrayList <String> availableDirections = new CopyOnWriteArrayList<>();
 
               //Ciclo sulle celle a distanza unitaria dal giocatore, controllo dove si trovano rispetto ad esso e
                 //ne aggiungo la direzione nell'array di direzioni disponibili solo se contengono dei giocatori.
@@ -196,7 +196,7 @@ public class CozyFireMode extends Effect {
         public boolean hasTargets(Player user){
 
                 //Prendo le celle a distanza 1 dal giocatore.
-                ArrayList <Cell> cells = targettableSquares(user);
+                CopyOnWriteArrayList <Cell> cells = targettableSquares(user);
 
                 //Ciclo sui giocatori: se almeno uno di essi si trova in quelle celle, ritorno true.
                 for(Player target : Server.connectedPlayers){
@@ -218,9 +218,9 @@ public class CozyFireMode extends Effect {
         /**
          * Checks which cells are at a distance of 1 from the player.
          * @param user the player that wants to use the weapon
-         * @return An arrayList containing the available cells.
+         * @return An CopyOnWriteArrayList containing the available cells.
          */
-        private ArrayList <Cell> targettableSquares (Player user){
+        private CopyOnWriteArrayList <Cell> targettableSquares (Player user){
 
                 return Check.reachableCells(user, 1);
 

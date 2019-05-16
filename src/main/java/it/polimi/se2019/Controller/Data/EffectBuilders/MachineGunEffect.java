@@ -13,13 +13,13 @@ import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.*;
 
 public class MachineGunEffect extends Effect {
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         if (targets == null) {
 
@@ -29,7 +29,7 @@ public class MachineGunEffect extends Effect {
 
         for (Player player : targets) {
 
-            ArrayList<Token> damages = player.getPlayerboard().getDamage();
+            CopyOnWriteArrayList<Token> damages = player.getPlayerboard().getDamage();
 
             Token d1 = new Token();
 
@@ -96,11 +96,11 @@ public class MachineGunEffect extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Player> possibleTargets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
 
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         if (!hasTargets(user)) {
 
@@ -358,9 +358,9 @@ public class MachineGunEffect extends Effect {
         return false;
     }
 
-    public ArrayList<Player> focusShotGetTargets(Player user, ArrayList<Player> possibleTargets) {
+    public CopyOnWriteArrayList<Player> focusShotGetTargets(Player user, CopyOnWriteArrayList<Player> possibleTargets) {
 
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
 
@@ -424,7 +424,7 @@ public class MachineGunEffect extends Effect {
     }
 
 
-    public void applyFocusShot(Player user, ArrayList<Player> targets) {
+    public void applyFocusShot(Player user, CopyOnWriteArrayList<Player> targets) {
 
         if (targets.equals(null)) {
 
@@ -434,7 +434,7 @@ public class MachineGunEffect extends Effect {
 
         for (Player player : targets) {
 
-            ArrayList<Token> damages = player.getPlayerboard().getDamage();
+            CopyOnWriteArrayList<Token> damages = player.getPlayerboard().getDamage();
 
             Token d1 = new Token();
 
@@ -452,7 +452,7 @@ public class MachineGunEffect extends Effect {
     }
 
 
-    public synchronized boolean canUseTurretTripod(Player user, boolean focusShot, ArrayList<Player> focusShotTargets) {
+    public synchronized boolean canUseTurretTripod(Player user, boolean focusShot, CopyOnWriteArrayList<Player> focusShotTargets) {
 
         Rybamount cost = new Rybamount();
         cost.setYellowCubes(0);
@@ -463,7 +463,7 @@ public class MachineGunEffect extends Effect {
 
             if (focusShot) {
 
-                ArrayList<Player> possibleTargets = Check.visiblePlayers(user);
+                CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(user);
 
                 for (Player player : possibleTargets) {
 
@@ -498,11 +498,11 @@ public class MachineGunEffect extends Effect {
     }
 
 
-    ArrayList<Player> turretTripodGetTargets(Player user, boolean focusShot, ArrayList<Player> focusShotTargets, ArrayList<Player> basicTargets) {
+    CopyOnWriteArrayList<Player> turretTripodGetTargets(Player user, boolean focusShot, CopyOnWriteArrayList<Player> focusShotTargets, CopyOnWriteArrayList<Player> basicTargets) {
 
-        ArrayList<Player> possibleTargetsBasicFocus = new ArrayList<>();
-        ArrayList<Player> possibleOtherTargets = new ArrayList<>();
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargetsBasicFocus = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> possibleOtherTargets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         possibleTargetsBasicFocus = basicTargets;
         possibleOtherTargets = Check.visiblePlayers(user);
@@ -677,7 +677,7 @@ public class MachineGunEffect extends Effect {
     }
 
 
-    public void applyTurretTripod(Player user, ArrayList<Player> targets) {
+    public void applyTurretTripod(Player user, CopyOnWriteArrayList<Player> targets) {
 
         for (Player player : targets) {
 

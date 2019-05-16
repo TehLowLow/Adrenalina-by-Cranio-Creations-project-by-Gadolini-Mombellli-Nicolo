@@ -8,7 +8,7 @@ import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -26,7 +26,7 @@ public class BasicHeatSeeker extends Effect {
          */
 
         @Override
-        public void applyEffect(Player user, ArrayList<Player> targets) {
+        public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
 
                 for (Player target : targets) {
@@ -46,12 +46,12 @@ public class BasicHeatSeeker extends Effect {
          */
 
         @Override
-        public ArrayList<Player> getTargets(Player user) {
+        public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
                 CopyOnWriteArrayList<Player> players = Server.connectedPlayers;
-                ArrayList<Player> possibleTargets = new ArrayList();
-                ArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
-                ArrayList<Player> chosenTarget = new ArrayList<>();
+                CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList();
+                CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+                CopyOnWriteArrayList<Player> chosenTarget = new CopyOnWriteArrayList<>();
 
                 players.remove(user);
 
@@ -96,7 +96,7 @@ public class BasicHeatSeeker extends Effect {
 
         public boolean hasTargets(Player user) {
 
-                ArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+                CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
 
                 if (visiblePlayers.size() == Server.connectedPlayers.size() - 1) {
                         return false;

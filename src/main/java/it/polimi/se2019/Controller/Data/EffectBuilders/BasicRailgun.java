@@ -9,12 +9,12 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BasicRailgun extends Effect {
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         for(Player target : targets){
 
@@ -25,11 +25,11 @@ public class BasicRailgun extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList <Player> chosenTargets= new ArrayList<>();
+        CopyOnWriteArrayList <Player> chosenTargets= new CopyOnWriteArrayList<>();
 
-        ArrayList <Player> possibleTargets= new ArrayList<>();
+        CopyOnWriteArrayList <Player> possibleTargets= new CopyOnWriteArrayList<>();
 
 
         boolean chosenDirection = false;
@@ -44,7 +44,7 @@ public class BasicRailgun extends Effect {
                 continue;
             }
 
-            ArrayList <Cell> targetCells = getCellsDirection(user, direction);
+            CopyOnWriteArrayList <Cell> targetCells = getCellsDirection(user, direction);
 
 
             for(Player target : Server.connectedPlayers){
@@ -73,7 +73,7 @@ public class BasicRailgun extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList <Cell> targetCells = cardinalCells(user);
+        CopyOnWriteArrayList <Cell> targetCells = cardinalCells(user);
 
         for(Player target : Server.connectedPlayers){
             if(target.getNickname().equalsIgnoreCase(user.getNickname())){
@@ -88,9 +88,9 @@ public class BasicRailgun extends Effect {
         return false;
     }
 
-    private ArrayList <Cell> getCellsDirection(Player user, String direction){
+    private CopyOnWriteArrayList <Cell> getCellsDirection(Player user, String direction){
 
-        ArrayList <Cell> targetCells = new ArrayList<>();
+        CopyOnWriteArrayList <Cell> targetCells = new CopyOnWriteArrayList<>();
 
         targetCells.add(user.getPosition());
 
@@ -150,9 +150,9 @@ public class BasicRailgun extends Effect {
 
     }
 
-    private ArrayList <Cell> cardinalCells(Player user){
+    private CopyOnWriteArrayList <Cell> cardinalCells(Player user){
 
-        ArrayList <Cell> targetCells = new ArrayList<>();
+        CopyOnWriteArrayList <Cell> targetCells = new CopyOnWriteArrayList<>();
 
         targetCells.add(user.getPosition());
 

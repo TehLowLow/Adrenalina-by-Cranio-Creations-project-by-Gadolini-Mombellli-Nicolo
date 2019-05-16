@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GreenRoomBuilderTest {
 
@@ -33,7 +33,7 @@ public class GreenRoomBuilderTest {
         GreenRoomBuilder greenRoomBuilder = new GreenRoomBuilder();
 
         Room greenRoom = greenRoomBuilder.build();
-        ArrayList<String> cellNames = new ArrayList<>();
+        CopyOnWriteArrayList<String> cellNames = new CopyOnWriteArrayList<>();
 
         cellNames.add("lootCell");
 

@@ -8,7 +8,7 @@ import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
@@ -37,7 +37,7 @@ public class Interaction {
 
     public static void drawPowerUp(Player player) throws EmptyDeckException, LimitPowerUpException {
 
-        ArrayList<Powerup> powerUpDeck = Board.getPowerUpDeck();
+        CopyOnWriteArrayList<Powerup> powerUpDeck = Board.getPowerUpDeck();
 
         if (powerUpDeck.size() > 0) {
 
@@ -48,7 +48,7 @@ public class Interaction {
 
             } else {
 
-                ArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
+                CopyOnWriteArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
                 Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
                 Board.getPowerUpDeck().remove(drawnPowerUp);
                 powerUps.add(drawnPowerUp);
@@ -76,7 +76,7 @@ public class Interaction {
 
     public static void discardPowerUp(Player player, Powerup powerUp) {
 
-        ArrayList<Powerup> discardedPowerUps = Board.getDiscardedPowerUps();
+        CopyOnWriteArrayList<Powerup> discardedPowerUps = Board.getDiscardedPowerUps();
         discardedPowerUps.add(powerUp);
         player.getPlayerboard().getPowerups().remove(powerUp);
 
@@ -91,24 +91,24 @@ public class Interaction {
     public static void placeWeapons() {
 
         Map map = Board.getMap();
-        ArrayList<Weapon> weaponDeck = Board.getWeaponDeck();
+        CopyOnWriteArrayList<Weapon> weaponDeck = Board.getWeaponDeck();
 
-        ArrayList<Room> spawnRooms = new ArrayList<Room>();
-        ArrayList<SpawnCell> spawnCells = new ArrayList<SpawnCell>();
+        CopyOnWriteArrayList<Room> spawnRooms = new CopyOnWriteArrayList<Room>();
+        CopyOnWriteArrayList<SpawnCell> spawnCells = new CopyOnWriteArrayList<SpawnCell>();
         spawnRooms.add(map.getBlueRoom());
         spawnRooms.add(map.getYellowRoom());
         spawnRooms.add(map.getRedRoom());
 
         for (Room room : spawnRooms) {
 
-            ArrayList<Cell> cells = room.getCells();
+            CopyOnWriteArrayList<Cell> cells = room.getCells();
 
             for (Cell cell : cells) {
 
                 if (Check.isSpawn(cell)) {
 
                     //If the current cell is a spawn cell, it is casted to spawncell and added
-                    //to the arraylist of spawncells.
+                    //to the CopyOnWriteArrayList of spawncells.
                     spawnCells.add((SpawnCell) cell);
 
                 }
@@ -119,7 +119,7 @@ public class Interaction {
 
         for (SpawnCell spawnCell : spawnCells) {
 
-            ArrayList availableWeapons = spawnCell.getAvailableWeapons();
+            CopyOnWriteArrayList availableWeapons = spawnCell.getAvailableWeapons();
 
             while (availableWeapons.size() < 3) {
 
@@ -187,8 +187,8 @@ public class Interaction {
 
     public static void placeLoot() {
 
-        ArrayList<Room> rooms = new ArrayList<Room>();
-        ArrayList<LootCell> lootCells = new ArrayList<LootCell>();
+        CopyOnWriteArrayList<Room> rooms = new CopyOnWriteArrayList<Room>();
+        CopyOnWriteArrayList<LootCell> lootCells = new CopyOnWriteArrayList<LootCell>();
 
         Map map = Board.getMap();
 
@@ -298,8 +298,8 @@ public class Interaction {
 
     private static int convertPowerUp(Player player, int colour) {
 
-        ArrayList<Powerup> discardable = new ArrayList<Powerup>();
-        ArrayList<Powerup> availablePowerups = player.getPlayerboard().getPowerups();
+        CopyOnWriteArrayList<Powerup> discardable = new CopyOnWriteArrayList<Powerup>();
+        CopyOnWriteArrayList<Powerup> availablePowerups = player.getPlayerboard().getPowerups();
 
 
         for (Powerup powerup : availablePowerups) {
@@ -363,7 +363,7 @@ public class Interaction {
 
     public void claimSkull(Board board, Player killer, Player victim, boolean overkill) {
 
-        ArrayList<MortalBlow> mortalBlowTrack = board.getMortalBlowTrack();
+        CopyOnWriteArrayList<MortalBlow> mortalBlowTrack = board.getMortalBlowTrack();
 
         int lenght = mortalBlowTrack.size();
 
@@ -403,9 +403,9 @@ public class Interaction {
         frenzyboard.setWeapons(oldBoard.getWeapons());
         frenzyboard.setPowerups(oldBoard.getPowerups());
         frenzyboard.setMarker(oldBoard.getMarker());
-        frenzyboard.setDamage(new ArrayList<Token>());
+        frenzyboard.setDamage(new CopyOnWriteArrayList<Token>());
 
-        ArrayList<Integer> frenzyValue = new ArrayList<Integer>();
+        CopyOnWriteArrayList<Integer> frenzyValue = new CopyOnWriteArrayList<Integer>();
         frenzyValue.add(2);
         frenzyValue.add(1);
         frenzyValue.add(1);
@@ -451,7 +451,7 @@ public class Interaction {
      */
     public static void recoverLoots() {
 
-        ArrayList<Loot> newDeck = Board.getDiscardedLoot();
+        CopyOnWriteArrayList<Loot> newDeck = Board.getDiscardedLoot();
         Board.setLootDeck(newDeck);
         Board.shuffleLootDeck();
 

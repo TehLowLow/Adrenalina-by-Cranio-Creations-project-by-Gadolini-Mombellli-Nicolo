@@ -8,7 +8,7 @@ import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Cyberblade extends Effect {
 
@@ -17,9 +17,9 @@ public class Cyberblade extends Effect {
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        ArrayList currentTargets = getCurrentTargets(user, null);
+        CopyOnWriteArrayList currentTargets = getCurrentTargets(user, null);
 
         //Se non ho bersagli nella mia casella, devo obbligare il giocatore a spostarsi.
         if(currentTargets.isEmpty()){
@@ -77,7 +77,7 @@ public class Cyberblade extends Effect {
     //Dopo l'effetto, se l'utente ancora non ha usato la mossa, gli chiedo se vuole
     // usarla. Se si, usedStep va a true. Se non vuole, gli chiedo se vuole attivare
     //l'effetto secondario (se può).
-    private void baseEffect(Player user, ArrayList <Player> targets){
+    private void baseEffect(Player user, CopyOnWriteArrayList <Player> targets){
 
         Player target = ChoosePlayer.one(user, targets);
 
@@ -102,7 +102,7 @@ public class Cyberblade extends Effect {
 
         if(Check.affordable(user, diceCost)){
 
-            ArrayList currentTargets = getCurrentTargets(user, target);
+            CopyOnWriteArrayList currentTargets = getCurrentTargets(user, target);
 
             if(currentTargets.isEmpty()){
                 return;
@@ -137,7 +137,7 @@ public class Cyberblade extends Effect {
         Token d2 = new Token();
         d1.setChampionName(user.getPlayerboard().getChampionName());
         d2.setChampionName(user.getPlayerboard().getChampionName());
-        ArrayList <Token> damages = target.getPlayerboard().getDamage();
+        CopyOnWriteArrayList <Token> damages = target.getPlayerboard().getDamage();
         damages.add(d1);
         damages.add(d2);
 
@@ -148,7 +148,7 @@ public class Cyberblade extends Effect {
 
     private void shadowStep(Player user){
 
-        ArrayList <Cell> reachables = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList <Cell> reachables = Check.reachableCells(user, 1);
 
         boolean chosen = false;
         Cell chosenCell = null;
@@ -191,7 +191,7 @@ public class Cyberblade extends Effect {
     }
 
     //Se l'utente ancora non ha usato la mossa, alla fine dell'effetto gli chiedo se vuole usarla.
-    private void sliceDice(Player user, ArrayList<Player> targets){
+    private void sliceDice(Player user, CopyOnWriteArrayList<Player> targets){
 
         boolean hasChosen = false;
         Player target = new Player();
@@ -236,11 +236,11 @@ public class Cyberblade extends Effect {
 
     }
 
-    //A questa funzione si dovrà passare un arraylist dei bersagli da colpire. Ricorda che
+    //A questa funzione si dovrà passare un CopyOnWriteArrayList dei bersagli da colpire. Ricorda che
     //chi è già stato colpito non deve farne parte.
-    private ArrayList <Player> getCurrentTargets(Player user, Player oldTarget){
+    private CopyOnWriteArrayList <Player> getCurrentTargets(Player user, Player oldTarget){
 
-        ArrayList <Player> targets = new ArrayList<Player>();
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<Player>();
 
 
             for(Player target : Server.connectedPlayers){
@@ -265,20 +265,20 @@ public class Cyberblade extends Effect {
 
     }
 
-    //In quest'arma, il metodo getTargets ritorna un arraylist vuoto, poiché i bersagli dipendono
+    //In quest'arma, il metodo getTargets ritorna un CopyOnWriteArrayList vuoto, poiché i bersagli dipendono
     //dal fatto che l'utente può scegliere di muoversi o meno. Essi vengono quindi recuperati in applyEffect
     //con il metodo getCurrentTargets. Questo metodo va tuttavia lasciato per rendere l'arma consistente con le altre
     //e poterla usare nello stesso modo in cui le altre armi vengono utilizzate.
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        return new ArrayList<Player>();
+        return new CopyOnWriteArrayList<Player>();
     }
 
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList <Cell> reachables = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList <Cell> reachables = Check.reachableCells(user, 1);
 
         for(Player target : Server.connectedPlayers){
 

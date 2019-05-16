@@ -5,7 +5,7 @@ import it.polimi.se2019.Controller.Setup.MapSetup;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.View.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -37,9 +37,9 @@ public class Match extends Thread {
     private Check check;
 
     /**
-     * ArrayList of players who take part to the match.
+     * CopyOnWriteArrayList of players who take part to the match.
      */
-    private ArrayList<Player> players;
+    private CopyOnWriteArrayList<Player> players;
 
     /**
      * Board used for the match.
@@ -70,13 +70,13 @@ public class Match extends Thread {
 
     /**
      * When called, this method starts the match.
-     * This methods comprehends three cycles. The first one iterates through the ArrayList of players one time
+     * This methods comprehends three cycles. The first one iterates through the CopyOnWriteArrayList of players one time
      * and makes them perform the first turn, which requires particular actions, different from the ones of the
      * standard turn.
      * Then it starts iterating through the players and at every step makes them perform a turn. At the end of
      * every step, the methods for replacing picked up loots and weapons on the map are called. This loop
      * goes on until all the Skulls on the Killshot track have been removed. When this happens, the current loop
-     * ends and starts the Final Frenzy Mode loop, which iterates one last time through the ArrayList of Players
+     * ends and starts the Final Frenzy Mode loop, which iterates one last time through the CopyOnWriteArrayList of Players
      * by making them perform their last Final Frenzy turn.
      * After this final loop, the methods for checking the winner are called, and then the match ends.
      */
@@ -99,18 +99,18 @@ public class Match extends Thread {
 
             player.setPlayerboard(new Playerboard());
             player.setScore(0);
-            player.getPlayerboard().setWeapons(new ArrayList<>());
+            player.getPlayerboard().setWeapons(new CopyOnWriteArrayList<>());
             player.getPlayerboard().setAmmoCubes(new Rybamount());
             player.getPlayerboard().getAmmoCubes().setBlueCubes(1);
             player.getPlayerboard().getAmmoCubes().setRedCubes(1);
             player.getPlayerboard().getAmmoCubes().setYellowCubes(1);
 
 
-            player.getPlayerboard().setMarker(new ArrayList<>());
-            player.getPlayerboard().setDamage(new ArrayList<>());
+            player.getPlayerboard().setMarker(new CopyOnWriteArrayList<>());
+            player.getPlayerboard().setDamage(new CopyOnWriteArrayList<>());
             player.getPlayerboard().setFrenzyboard(false);
 
-            player.getPlayerboard().setPlayerboardValue(new ArrayList<>());
+            player.getPlayerboard().setPlayerboardValue(new CopyOnWriteArrayList<>());
             player.getPlayerboard().getPlayerboardValue().add(8);
             player.getPlayerboard().getPlayerboardValue().add(6);
             player.getPlayerboard().getPlayerboardValue().add(4);
@@ -118,7 +118,7 @@ public class Match extends Thread {
             player.getPlayerboard().getPlayerboardValue().add(1);
             player.getPlayerboard().getPlayerboardValue().add(1);
 
-            player.getPlayerboard().setPowerups(new ArrayList<>());
+            player.getPlayerboard().setPowerups(new CopyOnWriteArrayList<>());
 
         }
 
@@ -217,11 +217,11 @@ public class Match extends Thread {
     }
 
     /**
-     * Setter for the ArrayList of players that take part at the Match.
+     * Setter for the CopyOnWriteArrayList of players that take part at the Match.
      *
-     * @param players ArrayList of players.
+     * @param players CopyOnWriteArrayList of players.
      */
-    public void setPlayers(ArrayList<Player> players) {
+    public void setPlayers(CopyOnWriteArrayList<Player> players) {
         this.players = players;
     }
 
@@ -238,7 +238,7 @@ public class Match extends Thread {
 
     public void chooseMap() {
 
-        ArrayList<Integer> voti = new ArrayList<>();
+        CopyOnWriteArrayList<Integer> voti = new CopyOnWriteArrayList<>();
 
         /*
         inizializzo l'array con 4 elementi settati a zero
@@ -304,7 +304,7 @@ public class Match extends Thread {
 
     public void chooseSkulls() {
 
-        ArrayList<Integer> preferenze = new ArrayList<>();
+        CopyOnWriteArrayList<Integer> preferenze = new CopyOnWriteArrayList<>();
 
         /*
         valore del voto
@@ -359,7 +359,7 @@ public class Match extends Thread {
         setting del tracciato colpo mortale usando nSkulls teschi
          */
 
-        ArrayList<MortalBlow> mortalBlowTrack = new ArrayList<>();
+        CopyOnWriteArrayList<MortalBlow> mortalBlowTrack = new CopyOnWriteArrayList<>();
 
 
         for (int i = 0; i < nSkulls; i++) {

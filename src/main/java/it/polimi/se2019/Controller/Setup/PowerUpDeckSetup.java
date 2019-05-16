@@ -3,7 +3,7 @@ package it.polimi.se2019.Controller.Setup;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Controller.Data.PowerUpBuilder.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 /**
@@ -16,11 +16,11 @@ public class PowerUpDeckSetup {
     /**
      * Creates an instance of all the PowerUp cards.
      *
-     * @return an ArrayList of PowerUps as a deck.
+     * @return an CopyOnWriteArrayList of PowerUps as a deck.
      */
 
 
-    private ArrayList<Powerup> powerupDeck = new ArrayList<>();
+    private CopyOnWriteArrayList<Powerup> powerupDeck = new CopyOnWriteArrayList<>();
     private BlueNewtonBuilder bNewton = new BlueNewtonBuilder();
     private BlueTagbackGrenadeBuilder bTagback = new BlueTagbackGrenadeBuilder();
     private BlueTargetingScopeBuilder btScope = new BlueTargetingScopeBuilder();
@@ -35,7 +35,7 @@ public class PowerUpDeckSetup {
     private YellowTeleporterBuilder yTeleport = new YellowTeleporterBuilder();
 
 
-    public ArrayList<Powerup> build() {
+    public CopyOnWriteArrayList<Powerup> build() {
 
 
         for (int i = 0; i < 2; i++) {

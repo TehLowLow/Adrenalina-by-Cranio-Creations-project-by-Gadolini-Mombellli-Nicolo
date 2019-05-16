@@ -1,5 +1,5 @@
 package it.polimi.se2019.Model;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Collections;
 
 /**
@@ -20,17 +20,17 @@ public class Board implements java.io.Serializable{
 
 
     /**
-     * Represents the Killshot track as an ArrayList of Killshots.
+     * Represents the Killshot track as an CopyOnWriteArrayList of Killshots.
      *
      */
-    private static ArrayList<MortalBlow> mortalBlowTrack;
+    private static CopyOnWriteArrayList<MortalBlow> mortalBlowTrack;
 
 
     /**
      * It's the value of the mortalBlowTrack. It's used at the end of the game to assign the points.
      */
 
-    private static ArrayList<Integer> mortalBlowTrackValue;
+    private static CopyOnWriteArrayList<Integer> mortalBlowTrackValue;
 
 
     /**
@@ -40,33 +40,33 @@ public class Board implements java.io.Serializable{
 
 
     /**
-     * Represents the pile of power ups as an ArrayList.
+     * Represents the pile of power ups as an CopyOnWriteArrayList.
      */
-    private static ArrayList <Powerup> powerUpDeck;
+    private static CopyOnWriteArrayList <Powerup> powerUpDeck;
 
 
     /**
-     * Represents the pile of discarded power ups as an ArrayList
+     * Represents the pile of discarded power ups as an CopyOnWriteArrayList
      */
-    private static ArrayList <Powerup> discardedPowerUps;
+    private static CopyOnWriteArrayList <Powerup> discardedPowerUps;
 
 
     /**
-     * Represents the pile of ammo tiles as an ArrayList.
+     * Represents the pile of ammo tiles as an CopyOnWriteArrayList.
      */
-    private static ArrayList <Loot> lootDeck;
+    private static CopyOnWriteArrayList <Loot> lootDeck;
 
 
     /**
-     * Represents the pile of used ammo tiles as an ArrayList.
+     * Represents the pile of used ammo tiles as an CopyOnWriteArrayList.
      */
-    private static ArrayList  <Loot> discardedLoot;
+    private static CopyOnWriteArrayList  <Loot> discardedLoot;
 
 
     /**
-     * Represents the pile of weapons as an ArrayList.
+     * Represents the pile of weapons as an CopyOnWriteArrayList.
      */
-    private static ArrayList <Weapon> weaponDeck;
+    private static CopyOnWriteArrayList <Weapon> weaponDeck;
 
     /**
      * Represents the map.
@@ -86,9 +86,9 @@ public class Board implements java.io.Serializable{
 
     /**
      * Gets the Killshot track.
-     * @return the ArrayList of the Killshot track.
+     * @return the CopyOnWriteArrayList of the Killshot track.
      */
-    public static ArrayList <MortalBlow> getMortalBlowTrack(){
+    public static CopyOnWriteArrayList <MortalBlow> getMortalBlowTrack(){
         /**/
         return mortalBlowTrack;
     }
@@ -111,53 +111,53 @@ public class Board implements java.io.Serializable{
 
     /**
      * Returns a reference to the power up deck.
-     * @return the ArrayList that represents the power up deck.
+     * @return the CopyOnWriteArrayList that represents the power up deck.
      */
-    public static ArrayList <Powerup> getPowerUpDeck(){
+    public static CopyOnWriteArrayList <Powerup> getPowerUpDeck(){
         return powerUpDeck;
     }
 
 
     /**
      * Returns a reference to the ammo tiles deck.
-     * @return the ArrayList that represents the ammo tiles deck.
+     * @return the CopyOnWriteArrayList that represents the ammo tiles deck.
      */
-    public static ArrayList <Loot> getLootDeck(){
+    public static CopyOnWriteArrayList <Loot> getLootDeck(){
         return lootDeck;
     }
 
 
     /**
      * Returns a reference to the weapon deck.
-     * @return the ArrayList that represents the weapon deck.
+     * @return the CopyOnWriteArrayList that represents the weapon deck.
      */
-    public static ArrayList <Weapon> getWeaponDeck(){
+    public static CopyOnWriteArrayList <Weapon> getWeaponDeck(){
         return weaponDeck;
     }
 
     /**
      * Returns a reference to the discarded loot deck.
-     * @return the ArrayList that represents the pile of discarded loots.
+     * @return the CopyOnWriteArrayList that represents the pile of discarded loots.
      */
-    public static ArrayList <Loot> getDiscardedLoot(){
+    public static CopyOnWriteArrayList <Loot> getDiscardedLoot(){
         return discardedLoot;
     }
 
     /**
      * Returns a reference to the discarded power ups deck.
-     * @return the ArrayList that represents the pile of discarded loots.
+     * @return the CopyOnWriteArrayList that represents the pile of discarded loots.
      */
-    public static ArrayList <Powerup> getDiscardedPowerUps(){
+    public static CopyOnWriteArrayList <Powerup> getDiscardedPowerUps(){
         return discardedPowerUps;
     }
 
 
     /**
      * Getter for mortalBlowTrack value
-     * @return an Arraylist containing the points related to the mortalBlow track
+     * @return an CopyOnWriteArrayList containing the points related to the mortalBlow track
      */
 
-    public static ArrayList<Integer> getMortalBlowTrackValue(){
+    public static CopyOnWriteArrayList<Integer> getMortalBlowTrackValue(){
         return mortalBlowTrackValue;
     }
 
@@ -170,7 +170,7 @@ public class Board implements java.io.Serializable{
      * @param mBTrack is the track of the mortal blow, that contains all the information about the killer, such as
      *                   its identifier and the overkill flag.
      */
-    public static void setMortalBlowTrack(ArrayList<MortalBlow> mBTrack){
+    public static void setMortalBlowTrack(CopyOnWriteArrayList<MortalBlow> mBTrack){
         mortalBlowTrack = mBTrack;
     }
 
@@ -196,24 +196,24 @@ public class Board implements java.io.Serializable{
      * @param powUpDeck reference to the deck that must be
      *                    placed on the game board.
      */
-    public static void setPowerUpDeck(ArrayList<Powerup> powUpDeck) {
+    public static void setPowerUpDeck(CopyOnWriteArrayList<Powerup> powUpDeck) {
         powerUpDeck = powUpDeck;
     }
 
 
     /**
      * This method sets the deck of ammo tiles.
-     * @param newlootDeck reference to the Arraylist of ammo tiles.
+     * @param newlootDeck reference to the CopyOnWriteArrayList of ammo tiles.
      */
-    public static void setLootDeck(ArrayList<Loot> newlootDeck) {
+    public static void setLootDeck(CopyOnWriteArrayList<Loot> newlootDeck) {
         lootDeck = newlootDeck;
     }
 
     /**
      * This method sets the deck of discarded ammo tiles.
-     * @param ndiscardedLoot reference to the ArrayList of discarded ammo tiles.
+     * @param ndiscardedLoot reference to the CopyOnWriteArrayList of discarded ammo tiles.
      */
-    public static void setDiscardedLoot(ArrayList <Loot> ndiscardedLoot){
+    public static void setDiscardedLoot(CopyOnWriteArrayList <Loot> ndiscardedLoot){
 
         discardedLoot = ndiscardedLoot;
 
@@ -221,9 +221,9 @@ public class Board implements java.io.Serializable{
 
     /**
      * This method sets the deck of discarded ammo tiles.
-     * @param newDiscardedPowerUps reference to the ArrayList of discarded ammo tiles.
+     * @param newDiscardedPowerUps reference to the CopyOnWriteArrayList of discarded ammo tiles.
      */
-    public static void setDiscardedPowerUps(ArrayList <Powerup> newDiscardedPowerUps){
+    public static void setDiscardedPowerUps(CopyOnWriteArrayList <Powerup> newDiscardedPowerUps){
 
         discardedPowerUps = newDiscardedPowerUps;
 
@@ -231,13 +231,13 @@ public class Board implements java.io.Serializable{
 
     /**
      * This method sets the deck of weapons.
-     * @param wDeck reference to the Arraylist of weapons.
+     * @param wDeck reference to the CopyOnWriteArrayList of weapons.
      */
-    public static void setWeaponDeck(ArrayList <Weapon> wDeck){
+    public static void setWeaponDeck(CopyOnWriteArrayList <Weapon> wDeck){
         weaponDeck = wDeck;
     }
 
-    public void setMortalBlowTrackValue(ArrayList<Integer> mortalBlowTrackValue) {
+    public void setMortalBlowTrackValue(CopyOnWriteArrayList<Integer> mortalBlowTrackValue) {
         this.mortalBlowTrackValue = mortalBlowTrackValue;
     }
 

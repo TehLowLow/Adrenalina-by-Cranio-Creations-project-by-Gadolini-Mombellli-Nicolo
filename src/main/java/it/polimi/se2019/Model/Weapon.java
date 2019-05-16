@@ -1,6 +1,6 @@
 package it.polimi.se2019.Model;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class stores all the information related to every weapon card, such as price, reload cost and
@@ -42,7 +42,7 @@ public class Weapon {
     /**
      * Optional effects of the weapon.
      */
-    private ArrayList<Effect> optionalEffect;
+    private CopyOnWriteArrayList<Effect> optionalEffect;
 
     private Rybamount alternativeEffectCost;
 
@@ -121,9 +121,9 @@ public class Weapon {
     /**
      * Returns all the Effect obj that a card owns
      *
-     * @return an arraylist of effects
+     * @return an CopyOnWriteArrayList of effects
      */
-    public ArrayList<Effect> getOptionalEffect() {
+    public CopyOnWriteArrayList<Effect> getOptionalEffect() {
         return optionalEffect;
     }
 

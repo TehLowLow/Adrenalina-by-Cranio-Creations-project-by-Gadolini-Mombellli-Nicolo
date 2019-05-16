@@ -3,21 +3,21 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
 public class TeleporterEffect extends Effect {
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         chooseCell(user);
 
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
         return null;
     }
 
@@ -30,7 +30,7 @@ public class TeleporterEffect extends Effect {
 
         Map map = Board.getMap();
 
-        ArrayList<Cell> cells = new ArrayList<>();
+        CopyOnWriteArrayList<Cell> cells = new CopyOnWriteArrayList<>();
 
 
         if (map.getBlueRoom() != null) {

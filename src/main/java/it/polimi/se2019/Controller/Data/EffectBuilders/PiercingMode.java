@@ -9,13 +9,13 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PiercingMode extends Effect {
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         for(Player target : targets){
 
@@ -26,10 +26,10 @@ public class PiercingMode extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList <Player> possibleTargets= new ArrayList<>();
-        ArrayList <Player> chosenTargets = new ArrayList<>();
+        CopyOnWriteArrayList <Player> possibleTargets= new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList <Player> chosenTargets = new CopyOnWriteArrayList<>();
 
         boolean chosenDirection = false;
         String direction = new String();
@@ -43,7 +43,7 @@ public class PiercingMode extends Effect {
                 continue;
             }
 
-            ArrayList <Cell> targetCells = getCellsDirection(user, direction);
+            CopyOnWriteArrayList <Cell> targetCells = getCellsDirection(user, direction);
 
 
             for(Player target : Server.connectedPlayers){
@@ -71,9 +71,9 @@ public class PiercingMode extends Effect {
     }
 
 
-    public ArrayList<Player> choseTargets(Player user, ArrayList <Player> possibleTargets){
+    public CopyOnWriteArrayList<Player> choseTargets(Player user, CopyOnWriteArrayList <Player> possibleTargets){
 
-        ArrayList <Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
 
         Player chosenPlayer = ChoosePlayer.one(user, possibleTargets);
         possibleTargets.remove(chosenPlayer);
@@ -108,7 +108,7 @@ public class PiercingMode extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList <Cell> targetCells = cardinalCells(user);
+        CopyOnWriteArrayList <Cell> targetCells = cardinalCells(user);
 
         for(Player target : Server.connectedPlayers){
             if(target.getNickname().equalsIgnoreCase(user.getNickname())){
@@ -123,9 +123,9 @@ public class PiercingMode extends Effect {
         return false;
     }
 
-    private ArrayList <Cell> getCellsDirection(Player user, String direction){
+    private CopyOnWriteArrayList <Cell> getCellsDirection(Player user, String direction){
 
-        ArrayList <Cell> targetCells = new ArrayList<>();
+        CopyOnWriteArrayList <Cell> targetCells = new CopyOnWriteArrayList<>();
 
         targetCells.add(user.getPosition());
 
@@ -185,9 +185,9 @@ public class PiercingMode extends Effect {
 
     }
 
-    private ArrayList <Cell> cardinalCells(Player user){
+    private CopyOnWriteArrayList <Cell> cardinalCells(Player user){
 
-        ArrayList <Cell> targetCells = new ArrayList<>();
+        CopyOnWriteArrayList <Cell> targetCells = new CopyOnWriteArrayList<>();
 
         targetCells.add(user.getPosition());
 

@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BlueRoomBuilderTest {
 
@@ -35,7 +35,7 @@ public class BlueRoomBuilderTest {
         BlueRoomBuilder blueRoomBuilder = new BlueRoomBuilder();
 
         Room blueRoom = blueRoomBuilder.build();
-        ArrayList<String> cellNames = new ArrayList<>();
+        CopyOnWriteArrayList<String> cellNames = new CopyOnWriteArrayList<>();
 
         cellNames.add("lootCell1");
         cellNames.add("lootCell2");

@@ -5,7 +5,7 @@ import it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons.*;
 import it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons.*;
 import it.polimi.se2019.Model.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Creates all the weapon cards and collects them on a Deck.
@@ -14,14 +14,14 @@ import java.util.ArrayList;
 public class WeaponDeckSetup {
 
     /**
-     * Creates all the instances of weapons, and then collects them in an ArrayList, to be used as a deck.
+     * Creates all the instances of weapons, and then collects them in an CopyOnWriteArrayList, to be used as a deck.
      *
-     * @return an ArrayList of weapons.
+     * @return an CopyOnWriteArrayList of weapons.
      */
-    public ArrayList<Weapon> build() {
+    public CopyOnWriteArrayList<Weapon> build() {
 
 
-        ArrayList<Weapon> weaponDeck = new ArrayList<Weapon>();
+        CopyOnWriteArrayList<Weapon> weaponDeck = new CopyOnWriteArrayList<Weapon>();
 
         weaponDeck.add(new ElectroschytheBuilder().build());
         weaponDeck.add(new LockRifleBuilder().build());

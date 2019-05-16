@@ -8,24 +8,24 @@ import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LongBarrelMode extends Effect {
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         Damage.giveDamage(2, user, targets.get(0));
 
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList <Cell> reachables = Check.reachableCells(user, 1);
-        ArrayList<Player> possibleTargets = new ArrayList<>();
-        ArrayList<Player> chosenTarget = new ArrayList<>();
+        CopyOnWriteArrayList <Cell> reachables = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> chosenTarget = new CopyOnWriteArrayList<>();
 
         for(Player target : Server.connectedPlayers){
             if(target.getNickname().equalsIgnoreCase(user.getNickname())){
@@ -45,7 +45,7 @@ public class LongBarrelMode extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList <Cell> reachables = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList <Cell> reachables = Check.reachableCells(user, 1);
 
         for(Player target : Server.connectedPlayers){
             if(target.getNickname().equalsIgnoreCase(user.getNickname())){

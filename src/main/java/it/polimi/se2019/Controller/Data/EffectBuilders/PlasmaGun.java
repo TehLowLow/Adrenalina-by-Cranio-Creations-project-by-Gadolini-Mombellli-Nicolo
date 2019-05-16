@@ -11,12 +11,12 @@ import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PlasmaGun extends Effect {
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         boolean usedMove = false;
         boolean chosen = false;
@@ -102,7 +102,7 @@ public class PlasmaGun extends Effect {
 
     private void phaseMove(Player user) {
 
-        ArrayList <Cell> reachableCells = Check.reachableCells(user, 2);
+        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(user, 2);
 
         boolean chosen = false;
 
@@ -136,10 +136,10 @@ public class PlasmaGun extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList <Player> possibleTargets = Check.visiblePlayers(user);
-        ArrayList <Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList <Player> possibleTargets = Check.visiblePlayers(user);
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
 
         if(possibleTargets.isEmpty()){
             return targets;

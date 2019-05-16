@@ -1,6 +1,6 @@
 package it.polimi.se2019.Model;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class represents the player board.
@@ -20,14 +20,14 @@ public class Playerboard {
     private String championName;
 
     /**
-     * ArrayList of tokens. Every token represents one point of damage made by another player.
+     * CopyOnWriteArrayList of tokens. Every token represents one point of damage made by another player.
      */
-    private ArrayList<Token> damage;
+    private CopyOnWriteArrayList<Token> damage;
 
     /**
-     * ArrayList of tokens. Every token represents one marker made by another player.
+     * CopyOnWriteArrayList of tokens. Every token represents one marker made by another player.
      */
-    private ArrayList<Token> marker;
+    private CopyOnWriteArrayList<Token> marker;
 
     /**
      * Amount of ammo cubes held by the Player.
@@ -37,19 +37,19 @@ public class Playerboard {
     /**
      * Powerups owned by the Player. They can be three or less.
      */
-    private ArrayList<Powerup> powerups;
+    private CopyOnWriteArrayList<Powerup> powerups;
 
     /**
      * Weapons owned by the player. They can be three or less.
      */
-    private ArrayList<Weapon> weapons;
+    private CopyOnWriteArrayList<Weapon> weapons;
 
 
     /**
      * It represents the points the player take when they kill this playerboard's owner.
      */
 
-    private ArrayList<Integer> playerboardValue;
+    private CopyOnWriteArrayList<Integer> playerboardValue;
 
 
     /**
@@ -78,15 +78,15 @@ public class Playerboard {
 
     /**
      * Getter for the Damage field.
-     * @return an ArrayList of token representing the damages taken by the player.
+     * @return an CopyOnWriteArrayList of token representing the damages taken by the player.
      */
-    public ArrayList<Token> getDamage() {return damage;}
+    public CopyOnWriteArrayList<Token> getDamage() {return damage;}
 
     /**
      * Getter for the Marker field.
-     * @return an ArrayList of token representing the markers taken by the player.
+     * @return an CopyOnWriteArrayList of token representing the markers taken by the player.
      */
-    public ArrayList<Token> getMarker() {return marker;}
+    public CopyOnWriteArrayList<Token> getMarker() {return marker;}
 
     /**
      * Getter for the ammoCubes field.
@@ -96,22 +96,22 @@ public class Playerboard {
 
     /**
      * Getter for the powerUps field.
-     * @return an ArrayList that contains the power ups of the Player.
+     * @return an CopyOnWriteArrayList that contains the power ups of the Player.
      */
-    public ArrayList<Powerup> getPowerups() {return powerups;}
+    public CopyOnWriteArrayList<Powerup> getPowerups() {return powerups;}
 
     /**
      * Getter for the Weapon field.
-     * @return an ArrayList that contains the weapon of the Player.
+     * @return an CopyOnWriteArrayList that contains the weapon of the Player.
      */
-    public ArrayList<Weapon> getWeapons() {return weapons;}
+    public CopyOnWriteArrayList<Weapon> getWeapons() {return weapons;}
 
 
     /**
      * Getter for the Playerboard value
-     * @return an ArrayList that contains the points corresponding to the value.
+     * @return an CopyOnWriteArrayList that contains the points corresponding to the value.
      */
-    public ArrayList<Integer> getPlayerboardValue() {return playerboardValue;}
+    public CopyOnWriteArrayList<Integer> getPlayerboardValue() {return playerboardValue;}
 
     /**
      * Getter for the Frenzyboard
@@ -136,15 +136,15 @@ public class Playerboard {
 
     /**
      * Setter for the damage field.
-     * @param damage ArrayList of tokens that represent the damages.
+     * @param damage CopyOnWriteArrayList of tokens that represent the damages.
      */
-    public void setDamage(ArrayList<Token> damage) {this.damage = damage;}
+    public void setDamage(CopyOnWriteArrayList<Token> damage) {this.damage = damage;}
 
     /**
      * Setter for the marker field.
-     * @param marker ArrayList of tokens that represent the markers.
+     * @param marker CopyOnWriteArrayList of tokens that represent the markers.
      */
-    public void setMarker(ArrayList<Token> marker) {this.marker = marker;}
+    public void setMarker(CopyOnWriteArrayList<Token> marker) {this.marker = marker;}
 
     /**
      * Setter for the ammoCubes field.
@@ -154,21 +154,21 @@ public class Playerboard {
 
     /**
      * Setter for the powerUps field.
-     * @param powerups an ArrayList of powerUps.
+     * @param powerups an CopyOnWriteArrayList of powerUps.
      */
-    public void setPowerups(ArrayList<Powerup> powerups) {this.powerups = powerups;}
+    public void setPowerups(CopyOnWriteArrayList<Powerup> powerups) {this.powerups = powerups;}
 
     /**
      * Setter for the weapons field.
-     * @param weapons an ArrayList of Weapons.
+     * @param weapons an CopyOnWriteArrayList of Weapons.
      */
-    public void setWeapons(ArrayList<Weapon> weapons) {this.weapons = weapons;}
+    public void setWeapons(CopyOnWriteArrayList<Weapon> weapons) {this.weapons = weapons;}
 
     /**
      * Setter for the playerboard value
-     * @param playerboardValue is an ArrayList of values.
+     * @param playerboardValue is an CopyOnWriteArrayList of values.
      */
-    public void setPlayerboardValue(ArrayList<Integer> playerboardValue) {this.playerboardValue = playerboardValue;}
+    public void setPlayerboardValue(CopyOnWriteArrayList<Integer> playerboardValue) {this.playerboardValue = playerboardValue;}
 
 
     /**

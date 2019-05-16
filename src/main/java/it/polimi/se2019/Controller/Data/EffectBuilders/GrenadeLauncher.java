@@ -9,7 +9,7 @@ import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 import  it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.*;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class GrenadeLauncher extends Effect {
 
@@ -17,7 +17,7 @@ public class GrenadeLauncher extends Effect {
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         //Chiedo all'utente se vuole usare l'effetto base o subito la granata extra.
 
@@ -105,7 +105,7 @@ public class GrenadeLauncher extends Effect {
             
             if(useGrenade){
                 
-                ArrayList <Player> targetsExtraGrenade = getTargetsExtraGrenade(user);
+                CopyOnWriteArrayList <Player> targetsExtraGrenade = getTargetsExtraGrenade(user);
                 applyExtraGrenade(user, targetsExtraGrenade);
                 
                 //Scalo il costo
@@ -125,7 +125,7 @@ public class GrenadeLauncher extends Effect {
 
 
 
-            ArrayList<Player> targetsExtra = getTargetsExtraGrenade(user);
+            CopyOnWriteArrayList<Player> targetsExtra = getTargetsExtraGrenade(user);
             applyExtraGrenade(user, targetsExtra);
 
             //--Devo poi chiedergli se vuole usare l'effetto base.
@@ -151,7 +151,7 @@ public class GrenadeLauncher extends Effect {
                  }
 
                  if(useEffect){
-                     ArrayList <Player> baseTargets = getTargets(user);
+                     CopyOnWriteArrayList <Player> baseTargets = getTargets(user);
                      applyBaseEffect(user, baseTargets);
                  }
 
@@ -164,11 +164,11 @@ public class GrenadeLauncher extends Effect {
 
     }
 
-    private ArrayList<Player> getTargetsExtraGrenade(Player user) {
+    private CopyOnWriteArrayList<Player> getTargetsExtraGrenade(Player user) {
 
-        ArrayList <Cell> visibleSquares = Check.visibleSquares(user);
-        ArrayList <Cell> squaresWithPlayers = new ArrayList<>();
-        ArrayList <Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList <Cell> visibleSquares = Check.visibleSquares(user);
+        CopyOnWriteArrayList <Cell> squaresWithPlayers = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
 
         for(Player target : Server.connectedPlayers) {
 
@@ -233,9 +233,9 @@ public class GrenadeLauncher extends Effect {
 
     private boolean hasTargetsExtraGrenade(Player user) {
 
-        ArrayList targets = new ArrayList();
+        CopyOnWriteArrayList targets = new CopyOnWriteArrayList();
 
-        ArrayList <Cell> visibleCells = Check.visibleSquares(user);
+        CopyOnWriteArrayList <Cell> visibleCells = Check.visibleSquares(user);
         
         for(Player target : Server.connectedPlayers){
             
@@ -256,7 +256,7 @@ public class GrenadeLauncher extends Effect {
 
     }
 
-    private void applyExtraGrenade(Player user, ArrayList <Player> targets) {
+    private void applyExtraGrenade(Player user, CopyOnWriteArrayList <Player> targets) {
 
 
         //Do un danno a tutti i giocatori lì dentro.
@@ -265,7 +265,7 @@ public class GrenadeLauncher extends Effect {
 
     }
 
-    static void giveDamage(Player user, ArrayList<Player> targets) {
+    static void giveDamage(Player user, CopyOnWriteArrayList<Player> targets) {
         for(Player target : targets){
 
             Damage.giveDamage(1, user, target);
@@ -273,7 +273,7 @@ public class GrenadeLauncher extends Effect {
         }
     }
 
-    private void applyBaseEffect(Player user, ArrayList<Player> targets) {
+    private void applyBaseEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         //assegno un danno al bersaglio in targets.
 
@@ -292,7 +292,7 @@ public class GrenadeLauncher extends Effect {
 
         boolean chosen = false;
 
-        ArrayList <Cell> reachableCells = Check.reachableCells(target, 1);
+        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(target, 1);
 
         while(!chosen){
 
@@ -351,10 +351,10 @@ public class GrenadeLauncher extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList <Player> possibleTargets = Check.visiblePlayers(user);
-        ArrayList <Player> chosenTarget = new ArrayList<>();
+        CopyOnWriteArrayList <Player> possibleTargets = Check.visiblePlayers(user);
+        CopyOnWriteArrayList <Player> chosenTarget = new CopyOnWriteArrayList<>();
 
         boolean found = false;
 
@@ -387,7 +387,7 @@ public class GrenadeLauncher extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList visiblePlayers = Check.visiblePlayers(user);
+        CopyOnWriteArrayList visiblePlayers = Check.visiblePlayers(user);
 
         if(visiblePlayers.size()>0){return true;}
         return false;

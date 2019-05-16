@@ -4,7 +4,7 @@ import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -58,7 +58,7 @@ public class Check {
      */
     public static void resolveBoard(Player killed, Board board, Player killer, boolean overkill) {
 
-        ArrayList<Token> damages = new ArrayList<Token>();
+        CopyOnWriteArrayList<Token> damages = new CopyOnWriteArrayList<Token>();
         damages = killed.getPlayerboard().getDamage();
 
         /*
@@ -87,7 +87,7 @@ public class Check {
 
         }
 
-        ArrayList<PlayerWithScore> playersWithScore = new ArrayList<>();
+        CopyOnWriteArrayList<PlayerWithScore> playersWithScore = new CopyOnWriteArrayList<>();
 
         for (Player player : connectedPlayers) {
 
@@ -115,7 +115,7 @@ public class Check {
         creo un array ordinato per ordine temporale di sparo
          */
 
-        ArrayList<Player> whoShotFirst = new ArrayList<>();
+        CopyOnWriteArrayList<Player> whoShotFirst = new CopyOnWriteArrayList<>();
 
         for (Token damage : damages) {
 
@@ -261,7 +261,7 @@ public class Check {
 
         int damagesAmount = 0;
 
-        ArrayList<Token> damages = defender.getPlayerboard().getDamage();
+        CopyOnWriteArrayList<Token> damages = defender.getPlayerboard().getDamage();
 
         for (Token damage : damages) {
             if (damage.getChampionName().equals(attacker.getPlayerboard().getChampionName())) {
@@ -327,7 +327,7 @@ public class Check {
         int yellowAvailable = player.getPlayerboard().getAmmoCubes().getYellow();
         int redAvailable = player.getPlayerboard().getAmmoCubes().getRed();
 
-        ArrayList<Powerup> playerPowerups = player.getPlayerboard().getPowerups();
+        CopyOnWriteArrayList<Powerup> playerPowerups = player.getPlayerboard().getPowerups();
 
         for (Powerup powerup : playerPowerups) {
 
@@ -440,7 +440,7 @@ public class Check {
      */
     public static void limitMarkers(Player defender, Player attacker) {
 
-        ArrayList<Token> markers = defender.getPlayerboard().getMarker();
+        CopyOnWriteArrayList<Token> markers = defender.getPlayerboard().getMarker();
 
         int attackerMarkers = 0;
 
@@ -460,14 +460,14 @@ public class Check {
     }
 
     /**
-     * Returns an arraylist containing all the players in the field of view of a player.
+     * Returns an CopyOnWriteArrayList containing all the players in the field of view of a player.
      *
      * @param player is the player that needs the fov check.
      * @return all the others players that are in the fov.
      */
-    public static ArrayList<Player> visiblePlayers(Player player) {
+    public static CopyOnWriteArrayList<Player> visiblePlayers(Player player) {
 
-        ArrayList<Player> visiblePlayers = new ArrayList<Player>();
+        CopyOnWriteArrayList<Player> visiblePlayers = new CopyOnWriteArrayList<Player>();
 
         for (Player player1 : connectedPlayers) {
 
@@ -533,11 +533,11 @@ public class Check {
      *
      * @param player is the player that wants the check to move.
      * @param steps  is the number of steps to do.
-     * @return an arraylist of reachable cells.
+     * @return an CopyOnWriteArrayList of reachable cells.
      */
-    public static ArrayList<Cell> reachableCells(Player player, int steps) {
+    public static CopyOnWriteArrayList<Cell> reachableCells(Player player, int steps) {
 
-        ArrayList<Cell> reachableCells = new ArrayList<>();
+        CopyOnWriteArrayList<Cell> reachableCells = new CopyOnWriteArrayList<>();
 
         Cell position = player.getPosition();
 
@@ -611,7 +611,7 @@ public class Check {
 
             for (int i = 1; i < steps - 1; i++) {
 
-                ArrayList<Cell> copiesToCheck = new ArrayList<>();
+                CopyOnWriteArrayList<Cell> copiesToCheck = new CopyOnWriteArrayList<>();
 
                 for (Cell cell : reachableCells) {
                     copiesToCheck.add(cell);
@@ -688,7 +688,7 @@ public class Check {
 
     public static boolean checkFrenzy() {
 
-        ArrayList<MortalBlow> mortalBlows = Board.getMortalBlowTrack();
+        CopyOnWriteArrayList<MortalBlow> mortalBlows = Board.getMortalBlowTrack();
         int mbCounter = 0;
 
         for (MortalBlow mortalBlow : mortalBlows) {
@@ -716,7 +716,7 @@ public class Check {
     public void resolveFrenzyboard(Player killed, Player killer, Board board, boolean overkill) {
 
 
-        ArrayList<Token> damages = new ArrayList<Token>();
+        CopyOnWriteArrayList<Token> damages = new CopyOnWriteArrayList<Token>();
         damages = killed.getPlayerboard().getDamage();
 
 
@@ -735,7 +735,7 @@ public class Check {
 
         }
 
-        ArrayList<PlayerWithScore> playersWithScore = new ArrayList<>();
+        CopyOnWriteArrayList<PlayerWithScore> playersWithScore = new CopyOnWriteArrayList<>();
 
         for (Player player : connectedPlayers) {
 
@@ -763,7 +763,7 @@ public class Check {
         creo un array ordinato per ordine temporale di sparo
          */
 
-        ArrayList<Player> whoShotFirst = new ArrayList<>();
+        CopyOnWriteArrayList<Player> whoShotFirst = new CopyOnWriteArrayList<>();
 
         for (Token damage : damages) {
 
@@ -868,7 +868,7 @@ public class Check {
 
         for (Player player : connectedPlayers) {
 
-            ArrayList<Token> damages = new ArrayList<Token>();
+            CopyOnWriteArrayList<Token> damages = new CopyOnWriteArrayList<Token>();
             damages = player.getPlayerboard().getDamage();
 
 
@@ -902,7 +902,7 @@ public class Check {
 
             }
 
-            ArrayList<PlayerWithScore> playersWithScore = new ArrayList<>();
+            CopyOnWriteArrayList<PlayerWithScore> playersWithScore = new CopyOnWriteArrayList<>();
 
             for (Player attacker : connectedPlayers) {
 
@@ -930,7 +930,7 @@ public class Check {
         creo un array ordinato per ordine temporale di sparo
          */
 
-            ArrayList<Player> whoShotFirst = new ArrayList<>();
+            CopyOnWriteArrayList<Player> whoShotFirst = new CopyOnWriteArrayList<>();
 
             for (Token damage : damages) {
 
@@ -1012,7 +1012,7 @@ public class Check {
 
         }
 
-        ArrayList<PlayerWithKills> playersWithKills = new ArrayList<>();
+        CopyOnWriteArrayList<PlayerWithKills> playersWithKills = new CopyOnWriteArrayList<>();
 
         for (Player killer : connectedPlayers) {
 
@@ -1045,7 +1045,7 @@ public class Check {
         creo un array ordinato per ordine temporale di uccisioni
          */
 
-        ArrayList<Player> whoKilledFirst = new ArrayList<>();
+        CopyOnWriteArrayList<Player> whoKilledFirst = new CopyOnWriteArrayList<>();
 
         for (MortalBlow mortalBlow : board.getMortalBlowTrack()) {
 
@@ -1138,7 +1138,7 @@ public class Check {
         un'eventuale situazione di parità)
          */
 
-        ArrayList<PotentialWinner> potentialWinners = new ArrayList<>();
+        CopyOnWriteArrayList<PotentialWinner> potentialWinners = new CopyOnWriteArrayList<>();
 
         for (Player player : connectedPlayers) {
 
@@ -1354,9 +1354,9 @@ public class Check {
 
     }
 
-    public static ArrayList<Cell> visibleSquares(Player user) {
+    public static CopyOnWriteArrayList<Cell> visibleSquares(Player user) {
 
-        ArrayList<Cell> visibleSquares = new ArrayList<>();
+        CopyOnWriteArrayList<Cell> visibleSquares = new CopyOnWriteArrayList<>();
 
         Cell position = user.getPosition();
 
@@ -1393,7 +1393,7 @@ public class Check {
 
     }
 
-    private static void addVisibleCells(ArrayList<Cell> visibleSquares, int room) {
+    private static void addVisibleCells(CopyOnWriteArrayList<Cell> visibleSquares, int room) {
 
         if (room == Colour.RED) {
             visibleSquares.addAll(Board.getMap().getRedRoom().getCells());
@@ -1423,7 +1423,7 @@ public class Check {
 
     public static boolean canShot(Player player) {
 
-        ArrayList<Weapon> playerWeapons = player.getPlayerboard().getWeapons();
+        CopyOnWriteArrayList<Weapon> playerWeapons = player.getPlayerboard().getWeapons();
 
         for (Weapon weapon : playerWeapons) {
 
@@ -1448,7 +1448,7 @@ public class Check {
         fakePlayer.setPosition(player.getPosition());
         fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
 
-        ArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+        CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
 
         for (Cell cell : reachableCells) {
 
@@ -1478,7 +1478,7 @@ public class Check {
         fakePlayer.setPosition(player.getPosition());
         fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
 
-        ArrayList<Cell> reachableCells = Check.reachableCells(player, 2);
+        CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 2);
 
         for (Cell cell : reachableCells) {
 
@@ -1509,7 +1509,7 @@ public class Check {
         fakePlayer.setPosition(player.getPosition());
         fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
 
-        ArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+        CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
 
         for (Cell cell : reachableCells) {
 

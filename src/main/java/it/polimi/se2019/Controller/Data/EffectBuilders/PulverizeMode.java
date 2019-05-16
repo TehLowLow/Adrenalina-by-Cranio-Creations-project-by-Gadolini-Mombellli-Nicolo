@@ -11,13 +11,13 @@ import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class PulverizeMode extends Effect {
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         Player target = targets.get(0);
 
@@ -27,10 +27,10 @@ public class PulverizeMode extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList <Player> targets = new ArrayList<Player>();
-        ArrayList <Player> chosenTarget = new ArrayList<Player>();
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<Player>();
+        CopyOnWriteArrayList <Player> chosenTarget = new CopyOnWriteArrayList<Player>();
 
         for(Player target : Server.connectedPlayers){
             if(target.getNickname().equalsIgnoreCase(user.getNickname())){
@@ -64,7 +64,7 @@ public class PulverizeMode extends Effect {
 
     public void moveTarget(Player target, Player user){
 
-        ArrayList <Cell> reachableCells = Check.reachableCells(target, 2);
+        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(target, 2);
         reachableCells.add(target.getPosition());
 
         boolean chosen = false;

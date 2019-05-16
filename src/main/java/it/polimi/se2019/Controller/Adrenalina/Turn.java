@@ -7,7 +7,7 @@ import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Collections;
 
 /**
@@ -24,7 +24,7 @@ public class Turn {
      * drewPowerUp is used to save the PowerUp that the player has drawn
      */
 
-    private ArrayList<Powerup> drewPowerUp;
+    private CopyOnWriteArrayList<Powerup> drewPowerUp;
 
     private Board board = new Board();
 
@@ -33,7 +33,7 @@ public class Turn {
      * At the end of the turn, those players must be respawned.
      */
 
-    private ArrayList <Player> killedPlayers;
+    private CopyOnWriteArrayList <Player> killedPlayers;
     /**
      * switchedWeapon is used to save the weapon before checking it
      */
@@ -50,7 +50,7 @@ public class Turn {
     ------------------GETTERS--------------------
      */
 
-    public ArrayList<Powerup> getDrewPowerUp() {
+    public CopyOnWriteArrayList<Powerup> getDrewPowerUp() {
         return drewPowerUp;
     }
 
@@ -62,7 +62,7 @@ public class Turn {
     -----------------SETTERS-----------------------
      */
 
-    public void setDrewPowerUp(ArrayList<Powerup> drewPowerUp) {
+    public void setDrewPowerUp(CopyOnWriteArrayList<Powerup> drewPowerUp) {
         this.drewPowerUp = drewPowerUp;
     }
 
@@ -125,7 +125,7 @@ public class Turn {
 
         //Risolvo la board e respawno i morti
 
-        ArrayList <Player> deadPlayers = new ArrayList<>();
+        CopyOnWriteArrayList <Player> deadPlayers = new CopyOnWriteArrayList<>();
 
         for(Player dead : Server.connectedPlayers){
 
@@ -190,7 +190,7 @@ public class Turn {
 
                     if(chosenPU.getColour() == Colour.RED){
 
-                        ArrayList <Cell> spawnRoom = Board.getMap().getRedRoom().getCells();
+                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getRedRoom().getCells();
 
                         for(Cell cell : spawnRoom){
                             if(cell.getName().equalsIgnoreCase("SpawnCell")){
@@ -204,7 +204,7 @@ public class Turn {
 
                     if(chosenPU.getColour() == Colour.BLUE){
 
-                        ArrayList <Cell> spawnRoom = Board.getMap().getBlueRoom().getCells();
+                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getBlueRoom().getCells();
 
                         for(Cell cell : spawnRoom){
                             if(cell.getName().equalsIgnoreCase("SpawnCell")){
@@ -218,7 +218,7 @@ public class Turn {
 
                     if(chosenPU.getColour() == Colour.YELLOW){
 
-                        ArrayList <Cell> spawnRoom = Board.getMap().getYellowRoom().getCells();
+                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getYellowRoom().getCells();
 
                         for(Cell cell : spawnRoom){
                             if(cell.getName().equalsIgnoreCase("SpawnCell")){
@@ -259,12 +259,12 @@ public class Turn {
         }
 
         catch(EmptyDeckException e){
-                ArrayList <Loot> discarded = Board.getDiscardedLoot();
+                CopyOnWriteArrayList <Loot> discarded = Board.getDiscardedLoot();
                 Collections.shuffle(discarded);
                 Board.setLootDeck(discarded);
-                Board.setDiscardedLoot(new ArrayList<Loot>());
+                Board.setDiscardedLoot(new CopyOnWriteArrayList<Loot>());
 
-                ArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
+                CopyOnWriteArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
                 Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
                 Board.getPowerUpDeck().remove(drawnPowerUp);
                 powerUps.add(drawnPowerUp);
@@ -293,7 +293,7 @@ public class Turn {
 
                     if(chosenPU.getColour() == Colour.RED){
 
-                        ArrayList <Cell> spawnRoom = Board.getMap().getRedRoom().getCells();
+                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getRedRoom().getCells();
 
                         for(Cell cell : spawnRoom){
                             if(cell.getName().equalsIgnoreCase("SpawnCell")){
@@ -307,7 +307,7 @@ public class Turn {
 
                     if(chosenPU.getColour() == Colour.BLUE){
 
-                        ArrayList <Cell> spawnRoom = Board.getMap().getBlueRoom().getCells();
+                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getBlueRoom().getCells();
 
                         for(Cell cell : spawnRoom){
                             if(cell.getName().equalsIgnoreCase("SpawnCell")){
@@ -321,7 +321,7 @@ public class Turn {
 
                     if(chosenPU.getColour() == Colour.YELLOW){
 
-                        ArrayList <Cell> spawnRoom = Board.getMap().getYellowRoom().getCells();
+                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getYellowRoom().getCells();
 
                         for(Cell cell : spawnRoom){
                             if(cell.getName().equalsIgnoreCase("SpawnCell")){
@@ -360,7 +360,7 @@ public class Turn {
 
         //Risolvo la board e respawno i morti
 
-        ArrayList <Player> deadPlayers = new ArrayList<>();
+        CopyOnWriteArrayList <Player> deadPlayers = new CopyOnWriteArrayList<>();
 
         for(Player dead : Server.connectedPlayers){
 

@@ -10,14 +10,14 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Newton extends Effect {
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        ArrayList <Cell> reachableCells = getDirectionCells(user, targets.get(0));
+        CopyOnWriteArrayList <Cell> reachableCells = getDirectionCells(user, targets.get(0));
         Cell chosenCell = null;
 
         boolean chosen = false;
@@ -55,10 +55,10 @@ public class Newton extends Effect {
 
     }
 
-    private ArrayList <Cell> getDirectionCells(Player user, Player target){
+    private CopyOnWriteArrayList <Cell> getDirectionCells(Player user, Player target){
 
-        ArrayList <Cell> reachableCells = Check.reachableCells(target, 1);
-        ArrayList <Cell> targettableCells = new ArrayList<>();
+        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(target, 1);
+        CopyOnWriteArrayList <Cell> targettableCells = new CopyOnWriteArrayList<>();
 
         boolean chosen = false;
 
@@ -161,9 +161,9 @@ public class Newton extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList <Player> possibleTargets = new ArrayList<>();
+        CopyOnWriteArrayList <Player> possibleTargets = new CopyOnWriteArrayList<>();
 
         for(Player target : Server.connectedPlayers){
 
@@ -177,7 +177,7 @@ public class Newton extends Effect {
 
         }
 
-        ArrayList <Player> target = new ArrayList<>();
+        CopyOnWriteArrayList <Player> target = new CopyOnWriteArrayList<>();
 
         target.add(ChoosePlayer.one(user, possibleTargets));
 

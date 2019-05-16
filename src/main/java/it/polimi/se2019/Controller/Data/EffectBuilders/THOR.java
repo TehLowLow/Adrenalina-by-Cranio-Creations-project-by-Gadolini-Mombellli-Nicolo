@@ -9,14 +9,14 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
 public class THOR extends Effect {
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         for (Player player:targets){
 
@@ -71,10 +71,10 @@ public class THOR extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Player> possibleTargets = new ArrayList<>();
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         if (hasTargets(user)){
 
@@ -101,7 +101,7 @@ public class THOR extends Effect {
 
     public boolean canUseChainReaction(Player user, Player damaged){
 
-        ArrayList<Player> possibleTargets = Check.visiblePlayers(damaged);
+        CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(damaged);
 
         Rybamount cost = new Rybamount();
 
@@ -135,10 +135,10 @@ public class THOR extends Effect {
     }
 
 
-    public ArrayList<Player> chainReactionGetTargets(Player user, Player damaged){
+    public CopyOnWriteArrayList<Player> chainReactionGetTargets(Player user, Player damaged){
 
-        ArrayList<Player> possibleTargets = new ArrayList<>();
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         possibleTargets = Check.visiblePlayers(damaged);
 
@@ -158,7 +158,7 @@ public class THOR extends Effect {
 
     }
 
-    public void applyChainReaction(Player user, ArrayList<Player> targets){
+    public void applyChainReaction(Player user, CopyOnWriteArrayList<Player> targets){
 
         for (Player player:targets){
 
@@ -170,7 +170,7 @@ public class THOR extends Effect {
 
     public boolean canUseHighVoltage(Player user, Player damaged, Player damagedChainReaction){
 
-        ArrayList<Player> possibleTargets = Check.visiblePlayers(damaged);
+        CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(damaged);
 
         Rybamount cost = new Rybamount();
 
@@ -211,10 +211,10 @@ public class THOR extends Effect {
         return false;
     }
 
-    public ArrayList<Player> highVoltageGetTargets(Player user, Player damaged, Player damagedChainReaction){
+    public CopyOnWriteArrayList<Player> highVoltageGetTargets(Player user, Player damaged, Player damagedChainReaction){
 
-        ArrayList<Player> targets = new ArrayList<>();
-        ArrayList<Player> possibleTargets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
 
         possibleTargets = Check.visiblePlayers(damaged);
 
@@ -245,7 +245,7 @@ public class THOR extends Effect {
     }
 
 
-    public void applyHighVoltage(Player user, ArrayList<Player> targets){
+    public void applyHighVoltage(Player user, CopyOnWriteArrayList<Player> targets){
 
         for (Player player:targets){
 

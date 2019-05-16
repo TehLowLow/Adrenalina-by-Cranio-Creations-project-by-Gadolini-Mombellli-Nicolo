@@ -8,12 +8,12 @@ import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BasicPowerGlove extends Effect {
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         Player target = targets.get(0);
 
@@ -25,12 +25,12 @@ public class BasicPowerGlove extends Effect {
 
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList <Player> chosenTarget = new ArrayList<>();
-        ArrayList <Player> possibleTargets = new ArrayList<>();
+        CopyOnWriteArrayList <Player> chosenTarget = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList <Player> possibleTargets = new CopyOnWriteArrayList<>();
 
-        ArrayList <Cell> cells = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList <Cell> cells = Check.reachableCells(user, 1);
 
         for(Player target : Server.connectedPlayers){
 
@@ -52,7 +52,7 @@ public class BasicPowerGlove extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList <Cell> cells = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList <Cell> cells = Check.reachableCells(user, 1);
 
         for(Player target : Server.connectedPlayers){
 

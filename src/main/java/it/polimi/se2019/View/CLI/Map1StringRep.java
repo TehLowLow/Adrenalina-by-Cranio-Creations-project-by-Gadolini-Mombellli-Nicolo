@@ -2,7 +2,7 @@ package it.polimi.se2019.View.CLI;
 import it.polimi.se2019.Controller.Data.MapBuilders.Map1Builder;
 import it.polimi.se2019.Model.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.View.CLI.Location.*;
 

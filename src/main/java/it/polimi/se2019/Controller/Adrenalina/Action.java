@@ -6,7 +6,7 @@ import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Collections;
 
 import static it.polimi.se2019.Controller.Adrenalina.Interaction.selectShotMove;
@@ -25,7 +25,7 @@ public class Action {
 
     private static int steps;
     private static int cell;
-    private static ArrayList<Cell> reachable;
+    private static CopyOnWriteArrayList<Cell> reachable;
 
     /*
     METHODS
@@ -43,7 +43,7 @@ public class Action {
      */
     public static void perform(Player player) {
 
-        ArrayList<String> possibleActions = new ArrayList<>();
+        CopyOnWriteArrayList<String> possibleActions = new CopyOnWriteArrayList<>();
 
         possibleActions.add("Spara");
         possibleActions.add("Muovi");
@@ -119,7 +119,7 @@ public class Action {
 
         if (!afterFirstPlayer) {
 
-            ArrayList<String> possibleActions = new ArrayList<>();
+            CopyOnWriteArrayList<String> possibleActions = new CopyOnWriteArrayList<>();
 
             possibleActions.add("Spara");
             possibleActions.add("Muovi");
@@ -175,7 +175,7 @@ public class Action {
         } else {
 
 
-            ArrayList<String> possibleActions = new ArrayList<>();
+            CopyOnWriteArrayList<String> possibleActions = new CopyOnWriteArrayList<>();
 
             possibleActions.add("Spara");
             possibleActions.add("Muovi");
@@ -351,7 +351,7 @@ public class Action {
      */
     private static void shot(Player player) {
 
-        ArrayList<Weapon> weapons = player.getPlayerboard().getWeapons();
+        CopyOnWriteArrayList<Weapon> weapons = player.getPlayerboard().getWeapons();
 
 
         String armaScelta = updateWithAnswer(player, Message.scegliArma(weapons));
@@ -501,7 +501,7 @@ public class Action {
             answered = true;
             if (InputCheck.yesOrNo(answer)) {
 
-                ArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+                CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
                 Cell toReach = new LootCell();
                 int chosenCell = 0;
                 boolean chosen = false;
@@ -530,7 +530,7 @@ public class Action {
 
         if (player.getPosition().getName().equalsIgnoreCase("SpawnCell")) {
 
-            ArrayList<Weapon> availableWeapons = new ArrayList<>();
+            CopyOnWriteArrayList<Weapon> availableWeapons = new CopyOnWriteArrayList<>();
             SpawnCell position = (SpawnCell) player.getPosition();
             availableWeapons = position.getAvailableWeapons();
             Weapon newWeapon = new Weapon();
@@ -626,12 +626,12 @@ public class Action {
                 Interaction.drawPowerUp(player);
 
             } catch (EmptyDeckException e) {
-                ArrayList<Loot> discarded = Board.getDiscardedLoot();
+                CopyOnWriteArrayList<Loot> discarded = Board.getDiscardedLoot();
                 Collections.shuffle(discarded);
                 Board.setLootDeck(discarded);
-                Board.setDiscardedLoot(new ArrayList<Loot>());
+                Board.setDiscardedLoot(new CopyOnWriteArrayList<Loot>());
 
-                ArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
+                CopyOnWriteArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
                 Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
                 Board.getPowerUpDeck().remove(drawnPowerUp);
                 powerUps.add(drawnPowerUp);
@@ -701,7 +701,7 @@ public class Action {
             answered = true;
             if (InputCheck.yesOrNo(answer)) {
 
-                ArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+                CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
                 Cell toReach = new LootCell();
                 int chosenCell = 0;
                 boolean chosen = false;
@@ -843,7 +843,7 @@ public class Action {
             answered = true;
             if (InputCheck.yesOrNo(answer)) {
 
-                ArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+                CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
                 Cell toReach = new LootCell();
                 int chosenCell = 0;
                 boolean chosen = false;
@@ -892,8 +892,8 @@ public class Action {
 
     public static void usePowerUp(Player player) {
 
-        ArrayList<Powerup> available = new ArrayList<>();
-        ArrayList<Powerup> powerups = player.getPlayerboard().getPowerups();
+        CopyOnWriteArrayList<Powerup> available = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Powerup> powerups = player.getPlayerboard().getPowerups();
 
 
         for (Powerup powerup : powerups) {

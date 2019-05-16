@@ -5,7 +5,7 @@ import it.polimi.se2019.Model.*;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Hashtable;
 
 import static java.lang.Thread.sleep;
@@ -22,9 +22,9 @@ public class Server extends Thread implements ServerInterface {
     /**
      * Contains all the players that are logging in before the start of the game.
      */
-    static ArrayList<Player> players = new ArrayList<>();
+    static CopyOnWriteArrayList<Player> players = new CopyOnWriteArrayList<>();
 
-    static ArrayList<ClientInterface> clients = new ArrayList<>();
+    static CopyOnWriteArrayList<ClientInterface> clients = new CopyOnWriteArrayList<>();
     ;
 
     /**

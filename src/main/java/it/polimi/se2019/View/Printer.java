@@ -3,7 +3,7 @@ package it.polimi.se2019.View;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 public class Printer {
@@ -23,7 +23,7 @@ public class Printer {
         Room whiteRoom = map.getWhiteRoom();
         Room purpleRoom = map.getPurpleRoom();
 
-        ArrayList <Room> printableRooms= new ArrayList<Room>();
+        CopyOnWriteArrayList <Room> printableRooms= new CopyOnWriteArrayList<Room>();
 
         if(blueRoom != null){
             printableRooms.add(blueRoom);

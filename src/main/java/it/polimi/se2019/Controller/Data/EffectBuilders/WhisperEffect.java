@@ -8,7 +8,7 @@ import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.connectedPlayers;
@@ -16,7 +16,7 @@ import static it.polimi.se2019.Network.Server.update;
 
 public class WhisperEffect extends Effect {
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         if (targets.equals(null)){
 
@@ -27,8 +27,8 @@ public class WhisperEffect extends Effect {
 
         for (Player target : targets) {
 
-            ArrayList<Token> markers = target.getPlayerboard().getMarker();
-            ArrayList<Token> damages = target.getPlayerboard().getDamage();
+            CopyOnWriteArrayList<Token> markers = target.getPlayerboard().getMarker();
+            CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
 
 
 
@@ -59,7 +59,7 @@ public class WhisperEffect extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
         if (!hasTargets(user)){
 
@@ -67,9 +67,9 @@ public class WhisperEffect extends Effect {
 
         }
 
-        ArrayList<Player> possibleTargets = Check.visiblePlayers(user);
+        CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(user);
 
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         for (Player player:possibleTargets){
 
@@ -176,7 +176,7 @@ public class WhisperEffect extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-       ArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+       CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
 
         for(Player player : visiblePlayers){
 

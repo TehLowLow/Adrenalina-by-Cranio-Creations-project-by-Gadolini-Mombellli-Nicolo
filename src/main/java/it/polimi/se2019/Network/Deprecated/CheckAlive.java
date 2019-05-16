@@ -2,15 +2,15 @@ package it.polimi.se2019.Network.Deprecated;
 
 import it.polimi.se2019.Model.Player;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class CheckAlive extends Thread {
 
     private boolean start = false;
     private int eta;
-    ArrayList<Player> players;
+    CopyOnWriteArrayList<Player> players;
 
-    CheckAlive(int eta, ArrayList<Player> players) {
+    CheckAlive(int eta, CopyOnWriteArrayList<Player> players) {
 
         this.eta = eta;
         this.players = players;
@@ -57,7 +57,7 @@ public class CheckAlive extends Thread {
     }
 
 
-    private void checker(ArrayList<Player> players) {
+    private void checker(CopyOnWriteArrayList<Player> players) {
 
 
         for (Player player : players) {

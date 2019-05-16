@@ -5,7 +5,7 @@ import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 import static it.polimi.se2019.Controller.Adrenalina.Check.visibleSquares;
@@ -17,7 +17,7 @@ public class VortexCannon extends Effect {
     Player vortex;
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         //Prima di tutto, assegno il danno al target.
 
@@ -27,7 +27,7 @@ public class VortexCannon extends Effect {
         Token d2 = new Token();
         d2.setChampionName(user.getPlayerboard().getChampionName());
 
-        ArrayList <Token> damages = target.getPlayerboard().getDamage();
+        CopyOnWriteArrayList <Token> damages = target.getPlayerboard().getDamage();
         damages.add(d);
         damages.add(d2);
 
@@ -78,7 +78,7 @@ public class VortexCannon extends Effect {
 
         //Adesso, chiedo al giocatore di scegliere fino a due bersagli da colpire, diversi dal precedente.
 
-        ArrayList <Player> newTargets = new ArrayList();
+        CopyOnWriteArrayList <Player> newTargets = new CopyOnWriteArrayList();
 
         for(Player  possibleTarget : Server.connectedPlayers ){
 
@@ -102,7 +102,7 @@ public class VortexCannon extends Effect {
 
             Token d1 = new Token();
             d1.setChampionName(user.getPlayerboard().getChampionName());
-            ArrayList <Token> damages1 = newTarget.getPlayerboard().getDamage();
+            CopyOnWriteArrayList <Token> damages1 = newTarget.getPlayerboard().getDamage();
             damages1.add(d1);
 
             if(!newTarget.getPosition().equals(vortex.getPosition())){
@@ -118,7 +118,7 @@ public class VortexCannon extends Effect {
 
 
 
-    private void getNewTargets(Player user, ArrayList<Player> newTargets) {
+    private void getNewTargets(Player user, CopyOnWriteArrayList<Player> newTargets) {
 
         //newTargets è già senza player e senza precedente bersaglio.
         //devo chiedere all'utente di scegliere uno o due bersagli.
@@ -142,7 +142,7 @@ public class VortexCannon extends Effect {
 
         boolean chosen = false;
         String chosenTarget = null;
-        ArrayList <Player> chosenTargets = null;
+        CopyOnWriteArrayList <Player> chosenTargets = null;
 
         while(!chosen){
 
@@ -234,7 +234,7 @@ public class VortexCannon extends Effect {
 
     private boolean hasNewTargets(Player target, Player user) {
 
-        ArrayList <Cell> targetCells = Check.reachableCells(vortex, 1);
+        CopyOnWriteArrayList <Cell> targetCells = Check.reachableCells(vortex, 1);
 
         for(Player possibleTarget : Server.connectedPlayers){
             if(possibleTarget.getPosition().equals(vortex.getPosition())){
@@ -251,21 +251,21 @@ public class VortexCannon extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
         //Prima di tutto, si deve far scegliere all'utente un quadrato che può vedere, tranne il suo, purché
         //contenga almeno un giocatore oppure ci sia almeno un giocatore nei quadrati a distanza unitaria da esso.
 
         //Estraggo i quadrati che può vedere:
 
-        ArrayList <Cell> targetSquares = Check.visibleSquares(user);
+        CopyOnWriteArrayList <Cell> targetSquares = Check.visibleSquares(user);
 
         //Rimuovo quello dell'utente:
         targetSquares.remove(user.getPosition());
 
         //Per tutte le celle, le inserisco dentro all'array targetCells se contengono un player o se a distanza unitaria ne hanno uno.
 
-        ArrayList<Cell> targetCells =  new ArrayList<>();
+        CopyOnWriteArrayList<Cell> targetCells =  new CopyOnWriteArrayList<>();
 
         for(Cell possibleTarget : targetSquares){
 
@@ -328,7 +328,7 @@ public class VortexCannon extends Effect {
 
         //Cerco i player che si trovano o in quella cella, o in quelle a distanza unitaria da essa, giocatore escluso.
 
-        ArrayList <Player> targetPlayers = new ArrayList<>();
+        CopyOnWriteArrayList <Player> targetPlayers = new CopyOnWriteArrayList<>();
 
         for(Player possibleTarget : Server.connectedPlayers){
 
@@ -351,7 +351,7 @@ public class VortexCannon extends Effect {
         //Ora dentro targetPlayers ho i possibili bersagli. Chiedo al giocatore di sceglierne uno.
 
         boolean foundTarget = false;
-        ArrayList <Player> finalTarget = new ArrayList();
+        CopyOnWriteArrayList <Player> finalTarget = new CopyOnWriteArrayList();
 
         while(!foundTarget){
 
@@ -382,7 +382,7 @@ public class VortexCannon extends Effect {
 
         //Prima di tutto, si ottengono i quadrati che l'utente può vedere, ma non il proprio quadrato.
 
-        ArrayList <Cell> visibleSquares = visibleSquares(user);
+        CopyOnWriteArrayList <Cell> visibleSquares = visibleSquares(user);
         visibleSquares.remove(user.getPosition());
 
         //Ad essi, devo aggiungere i quadrati a distanza unitaria.
@@ -410,14 +410,14 @@ public class VortexCannon extends Effect {
         return false;
     }
 
-    private void addUnitDistance(ArrayList <Cell> cells){
+    private void addUnitDistance(CopyOnWriteArrayList <Cell> cells){
 
         for(Cell cell : cells){
 
             Player fakePlayer = new Player();
             fakePlayer.setPosition(cell);
 
-            ArrayList <Cell> unitCells = Check.reachableCells(fakePlayer, 1);
+            CopyOnWriteArrayList <Cell> unitCells = Check.reachableCells(fakePlayer, 1);
 
             for(Cell unitCell : unitCells){
                 if(!cells.contains(unitCell)){

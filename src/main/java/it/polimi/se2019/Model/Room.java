@@ -1,6 +1,6 @@
 package it.polimi.se2019.Model;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  This class represents a Room.
@@ -18,10 +18,10 @@ public class Room implements java.io.Serializable {
      */
 
     /**
-     * This arraylist represents the cells the Room is made of.
+     * This CopyOnWriteArrayList represents the cells the Room is made of.
      */
 
-    private ArrayList<Cell> cells;
+    private CopyOnWriteArrayList<Cell> cells;
 
     /**
      * It represents the Room's colour.
@@ -56,7 +56,7 @@ public class Room implements java.io.Serializable {
      * @return the array of the Room's cells.
      */
 
-    public ArrayList<Cell> getCells() {return cells;}
+    public CopyOnWriteArrayList<Cell> getCells() {return cells;}
 
 
 
@@ -77,6 +77,6 @@ public class Room implements java.io.Serializable {
      */
 
 
-    public void setCells(ArrayList<Cell> cells) {this.cells = cells;}
+    public void setCells(CopyOnWriteArrayList<Cell> cells) {this.cells = cells;}
 
 }

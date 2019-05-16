@@ -4,10 +4,10 @@ import it.polimi.se2019.Controller.Data.CellBuilders.SpawnCellBuilders.SpawnCell
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
- * This class is an example for the builder of a room. Every room is represented by an arraylist of
+ * This class is an example for the builder of a room. Every room is represented by an CopyOnWriteArrayList of
  * cells, and it has a colour as an identifier.
  */
 
@@ -29,14 +29,14 @@ public class BlueRoomBuilder {
      */
 
     /**
-     * This method builds a room by creating an ArrayList of cells and filling it by calling builders for every
+     * This method builds a room by creating an CopyOnWriteArrayList of cells and filling it by calling builders for every
      * cell.
      * @return a Room complete with cells. Connection with cells of other rooms aren't created yet.
      */
 
     public Room build(){
 
-        ArrayList<Cell> cells = new ArrayList <Cell>();
+        CopyOnWriteArrayList<Cell> cells = new CopyOnWriteArrayList <Cell>();
         LootCellBuilder lootCellBuilder = new LootCellBuilder();
         SpawnCellBuilder spawnCellBuilder = new SpawnCellBuilder();
 

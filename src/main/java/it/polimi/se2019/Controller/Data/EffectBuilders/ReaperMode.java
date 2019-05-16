@@ -5,13 +5,13 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.*;
 
 public class ReaperMode extends Effect {
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         if (targets.equals(null)){
 
@@ -23,7 +23,7 @@ public class ReaperMode extends Effect {
 
         for (Player target:targets){
 
-            ArrayList<Token> damages = target.getPlayerboard().getDamage();
+            CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
 
             Token d1 = new Token();
             Token d2 = new Token();
@@ -43,9 +43,9 @@ public class ReaperMode extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         if (!hasTargets(user)){
 

@@ -5,7 +5,7 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -192,7 +192,7 @@ public class InputCheck {
 
     }
 
-    public static boolean availablePlayer(String nickname, ArrayList<Player> players) {
+    public static boolean availablePlayer(String nickname, CopyOnWriteArrayList<Player> players) {
 
         for (Player player : players) {
 
@@ -246,7 +246,7 @@ public class InputCheck {
     SCELTA ARMA
      */
 
-    public static boolean correctWeapon(String input, ArrayList<Weapon> weapons) {
+    public static boolean correctWeapon(String input, CopyOnWriteArrayList<Weapon> weapons) {
 
         for (Weapon weapon : weapons) {
 

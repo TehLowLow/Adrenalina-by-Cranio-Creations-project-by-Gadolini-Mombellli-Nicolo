@@ -4,7 +4,7 @@ import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.update;
 
@@ -62,7 +62,7 @@ public class Message {
         return "In quale direzione vuoi sparare?\n- alto\n- basso\n- sinistra\n- destra";
     }
 
-    public static String scegliDirezioneMossa(Player user, ArrayList <Cell> reachables){
+    public static String scegliDirezioneMossa(Player user, CopyOnWriteArrayList <Cell> reachables){
 
         String str = "In quale direzione vuoi muoverti?\n";
 
@@ -91,7 +91,7 @@ public class Message {
         return "Questa direzione è ostruita! Scegline un'altra.";
     }
 
-    public static String spostaBersaglio(Player target, ArrayList <Cell> cells){
+    public static String spostaBersaglio(Player target, CopyOnWriteArrayList <Cell> cells){
 
         String str = "In quale direzione vuoi spostare il bersaglio?\n";
 
@@ -136,7 +136,7 @@ public class Message {
     SCELTA BERSAGLIO
      */
 
-    public static String scegliBersaglio(ArrayList <Player> players){
+    public static String scegliBersaglio(CopyOnWriteArrayList <Player> players){
 
         String string = "Scegli un bersaglio tra:\n";
 
@@ -159,7 +159,7 @@ public class Message {
     SCELTA STANZA
      */
 
-    public static String scegliStanza(ArrayList <Integer> rooms){
+    public static String scegliStanza(CopyOnWriteArrayList <Integer> rooms){
 
         String str = "Scegli una stanza tra:";
 
@@ -182,7 +182,7 @@ public class Message {
      */
 
     //Scelta cella per Furnace Weapon. Se una cella non contiene giocatori, non viene mostrata tra quelle disponibili.
-    public static String scegliCellaFurnace(ArrayList <Cell> cells, Player user){
+    public static String scegliCellaFurnace(CopyOnWriteArrayList <Cell> cells, Player user){
 
         String str = "Scegli una cella (digitando 'alto', 'basso', 'sinistra' o 'destra') tra:";
 
@@ -277,7 +277,7 @@ public class Message {
         return str;
     }
 
-    public static String scegliCellaVortex(ArrayList <Cell> cells){
+    public static String scegliCellaVortex(CopyOnWriteArrayList <Cell> cells){
 
         String str = "Scegli la cella dove aprire il vortex indicandone il numero.\n";
 
@@ -295,7 +295,7 @@ public class Message {
 
     }
 
-    public static String scegliCella(ArrayList <Cell> cells){
+    public static String scegliCella(CopyOnWriteArrayList <Cell> cells){
 
         String str = "Scegli una cella indicandone il numero.\n";
 
@@ -412,7 +412,7 @@ public class Message {
 
     }
 
-    public static String payWithPowerUp(ArrayList <Powerup> powerups){
+    public static String payWithPowerUp(CopyOnWriteArrayList <Powerup> powerups){
 
         String str = "Scegli un power up da scartare per pagare il costo indicandone il numero.\n";
 
@@ -466,7 +466,7 @@ public class Message {
     SPARARE
      */
 
-    public static String scegliArma(ArrayList<Weapon> weapons){
+    public static String scegliArma(CopyOnWriteArrayList<Weapon> weapons){
 
         String stringaFinale = "Scegli un'arma\n";;
 
@@ -515,7 +515,7 @@ public class Message {
          return "Non hai più spazio per raccogliere altri power up.";
     }
 
-    public static String scegliPowerUpSpawn(ArrayList <Powerup> powerups){
+    public static String scegliPowerUpSpawn(CopyOnWriteArrayList <Powerup> powerups){
 
         String str = "Scegli un powerup da scartare indicandone il numero. Spawnerai nella cella di quel colore.\n";
 
@@ -565,7 +565,7 @@ public class Message {
         return "Vuoi usare un potenziamento?";
     }
 
-    public static String scegliPowerUp(ArrayList<Powerup> powerups){
+    public static String scegliPowerUp(CopyOnWriteArrayList<Powerup> powerups){
 
         String stringaFinale = "Scegli un potenziamento:\n";;
 

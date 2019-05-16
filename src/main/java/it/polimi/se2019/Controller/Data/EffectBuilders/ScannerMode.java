@@ -9,13 +9,13 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ScannerMode extends Effect {
 
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         for(Player target : targets){
             Damage.giveMarker(1, user, target);
@@ -24,10 +24,10 @@ public class ScannerMode extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Player> target = new ArrayList<>();
-        ArrayList<Player> possibleTargets = Check.visiblePlayers(user);
+        CopyOnWriteArrayList<Player> target = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(user);
 
         int number = 0;
 
@@ -69,7 +69,7 @@ public class ScannerMode extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList <Player> visible = Check.visiblePlayers(user);
+        CopyOnWriteArrayList <Player> visible = Check.visiblePlayers(user);
         if(visible.isEmpty()){
             return false;
         }

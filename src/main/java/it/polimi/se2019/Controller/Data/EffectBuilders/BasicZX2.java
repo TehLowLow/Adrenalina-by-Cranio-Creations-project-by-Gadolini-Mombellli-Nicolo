@@ -6,12 +6,12 @@ import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BasicZX2 extends Effect {
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         Damage.giveDamage(1, user, targets.get(0));
         Damage.giveMarker(2, user, targets.get(0));
@@ -19,11 +19,11 @@ public class BasicZX2 extends Effect {
     }
 
     @Override
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Player> target = new ArrayList<>();
+        CopyOnWriteArrayList<Player> target = new CopyOnWriteArrayList<>();
 
-        ArrayList<Player> possibleTargets = Check.visiblePlayers(user);
+        CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(user);
 
         Player chosen = ChoosePlayer.one(user, possibleTargets);
 
@@ -36,7 +36,7 @@ public class BasicZX2 extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList <Player> visible = Check.visiblePlayers(user);
+        CopyOnWriteArrayList <Player> visible = Check.visiblePlayers(user);
         if(visible.isEmpty()){
             return false;
         }

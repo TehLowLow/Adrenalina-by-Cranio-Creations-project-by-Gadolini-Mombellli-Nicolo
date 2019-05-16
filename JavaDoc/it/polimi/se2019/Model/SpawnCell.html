@@ -151,12 +151,12 @@ extends <a href="../../../../it/polimi/se2019/Model/Cell.html" title="class in i
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>java.util.ArrayList&lt;<a href="../../../../it/polimi/se2019/Model/Weapon.html" title="class in it.polimi.se2019.Model">Weapon</a>&gt;</code></td>
+<td class="colFirst"><code>java.util.concurrent.CopyOnWriteArrayList&lt;<a href="../../../../it/polimi/se2019/Model/Weapon.html" title="class in it.polimi.se2019.Model">Weapon</a>&gt;</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../../../../it/polimi/se2019/Model/SpawnCell.html#getAvailableWeapons--">getAvailableWeapons</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<td class="colLast"><code><span class="memberNameLink"><a href="../../../../it/polimi/se2019/Model/SpawnCell.html#setAvailableWeapons-java.util.ArrayList-">setAvailableWeapons</a></span>(java.util.ArrayList&lt;<a href="../../../../it/polimi/se2019/Model/Weapon.html" title="class in it.polimi.se2019.Model">Weapon</a>&gt;&nbsp;weapons)</code>
+<td class="colLast"><code><span class="memberNameLink"><a href="../../../../it/polimi/se2019/Model/SpawnCell.html#setAvailableWeapons-java.util.concurrent.CopyOnWriteArrayList-">setAvailableWeapons</a></span>(java.util.concurrent.CopyOnWriteArrayList&lt;<a href="../../../../it/polimi/se2019/Model/Weapon.html" title="class in it.polimi.se2019.Model">Weapon</a>&gt;&nbsp;weapons)</code>
 <div class="block">Sets the three  weapons in the spawn cell during the init of the game.</div>
 </td>
 </tr>
@@ -206,17 +206,17 @@ extends <a href="../../../../it/polimi/se2019/Model/Cell.html" title="class in i
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a name="setAvailableWeapons-java.util.ArrayList-">
+<a name="setAvailableWeapons-java.util.concurrent.CopyOnWriteArrayList-">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>setAvailableWeapons</h4>
-<pre>public&nbsp;void&nbsp;setAvailableWeapons(java.util.ArrayList&lt;<a href="../../../../it/polimi/se2019/Model/Weapon.html" title="class in it.polimi.se2019.Model">Weapon</a>&gt;&nbsp;weapons)</pre>
+<pre>public&nbsp;void&nbsp;setAvailableWeapons(java.util.concurrent.CopyOnWriteArrayList&lt;<a href="../../../../it/polimi/se2019/Model/Weapon.html" title="class in it.polimi.se2019.Model">Weapon</a>&gt;&nbsp;weapons)</pre>
 <div class="block">Sets the three  weapons in the spawn cell during the init of the game.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>weapons</code> - is the arraylist of weapons loaded in the room</dd>
+<dd><code>weapons</code> - is the CopyOnWriteArrayList of weapons loaded in the room</dd>
 </dl>
 </li>
 </ul>
@@ -226,10 +226,10 @@ extends <a href="../../../../it/polimi/se2019/Model/Cell.html" title="class in i
 <ul class="blockListLast">
 <li class="blockList">
 <h4>getAvailableWeapons</h4>
-<pre>public&nbsp;java.util.ArrayList&lt;<a href="../../../../it/polimi/se2019/Model/Weapon.html" title="class in it.polimi.se2019.Model">Weapon</a>&gt;&nbsp;getAvailableWeapons()</pre>
+<pre>public&nbsp;java.util.concurrent.CopyOnWriteArrayList&lt;<a href="../../../../it/polimi/se2019/Model/Weapon.html" title="class in it.polimi.se2019.Model">Weapon</a>&gt;&nbsp;getAvailableWeapons()</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the arraylist that holds memory of the three weapon in the spawn cell.</dd>
+<dd>the CopyOnWriteArrayList that holds memory of the three weapon in the spawn cell.</dd>
 </dl>
 </li>
 </ul>

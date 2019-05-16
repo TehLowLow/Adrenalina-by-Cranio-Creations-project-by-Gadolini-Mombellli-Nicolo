@@ -6,7 +6,7 @@ import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -24,15 +24,15 @@ public class BBQMode extends Effect {
      */
 
     @Override
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        ArrayList<Cell> doubleDamageCells = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList<Cell> doubleDamageCells = Check.reachableCells(user, 1);
 
         for (Player target : targets) {
 
             Token d = new Token();
             d.setChampionName(user.getPlayerboard().getChampionName());
-            ArrayList<Token> damages = target.getPlayerboard().getDamage();
+            CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
             damages.add(d);
 
 
@@ -50,9 +50,9 @@ public class BBQMode extends Effect {
 
     }
 
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Player> possibleTargets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
         boolean foundFirst = false;
 
         Cell firstTargetCell = new LootCell();
@@ -111,9 +111,9 @@ public class BBQMode extends Effect {
     public boolean hasTargets(Player user) {
 
         Check check = new Check();
-        ArrayList<Cell> targetCells = check.reachableCells(user, 2);
+        CopyOnWriteArrayList<Cell> targetCells = check.reachableCells(user, 2);
         CopyOnWriteArrayList<Player> players = Server.connectedPlayers;
-        ArrayList<Player> two_step_targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> two_step_targets = new CopyOnWriteArrayList<>();
 
         for (Player player : players) {
 

@@ -180,7 +180,7 @@ public class SocketLogger implements Logger, Runnable {
 /*
 
 Login server si avvia e avvia una thread pool di 5 logger, i logger come concorrenza avranno solamente il metodo che fa
-il check sull arraylist di login e sull' aggiunta dei client nell' array di login.
+il check sull CopyOnWriteArrayList di login e sull' aggiunta dei client nell' array di login.
 I singoli thread si occuperanno di gestire i client socket, chiedere username e password e verificare che siano o meno
 gia presenti/abbiano inserito credenziali corrette. Una volta verificato queste due cose in maniera concorrenziale risponderanno
 al client con la porta di gioco, e il client proverà a connettersi continuamente al server di gioco fino a quando non verrà avviato dal

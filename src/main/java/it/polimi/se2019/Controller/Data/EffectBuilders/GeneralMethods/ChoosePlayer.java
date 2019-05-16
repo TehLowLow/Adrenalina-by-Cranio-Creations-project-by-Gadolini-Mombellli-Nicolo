@@ -5,11 +5,11 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ChoosePlayer {
 
-    public static Player one(Player user, ArrayList<Player> possibleTargets){
+    public static Player one(Player user, CopyOnWriteArrayList<Player> possibleTargets){
 
         boolean hasChosen = false;
         Player target = new Player();

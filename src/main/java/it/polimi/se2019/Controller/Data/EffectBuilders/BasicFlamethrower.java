@@ -4,7 +4,7 @@ import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Model.*;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import it.polimi.se2019.Network.Server;
@@ -14,17 +14,17 @@ import it.polimi.se2019.View.*;
 public class BasicFlamethrower extends Effect {
 
 
-    public void applyEffect(Player user, ArrayList<Player> targets) {
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
         GrenadeLauncher.giveDamage(user, targets);
 
     }
 
 
-    public ArrayList<Player> getTargets(Player user) {
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        ArrayList<Player> possibleTargets = new ArrayList<>();
-        ArrayList<Player> chosenTargets = new ArrayList();
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> chosenTargets = new CopyOnWriteArrayList();
         boolean foundFirst = false;
 
         Cell firstTargetCell = new LootCell();
@@ -139,9 +139,9 @@ public class BasicFlamethrower extends Effect {
     public boolean hasTargets(Player user) {
 
         Check check = new Check();
-        ArrayList<Cell> targetCells = check.reachableCells(user, 2);
+        CopyOnWriteArrayList<Cell> targetCells = check.reachableCells(user, 2);
         CopyOnWriteArrayList<Player> players = Server.connectedPlayers;
-        ArrayList<Player> two_step_targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> two_step_targets = new CopyOnWriteArrayList<>();
 
         for (Player player : players) {
 
@@ -212,9 +212,9 @@ public class BasicFlamethrower extends Effect {
         return cell;
     }
 
-    protected static ArrayList<Player> getPlayersInCell(Cell cell) {
+    protected static CopyOnWriteArrayList<Player> getPlayersInCell(Cell cell) {
 
-        ArrayList<Player> targets = new ArrayList<>();
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
         for (Player target : Server.connectedPlayers) {
 

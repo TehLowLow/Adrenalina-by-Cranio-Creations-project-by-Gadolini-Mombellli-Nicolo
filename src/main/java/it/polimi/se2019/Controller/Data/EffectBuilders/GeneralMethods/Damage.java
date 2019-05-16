@@ -8,7 +8,7 @@ import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
@@ -19,7 +19,7 @@ public class Damage {
 
         Token damage = new Token();
         damage.setChampionName(user.getPlayerboard().getChampionName());
-        ArrayList<Token> damages = target.getPlayerboard().getDamage();
+        CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
         damages.add(damage);
         target.getPlayerboard().setDamage(damages);
     }
@@ -32,7 +32,7 @@ public class Damage {
 
         }
 
-        ArrayList<Token> targetMarkers = target.getPlayerboard().getMarker();
+        CopyOnWriteArrayList<Token> targetMarkers = target.getPlayerboard().getMarker();
 
         for (Token marker:targetMarkers){
 
@@ -46,10 +46,10 @@ public class Damage {
 
         }
 
-        ArrayList<Powerup> targetPowerups = target.getPlayerboard().getPowerups();
-        ArrayList<Powerup> userPowerups = user.getPlayerboard().getPowerups();
-        ArrayList<Powerup> availableTargetingScopes = new ArrayList<>();
-        ArrayList<Powerup> availableTagBacks = new ArrayList<>();
+        CopyOnWriteArrayList<Powerup> targetPowerups = target.getPlayerboard().getPowerups();
+        CopyOnWriteArrayList<Powerup> userPowerups = user.getPlayerboard().getPowerups();
+        CopyOnWriteArrayList<Powerup> availableTargetingScopes = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Powerup> availableTagBacks = new CopyOnWriteArrayList<>();
 
         for (Powerup powerup : userPowerups) {
 
@@ -186,7 +186,7 @@ public class Damage {
             }
 
 
-            ArrayList<Player> tagBackTargets = new ArrayList<>();
+            CopyOnWriteArrayList<Player> tagBackTargets = new CopyOnWriteArrayList<>();
             tagBackTargets.add(user);
             chosen.getEffect().applyEffect(target, tagBackTargets);
             target.getPlayerboard().getPowerups().remove(chosen);
@@ -205,7 +205,7 @@ public class Damage {
 
         Token marker = new Token();
         marker.setChampionName(user.getPlayerboard().getChampionName());
-        ArrayList<Token> markers = target.getPlayerboard().getMarker();
+        CopyOnWriteArrayList<Token> markers = target.getPlayerboard().getMarker();
         markers.add(marker);
         target.getPlayerboard().setMarker(markers);
 

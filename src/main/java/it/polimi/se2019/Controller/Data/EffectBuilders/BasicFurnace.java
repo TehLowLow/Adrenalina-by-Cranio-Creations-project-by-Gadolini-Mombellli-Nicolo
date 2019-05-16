@@ -5,7 +5,7 @@ import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 
@@ -22,7 +22,7 @@ public class BasicFurnace extends Effect{
          */
 
         @Override
-        public void applyEffect(Player user, ArrayList<Player> targets) {
+        public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
             for(Player target : targets){
 
@@ -40,12 +40,12 @@ public class BasicFurnace extends Effect{
          */
 
         @Override
-        public ArrayList<Player> getTargets(Player user) {
+        public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
             //Dichiaro un array di giocatori, che conterrà i bersagli.
-            ArrayList <Player> targets = new ArrayList<>();
+            CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
             //Dichiaro un array che contiene le stanze visibili dal giocatore.
-            ArrayList<Integer> visibleRooms = getVisibleRooms(user);
+            CopyOnWriteArrayList<Integer> visibleRooms = getVisibleRooms(user);
 
             //Chiamo il metodo per far scegliere all'utente una delle stanze visibili.
             int chosenRoom = chooseRoom(user, visibleRooms);
@@ -73,7 +73,7 @@ public class BasicFurnace extends Effect{
 
         //Questo metodo permette al giocatore di scegliere una stanza tra quelle in
         //visibleRooms, e ne ritorna il colore sotto forma di intero.
-        private int chooseRoom(Player user, ArrayList <Integer> visibleRooms){
+        private int chooseRoom(Player user, CopyOnWriteArrayList <Integer> visibleRooms){
 
             String chosenRoomString = Server.updateWithAnswer(user, Message.scegliStanza(visibleRooms));
 
@@ -99,14 +99,14 @@ public class BasicFurnace extends Effect{
         /**
          * This method returns all the rooms a player can see, but not the room he is in.
          * @param user The rooms are the ones seen by this player.
-         * @return an arrayList that contains the colour of the visible rooms.
+         * @return an CopyOnWriteArrayList that contains the colour of the visible rooms.
          */
-        private ArrayList<Integer> getVisibleRooms(Player user){
+        private CopyOnWriteArrayList<Integer> getVisibleRooms(Player user){
 
                 Cell position = user.getPosition();
                 int userRoomColour = position.getColour();
 
-                ArrayList <Integer> visibleRooms = new ArrayList<>();
+                CopyOnWriteArrayList <Integer> visibleRooms = new CopyOnWriteArrayList<>();
 
                 if(position.getUpConnection().getType().equals(Connection.DOOR)){
                         visibleRooms.add(position.getUpConnection().getConnectedCell().getColour());
@@ -136,7 +136,7 @@ public class BasicFurnace extends Effect{
         public boolean hasTargets(Player player){
 
                 //Array che contiene le stanze visibili dal giocatore.
-                ArrayList <Integer> visibleRooms = getVisibleRooms(player);
+                CopyOnWriteArrayList <Integer> visibleRooms = getVisibleRooms(player);
 
                 //Se non ne vede nessuna, ritorno falso.
                 if(visibleRooms.size()==0){

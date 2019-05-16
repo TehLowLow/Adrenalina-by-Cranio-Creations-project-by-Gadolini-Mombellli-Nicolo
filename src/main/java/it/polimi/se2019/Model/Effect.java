@@ -1,6 +1,7 @@
 package it.polimi.se2019.Model;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 
 /**
  * This class represents an effect of a weapon or a power up.
@@ -76,14 +77,14 @@ public abstract class Effect {
      * @param user the Player that wants to apply the effect.
      * @param targets the targets of the effect. It can be the user itself.
      */
-    public abstract void applyEffect(Player user, ArrayList <Player> targets);
+    public abstract void applyEffect(Player user, CopyOnWriteArrayList<Player> targets);
 
     /**
      * This returns the possible targets of an effect.
      * @param user the Player thant wants to use the effect.
-     * @return an ArrayList of possible targets.
+     * @return an CopyOnWriteArrayList of possible targets.
      */
-    public abstract ArrayList<Player> getTargets(Player user);
+    public abstract CopyOnWriteArrayList<Player> getTargets(Player user);
 
     public abstract boolean hasTargets(Player user);
 
