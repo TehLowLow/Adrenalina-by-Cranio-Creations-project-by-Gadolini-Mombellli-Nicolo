@@ -316,7 +316,7 @@ public class RocketLauncher extends Effect {
 
             }
 
-
+            return false;
         }
         return true;
     }
