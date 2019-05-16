@@ -207,7 +207,7 @@ public class PlayerInfo {
 
         for (Weapon weapon:weapons){
 
-            finalString = finalString + weapon + " ";
+            finalString = finalString + weapon.getName() + " ";
             if (weapon.isLoaded()){
 
                 finalString = finalString + "(Carica)\n";
@@ -232,7 +232,7 @@ public class PlayerInfo {
 
         for (Powerup powerup:powerups){
 
-            finalString = finalString + powerup + "\n";
+            finalString = finalString + powerup.getName() + "\n";
 
         }
 

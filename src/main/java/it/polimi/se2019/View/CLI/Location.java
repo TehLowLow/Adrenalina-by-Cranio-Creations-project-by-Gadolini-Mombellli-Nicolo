@@ -29,7 +29,7 @@ public class Location {
 
         Player player = Server.connectedPlayers.get(0);
 
-        if(player.getPosition().equals(cell)){
+        if(player.getPosition() != null && player.getPosition().equals(cell)){
 
            str = player.getNickname();
 
@@ -55,7 +55,7 @@ public class Location {
 
         Player player = Server.connectedPlayers.get(1);
 
-        if(player.getPosition().equals(cell)){
+        if(player.getPosition() != null && player.getPosition().equals(cell)){
 
             str = player.getNickname();
 
@@ -80,7 +80,7 @@ public class Location {
 
         Player player = Server.connectedPlayers.get(2);
 
-        if(player.getPosition().equals(cell)){
+        if(player.getPosition() != null && player.getPosition().equals(cell)){
 
             str = player.getNickname();
 
@@ -109,7 +109,7 @@ public class Location {
 
         Player player = Server.connectedPlayers.get(3);
 
-        if(player.getPosition().equals(cell)){
+        if(player.getPosition() != null && player.getPosition().equals(cell)){
 
             str = player.getNickname();
 
@@ -138,7 +138,7 @@ public class Location {
 
         Player player = Server.connectedPlayers.get(4);
 
-        if(player.getPosition().equals(cell)){
+        if(player.getPosition() != null && player.getPosition().equals(cell)){
 
             str = player.getNickname();
 
@@ -160,3 +160,4 @@ public class Location {
 }
 
 //TODO: pensare ad un nome migliore per questa classe
+
