@@ -128,7 +128,7 @@ public class WhisperEffect extends Effect {
 
         boolean valid = false;
 
-        for (Player target:targets){
+        for (Player target:possibleTargets){
 
             if (target.getNickname().equalsIgnoreCase(chosenTarget)){
 

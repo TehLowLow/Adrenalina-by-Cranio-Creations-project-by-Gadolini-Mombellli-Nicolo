@@ -122,8 +122,9 @@ public class Match extends Thread {
 
         }
 
-        chooseChampion();
         chooseFirstPlayer();
+        chooseChampion();
+
 
         Player lastPlayer = new Player();
 

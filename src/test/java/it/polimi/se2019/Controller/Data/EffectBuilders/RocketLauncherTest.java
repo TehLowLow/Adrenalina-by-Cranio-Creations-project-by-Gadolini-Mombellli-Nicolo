@@ -25,7 +25,7 @@ public class RocketLauncherTest {
         Weapon weapon = new Weapon();
         weapon.setBaseEffect(new RocketLauncher());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertEquals(result, false);
 
         for(int i = 1; i<5; i++){
 

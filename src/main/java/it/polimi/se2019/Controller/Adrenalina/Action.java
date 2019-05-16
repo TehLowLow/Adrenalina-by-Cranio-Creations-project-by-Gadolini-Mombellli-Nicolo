@@ -400,7 +400,7 @@ public class Action {
             }
 
             chosenWeapon.getBaseEffect().applyEffect(player, chosenWeapon.getBaseEffect().getTargets(player));
-
+            return;
 
         }
 
@@ -559,7 +559,11 @@ public class Action {
                     }
                 }
 
-                Server.update(player, Message.inputError());
+
+                if (!chosen) {
+                    Server.update(player, Message.inputError());
+                }
+
 
             }
 
@@ -584,17 +588,28 @@ public class Action {
 
                         }
 
-                        Server.update(player, Message.inputError());
+                        if (!chosen) {
+                            Server.update(player, Message.inputError());
+                        }
 
                     }
                 }
 
-                Server.update(player, Message.inputError());
+                /*
+                commentato, non dovrebbe servire
+                 */
+                //Server.update(player, Message.inputError());
 
             }
 
             Interaction.pay(player, newWeapon.getPrice());
             player.getPlayerboard().getWeapons().add(newWeapon);
+
+            if (position.getAvailableWeapons().contains(newWeapon)) {
+                position.getAvailableWeapons().remove(newWeapon);
+            }
+
+            Server.update(player, "Hai acquistato l'arma " + newWeapon.getName() + "!");
 
             return;
         }
@@ -627,6 +642,7 @@ public class Action {
         }
 
         position.setLoot(null);
+        Server.update(player, "Hai raccolto il loot!");
         return;
 
     }
@@ -873,6 +889,96 @@ public class Action {
         shot(player);
 
     }
+
+    public static void usePowerUp(Player player) {
+
+        ArrayList<Powerup> available = new ArrayList<>();
+        ArrayList<Powerup> powerups = player.getPlayerboard().getPowerups();
+
+
+        for (Powerup powerup : powerups) {
+
+            if (powerup.getName().contains("Teletrasporto")) {
+
+                available.add(powerup);
+
+            }
+
+            if (powerup.getName().contains("Raggio Cinetico")) {
+
+                available.add(powerup);
+
+            }
+
+        }
+
+
+        if (available.isEmpty()) {
+
+            return;
+
+        }
+
+        String scelta = updateWithAnswer(player, Message.vuoiUsarePowerup());
+
+        while (!InputCheck.correctYesNo(scelta)) {
+
+            update(player, Message.inputError());
+            scelta = updateWithAnswer(player, Message.vuoiUsarePowerup());
+
+        }
+
+        if (scelta.equalsIgnoreCase("no")) {
+
+            return;
+
+        }
+
+        scelta = updateWithAnswer(player, Message.scegliPowerUp(available));
+
+        boolean valid = false;
+        Powerup chosen = new Powerup();
+
+        for (Powerup powerup:available) {
+
+            if (powerup.getName().equalsIgnoreCase(scelta)) {
+
+                valid = true;
+                chosen = powerup;
+            }
+
+        }
+
+
+        while (!valid) {
+
+            update(player, Message.inputError());
+            scelta = updateWithAnswer(player, Message.scegliPowerUp(available));
+
+            for (Powerup powerup:available) {
+
+                if (powerup.getName().equalsIgnoreCase(scelta)) {
+
+                    valid = true;
+                    chosen = powerup;
+
+                }
+
+            }
+
+        }
+
+        chosen.getEffect().applyEffect(player, null);
+        player.getPlayerboard().getPowerups().remove(chosen);
+        Board.getDiscardedPowerUps().add(chosen);
+
+
+
+
+    }
+
+
+
 
 
 }

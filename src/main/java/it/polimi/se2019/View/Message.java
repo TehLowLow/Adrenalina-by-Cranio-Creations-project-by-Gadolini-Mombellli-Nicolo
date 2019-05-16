@@ -351,7 +351,7 @@ public class Message {
      */
 
     public static String colpito(Player attacker){
-        return "Sei stato colpito da " + attacker;
+        return "Sei stato colpito da " + attacker.getNickname();
     }
 
     /*
@@ -558,6 +558,24 @@ public class Message {
     public static String scegliMovimento(){
 
         return "Scegli una direzione (su, giu, destra, sinistra) o se stare fermo (stop)";
+
+    }
+
+    public static String vuoiUsarePowerup(){
+        return "Vuoi usare un potenziamento?";
+    }
+
+    public static String scegliPowerUp(ArrayList<Powerup> powerups){
+
+        String stringaFinale = "Scegli un potenziamento:\n";;
+
+        for (Powerup powerup:powerups){
+
+            stringaFinale += powerup.getName() + "\n";
+
+        }
+
+        return stringaFinale;
 
     }
 }

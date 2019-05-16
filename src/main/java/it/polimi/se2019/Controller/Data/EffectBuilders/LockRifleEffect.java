@@ -118,7 +118,7 @@ public class LockRifleEffect extends Effect {
 
         boolean valid = false;
 
-        for (Player target:targets){
+        for (Player target:possibleTargets){
 
             if (target.getNickname().equalsIgnoreCase(chosenTarget)){
 
@@ -136,7 +136,7 @@ public class LockRifleEffect extends Effect {
 
             chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
 
-            for (Player target:targets){
+            for (Player target:possibleTargets){
 
                 if (target.getNickname().equalsIgnoreCase(chosenTarget)){
 
@@ -201,7 +201,7 @@ public class LockRifleEffect extends Effect {
 
         boolean valid = false;
 
-        for (Player target:targets){
+        for (Player target:possibleTargets){
 
             if (target.getNickname().equalsIgnoreCase(chosenTarget)){
 
@@ -219,7 +219,7 @@ public class LockRifleEffect extends Effect {
 
             chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
 
-            for (Player target:targets){
+            for (Player target:possibleTargets){
 
                 if (target.getNickname().equalsIgnoreCase(chosenTarget)){
 

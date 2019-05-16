@@ -102,8 +102,25 @@ public class Turn {
     public void standard(Player player) {
 
 
+        for (int i=0; i<3; i++){
+            Action.usePowerUp(player);
+        }
+
+
         Action.perform(player);
+
+
+        for (int i=0; i<3; i++){
+            Action.usePowerUp(player);
+        }
+
+
         Action.perform(player);
+
+        for (int i=0; i<3; i++){
+            Action.usePowerUp(player);
+        }
+
         Action.reload(player);
 
         //Risolvo la board e respawno i morti

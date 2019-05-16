@@ -291,8 +291,32 @@ public class RocketLauncher extends Effect {
 
         ArrayList<Player> visiblePlayers = getVisibleOtherSquares(user);
 
+
         if (visiblePlayers.isEmpty()) {
-            return false;
+
+            if (user.getPlayerboard().getAmmoCubes().getBlue() > 0){
+
+                Player fakePlayer = new Player();
+
+                ArrayList<Cell> reachableCells = Check.reachableCells(user, 2);
+
+                for (Cell cell: reachableCells){
+
+                    fakePlayer.setPosition(cell);
+
+                    if (!getVisibleOtherSquares(fakePlayer).isEmpty()){
+
+                        return true;
+
+                    }
+
+                }
+
+                return false;
+
+            }
+
+
         }
         return true;
     }

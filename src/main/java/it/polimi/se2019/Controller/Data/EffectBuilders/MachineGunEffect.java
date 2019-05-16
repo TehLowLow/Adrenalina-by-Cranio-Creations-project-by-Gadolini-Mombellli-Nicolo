@@ -21,7 +21,7 @@ public class MachineGunEffect extends Effect {
     @Override
     public void applyEffect(Player user, ArrayList<Player> targets) {
 
-        if (targets.equals(null)) {
+        if (targets == null) {
 
             update(user, Message.nessunBersaglio());
             return;
@@ -112,10 +112,59 @@ public class MachineGunEffect extends Effect {
 
         if (possibleTargets.size() == 1) {
 
-            targets.add(possibleTargets.get(0));
+            String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
 
-            return targets;
+            while (!InputCheck.nicknameCheck(chosenTarget)) {
 
+                update(user, Message.bersaglioNonValido());
+
+                chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
+
+            }
+
+            boolean valid = false;
+
+            for (Player target:possibleTargets){
+
+                if (target.getNickname().equalsIgnoreCase(chosenTarget)){
+
+                    valid = true;
+
+                }
+
+            }
+
+
+
+            while (!valid) {
+
+                update(user, Message.bersaglioNonValido());
+
+                chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
+
+                for (Player target:possibleTargets){
+
+                    if (target.getNickname().equalsIgnoreCase(chosenTarget)){
+
+                        valid = true;
+
+                    }
+
+                }
+            }
+
+
+            for (Player player : connectedPlayers) {
+
+                if (player.getNickname().equals(chosenTarget)) {
+
+                    targets.add(player);
+
+                }
+
+
+            }
+        return targets;
 
         }
 
@@ -142,7 +191,7 @@ public class MachineGunEffect extends Effect {
 
             boolean valid = false;
 
-            for (Player target:targets){
+            for (Player target:possibleTargets){
 
                 if (target.getNickname().equalsIgnoreCase(chosenTarget)){
 
@@ -160,7 +209,7 @@ public class MachineGunEffect extends Effect {
 
                 chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
 
-                for (Player target:targets){
+                for (Player target:possibleTargets){
 
                     if (target.getNickname().equalsIgnoreCase(chosenTarget)){
 
@@ -329,7 +378,7 @@ public class MachineGunEffect extends Effect {
 
         boolean valid = false;
 
-        for (Player target:targets){
+        for (Player target:possibleTargets){
 
             if (target.getNickname().equalsIgnoreCase(chosenTarget)){
 
@@ -347,7 +396,7 @@ public class MachineGunEffect extends Effect {
 
             chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
 
-            for (Player target:targets){
+            for (Player target:possibleTargets){
 
                 if (target.getNickname().equalsIgnoreCase(chosenTarget)){
 
@@ -403,7 +452,7 @@ public class MachineGunEffect extends Effect {
     }
 
 
-    public boolean canUseTurretTripod(Player user, boolean focusShot, ArrayList<Player> focusShotTargets) {
+    public synchronized boolean canUseTurretTripod(Player user, boolean focusShot, ArrayList<Player> focusShotTargets) {
 
         Rybamount cost = new Rybamount();
         cost.setYellowCubes(0);

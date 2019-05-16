@@ -1427,7 +1427,7 @@ public class Check {
 
         for (Weapon weapon : playerWeapons) {
 
-            if (weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))) {
+            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                 if (weapon.isLoaded()) {
                     return true;
