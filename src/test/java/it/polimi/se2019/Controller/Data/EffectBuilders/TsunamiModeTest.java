@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class BBQModeTest {
+public class TsunamiModeTest {
 
     @Before
     public void preparePlayers(){
@@ -18,34 +18,30 @@ public class BBQModeTest {
     }
 
     @Test
-    public void applyEffect() {
-    }
-
-    @Test
-    public void getTargets() {
-    }
-
-    @Test
     public void hasTargets() {
 
-
-        Server.connectedPlayers.get(1).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
-
         Weapon weapon = new Weapon();
-        weapon.setAlternativeEffect(new BBQMode());
+        weapon.setAlternativeEffect(new TsunamiMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
+        assertEquals(result, false);
+
+        for(int i = 1; i<5; i++){
+
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        }
+
+
+        result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, true);
 
         for(int i = 1; i<5; i++){
 
-            Server.connectedPlayers.get(i).setPosition(Board.getMap().getYellowRoom().getCells().get(1));
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getBlueRoom().getCells().get(1));
         }
-
-
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, false);
 
-    }
 
+    }
 }
