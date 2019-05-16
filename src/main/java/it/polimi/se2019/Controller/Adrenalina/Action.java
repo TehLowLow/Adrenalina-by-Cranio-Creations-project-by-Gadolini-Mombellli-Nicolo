@@ -319,7 +319,7 @@ public class Action {
 
 
             if (steps > 0 && steps < 4) {
-                reachable = Check.reachableCells(player, steps);
+                reachable = Check.moveManager(player, steps);
                 response = updateWithAnswer(player, Message.scegliCella(reachable));
 
                 try {
