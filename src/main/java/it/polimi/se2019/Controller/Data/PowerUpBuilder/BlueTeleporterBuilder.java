@@ -19,7 +19,7 @@ public class BlueTeleporterBuilder {
     /**
      * bTeleport is an instance of Powerup
      */
-    private Powerup bTeleport = new Powerup();
+    private Powerup bTeleport;
 
 
     /**
@@ -59,6 +59,7 @@ public class BlueTeleporterBuilder {
         setting the fields of the powerup
          */
 
+        bTeleport= new Powerup();
         bTeleport.setName("Teletrasporto Blu");
         bTeleport.setTradeValue(tValue);
         bTeleport.setCardDescription(cDesc);

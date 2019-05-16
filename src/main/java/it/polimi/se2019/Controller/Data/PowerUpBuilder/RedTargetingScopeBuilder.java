@@ -20,7 +20,7 @@ public class RedTargetingScopeBuilder {
      * rtScope is an instance of Powerup
      */
 
-    private Powerup rtScope = new Powerup();
+    private Powerup rtScope;
 
     /**
      * eff is the effect of the Powerup
@@ -60,6 +60,7 @@ public class RedTargetingScopeBuilder {
         setting the fields of the Powerup
          */
 
+        rtScope= new Powerup();
         rtScope.setName("Mirino Rosso");
         rtScope.setTradeValue(tValue);
         rtScope.setCardDescription(cDesc);

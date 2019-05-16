@@ -20,7 +20,7 @@ public class YellowTeleporterBuilder {
      * yTeleport is an instance of Powerup
      */
 
-    private Powerup yTeleport = new Powerup();
+    private Powerup yTeleport;
 
     /**
      * eff is the effect of the powerup;
@@ -59,6 +59,7 @@ public class YellowTeleporterBuilder {
         setting the fields of the Powerup
          */
 
+        yTeleport= new Powerup();
         yTeleport.setName("Teletrasporto Giallo");
         yTeleport.setTradeValue(tValue);
         yTeleport.setCardDescription(cDesc);

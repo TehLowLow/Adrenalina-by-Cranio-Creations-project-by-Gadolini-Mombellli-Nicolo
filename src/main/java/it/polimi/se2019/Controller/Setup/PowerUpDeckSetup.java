@@ -1,4 +1,5 @@
 package it.polimi.se2019.Controller.Setup;
+
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Controller.Data.PowerUpBuilder.*;
 
@@ -14,31 +15,30 @@ public class PowerUpDeckSetup {
 
     /**
      * Creates an instance of all the PowerUp cards.
+     *
      * @return an ArrayList of PowerUps as a deck.
      */
 
 
-
-        private ArrayList<Powerup> powerupDeck = new ArrayList<>();
-        private BlueNewtonBuilder bNewton = new BlueNewtonBuilder();
-        private BlueTagbackGrenadeBuilder bTagback = new BlueTagbackGrenadeBuilder();
-        private BlueTargetingScopeBuilder btScope = new BlueTargetingScopeBuilder();
-        private BlueTeleporterBuilder bTeleport = new BlueTeleporterBuilder();
-        private RedNewtonBuilder rNewton = new RedNewtonBuilder();
-        private RedTagbackGrenadeBuilder rTagback = new RedTagbackGrenadeBuilder();
-        private RedTargetingScopeBuilder rtScope = new RedTargetingScopeBuilder();
-        private RedTeleporterBuilder rTeleport = new RedTeleporterBuilder();
-        private YellowNewtonBuilder yNewton = new YellowNewtonBuilder();
-        private YellowTagbackGrenadeBuilder yTagback = new YellowTagbackGrenadeBuilder();
-        private YellowTargetingScopeBuilder ytScope = new YellowTargetingScopeBuilder();
-        private YellowTeleporterBuilder yTeleport = new YellowTeleporterBuilder();
-
+    private ArrayList<Powerup> powerupDeck = new ArrayList<>();
+    private BlueNewtonBuilder bNewton = new BlueNewtonBuilder();
+    private BlueTagbackGrenadeBuilder bTagback = new BlueTagbackGrenadeBuilder();
+    private BlueTargetingScopeBuilder btScope = new BlueTargetingScopeBuilder();
+    private BlueTeleporterBuilder bTeleport = new BlueTeleporterBuilder();
+    private RedNewtonBuilder rNewton = new RedNewtonBuilder();
+    private RedTagbackGrenadeBuilder rTagback = new RedTagbackGrenadeBuilder();
+    private RedTargetingScopeBuilder rtScope = new RedTargetingScopeBuilder();
+    private RedTeleporterBuilder rTeleport = new RedTeleporterBuilder();
+    private YellowNewtonBuilder yNewton = new YellowNewtonBuilder();
+    private YellowTagbackGrenadeBuilder yTagback = new YellowTagbackGrenadeBuilder();
+    private YellowTargetingScopeBuilder ytScope = new YellowTargetingScopeBuilder();
+    private YellowTeleporterBuilder yTeleport = new YellowTeleporterBuilder();
 
 
-    public ArrayList<Powerup> build(){
+    public ArrayList<Powerup> build() {
 
 
-        for(int i = 0; i<2; i++) {
+        for (int i = 0; i < 2; i++) {
             powerupDeck.add(bNewton.build());
             powerupDeck.add(bTagback.build());
             powerupDeck.add(btScope.build());

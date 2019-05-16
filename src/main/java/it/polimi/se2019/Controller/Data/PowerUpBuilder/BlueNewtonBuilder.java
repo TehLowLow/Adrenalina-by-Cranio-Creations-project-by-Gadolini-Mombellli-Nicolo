@@ -21,7 +21,7 @@ public class BlueNewtonBuilder {
      * bNewton is an instance of Powerup
      */
 
-    private Powerup bNewton = new Powerup();
+    private Powerup bNewton;
 
     /**
      * eff represents the effect of the Powerup
@@ -57,6 +57,7 @@ public class BlueNewtonBuilder {
         setting the fields of the powerup
          */
 
+        bNewton = new Powerup();
         bNewton.setName("Raggio Cinetico Blu");
         bNewton.setColour(Colour.BLUE);
         bNewton.setTradeValue(tValue);

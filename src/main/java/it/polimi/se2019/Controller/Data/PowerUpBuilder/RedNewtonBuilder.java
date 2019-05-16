@@ -20,7 +20,7 @@ public class RedNewtonBuilder {
      * rNewton is an instance of Powerup
      */
 
-    private Powerup rNewton = new Powerup();
+    private Powerup rNewton;
 
     /**
      * eff is the effect of the powerup
@@ -59,6 +59,7 @@ public class RedNewtonBuilder {
         setting the fields of the powerup
          */
 
+        rNewton= new Powerup();
         rNewton.setName("Raggio Cinetico Rosso");
         rNewton.setTradeValue(tValue);
         rNewton.setColour(Colour.RED);

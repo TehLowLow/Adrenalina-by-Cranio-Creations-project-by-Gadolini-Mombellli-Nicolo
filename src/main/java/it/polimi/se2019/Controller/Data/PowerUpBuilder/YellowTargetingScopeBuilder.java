@@ -20,7 +20,7 @@ public class YellowTargetingScopeBuilder {
      * ytScope is an instance of Powerup
      */
 
-    private Powerup ytScope = new Powerup();
+    private Powerup ytScope;
 
     /**
      * eff is the effect of the Powerup
@@ -57,6 +57,7 @@ public class YellowTargetingScopeBuilder {
         setting the fields of the Powerup
          */
 
+        ytScope= new Powerup();
         ytScope.setName("Mirino Giallo");
         ytScope.setTradeValue(tValue);
         ytScope.setCardDescription(cDesc);
