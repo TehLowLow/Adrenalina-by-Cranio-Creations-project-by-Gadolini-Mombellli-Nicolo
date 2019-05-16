@@ -8,7 +8,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class PiercingModeTest {
+public class ReaperModeTest {
+
 
     @Before
     public void preparePlayers(){
@@ -20,8 +21,12 @@ public class PiercingModeTest {
     @Test
     public void hasTargets() {
 
+
+
+
+
         Weapon weapon = new Weapon();
-        weapon.setAlternativeEffect(new PiercingMode());
+        weapon.setAlternativeEffect(new ReaperMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, true);
 
@@ -33,7 +38,8 @@ public class PiercingModeTest {
         System.out.println(Board.getMap().getWhiteRoom().getCells().get(1).getName());
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertEquals(result, false);
+
 
     }
 }

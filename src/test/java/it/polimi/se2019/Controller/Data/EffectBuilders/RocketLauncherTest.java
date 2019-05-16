@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class BasicZX2Test {
+public class RocketLauncherTest {
 
     @Before
     public void preparePlayers(){
@@ -18,32 +18,31 @@ public class BasicZX2Test {
     }
 
     @Test
-    public void applyEffect() {
-    }
-
-    @Test
-    public void getTargets() {
-    }
-
-    @Test
     public void hasTargets() {
-
 
 
         Server.connectedPlayers.get(1).setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
         Weapon weapon = new Weapon();
-        weapon.setBaseEffect(new BasicZX2());
+        weapon.setBaseEffect(new RocketLauncher());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, true);
 
         for(int i = 1; i<5; i++){
 
-            Server.connectedPlayers.get(i).setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        }
+
+        result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
+        assertEquals(result, true);
+
+        for(int i = 1; i<5; i++){
+
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getYellowRoom().getCells().get(1));
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, false);
 
-    }
 
+    }
 }

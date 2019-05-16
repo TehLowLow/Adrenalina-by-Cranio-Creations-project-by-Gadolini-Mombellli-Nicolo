@@ -3,11 +3,19 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class BBQModeTest {
+
+    @Before
+    public void preparePlayers(){
+
+        ConfigurationTest.createTestConfiguration();
+
+    }
 
     @Test
     public void applyEffect() {
@@ -21,7 +29,7 @@ public class BBQModeTest {
     public void hasTargets() {
 
 
-        ConfigurationTest.createTestConfiguration();
+
         Server.connectedPlayers.get(1).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
 
         Weapon weapon = new Weapon();

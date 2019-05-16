@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class PiercingModeTest {
+public class PulverizeModeTest {
 
     @Before
     public void preparePlayers(){
@@ -20,20 +20,22 @@ public class PiercingModeTest {
     @Test
     public void hasTargets() {
 
+
         Weapon weapon = new Weapon();
-        weapon.setAlternativeEffect(new PiercingMode());
+        weapon.setAlternativeEffect(new PulverizeMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, true);
 
         for(int i = 1; i<5; i++){
 
-            Server.connectedPlayers.get(i).setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+
         }
 
-        System.out.println(Board.getMap().getWhiteRoom().getCells().get(1).getName());
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertEquals(result, false);
+
 
     }
 }

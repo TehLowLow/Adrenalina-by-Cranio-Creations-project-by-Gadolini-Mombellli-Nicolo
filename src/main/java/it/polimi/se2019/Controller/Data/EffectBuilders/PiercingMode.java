@@ -195,28 +195,34 @@ public class PiercingMode extends Effect {
 
         while(cell!=null){
 
-            cell = user.getPosition().getUpConnection().getConnectedCell();
+            cell = cell.getUpConnection().getConnectedCell();
             targetCells.add(cell);
 
         }
 
+        cell = user.getPosition();
+
         while(cell!=null){
 
-            cell = user.getPosition().getDownConnection().getConnectedCell();
+            cell = cell.getDownConnection().getConnectedCell();
             targetCells.add(cell);
 
         }
 
+        cell = user.getPosition();
+
         while(cell!=null){
 
-            cell = user.getPosition().getLeftConnection().getConnectedCell();
+            cell = cell.getLeftConnection().getConnectedCell();
             targetCells.add(cell);
 
         }
 
+        cell = user.getPosition();
+
         while(cell!=null){
 
-            cell = user.getPosition().getRightConnection().getConnectedCell();
+            cell = cell.getRightConnection().getConnectedCell();
             targetCells.add(cell);
 
         }

@@ -6,6 +6,7 @@ import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import org.junit.Test;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ConfigurationTest {
 
@@ -13,6 +14,7 @@ public class ConfigurationTest {
 
     public static void createTestConfiguration(){
 
+        Server.connectedPlayers = new CopyOnWriteArrayList<>();
         Map1Builder map1Builder = new Map1Builder();
         Board.setMap(map1Builder.build());
 

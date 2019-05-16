@@ -20,7 +20,7 @@ public class Map2StringRep {
 
     public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
     public static final String ANSI_RED_BACKGROUND =  "\u001B[31m";
-    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[32m";
     public static final String ANSI_YELLOW_BACKGROUND = "\u001B[33m";
     public static final String ANSI_BLUE_BACKGROUND =  "\u001B[34m";
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";

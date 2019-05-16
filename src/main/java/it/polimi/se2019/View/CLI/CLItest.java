@@ -1,6 +1,7 @@
 package it.polimi.se2019.View.CLI;
 
 import it.polimi.se2019.Controller.Data.MapBuilders.Map1Builder;
+import it.polimi.se2019.Controller.Data.MapBuilders.Map2Builder;
 import it.polimi.se2019.Controller.Data.MapBuilders.Map3Builder;
 import it.polimi.se2019.Controller.Data.MapBuilders.Map4Builder;
 import it.polimi.se2019.Model.Board;
@@ -20,8 +21,8 @@ public class CLItest {
         //Map3Builder map3 = new Map3Builder();
         //Board.setMap((map3.build()));
 
-        Map4Builder map4 = new Map4Builder();
-        Board.setMap(map4.build());
+        Map2Builder map2 = new Map2Builder();
+        Board.setMap(map2.build());
 
 
         Player player1 = new Player();
@@ -49,7 +50,7 @@ public class CLItest {
         Server.connectedPlayers.add(player5);
 
        // System.out.println(Map1StringRep.map1);
-        System.out.println(Map4Rep.map4);
+        System.out.println(Map2StringRep.map2);
        // System.out.println(Map3StringRep.map3);
 
         for (Player player : Server.connectedPlayers) {

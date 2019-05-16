@@ -229,7 +229,7 @@ public class RocketLauncher extends Effect {
 
     private void moveTarget(Player user, Player target) {
 
-        //Utilizzo lo stesso metodo del lanciagranate.
+        //Riutilizzo lo stesso metodo del lanciagranate.
         GrenadeLauncher.moveTarget(user, target);
 
     }
@@ -285,6 +285,7 @@ public class RocketLauncher extends Effect {
         return visiblePlayers;
     }
 
+    //TODO: Vedere test. Questo metodo non funziona perché il player può muoversi se ha il cubo blu, e nel caso può mirare ad altri bersagli.
     @Override
     public boolean hasTargets(Player user) {
 
