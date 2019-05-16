@@ -9,6 +9,7 @@ import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.connectedPlayers;
 import static it.polimi.se2019.Network.Server.update;
@@ -175,9 +176,9 @@ public class WhisperEffect extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        ArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+       ArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
 
-        for(Player player:visiblePlayers){
+        for(Player player : visiblePlayers){
 
             /*
             verifico che non sia nella stessa cella
@@ -185,38 +186,46 @@ public class WhisperEffect extends Effect {
 
             if (player.getPosition().equals(user.getPosition())){
 
-                return false;
-
+                visiblePlayers.remove(player);
+                continue;
             }
 
             /*
             verifico che non sia a distanza unitaria
              */
 
-            if (player.getPosition().getUpConnection().equals(user.getPosition())){
+            if (player.getPosition().getUpConnection().getConnectedCell() != null && player.getPosition().getUpConnection().getConnectedCell().equals(user.getPosition())){
 
-                return false;
-
-            }
-
-            if (player.getPosition().getDownConnection().equals(user.getPosition())){
-
-                return false;
+                visiblePlayers.remove(player);
+                continue;
 
             }
 
-            if (player.getPosition().getLeftConnection().equals(user.getPosition())){
+            if (player.getPosition().getDownConnection().getConnectedCell() != null && player.getPosition().getDownConnection().getConnectedCell().equals(user.getPosition())){
 
-                return false;
-
-            }
-
-            if (player.getPosition().getRightConnection().equals(user.getPosition())){
-
-                return false;
+                visiblePlayers.remove(player);
+                continue;
 
             }
 
+            if (player.getPosition().getLeftConnection().getConnectedCell() != null && player.getPosition().getLeftConnection().getConnectedCell().equals(user.getPosition())){
+
+                visiblePlayers.remove(player);
+                continue;
+
+            }
+
+            if (player.getPosition().getRightConnection().getConnectedCell() != null && player.getPosition().getRightConnection().getConnectedCell().equals(user.getPosition())){
+
+                visiblePlayers.remove(player);
+                continue;
+
+            }
+
+        }
+
+        if(visiblePlayers.isEmpty()){
+            return false;
         }
 
         return true;

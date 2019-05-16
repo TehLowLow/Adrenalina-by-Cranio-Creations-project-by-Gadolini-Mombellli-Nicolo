@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class RocketLauncherTest {
+public class WhisperEffectTest {
 
     @Before
     public void preparePlayers(){
@@ -21,9 +21,8 @@ public class RocketLauncherTest {
     public void hasTargets() {
 
 
-        Server.connectedPlayers.get(1).setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
         Weapon weapon = new Weapon();
-        weapon.setBaseEffect(new RocketLauncher());
+        weapon.setBaseEffect(new WhisperEffect());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, false);
 
@@ -33,7 +32,16 @@ public class RocketLauncherTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
+        assertEquals(result, false);
+
+        for(int i = 1; i<5; i++){
+
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+        }
+
+        result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, true);
+
 
         for(int i = 1; i<5; i++){
 
@@ -43,9 +51,6 @@ public class RocketLauncherTest {
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, false);
 
-        Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().setBlueCubes(1);
-        result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
 
 
     }

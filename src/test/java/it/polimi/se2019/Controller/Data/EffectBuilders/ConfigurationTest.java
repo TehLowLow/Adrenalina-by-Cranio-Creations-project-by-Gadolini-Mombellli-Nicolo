@@ -45,6 +45,9 @@ public class ConfigurationTest {
           playerboard.setPowerups(new ArrayList<Powerup>());
           playerboard.setWeapons(new ArrayList<Weapon>());
           playerboard.setAmmoCubes(new Rybamount());
+          playerboard.getAmmoCubes().setBlueCubes(0);
+          playerboard.getAmmoCubes().setRedCubes(0);
+          playerboard.getAmmoCubes().setYellowCubes(0);
           playerboard.setChampionName("champion" + 1);
           playerboard.setFrenzyboard(false);
           ArrayList <Integer> pbvalue = new ArrayList<>();
