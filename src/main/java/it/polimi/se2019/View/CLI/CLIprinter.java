@@ -14,25 +14,25 @@ public class CLIprinter {
 
         if (map.getMapID() == 1){
 
-            mapRep = Map1StringRep.map1;
+            mapRep = Map1StringRep.map1();
 
         }
 
         if (map.getMapID() == 2){
 
-            mapRep = Map2StringRep.map2;
+            mapRep = Map2StringRep.map2();
 
         }
 
         if (map.getMapID() == 3){
 
-            mapRep = Map3StringRep.map3;
+            mapRep = Map3StringRep.map3();
 
         }
 
         if (map.getMapID() == 4){
 
-            mapRep = Map4StringRep.map4;
+            mapRep = Map4StringRep.map4();
 
         }
 
