@@ -33,7 +33,7 @@ public class VortexCannonTest {
         Weapon weapon = new Weapon();
         weapon.setBaseEffect(new VortexCannon());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+        assertEquals(result, true);
 
         for(int i = 1; i<5; i++){
 
@@ -48,6 +48,16 @@ public class VortexCannonTest {
         for(int i = 1; i<5; i++){
 
             Server.connectedPlayers.get(i).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        }
+
+        result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
+        assertEquals(result, true);
+
+
+
+        for(int i = 1; i<5; i++){
+
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));

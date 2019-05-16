@@ -7,7 +7,7 @@ import it.polimi.se2019.Model.Room;
 
 import static it.polimi.se2019.View.CLI.Location.*;
 
-public class Map4Rep {
+public class Map4StringRep {
 
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";

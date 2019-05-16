@@ -133,6 +133,11 @@ public class Server {
 
     public synchronized static String updateWithAnswer(Player player, String msg) {
 
+        if (Board.getMap() != null && player.getPosition() != null){
+
+            msg = CLIprinter.print(player) + msg;
+
+        }
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
 
@@ -161,6 +166,12 @@ public class Server {
 
 
     public synchronized static void update(Player player, String msg) {
+
+        if (Board.getMap() != null && player.getPosition() != null){
+
+            msg = CLIprinter.print(player) + msg;
+
+        }
 
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
