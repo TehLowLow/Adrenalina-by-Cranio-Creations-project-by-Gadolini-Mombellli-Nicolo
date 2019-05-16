@@ -43,6 +43,10 @@ public class RocketLauncherTest {
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, false);
 
+        Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().setBlueCubes(1);
+        result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
+        assertEquals(result, true);
+
 
     }
 }

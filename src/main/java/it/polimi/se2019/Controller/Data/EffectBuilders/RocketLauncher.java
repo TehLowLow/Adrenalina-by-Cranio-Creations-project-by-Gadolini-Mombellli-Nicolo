@@ -291,7 +291,6 @@ public class RocketLauncher extends Effect {
 
         ArrayList<Player> visiblePlayers = getVisibleOtherSquares(user);
 
-
         if (visiblePlayers.isEmpty()) {
 
             if (user.getPlayerboard().getAmmoCubes().getBlue() > 0){
@@ -316,8 +315,10 @@ public class RocketLauncher extends Effect {
 
             }
 
-
+            return false;
         }
+
+
         return true;
     }
 
