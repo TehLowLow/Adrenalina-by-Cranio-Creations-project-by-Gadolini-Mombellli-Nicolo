@@ -31,7 +31,7 @@ public class BasicHeatSeeker extends Effect {
 
                 for (Player target : targets) {
 
-                        Damage.giveDamage(1, user, target);
+                        Damage.giveDamage(3, user, target);
 
                 }
 

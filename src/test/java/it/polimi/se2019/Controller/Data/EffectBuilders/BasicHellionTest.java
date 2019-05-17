@@ -1,10 +1,13 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Model.Board;
+import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.junit.Assert.*;
 
@@ -20,7 +23,35 @@ public class BasicHellionTest {
 
 
     @Test
-    public void applyEffect() {
+    public void applyEffectTest() {
+
+        Player user = Server.connectedPlayers.get(0);
+        Player target = Server.connectedPlayers.get(1);
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
+        targets.add(target);
+
+
+        Weapon hellion = new Weapon();
+        hellion.setBaseEffect(new BasicHellion());
+
+        hellion.getBaseEffect().applyEffect(user, targets);
+
+        assertEquals(1, target.getPlayerboard().getDamage().size());
+
+        for(Player hit : Server.connectedPlayers){
+
+            if(hit.equals(user)){
+                continue;
+            }
+
+            if(hit.getPosition().equals(target)){
+
+                assertEquals(1, hit.getPlayerboard().getMarker());
+
+            }
+
+        }
+
     }
 
     @Test

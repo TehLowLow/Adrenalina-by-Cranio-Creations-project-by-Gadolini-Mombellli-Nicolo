@@ -312,13 +312,13 @@ public class Action {
 
             try {
                 steps = InputCheck.numberCheck(s);
-                correct = true;
             } catch (NumberFormatException e) {
                 update(player, Message.inputError());
             }
 
 
             if (steps > 0 && steps < 4) {
+                correct = true;
                 reachable = Check.reachableCells(player, steps);
                 response = updateWithAnswer(player, Message.scegliCella(reachable));
 
@@ -517,6 +517,7 @@ public class Action {
                         chosen = true;
                     } catch (NumberFormatException e) {
                         Server.update(player, Message.inputError());
+
                         continue;
                     }
 

@@ -27,6 +27,7 @@ public class BasicElectroschythe extends Effect {
             CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
 
             Token d1 = new Token();
+            d1.setChampionName(user.getPlayerboard().getChampionName());
 
             damages.add(d1);
 

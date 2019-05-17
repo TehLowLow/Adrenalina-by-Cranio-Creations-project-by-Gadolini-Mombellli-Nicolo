@@ -1,10 +1,13 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Model.Board;
+import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.junit.Assert.*;
 
@@ -18,7 +21,21 @@ public class BasicFurnaceTest {
     }
 
     @Test
-    public void applyEffect() {
+    public void applyEffectTest() {
+
+        Player user = Server.connectedPlayers.get(0);
+        Player target = Server.connectedPlayers.get(1);
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
+        targets.add(target);
+
+
+        Weapon furnace = new Weapon();
+        furnace.setBaseEffect(new BasicFurnace());
+
+        furnace.getBaseEffect().applyEffect(user, targets);
+
+        assertEquals(1, target.getPlayerboard().getDamage().size());
+
     }
 
     @Test

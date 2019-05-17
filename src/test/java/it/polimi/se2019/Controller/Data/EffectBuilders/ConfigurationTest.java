@@ -38,6 +38,7 @@ public class ConfigurationTest {
           Player player = new Player();
           player.setPosition(Board.getMap().getBlueRoom().getCells().get(0));
           player.setNickname("player" + i);
+          player.setConnectionTech("nessuna");
           player.setPlayerboard(new Playerboard());
           Playerboard playerboard = player.getPlayerboard();
           playerboard.setDamage(new CopyOnWriteArrayList<Token>());
