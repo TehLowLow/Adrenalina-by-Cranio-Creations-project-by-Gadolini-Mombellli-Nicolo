@@ -609,7 +609,7 @@ public class Check {
              */
 
 
-            for (int i = 1; i < steps - 1; i++) {
+            for (int i = 1; i < steps; i++) {
 
                 CopyOnWriteArrayList<Cell> copiesToCheck = new CopyOnWriteArrayList<>();
 
@@ -682,9 +682,22 @@ public class Check {
 
         }
 
+        if (reachableCells.contains(position)){
+
+            reachableCells.remove(position);
+
+        }
+
+
+
         return reachableCells;
 
     }
+
+
+
+
+
 
     public static boolean checkFrenzy() {
 
@@ -1531,5 +1544,28 @@ public class Check {
         return false;
 
     }
+
+    public static CopyOnWriteArrayList<Cell> moveManager(Player player, int steps){
+
+        CopyOnWriteArrayList<Cell> maxNPassi = reachableCells(player, steps);
+        CopyOnWriteArrayList<Cell> maxNMenoUnoPassi = reachableCells(player, steps-1);
+        CopyOnWriteArrayList<Cell> nPassi = new CopyOnWriteArrayList<>();
+
+        for (Cell cell:maxNPassi){
+
+            if (!maxNMenoUnoPassi.contains(cell)){
+
+                nPassi.add(cell);
+
+            }
+
+        }
+
+        return nPassi;
+
+
+    }
+
+
 
 }

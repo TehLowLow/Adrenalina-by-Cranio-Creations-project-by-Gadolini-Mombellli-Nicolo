@@ -49,8 +49,8 @@ public class CLItest {
         Server.connectedPlayers.add(player4);
         Server.connectedPlayers.add(player5);
 
-       // System.out.println(Map1StringRep.map1);
-        //System.out.println(Map2StringRep.map2);
+       // System.out.println(Map1StringRep.map1)
+        // System.out.println(Map2StringRep.map2());
        // System.out.println(Map3StringRep.map3);
 
         for (Player player : Server.connectedPlayers) {
