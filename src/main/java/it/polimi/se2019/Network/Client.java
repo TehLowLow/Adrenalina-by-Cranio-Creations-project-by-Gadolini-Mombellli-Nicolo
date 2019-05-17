@@ -7,6 +7,12 @@ import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.util.Scanner;
 
+
+/**
+ * Is the player side of the game, interacting with the player, establishing a connection of choice and managing game I/O.
+ */
+
+
 public class Client {
 
     private static String response;
@@ -14,7 +20,12 @@ public class Client {
     static RMIClient rClient = new RMIClient();
     private static volatile int myPort = 4000;
 
-    public static void main(String[] args) {
+
+    /**
+     * Starts the client side of the connection and asks the server for a port to connect to after the login of the player.
+     */
+
+    public static void main() {
 
 
         //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.
@@ -24,13 +35,10 @@ public class Client {
 
 //----------------------------------------------------------------------------------------------------
 
-    private static String input() {
-
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
-    }
-
-//----------------------------------------------------------------------------------------------------
+    /**
+     * Asks the player for the desired connection, and parses the response, starting the appropriate client side of the
+     * tcp connection.
+     */
 
     private static void initConnection() {
 

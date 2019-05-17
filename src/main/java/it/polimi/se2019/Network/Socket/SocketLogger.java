@@ -2,6 +2,7 @@ package it.polimi.se2019.Network.Socket;
 
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Logger;
+import org.jetbrains.annotations.Contract;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -24,15 +25,24 @@ public class SocketLogger implements Logger, Runnable {
     private Player temp;
 
 
+    /**
+     * The constructor of the login class.
+     * @param serverSocket is the socket started into the executor pool to be assigned to a single server object.
+     */
+
+    @Contract(pure = true)
     public SocketLogger(ServerSocket serverSocket) {
         this.mySocket = serverSocket;
     }
 
-
+    /**
+     * Starts the server side connection for a player.
+     */
     @Override
     public void run() {
 
         //Esegue sempre ascoltando sulla porta helper. Accetta una connessione per un login e risponde con accesso consentito o negato
+
         try {
             logMeIn = mySocket.accept();
         } catch (Exception e) {
@@ -46,14 +56,19 @@ public class SocketLogger implements Logger, Runnable {
     }
 
 
+    /**
+     * Verifies the player credentials.
+     * @return true if a player is allowed into the game server.
+     */
     @Override
-    public int logIn() {
+    public synchronized int logIn() {
 
         try {
             out.writeUTF("Inserisci username: ");
-            userName = in.readUTF();  //TODO non ho check sull' input, posso premere anche solo invio e me lo accetta.
+            userName = in.readUTF();
             out.writeUTF("Inserisci la password: ");
-            passWord = in.readUTF();  //TODO uguale
+            passWord = in.readUTF();
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -80,35 +95,40 @@ public class SocketLogger implements Logger, Runnable {
     }
 
 
+    /**
+     * This method is the verification process for the login, checks for a valid username/password combination and allows
+     * the player into the lobby
+     * @return true if the player has given valid credentials.
+     */
+
     @Override
     public boolean checkConnections() {
 
         //Il player non si è mai connesso
-        if (registrations.get(userName) == null) {
+        if (registrations.get(userName) == null && matchStarted) {
             //Se il match è gia iniziato rifiuto la connessione
-            if (matchStarted) {
-                try {
-                    out.writeUTF("Partita gia iniziata, non è possibile accedere");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return false;
-
-                //Se il match è ancora in fase di lobby lo aggiungo fra i player
-            } else if (connectedSize() < 5) {  //TODO 1
-
-                temp = newPlayer(userName, passWord, "Socket");
-
-                try {
-                    out.writeUTF("Aggiunto " + userName);
-                    out.writeInt(temp.getPORT());
-                    out.writeInt(SOCKETPORT);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return true;
+            try {
+                out.writeUTF("Partita gia iniziata, non è possibile accedere");
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            return false;
+
+            //Se il match è ancora in fase di lobby lo aggiungo fra i player
+        } else if (connectedSize() < 5) {  //TODO 1
+
+            temp = newPlayer(userName, passWord, "Socket");
+
+            try {
+                out.writeUTF("Aggiunto " + userName);
+                out.writeInt(temp.getPORT());
+                out.writeInt(SOCKETPORT);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return true;
         }
+
 
         //Se il player compare fra i giocatori che si son gia registrati una volta devo verificare che sia disconnesso (evito double connection)
         for (Player player : connectedPlayers) {
@@ -149,12 +169,15 @@ public class SocketLogger implements Logger, Runnable {
 
     }
 
+    /**
+     * Starts the input stream for the server
+     * @param socket is the socket where inputs from the client will come.
+     * @return the inputstream for communication.
+     */
 
     private DataInputStream inStream(Socket socket) {
         try {
-
             return new DataInputStream(socket.getInputStream());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -163,6 +186,11 @@ public class SocketLogger implements Logger, Runnable {
 
     }
 
+    /**
+     * Starts the output stream for the server
+     * @param socket is the socket where outputs for the vclient will be pushed.
+     * @return the outputstream for communication.
+     */
     private DataOutputStream outStream(Socket socket) {
 
         try {

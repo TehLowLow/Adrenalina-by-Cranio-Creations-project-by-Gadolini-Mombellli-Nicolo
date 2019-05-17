@@ -30,12 +30,12 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
     }
 
 
-    private synchronized void initServer(RMILogger LoginRMI) {
+    private synchronized void initServer(RMILogger loginRMI) {
 
         try { //avvio il server registry
 
             String nome = "LoginRMI";
-            RMILoggerInterface stub = (RMILoggerInterface) UnicastRemoteObject.exportObject(LoginRMI, LOGINRMIPORT);
+            RMILoggerInterface stub = (RMILoggerInterface) UnicastRemoteObject.exportObject(loginRMI, LOGINRMIPORT);
             Registry registry = LocateRegistry.createRegistry(LOGINRMIPORT);
             registry.rebind(nome, stub);
             System.out.println("Server online listening on port " + LOGINRMIPORT);
