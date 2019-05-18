@@ -19,7 +19,15 @@ import java.util.*;
 import java.util.concurrent.*;
 
 
+
+/**
+ * Server is the main class, being responsible of supervising network actions such as new connections and data sharing,
+ * generating players data, and managing a complete match.
+ */
+
 public class Server {
+
+
 
 
     private static volatile int clientPort = 4000;
@@ -33,11 +41,16 @@ public class Server {
     private static ServerSocket gameSocket;
     public static boolean start = false;
     public static Hashtable registrations = new Hashtable();  //associazione user psw
-    public static Hashtable playerClient = new Hashtable();  //associazione fra giocatore e suo client
+    static Hashtable playerClient = new Hashtable();  //associazione fra giocatore e suo client
     public static CopyOnWriteArrayList<Player> connectedPlayers = new CopyOnWriteArrayList<>();  //Arraylist di player connessi.
 
+    /**
+     * Creates and starts a socket for incoming connections over a predetermined PORT.
+     * @param port is the port where to listen to connections.
+     * @return a serversocket able to listen for connections.
+     */
 
-    private synchronized static ServerSocket initServer(int port) {
+    private static synchronized ServerSocket initServer(int port) {
 
         try {
 
@@ -53,11 +66,22 @@ public class Server {
         return null;
     }
 
+    /**
+     * Returns the number of players connected to the lobby
+     * @return the number of players in the lobby.
+     */
 
     public static synchronized int connectedSize() {
         return connectedPlayers.size();
     }
 
+    /**
+     * Recives approved credentials and builds the Player class, responsible of collecting all the player's data.
+     * @param u is the provided and verified username of the player.
+     * @param p is the password used for the unique reconnection purposes.
+     * @param connection stores the type of a player's connection.
+     * @return a Player class containing all the above information.
+     */
     public static synchronized Player newPlayer(String u, String p, String connection) {
 
         Player player = new Player();
@@ -76,7 +100,12 @@ public class Server {
     }
 
 
-    public static void main(String[] args) {
+    /**
+     * Starts the server, initializes connections and await players. After the players are officially logged and the timer
+     * ends, starts a new game.
+     */
+
+    public static void main() {
 
         //All avvio del server devono accadere due cose:
         //1) il server avvia i thread di inizializzazione delle connessioni dedicate alla partita
@@ -120,7 +149,7 @@ public class Server {
             gamePool.submit(new SocketServer(gameSocket));
         }
 
-        while(Server.connectedPlayers.size()<3){
+        while (Server.connectedPlayers.size() < 3) {
             continue;
         }
 
@@ -131,9 +160,17 @@ public class Server {
     }
 
 
-    public synchronized static String updateWithAnswer(Player player, String msg) {
+    /**
+     * Is one of the communication methods between Server and clients. The method sends to the player a String, and listens
+     * for a player's answer.
+     * @param player is the player that will receive the string.
+     * @param msg is the information to push to the player.
+     * @return the player's answer
+     */
 
-        if (Board.getMap() != null && player.getPosition() != null){
+    public static synchronized String updateWithAnswer(Player player, String msg) {
+
+        if (Board.getMap() != null && player.getPosition() != null) {
 
             msg = CLIprinter.print(player) + msg;
 
@@ -158,21 +195,23 @@ public class Server {
 
 
         }
-
         return null;
-
-
     }
 
 
-    public synchronized static void update(Player player, String msg) {
+    /**
+     * Pushes a string to a single player, and expects no answer from his side.
+     * @param player Is the player that will receive the message.
+     * @param msg is the information to push to the player.
+     */
 
-        if (Board.getMap() != null && player.getPosition() != null){
+    public static synchronized void update(Player player, String msg) {
+
+        if (Board.getMap() != null && player.getPosition() != null) {
 
             msg = CLIprinter.print(player) + msg;
 
         }
-
 
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
@@ -195,17 +234,31 @@ public class Server {
     }
 
 
-    public synchronized static void updateAll(String msg) {
+    //Gli int sono messaggi di controllo per decidere sul client in che routine entrare
 
-        /*for (Player player : connectedPlayers) {
 
-            update(player, "test di UpdateAll, resta in linea");
+    /**
+     * Pushes a single message to all the connected clients and expects no answer from anyone.
+     * @param msg is the message to push to the clients.
+     */
 
-        }*/
+    public static synchronized void updateAll(String msg) {
 
+        /*
+        Update all deve ciclare sui connected players e mandare a tutti il msg
+         */
+
+        for (Player player : connectedPlayers) {
+
+            update(player, msg);
+
+        }
 
     }
 
+    /**
+     * @return the first static port available for a player's client connection.
+     */
 
     private static synchronized int calcPorts() {
 

@@ -21,9 +21,9 @@ public class SocketClient extends Client implements Runnable {
     private Socket client;
     private int gamePort;
     private int localPort;
-    private byte address[] = {127, 0, 0, 1};
+    private byte[] address = {127, 0, 0, 1};
     private int signal;
-    private String Update;
+
 
     private static DataOutputStream out;
     private static DataInputStream in;
@@ -57,9 +57,7 @@ public class SocketClient extends Client implements Runnable {
             e.printStackTrace();
         }
 
-        //Inserire qua ascii code per resettare la cli
-
-        connectGame();  //Risolvere il problema di connettersi con la propria porta statica
+        connectGame();
 
         streamInit();
 
@@ -80,7 +78,7 @@ public class SocketClient extends Client implements Runnable {
 
             if (signal == 1) {
 
-                try { //update
+                try {//update
 
                     out.writeInt(signal);
                     System.out.println(in.readUTF());
@@ -97,7 +95,6 @@ public class SocketClient extends Client implements Runnable {
                     Scanner scanner = new Scanner(System.in);
                     out.writeUTF(scanner.nextLine());
 
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -109,7 +106,6 @@ public class SocketClient extends Client implements Runnable {
 
     private synchronized void connectLogger() {
 
-
         //Il ciclo while evita che il client crashi perchè la connessione è non disponibile.
         while (!connected) {
 
@@ -120,10 +116,11 @@ public class SocketClient extends Client implements Runnable {
 
             } catch (ConnectException e) {
 
-                System.err.println( "ritento la connessione");
+                System.err.println("ritento la connessione");
 
             } catch (Exception e) {
                 e.printStackTrace();
+
             }
         }
 

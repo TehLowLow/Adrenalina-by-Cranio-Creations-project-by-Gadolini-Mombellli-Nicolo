@@ -972,13 +972,6 @@ public class Action {
         player.getPlayerboard().getPowerups().remove(chosen);
         Board.getDiscardedPowerUps().add(chosen);
 
-
-
-
     }
-
-
-
-
 
 }
