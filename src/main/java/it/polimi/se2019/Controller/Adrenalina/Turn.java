@@ -259,16 +259,7 @@ public class Turn {
         }
 
         catch(EmptyDeckException e){
-                CopyOnWriteArrayList <Loot> discarded = Board.getDiscardedLoot();
-                Collections.shuffle(discarded);
-                Board.setLootDeck(discarded);
-                Board.setDiscardedLoot(new CopyOnWriteArrayList<Loot>());
-
-                CopyOnWriteArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
-                Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
-                Board.getPowerUpDeck().remove(drawnPowerUp);
-                powerUps.add(drawnPowerUp);
-                player.getPlayerboard().setPowerups(powerUps);
+                Interaction.shuffleAndDraw(player);
             }
         catch(LimitPowerUpException e){
                 Server.update(player, Message.limitePowerup());

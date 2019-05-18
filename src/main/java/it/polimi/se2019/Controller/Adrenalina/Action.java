@@ -10,6 +10,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Collections;
 
 import static it.polimi.se2019.Controller.Adrenalina.Interaction.selectShotMove;
+import static it.polimi.se2019.Controller.Adrenalina.Interaction.shuffleAndDraw;
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
@@ -499,32 +500,8 @@ public class Action {
             }
 
             answered = true;
-            if (InputCheck.yesOrNo(answer)) {
 
-                CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
-                Cell toReach = new LootCell();
-                int chosenCell = 0;
-                boolean chosen = false;
-
-                while (!chosen) {
-
-                    String chosenC = Server.updateWithAnswer(player, Message.scegliCella(reachableCells));
-
-                    try {
-
-                        chosenCell = InputCheck.numberCheck(chosenC);
-                        toReach = reachableCells.get(chosenCell);
-                        chosen = true;
-                    } catch (NumberFormatException e) {
-                        Server.update(player, Message.inputError());
-                        continue;
-                    }
-
-                    player.setPosition(toReach);
-
-                }
-
-            }
+            toReach(answer, player);
 
         }
 
@@ -626,17 +603,11 @@ public class Action {
                 Interaction.drawPowerUp(player);
 
             } catch (EmptyDeckException e) {
-                CopyOnWriteArrayList<Loot> discarded = Board.getDiscardedLoot();
-                Collections.shuffle(discarded);
-                Board.setLootDeck(discarded);
-                Board.setDiscardedLoot(new CopyOnWriteArrayList<Loot>());
 
-                CopyOnWriteArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
-                Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
-                Board.getPowerUpDeck().remove(drawnPowerUp);
-                powerUps.add(drawnPowerUp);
-                player.getPlayerboard().setPowerups(powerUps);
+                shuffleAndDraw(player);
+
             } catch (LimitPowerUpException e) {
+
                 Server.update(player, Message.limitePowerup());
             }
         }
@@ -686,48 +657,7 @@ public class Action {
      */
     private static void enhancedPickUp(Player player) {
 
-        String answer;
-        boolean answered = false;
-
-        while (!answered) {
-
-            answer = Server.updateWithAnswer(player, Message.vuoiMuovertiPU());
-
-            if (InputCheck.correctYesNo(answer)) {
-                Server.update(player, Message.inputError());
-                continue;
-            }
-
-            answered = true;
-            if (InputCheck.yesOrNo(answer)) {
-
-                CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
-                Cell toReach = new LootCell();
-                int chosenCell = 0;
-                boolean chosen = false;
-
-                while (!chosen) {
-
-                    String chosenC = Server.updateWithAnswer(player, Message.scegliCella(reachableCells));
-
-                    try {
-
-                        chosenCell = InputCheck.numberCheck(chosenC);
-                        toReach = reachableCells.get(chosenCell);
-                        chosen = true;
-                    } catch (NumberFormatException e) {
-                        Server.update(player, Message.inputError());
-                        continue;
-                    }
-
-                    player.setPosition(toReach);
-
-                }
-
-            }
-
-        }
-
+        askForMovement(player);
         pickUp(player);
 
     }
@@ -828,52 +758,8 @@ public class Action {
      */
     private static void enhancedFrenzyPickUp(Player player) {
 
-        String answer;
-        boolean answered = false;
-
-        while (!answered) {
-
-            answer = Server.updateWithAnswer(player, Message.vuoiMuovertiPU());
-
-            if (InputCheck.correctYesNo(answer)) {
-                Server.update(player, Message.inputError());
-                continue;
-            }
-
-            answered = true;
-            if (InputCheck.yesOrNo(answer)) {
-
-                CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
-                Cell toReach = new LootCell();
-                int chosenCell = 0;
-                boolean chosen = false;
-
-                while (!chosen) {
-
-                    String chosenC = Server.updateWithAnswer(player, Message.scegliCella(reachableCells));
-
-                    try {
-
-                        chosenCell = InputCheck.numberCheck(chosenC);
-                        toReach = reachableCells.get(chosenCell);
-                        chosen = true;
-                    } catch (NumberFormatException e) {
-                        Server.update(player, Message.inputError());
-                        continue;
-                    }
-
-                    player.setPosition(toReach);
-
-                }
-
-            }
-
-        }
-
-
+        askForMovement(player);
         enhancedPickUp(player);
-
-
     }
 
     /**
@@ -955,7 +841,7 @@ public class Action {
             update(player, Message.inputError());
             scelta = updateWithAnswer(player, Message.scegliPowerUp(available));
 
-            for (Powerup powerup:available) {
+            for (Powerup powerup : available) {
 
                 if (powerup.getName().equalsIgnoreCase(scelta)) {
 
@@ -973,5 +859,57 @@ public class Action {
         Board.getDiscardedPowerUps().add(chosen);
 
     }
+
+    private static void toReach(String input, Player player) {
+
+        if (InputCheck.yesOrNo(input)) {
+
+            CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+            Cell toReach = new LootCell();
+            int chosenCell = 0;
+            boolean chosen = false;
+
+            while (!chosen) {
+
+                String chosenC = Server.updateWithAnswer(player, Message.scegliCella(reachableCells));
+
+                try {
+
+                    chosenCell = InputCheck.numberCheck(chosenC);
+                    toReach = reachableCells.get(chosenCell);
+                    chosen = true;
+                } catch (NumberFormatException e) {
+                    Server.update(player, Message.inputError());
+                    continue;
+                }
+
+                player.setPosition(toReach);
+
+            }
+
+        }
+
+
+    }
+
+
+    private static void askForMovement(Player player) {
+        String answer;
+        boolean answered = false;
+
+        while (!answered) {
+
+            answer = Server.updateWithAnswer(player, Message.vuoiMuovertiPU());
+
+            if (InputCheck.correctYesNo(answer)) {
+                Server.update(player, Message.inputError());
+                continue;
+            }
+
+            answered = true;
+        }
+    }
+
+
 
 }

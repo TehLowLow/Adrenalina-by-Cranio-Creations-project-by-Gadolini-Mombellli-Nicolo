@@ -8,6 +8,7 @@ import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 
+import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.update;
@@ -619,5 +620,22 @@ public class Interaction {
         }
 
     }
+
+    public static void shuffleAndDraw(Player player) {
+
+        CopyOnWriteArrayList<Loot> discarded = Board.getDiscardedLoot();
+        Collections.shuffle(discarded);
+        Board.setLootDeck(discarded);
+        Board.setDiscardedLoot(new CopyOnWriteArrayList<Loot>());
+
+        CopyOnWriteArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
+        Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
+        Board.getPowerUpDeck().remove(drawnPowerUp);
+        powerUps.add(drawnPowerUp);
+        player.getPlayerboard().setPowerups(powerUps);
+
+
+    }
+
 
 }
