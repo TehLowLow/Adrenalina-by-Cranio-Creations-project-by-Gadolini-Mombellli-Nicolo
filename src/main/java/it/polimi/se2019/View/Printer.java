@@ -9,11 +9,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Printer {
 
 
-    public static void map(Board board){
+    public static void map(){
 
         System.out.println("Sto per stampare la mappa.");
 
-        Map map = board.getMap();
+        Map map = Board.getMap();
 
         int mapID = map.getMapID();
         Room blueRoom = map.getBlueRoom();

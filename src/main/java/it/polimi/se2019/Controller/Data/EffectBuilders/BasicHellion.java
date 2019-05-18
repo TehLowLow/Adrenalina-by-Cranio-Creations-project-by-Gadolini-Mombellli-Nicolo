@@ -2,6 +2,7 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Cell;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
@@ -21,15 +22,7 @@ public class BasicHellion extends Effect {
 
         Player target = targets.get(0);
 
-        Token damage = new Token();
-
-        damage.setChampionName(user.getPlayerboard().getChampionName());
-
-        CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
-
-        damages.add(damage);
-
-        target.getPlayerboard().setDamage(damages);
+        Damage.giveDamage(1, user, target);
 
         for (Player other : Server.connectedPlayers) {
 
@@ -39,12 +32,7 @@ public class BasicHellion extends Effect {
 
             if (other.getPosition().equals(target.getPosition())) {
 
-                Token marker = new Token();
-                marker.setChampionName(user.getPlayerboard().getChampionName());
-                CopyOnWriteArrayList<Token> markers = other.getPlayerboard().getMarker();
-                markers.add(marker);
-                other.getPlayerboard().setMarker(markers);
-                Check.limitMarkers(other, user);
+                Damage.giveMarker(1, user, target);
 
             }
 

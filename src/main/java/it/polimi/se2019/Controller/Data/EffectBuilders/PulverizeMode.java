@@ -29,37 +29,16 @@ public class PulverizeMode extends Effect {
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<Player>();
-        CopyOnWriteArrayList <Player> chosenTarget = new CopyOnWriteArrayList<Player>();
-
-        for(Player target : Server.connectedPlayers){
-            if(target.getNickname().equalsIgnoreCase(user.getNickname())){
-                continue;
-            }
-
-            if(target.getPosition().equals(user.getPosition())){
-                targets.add(target);
-            }
-        }
-
-        chosenTarget.add(ChoosePlayer.one(user, targets));
-        return chosenTarget;
+        BasicSledgehammer effect = new BasicSledgehammer();
+        return effect.getTargets(user);
     }
 
     @Override
     public boolean hasTargets(Player user) {
 
-        for(Player target : Server.connectedPlayers){
-            if(target.getNickname().equalsIgnoreCase(user.getNickname())){
-                continue;
-            }
+        BasicSledgehammer effect = new BasicSledgehammer();
+        return effect.hasTargets(user);
 
-            if(target.getPosition().equals(user.getPosition())){
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public void moveTarget(Player target, Player user){

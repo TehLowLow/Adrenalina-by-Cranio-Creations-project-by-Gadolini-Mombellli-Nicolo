@@ -160,45 +160,18 @@ public class RocketFistMode extends Effect {
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        CopyOnWriteArrayList <Player> chosenTarget = new CopyOnWriteArrayList<>();
-        CopyOnWriteArrayList <Player> possibleTargets = new CopyOnWriteArrayList<>();
+        BasicPowerGlove effect = new BasicPowerGlove();
+        return effect.getTargets(user);
 
-        CopyOnWriteArrayList <Cell> cells = Check.reachableCells(user, 1);
-
-        for(Player target : Server.connectedPlayers){
-
-            if(target.getNickname().equalsIgnoreCase(user.getNickname())){
-                continue;
-            }
-
-            if(cells.contains(target.getPosition())){
-                possibleTargets.add(target);
-            }
-        }
-
-        chosenTarget.add(ChoosePlayer.one(user, possibleTargets));
-
-        return chosenTarget;
     }
 
 
     @Override
     public boolean hasTargets(Player user) {
 
-        CopyOnWriteArrayList <Cell> cells = Check.reachableCells(user, 1);
+        BasicPowerGlove effect = new BasicPowerGlove();
+        return effect.hasTargets(user);
 
-        for(Player target : Server.connectedPlayers){
-
-            if(target.getNickname().equalsIgnoreCase(user.getNickname())){
-                continue;
-            }
-
-            if(cells.contains(target.getPosition())){
-                return true;
-            }
-        }
-
-        return false;
     }
 
 }

@@ -27,62 +27,16 @@ public class BlueRoomBuilder {
 
     public Room build(){
 
-        Room blueRoom = new Room();
-        CopyOnWriteArrayList <Cell> cells = new CopyOnWriteArrayList<Cell>();
+        it.polimi.se2019.Controller.Data.RoomBuilders.Map3Rooms.BlueRoomBuilder brB = new it.polimi.se2019.Controller.Data.RoomBuilders.Map3Rooms.BlueRoomBuilder();
+        Room blueRoom = brB.build();
 
-        SpawnCellBuilder spawnCellBuilder = new SpawnCellBuilder();
-        LootCellBuilder lootCellBuilder = new LootCellBuilder();
+        for(Cell cell : blueRoom.getCells()){
+            if(cell.getName().equalsIgnoreCase("spawnCell")){
+                cell.getRightConnection().setType(Connection.DOOR);
+            }
+        }
 
-        Cell spawnCell = spawnCellBuilder.build();
-        spawnCell.setColour(Colour.BLUE);
-        spawnCell.setName("spawnCell");
-
-        Cell lootCell = lootCellBuilder.build();
-        lootCell.setColour(Colour.BLUE);
-        lootCell.setName("lootCell");
-
-
-        //spawnCell
-
-        //Up connection
-
-        spawnCell.getUpConnection().setType(Connection.EDGE);
-
-        //Down connection
-        spawnCell.getDownConnection().setType(Connection.DOOR);
-
-        //Left connection
-        spawnCell.getLeftConnection().setType(Connection.FREE);
-        spawnCell.getLeftConnection().setConnectedCell(lootCell);
-
-        //Right connection
-        spawnCell.getRightConnection().setType(Connection.DOOR);
-
-
-        //lootCell
-
-        //Up connection
-        lootCell.getUpConnection().setType(Connection.EDGE);
-
-        //Down connection
-        lootCell.getDownConnection().setType(Connection.DOOR);
-
-
-        //Left connection
-        lootCell.getLeftConnection().setType(Connection.DOOR);
-
-        //Right connection
-        lootCell.getRightConnection().setType(Connection.FREE);
-        lootCell.getRightConnection().setConnectedCell(spawnCell);
-
-
-        cells.add(spawnCell);
-        cells.add(lootCell);
-
-        blueRoom.setCells(cells);
-        blueRoom.setColour(Colour.BLUE);
         return blueRoom;
-
     }
 
 }

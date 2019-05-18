@@ -23,37 +23,8 @@ public class GreenRoomBuilder {
 
     public Room build(){
 
-        CopyOnWriteArrayList<Cell> cells = new CopyOnWriteArrayList<Cell>();
-        Room greenRoom = new Room();
-
-        LootCellBuilder lootCellBuilder = new LootCellBuilder();
-        Cell lootCell = lootCellBuilder.build();
-        lootCell.setName("lootCell");
-        lootCell.setColour(Colour.GREEN);
-
-        //Loot Cell
-
-        //Up connection
-
-        lootCell.getUpConnection().setType(Connection.EDGE);
-
-        //Down connection
-
-        lootCell.getDownConnection().setType(Connection.DOOR);
-
-        //Left connection
-
-        lootCell.getLeftConnection().setType(Connection.DOOR);
-
-        //Right connection
-
-        lootCell.getRightConnection().setType(Connection.EDGE);
-
-        cells.add(lootCell);
-
-        greenRoom.setCells(cells);
-        greenRoom.setColour(Colour.GREEN);
-        return greenRoom;
+        it.polimi.se2019.Controller.Data.RoomBuilders.Map2Rooms.GreenRoomBuilder grB = new it.polimi.se2019.Controller.Data.RoomBuilders.Map2Rooms.GreenRoomBuilder();
+        return grB.build();
     }
 
 }
