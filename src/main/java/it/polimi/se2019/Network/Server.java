@@ -41,7 +41,7 @@ public class Server {
     private static ServerSocket gameSocket;
     public static boolean start = false;
     public static Hashtable registrations = new Hashtable();  //associazione user psw
-    static Hashtable playerClient = new Hashtable();  //associazione fra giocatore e suo client
+    public static Hashtable playerClient = new Hashtable();  //associazione fra giocatore e suo client
     public static CopyOnWriteArrayList<Player> connectedPlayers = new CopyOnWriteArrayList<>();  //Arraylist di player connessi.
 
     /**

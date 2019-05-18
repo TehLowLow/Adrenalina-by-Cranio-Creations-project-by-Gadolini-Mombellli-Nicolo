@@ -59,6 +59,8 @@ public class Check {
     public static void resolveBoard(Player killed, Board board, Player killer, boolean overkill) {
 
         CopyOnWriteArrayList<Token> damages = new CopyOnWriteArrayList<Token>();
+        CopyOnWriteArrayList<PlayerWithScore> playersWithScore;
+        CopyOnWriteArrayList<Player> whoShotFirst;
         damages = killed.getPlayerboard().getDamage();
 
         /*
@@ -78,61 +80,9 @@ public class Check {
         assigning the points to the killers
          */
 
-        class PlayerWithScore {
 
-
-            Player player;
-            int score;
-
-
-        }
-
-        CopyOnWriteArrayList<PlayerWithScore> playersWithScore = new CopyOnWriteArrayList<>();
-
-        for (Player player : connectedPlayers) {
-
-            PlayerWithScore playerScore = new PlayerWithScore();
-
-            playerScore.player = player;
-
-            playerScore.score = 0;
-
-            for (Token damage : damages) {
-
-                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
-
-                    playerScore.score++;
-
-                }
-
-            }
-
-            playersWithScore.add(playerScore);
-
-        }
-
-        /*
-        creo un array ordinato per ordine temporale di sparo
-         */
-
-        CopyOnWriteArrayList<Player> whoShotFirst = new CopyOnWriteArrayList<>();
-
-        for (Token damage : damages) {
-
-            for (Player player : connectedPlayers) {
-
-                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
-
-                    if (!whoShotFirst.contains(player)) {
-
-                        whoShotFirst.add(player);
-
-                    }
-
-                }
-            }
-        }
-
+        playersWithScore = initLeaderboard(damages);
+        whoShotFirst = whoShotFirts(damages);
 
         Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
             @Override
@@ -477,7 +427,7 @@ public class Check {
              */
             if (!player1.equals(player)) {
 
-                if (player1.getPosition() != null){
+                if (player1.getPosition() != null) {
 
                     if (player.getPosition().getColour() == player1.getPosition().getColour()) {
                         if (!visiblePlayers.contains(player1)) {
@@ -547,29 +497,8 @@ public class Check {
             controllo solo le celle raggiungibili dalla posizione del player
              */
 
-            if (position.getUpConnection().getType().equals(DOOR) || position.getUpConnection().getType().equals(FREE)) {
 
-                reachableCells.add(position.getUpConnection().getConnectedCell());
-
-            }
-
-            if (position.getRightConnection().getType().equals(DOOR) || position.getRightConnection().getType().equals(FREE)) {
-
-                reachableCells.add(position.getRightConnection().getConnectedCell());
-
-            }
-
-            if (position.getLeftConnection().getType().equals(DOOR) || position.getLeftConnection().getType().equals(FREE)) {
-
-                reachableCells.add(position.getLeftConnection().getConnectedCell());
-
-            }
-
-            if (position.getDownConnection().getType().equals(DOOR) || position.getDownConnection().getType().equals(FREE)) {
-
-                reachableCells.add(position.getDownConnection().getConnectedCell());
-
-            }
+            reachableCells = pathFinder(position);
 
         }
 
@@ -580,29 +509,7 @@ public class Check {
             prima controllo la mia posizione
              */
 
-            if (position.getUpConnection().getType().equals(DOOR) || position.getUpConnection().getType().equals(FREE)) {
-
-                reachableCells.add(position.getUpConnection().getConnectedCell());
-
-            }
-
-            if (position.getRightConnection().getType().equals(DOOR) || position.getRightConnection().getType().equals(FREE)) {
-
-                reachableCells.add(position.getRightConnection().getConnectedCell());
-
-            }
-
-            if (position.getLeftConnection().getType().equals(DOOR) || position.getLeftConnection().getType().equals(FREE)) {
-
-                reachableCells.add(position.getLeftConnection().getConnectedCell());
-
-            }
-
-            if (position.getDownConnection().getType().equals(DOOR) || position.getDownConnection().getType().equals(FREE)) {
-
-                reachableCells.add(position.getDownConnection().getConnectedCell());
-
-            }
+            reachableCells = pathFinder(position);
 
             /*
             poi controllo le celle raggiungibili da quelle arrivabili dopo il primo step
@@ -682,21 +589,16 @@ public class Check {
 
         }
 
-        if (reachableCells.contains(position)){
+        if (reachableCells.contains(position)) {
 
             reachableCells.remove(position);
 
         }
 
 
-
         return reachableCells;
 
     }
-
-
-
-
 
 
     public static boolean checkFrenzy() {
@@ -731,68 +633,11 @@ public class Check {
 
         CopyOnWriteArrayList<Token> damages = new CopyOnWriteArrayList<Token>();
         damages = killed.getPlayerboard().getDamage();
+        CopyOnWriteArrayList<it.polimi.se2019.Controller.Adrenalina.PlayerWithScore> playersWithScore;
+        CopyOnWriteArrayList<Player> whoShotFirst;
 
-
-
-
-        /*
-        assigning the points to the killers
-         */
-
-        class PlayerWithScore {
-
-
-            Player player;
-            int score;
-
-
-        }
-
-        CopyOnWriteArrayList<PlayerWithScore> playersWithScore = new CopyOnWriteArrayList<>();
-
-        for (Player player : connectedPlayers) {
-
-            PlayerWithScore playerScore = new PlayerWithScore();
-
-            playerScore.player = player;
-
-            playerScore.score = 0;
-
-            for (Token damage : damages) {
-
-                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
-
-                    playerScore.score++;
-
-                }
-
-            }
-
-            playersWithScore.add(playerScore);
-
-        }
-
-        /*
-        creo un array ordinato per ordine temporale di sparo
-         */
-
-        CopyOnWriteArrayList<Player> whoShotFirst = new CopyOnWriteArrayList<>();
-
-        for (Token damage : damages) {
-
-            for (Player player : connectedPlayers) {
-
-                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
-
-                    if (!whoShotFirst.contains(player)) {
-
-                        whoShotFirst.add(player);
-
-                    }
-
-                }
-            }
-        }
+        playersWithScore = initLeaderboard(damages);
+        whoShotFirst = whoShotFirts(damages);
 
 
         Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
@@ -906,60 +751,11 @@ public class Check {
         assigning the points to the killers
          */
 
-            class PlayerWithScore {
+            CopyOnWriteArrayList<PlayerWithScore> playersWithScore;
+            CopyOnWriteArrayList<Player> whoShotFirst;
 
-
-                Player player;
-                int score;
-
-
-            }
-
-            CopyOnWriteArrayList<PlayerWithScore> playersWithScore = new CopyOnWriteArrayList<>();
-
-            for (Player attacker : connectedPlayers) {
-
-                PlayerWithScore playerScore = new PlayerWithScore();
-
-                playerScore.player = attacker;
-
-                playerScore.score = 0;
-
-                for (Token damage : damages) {
-
-                    if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
-
-                        playerScore.score++;
-
-                    }
-
-                }
-
-                playersWithScore.add(playerScore);
-
-            }
-
-        /*
-        creo un array ordinato per ordine temporale di sparo
-         */
-
-            CopyOnWriteArrayList<Player> whoShotFirst = new CopyOnWriteArrayList<>();
-
-            for (Token damage : damages) {
-
-                for (Player player1 : connectedPlayers) {
-
-                    if (damage.getChampionName().equals(player1.getPlayerboard().getChampionName())) {
-
-                        if (!whoShotFirst.contains(player1)) {
-
-                            whoShotFirst.add(player1);
-
-                        }
-
-                    }
-                }
-            }
+            playersWithScore = initLeaderboard(damages);
+            whoShotFirst = whoShotFirts(damages);
 
 
             Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
@@ -1545,15 +1341,15 @@ public class Check {
 
     }
 
-    public static CopyOnWriteArrayList<Cell> moveManager(Player player, int steps){
+    public static CopyOnWriteArrayList<Cell> moveManager(Player player, int steps) {
 
         CopyOnWriteArrayList<Cell> maxNPassi = reachableCells(player, steps);
-        CopyOnWriteArrayList<Cell> maxNMenoUnoPassi = reachableCells(player, steps-1);
+        CopyOnWriteArrayList<Cell> maxNMenoUnoPassi = reachableCells(player, steps - 1);
         CopyOnWriteArrayList<Cell> nPassi = new CopyOnWriteArrayList<>();
 
-        for (Cell cell:maxNPassi){
+        for (Cell cell : maxNPassi) {
 
-            if (!maxNMenoUnoPassi.contains(cell)){
+            if (!maxNMenoUnoPassi.contains(cell)) {
 
                 nPassi.add(cell);
 
@@ -1567,5 +1363,103 @@ public class Check {
     }
 
 
+    private static CopyOnWriteArrayList<Cell> pathFinder(Cell start) {
+
+        CopyOnWriteArrayList reached = new CopyOnWriteArrayList();
+
+        if (start.getUpConnection().getType().equals(DOOR) || start.getUpConnection().getType().equals(FREE)) {
+
+            reached.add(start.getUpConnection().getConnectedCell());
+
+        }
+
+        if (start.getRightConnection().getType().equals(DOOR) || start.getRightConnection().getType().equals(FREE)) {
+
+            reached.add(start.getRightConnection().getConnectedCell());
+
+        }
+
+        if (start.getLeftConnection().getType().equals(DOOR) || start.getLeftConnection().getType().equals(FREE)) {
+
+            reached.add(start.getLeftConnection().getConnectedCell());
+
+        }
+
+        if (start.getDownConnection().getType().equals(DOOR) || start.getDownConnection().getType().equals(FREE)) {
+
+            reached.add(start.getDownConnection().getConnectedCell());
+
+        }
+
+        return reached;
+    }
+
+
+    private static CopyOnWriteArrayList<PlayerWithScore> initLeaderboard(CopyOnWriteArrayList<Token> damages) {
+
+
+        CopyOnWriteArrayList<PlayerWithScore> playersWithScore = new CopyOnWriteArrayList<>();
+
+        for (Player player : connectedPlayers) {
+
+            PlayerWithScore playerScore = new PlayerWithScore();
+
+            playerScore.player = player;
+
+            playerScore.score = 0;
+
+            for (Token damage : damages) {
+
+                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
+
+                    playerScore.score++;
+
+                }
+
+            }
+
+            playersWithScore.add(playerScore);
+
+        }
+
+        return playersWithScore;
+
+    }
+
+    private static CopyOnWriteArrayList<Player> whoShotFirts(CopyOnWriteArrayList<Token> damages) {
+
+        CopyOnWriteArrayList<Player> whoShotFirst = new CopyOnWriteArrayList<>();
+
+        for (Token damage : damages) {
+
+            for (Player player : connectedPlayers) {
+
+                if (damage.getChampionName().equals(player.getPlayerboard().getChampionName())) {
+
+                    if (!whoShotFirst.contains(player)) {
+
+                        whoShotFirst.add(player);
+
+                    }
+
+                }
+            }
+        }
+
+        return whoShotFirst;
+
+    }
+}
+
+
+class PlayerWithScore {
+
+
+    Player player;
+    int score;
+
 
 }
+
+
+

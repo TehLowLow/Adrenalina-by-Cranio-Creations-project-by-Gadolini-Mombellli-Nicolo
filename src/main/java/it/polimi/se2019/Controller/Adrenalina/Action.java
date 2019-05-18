@@ -892,7 +892,6 @@ public class Action {
 
     }
 
-
     private static void askForMovement(Player player) {
         String answer;
         boolean answered = false;

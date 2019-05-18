@@ -33,7 +33,7 @@ public class Turn {
      * At the end of the turn, those players must be respawned.
      */
 
-    private CopyOnWriteArrayList <Player> killedPlayers;
+    private CopyOnWriteArrayList<Player> killedPlayers;
     /**
      * switchedWeapon is used to save the weapon before checking it
      */
@@ -102,7 +102,7 @@ public class Turn {
     public void standard(Player player) {
 
 
-        for (int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
             Action.usePowerUp(player);
         }
 
@@ -110,14 +110,14 @@ public class Turn {
         Action.perform(player);
 
 
-        for (int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
             Action.usePowerUp(player);
         }
 
 
         Action.perform(player);
 
-        for (int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
             Action.usePowerUp(player);
         }
 
@@ -125,24 +125,23 @@ public class Turn {
 
         //Risolvo la board e respawno i morti
 
-        CopyOnWriteArrayList <Player> deadPlayers = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> deadPlayers = new CopyOnWriteArrayList<>();
 
-        for(Player dead : Server.connectedPlayers){
+        for (Player dead : Server.connectedPlayers) {
 
-            if(Check.death(dead)==0){
+            if (Check.death(dead) == 0) {
                 continue;
-            }
-            else{
+            } else {
                 deadPlayers.add(dead);
             }
 
         }
 
-        for(Player dead : deadPlayers){
+        for (Player dead : deadPlayers) {
 
             boolean overkill = false;
 
-            if(Check.death(dead)==2){
+            if (Check.death(dead) == 2) {
                 overkill = true;
             }
 
@@ -166,76 +165,29 @@ public class Turn {
         try {
             Interaction.drawPowerUp(player);
             Interaction.drawPowerUp(player);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Errore: mazzi non inizializzati");
         }
 
         boolean chosen = false;
 
-        while(!chosen){
+        while (!chosen) {
 
             String powerUp = Server.updateWithAnswer(player, Message.scegliPowerUpSpawn(player.getPlayerboard().getPowerups()));
 
-            try{
+            try {
 
                 int index = InputCheck.numberCheck(powerUp);
 
-                if(index>=0 && index <=1){
+                if (index >= 0 && index <= 1) {
 
-                    chosen = true;
-                    Powerup chosenPU = player.getPlayerboard().getPowerups().get(index);
-                    Server.updateAll(Message.powerUpSpawnScelto(player, chosenPU));
-                    Interaction.discardPowerUp(player, chosenPU);
+                    pUpSelector(player, index);
 
-                    if(chosenPU.getColour() == Colour.RED){
-
-                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getRedRoom().getCells();
-
-                        for(Cell cell : spawnRoom){
-                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
-                                player.setPosition(cell);
-                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
-                            }
-                        }
-
-
-                    }
-
-                    if(chosenPU.getColour() == Colour.BLUE){
-
-                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getBlueRoom().getCells();
-
-                        for(Cell cell : spawnRoom){
-                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
-                                player.setPosition(cell);
-                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
-                            }
-                        }
-
-
-                    }
-
-                    if(chosenPU.getColour() == Colour.YELLOW){
-
-                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getYellowRoom().getCells();
-
-                        for(Cell cell : spawnRoom){
-                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
-                                player.setPosition(cell);
-                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
-                            }
-                        }
-
-
-                    }
-
-                }
-                else {
+                } else {
                     Server.update(player, Message.inputError());
                 }
 
-            }catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 Server.update(player, Message.inputError());
             }
 
@@ -256,78 +208,31 @@ public class Turn {
         try {
 
             Interaction.drawPowerUp(player);
+        } catch (EmptyDeckException e) {
+            Interaction.shuffleAndDraw(player);
+        } catch (LimitPowerUpException e) {
+            Server.update(player, Message.limitePowerup());
         }
-
-        catch(EmptyDeckException e){
-                Interaction.shuffleAndDraw(player);
-            }
-        catch(LimitPowerUpException e){
-                Server.update(player, Message.limitePowerup());
-            }
 
         boolean chosen = false;
 
-        while(!chosen){
+        while (!chosen) {
 
             String powerUp = Server.updateWithAnswer(player, Message.scegliPowerUpSpawn(player.getPlayerboard().getPowerups()));
 
-            try{
+            try {
 
                 int index = InputCheck.numberCheck(powerUp);
 
-                if(index>=0 && index <=player.getPlayerboard().getPowerups().size()-1){
+                if (index >= 0 && index <= player.getPlayerboard().getPowerups().size() - 1) {
 
                     chosen = true;
-                    Powerup chosenPU = player.getPlayerboard().getPowerups().get(index);
-                    Server.updateAll(Message.powerUpSpawnScelto(player, chosenPU));
-                    Interaction.discardPowerUp(player, chosenPU);
-
-                    if(chosenPU.getColour() == Colour.RED){
-
-                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getRedRoom().getCells();
-
-                        for(Cell cell : spawnRoom){
-                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
-                                player.setPosition(cell);
-                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
-                            }
-                        }
-
-
-                    }
-
-                    if(chosenPU.getColour() == Colour.BLUE){
-
-                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getBlueRoom().getCells();
-
-                        for(Cell cell : spawnRoom){
-                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
-                                player.setPosition(cell);
-                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
-                            }
-                        }
-
-
-                    }
-
-                    if(chosenPU.getColour() == Colour.YELLOW){
-
-                        CopyOnWriteArrayList <Cell> spawnRoom = Board.getMap().getYellowRoom().getCells();
-
-                        for(Cell cell : spawnRoom){
-                            if(cell.getName().equalsIgnoreCase("SpawnCell")){
-                                player.setPosition(cell);
-                                Server.updateAll(Message.spawn(player, chosenPU.getColour()));
-                            }
-                        }
-
-
-                    }
+                    pUpSelector(player, index);
 
                 }
 
                 Server.update(player, Message.inputError());
-            }catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 Server.update(player, Message.inputError());
             }
 
@@ -345,30 +250,23 @@ public class Turn {
 
     public void frenzy(Player player, boolean afterFirstPlayer) {
 
+        CopyOnWriteArrayList<Player> deadPlayers;
+
+
         Action.performFrenzy(player, afterFirstPlayer);
 
         Action.reload(player);
 
+
         //Risolvo la board e respawno i morti
 
-        CopyOnWriteArrayList <Player> deadPlayers = new CopyOnWriteArrayList<>();
+        deadPlayers = respawner();
 
-        for(Player dead : Server.connectedPlayers){
-
-            if(Check.death(dead)==0){
-                continue;
-            }
-            else{
-                deadPlayers.add(dead);
-            }
-
-        }
-
-        for(Player dead : deadPlayers){
+        for (Player dead : deadPlayers) {
 
             boolean overkill = false;
 
-            if(Check.death(dead)==2){
+            if (Check.death(dead) == 2) {
                 overkill = true;
             }
 
@@ -379,11 +277,77 @@ public class Turn {
         }
 
 
-
     }
 
 
     //TODO ricordarsi di assegnare i punti aggiuntivi per le doublekill
 
+    private static void pUpSelector(Player player, int index) {
+
+        Powerup chosenPU = player.getPlayerboard().getPowerups().get(index);
+        Server.updateAll(Message.powerUpSpawnScelto(player, chosenPU));
+        Interaction.discardPowerUp(player, chosenPU);
+
+        if (chosenPU.getColour() == Colour.RED) {
+
+            CopyOnWriteArrayList<Cell> spawnRoom = Board.getMap().getRedRoom().getCells();
+
+            for (Cell cell : spawnRoom) {
+                if (cell.getName().equalsIgnoreCase("SpawnCell")) {
+                    player.setPosition(cell);
+                    Server.updateAll(Message.spawn(player, chosenPU.getColour()));
+                }
+            }
+
+
+        }
+
+        if (chosenPU.getColour() == Colour.BLUE) {
+
+            CopyOnWriteArrayList<Cell> spawnRoom = Board.getMap().getBlueRoom().getCells();
+
+            for (Cell cell : spawnRoom) {
+                if (cell.getName().equalsIgnoreCase("SpawnCell")) {
+                    player.setPosition(cell);
+                    Server.updateAll(Message.spawn(player, chosenPU.getColour()));
+                }
+            }
+
+
+        }
+
+        if (chosenPU.getColour() == Colour.YELLOW) {
+
+            CopyOnWriteArrayList<Cell> spawnRoom = Board.getMap().getYellowRoom().getCells();
+
+            for (Cell cell : spawnRoom) {
+                if (cell.getName().equalsIgnoreCase("SpawnCell")) {
+                    player.setPosition(cell);
+                    Server.updateAll(Message.spawn(player, chosenPU.getColour()));
+                }
+            }
+
+
+        }
+
+    }
+
+    private static CopyOnWriteArrayList<Player> respawner() {
+
+        CopyOnWriteArrayList<Player> deadPlayers = new CopyOnWriteArrayList<>();
+
+        for (Player dead : Server.connectedPlayers) {
+
+            if (Check.death(dead) == 0) {
+                continue;
+            } else {
+                deadPlayers.add(dead);
+            }
+
+        }
+
+        return deadPlayers;
+
+    }
 
 }
