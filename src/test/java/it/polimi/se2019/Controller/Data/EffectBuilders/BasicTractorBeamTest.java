@@ -1,9 +1,12 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
+import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Model.Board;
+import it.polimi.se2019.Model.Cell;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.Network.TestBot;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,23 +27,32 @@ public class BasicTractorBeamTest {
 
 
     @Test
-    public void applyEffectDamageOnlyTest() {
+    public void applyEffectTest() {
 
-       /* Player user = Server.connectedPlayers.get(0);
+        CopyOnWriteArrayList <String> answers = new CopyOnWriteArrayList<>();
+        answers.add("0");
+        TestBot.initAnswers(answers);
+
+        Player user = Server.connectedPlayers.get(0);
         Player target = Server.connectedPlayers.get(1);
+        target.setPosition(Board.getMap().getYellowRoom().getCells().get(0));
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
         targets.add(target);
 
-
         Weapon tractorbeam = new Weapon();
         tractorbeam.setBaseEffect(new BasicTractorBeam());
-        try {
-            tractorbeam.getBaseEffect().applyEffect(user, targets);
-        }catch(NullPointerException e){
-            System.out.println("Input utente non rilevato. Non sposto il bersaglio.");
-        }
 
-        assertEquals(1, target.getPlayerboard().getDamage().size());*/
+        CopyOnWriteArrayList <Cell> visibleCells = Check.visibleSquares(user);
+        CopyOnWriteArrayList <Cell> twoStepsCells = Check.reachableCells(target, 2);
+
+        tractorbeam.getBaseEffect().applyEffect(user, targets);
+
+
+        assertEquals(1, target.getPlayerboard().getDamage().size());
+        assertTrue(visibleCells.contains(target.getPosition()));
+        assertTrue(twoStepsCells.contains(target.getPosition()));
+
+
 
     }
 

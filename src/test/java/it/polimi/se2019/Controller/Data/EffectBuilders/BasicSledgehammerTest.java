@@ -4,6 +4,7 @@ import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.Network.TestBot;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,8 +40,35 @@ public class BasicSledgehammerTest {
 
     }
 
+
+    //Testa che vengano scelti i bersagli nel proprio quadrato
     @Test
     public void getTargets() {
+
+        CopyOnWriteArrayList <String> answers = new CopyOnWriteArrayList<>();
+        answers.add("player2");
+        TestBot.initAnswers(answers);
+
+        Player user = Server.connectedPlayers.get(0);
+        Player player2 = Server.connectedPlayers.get(2);
+
+        Weapon sledgehammer = new Weapon();
+        sledgehammer.setBaseEffect(new BasicSledgehammer());
+
+
+        CopyOnWriteArrayList <Player> targets = sledgehammer.getBaseEffect().getTargets(user);
+
+        assertEquals(player2, targets.get(0));
+
+        answers.add("player3");
+        answers.add("player1");
+
+        Player player1 = Server.connectedPlayers.get(1);
+
+        Server.connectedPlayers.get(3).setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
+        targets = sledgehammer.getBaseEffect().getTargets(user);
+        assertEquals(player1, targets.get(0));
+
     }
 
     @Test
