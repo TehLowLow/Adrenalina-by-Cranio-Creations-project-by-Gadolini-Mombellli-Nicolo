@@ -5,7 +5,6 @@ import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Model.*;
 
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.*;
@@ -23,8 +22,8 @@ public class BasicFlamethrower extends Effect {
 
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
-        CopyOnWriteArrayList<Player> chosenTargets = new CopyOnWriteArrayList();
+        CopyOnWriteArrayList<Player> possibleTargets;
+        CopyOnWriteArrayList<Player> chosenTargets = new CopyOnWriteArrayList<>();
         boolean foundFirst = false;
 
         Cell firstTargetCell = new LootCell();
