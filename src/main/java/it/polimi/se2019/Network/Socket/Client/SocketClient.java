@@ -18,7 +18,7 @@ public class SocketClient extends Client implements Runnable {
 
     private boolean connected = false;
 
-    private Socket client;
+    private static Socket client;
     private int gamePort;
     private int localPort;
     private byte[] address = {127, 0, 0, 1};
@@ -144,7 +144,7 @@ public class SocketClient extends Client implements Runnable {
     }
 
 
-    private void streamInit() {
+    private static void streamInit() {
 
         try {
             out = new DataOutputStream(client.getOutputStream());
