@@ -27,6 +27,7 @@ public class SocketLogger implements Logger, Runnable {
 
     /**
      * The constructor of the login class.
+     *
      * @param serverSocket is the socket started into the executor pool to be assigned to a single server object.
      */
 
@@ -58,6 +59,7 @@ public class SocketLogger implements Logger, Runnable {
 
     /**
      * Verifies the player credentials.
+     *
      * @return true if a player is allowed into the game server.
      */
     @Override
@@ -98,6 +100,7 @@ public class SocketLogger implements Logger, Runnable {
     /**
      * This method is the verification process for the login, checks for a valid username/password combination and allows
      * the player into the lobby
+     *
      * @return true if the player has given valid credentials.
      */
 
@@ -105,30 +108,28 @@ public class SocketLogger implements Logger, Runnable {
     public boolean checkConnections() {
 
         //Il player non si è mai connesso
-        if (registrations.get(userName) == null && matchStarted) {
+        if (registrations.get(userName) == null) {
             //Se il match è gia iniziato rifiuto la connessione
-            try {
-                out.writeUTF("Partita gia iniziata, non è possibile accedere");
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (matchStarted) {
+                try {
+                    out.writeUTF("Partita gia iniziata, non è possibile accedere");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return false;
+                //Se il match è ancora in fase di lobby lo aggiungo fra i player
+            } else if (connectedSize() < 5) {  //TODO 1
+                temp = newPlayer(userName, passWord, "Socket");
+                try {
+                    out.writeUTF("Aggiunto " + userName);
+                    out.writeInt(temp.getPORT());
+                    out.writeInt(SOCKETPORT);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return true;
             }
-            return false;
-
-            //Se il match è ancora in fase di lobby lo aggiungo fra i player
-        } else if (connectedSize() < 5) {  //TODO 1
-
-            temp = newPlayer(userName, passWord, "Socket");
-
-            try {
-                out.writeUTF("Aggiunto " + userName);
-                out.writeInt(temp.getPORT());
-                out.writeInt(SOCKETPORT);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return true;
         }
-
 
         //Se il player compare fra i giocatori che si son gia registrati una volta devo verificare che sia disconnesso (evito double connection)
         for (Player player : connectedPlayers) {
@@ -167,10 +168,12 @@ public class SocketLogger implements Logger, Runnable {
             return false;
         }
 
+
     }
 
     /**
      * Starts the input stream for the server
+     *
      * @param socket is the socket where inputs from the client will come.
      * @return the inputstream for communication.
      */
@@ -188,6 +191,7 @@ public class SocketLogger implements Logger, Runnable {
 
     /**
      * Starts the output stream for the server
+     *
      * @param socket is the socket where outputs for the vclient will be pushed.
      * @return the outputstream for communication.
      */
