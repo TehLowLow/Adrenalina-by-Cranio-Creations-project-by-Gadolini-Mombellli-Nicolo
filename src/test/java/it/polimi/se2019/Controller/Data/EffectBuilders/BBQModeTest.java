@@ -25,7 +25,7 @@ public class BBQModeTest {
     public void getTargets() {
     }
 
-    /*@Test
+    @Test
     public void hasTargets() {
 
 
@@ -44,6 +44,6 @@ public class BBQModeTest {
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, false);
 
-    }*/
+    }
 
 }

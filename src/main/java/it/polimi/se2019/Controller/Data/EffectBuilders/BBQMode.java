@@ -111,9 +111,46 @@ public class BBQMode extends Effect {
     public boolean hasTargets(Player user) {
 
         Check check = new Check();
-        CopyOnWriteArrayList<Cell> targetCells = check.reachableCells(user, 2);
+        CopyOnWriteArrayList<Cell> targetCells = check.reachableCells(user, 1);
         CopyOnWriteArrayList<Player> players = Server.connectedPlayers;
         CopyOnWriteArrayList<Player> two_step_targets = new CopyOnWriteArrayList<>();
+
+        for(Cell cell : targetCells){
+
+            if(user.getPosition().getUpConnection().getType().equals(Connection.FREE) || user.getPosition().getUpConnection().getType().equals(Connection.DOOR)){
+                if(cell.equals(user.getPosition().getUpConnection().getConnectedCell())){
+                    if(cell.getUpConnection().getType().equals(Connection.FREE) || cell.getUpConnection().getType().equals(Connection.DOOR)){
+                        targetCells.add(cell.getUpConnection().getConnectedCell());
+                    }
+                }
+            }
+
+            if(user.getPosition().getDownConnection().getType().equals(Connection.FREE) || user.getPosition().getDownConnection().getType().equals(Connection.DOOR)){
+                if(cell.equals(user.getPosition().getDownConnection().getConnectedCell())){
+                    if(cell.getDownConnection().getType().equals(Connection.FREE) || cell.getDownConnection().getType().equals(Connection.DOOR)){
+                        targetCells.add(cell.getDownConnection().getConnectedCell());
+                    }
+                }
+            }
+
+            if(user.getPosition().getLeftConnection().getType().equals(Connection.FREE) || user.getPosition().getLeftConnection().getType().equals(Connection.DOOR)){
+                if(cell.equals(user.getPosition().getLeftConnection().getConnectedCell())){
+                    if(cell.getLeftConnection().getType().equals(Connection.FREE) || cell.getLeftConnection().getType().equals(Connection.DOOR)){
+                        targetCells.add(cell.getLeftConnection().getConnectedCell());
+                    }
+                }
+            }
+
+            if(user.getPosition().getRightConnection().getType().equals(Connection.FREE) || user.getPosition().getRightConnection().getType().equals(Connection.DOOR)){
+                if(cell.equals(user.getPosition().getRightConnection().getConnectedCell())){
+                    if(cell.getRightConnection().getType().equals(Connection.FREE) || cell.getRightConnection().getType().equals(Connection.DOOR)){
+                        targetCells.add(cell.getRightConnection().getConnectedCell());
+                    }
+                }
+            }
+
+
+        }
 
         for (Player player : players) {
 
@@ -125,11 +162,11 @@ public class BBQMode extends Effect {
 
         }
 
-        if (two_step_targets.size() == 0) {
+        if(two_step_targets.size()==0){
             return false;
-        } else {
-            return true;
         }
+
+        return true;
     }
 
 

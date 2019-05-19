@@ -182,6 +182,7 @@ public class Turn {
                 if (index >= 0 && index <= 1) {
 
                     pUpSelector(player, index);
+                    chosen=true;
 
                 } else {
                     Server.update(player, Message.inputError());
