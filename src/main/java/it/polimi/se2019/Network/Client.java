@@ -25,7 +25,7 @@ public class Client {
      * Starts the client side of the connection and asks the server for a port to connect to after the login of the player.
      */
 
-    public static void main() {
+    public static void main(String args[]) {
 
 
         //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.

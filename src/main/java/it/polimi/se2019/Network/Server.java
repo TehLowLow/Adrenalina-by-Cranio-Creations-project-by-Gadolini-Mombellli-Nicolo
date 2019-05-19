@@ -105,7 +105,7 @@ public class Server {
      * ends, starts a new game.
      */
 
-    public static void main() {
+    public static void main(String args[]) {
 
         //All avvio del server devono accadere due cose:
         //1) il server avvia i thread di inizializzazione delle connessioni dedicate alla partita
