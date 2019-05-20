@@ -13,11 +13,11 @@ import it.polimi.se2019.Network.Socket.SocketLogger;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
 import java.util.concurrent.*;
-
 
 
 /**
@@ -26,8 +26,6 @@ import java.util.concurrent.*;
  */
 
 public class Server {
-
-
 
 
     private static volatile int clientPort = 4000;
@@ -46,6 +44,7 @@ public class Server {
 
     /**
      * Creates and starts a socket for incoming connections over a predetermined PORT.
+     *
      * @param port is the port where to listen to connections.
      * @return a serversocket able to listen for connections.
      */
@@ -68,6 +67,7 @@ public class Server {
 
     /**
      * Returns the number of players connected to the lobby
+     *
      * @return the number of players in the lobby.
      */
 
@@ -77,8 +77,9 @@ public class Server {
 
     /**
      * Recives approved credentials and builds the Player class, responsible of collecting all the player's data.
-     * @param u is the provided and verified username of the player.
-     * @param p is the password used for the unique reconnection purposes.
+     *
+     * @param u          is the provided and verified username of the player.
+     * @param p          is the password used for the unique reconnection purposes.
      * @param connection stores the type of a player's connection.
      * @return a Player class containing all the above information.
      */
@@ -163,8 +164,9 @@ public class Server {
     /**
      * Is one of the communication methods between Server and clients. The method sends to the player a String, and listens
      * for a player's answer.
+     *
      * @param player is the player that will receive the string.
-     * @param msg is the information to push to the player.
+     * @param msg    is the information to push to the player.
      * @return the player's answer
      */
 
@@ -207,8 +209,9 @@ public class Server {
 
     /**
      * Pushes a string to a single player, and expects no answer from his side.
+     *
      * @param player Is the player that will receive the message.
-     * @param msg is the information to push to the player.
+     * @param msg    is the information to push to the player.
      */
 
     public static synchronized void update(Player player, String msg) {
@@ -246,6 +249,7 @@ public class Server {
 
     /**
      * Pushes a single message to all the connected clients and expects no answer from anyone.
+     *
      * @param msg is the message to push to the clients.
      */
 

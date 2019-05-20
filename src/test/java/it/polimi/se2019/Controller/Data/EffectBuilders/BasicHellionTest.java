@@ -4,6 +4,7 @@ import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.Network.TestBot;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -56,6 +57,29 @@ public class BasicHellionTest {
 
     @Test
     public void getTargets() {
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("player2");
+        answers.add("player1");
+        TestBot.initAnswers(answers);
+
+        Player user = Server.connectedPlayers.get(0);
+        Player player1 = Server.connectedPlayers.get(1);
+        Player player2 = Server.connectedPlayers.get(2);
+
+        player1.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        player2.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+
+        Weapon hellion = new Weapon();
+        hellion.setBaseEffect(new BasicHellion());
+
+        hellion.getBaseEffect().hasTargets(user);
+        CopyOnWriteArrayList <Player> targets = hellion.getBaseEffect().getTargets(user);
+
+        assertTrue(!targets.contains(player2));
+        assertTrue(targets.contains(player1));
+        assertTrue(targets.size()==1);
+
     }
 
     @Test

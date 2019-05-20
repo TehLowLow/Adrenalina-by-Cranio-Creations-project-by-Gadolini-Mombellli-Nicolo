@@ -30,7 +30,7 @@ public class PunisherMode extends Effect {
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(user, 2);
+        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(user, 3);
         reachableCells.add(user.getPosition());
         CopyOnWriteArrayList <Player> possibleTargets = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();

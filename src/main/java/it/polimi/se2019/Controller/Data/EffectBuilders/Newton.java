@@ -22,8 +22,6 @@ public class Newton extends Effect {
 
         boolean chosen = false;
 
-
-
         while(!chosen){
 
             int index = 0;
@@ -88,7 +86,7 @@ public class Newton extends Effect {
                     continue;
                 }
 
-                targettableCells.add(toVerify);
+                targettableCells.add(toVerify.getUpConnection().getConnectedCell());
 
             }
 
@@ -108,7 +106,7 @@ public class Newton extends Effect {
                     continue;
                 }
 
-                targettableCells.add(toVerify);
+                targettableCells.add(toVerify.getDownConnection().getConnectedCell());
 
             }
 
@@ -128,7 +126,7 @@ public class Newton extends Effect {
                     continue;
                 }
 
-                targettableCells.add(toVerify);
+                targettableCells.add(toVerify.getLeftConnection().getConnectedCell());
             }
 
             if(direction.equalsIgnoreCase("destra")){
@@ -148,7 +146,7 @@ public class Newton extends Effect {
                     continue;
                 }
 
-                targettableCells.add(toVerify);
+                targettableCells.add(toVerify.getRightConnection().getConnectedCell());
 
             }
 
@@ -172,8 +170,6 @@ public class Newton extends Effect {
             }
 
             possibleTargets.add(target);
-
-
 
         }
 

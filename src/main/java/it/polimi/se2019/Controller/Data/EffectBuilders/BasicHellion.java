@@ -15,7 +15,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class BasicHellion extends Effect {
 
 
-    private CopyOnWriteArrayList<Player> possibleTargets;
 
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
@@ -32,7 +31,7 @@ public class BasicHellion extends Effect {
 
             if (other.getPosition().equals(target.getPosition())) {
 
-                Damage.giveMarker(1, user, target);
+                Damage.giveMarker(1, user, other);
 
             }
 
@@ -44,6 +43,22 @@ public class BasicHellion extends Effect {
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
         CopyOnWriteArrayList<Player> chosenTarget = new CopyOnWriteArrayList<>();
+
+        CopyOnWriteArrayList<Cell> oneMoveAway = Check.reachableCells(user, 1);
+        oneMoveAway.add(user.getPosition());
+
+        CopyOnWriteArrayList <Player> possibleTargets = new CopyOnWriteArrayList<>();
+
+        for (Player target : Server.connectedPlayers) {
+
+            if (!target.getNickname().equalsIgnoreCase(user.getNickname())) {
+                if (oneMoveAway.contains(target.getPosition())) {
+                    possibleTargets.add(target);
+                }
+            }
+
+
+        }
 
         boolean found = false;
 
@@ -81,18 +96,14 @@ public class BasicHellion extends Effect {
         CopyOnWriteArrayList<Cell> oneMoveAway = Check.reachableCells(user, 1);
         oneMoveAway.add(user.getPosition());
 
-        possibleTargets = new CopyOnWriteArrayList<>();
-
         for (Player target : Server.connectedPlayers) {
 
-            if (target.getNickname().equalsIgnoreCase(user.getNickname())) {
-                possibleTargets.add(target);
-                continue;
+            if (!target.getNickname().equalsIgnoreCase(user.getNickname())) {
+                if (oneMoveAway.contains(target.getPosition())) {
+                    return true;
+                }
             }
 
-            if (oneMoveAway.contains(target.getPosition())) {
-                return true;
-            }
 
         }
 

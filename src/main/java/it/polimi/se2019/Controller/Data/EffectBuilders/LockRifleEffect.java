@@ -59,7 +59,7 @@ public class LockRifleEffect extends Effect {
 
                 }
 
-                if (answer.equalsIgnoreCase("yes")) {
+                if (answer.equalsIgnoreCase("si")) {
 
 
                     applyOptionalEffect(user, getOptionalEffectTargets(user, targets));
