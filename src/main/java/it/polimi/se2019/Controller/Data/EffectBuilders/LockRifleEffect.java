@@ -1,18 +1,18 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
-import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Rybamount;
-import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Controller.Adrenalina.InputCheck.yesOrNo;
-import static it.polimi.se2019.Network.Server.*;
+import static it.polimi.se2019.Network.Server.update;
+import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
 public class LockRifleEffect extends Effect {
 
@@ -62,7 +62,7 @@ public class LockRifleEffect extends Effect {
                 if (answer.equalsIgnoreCase("yes")) {
 
 
-                    applyOptionalEffect(user, getOptionalEffectTargets(user, targets, getTargets(user)));
+                    applyOptionalEffect(user, getOptionalEffectTargets(user, targets));
 
 
                 }
@@ -89,61 +89,7 @@ public class LockRifleEffect extends Effect {
 
         possibleTargets = Check.visiblePlayers(user);
 
-        String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        /*
-        controllo validità dell'input dell'utente
-         */
-
-        while (!InputCheck.nicknameCheck(chosenTarget)) {
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        }
-
-        boolean valid = false;
-
-        for (Player target:possibleTargets){
-
-            if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                valid = true;
-
-            }
-
-        }
-
-
-
-        while (!valid) {
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-            for (Player target:possibleTargets){
-
-                if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                    valid = true;
-
-                }
-
-            }
-        }
-
-
-        for (Player player : connectedPlayers) {
-
-            if (player.getNickname().equals(chosenTarget)) {
-
-                targets.add(player);
-
-            }
-
-        }
+        targets.add(ChoosePlayer.one(user, possibleTargets));
 
         return targets;
 
@@ -160,73 +106,19 @@ public class LockRifleEffect extends Effect {
         return false;
     }
 
-    public CopyOnWriteArrayList<Player> getOptionalEffectTargets(Player user, CopyOnWriteArrayList<Player> alreadyHit, CopyOnWriteArrayList<Player> visiblePlayers) {
+    public CopyOnWriteArrayList<Player> getOptionalEffectTargets(Player user, CopyOnWriteArrayList<Player> alreadyHit) {
 
-        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(user);
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
-        for (Player player : visiblePlayers) {
-            if (!alreadyHit.contains(player)) {
-                possibleTargets.add(player);
+        for (Player player :possibleTargets) {
+            if (alreadyHit.contains(player)) {
+                possibleTargets.remove(player);
             }
         }
 
-        String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        /*
-        controllo validità dell'input dell'utente
-         */
-
-        while (!InputCheck.nicknameCheck(chosenTarget)) {
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        }
-
-        boolean valid = false;
-
-        for (Player target:possibleTargets){
-
-            if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                valid = true;
-
-            }
-
-        }
-
-
-
-        while (!valid) {
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-            for (Player target:possibleTargets){
-
-                if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                    valid = true;
-
-                }
-
-            }
-        }
-
-
-        for (Player player : connectedPlayers) {
-
-            if (player.getNickname().equals(chosenTarget)) {
-
-                targets.add(player);
-
-            }
-
-        }
+        targets.add(ChoosePlayer.one(user, possibleTargets));
 
         return targets;
 
