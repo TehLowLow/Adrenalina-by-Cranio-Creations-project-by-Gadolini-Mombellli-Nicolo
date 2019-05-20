@@ -10,7 +10,7 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static it.polimi.se2019.Controller.Adrenalina.InputCheck.yesOrNo;
+import static it.polimi.se2019.Controller.Adrenalina.InputCheck.correctYesNo;
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
@@ -45,7 +45,7 @@ public class LockRifleEffect extends Effect {
 
                 String answer = updateWithAnswer(user, Message.usareEffettoOpzionale());
 
-                while (!yesOrNo(answer)) {
+                while (!correctYesNo(answer)) {
 
                     update(user, Message.inputError());
 
