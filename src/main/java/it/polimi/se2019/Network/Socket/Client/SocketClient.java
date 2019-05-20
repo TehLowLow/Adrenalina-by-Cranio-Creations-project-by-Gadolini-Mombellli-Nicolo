@@ -21,8 +21,10 @@ public class SocketClient extends Client implements Runnable {
     private static Socket client;
     private int gamePort;
     private int localPort;
-    private byte[] address = {127, 0, 0, 1};
+   private byte[] address = {127,0,0,1};
     private int signal;
+
+    private static InetAddress inet;
 
 
     private static DataOutputStream out;
@@ -111,7 +113,7 @@ public class SocketClient extends Client implements Runnable {
 
             try {
 
-                client = new Socket("localhost", LOGINSOCKETPORT);
+                client = new Socket("192.168.1.114",  LOGINSOCKETPORT); //TODO
                 connected = true;
 
             } catch (ConnectException e) {
@@ -134,8 +136,8 @@ public class SocketClient extends Client implements Runnable {
         while (!connected) {
 
             try {
-                InetAddress gameserver = InetAddress.getByAddress(address);
-                client = new Socket("localhost", SOCKETPORT, gameserver, localPort);
+                InetAddress gameserver = InetAddress.getLocalHost();  //TODO
+                client = new Socket("192.168.1.114", SOCKETPORT, gameserver, localPort); //TODO
                 connected = true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -153,6 +155,7 @@ public class SocketClient extends Client implements Runnable {
             e.printStackTrace();
         }
 
-
     }
 }
+
+//TODO le righe marcate con todo sono modificate da localhost a ip LAN.

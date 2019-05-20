@@ -194,10 +194,10 @@ public class Message {
         for(Cell cell : cells){
 
 
-            if(user.getPosition().getUpConnection().getConnectedCell().equals(cell)){
+            if(!user.getPosition().getUpConnection().getType().equals(Connection.EDGE) && !user.getPosition().getUpConnection().getType().equals(Connection.WALL)){
 
                for(Player target : Server.connectedPlayers){
-                   if(target.getPosition().equals(cell)){
+                   if(target.getPosition().equals(user.getPosition().getUpConnection().getConnectedCell())){
                        str = str + "\n" + "- Cella in alto: ";
                    }
                }
@@ -214,10 +214,10 @@ public class Message {
 
            }
 
-            if(user.getPosition().getDownConnection().getConnectedCell().equals(cell)){
+            if(!user.getPosition().getDownConnection().getType().equals(Connection.EDGE) && !user.getPosition().getDownConnection().getType().equals(Connection.WALL)){
 
                 for(Player target : Server.connectedPlayers){
-                    if(target.getPosition().equals(cell)){
+                    if(target.getPosition().equals(user.getPosition().getDownConnection().getConnectedCell())){
                         str = str + "\n" + "- Cella in basso: ";
                     }
                 }
@@ -234,10 +234,10 @@ public class Message {
 
             }
 
-            if(user.getPosition().getLeftConnection().getConnectedCell().equals(cell)){
+            if(!user.getPosition().getLeftConnection().getType().equals(Connection.EDGE)&&!user.getPosition().getLeftConnection().getType().equals(Connection.WALL)){
 
                 for(Player target : Server.connectedPlayers){
-                    if(target.getPosition().equals(cell)){
+                    if(target.getPosition().equals(user.getPosition().getLeftConnection().getConnectedCell())){
                         str = str + "\n" + "- Cella a sinistra: ";
                     }
                 }
@@ -254,10 +254,10 @@ public class Message {
 
             }
 
-            if(user.getPosition().getRightConnection().getConnectedCell().equals(cell)){
+            if(!user.getPosition().getRightConnection().getType().equals(Connection.EDGE) && !user.getPosition().getRightConnection().getType().equals(Connection.WALL)){
 
                 for(Player target : Server.connectedPlayers){
-                    if(target.getPosition().equals(cell)){
+                    if(target.getPosition().equals(user.getPosition().getRightConnection().getConnectedCell())){
                         str = str + "\n" + "- Cella a destra: ";
                     }
                 }

@@ -32,7 +32,7 @@ public class PiercingMode extends Effect {
         CopyOnWriteArrayList <Player> chosenTargets = new CopyOnWriteArrayList<>();
 
         boolean chosenDirection = false;
-        String direction = new String();
+        String direction;
 
         while(!chosenDirection){
 
@@ -131,12 +131,12 @@ public class PiercingMode extends Effect {
 
         if(direction.equalsIgnoreCase("alto")){
 
-            Cell cell = user.getPosition();
+            Cell cell = user.getPosition().getUpConnection().getConnectedCell();
 
             while(cell!=null){
 
-               cell = user.getPosition().getUpConnection().getConnectedCell();
                targetCells.add(cell);
+               cell = cell.getUpConnection().getConnectedCell();
 
             }
 
@@ -144,12 +144,13 @@ public class PiercingMode extends Effect {
 
         if(direction.equalsIgnoreCase("basso")){
 
-            Cell cell = user.getPosition();
+            Cell cell = user.getPosition().getDownConnection().getConnectedCell();
 
             while(cell!=null){
 
-                cell = user.getPosition().getDownConnection().getConnectedCell();
                 targetCells.add(cell);
+
+                cell = cell.getDownConnection().getConnectedCell();
 
             }
 
@@ -161,8 +162,8 @@ public class PiercingMode extends Effect {
 
             while(cell!=null){
 
-                cell = user.getPosition().getLeftConnection().getConnectedCell();
                 targetCells.add(cell);
+                cell = cell.getLeftConnection().getConnectedCell();
 
             }
 
@@ -174,8 +175,8 @@ public class PiercingMode extends Effect {
 
             while(cell!=null){
 
-                cell = user.getPosition().getRightConnection().getConnectedCell();
                 targetCells.add(cell);
+                cell = cell.getRightConnection().getConnectedCell();
 
             }
 
