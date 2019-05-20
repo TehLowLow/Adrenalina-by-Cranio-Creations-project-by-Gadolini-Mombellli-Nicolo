@@ -1265,7 +1265,7 @@ public class Check {
 
             for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
 
-                if (weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))) {
+                if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                     if (weapon.isLoaded()) {
                         return true;
@@ -1283,9 +1283,10 @@ public class Check {
     public static boolean canShotEnhancedFrenzy(Player player) {
 
         Player fakePlayer = new Player();
-        fakePlayer.setPlayerboard(new Playerboard());
         fakePlayer.setPosition(player.getPosition());
         fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+        fakePlayer.setPlayerboard(new Playerboard());
+
 
         CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 2);
 
@@ -1295,7 +1296,7 @@ public class Check {
 
             for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
 
-                if (weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))) {
+                if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                     if (weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
                         return true;

@@ -2,13 +2,12 @@ package it.polimi.se2019.Network.Socket;
 
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Logger;
-import org.jetbrains.annotations.Contract;
+
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 
 import static it.polimi.se2019.Network.Server.*;
 
@@ -31,7 +30,7 @@ public class SocketLogger implements Logger, Runnable {
      * @param serverSocket is the socket started into the executor pool to be assigned to a single server object.
      */
 
-    @Contract(pure = true)
+
     public SocketLogger(ServerSocket serverSocket) {
         this.mySocket = serverSocket;
     }

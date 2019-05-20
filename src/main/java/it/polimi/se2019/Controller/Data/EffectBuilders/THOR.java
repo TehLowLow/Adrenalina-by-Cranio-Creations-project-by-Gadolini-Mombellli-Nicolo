@@ -174,9 +174,11 @@ public class THOR extends Effect {
 
         Rybamount cost = new Rybamount();
 
+
+        cost.setBlueCubes(1);
         cost.setYellowCubes(0);
         cost.setRedCubes(0);
-        cost.setBlueCubes(1);
+
 
 
         if(Check.affordable(user, cost)){
@@ -220,6 +222,13 @@ public class THOR extends Effect {
 
         for (Player player:possibleTargets){
 
+
+            if (player.equals(user)){
+
+                possibleTargets.remove(player);
+
+            }
+
             if (player.equals(damagedChainReaction)){
 
                 possibleTargets.remove(player);
@@ -227,11 +236,7 @@ public class THOR extends Effect {
             }
 
 
-            if (player.equals(user)){
 
-                possibleTargets.remove(player);
-
-            }
 
         }
 
