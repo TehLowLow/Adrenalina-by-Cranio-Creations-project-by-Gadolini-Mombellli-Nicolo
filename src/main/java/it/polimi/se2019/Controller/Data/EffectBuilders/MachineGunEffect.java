@@ -9,12 +9,12 @@ import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Rybamount;
-import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static it.polimi.se2019.Network.Server.*;
+import static it.polimi.se2019.Network.Server.update;
+import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
 public class MachineGunEffect extends Effect {
     @Override
@@ -41,6 +41,8 @@ public class MachineGunEffect extends Effect {
 
         boolean focusShot = false;
 
+        CopyOnWriteArrayList<Player> focusShotTargets = new CopyOnWriteArrayList<>();
+
         if (canUseFocusShot(user)) {
 
 
@@ -58,7 +60,8 @@ public class MachineGunEffect extends Effect {
 
 
                 focusShot = true;
-                applyFocusShot(user, focusShotGetTargets(user, targets));
+                focusShotTargets = focusShotGetTargets(user, targets);
+                applyFocusShot(user, focusShotTargets);
 
             }
 
@@ -79,7 +82,7 @@ public class MachineGunEffect extends Effect {
 
             if (scelta.equalsIgnoreCase("si")) {
 
-                applyTurretTripod(user, turretTripodGetTargets(user, focusShot, targets, focusShotGetTargets(user, targets)));
+                applyTurretTripod(user, turretTripodGetTargets(user, focusShot, focusShotTargets, targets));
 
             }
 
@@ -105,59 +108,9 @@ public class MachineGunEffect extends Effect {
 
         if (possibleTargets.size() == 1) {
 
-            String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
+            targets.add(ChoosePlayer.one(user, possibleTargets));
 
-            while (!InputCheck.nicknameCheck(chosenTarget)) {
-
-                update(user, Message.bersaglioNonValido());
-
-                chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-            }
-
-            boolean valid = false;
-
-            for (Player target:possibleTargets){
-
-                if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                    valid = true;
-
-                }
-
-            }
-
-
-
-            while (!valid) {
-
-                update(user, Message.bersaglioNonValido());
-
-                chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-                for (Player target:possibleTargets){
-
-                    if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                        valid = true;
-
-                    }
-
-                }
-            }
-
-
-            for (Player player : connectedPlayers) {
-
-                if (player.getNickname().equals(chosenTarget)) {
-
-                    targets.add(player);
-
-                }
-
-
-            }
-        return targets;
+            return targets;
 
         }
 
@@ -168,68 +121,12 @@ public class MachineGunEffect extends Effect {
             scelta primo bersaglio
              */
 
-            String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
+            targets.add(ChoosePlayer.one(user, possibleTargets));
 
             /*
-            controllo validità dell'input dell'utente
-            */
-
-            while (!InputCheck.nicknameCheck(chosenTarget)) {
-
-                update(user, Message.bersaglioNonValido());
-
-                chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-            }
-
-            boolean valid = false;
-
-            for (Player target:possibleTargets){
-
-                if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                    valid = true;
-
-                }
-
-            }
-
-
-
-            while (!valid) {
-
-                update(user, Message.bersaglioNonValido());
-
-                chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-                for (Player target:possibleTargets){
-
-                    if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                        valid = true;
-
-                    }
-
-                }
-            }
-
-
-            for (Player player : connectedPlayers) {
-
-                if (player.getNickname().equals(chosenTarget)) {
-
-                    targets.add(player);
-
-
-                    /*
-                    lo tolgo x non averlo dopo nella scelta del secondo
-                     */
-                    possibleTargets.remove(player);
-
-                }
-
-
-            }
+            tolgo quello colpito dalla seconda scelta
+             */
+            possibleTargets.remove(targets.get(0));
 
 
 
@@ -253,62 +150,7 @@ public class MachineGunEffect extends Effect {
 
             if (scelta.equalsIgnoreCase("si")) {
 
-                chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-                /*
-                controllo validità dell'input dell'utente
-                */
-
-                while (!InputCheck.nicknameCheck(chosenTarget)) {
-
-                    update(user, Message.bersaglioNonValido());
-
-                    chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-                }
-
-                valid = false;
-
-                for (Player target:targets){
-
-                    if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                        valid = true;
-
-                    }
-
-                }
-
-
-
-                while (!valid) {
-
-                    update(user, Message.bersaglioNonValido());
-
-                    chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-                    for (Player target:targets){
-
-                        if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                            valid = true;
-
-                        }
-
-                    }
-                }
-
-
-                for (Player player : connectedPlayers) {
-
-                    if (player.getNickname().equals(chosenTarget)) {
-
-                        targets.add(player);
-
-                    }
-
-
-                }
+                targets.add(ChoosePlayer.one(user, possibleTargets));
 
             }
 
@@ -355,61 +197,7 @@ public class MachineGunEffect extends Effect {
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
-        String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        /*
-        controllo validità dell'input dell'utente
-         */
-
-        while (!InputCheck.nicknameCheck(chosenTarget)) {
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        }
-
-        boolean valid = false;
-
-        for (Player target:possibleTargets){
-
-            if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                valid = true;
-
-            }
-
-        }
-
-
-
-        while (!valid) {
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-            for (Player target:possibleTargets){
-
-                if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                    valid = true;
-
-                }
-
-            }
-        }
-
-
-        for (Player player : connectedPlayers) {
-
-            if (player.getNickname().equals(chosenTarget)) {
-
-                targets.add(player);
-
-            }
-
-        }
+        targets.add(ChoosePlayer.one(user, possibleTargets));
 
         return targets;
 
@@ -431,8 +219,12 @@ public class MachineGunEffect extends Effect {
 
             update(player, Message.colpito(user));
 
-            user.getPlayerboard().getAmmoCubes().setYellowCubes(user.getPlayerboard().getAmmoCubes().getYellow() - 1);
+            Rybamount cost = new Rybamount();
+            cost.setBlueCubes(0);
+            cost.setRedCubes(0);
+            cost.setYellowCubes(1);
 
+            Interaction.pay(user, cost);
         }
 
 
@@ -505,6 +297,7 @@ public class MachineGunEffect extends Effect {
                     if (basicTargets.contains(player)) {
 
                         possibleOtherTargets.remove(player);
+                        possibleTargetsBasicFocus.remove(player);
 
                     }
 
@@ -548,15 +341,21 @@ public class MachineGunEffect extends Effect {
 
             if (possibleOtherTargets.size() == 0) {
 
-
-                for (Player player : possibleTargetsBasicFocus) {
-
-                    targets.add(player);
-
-                }
+                targets.add(ChoosePlayer.one(user, possibleTargetsBasicFocus));
+                return targets;
 
             }
 
+            /*
+            se nel base ne ho colpito 1 solo e ne ho altri, faccio scegliere 1 degli altri
+             */
+
+            if (possibleTargetsBasicFocus.size() == 0){
+
+                targets.add(ChoosePlayer.one(user, possibleOtherTargets));
+                return targets;
+
+            }
 
             /*
             se no, chiedo all'utente se vuole colpire un bersaglio o due
@@ -574,11 +373,8 @@ public class MachineGunEffect extends Effect {
 
             if (scelta.equalsIgnoreCase("0")) {
 
-                for (Player player : possibleTargetsBasicFocus) {
+                targets.add(ChoosePlayer.one(user, possibleTargetsBasicFocus));
 
-                    targets.add(player);
-
-                }
 
             }
 
@@ -591,13 +387,11 @@ public class MachineGunEffect extends Effect {
 
             if (scelta.equalsIgnoreCase("2")) {
 
-                for (Player player : possibleTargetsBasicFocus) {
-
-                    targets.add(player);
-
-                }
+                targets.add(ChoosePlayer.one(user, possibleTargetsBasicFocus));
 
                 targets.add(ChoosePlayer.one(user, possibleOtherTargets));
+
+                return targets;
 
             }
         }
