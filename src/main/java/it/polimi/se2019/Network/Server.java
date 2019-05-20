@@ -176,6 +176,12 @@ public class Server {
 
         }
 
+        if(player.getConnectionTech().equalsIgnoreCase("testEnvironment")){
+
+            return TestBot.getAnswer();
+
+        }
+
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
 
             Socket stream = (Socket) playerClient.get(player.getPORT());
@@ -212,6 +218,7 @@ public class Server {
             msg = CLIprinter.print(player) + msg;
 
         }
+
 
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {

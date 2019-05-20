@@ -30,8 +30,9 @@ public class BasicShotgun extends Effect{
                 continue;
             }
 
+            chosen = true;
+
             if(InputCheck.yesOrNo(answer)){
-                chosen =true;
                 //Riciclo da GrenadeLauncher il metodo per spostare il bersaglio.
                 GrenadeLauncher.moveTarget(user, target);
             }

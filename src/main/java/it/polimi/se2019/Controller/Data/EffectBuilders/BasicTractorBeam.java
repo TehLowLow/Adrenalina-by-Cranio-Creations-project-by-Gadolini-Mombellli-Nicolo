@@ -23,16 +23,13 @@ public class BasicTractorBeam extends Effect {
 
         Player target = targets.get(0);
         CopyOnWriteArrayList <Cell> targetCells = Check.reachableCells(target, 2);
+
         targetCells.add(target.getPosition());
 
-        for(Cell visibleCell : visibleCells){
+        for(Cell visible : visibleCells){
 
-            for(Cell targetCell : targetCells){
-
-                if(visibleCells.contains(targetCell)){
-                    availableCells.add(visibleCell);
-                }
-
+            if(targetCells.contains(visible)){
+                availableCells.add(visible);
             }
 
         }
