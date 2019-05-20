@@ -155,6 +155,10 @@ public class Message {
         return "Vuoi scegliere un altro bersaglio?";
     }
 
+    public static String nessunBersaglioFase(){
+        return "Se ti sposti qui non potrai colpire nessuno.";
+    }
+
     /*
     SCELTA STANZA
      */

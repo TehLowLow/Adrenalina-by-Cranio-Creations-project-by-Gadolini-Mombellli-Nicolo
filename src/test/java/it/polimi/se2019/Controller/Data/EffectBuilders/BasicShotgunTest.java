@@ -35,10 +35,8 @@ public class BasicShotgunTest {
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
         targets.add(target);
 
-
         Weapon shotgun = new Weapon();
         shotgun.setBaseEffect(new BasicShotgun());
-
         shotgun.getBaseEffect().applyEffect(user, targets);
 
 

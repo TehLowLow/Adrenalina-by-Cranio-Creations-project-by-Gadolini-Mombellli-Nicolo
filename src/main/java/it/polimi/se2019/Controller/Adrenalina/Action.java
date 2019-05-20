@@ -853,7 +853,8 @@ public class Action {
 
         }
 
-        chosen.getEffect().applyEffect(player, null);
+        CopyOnWriteArrayList <Player> targets = chosen.getEffect().getTargets(player);
+        chosen.getEffect().applyEffect(player, targets);
         player.getPlayerboard().getPowerups().remove(chosen);
         Board.getDiscardedPowerUps().add(chosen);
 

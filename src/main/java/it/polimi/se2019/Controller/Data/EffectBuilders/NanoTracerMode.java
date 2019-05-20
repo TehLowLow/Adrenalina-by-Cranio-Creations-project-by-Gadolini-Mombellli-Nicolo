@@ -19,17 +19,17 @@ public class NanoTracerMode extends Effect {
 
         BasicHellion effect = new BasicHellion();
         effect.applyEffect(user, targets);
-        effect.applyEffect(user, targets);
 
         Player target = targets.get(0);
 
-        for(Token token : target.getPlayerboard().getDamage()){
 
-            if(token.getChampionName().equalsIgnoreCase(user.getPlayerboard().getChampionName())){
-                target.getPlayerboard().getDamage().remove(token);
-                break;
+        for(Player hit : Server.connectedPlayers){
+
+            if(hit.getPosition().equals(target.getPosition())){
+                if(!hit.equals(user)){
+                    Damage.giveMarker(1, user, hit);
+                }
             }
-
         }
 
 

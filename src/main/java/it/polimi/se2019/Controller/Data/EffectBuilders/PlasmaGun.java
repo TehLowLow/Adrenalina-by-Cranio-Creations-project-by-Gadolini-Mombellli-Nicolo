@@ -21,23 +21,32 @@ public class PlasmaGun extends Effect {
         boolean usedMove = false;
         boolean chosen = false;
 
-        while(!chosen){
+        if(isPhaseAvailable(user)) {
 
-            String answer = Server.updateWithAnswer(user, Message.usareSlittamento());
+            while (!chosen) {
 
-            if(!InputCheck.correctYesNo(answer)){
-                Server.update(user, Message.inputError());
-                continue;
-            }
+                String answer = Server.updateWithAnswer(user, Message.usareSlittamento());
 
-            if(!InputCheck.yesOrNo(answer)){
+                if (!InputCheck.correctYesNo(answer)) {
+                    Server.update(user, Message.inputError());
+                    continue;
+                }
+
+                if (!InputCheck.yesOrNo(answer)) {
+                    if (!someTargetsAvailable(user)) {
+                        Server.update(user, Message.nessunBersaglioFase());
+                        continue;
+                    }
+                    chosen = true;
+                    continue;
+                }
+
+
+                phaseMove(user);
                 chosen = true;
-                continue;
-            }
+                usedMove = true;
 
-            phaseMove(user);
-            chosen = true;
-            usedMove = true;
+            }
 
         }
 
@@ -122,9 +131,9 @@ public class PlasmaGun extends Effect {
                 }
 
                 chosen = true;
-
                 Cell newPosition = reachableCells.get(index);
                 user.setPosition(newPosition);
+
 
             }catch (NumberFormatException e){
                 Server.update(user, Message.inputError());
@@ -141,18 +150,83 @@ public class PlasmaGun extends Effect {
         CopyOnWriteArrayList <Player> possibleTargets = Check.visiblePlayers(user);
         CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
 
-        if(possibleTargets.isEmpty()){
-            return targets;
-        }
-
         targets.add(ChoosePlayer.one(user, possibleTargets));
 
-        return null;
+        return targets;
+    }
+
+    public boolean someTargetsAvailable(Player user){
+
+        CopyOnWriteArrayList <Player> visible = Check.visiblePlayers(user);
+
+        if(visible.isEmpty()){
+            return false;
+        }
+
+        return true;
+
+    }
+
+    //Questa funzione ritorna false se il player, usando phasemove, raggiungerebbe un punto in cui non può colpire nessuno.
+    public boolean isPhaseAvailable(Player user){
+
+        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(user, 2);
+        Player fakePlayer = new Player();
+        fakePlayer.setPosition(user.getPosition());
+
+        for(Cell cell: reachableCells){
+
+            fakePlayer.setPosition(cell);
+
+            CopyOnWriteArrayList visiblePlayers = Check.visiblePlayers(fakePlayer);
+
+            if(visiblePlayers.contains(user)){
+                visiblePlayers.remove(user);
+            }
+
+            if(!visiblePlayers.isEmpty()){
+                return true;
+            }
+
+        }
+
+        return false;
+
     }
 
     @Override
     public boolean hasTargets(Player user) {
 
-        return true;
+        CopyOnWriteArrayList <Player> visiblePlayers = new CopyOnWriteArrayList<>();
+        visiblePlayers = Check.visiblePlayers(user);
+
+        if(!visiblePlayers.isEmpty()){
+            return true;
+        }
+
+        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(user, 2);
+        Player fakePlayer = new Player();
+        fakePlayer.setPosition(user.getPosition());
+
+        for(Cell cell: reachableCells){
+
+            fakePlayer.setPosition(cell);
+
+            visiblePlayers = Check.visiblePlayers(fakePlayer);
+
+            if(visiblePlayers.contains(user)){
+                visiblePlayers.remove(user);
+            }
+
+            if(!visiblePlayers.isEmpty()){
+                return true;
+            }
+
+        }
+
+        return false;
+
     }
+
+
 }
