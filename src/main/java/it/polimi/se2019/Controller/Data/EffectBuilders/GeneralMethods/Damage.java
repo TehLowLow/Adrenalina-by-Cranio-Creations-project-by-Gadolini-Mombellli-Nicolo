@@ -219,6 +219,8 @@ public class Damage {
 
         }
 
+        Check.limitMarkers(target, user);
+
         update(target, Message.colpito(user));
 
     }

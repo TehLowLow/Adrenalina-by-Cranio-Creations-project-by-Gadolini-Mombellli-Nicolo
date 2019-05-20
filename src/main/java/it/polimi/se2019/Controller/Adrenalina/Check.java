@@ -399,12 +399,17 @@ public class Check {
 
             if (marker.getChampionName().equals(attacker.getPlayerboard().getChampionName())) {
                 attackerMarkers++;
+
+                if (attackerMarkers>3){
+
+                    attackerMarkers--;
+                    markers.remove(marker);
+
+                }
             }
         }
 
-        if (attackerMarkers > 3) {
-            attackerMarkers = 3;
-        }
+        defender.getPlayerboard().setMarker(markers);
 
 
     }

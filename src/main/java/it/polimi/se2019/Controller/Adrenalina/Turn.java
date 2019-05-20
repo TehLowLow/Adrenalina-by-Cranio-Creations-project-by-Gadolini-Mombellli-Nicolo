@@ -5,10 +5,9 @@ import it.polimi.se2019.Controller.Adrenalina.Exceptions.LimitPowerUpException;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
-import it.polimi.se2019.View.*;
+import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.Collections;
 
 /**
  * This class represents the player's turn in the match
@@ -101,9 +100,15 @@ public class Turn {
      */
     public void standard(Player player) {
 
+        boolean usedPowerUp;
 
         for (int i = 0; i < 3; i++) {
-            Action.usePowerUp(player);
+
+            usedPowerUp = Action.usePowerUp(player);
+
+            if (!usedPowerUp){
+                break;
+            }
         }
 
 
@@ -111,14 +116,24 @@ public class Turn {
 
 
         for (int i = 0; i < 3; i++) {
-            Action.usePowerUp(player);
+
+            usedPowerUp = Action.usePowerUp(player);
+
+            if (!usedPowerUp){
+                break;
+            }
         }
 
 
         Action.perform(player);
 
         for (int i = 0; i < 3; i++) {
-            Action.usePowerUp(player);
+
+            usedPowerUp = Action.usePowerUp(player);
+
+            if (!usedPowerUp){
+                break;
+            }
         }
 
         Action.reload(player);

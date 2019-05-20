@@ -181,7 +181,7 @@ public class Newton extends Effect {
 
         target.add(ChoosePlayer.one(user, possibleTargets));
 
-        return null;
+        return target;
     }
 
     @Override

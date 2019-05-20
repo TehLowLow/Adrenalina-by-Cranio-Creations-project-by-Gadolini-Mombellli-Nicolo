@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Token;
@@ -25,15 +26,7 @@ public class ReaperMode extends Effect {
 
             CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
 
-            Token d1 = new Token();
-            Token d2 = new Token();
-
-            damages.add(d1);
-            damages.add(d2);
-
-            target.getPlayerboard().setDamage(damages);
-
-            update(target, Message.colpito(user));
+            Damage.giveDamage(2, user, target);
 
             user.getPlayerboard().getAmmoCubes().setBlueCubes(user.getPlayerboard().getAmmoCubes().getBlue() - 1);
             user.getPlayerboard().getAmmoCubes().setRedCubes(user.getPlayerboard().getAmmoCubes().getRed() - 1);

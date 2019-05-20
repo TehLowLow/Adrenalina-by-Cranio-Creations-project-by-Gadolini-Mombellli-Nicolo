@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
+import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.View.Message;
 
@@ -52,47 +53,36 @@ public class TeleporterEffect extends Effect {
             cells.addAll(map.getYellowRoom().getCells());
         }
 
-        update(user, "In quale cella vuoi teletrasportarti?");
-        update(user, "Scegli tra:");
-
-        for (Cell cell : cells) {
-
-            update(user, cell.getName());
-
-        }
 
 
         boolean cellaValida = false;
 
-        String scelta = updateWithAnswer(user, "Seleziona una delle celle elencate");
-
-
-        for (Cell cell : cells) {
-
-            if (cell.getName().equalsIgnoreCase(scelta)) {
-
-                cellaValida = true;
-                user.setPosition(cell);
-
-            }
-
-        }
+        String scelta = updateWithAnswer(user, Message.scegliCella(cells));
+        int cellNumber;
 
         while (!cellaValida) {
 
-            update(user, Message.inputError());
-            scelta = updateWithAnswer(user, "Seleziona una delle celle elencate");
+            try {
+                cellNumber = InputCheck.numberCheck(scelta);
+            } catch (NumberFormatException e) {
+                update(user, Message.inputError());
+                scelta = updateWithAnswer(user, Message.scegliCella(cells));
+                continue;
+            }
 
 
-            for (Cell cell : cells) {
+            if (cellNumber >= 0 && cellNumber < cells.size()) {
 
-                if (cell.getName().equalsIgnoreCase(scelta)) {
+                user.setPosition(cells.get(cellNumber));
+                update(user , Message.movedTo());
+                cellaValida = true;
 
-                    cellaValida = true;
-                    user.setPosition(cell);
+            } else {
+                update(user, Message.inputError());
+            }
 
-                }
-
+            if (!cellaValida){
+                scelta = updateWithAnswer(user, Message.scegliCella(cells));
             }
 
 

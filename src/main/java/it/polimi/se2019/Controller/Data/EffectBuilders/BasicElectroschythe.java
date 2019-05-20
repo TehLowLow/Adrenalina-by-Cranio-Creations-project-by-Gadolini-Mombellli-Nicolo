@@ -1,8 +1,8 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
-import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -24,14 +24,7 @@ public class BasicElectroschythe extends Effect {
 
         for (Player target:targets){
 
-            CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
-
-            Token d1 = new Token();
-            d1.setChampionName(user.getPlayerboard().getChampionName());
-
-            damages.add(d1);
-
-            target.getPlayerboard().setDamage(damages);
+            Damage.giveDamage(1, user, target);
 
             update(target, Message.colpito(user));
 

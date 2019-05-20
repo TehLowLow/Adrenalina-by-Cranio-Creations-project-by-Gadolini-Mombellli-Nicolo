@@ -9,7 +9,6 @@ import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Rybamount;
-import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
@@ -29,13 +28,7 @@ public class MachineGunEffect extends Effect {
 
         for (Player player : targets) {
 
-            CopyOnWriteArrayList<Token> damages = player.getPlayerboard().getDamage();
-
-            Token d1 = new Token();
-
-            damages.add(d1);
-
-            player.getPlayerboard().setDamage(damages);
+            Damage.giveDamage(1, user, player);
 
             update(player, Message.colpito(user));
 
@@ -434,13 +427,7 @@ public class MachineGunEffect extends Effect {
 
         for (Player player : targets) {
 
-            CopyOnWriteArrayList<Token> damages = player.getPlayerboard().getDamage();
-
-            Token d1 = new Token();
-
-            damages.add(d1);
-
-            player.getPlayerboard().setDamage(damages);
+            Damage.giveDamage(1, user, player);
 
             update(player, Message.colpito(user));
 

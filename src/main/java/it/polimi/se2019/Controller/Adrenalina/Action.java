@@ -7,7 +7,6 @@ import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.Collections;
 
 import static it.polimi.se2019.Controller.Adrenalina.Interaction.selectShotMove;
 import static it.polimi.se2019.Controller.Adrenalina.Interaction.shuffleAndDraw;
@@ -776,7 +775,7 @@ public class Action {
 
     }
 
-    public static void usePowerUp(Player player) {
+    public static boolean usePowerUp(Player player) {
 
         CopyOnWriteArrayList<Powerup> available = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<Powerup> powerups = player.getPlayerboard().getPowerups();
@@ -801,7 +800,7 @@ public class Action {
 
         if (available.isEmpty()) {
 
-            return;
+            return false;
 
         }
 
@@ -816,7 +815,7 @@ public class Action {
 
         if (scelta.equalsIgnoreCase("no")) {
 
-            return;
+            return false;
 
         }
 
@@ -857,6 +856,9 @@ public class Action {
         chosen.getEffect().applyEffect(player, null);
         player.getPlayerboard().getPowerups().remove(chosen);
         Board.getDiscardedPowerUps().add(chosen);
+
+
+        return true;
 
     }
 

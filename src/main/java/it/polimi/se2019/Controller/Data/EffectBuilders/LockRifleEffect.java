@@ -2,10 +2,10 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Rybamount;
-import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
@@ -30,22 +30,9 @@ public class LockRifleEffect extends Effect {
 
         for (Player target : targets) {
 
-            CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
-            CopyOnWriteArrayList<Token> markers = target.getPlayerboard().getMarker();
 
-            Token d1 = new Token();
-            Token d2 = new Token();
-            Token m1 = new Token();
-
-
-            damages.add(d1);
-            damages.add(d2);
-            markers.add(m1);
-
-            Check.limitMarkers(target, user);
-
-            target.getPlayerboard().setDamage(damages);
-            target.getPlayerboard().setMarker(markers);
+            Damage.giveDamage(2, user, target);
+            Damage.giveMarker(1, user, target);
 
             update(target, Message.colpito(user));
 
@@ -251,15 +238,7 @@ public class LockRifleEffect extends Effect {
 
         for (Player target : targets) {
 
-            CopyOnWriteArrayList<Token> markers = target.getPlayerboard().getMarker();
-
-            Token m1 = new Token();
-
-            markers.add(m1);
-
-            Check.limitMarkers(target, user);
-
-            target.getPlayerboard().setMarker(markers);
+            Damage.giveMarker(1, user, target);
 
             update(target, Message.colpito(user));
 
