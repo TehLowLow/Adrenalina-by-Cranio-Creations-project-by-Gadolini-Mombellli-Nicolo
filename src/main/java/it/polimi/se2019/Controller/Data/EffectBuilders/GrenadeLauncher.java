@@ -116,7 +116,7 @@ public class GrenadeLauncher extends Effect {
                 user.getPlayerboard().getAmmoCubes().setRedCubes(red - 1);
 
 
-                if(!moved){
+                if (!moved) {
 
                     String choice = Server.updateWithAnswer(user, Message.vuoiSpostare());
 
@@ -133,7 +133,6 @@ public class GrenadeLauncher extends Effect {
 
                         moved = true;
                     }
-
 
 
                 }
@@ -324,6 +323,7 @@ public class GrenadeLauncher extends Effect {
     public static void moveTarget(Player user, Player target) {
 
         boolean chosen = false;
+        boolean found = false;
 
         CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(target, 1);
 
@@ -339,7 +339,7 @@ public class GrenadeLauncher extends Effect {
 
             Cell chosenCell = getCell(target, direction);
 
-            if (chosenCell.equals(null)) {
+            if (chosenCell == null) {
                 Server.update(user, Message.cellaNonDisponibile());
                 continue;
             }
@@ -354,10 +354,15 @@ public class GrenadeLauncher extends Effect {
 
             }
 
-            Server.update(user, Message.direzioneOstruita());
+            if (!found) {
+
+                Server.update(user, Message.direzioneOstruita());
+
+            }
 
 
         }
+
 
     }
 
