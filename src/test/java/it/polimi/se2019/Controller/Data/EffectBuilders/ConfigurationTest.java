@@ -49,7 +49,7 @@ public class ConfigurationTest {
             playerboard.getAmmoCubes().setBlueCubes(0);
             playerboard.getAmmoCubes().setRedCubes(0);
             playerboard.getAmmoCubes().setYellowCubes(0);
-            playerboard.setChampionName("champion" + 1);
+            playerboard.setChampionName("champion" + i);
             playerboard.setFrenzyboard(false);
             CopyOnWriteArrayList<Integer> pbvalue = new CopyOnWriteArrayList<>();
             pbvalue.add(8);

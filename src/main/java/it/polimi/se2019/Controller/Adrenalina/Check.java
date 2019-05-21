@@ -56,7 +56,7 @@ public class Check {
      *
      * @param killed the defeated player whose board needs to be resolved.
      */
-    public static void resolveBoard(Player killed, Board board, Player killer, boolean overkill) {
+    public static void resolveBoard(Player killed,  boolean overkill) {
 
         CopyOnWriteArrayList<Token> damages = new CopyOnWriteArrayList<Token>();
         CopyOnWriteArrayList<PlayerWithScore> playersWithScore;
@@ -82,7 +82,7 @@ public class Check {
 
 
         playersWithScore = initLeaderboard(damages);
-        whoShotFirst = whoShotFirts(damages);
+        whoShotFirst = whoShotFirst(damages);
 
         Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
             @Override
@@ -97,18 +97,18 @@ public class Check {
                 if (o1.score == o2.score) {
 
                     if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)) {
-                        return 1;
+                        return -1;
                     }
 
                     if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)) {
-                        return -1;
+                        return 1;
                     }
 
 
                 }
 
                 if (o1.score < o2.score) {
-                    return -1;
+                    return 1;
                 } else {
                     return 0;
                 }
@@ -123,7 +123,7 @@ public class Check {
 
             if (attacker.score != 0) {
 
-                attacker.player.setScore(killer.getScore() + killed.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
+                attacker.player.setScore(attacker.player.getScore() + killed.getPlayerboard().getPlayerboardValue().get(playerboardCounter));
 
                 playerboardCounter++;
             }
@@ -136,7 +136,21 @@ public class Check {
 
         Interaction interaction = new Interaction();
 
-        interaction.claimSkull(board, killer, killed, overkill);
+        String killerChampionName = killed.getPlayerboard().getDamage().get(10).getChampionName();
+
+        Player killer = new Player();
+
+        for (Player player: connectedPlayers){
+
+            if (player.getPlayerboard().getChampionName().equalsIgnoreCase(killerChampionName)){
+
+                killer = player;
+
+            }
+
+        }
+
+        interaction.claimSkull(killer, killed, overkill);
 
 
 
@@ -642,7 +656,7 @@ public class Check {
         CopyOnWriteArrayList<Player> whoShotFirst;
 
         playersWithScore = initLeaderboard(damages);
-        whoShotFirst = whoShotFirts(damages);
+        whoShotFirst = whoShotFirst(damages);
 
 
         Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
@@ -658,18 +672,18 @@ public class Check {
                 if (o1.score == o2.score) {
 
                     if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)) {
-                        return 1;
+                        return -1;
                     }
 
                     if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)) {
-                        return -1;
+                        return 1;
                     }
 
 
                 }
 
                 if (o1.score < o2.score) {
-                    return -1;
+                    return 1;
                 } else {
                     return 0;
                 }
@@ -760,7 +774,7 @@ public class Check {
             CopyOnWriteArrayList<Player> whoShotFirst;
 
             playersWithScore = initLeaderboard(damages);
-            whoShotFirst = whoShotFirts(damages);
+            whoShotFirst = whoShotFirst(damages);
 
 
             Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
@@ -776,18 +790,18 @@ public class Check {
                     if (o1.score == o2.score) {
 
                         if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)) {
-                            return 1;
+                            return -1;
                         }
 
                         if (whoShotFirst.indexOf(o1.player) > whoShotFirst.indexOf(o2.player)) {
-                            return -1;
+                            return 1;
                         }
 
 
                     }
 
                     if (o1.score < o2.score) {
-                        return -1;
+                        return 1;
                     } else {
                         return 0;
                     }
@@ -894,18 +908,18 @@ public class Check {
                 if (o1.kills == o2.kills) {
 
                     if (whoKilledFirst.indexOf(o1.player) < whoKilledFirst.indexOf(o2.player)) {
-                        return 1;
+                        return -1;
                     }
 
                     if (whoKilledFirst.indexOf(o1.player) > whoKilledFirst.indexOf(o2.player)) {
-                        return -1;
+                        return 1;
                     }
 
 
                 }
 
                 if (o1.kills < o2.kills) {
-                    return -1;
+                    return 1;
                 } else {
                     return 0;
                 }
@@ -1019,7 +1033,7 @@ public class Check {
 
                     if (o1.scoreOnMortalBlowTrack > o2.scoreOnMortalBlowTrack) {
 
-                        return 1;
+                        return -1;
 
                     }
 
@@ -1034,14 +1048,14 @@ public class Check {
                         return 0;
 
                     } else {
-                        return -1;
+                        return 1;
                     }
 
 
                 }
 
                 if (o1.points < o2.points) {
-                    return -1;
+                    return 1;
                 }
 
                 return 0;
@@ -1432,7 +1446,7 @@ public class Check {
 
     }
 
-    private static CopyOnWriteArrayList<Player> whoShotFirts(CopyOnWriteArrayList<Token> damages) {
+    private static CopyOnWriteArrayList<Player> whoShotFirst(CopyOnWriteArrayList<Token> damages) {
 
         CopyOnWriteArrayList<Player> whoShotFirst = new CopyOnWriteArrayList<>();
 

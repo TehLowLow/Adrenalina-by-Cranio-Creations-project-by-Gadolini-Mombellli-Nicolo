@@ -355,16 +355,15 @@ public class Interaction {
      * this method replaces a skull on the MortalBlow track
      * with the killer's Token
      *
-     * @param board    is the main board
      * @param killer   is the player who has to place his Token
      * @param victim   is the killed player
      * @param overkill is a boolean that is 'true' in case of overkill,
      *                 'false' otherwise
      */
 
-    public void claimSkull(Board board, Player killer, Player victim, boolean overkill) {
+    public void claimSkull(Player killer, Player victim, boolean overkill) {
 
-        CopyOnWriteArrayList<MortalBlow> mortalBlowTrack = board.getMortalBlowTrack();
+        CopyOnWriteArrayList<MortalBlow> mortalBlowTrack = Board.getMortalBlowTrack();
 
         int lenght = mortalBlowTrack.size();
 

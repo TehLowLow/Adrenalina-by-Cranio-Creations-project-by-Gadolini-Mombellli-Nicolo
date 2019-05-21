@@ -160,7 +160,7 @@ public class Turn {
                 overkill = true;
             }
 
-            Check.resolveBoard(dead, board, player, overkill);
+            Check.resolveBoard(dead, overkill);
             respawn(dead);
 
         }
@@ -286,7 +286,7 @@ public class Turn {
                 overkill = true;
             }
 
-            Check.resolveBoard(dead, board, player, overkill);
+            Check.resolveBoard(dead, overkill);
             respawn(dead);
             Interaction.turnPlayerboard(dead);
 
