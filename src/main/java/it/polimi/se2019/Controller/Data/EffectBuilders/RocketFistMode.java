@@ -60,89 +60,39 @@ public class RocketFistMode extends Effect {
 
         if (direction.equals("alto")) {
 
-            for (Cell cell : cardinalCells) {
-
-                if (cell.equals(user.getPosition().getUpConnection().getConnectedCell())) {
-
-                    user.setPosition(cell);
-                    Server.update(user, Message.movedTo());
-
-
-                    if (cell.getUpConnection().getType().equals(Connection.FREE) || cell.getUpConnection().getType().equals(Connection.DOOR)) {
-
-                        if (cardinalCells.contains(cell.getUpConnection().getConnectedCell())) {
-                            next = cell.getUpConnection().getConnectedCell();
-
-                        }
-
-                    }
-
-                }
-            }
-
+            user.setPosition(user.getPosition().getUpConnection().getConnectedCell());
+            Server.update(user, Message.movedTo());
+            if(user.getPosition().getUpConnection().getType().equals(Connection.DOOR) || user.getPosition().getUpConnection().getType().equals(Connection.FREE)){
+               next = user.getPosition().getUpConnection().getConnectedCell();
+           }
+           
         }
 
         if (direction.equals("basso")) {
 
-            for (Cell cell : cardinalCells) {
-                if (cell.equals(user.getPosition().getDownConnection().getConnectedCell())) {
-                    user.setPosition(cell);
-                    Server.update(user, Message.movedTo());
-
-
-                    if (cell.getDownConnection().getType().equals(Connection.FREE) || cell.getDownConnection().getType().equals(Connection.DOOR)) {
-
-                        if (cardinalCells.contains(cell.getDownConnection().getConnectedCell())) {
-                            next = cell.getDownConnection().getConnectedCell();
-
-                        }
-
-                    }
-
-                }
+            user.setPosition(user.getPosition().getDownConnection().getConnectedCell());
+            Server.update(user, Message.movedTo());
+            if(user.getPosition().getDownConnection().getType().equals(Connection.DOOR) || user.getPosition().getDownConnection().getType().equals(Connection.FREE)){
+                next = user.getPosition().getDownConnection().getConnectedCell();
             }
-
         }
 
         if (direction.equals("sinistra")) {
 
-            for (Cell cell : cardinalCells) {
-                if (cell.equals(user.getPosition().getLeftConnection().getConnectedCell())) {
-
-                    user.setPosition(cell);
-                    Server.update(user, Message.movedTo());
-
-                    if (cell.getLeftConnection().getType().equals(Connection.FREE) || cell.getLeftConnection().getType().equals(Connection.DOOR)) {
-
-                        if (cardinalCells.contains(cell.getLeftConnection().getConnectedCell())) {
-                            next = cell.getLeftConnection().getConnectedCell();
-
-                        }
-
-                    }
-
-                }
+            user.setPosition(user.getPosition().getLeftConnection().getConnectedCell());
+            Server.update(user, Message.movedTo());
+            if(user.getPosition().getLeftConnection().getType().equals(Connection.DOOR) || user.getPosition().getLeftConnection().getType().equals(Connection.FREE)){
+                next = user.getPosition().getLeftConnection().getConnectedCell();
             }
 
         }
 
         if (direction.equals("destra")) {
 
-            for (Cell cell : cardinalCells) {
-                if (cell.equals(user.getPosition().getUpConnection().getConnectedCell())) {
-                    user.setPosition(cell);
-                    Server.update(user, Message.movedTo());
-
-                    if (cell.getRightConnection().getType().equals(Connection.FREE) || cell.getRightConnection().getType().equals(Connection.DOOR)) {
-
-                        if (cardinalCells.contains(cell.getRightConnection().getConnectedCell())) {
-                            next = cell.getRightConnection().getConnectedCell();
-
-                        }
-
-                    }
-
-                }
+            user.setPosition(user.getPosition().getRightConnection().getConnectedCell());
+            Server.update(user, Message.movedTo());
+            if(user.getPosition().getRightConnection().getType().equals(Connection.DOOR) || user.getPosition().getRightConnection().getType().equals(Connection.FREE)){
+                next = user.getPosition().getRightConnection().getConnectedCell();
             }
 
         }
@@ -155,6 +105,7 @@ public class RocketFistMode extends Effect {
         }
 
         chosen = false;
+
         String answer = new String();
 
         //Se next non è null, posso spostarmi ancora se voglio.

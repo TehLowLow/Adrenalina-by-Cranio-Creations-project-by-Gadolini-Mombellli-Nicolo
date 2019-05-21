@@ -4,6 +4,7 @@ import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.Network.TestBot;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,6 +37,28 @@ public class BasicHeatSeekerTest {
         heatseeker.getBaseEffect().applyEffect(user, targets);
 
         assertEquals(3, target.getPlayerboard().getDamage().size());
+
+    }
+
+    @Test
+    public void getTargetsTest(){
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+
+        answers.add("player2");
+        answers.add("player3");
+
+        Player player3 = Server.connectedPlayers.get(3);
+        player3.setPosition(Board.getMap().getYellowRoom().getCells().get(0));
+
+        TestBot.initAnswers(answers);
+
+        Weapon heatseeker = new Weapon();
+        heatseeker.setBaseEffect(new BasicHeatSeeker());
+        CopyOnWriteArrayList <Player> target = heatseeker.getBaseEffect().getTargets(Server.connectedPlayers.get(0));
+
+        assertTrue(target.size()==1);
+        assertTrue(target.contains(player3));
 
     }
 

@@ -4,6 +4,7 @@ import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.Network.TestBot;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -40,6 +41,33 @@ public class BasicFurnaceTest {
 
     @Test
     public void getTargets() {
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+
+        answers.add("blu");
+        answers.add("rosso");
+
+
+        TestBot.initAnswers(answers);
+
+        int j = 0;
+        for(int i = 1; i<4 ; i++){
+
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getRedRoom().getCells().get(j));
+            j++;
+
+        }
+
+        Weapon furnace = new Weapon();
+        furnace.setBaseEffect(new BasicFurnace());
+        CopyOnWriteArrayList<Player> targets = furnace.getBaseEffect().getTargets(Server.connectedPlayers.get(0));
+        assertTrue(targets.size()==3);
+        assertTrue(targets.contains(Server.connectedPlayers.get(1)));
+        assertTrue(targets.contains(Server.connectedPlayers.get(2)));
+        assertTrue(targets.contains(Server.connectedPlayers.get(3)));
+        assertTrue(!targets.contains(Server.connectedPlayers.get(4)));
+
+
     }
 
     @Test

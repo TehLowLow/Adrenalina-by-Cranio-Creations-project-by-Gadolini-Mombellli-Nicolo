@@ -226,83 +226,57 @@ public class BasicFlamethrower extends Effect {
 
     protected static CopyOnWriteArrayList <Cell> getCardinalCells(Player user){
 
-        Check check = new Check();
+
         CopyOnWriteArrayList<Cell> reachableCardinalCells = new CopyOnWriteArrayList<>();
-        CopyOnWriteArrayList<Cell> oneStepCells = check.reachableCells(user, 1);
         Cell position = user.getPosition();
+        
+            
+        Cell upCell = null;
+        Cell downCell = null;
+        Cell leftCell = null;
+        Cell rightCell = null;
 
 
-        for(Cell cell : oneStepCells){
-            
-            Cell upCell = null;
-            Cell downCell = null;
-            Cell leftCell = null;
-            Cell rightCell = null;
-            
-            if(position.getUpConnection().getType().equals(Connection.FREE) || position.getUpConnection().getType().equals(Connection.DOOR)){
-                if(cell.equals(position.getUpConnection().getConnectedCell())){
-                    upCell = cell;
-                }
-            }
-            
-            if(upCell!=null){
-                
-                if(upCell.getUpConnection().getType().equals(Connection.FREE) || position.getUpConnection().getType().equals(Connection.DOOR)){
+        if(position.getUpConnection().getType().equals(Connection.FREE) || position.getUpConnection().getType().equals(Connection.DOOR)){
+                    upCell = position.getUpConnection().getConnectedCell();
+                    reachableCardinalCells.add(upCell);
                     
-                    reachableCardinalCells.add(upCell.getUpConnection().getConnectedCell());
-                }
+                    if(upCell.getUpConnection().getType().equals(Connection.FREE) || position.getUpConnection().getType().equals(Connection.DOOR)){
+                        reachableCardinalCells.add(upCell.getUpConnection().getConnectedCell());
+                    }
                 
             }
 
-            if(position.getDownConnection().getType().equals(Connection.FREE) || position.getDownConnection().getType().equals(Connection.DOOR)){
-                if(cell.equals(position.getDownConnection().getConnectedCell())){
-                    downCell = cell;
-                }
+        if(position.getDownConnection().getType().equals(Connection.FREE) || position.getDownConnection().getType().equals(Connection.DOOR)){
+            downCell = position.getDownConnection().getConnectedCell();
+            reachableCardinalCells.add(downCell);
+
+            if(downCell.getDownConnection().getType().equals(Connection.FREE) || position.getDownConnection().getType().equals(Connection.DOOR)){
+                reachableCardinalCells.add(downCell.getDownConnection().getConnectedCell());
             }
-
-            if(downCell!=null){
-
-                if(downCell.getDownConnection().getType().equals(Connection.FREE) || position.getDownConnection().getType().equals(Connection.DOOR)){
-
-                    reachableCardinalCells.add(downCell.getDownConnection().getConnectedCell());
-                }
-
-            }
-            
-
-            if(position.getLeftConnection().getType().equals(Connection.FREE) || position.getLeftConnection().getType().equals(Connection.DOOR)){
-                if(cell.equals(position.getLeftConnection().getConnectedCell())){
-                    leftCell = cell;
-                }
-            }
-
-            if(leftCell!=null){
-
-                if(leftCell.getLeftConnection().getType().equals(Connection.FREE) || position.getLeftConnection().getType().equals(Connection.DOOR)){
-
-                    reachableCardinalCells.add(leftCell.getLeftConnection().getConnectedCell());
-                }
-
-            }
-            
-
-            if(position.getRightConnection().getType().equals(Connection.FREE) || position.getRightConnection().getType().equals(Connection.DOOR)){
-                if(cell.equals(position.getRightConnection().getConnectedCell())){
-                    rightCell = cell;
-                }
-            }
-
-            if(rightCell!=null){
-
-                if(rightCell.getRightConnection().getType().equals(Connection.FREE) || position.getRightConnection().getType().equals(Connection.DOOR)){
-
-                    reachableCardinalCells.add(rightCell.getRightConnection().getConnectedCell());
-                }
-
-            }
-
 
         }
+
+        if(position.getLeftConnection().getType().equals(Connection.FREE) || position.getLeftConnection().getType().equals(Connection.DOOR)){
+            leftCell = position.getLeftConnection().getConnectedCell();
+            reachableCardinalCells.add(leftCell);
+
+            if(leftCell.getLeftConnection().getType().equals(Connection.FREE) || position.getLeftConnection().getType().equals(Connection.DOOR)){
+                reachableCardinalCells.add(leftCell.getLeftConnection().getConnectedCell());
+            }
+
+        }
+
+        if(position.getRightConnection().getType().equals(Connection.FREE) || position.getRightConnection().getType().equals(Connection.DOOR)){
+            rightCell = position.getRightConnection().getConnectedCell();
+            reachableCardinalCells.add(rightCell);
+
+            if(rightCell.getRightConnection().getType().equals(Connection.FREE) || position.getRightConnection().getType().equals(Connection.DOOR)){
+                reachableCardinalCells.add(rightCell.getRightConnection().getConnectedCell());
+            }
+
+        }
+            
 
         return reachableCardinalCells;
 

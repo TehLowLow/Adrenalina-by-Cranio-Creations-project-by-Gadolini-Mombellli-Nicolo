@@ -27,13 +27,16 @@ public class ChoosePlayer {
                 if(possibleTarget.getNickname().equalsIgnoreCase(targetNickname)){
                     target = possibleTarget;
                     hasChosen = true;
-                    continue;
                 }
-
-
             }
 
-            Server.update(user, Message.bersaglioNonValido());
+            if(!hasChosen){
+
+                Server.update(user, Message.bersaglioNonValido());
+                continue;
+            }
+
+
 
         }
 

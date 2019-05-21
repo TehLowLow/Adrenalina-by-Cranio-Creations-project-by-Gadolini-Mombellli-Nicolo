@@ -1,6 +1,7 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
@@ -18,92 +19,67 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class BasicHeatSeeker extends Effect {
 
 
-        /**
-         * Applies the effect of the Heatseeker to the target.
-         *
-         * @param user    the Player that wants to apply the effect.
-         * @param targets the target of the effect. It can be the user itself.
-         */
+    /**
+     * Applies the effect of the Heatseeker to the target.
+     *
+     * @param user    the Player that wants to apply the effect.
+     * @param targets the target of the effect. It can be the user itself.
+     */
 
-        @Override
-        public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
-
-
-                for (Player target : targets) {
-
-                        Damage.giveDamage(3, user, target);
-
-                }
+    @Override
+    public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
 
-        }
+        for (Player target : targets) {
 
-        /**
-         * Looks for the target of the Heatseeker.
-         *
-         * @param user the Player thant wants to use the effect.
-         * @return
-         */
-
-        @Override
-        public CopyOnWriteArrayList<Player> getTargets(Player user) {
-
-                CopyOnWriteArrayList<Player> players = Server.connectedPlayers;
-                CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList();
-                CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
-                CopyOnWriteArrayList<Player> chosenTarget = new CopyOnWriteArrayList<>();
-
-                players.remove(user);
-
-                for (Player target : players) {
-
-                        if (!visiblePlayers.contains(target)) {
-                                possibleTargets.add(target);
-                        }
-
-                }
-
-                String targetNickname = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-                boolean found = false;
-
-                while (!found) {
-
-                        while (!InputCheck.nicknameCheck(targetNickname)) {
-
-                                Server.update(user, Message.inputError());
-                                targetNickname = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-                        }
-
-                        for (Player possibleTarget : possibleTargets) {
-                                if (possibleTarget.getNickname().equalsIgnoreCase(targetNickname)) {
-                                        chosenTarget.add(possibleTarget);
-                                        found = true;
-                                }
-                        }
-
-                        if (!found) {
-                                Server.update(user, Message.bersaglioNonValido());
-                        }
-
-                }
-
-                return chosenTarget;
-
+            Damage.giveDamage(3, user, target);
 
         }
 
 
-        public boolean hasTargets(Player user) {
+    }
 
-                CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+    /**
+     * Looks for the target of the Heatseeker.
+     *
+     * @param user the Player thant wants to use the effect.
+     * @return
+     */
 
-                if (visiblePlayers.size() == Server.connectedPlayers.size() - 1) {
-                        return false;
-                }
+    @Override
+    public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-                return true;
+        CopyOnWriteArrayList<Player> players = Server.connectedPlayers;
+        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList();
+        CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+        CopyOnWriteArrayList<Player> chosenTarget = new CopyOnWriteArrayList<>();
+
+        for (Player target : players) {
+
+            if (!visiblePlayers.contains(target)) {
+                possibleTargets.add(target);
+            }
 
         }
+
+        chosenTarget.add(ChoosePlayer.one(user, possibleTargets));
+
+        return chosenTarget;
+
+
+    }
+
+
+    public boolean hasTargets(Player user) {
+
+        CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+
+        if (visiblePlayers.size() == Server.connectedPlayers.size() - 1) {
+            return false;
+        }
+
+        return true;
+
+    }
 
 }

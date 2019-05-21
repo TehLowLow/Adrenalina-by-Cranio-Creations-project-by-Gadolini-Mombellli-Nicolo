@@ -12,7 +12,7 @@ public class ConfigurationTest {
 
 
 
-    public static void createTestConfiguration(){
+    public static void createTestConfiguration() {
 
         Server.connectedPlayers = new CopyOnWriteArrayList<>();
         Map1Builder map1Builder = new Map1Builder();
@@ -22,7 +22,7 @@ public class ConfigurationTest {
         boardSetup.build();
         Board.setMortalBlowTrack(new CopyOnWriteArrayList<MortalBlow>());
 
-        for(int i = 0; i<8; i++){
+        for (int i = 0; i < 8; i++) {
 
             MortalBlow mb = new MortalBlow();
             mb.setSkull(true);
@@ -32,38 +32,36 @@ public class ConfigurationTest {
 
         }
 
-        for(int i = 0; i<5; i++){
+        for (int i = 0; i < 5; i++) {
 
 
-          Player player = new Player();
-          player.setPosition(Board.getMap().getBlueRoom().getCells().get(0));
-          player.setNickname("player" + i);
-          player.setConnectionTech("testEnvironment");
-          player.setPlayerboard(new Playerboard());
-          Playerboard playerboard = player.getPlayerboard();
-          playerboard.setDamage(new CopyOnWriteArrayList<Token>());
-          playerboard.setMarker(new CopyOnWriteArrayList<Token>());
-          playerboard.setPowerups(new CopyOnWriteArrayList<Powerup>());
-          playerboard.setWeapons(new CopyOnWriteArrayList<Weapon>());
-          playerboard.setAmmoCubes(new Rybamount());
-          playerboard.getAmmoCubes().setBlueCubes(0);
-          playerboard.getAmmoCubes().setRedCubes(0);
-          playerboard.getAmmoCubes().setYellowCubes(0);
-          playerboard.setChampionName("champion" + 1);
-          playerboard.setFrenzyboard(false);
-          CopyOnWriteArrayList <Integer> pbvalue = new CopyOnWriteArrayList<>();
-          pbvalue.add(8);
-          pbvalue.add(6);
-          pbvalue.add(4);
-          pbvalue.add(2);
-          pbvalue.add(1);
-          pbvalue.add(1);
-          playerboard.setPlayerboardValue(pbvalue);
-          Server.connectedPlayers.add(player);
+            Player player = new Player();
+            player.setPosition(Board.getMap().getBlueRoom().getCells().get(0));
+            player.setNickname("player" + i);
+            player.setConnectionTech("testEnvironment");
+            player.setPlayerboard(new Playerboard());
+            Playerboard playerboard = player.getPlayerboard();
+            playerboard.setDamage(new CopyOnWriteArrayList<Token>());
+            playerboard.setMarker(new CopyOnWriteArrayList<Token>());
+            playerboard.setPowerups(new CopyOnWriteArrayList<Powerup>());
+            playerboard.setWeapons(new CopyOnWriteArrayList<Weapon>());
+            playerboard.setAmmoCubes(new Rybamount());
+            playerboard.getAmmoCubes().setBlueCubes(0);
+            playerboard.getAmmoCubes().setRedCubes(0);
+            playerboard.getAmmoCubes().setYellowCubes(0);
+            playerboard.setChampionName("champion" + 1);
+            playerboard.setFrenzyboard(false);
+            CopyOnWriteArrayList<Integer> pbvalue = new CopyOnWriteArrayList<>();
+            pbvalue.add(8);
+            pbvalue.add(6);
+            pbvalue.add(4);
+            pbvalue.add(2);
+            pbvalue.add(1);
+            pbvalue.add(1);
+            playerboard.setPlayerboardValue(pbvalue);
+            Server.connectedPlayers.add(player);
 
-      }
-
-
+        }
 
     }
 

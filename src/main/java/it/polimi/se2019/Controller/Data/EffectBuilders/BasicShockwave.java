@@ -41,7 +41,6 @@ public class BasicShockwave extends Effect {
             }
         }
 
-        boolean chose = false;
 
         //Gli faccio scegliere un giocatore;
         Player chosen = ChoosePlayer.one(user, possibleTargets);
@@ -56,7 +55,7 @@ public class BasicShockwave extends Effect {
 
         int hitNumber = 0;
 
-        while(!possibleTargets.isEmpty() || hitNumber<2){
+        while(!possibleTargets.isEmpty() && hitNumber<2){
 
             String answer = Server.updateWithAnswer(user, Message.scegliAltroBersaglio());
 
