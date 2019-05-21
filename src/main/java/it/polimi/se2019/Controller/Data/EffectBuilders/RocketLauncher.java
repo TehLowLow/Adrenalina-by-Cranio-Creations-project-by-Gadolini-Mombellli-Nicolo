@@ -1,11 +1,10 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
+import it.polimi.se2019.Controller.Adrenalina.Action;
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
-import it.polimi.se2019.Model.Cell;
-import it.polimi.se2019.Model.Effect;
-import it.polimi.se2019.Model.Player;
-import it.polimi.se2019.Model.Token;
+import it.polimi.se2019.Controller.Adrenalina.Interaction;
+import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
@@ -13,7 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class RocketLauncher extends Effect {
 
-    CopyOnWriteArrayList<Player> warheadTargets;
+    static CopyOnWriteArrayList<Player> warheadTargets;
 
 
     @Override
@@ -90,34 +89,36 @@ public class RocketLauncher extends Effect {
 
             //Se ha scelto di usarla dopo:
 
+
             applyBaseEffect(user, targets);
+            warheadTargets = getVisibleOtherSquares(user);
             applyRocketJump(user);
             return;
 
         }
 
-       //Se non sceglie di usarla, applico solo l'effetto base
+        //Se non sceglie di usarla, applico solo l'effetto base
 
         applyBaseEffect(user, targets);
         return;
 
     }
 
-    private void applyRocketJump(Player user){
+    private void applyRocketJump(Player user) {
 
-        CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(user, 2);
+        CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(user, 2);
 
         boolean chosen = false;
         int indexCell = 0;
 
-        while(!chosen){
+        while (!chosen) {
 
             String answer = Server.updateWithAnswer(user, Message.scegliCella(reachableCells));
-            try{
+            try {
 
                 indexCell = InputCheck.numberCheck(answer);
 
-                if(indexCell<0 || indexCell>reachableCells.size()-1){
+                if (indexCell < 0 || indexCell > reachableCells.size() - 1) {
                     Server.update(user, Message.cellaNonDisponibile());
                     continue;
                 }
@@ -125,7 +126,7 @@ public class RocketLauncher extends Effect {
                 chosen = true;
 
 
-            } catch(NumberFormatException e){
+            } catch (NumberFormatException e) {
                 Server.update(user, Message.inputError());
                 continue;
             }
@@ -133,6 +134,9 @@ public class RocketLauncher extends Effect {
         }
 
         user.setPosition(reachableCells.get(indexCell));
+        Rybamount bill = new Rybamount();
+        bill.setBlueCubes(1);
+        Interaction.pay(user, bill);
 
     }
 
@@ -162,10 +166,10 @@ public class RocketLauncher extends Effect {
             chosenMove = Server.updateWithAnswer(user, Message.vuoiSpostare());
 
             if (InputCheck.correctYesNo(chosenMove)) {
-                continue;
+                answered = true;
             }
 
-            answered = true;
+
             move = InputCheck.yesOrNo(chosenMove);
 
         }
@@ -293,17 +297,17 @@ public class RocketLauncher extends Effect {
 
         if (visiblePlayers.isEmpty()) {
 
-            if (user.getPlayerboard().getAmmoCubes().getBlue() > 0){
+            if (user.getPlayerboard().getAmmoCubes().getBlue() > 0) {
 
                 Player fakePlayer = new Player();
 
                 CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(user, 2);
 
-                for (Cell cell: reachableCells){
+                for (Cell cell : reachableCells) {
 
                     fakePlayer.setPosition(cell);
 
-                    if (!getVisibleOtherSquares(fakePlayer).isEmpty()){
+                    if (!getVisibleOtherSquares(fakePlayer).isEmpty()) {
 
                         return true;
 

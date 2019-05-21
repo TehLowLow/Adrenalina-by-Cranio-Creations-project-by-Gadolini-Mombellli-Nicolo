@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class ScannerModeTest {
 
     @Before
-    public void preparePlayers(){
+    public void preparePlayers() {
 
         ConfigurationTest.createTestConfiguration();
 
@@ -27,7 +27,7 @@ public class ScannerModeTest {
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, true);
 
-        for(int i = 1; i<5; i++){
+        for (int i = 1; i < 5; i++) {
 
             Server.connectedPlayers.get(i).setPosition(Board.getMap().getYellowRoom().getCells().get(1));
         }
@@ -35,6 +35,34 @@ public class ScannerModeTest {
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
         assertEquals(result, false);
+
+    }
+
+
+    @Test
+    public void applyEffect() {
+
+
+
+
+
+
+
+    }
+
+    @Test
+    public void getTargets() {
+
+
+        //Alternativa dello zx2
+
+
+
+
+
+
+
+
 
     }
 
