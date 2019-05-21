@@ -74,6 +74,8 @@ public class Board implements java.io.Serializable{
     private static Map map;
 
 
+    private static Cell limbo;
+
     /*
      * ----------------------METHODS----------------------
      * ----------------------------------------------------
@@ -153,6 +155,16 @@ public class Board implements java.io.Serializable{
 
 
     /**
+     * Returns the limbo cell
+     * @return the limbo cell.
+     */
+    public static Cell getLimbo() {
+
+        return limbo;
+    }
+
+
+    /**
      * Getter for mortalBlowTrack value
      * @return an CopyOnWriteArrayList containing the points related to the mortalBlow track
      */
@@ -165,6 +177,26 @@ public class Board implements java.io.Serializable{
      *  ---------------------- SETTERS
      */
 
+    /**
+     * Sets the limbo cell.
+     * @param limbo limbo cell.
+     */
+    public static void setLimbo(Cell limbo) {
+
+        limbo.setLeftConnection(new Connection());
+        limbo.getLeftConnection().setType(Connection.EDGE);
+
+        limbo.setRightConnection(new Connection());
+        limbo.getRightConnection().setType(Connection.EDGE);
+
+        limbo.setUpConnection(new Connection());
+        limbo.getUpConnection().setType(Connection.EDGE);
+
+        limbo.setDownConnection(new Connection());
+        limbo.getDownConnection().setType(Connection.EDGE);
+
+        Board.limbo = limbo;
+    }
     /**
      * Setter method for mortal blow track
      * @param mBTrack is the track of the mortal blow, that contains all the information about the killer, such as

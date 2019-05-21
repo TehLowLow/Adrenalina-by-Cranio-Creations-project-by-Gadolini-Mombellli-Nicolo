@@ -180,7 +180,9 @@ public class Server {
 
         if(player.getConnectionTech().equalsIgnoreCase("testEnvironment")){
 
-            return TestBot.getAnswer();
+            String answer = TestBot.getAnswer();
+            System.out.println(msg + '\n' + answer);
+            return answer;
 
         }
 
@@ -215,6 +217,13 @@ public class Server {
      */
 
     public static synchronized void update(Player player, String msg) {
+
+        if(player.getConnectionTech().equalsIgnoreCase("testEnvironment")){
+
+            System.out.println(msg);
+            return;
+
+        }
 
         if (Board.getMap() != null && player.getPosition() != null) {
 

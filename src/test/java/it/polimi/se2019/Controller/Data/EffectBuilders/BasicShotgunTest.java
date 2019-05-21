@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
+import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Cell;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
@@ -94,6 +95,8 @@ public class BasicShotgunTest {
 
 
     }
+
+
 
 
     @Test

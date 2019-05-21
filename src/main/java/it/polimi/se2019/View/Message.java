@@ -68,18 +68,18 @@ public class Message {
 
         for(Cell cell : reachables){
 
-            if(cell.equals(user.getPosition().getUpConnection().getConnectedCell())){
+            if(user.getPosition().getUpConnection().getConnectedCell() != null && cell.equals(user.getPosition().getUpConnection().getConnectedCell())){
                 str = str + "- Alto\n";
             }
 
-            if(cell.equals(user.getPosition().getLeftConnection().getConnectedCell())){
+            if(user.getPosition().getLeftConnection().getConnectedCell() != null && cell.equals(user.getPosition().getLeftConnection().getConnectedCell())){
                 str = str + "- Sinistra\n";
             }
 
-            if(cell.equals(user.getPosition().getDownConnection().getConnectedCell())){
+            if(user.getPosition().getDownConnection().getConnectedCell() != null && cell.equals(user.getPosition().getDownConnection().getConnectedCell())){
                 str = str + "- Basso\n";
             }
-            if(cell.equals(user.getPosition().getRightConnection().getConnectedCell())){
+            if(user.getPosition().getRightConnection().getConnectedCell() != null && cell.equals(user.getPosition().getRightConnection().getConnectedCell())){
                 str = str + "- Destra\n";
             }
 
@@ -581,6 +581,10 @@ public class Message {
 
         return stringaFinale;
 
+    }
+
+    public static String vuoiColpire(){
+        return "Vuoi colpire qualcuno?";
     }
 }
 

@@ -97,6 +97,8 @@ public class Match extends Thread {
          */
         for (Player player:connectedPlayers){
 
+            player.setPosition(Board.getLimbo());
+
             player.setPlayerboard(new Playerboard());
             player.setScore(0);
             player.getPlayerboard().setWeapons(new CopyOnWriteArrayList<>());
@@ -104,12 +106,9 @@ public class Match extends Thread {
             player.getPlayerboard().getAmmoCubes().setBlueCubes(1);
             player.getPlayerboard().getAmmoCubes().setRedCubes(1);
             player.getPlayerboard().getAmmoCubes().setYellowCubes(1);
-
-
             player.getPlayerboard().setMarker(new CopyOnWriteArrayList<>());
             player.getPlayerboard().setDamage(new CopyOnWriteArrayList<>());
             player.getPlayerboard().setFrenzyboard(false);
-
             player.getPlayerboard().setPlayerboardValue(new CopyOnWriteArrayList<>());
             player.getPlayerboard().getPlayerboardValue().add(8);
             player.getPlayerboard().getPlayerboardValue().add(6);
@@ -117,7 +116,6 @@ public class Match extends Thread {
             player.getPlayerboard().getPlayerboardValue().add(2);
             player.getPlayerboard().getPlayerboardValue().add(1);
             player.getPlayerboard().getPlayerboardValue().add(1);
-
             player.getPlayerboard().setPowerups(new CopyOnWriteArrayList<>());
 
         }

@@ -32,6 +32,7 @@ public class BoardSetup {
         Board.setPowerUpDeck(powerUpDeckSetup.build());
         Board.shufflePowerUpDeck();
 
+        Board.setLimbo(new SpawnCell());
 
         CopyOnWriteArrayList<Powerup> discardedPowerUps = new CopyOnWriteArrayList<>();
         Board.setDiscardedPowerUps(discardedPowerUps);
