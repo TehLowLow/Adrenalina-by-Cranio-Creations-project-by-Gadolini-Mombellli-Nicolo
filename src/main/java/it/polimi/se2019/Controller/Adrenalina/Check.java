@@ -507,6 +507,10 @@ public class Check {
 
     }
 
+    /**
+     * This method checks if there are the conditions to perform the final frenzy.
+     * @return true if final frenzy can start, else otherwise.
+     */
 
     public static boolean checkFrenzy() {
 
@@ -534,6 +538,11 @@ public class Check {
 
     }
 
+    /**
+     * This method resolves a board in the final franzy mode.
+     * @param killed is the player whom board has to be resolved.
+     * @param overkill is true if the player has been overkilled, else otherwise.
+     */
 
     public static void resolveFrenzyboard(Player killed, boolean overkill) {
 
