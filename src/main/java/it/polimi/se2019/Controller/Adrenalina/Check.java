@@ -58,10 +58,9 @@ public class Check {
      */
     public static void resolveBoard(Player killed,  boolean overkill) {
 
-        CopyOnWriteArrayList<Token> damages = new CopyOnWriteArrayList<Token>();
+        CopyOnWriteArrayList<Token> damages = killed.getPlayerboard().getDamage();
         CopyOnWriteArrayList<PlayerWithScore> playersWithScore;
         CopyOnWriteArrayList<Player> whoShotFirst;
-        damages = killed.getPlayerboard().getDamage();
 
         /*
         First blood
@@ -88,12 +87,6 @@ public class Check {
             @Override
             public int compare(PlayerWithScore o1, PlayerWithScore o2) {
 
-                if (o1.score > o2.score) {
-
-                    return 1;
-
-                }
-
                 if (o1.score == o2.score) {
 
                     if (whoShotFirst.indexOf(o1.player) < whoShotFirst.indexOf(o2.player)) {
@@ -106,6 +99,15 @@ public class Check {
 
 
                 }
+
+
+                if (o1.score > o2.score) {
+
+                    return 1;
+
+                }
+
+
 
                 if (o1.score < o2.score) {
                     return 1;
@@ -181,12 +183,6 @@ public class Check {
     public static void markers(Player active, Player passive) {
 
 
-        /*
-        counter
-        */
-
-        int counter = 0;
-
         for (Token marker : passive.getPlayerboard().getMarker()) {
 
 
@@ -196,87 +192,22 @@ public class Check {
                 aggiunge il marker ai danni
                  */
 
-                passive.getPlayerboard().getDamage().add(counter, marker);
+                passive.getPlayerboard().getDamage().add(marker);
 
                 /*
                 lo rimuove dai marker
                  */
 
-                passive.getPlayerboard().getMarker().remove(counter);
+                passive.getPlayerboard().getMarker().remove(marker);
 
             }
 
 
-            counter++;
-
-
         }
 
     }
 
-    /**
-     * Checks the amount of damages dealt to a player by another player.
-     *
-     * @param attacker player that has dealt the damages.
-     * @param defender player that has taken the damages.
-     * @return the amount of damage received by the attacker.
-     */
-    private int damages(Player attacker, Player defender) {
-
-        int damagesAmount = 0;
-
-        CopyOnWriteArrayList<Token> damages = defender.getPlayerboard().getDamage();
-
-        for (Token damage : damages) {
-            if (damage.getChampionName().equals(attacker.getPlayerboard().getChampionName())) {
-                damagesAmount++;
-            }
-        }
-
-        return damagesAmount;
-    }
-
-    /**
-     * Checks if a buyer can afford a weapon found in the spawn room. If not, returns false.
-     *
-     * @param buyer  the buyer of the weapon.
-     * @param weapon the weapon to be checked.
-     * @return true if a player can afford a weapon.
-     */
-    public boolean affordableWeapon(Player buyer, Weapon weapon) {
-
-        if (buyer.getPlayerboard().getAmmoCubes().getBlue() >= weapon.getPrice().getBlue() &&
-                buyer.getPlayerboard().getAmmoCubes().getRed() >= weapon.getPrice().getRed() &&
-                buyer.getPlayerboard().getAmmoCubes().getYellow() >= weapon.getPrice().getYellow()) {
-
-            return true;
-
-        } else {
-            return false;
-        }
-    }
-
-    /**
-     * Checks if a player can afford to reload a weapon that is holding.
-     *
-     * @param player the player that wants to reload.
-     * @param weapon the weapon to reload.
-     * @return true if the player can afford to reload.
-     */
-    public static boolean affordableReload(Player player, Weapon weapon) {
-
-        if (player.getPlayerboard().getAmmoCubes().getBlue() >= weapon.getRechargeCost().getBlue() &&
-                player.getPlayerboard().getAmmoCubes().getRed() >= weapon.getRechargeCost().getRed() &&
-                player.getPlayerboard().getAmmoCubes().getYellow() >= weapon.getRechargeCost().getYellow()) {
-
-            return true;
-
-        } else {
-            return false;
-        }
-
-    }
-
+    //TODO testare affordable
 
     /**
      * Generic check: if the player can afford the cost,returns true.
@@ -313,36 +244,8 @@ public class Check {
 
     }
 
-    /**
-     * Checks if a player has sustained enough damage to use enhanced pickup.
-     *
-     * @param player is the player to be checked.
-     * @return true if the player has sustained enough damage.
-     */
-    public boolean availableEnhancedPickUp(Player player) {
 
-        if (player.getPlayerboard().getDamage().size() >= 3) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    /**
-     * Checks if a player has sustained enough damage to use enhanced shoot.
-     *
-     * @param player is the player to be checked.
-     * @return true if the player has sustained enough damage.
-     */
-    public boolean availableEnhancedShoot(Player player) {
-
-        if (player.getPlayerboard().getDamage().size() >= 6) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
 
     /**
      * Runs to limit the total amount of ammo per color to 3 ammos. For example, if a player has more than 3 red
@@ -364,21 +267,6 @@ public class Check {
             player.getPlayerboard().getAmmoCubes().setBlueCubes(3);
         }
 
-    }
-
-    /**
-     * Checks if a player has reached the limit of weapons he can keep.
-     *
-     * @param player is the player to be checked.
-     * @return true if the player already has got 3 weapons
-     */
-    public boolean limitWeapon(Player player) {
-
-        if (player.getPlayerboard().getWeapons().size() >= 3) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     /**
@@ -647,7 +535,7 @@ public class Check {
     }
 
 
-    public void resolveFrenzyboard(Player killed, Player killer, Board board, boolean overkill) {
+    public static void resolveFrenzyboard(Player killed, boolean overkill) {
 
 
         CopyOnWriteArrayList<Token> damages = new CopyOnWriteArrayList<Token>();
@@ -655,8 +543,9 @@ public class Check {
         CopyOnWriteArrayList<it.polimi.se2019.Controller.Adrenalina.PlayerWithScore> playersWithScore;
         CopyOnWriteArrayList<Player> whoShotFirst;
 
-        playersWithScore = initLeaderboard(damages);
+
         whoShotFirst = whoShotFirst(damages);
+        playersWithScore = initLeaderboard(damages);
 
 
         Comparator<PlayerWithScore> comparator = new Comparator<PlayerWithScore>() {
@@ -694,6 +583,23 @@ public class Check {
 
         int playerboardCounter = 0;
 
+
+        Player killer = new Player();
+
+        String killerChampionName = killed.getPlayerboard().getDamage().get(10).getChampionName();
+
+
+
+        for (Player player: connectedPlayers){
+
+            if (player.getPlayerboard().getChampionName().equalsIgnoreCase(killerChampionName)){
+
+                killer = player;
+
+            }
+
+        }
+
         for (PlayerWithScore attacker : playersWithScore) {
 
             if (attacker.score != 0) {
@@ -715,7 +621,7 @@ public class Check {
         kill.setSkull(false);
         kill.setOverkill(overkill);
 
-        board.getMortalBlowTrack().add(kill);
+        Board.getMortalBlowTrack().add(kill);
 
 
 
@@ -1316,37 +1222,6 @@ public class Check {
             for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
 
                 if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
-
-                    if (weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
-                        return true;
-                    }
-
-                }
-            }
-
-        }
-
-        return false;
-
-    }
-
-
-    public static boolean canShotFrenzy(Player player) {
-
-        Player fakePlayer = new Player();
-        fakePlayer.setPlayerboard(new Playerboard());
-        fakePlayer.setPosition(player.getPosition());
-        fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
-
-        CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
-
-        for (Cell cell : reachableCells) {
-
-            fakePlayer.setPosition(cell);
-
-            for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
-
-                if (weapon.getBaseEffect().hasTargets(player) || (!weapon.getAlternativeEffect().equals(null) && weapon.getAlternativeEffect().hasTargets(player))) {
 
                     if (weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
                         return true;

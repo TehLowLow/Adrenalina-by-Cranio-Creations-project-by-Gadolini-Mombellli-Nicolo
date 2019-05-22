@@ -286,7 +286,7 @@ public class Turn {
                 overkill = true;
             }
 
-            Check.resolveBoard(dead, overkill);
+            Check.resolveFrenzyboard(dead, overkill);
             respawn(dead);
             Interaction.turnPlayerboard(dead);
 

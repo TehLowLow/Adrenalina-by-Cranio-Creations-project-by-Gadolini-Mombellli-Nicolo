@@ -368,7 +368,7 @@ public class Action {
 
         for (Weapon weapon : weapons) {
 
-            if (armaScelta.equalsIgnoreCase(weapon.getName())) {
+            if (armaScelta != null && armaScelta.equalsIgnoreCase(weapon.getName())) {
 
                 chosenWeapon = weapon;
 
@@ -390,7 +390,7 @@ public class Action {
 
                 for (Weapon weapon : weapons) {
 
-                    if (armaScelta.equalsIgnoreCase(weapon.getName())) {
+                    if (armaScelta != null && armaScelta.equalsIgnoreCase(weapon.getName())) {
 
                         chosenWeapon = weapon;
 
@@ -416,7 +416,7 @@ public class Action {
 
             for (Weapon weapon : weapons) {
 
-                if (armaScelta.equalsIgnoreCase(weapon.getName())) {
+                if (armaScelta != null && armaScelta.equalsIgnoreCase(weapon.getName())) {
 
                     chosenWeapon = weapon;
 

@@ -17,7 +17,7 @@ public class WhisperEffect extends Effect {
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        if (targets.equals(null)){
+        if (targets == null){
 
             update(user, Message.nessunBersaglio());
             return;
@@ -72,19 +72,19 @@ public class WhisperEffect extends Effect {
 
             }
 
-            if (player.getPosition().getDownConnection().equals(user.getPosition())){
+            if (player.getPosition().getDownConnection().getConnectedCell().equals(user.getPosition())){
 
                 possibleTargets.remove(player);
 
             }
 
-            if (player.getPosition().getLeftConnection().equals(user.getPosition())){
+            if (player.getPosition().getLeftConnection().getConnectedCell().equals(user.getPosition())){
 
                 possibleTargets.remove(player);
 
             }
 
-            if (player.getPosition().getRightConnection().equals(user.getPosition())){
+            if (player.getPosition().getRightConnection().getConnectedCell().equals(user.getPosition())){
 
                 possibleTargets.remove(player);
 

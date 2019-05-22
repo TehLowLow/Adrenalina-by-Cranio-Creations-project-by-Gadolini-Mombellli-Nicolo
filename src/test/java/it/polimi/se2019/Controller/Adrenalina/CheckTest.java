@@ -174,9 +174,63 @@ public class CheckTest {
 
     @Test
     public void markers() {
+
+        Player attacker = Server.connectedPlayers.get(0);
+        Player defender = Server.connectedPlayers.get(1);
+
+        defender.getPlayerboard().getDamage().add(new Token());
+        defender.getPlayerboard().getDamage().get(0).setChampionName(attacker.getPlayerboard().getChampionName());
+
+
+        for (int i = 0; i<2 ; i++){
+
+            defender.getPlayerboard().getMarker().add(new Token());
+            defender.getPlayerboard().getMarker().get(i).setChampionName(attacker.getPlayerboard().getChampionName());
+
+
+        }
+
+        Check.markers(attacker, defender);
+
+        assertEquals(3, defender.getPlayerboard().getDamage().size());
+        assertEquals(0, defender.getPlayerboard().getMarker().size());
+
+        for(Token damage:defender.getPlayerboard().getDamage()){
+
+            assertEquals(attacker.getPlayerboard().getChampionName(), damage.getChampionName());
+
+        }
+
+
     }
+
+    //TODO da fare affordable
 
     @Test
     public void affordable() {
     }
+
+
+    @Test
+    public void limitAmmoCubes(){
+
+        Player player = Server.connectedPlayers.get(0);
+
+        player.getPlayerboard().getAmmoCubes().setYellowCubes(4);
+        player.getPlayerboard().getAmmoCubes().setBlueCubes(15);
+        player.getPlayerboard().getAmmoCubes().setRedCubes(2);
+
+        Check.limitAmmoCubes(player);
+
+        assertEquals(3, player.getPlayerboard().getAmmoCubes().getYellow());
+        assertEquals(3, player.getPlayerboard().getAmmoCubes().getBlue());
+        assertEquals(2, player.getPlayerboard().getAmmoCubes().getRed());
+
+
+
+    }
+
+
+
+
 }

@@ -20,7 +20,7 @@ public class LockRifleEffect extends Effect {
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        if (targets.equals(null)){
+        if (targets == null){
 
             update(user, Message.nessunBersaglio());
             return;

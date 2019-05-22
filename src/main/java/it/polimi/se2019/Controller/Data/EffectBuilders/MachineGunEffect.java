@@ -207,7 +207,7 @@ public class MachineGunEffect extends Effect {
 
     public void applyFocusShot(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        if (targets.equals(null)) {
+        if (targets == null) {
 
             update(user, Message.nessunBersaglio());
             return;
