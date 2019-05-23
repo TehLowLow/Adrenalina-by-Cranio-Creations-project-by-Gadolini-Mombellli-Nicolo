@@ -3,13 +3,10 @@ package it.polimi.se2019.Controller.Adrenalina;
 import it.polimi.se2019.Controller.Setup.BoardSetup;
 import it.polimi.se2019.Controller.Setup.MapSetup;
 import it.polimi.se2019.Model.*;
-import it.polimi.se2019.View.*;
+import it.polimi.se2019.View.Message;
 
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 
 import static it.polimi.se2019.Controller.Adrenalina.Check.checkFrenzy;
 import static it.polimi.se2019.Network.Server.*;
@@ -210,7 +207,7 @@ public class Match extends Thread {
 
         }
 
-        Check.winner(board);
+        Check.winner();
 
     }
 

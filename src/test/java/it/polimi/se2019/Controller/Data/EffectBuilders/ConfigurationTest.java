@@ -4,8 +4,7 @@ import it.polimi.se2019.Controller.Data.MapBuilders.Map1Builder;
 import it.polimi.se2019.Controller.Setup.BoardSetup;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
-import org.junit.Test;
-import java.util.concurrent.CopyOnWriteArrayList;
+
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ConfigurationTest {
@@ -21,6 +20,15 @@ public class ConfigurationTest {
         BoardSetup boardSetup = new BoardSetup();
         boardSetup.build();
         Board.setMortalBlowTrack(new CopyOnWriteArrayList<MortalBlow>());
+        CopyOnWriteArrayList<Integer> mbTrackValue = new CopyOnWriteArrayList<>();
+        mbTrackValue.add(8);
+        mbTrackValue.add(6);
+        mbTrackValue.add(4);
+        mbTrackValue.add(2);
+        mbTrackValue.add(1);
+        mbTrackValue.add(1);
+
+        Board.setMortalBlowTrackValue(mbTrackValue);
 
         for (int i = 0; i < 8; i++) {
 

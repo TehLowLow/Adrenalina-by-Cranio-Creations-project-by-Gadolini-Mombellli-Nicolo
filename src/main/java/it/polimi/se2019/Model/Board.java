@@ -269,8 +269,8 @@ public class Board implements java.io.Serializable{
         weaponDeck = wDeck;
     }
 
-    public void setMortalBlowTrackValue(CopyOnWriteArrayList<Integer> mortalBlowTrackValue) {
-        this.mortalBlowTrackValue = mortalBlowTrackValue;
+    public static void setMortalBlowTrackValue(CopyOnWriteArrayList<Integer> mBlowTrackValue) {
+        mortalBlowTrackValue = mBlowTrackValue;
     }
 
     /*

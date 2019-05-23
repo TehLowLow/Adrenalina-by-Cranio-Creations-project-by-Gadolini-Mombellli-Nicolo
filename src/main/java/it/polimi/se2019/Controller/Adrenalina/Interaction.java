@@ -404,6 +404,7 @@ public class Interaction {
         frenzyboard.setPowerups(oldBoard.getPowerups());
         frenzyboard.setMarker(oldBoard.getMarker());
         frenzyboard.setDamage(new CopyOnWriteArrayList<Token>());
+        frenzyboard.setFrenzyboard(true);
 
         CopyOnWriteArrayList<Integer> frenzyValue = new CopyOnWriteArrayList<Integer>();
         frenzyValue.add(2);
