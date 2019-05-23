@@ -2,6 +2,7 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Adrenalina.Interaction;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
@@ -38,13 +39,20 @@ public class THOR extends Effect {
 
                 }
 
+                CopyOnWriteArrayList <Player> damagedChain = new CopyOnWriteArrayList<>();
+                boolean usedReaction = false;
+
                 if (scelta.equalsIgnoreCase("si")){
 
-                    applyChainReaction(user, chainReactionGetTargets(user, targets.get(0)));
+                    usedReaction = true;
+                    damagedChain = chainReactionGetTargets(user, targets.get(0));
+                    applyChainReaction(user, damagedChain);
 
                 }
 
-                if (canUseHighVoltage(user, targets.get(0), chainReactionGetTargets(user, targets.get(0)).get(0) )){
+
+
+                if (canUseHighVoltage(user, targets.get(0), damagedChain, usedReaction)){
 
                     scelta = updateWithAnswer(user, "Vuoi usare l'alta tensione?");
 
@@ -58,7 +66,7 @@ public class THOR extends Effect {
 
                     if (scelta.equalsIgnoreCase("si")){
 
-                        applyHighVoltage(user, highVoltageGetTargets(user, targets.get(0),chainReactionGetTargets(user, targets.get(0)).get(0)));
+                        applyHighVoltage(user, highVoltageGetTargets(user, damagedChain.get(0), targets.get(0)));
 
                     }
 
@@ -73,14 +81,9 @@ public class THOR extends Effect {
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(user);
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
-        if (hasTargets(user)){
-
-            return null;
-
-        }
 
         targets.add(ChoosePlayer.one(user, possibleTargets));
 
@@ -162,30 +165,39 @@ public class THOR extends Effect {
 
         for (Player player:targets){
 
+            Rybamount cost = new Rybamount();
+
+            cost.setYellowCubes(0);
+            cost.setRedCubes(0);
+            cost.setBlueCubes(1);
+            Interaction.pay(user, cost);
             Damage.giveDamage(1, user, player);
 
         }
 
     }
 
-    public boolean canUseHighVoltage(Player user, Player damaged, Player damagedChainReaction){
+    public boolean canUseHighVoltage(Player user, Player damaged, CopyOnWriteArrayList <Player> damagedChainReaction, boolean usedReaction){
 
         CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(damaged);
 
-        Rybamount cost = new Rybamount();
+        //Vuol dire che non hai usato la chain reaction
+        if(!usedReaction){
+            return false;
+        }
 
+
+        Rybamount cost = new Rybamount();
 
         cost.setBlueCubes(1);
         cost.setYellowCubes(0);
         cost.setRedCubes(0);
 
-
-
         if(Check.affordable(user, cost)){
 
             for (Player player:possibleTargets){
 
-                if (player.equals(damagedChainReaction)){
+                if (player.equals(damagedChainReaction.get(0))){
 
                     possibleTargets.remove(player);
 
@@ -213,12 +225,12 @@ public class THOR extends Effect {
         return false;
     }
 
-    public CopyOnWriteArrayList<Player> highVoltageGetTargets(Player user, Player damaged, Player damagedChainReaction){
+    public CopyOnWriteArrayList<Player> highVoltageGetTargets(Player user, Player damagedChainReaction, Player firstDamaged){
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
 
-        possibleTargets = Check.visiblePlayers(damaged);
+        possibleTargets = Check.visiblePlayers(damagedChainReaction);
 
         for (Player player:possibleTargets){
 
@@ -233,6 +245,10 @@ public class THOR extends Effect {
 
                 possibleTargets.remove(player);
 
+            }
+
+            if(player.equals(firstDamaged)){
+                possibleTargets.remove(player);
             }
 
 

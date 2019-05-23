@@ -145,9 +145,10 @@ public class Map1Builder {
 
                 for (Cell redCell : red.getCells()) {
 
-                    if (redCell.getName().equals("spawnCell"))
+                    if (redCell.getName().equals("spawnCell")) {
                         redCell.getUpConnection().setConnectedCell(blueCell);
-                    blueCell.getDownConnection().setConnectedCell(redCell);
+                        blueCell.getDownConnection().setConnectedCell(redCell);
+                    }
 
                 }
             }

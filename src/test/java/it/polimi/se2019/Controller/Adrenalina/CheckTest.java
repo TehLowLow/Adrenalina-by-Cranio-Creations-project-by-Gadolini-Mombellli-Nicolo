@@ -338,10 +338,11 @@ public class CheckTest {
     public void reachableCellsOneStep(){
 
         Player player = Server.connectedPlayers.get(0);
+        player.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
 
         CopyOnWriteArrayList<Cell> reachable = Check.reachableCells(player, 1);
 
-        assertEquals(true, reachable.contains(Board.getMap().getRedRoom().getCells().get(2)));
+        assertEquals(true, reachable.contains(Board.getMap().getRedRoom().getCells().get(0)));
         assertEquals(true, reachable.contains(Board.getMap().getBlueRoom().getCells().get(2)));
         assertEquals(2, reachable.size());
     }

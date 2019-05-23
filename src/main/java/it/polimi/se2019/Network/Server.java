@@ -218,16 +218,17 @@ public class Server {
 
     public static synchronized void update(Player player, String msg) {
 
-        if(player.getConnectionTech().equalsIgnoreCase("testEnvironment")){
-
-            System.out.println(msg);
-            return;
-
-        }
 
         if (Board.getMap() != null && player.getPosition() != null) {
 
             msg = CLIprinter.print(player) + msg;
+
+        }
+
+        if(player.getConnectionTech().equalsIgnoreCase("testEnvironment")){
+
+            System.out.println(msg);
+            return;
 
         }
 

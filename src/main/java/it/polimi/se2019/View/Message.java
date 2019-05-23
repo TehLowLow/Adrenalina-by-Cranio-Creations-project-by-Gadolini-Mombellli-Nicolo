@@ -330,9 +330,9 @@ public class Message {
     VORTEX
      */
 
-    public static String vortexAperto(){
+    public static String vortexAperto(Cell vortexCell){
 
-        return "Hai creato un vortice!";
+        return "Hai creato un vortice nella cella " + vortexCell.getName() + " di colore " + Printer.colour(vortexCell.getColour()) +"!";
 
     }
 

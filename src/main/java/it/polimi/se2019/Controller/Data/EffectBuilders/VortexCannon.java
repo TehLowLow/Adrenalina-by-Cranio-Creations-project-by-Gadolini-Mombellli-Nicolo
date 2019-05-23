@@ -2,6 +2,8 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
@@ -14,7 +16,7 @@ public class VortexCannon extends Effect {
 
    //Creo un vortice. Lo tratto come un player perché è comodo da spostare.
 
-    Player vortex;
+   private static Player vortex;
 
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
@@ -22,16 +24,7 @@ public class VortexCannon extends Effect {
         //Prima di tutto, assegno il danno al target.
 
         Player target = targets.get(0);
-        Token d = new Token();
-        d.setChampionName(user.getPlayerboard().getChampionName());
-        Token d2 = new Token();
-        d2.setChampionName(user.getPlayerboard().getChampionName());
-
-        CopyOnWriteArrayList <Token> damages = target.getPlayerboard().getDamage();
-        damages.add(d);
-        damages.add(d2);
-
-        target.getPlayerboard().setDamage(damages);
+        Damage.giveDamage(2, user, target);
 
         //Se non è nella stanza del vortice, ce lo metto.
 
@@ -40,6 +33,7 @@ public class VortexCannon extends Effect {
         }
 
         //----- FINE EFFETTO PRINCIPALE ---- //
+
 
         //----- INIZIO EFFETTO SECONDARIO ---- //
 
@@ -82,11 +76,11 @@ public class VortexCannon extends Effect {
 
         for(Player  possibleTarget : Server.connectedPlayers ){
 
-            if(possibleTarget.getNickname().equalsIgnoreCase(user.getNickname())){
+            if(possibleTarget.equals(user)){
                 continue;
             }
 
-            if(target.equals(possibleTarget)){
+            if(possibleTarget.equals(target)){
                 continue;
             }
 
@@ -94,16 +88,13 @@ public class VortexCannon extends Effect {
 
         }
 
-        getNewTargets(user, newTargets);
+        newTargets = getNewTargets(user, newTargets);
 
         //Applico danno ai bersagli
 
         for(Player newTarget : newTargets){
 
-            Token d1 = new Token();
-            d1.setChampionName(user.getPlayerboard().getChampionName());
-            CopyOnWriteArrayList <Token> damages1 = newTarget.getPlayerboard().getDamage();
-            damages1.add(d1);
+            Damage.giveDamage(1, user, newTarget);
 
             if(!newTarget.getPosition().equals(vortex.getPosition())){
                 newTarget.setPosition(vortex.getPosition());
@@ -114,11 +105,13 @@ public class VortexCannon extends Effect {
 
         //Ritorno
         return;
+
+
     }
 
 
 
-    private void getNewTargets(Player user, CopyOnWriteArrayList<Player> newTargets) {
+    private CopyOnWriteArrayList <Player> getNewTargets(Player user, CopyOnWriteArrayList<Player> newTargets) {
 
         //newTargets è già senza player e senza precedente bersaglio.
         //devo chiedere all'utente di scegliere uno o due bersagli.
@@ -140,31 +133,13 @@ public class VortexCannon extends Effect {
 
         //Ora ho solamente i giocatori che si possono colpire.
 
-        boolean chosen = false;
-        String chosenTarget = null;
-        CopyOnWriteArrayList <Player> chosenTargets = null;
+        CopyOnWriteArrayList <Player> chosenTargets = new CopyOnWriteArrayList<>();
 
-        while(!chosen){
+        Player chosenPlayer = ChoosePlayer.one(user, newTargets);
 
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(newTargets));
+        chosenTargets.add(chosenPlayer);
 
-            if(!InputCheck.nicknameCheck(chosenTarget)){
-                Server.update(user, Message.inputError());
-                continue;
-            }
 
-            for(Player target : newTargets){
-                if(target.getNickname().equalsIgnoreCase(chosenTarget)){
-                    chosen = true;
-                    chosenTargets.add(target);
-                    newTargets.remove(target);
-                    break;
-                }
-            }
-
-            Server.update(user, Message.bersaglioNonValido());
-
-        }
 
         //Se ci sono altri giocatori da colpire, chiedo all'utente se vuole sceglierne altri.
 
@@ -189,7 +164,7 @@ public class VortexCannon extends Effect {
 
             if(!InputCheck.yesOrNo(answer)){
                 newTargets = chosenTargets;
-                return;
+                return chosenTargets;
             }
 
             //Se vuole sceglierne un altro, lo ottengo.
@@ -197,37 +172,13 @@ public class VortexCannon extends Effect {
             boolean chosen2 = false;
             String chosen2Target = null;
 
+            chosenPlayer = ChoosePlayer.one(user, newTargets);
 
-            while(!chosen2){
-
-                chosen2Target = Server.updateWithAnswer(user, Message.scegliBersaglio(newTargets));
-
-                if(!InputCheck.nicknameCheck(chosen2Target)){
-                    Server.update(user, Message.inputError());
-                    continue;
-                }
-
-                for(Player target : newTargets){
-                    if(target.getNickname().equalsIgnoreCase(chosen2Target)){
-                        chosen = true;
-                        chosenTargets.add(target);
-                        newTargets.remove(target);
-                        break;
-                    }
-                }
-
-                Server.update(user, Message.bersaglioNonValido());
-
-            }
-
+            chosenTargets.add(chosenPlayer);
 
         }
 
-
-        //Termine
-
-        newTargets = chosenTargets;
-        return;
+        return chosenTargets;
 
 
     }
@@ -258,33 +209,36 @@ public class VortexCannon extends Effect {
 
         //Estraggo i quadrati che può vedere:
 
-        CopyOnWriteArrayList <Cell> targetSquares = Check.visibleSquares(user);
+        CopyOnWriteArrayList <Cell> visibleCells = Check.visibleSquares(user);
 
         //Rimuovo quello dell'utente:
-        targetSquares.remove(user.getPosition());
+        visibleCells.remove(user.getPosition());
 
         //Per tutte le celle, le inserisco dentro all'array targetCells se contengono un player o se a distanza unitaria ne hanno uno.
 
         CopyOnWriteArrayList<Cell> targetCells =  new CopyOnWriteArrayList<>();
 
-        for(Cell possibleTarget : targetSquares){
+        for(Cell possibleCell : visibleCells){
 
             for(Player player : Server.connectedPlayers){
 
-                if(player.getNickname().equalsIgnoreCase(user.getNickname())){
+                if(player.equals(user)){
                     continue;
                 }
 
-                if(player.getPosition().equals(possibleTarget)){
-                    targetCells.add(possibleTarget);
+                if(player.getPosition().equals(possibleCell) && !targetCells.contains(possibleCell)){
+                    targetCells.add(possibleCell);
+                    continue;
                 }
 
                 //Devo controllare se questo giocatore è presente nelle celle a distanza unitaria dalla cella possible.
 
-                vortex.setPosition(possibleTarget);
+                vortex = new Player();
 
-                if(Check.reachableCells(vortex, 1).contains(player.getPosition())){
-                    targetCells.add(possibleTarget);
+                vortex.setPosition(possibleCell);
+
+                if(Check.reachableCells(vortex, 1).contains(player.getPosition()) && !targetCells.contains(possibleCell)){
+                    targetCells.add(possibleCell);
                 }
 
             }
@@ -324,7 +278,7 @@ public class VortexCannon extends Effect {
 
         Cell vortexCell = targetCells.get(indexCell);
         vortex.setPosition(vortexCell);
-        Server.update(user, Message.vortexAperto());
+        Server.update(user, Message.vortexAperto(vortexCell));
 
         //Cerco i player che si trovano o in quella cella, o in quelle a distanza unitaria da essa, giocatore escluso.
 
@@ -332,7 +286,7 @@ public class VortexCannon extends Effect {
 
         for(Player possibleTarget : Server.connectedPlayers){
 
-            if(possibleTarget.getNickname().equalsIgnoreCase(user.getNickname())){
+            if(possibleTarget.equals(user)){
                 continue;
             }
 
@@ -350,29 +304,9 @@ public class VortexCannon extends Effect {
 
         //Ora dentro targetPlayers ho i possibili bersagli. Chiedo al giocatore di sceglierne uno.
 
-        boolean foundTarget = false;
         CopyOnWriteArrayList <Player> finalTarget = new CopyOnWriteArrayList();
 
-        while(!foundTarget){
-
-            String targetNickname = Server.updateWithAnswer(user, Message.scegliBersaglio(targetPlayers));
-
-            if(!InputCheck.nicknameCheck(targetNickname)){
-                Server.update(user, Message.inputError());
-                continue;
-            }
-
-            for(Player target : targetPlayers){
-                if(target.getNickname().equalsIgnoreCase(targetNickname)){
-                    finalTarget.add(target);
-                    foundTarget = true;
-                }
-            }
-
-            Server.update(user, Message.bersaglioNonValido());
-
-        }
-
+        finalTarget.add(ChoosePlayer.one(user, targetPlayers));
 
         return finalTarget;
     }
@@ -428,5 +362,6 @@ public class VortexCannon extends Effect {
         }
 
     }
+
 
 }
