@@ -400,6 +400,7 @@ public class Action {
             }
 
             chosenWeapon.getBaseEffect().applyEffect(player, chosenWeapon.getBaseEffect().getTargets(player));
+            chosenWeapon.setLoaded(false);
             return;
 
         }
@@ -486,23 +487,7 @@ public class Action {
      */
     private static void pickUp(Player player) {
 
-        String answer;
-        boolean answered = false;
-
-        while (!answered) {
-
-            answer = Server.updateWithAnswer(player, Message.vuoiMuovertiPU());
-
-            if (!InputCheck.correctYesNo(answer)) {
-                Server.update(player, Message.inputError());
-                continue;
-            }
-
-            answered = true;
-
-            toReach(answer, player);
-
-        }
+        askForMovementOneStep(player);
 
         if (player.getPosition().getName().equalsIgnoreCase("SpawnCell")) {
 
@@ -656,7 +641,7 @@ public class Action {
      */
     private static void enhancedPickUp(Player player) {
 
-        askForMovement(player);
+        askForMovementOneStep(player);
         pickUp(player);
 
     }
@@ -757,7 +742,7 @@ public class Action {
      */
     private static void enhancedFrenzyPickUp(Player player) {
 
-        askForMovement(player);
+        askForMovementOneStep(player);
         enhancedPickUp(player);
     }
 
@@ -863,7 +848,7 @@ public class Action {
 
     }
 
-    private static void toReach(String input, Player player) {
+    private static void toReachOneStep(String input, Player player) {
 
         if (InputCheck.yesOrNo(input)) {
 
@@ -895,7 +880,8 @@ public class Action {
 
     }
 
-    private static void askForMovement(Player player) {
+
+    private static void askForMovementOneStep(Player player) {
         String answer;
         boolean answered = false;
 
@@ -903,12 +889,15 @@ public class Action {
 
             answer = Server.updateWithAnswer(player, Message.vuoiMuovertiPU());
 
-            if (InputCheck.correctYesNo(answer)) {
+            if (!InputCheck.correctYesNo(answer)) {
                 Server.update(player, Message.inputError());
                 continue;
             }
 
             answered = true;
+
+            toReachOneStep(answer, player);
+
         }
     }
 
