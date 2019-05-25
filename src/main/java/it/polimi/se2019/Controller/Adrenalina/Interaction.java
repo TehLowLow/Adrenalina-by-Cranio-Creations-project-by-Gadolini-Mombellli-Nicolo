@@ -11,6 +11,8 @@ import it.polimi.se2019.View.Message;
 import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static it.polimi.se2019.Model.Connection.DOOR;
+import static it.polimi.se2019.Model.Connection.FREE;
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
@@ -461,6 +463,8 @@ public class Interaction {
 
     public static void selectShotMove(Player player) {
 
+        Cell position = player.getPosition();
+
         String sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
 
         while (!InputCheck.correctMoveEnhancedShot(sceltaMovimento)) {
@@ -481,6 +485,7 @@ public class Interaction {
                     if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                         canShot = true;
+                        break;
 
                     }
 
@@ -490,7 +495,8 @@ public class Interaction {
 
                     update(player, "Non puoi sparare");
 
-                    updateWithAnswer(player, Message.scegliMovimento());
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
 
                 }
 
@@ -498,59 +504,80 @@ public class Interaction {
 
             if (sceltaMovimento.equalsIgnoreCase("su")) {
 
-                Player fakePlayer = new Player();
+                if (player.getPosition().getUpConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getUpConnection().getType().equalsIgnoreCase(FREE)){
 
-                fakePlayer.setPosition(player.getPosition().getUpConnection().getConnectedCell());
-                fakePlayer.setPlayerboard(new Playerboard());
-                fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+                    player.setPosition(player.getPosition().getUpConnection().getConnectedCell());
 
-                for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+                    for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                    if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+                        if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
 
-                        player.setPosition(fakePlayer.getPosition());
-                        canShot = true;
+                            canShot = true;
+                            update(player, "Ti sei spostato in su di una cella!");
+                            break;
+
+                        }
+
+                    }
+
+                    if (!canShot) {
+
+                        player.setPosition(position);
+                        update(player, "Non puoi sparare");
+                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                        continue;
 
                     }
 
                 }
 
-                if (!canShot) {
-
-                    update(player, "Non puoi sparare");
-
-                    updateWithAnswer(player, Message.scegliMovimento());
+                else{
+                    update(player, "Cella non valida!");
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
 
                 }
+
+
 
             }
 
 
             if (sceltaMovimento.equalsIgnoreCase("giu")) {
 
-                Player fakePlayer = new Player();
+                if (player.getPosition().getDownConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getDownConnection().getType().equalsIgnoreCase(FREE)){
 
-                fakePlayer.setPosition(player.getPosition().getDownConnection().getConnectedCell());
-                fakePlayer.setPlayerboard(new Playerboard());
-                fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+                    player.setPosition(player.getPosition().getDownConnection().getConnectedCell());
 
-                for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+                    for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                    if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+                        if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
-                        canShot = true;
-                        player.setPosition(fakePlayer.getPosition());
+
+                            canShot = true;
+                            update(player, "Ti sei spostato in giù di una cella!");
+                            break;
+
+                        }
+
+                    }
+
+                    if (!canShot) {
+
+                        update(player, "Non puoi sparare");
+                        player.setPosition(position);
+                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                        continue;
 
                     }
 
                 }
 
-                if (!canShot) {
-
-                    update(player, "Non puoi sparare");
-
-                    updateWithAnswer(player, Message.scegliMovimento());
+                else{
+                    update(player, "Cella non valida!");
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
 
                 }
 
@@ -559,29 +586,39 @@ public class Interaction {
 
             if (sceltaMovimento.equalsIgnoreCase("destra")) {
 
-                Player fakePlayer = new Player();
+                if (player.getPosition().getRightConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getRightConnection().getType().equalsIgnoreCase(FREE)){
 
-                fakePlayer.setPosition(player.getPosition().getRightConnection().getConnectedCell());
-                fakePlayer.setPlayerboard(new Playerboard());
-                fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+                    player.setPosition(player.getPosition().getRightConnection().getConnectedCell());
 
-                for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+                    for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                    if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+                        if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
 
-                        player.setPosition(fakePlayer.getPosition());
-                        canShot = true;
+                            canShot = true;
+                            update(player, "Ti sei spostato a destra di una cella!");
+                            break;
+
+                        }
+
+                    }
+
+                    if (!canShot) {
+
+
+                        player.setPosition(position);
+                        update(player, "Non puoi sparare");
+                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                        continue;
 
                     }
 
                 }
 
-                if (!canShot) {
-
-                    update(player, "Non puoi sparare");
-
-                    updateWithAnswer(player, Message.scegliMovimento());
+                else{
+                    update(player, "Cella non valida!");
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
 
                 }
 
@@ -589,28 +626,39 @@ public class Interaction {
 
             if (sceltaMovimento.equalsIgnoreCase("sinistra")) {
 
-                Player fakePlayer = new Player();
+                    if (player.getPosition().getLeftConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getLeftConnection().getType().equalsIgnoreCase(FREE)){
 
-                fakePlayer.setPosition(player.getPosition().getLeftConnection().getConnectedCell());
-                fakePlayer.setPlayerboard(new Playerboard());
-                fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
+                    player.setPosition(player.getPosition().getLeftConnection().getConnectedCell());
 
-                for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+                    for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                    if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+                        if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
-                        canShot = true;
-                        player.setPosition(fakePlayer.getPosition());
+
+                            canShot = true;
+                            update(player, "Ti sei spostato a sinistra di una cella!");
+                            break;
+
+                        }
+
+                    }
+
+                    if (!canShot) {
+
+
+                        player.setPosition(position);
+                        update(player, "Non puoi sparare");
+                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                        continue;
 
                     }
 
                 }
 
-                if (!canShot) {
-
-                    update(player, "Non puoi sparare");
-
-                    updateWithAnswer(player, Message.scegliMovimento());
+                else{
+                    update(player, "Cella non valida!");
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
 
                 }
 

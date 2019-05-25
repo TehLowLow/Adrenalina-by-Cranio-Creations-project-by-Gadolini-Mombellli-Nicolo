@@ -65,18 +65,34 @@ public class Action {
                     continue;
                 }
 
-                if (chosenAction.equalsIgnoreCase("Spara") && !Check.canShot(player)) {
+                if (chosenAction.equalsIgnoreCase("Spara") && !Check.canShot(player) && player.getPlayerboard().getDamage().size() < 6) {
                     Server.update(player, Message.noSparo());
                     continue;
                 }
 
-                if (chosenAction.equalsIgnoreCase("spara")) {
+                if (chosenAction.equalsIgnoreCase("spara") && !Check.canShot(player) && player.getPlayerboard().getDamage().size() >= 6){
 
-                    if (player.getPlayerboard().getDamage().size() >= 6) {
+                    if (Check.canShotEnhanced(player)){
+
+                        enhancedShot(player);
+
+                    }
+
+                    else{
+
+                        Server.update(player, Message.noSparo());
+                        continue;
+
+                    }
+
+                }
+
+                if (chosenAction.equalsIgnoreCase("spara") && Check.canShot(player)) {
+
+                    if ( player.getPlayerboard().getDamage().size() >= 6) {
 
                         if (Check.canShotEnhanced(player)) {
                             enhancedShot(player);
-                            continue;
                         } else {
                             shot(player);
                         }
@@ -678,7 +694,7 @@ public class Action {
 
 
             if (steps > 0 && steps < 5) {
-                reachable = Check.reachableCells(player, steps);
+                reachable = Check.moveManager(player, steps);
                 response = updateWithAnswer(player, Message.scegliCella(reachable));
 
                 try {
@@ -690,7 +706,7 @@ public class Action {
             }
 
 
-            if (cell > 0 && cell < reachable.size()) {
+            if (cell >= 0 && cell < reachable.size()) {
 
                 player.setPosition(reachable.get(cell));
                 update(player, Message.movedTo());
