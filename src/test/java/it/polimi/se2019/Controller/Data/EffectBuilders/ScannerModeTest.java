@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
+import com.sun.corba.se.spi.copyobject.CopyobjectDefaults;
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
@@ -46,7 +47,27 @@ public class ScannerModeTest {
     public void applyEffect() {
 
 
+        Player shooter = Server.connectedPlayers.get(0);
+        Player target1 = Server.connectedPlayers.get(1);
+        Player target2 = Server.connectedPlayers.get(2);
+        Player target3 = Server.connectedPlayers.get(3);
 
+
+        Weapon zx2 = new Weapon();
+
+        zx2.setAlternativeEffect(new ScannerMode());
+
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
+
+        targets.add(target1);
+        targets.add(target2);
+        targets.add(target3);
+
+        zx2.getAlternativeEffect().applyEffect(shooter, targets);
+
+        assertEquals(1, target1.getPlayerboard().getMarker().size());
+        assertEquals(1,target2.getPlayerboard().getMarker().size());
+        assertEquals(1, target3.getPlayerboard().getMarker().size());
 
 
 
@@ -88,14 +109,5 @@ public class ScannerModeTest {
 
         assertEquals(3, targets.size());
 
-
-        //TODO get targets sembra avere un bug
-
-
-
-
-
     }
-
-
 }

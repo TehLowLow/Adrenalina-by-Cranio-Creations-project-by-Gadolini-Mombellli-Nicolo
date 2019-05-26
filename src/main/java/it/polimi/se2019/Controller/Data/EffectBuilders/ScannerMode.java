@@ -17,7 +17,7 @@ public class ScannerMode extends Effect {
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        for(Player target : targets){
+        for (Player target : targets) {
             Damage.giveMarker(1, user, target);
         }
 
@@ -29,9 +29,9 @@ public class ScannerMode extends Effect {
         CopyOnWriteArrayList<Player> target = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(user);
 
-        int number = 0;
+        int number;
 
-        for(number = 0; number<3; number++) {
+        for (number = 0; number < 3; number++) {
 
             Player chosen = ChoosePlayer.one(user, possibleTargets);
             target.add(chosen);
@@ -39,38 +39,40 @@ public class ScannerMode extends Effect {
 
             boolean hasChosen = false;
 
-            while(!hasChosen){
+            while (!hasChosen) {
 
-                if(possibleTargets.isEmpty()){
-                    hasChosen = true;
-                    continue;
+                if (possibleTargets.isEmpty()) {
+
+                    return target;
                 }
 
                 String answer = Server.updateWithAnswer(user, Message.scegliAltroBersaglio());
 
-                if(!InputCheck.correctYesNo(answer)){
+                if (!InputCheck.correctYesNo(answer)) {
                     Server.update(user, Message.inputError());
                     continue;
                 }
 
-                if(!InputCheck.yesOrNo(answer)){
-                    number = 3;
-                    hasChosen = true;
+                if (InputCheck.yesOrNo(answer)) {
+                    break;
+                } else {
+                    return target;
+
                 }
 
             }
-
         }
 
         return target;
 
     }
 
+
     @Override
     public boolean hasTargets(Player user) {
 
-        CopyOnWriteArrayList <Player> visible = Check.visiblePlayers(user);
-        if(visible.isEmpty()){
+        CopyOnWriteArrayList<Player> visible = Check.visiblePlayers(user);
+        if (visible.isEmpty()) {
             return false;
         }
         return true;
