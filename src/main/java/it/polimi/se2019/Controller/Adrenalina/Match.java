@@ -98,6 +98,7 @@ public class Match extends Thread {
 
             player.setPlayerboard(new Playerboard());
             player.setScore(0);
+            player.getPlayerboard().setChampionName(null);
             player.getPlayerboard().setWeapons(new CopyOnWriteArrayList<>());
             player.getPlayerboard().setAmmoCubes(new Rybamount());
             player.getPlayerboard().getAmmoCubes().setBlueCubes(1);

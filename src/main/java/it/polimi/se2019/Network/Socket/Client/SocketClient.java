@@ -24,7 +24,7 @@ public class SocketClient extends Client implements Runnable {
    private byte[] address = {127,0,0,1};
     private int signal;
 
-    private static InetAddress inet;
+
 
 
     private static DataOutputStream out;

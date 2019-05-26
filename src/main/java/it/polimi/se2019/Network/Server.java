@@ -172,13 +172,13 @@ public class Server {
 
     public static synchronized String updateWithAnswer(Player player, String msg) {
 
-        if (Board.getMap() != null && player.getPosition() != null) {
+        if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null) {
 
             msg = CLIprinter.print(player) + msg;
 
         }
 
-        if(player.getConnectionTech().equalsIgnoreCase("testEnvironment")){
+        if (player.getConnectionTech().equalsIgnoreCase("testEnvironment")) {
 
             String answer = TestBot.getAnswer();
             System.out.println(msg + '\n' + answer);
@@ -219,19 +219,18 @@ public class Server {
     public static synchronized void update(Player player, String msg) {
 
 
-        if (Board.getMap() != null && player.getPosition() != null) {
+        if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null) {
 
             msg = CLIprinter.print(player) + msg;
 
         }
 
-        if(player.getConnectionTech().equalsIgnoreCase("testEnvironment")){
+        if (player.getConnectionTech().equalsIgnoreCase("testEnvironment")) {
 
             System.out.println(msg);
             return;
 
         }
-
 
 
         if (player.getConnectionTech().equalsIgnoreCase("socket")) {
