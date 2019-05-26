@@ -113,7 +113,7 @@ public class SocketClient extends Client implements Runnable {
 
             try {
 
-                client = new Socket("192.168.1.114",  LOGINSOCKETPORT); //TODO
+                client = new Socket("localhost",  LOGINSOCKETPORT); //"localhost"-------> IP del server remoto per login LAN
                 connected = true;
 
             } catch (ConnectException e) {
@@ -136,8 +136,8 @@ public class SocketClient extends Client implements Runnable {
         while (!connected) {
 
             try {
-                InetAddress gameserver = InetAddress.getLocalHost();  //TODO
-                client = new Socket("192.168.1.114", SOCKETPORT, gameserver, localPort); //TODO
+                InetAddress gameserver =  InetAddress.getByAddress(address);              //InetAddress.getLocalHost();
+                client = new Socket("localhost", SOCKETPORT, gameserver, localPort); // "localhost" ----> IP del server remoto per game LAN
                 connected = true;
             } catch (Exception e) {
                 e.printStackTrace();

@@ -82,7 +82,7 @@ public class TsunamiModeTest {
         Weapon weapon = new Weapon();
         weapon.setAlternativeEffect(new TsunamiMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+        assertFalse(result);
 
         for(int i = 1; i<5; i++){
 
@@ -91,7 +91,7 @@ public class TsunamiModeTest {
 
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
         for(int i = 1; i<5; i++){
 
@@ -99,7 +99,8 @@ public class TsunamiModeTest {
         }
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
 
     }

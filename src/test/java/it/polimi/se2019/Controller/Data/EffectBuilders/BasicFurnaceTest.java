@@ -61,11 +61,11 @@ public class BasicFurnaceTest {
         Weapon furnace = new Weapon();
         furnace.setBaseEffect(new BasicFurnace());
         CopyOnWriteArrayList<Player> targets = furnace.getBaseEffect().getTargets(Server.connectedPlayers.get(0));
-        assertTrue(targets.size()==3);
+        assertEquals(3, targets.size());
         assertTrue(targets.contains(Server.connectedPlayers.get(1)));
         assertTrue(targets.contains(Server.connectedPlayers.get(2)));
         assertTrue(targets.contains(Server.connectedPlayers.get(3)));
-        assertTrue(!targets.contains(Server.connectedPlayers.get(4)));
+        assertFalse(targets.contains(Server.connectedPlayers.get(4)));
 
 
     }
@@ -76,11 +76,11 @@ public class BasicFurnaceTest {
         Weapon furnace = new Weapon();
         furnace.setBaseEffect(new BasicFurnace());
         boolean result = furnace.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+        assertFalse(result);
 
         Server.connectedPlayers.get(1).setPosition(Board.getMap().getRedRoom().getCells().get(0));
         result = furnace.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
     }
 }

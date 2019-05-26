@@ -69,7 +69,7 @@ public class BasicTractorBeamTest {
         Weapon weapon = new Weapon();
         weapon.setBaseEffect(new BasicTractorBeam());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
         for(int i = 1; i<5; i++){
 
@@ -77,7 +77,8 @@ public class BasicTractorBeamTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
     }
 }

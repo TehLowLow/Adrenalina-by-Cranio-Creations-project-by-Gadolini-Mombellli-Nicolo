@@ -199,7 +199,8 @@ public class VortexCannonTest {
         Weapon weapon = new Weapon();
         weapon.setBaseEffect(new VortexCannon());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
         for(int i = 1; i<5; i++){
 
@@ -207,7 +208,8 @@ public class VortexCannonTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
 
 
@@ -217,7 +219,7 @@ public class VortexCannonTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
 
 
@@ -227,7 +229,7 @@ public class VortexCannonTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
     }
 }

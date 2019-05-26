@@ -31,7 +31,8 @@ public class RocketLauncherTest {
         Weapon weapon = new Weapon();
         weapon.setBaseEffect(new RocketLauncher());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
         for (int i = 1; i < 5; i++) {
 
@@ -39,7 +40,7 @@ public class RocketLauncherTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
         for (int i = 1; i < 5; i++) {
 
@@ -47,11 +48,13 @@ public class RocketLauncherTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
         Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().setBlueCubes(1);
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
 
     }

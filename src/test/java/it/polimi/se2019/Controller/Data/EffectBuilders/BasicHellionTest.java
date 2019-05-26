@@ -76,9 +76,9 @@ public class BasicHellionTest {
         hellion.getBaseEffect().hasTargets(user);
         CopyOnWriteArrayList <Player> targets = hellion.getBaseEffect().getTargets(user);
 
-        assertTrue(!targets.contains(player2));
+        assertFalse(targets.contains(player2));
         assertTrue(targets.contains(player1));
-        assertTrue(targets.size()==1);
+        assertEquals(1, targets.size());
 
     }
 
@@ -89,7 +89,7 @@ public class BasicHellionTest {
         Weapon hellion = new Weapon();
         hellion.setBaseEffect(new BasicHellion());
         boolean result = hellion.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
         for(int i = 1; i<5; i++) {
 
@@ -97,6 +97,6 @@ public class BasicHellionTest {
 
         }
         result = hellion.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+        assertFalse(result);
     }
 }

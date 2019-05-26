@@ -47,7 +47,7 @@ public class BasicElectroschytheTest {
         Weapon electroschyte = new Weapon();
         electroschyte.setBaseEffect(new BasicElectroschythe());
         boolean result = electroschyte.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
     }
 

@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class BasicZX2Test {
 
     @Before
-    public void preparePlayers(){
+    public void preparePlayers() {
 
         ConfigurationTest.createTestConfiguration();
 
@@ -43,7 +43,7 @@ public class BasicZX2Test {
     @Test
     public void getTargets() {
 
-        CopyOnWriteArrayList <String> answers = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("player2");
         answers.add("player1");
         TestBot.initAnswers(answers);
@@ -55,10 +55,10 @@ public class BasicZX2Test {
         player1.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
         player2.setPosition(Board.getMap().getYellowRoom().getCells().get(0));
 
-        Weapon zx2= new Weapon();
+        Weapon zx2 = new Weapon();
         zx2.setBaseEffect(new BasicZX2());
 
-        CopyOnWriteArrayList <Player> targets = zx2.getBaseEffect().getTargets(user);
+        CopyOnWriteArrayList<Player> targets = zx2.getBaseEffect().getTargets(user);
 
         assertTrue(targets.contains(player1));
         assertTrue(!targets.contains(player2));
@@ -70,20 +70,21 @@ public class BasicZX2Test {
     public void hasTargets() {
 
 
-
         Server.connectedPlayers.get(1).setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
         Weapon weapon = new Weapon();
         weapon.setBaseEffect(new BasicZX2());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
-        for(int i = 1; i<5; i++){
+
+        for (int i = 1; i < 5; i++) {
 
             Server.connectedPlayers.get(i).setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
     }
 

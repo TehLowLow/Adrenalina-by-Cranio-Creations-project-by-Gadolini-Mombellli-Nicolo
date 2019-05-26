@@ -68,7 +68,7 @@ public class BasicHeatSeekerTest {
         Weapon heatseeker = new Weapon();
         heatseeker.setBaseEffect(new BasicHeatSeeker());
         boolean result = heatseeker.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+        assertFalse(result);
 
         Server.connectedPlayers.get(2).setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
         result = heatseeker.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));

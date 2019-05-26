@@ -174,7 +174,8 @@ public class CyberbladeTest {
         Weapon weapon = new Weapon();
         weapon.setBaseEffect(new Cyberblade());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
         for(int i = 1; i<5; i++){
 
@@ -182,7 +183,8 @@ public class CyberbladeTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
         for(int i = 1; i<5; i++){
 
@@ -190,7 +192,8 @@ public class CyberbladeTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
     }
 }

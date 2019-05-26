@@ -28,7 +28,7 @@ public class ReaperModeTest {
         Weapon weapon = new Weapon();
         weapon.setAlternativeEffect(new ReaperMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
         for (int i = 1; i < 5; i++) {
 
@@ -38,7 +38,8 @@ public class ReaperModeTest {
         System.out.println(Board.getMap().getWhiteRoom().getCells().get(1).getName());
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
 
     }

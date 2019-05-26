@@ -28,7 +28,8 @@ public class PiercingModeTest {
         Weapon weapon = new Weapon();
         weapon.setAlternativeEffect(new PiercingMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
         for (int i = 1; i < 5; i++) {
 
@@ -38,7 +39,7 @@ public class PiercingModeTest {
         System.out.println(Board.getMap().getWhiteRoom().getCells().get(1).getName());
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
     }
 

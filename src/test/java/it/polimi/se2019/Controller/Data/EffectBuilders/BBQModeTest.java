@@ -86,7 +86,7 @@ public class BBQModeTest {
         assertTrue(targets.contains(target1));
         assertTrue(targets.contains(target2));
         assertTrue(targets.contains(target3));
-        assertTrue(!targets.contains(target4));
+        assertFalse(targets.contains(target4));
 
 
 
@@ -101,7 +101,8 @@ public class BBQModeTest {
         Weapon weapon = new Weapon();
         weapon.setAlternativeEffect(new BBQMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
         for(int i = 1; i<5; i++){
 
@@ -109,7 +110,7 @@ public class BBQModeTest {
         }
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        //TODO sistemare BBQ effect assertEquals(result, false);
+        assertFalse(result);
 
     }
 

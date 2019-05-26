@@ -133,7 +133,8 @@ public class PlasmaGunTest {
         Weapon weapon = new Weapon();
         weapon.setBaseEffect(new PlasmaGun());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
         for(int i = 1; i<5; i++){
 
@@ -141,7 +142,8 @@ public class PlasmaGunTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
         for(int i = 1; i<5; i++){
 
@@ -149,7 +151,7 @@ public class PlasmaGunTest {
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
 
     }

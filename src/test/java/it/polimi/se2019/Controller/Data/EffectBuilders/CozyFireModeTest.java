@@ -80,12 +80,14 @@ public class CozyFireModeTest {
         Weapon weapon = new Weapon();
         weapon.setAlternativeEffect(new CozyFireMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
 
         Server.connectedPlayers.get(1).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
 
         for (int i = 1; i < 5; i++) {
@@ -94,6 +96,7 @@ public class CozyFireModeTest {
         }
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
     }
 }

@@ -60,7 +60,7 @@ public class LongBarrelModeTest {
         CopyOnWriteArrayList <Player> targets = longbarrel.getBaseEffect().getTargets(user);
 
         assertTrue(targets.contains(player2));
-        assertTrue(targets.size()==1);
+        assertEquals(1, targets.size());
 
 
     }
@@ -73,7 +73,8 @@ public class LongBarrelModeTest {
         Weapon weapon = new Weapon();
         weapon.setAlternativeEffect(new LongBarrelMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
         for(int i = 1; i<5; i++){
 
@@ -81,7 +82,8 @@ public class LongBarrelModeTest {
         }
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
     }
 }

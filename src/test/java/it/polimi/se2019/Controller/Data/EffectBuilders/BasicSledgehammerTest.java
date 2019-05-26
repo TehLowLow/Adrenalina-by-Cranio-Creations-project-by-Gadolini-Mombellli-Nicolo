@@ -16,7 +16,7 @@ public class BasicSledgehammerTest {
 
 
     @Before
-    public void preparePlayers(){
+    public void preparePlayers() {
 
         ConfigurationTest.createTestConfiguration();
 
@@ -45,7 +45,7 @@ public class BasicSledgehammerTest {
     @Test
     public void getTargets() {
 
-        CopyOnWriteArrayList <String> answers = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("player2");
         TestBot.initAnswers(answers);
 
@@ -56,7 +56,7 @@ public class BasicSledgehammerTest {
         sledgehammer.setBaseEffect(new BasicSledgehammer());
 
 
-        CopyOnWriteArrayList <Player> targets = sledgehammer.getBaseEffect().getTargets(user);
+        CopyOnWriteArrayList<Player> targets = sledgehammer.getBaseEffect().getTargets(user);
 
         assertEquals(player2, targets.get(0));
 
@@ -79,15 +79,16 @@ public class BasicSledgehammerTest {
         Weapon sledgehammer = new Weapon();
         sledgehammer.setBaseEffect(new BasicSledgehammer());
         boolean result = sledgehammer.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
-        for(int i = 1; i<5; i++){
+        for (int i = 1; i < 5; i++) {
 
             Server.connectedPlayers.get(i).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
         }
 
         result = sledgehammer.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
     }
 }

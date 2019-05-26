@@ -198,7 +198,7 @@ public class ActionTest {
     }
 
 
-    @Test
+  /*  @Test
     public void performEnhancedShot(){
 
         Player player = Server.connectedPlayers.get(0);
@@ -245,7 +245,8 @@ public class ActionTest {
 
     @Test
     public void performFrenzy() {
-    }
+
+    }*/
 
     @Test
     public void reloadNotAffordable() {

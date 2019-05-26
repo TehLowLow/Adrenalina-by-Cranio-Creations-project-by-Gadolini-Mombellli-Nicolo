@@ -16,7 +16,7 @@ public class BasicShockwaveTest {
 
 
     @Before
-   public void preparePlayers(){
+    public void preparePlayers() {
 
         ConfigurationTest.createTestConfiguration();
 
@@ -69,9 +69,9 @@ public class BasicShockwaveTest {
         Weapon shockwave = new Weapon();
         shockwave.setBaseEffect(new BasicShockwave());
 
-        CopyOnWriteArrayList <Player> targets = shockwave.getBaseEffect().getTargets(user);
+        CopyOnWriteArrayList<Player> targets = shockwave.getBaseEffect().getTargets(user);
 
-        assertTrue(targets.size()==2);
+        assertTrue(targets.size() == 2);
         assertTrue(targets.contains(player3));
         assertTrue(targets.contains(player4));
 
@@ -79,13 +79,12 @@ public class BasicShockwaveTest {
     }
 
     @Test
-    public void getOnlyOneTargetTest(){
+    public void getOnlyOneTargetTest() {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
 
         answers.add("player3");
         answers.add("no");
-
 
 
         Player user = Server.connectedPlayers.get(0);
@@ -104,11 +103,10 @@ public class BasicShockwaveTest {
         Weapon shockwave = new Weapon();
         shockwave.setBaseEffect(new BasicShockwave());
 
-        CopyOnWriteArrayList <Player> targets = shockwave.getBaseEffect().getTargets(user);
+        CopyOnWriteArrayList<Player> targets = shockwave.getBaseEffect().getTargets(user);
 
-        assertTrue(targets.size()==1);
+        assertTrue(targets.size() == 1);
         assertTrue(targets.contains(player3));
-
 
 
     }
@@ -121,11 +119,11 @@ public class BasicShockwaveTest {
         Weapon shockwave = new Weapon();
         shockwave.setBaseEffect(new BasicShockwave());
         boolean result = shockwave.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+        assertFalse(result);
 
         Server.connectedPlayers.get(1).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
         result = shockwave.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
     }
 }

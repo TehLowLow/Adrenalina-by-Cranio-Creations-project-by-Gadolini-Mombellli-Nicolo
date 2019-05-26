@@ -10,19 +10,19 @@ import org.junit.Test;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class MachineGunEffectTest {
 
     @Before
-    public void preparePlayers(){
+    public void preparePlayers() {
 
         ConfigurationTest.createTestConfiguration();
 
     }
 
     @Test
-    public void getTargetsTwoPlayers(){
+    public void getTargetsTwoPlayers() {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("player2");
@@ -36,12 +36,12 @@ public class MachineGunEffectTest {
         CopyOnWriteArrayList<Player> result = weapon.getBaseEffect().getTargets(Server.connectedPlayers.get(0));
         assertEquals(result.get(0), Server.connectedPlayers.get(2));
         assertEquals(result.get(1), Server.connectedPlayers.get(3));
-        assertEquals(result.size(), 2);
+        assertEquals(2, result.size());
     }
 
 
     @Test
-    public void getTargetsOneChosenPlayer(){
+    public void getTargetsOneChosenPlayer() {
 
         /*
         più di uno visibile ma scelgo di colpirne uno
@@ -56,14 +56,14 @@ public class MachineGunEffectTest {
         weapon.setBaseEffect(new MachineGunEffect());
         CopyOnWriteArrayList<Player> result = weapon.getBaseEffect().getTargets(Server.connectedPlayers.get(0));
         assertEquals(result.get(0), Server.connectedPlayers.get(2));
-        assertEquals(result.size(), 1);
+        assertEquals(1, result.size());
 
     }
 
     @Test
-    public void getTargetsOnePossibleTarget(){
+    public void getTargetsOnePossibleTarget() {
 
-        for(int i = 2; i<5; i++){
+        for (int i = 2; i < 5; i++) {
 
             Server.connectedPlayers.get(i).setPosition(Board.getMap().getYellowRoom().getCells().get(1));
         }
@@ -77,13 +77,13 @@ public class MachineGunEffectTest {
         weapon.setBaseEffect(new MachineGunEffect());
         CopyOnWriteArrayList<Player> result = weapon.getBaseEffect().getTargets(Server.connectedPlayers.get(0));
         assertEquals(result.get(0), Server.connectedPlayers.get(1));
-        assertEquals(result.size(), 1);
+        assertEquals(1, result.size());
 
     }
 
 
     @Test
-    public void applyBaseEffectOneTarget(){
+    public void applyBaseEffectOneTarget() {
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
         targets.add(Server.connectedPlayers.get(1));
@@ -93,15 +93,14 @@ public class MachineGunEffectTest {
         weapon.getBaseEffect().applyEffect(Server.connectedPlayers.get(0), targets);
 
 
-        assertEquals(Server.connectedPlayers.get(1).getPlayerboard().getDamage().size(), 1);
+        assertEquals(1, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
 
 
     }
 
 
-
     @Test
-    public void applyBaseEffectTwoTargets(){
+    public void applyBaseEffectTwoTargets() {
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
         targets.add(Server.connectedPlayers.get(1));
@@ -112,12 +111,12 @@ public class MachineGunEffectTest {
         weapon.getBaseEffect().applyEffect(Server.connectedPlayers.get(0), targets);
 
 
-        assertEquals(Server.connectedPlayers.get(1).getPlayerboard().getDamage().size(), 1);
-        assertEquals(Server.connectedPlayers.get(2).getPlayerboard().getDamage().size(), 1);
+        assertEquals(1, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(1, Server.connectedPlayers.get(2).getPlayerboard().getDamage().size());
     }
 
     @Test
-    public void applyFocusShotOneTarget(){
+    public void applyFocusShotOneTarget() {
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
         targets.add(Server.connectedPlayers.get(1));
@@ -134,15 +133,15 @@ public class MachineGunEffectTest {
         weapon.getBaseEffect().applyEffect(Server.connectedPlayers.get(0), targets);
 
 
-        assertEquals(Server.connectedPlayers.get(1).getPlayerboard().getDamage().size(), 2);
+        assertEquals(2, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
 
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow(), 0);
+        assertEquals(0, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow());
 
 
     }
 
     @Test
-    public void applyFocusShotTwoTargets(){
+    public void applyFocusShotTwoTargets() {
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
         targets.add(Server.connectedPlayers.get(1));
@@ -160,16 +159,15 @@ public class MachineGunEffectTest {
         weapon.getBaseEffect().applyEffect(Server.connectedPlayers.get(0), targets);
 
 
-        assertEquals(Server.connectedPlayers.get(1).getPlayerboard().getDamage().size(), 2);
-        assertEquals(Server.connectedPlayers.get(2).getPlayerboard().getDamage().size(), 1);
-
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow(), 0);
+        assertEquals(2, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(1, Server.connectedPlayers.get(2).getPlayerboard().getDamage().size());
+        assertEquals(0, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow());
 
 
     }
 
     @Test
-    public void applyTurretTripodAfterFocusShotOnlyOneBasicTarget(){
+    public void applyTurretTripodAfterFocusShotOnlyOneBasicTarget() {
 
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
@@ -190,19 +188,19 @@ public class MachineGunEffectTest {
         weapon.getBaseEffect().applyEffect(Server.connectedPlayers.get(0), targets);
 
 
-        assertEquals(Server.connectedPlayers.get(1).getPlayerboard().getDamage().size(), 2);
-        assertEquals(Server.connectedPlayers.get(2).getPlayerboard().getDamage().size(), 1);
+        assertEquals(2, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(1, Server.connectedPlayers.get(2).getPlayerboard().getDamage().size());
 
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow(), 0);
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getBlue(), 0);
+        assertEquals(0, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow());
+        assertEquals(0, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getBlue());
 
 
     }
 
     @Test
-    public void applyTurretTripodAfterFocusShotOneBasicTargetNoOtherTargets(){
+    public void applyTurretTripodAfterFocusShotOneBasicTargetNoOtherTargets() {
 
-        for(int i = 2; i<5; i++){
+        for (int i = 2; i < 5; i++) {
 
             Server.connectedPlayers.get(i).setPosition(Board.getMap().getYellowRoom().getCells().get(1));
         }
@@ -223,15 +221,14 @@ public class MachineGunEffectTest {
         weapon.getBaseEffect().applyEffect(Server.connectedPlayers.get(0), targets);
 
 
-        assertEquals(Server.connectedPlayers.get(1).getPlayerboard().getDamage().size(), 2);
-
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow(), 0);
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getBlue(), 1);
+        assertEquals(2, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(0, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow());
+        assertEquals(1, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getBlue());
 
     }
 
     @Test
-    public void applyTurretTripodAfterFocusShotTwoBasicTargets(){
+    public void applyTurretTripodAfterFocusShotTwoBasicTargets() {
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
         targets.add(Server.connectedPlayers.get(1));
@@ -255,21 +252,20 @@ public class MachineGunEffectTest {
         weapon.getBaseEffect().applyEffect(Server.connectedPlayers.get(0), targets);
 
 
-        assertEquals(Server.connectedPlayers.get(1).getPlayerboard().getDamage().size(), 2);
-        assertEquals(Server.connectedPlayers.get(2).getPlayerboard().getDamage().size(), 2);
-        assertEquals(Server.connectedPlayers.get(3).getPlayerboard().getDamage().size(), 1);
+        assertEquals(2, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(2, Server.connectedPlayers.get(2).getPlayerboard().getDamage().size());
+        assertEquals(1, Server.connectedPlayers.get(3).getPlayerboard().getDamage().size());
 
 
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow(), 0);
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getBlue(), 0);
+        assertEquals(0, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow());
+        assertEquals(0, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getBlue());
 
 
     }
 
 
-
     @Test
-    public void applyTurretTripodWithoutFocusShotOneBasicTarget(){
+    public void applyTurretTripodWithoutFocusShotOneBasicTarget() {
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
         targets.add(Server.connectedPlayers.get(1));
@@ -290,13 +286,11 @@ public class MachineGunEffectTest {
         weapon.getBaseEffect().applyEffect(Server.connectedPlayers.get(0), targets);
 
 
-        assertEquals(Server.connectedPlayers.get(1).getPlayerboard().getDamage().size(), 2);
-
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getBlue(), 0);
-        assertEquals(Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow(), 1);
+        assertEquals(2, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(0, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getBlue());
+        assertEquals(1, Server.connectedPlayers.get(0).getPlayerboard().getAmmoCubes().getYellow());
 
     }
-
 
 
     @Test
@@ -307,15 +301,17 @@ public class MachineGunEffectTest {
         Weapon weapon = new Weapon();
         weapon.setBaseEffect(new MachineGunEffect());
         boolean result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
-        for(int i = 1; i<5; i++){
+
+        for (int i = 1; i < 5; i++) {
 
             Server.connectedPlayers.get(i).setPosition(Board.getMap().getYellowRoom().getCells().get(1));
         }
 
         result = weapon.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
     }
 

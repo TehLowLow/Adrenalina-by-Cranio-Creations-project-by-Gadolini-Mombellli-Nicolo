@@ -78,11 +78,11 @@ public class BasicPowerGloveTest {
         Weapon powerglove = new Weapon();
         powerglove.setBaseEffect(new BasicPowerGlove());
         boolean result = powerglove.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+        assertFalse(result);
 
         Server.connectedPlayers.get(1).setPosition(Board.getMap().getBlueRoom().getCells().get(2));
         result = powerglove.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
 
     }
 }

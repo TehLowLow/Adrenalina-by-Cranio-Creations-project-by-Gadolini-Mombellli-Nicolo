@@ -89,7 +89,8 @@ public class NanoTracerModeTest {
         Weapon weapon = new Weapon();
         weapon.setAlternativeEffect(new NanoTracerMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, true);
+        assertTrue(result);
+
 
         for(int i = 1; i<5; i++){
 
@@ -97,7 +98,8 @@ public class NanoTracerModeTest {
         }
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertEquals(result, false);
+
+        assertFalse(result);
 
     }
 }
