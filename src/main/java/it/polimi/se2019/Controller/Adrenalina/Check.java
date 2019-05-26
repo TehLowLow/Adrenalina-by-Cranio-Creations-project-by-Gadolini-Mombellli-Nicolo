@@ -1202,23 +1202,20 @@ public class Check {
 
     public static boolean canShotEnhanced(Player player) {
 
-        Player fakePlayer = new Player();
-        fakePlayer.setPlayerboard(new Playerboard());
-        fakePlayer.setPosition(player.getPosition());
-        fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
-
+        Cell position = player.getPosition();
         CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
         reachableCells.add(player.getPosition());
 
         for (Cell cell : reachableCells) {
 
-            fakePlayer.setPosition(cell);
+            player.setPosition(cell);
 
-            for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+            for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+                if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                     if (weapon.isLoaded()) {
+                        player.setPosition(position);
                         return true;
                     }
 
@@ -1240,25 +1237,21 @@ public class Check {
 
     public static boolean canShotEnhancedFrenzy(Player player) {
 
-        Player fakePlayer = new Player();
-        fakePlayer.setPosition(player.getPosition());
-        fakePlayer.setPlayerboard(new Playerboard());
-        fakePlayer.getPlayerboard().setWeapons(player.getPlayerboard().getWeapons());
-
-
-
+        Cell position = player.getPosition();
         CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 2);
         reachableCells.add(player.getPosition());
 
         for (Cell cell : reachableCells) {
 
-            fakePlayer.setPosition(cell);
+            player.setPosition(cell);
 
-            for (Weapon weapon : fakePlayer.getPlayerboard().getWeapons()) {
+            for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                if (weapon.getBaseEffect().hasTargets(fakePlayer) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(fakePlayer))) {
+                if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                     if (weapon.isLoaded() || Check.affordable(player, weapon.getRechargeCost())) {
+
+                        player.setPosition(position);
                         return true;
                     }
 

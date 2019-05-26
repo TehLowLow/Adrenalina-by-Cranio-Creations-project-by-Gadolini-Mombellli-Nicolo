@@ -59,7 +59,7 @@ public class ActionTest {
 
         Cell spawn = (SpawnCell) Board.getMap().getBlueRoom().getCells().get(0);
 
-        ((SpawnCell) spawn).getAvailableWeapons().add(flamethrower);
+        ((SpawnCell)spawn).getAvailableWeapons().add(flamethrower);
 
         Player player = Server.connectedPlayers.get(0);
 
@@ -198,7 +198,7 @@ public class ActionTest {
     }
 
 
-  /*  @Test
+    @Test
     public void performEnhancedShot(){
 
         Player player = Server.connectedPlayers.get(0);
@@ -244,9 +244,96 @@ public class ActionTest {
 
 
     @Test
-    public void performFrenzy() {
+    public void performFrenzyMove() {
 
-    }*/
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("muovi");
+        answers.add("4");
+        answers.add("0");
+        TestBot.initAnswers(answers);
+
+        Player player = Server.connectedPlayers.get(0);
+        Action.performFrenzy(player, false);
+
+        assertEquals(Board.getMap().getWhiteRoom().getCells().get(1), player.getPosition());
+
+
+
+    }
+
+
+    @Test
+    public void performFrenzyPickUp(){
+
+        Player player = Server.connectedPlayers.get(0);
+        player.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+
+        for (int i=0; i<3; i++){
+
+            player.getPlayerboard().getDamage().add(new Token());
+            player.getPlayerboard().getDamage().get(i).setChampionName("Violetta");
+
+        }
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("raccogli");
+        answers.add("si");
+        answers.add("0");
+        answers.add("si");
+        answers.add("0");
+        answers.add("lanciafiamme");
+
+        TestBot.initAnswers(answers);
+
+        FlamethrowerBuilder flamethrowerBuilder = new FlamethrowerBuilder();
+        Weapon flamethrower = flamethrowerBuilder.build();
+
+        Cell spawn = (SpawnCell) Board.getMap().getBlueRoom().getCells().get(0);
+
+        ((SpawnCell) spawn).getAvailableWeapons().add(flamethrower);
+
+
+
+        Action.performFrenzy(player, false);
+
+        assertEquals(1, player.getPlayerboard().getWeapons().size());
+        assertEquals("Lanciafiamme", player.getPlayerboard().getWeapons().get(0).getName());
+
+    }
+
+    @Test
+    public void performEnhancedFrenzyPickUp(){
+
+        Player player = Server.connectedPlayers.get(0);
+        player.setPosition(Board.getMap().getRedRoom().getCells().get(0));
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("raccogli");
+        answers.add("si");
+        answers.add("0");
+        answers.add("si");
+        answers.add("0");
+        answers.add("si");
+        answers.add("0");
+        answers.add("lanciafiamme");
+
+        TestBot.initAnswers(answers);
+
+        FlamethrowerBuilder flamethrowerBuilder = new FlamethrowerBuilder();
+        Weapon flamethrower = flamethrowerBuilder.build();
+
+        Cell spawn = (SpawnCell) Board.getMap().getBlueRoom().getCells().get(0);
+
+        ((SpawnCell) spawn).getAvailableWeapons().add(flamethrower);
+
+
+
+        Action.performFrenzy(player, true);
+
+        assertEquals(1, player.getPlayerboard().getWeapons().size());
+        assertEquals("Lanciafiamme", player.getPlayerboard().getWeapons().get(0).getName());
+
+    }
 
     @Test
     public void reloadNotAffordable() {
