@@ -348,6 +348,7 @@ public class ActionTest {
         answers.add("stop");
         answers.add("su");
         answers.add("sinistra");
+        answers.add("Siuuuuuu!");
         answers.add("distruttore");
         answers.add("distruttore");
         answers.add("player1");
@@ -390,6 +391,7 @@ public class ActionTest {
         answers.add("su");
         answers.add("giu");
         answers.add("sinistra");
+        answers.add("Gigi Buffon");
         answers.add("distruttore");
         answers.add("distruttore");
         answers.add("player1");
