@@ -336,6 +336,90 @@ public class ActionTest {
     }
 
     @Test
+    public void performFrenzyShot(){
+
+        Player player = Server.connectedPlayers.get(0);
+        player.setPosition(Board.getMap().getRedRoom().getCells().get(1));
+
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("spara");
+        answers.add("giu");
+        answers.add("stop");
+        answers.add("su");
+        answers.add("sinistra");
+        answers.add("distruttore");
+        answers.add("distruttore");
+        answers.add("player1");
+        TestBot.initAnswers(answers);
+
+        LockRifleBuilder lockRifleBuilder = new LockRifleBuilder();
+        Weapon lockrifle = lockRifleBuilder.build();
+        lockrifle.setLoaded(false);
+        lockrifle.setBaseEffect(new LockRifleEffect());
+
+
+        player.getPlayerboard().getWeapons().add(lockrifle);
+
+        player.getPlayerboard().getAmmoCubes().setBlueCubes(2);
+
+        Action.performFrenzy(player, false);
+
+        assertEquals(false, player.getPlayerboard().getWeapons().get(0).isLoaded());
+        assertEquals(2, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(1, Server.connectedPlayers.get(1).getPlayerboard().getMarker().size());
+        assertEquals(0, player.getPlayerboard().getAmmoCubes().getBlue());
+
+
+    }
+
+
+
+    @Test
+    public void performEnhancedFrenzyShot(){
+
+        Player player = Server.connectedPlayers.get(0);
+        player.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
+
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("spara");
+        answers.add("giu");
+        answers.add("stop");
+        answers.add("destra");
+        answers.add("su");
+        answers.add("giu");
+        answers.add("sinistra");
+        answers.add("distruttore");
+        answers.add("distruttore");
+        answers.add("player1");
+        TestBot.initAnswers(answers);
+
+        LockRifleBuilder lockRifleBuilder = new LockRifleBuilder();
+        Weapon lockrifle = lockRifleBuilder.build();
+        lockrifle.setLoaded(false);
+        lockrifle.setBaseEffect(new LockRifleEffect());
+
+
+        player.getPlayerboard().getWeapons().add(lockrifle);
+
+        player.getPlayerboard().getAmmoCubes().setBlueCubes(2);
+
+        Action.performFrenzy(player, true);
+
+        assertEquals(false, player.getPlayerboard().getWeapons().get(0).isLoaded());
+        assertEquals(2, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(1, Server.connectedPlayers.get(1).getPlayerboard().getMarker().size());
+        assertEquals(0, player.getPlayerboard().getAmmoCubes().getBlue());
+
+
+    }
+
+
+
+
+
+    @Test
     public void reloadNotAffordable() {
 
         LockRifleBuilder lockRifleBuilder = new LockRifleBuilder();

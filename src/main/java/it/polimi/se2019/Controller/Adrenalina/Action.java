@@ -154,7 +154,7 @@ public class Action {
                         continue;
                     }
 
-                    if (chosenAction.equalsIgnoreCase("Spara") && !Check.canShotEnhanced(player)) {
+                    if (chosenAction.equalsIgnoreCase("Spara") && !Check.canShotFrenzy(player)) {
                         Server.update(player, Message.noSparo());
                         continue;
                     }
@@ -739,7 +739,49 @@ public class Action {
     private static void frenzyShot(Player player) {
 
         selectShotMove(player);
-        reload(player);
+
+        /*
+        aggiungo in un array le armi cariche e che hanno bersagli a disposizione
+         */
+
+        CopyOnWriteArrayList<Weapon> usableWeapons = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Weapon> playersWeapons = player.getPlayerboard().getWeapons();
+
+        for (Weapon weapon:playersWeapons){
+
+            if (weapon.getBaseEffect().hasTargets(player) && weapon.isLoaded()){
+
+                usableWeapons.add(weapon);
+
+            }
+
+        }
+
+        if (!usableWeapons.isEmpty()){
+
+            reload(player);
+
+        }
+
+        else{
+
+            for (Weapon weapon:playersWeapons){
+
+                if (weapon.getBaseEffect().hasTargets(player) && Check.affordable(player, weapon.getRechargeCost())){
+
+                    usableWeapons.add(weapon);
+
+                }
+
+            }
+
+            reloadFrenzy(player, usableWeapons);
+
+        }
+
+
+
+
         shot(player);
 
 
@@ -781,9 +823,48 @@ public class Action {
      */
     private static void enhancedFrenzyShot(Player player) {
 
-        selectShotMove(player);
-        selectShotMove(player);
-        reload(player);
+        selectEnhancedFrenzyShotMove(player);
+
+        CopyOnWriteArrayList<Weapon> usableWeapons = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Weapon> playersWeapons = player.getPlayerboard().getWeapons();
+
+        for (Weapon weapon:playersWeapons){
+
+            if (weapon.getBaseEffect().hasTargets(player) && weapon.isLoaded()){
+
+                usableWeapons.add(weapon);
+
+            }
+
+        }
+
+        if (!usableWeapons.isEmpty()){
+
+            reload(player);
+
+        }
+
+        else{
+
+            for (Weapon weapon:playersWeapons){
+
+                if (weapon.getBaseEffect().hasTargets(player) && Check.affordable(player, weapon.getRechargeCost())){
+
+                    usableWeapons.add(weapon);
+
+                }
+
+            }
+
+            reloadFrenzy(player, usableWeapons);
+
+        }
+
+
+
+
+
+
         shot(player);
 
     }
@@ -930,7 +1011,7 @@ public class Action {
     }
 
 
-    public static void selectShotMove(Player player) {
+    private static void selectShotMove(Player player) {
 
         Cell position = player.getPosition();
 
@@ -1125,4 +1206,366 @@ public class Action {
             }
         }
     }
+
+    private static void reloadFrenzy(Player player, CopyOnWriteArrayList<Weapon> usableWeapons){
+
+        String chosenWeapon = updateWithAnswer(player, Message.scegliArmaRF(usableWeapons));
+
+        while (!InputCheck.correctWeaponRF(chosenWeapon, usableWeapons)){
+
+            update(player, Message.inputError());
+            chosenWeapon = updateWithAnswer(player, Message.scegliArmaRF(usableWeapons));
+
+        }
+
+        Weapon chosen = new Weapon();
+
+        for (Weapon weapon:usableWeapons){
+
+            if (weapon.getName().equalsIgnoreCase(chosenWeapon)){
+
+                chosen = weapon;
+                break;
+
+            }
+
+        }
+
+        chosen.setLoaded(true);
+        Interaction.pay(player, chosen.getRechargeCost());
+        update(player, Message.haiRicaricato(chosen));
+
+
+    }
+
+
+    private static void selectEnhancedFrenzyShotMove(Player player){
+
+
+        String sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+
+        Cell position = player.getPosition();
+
+        while (!InputCheck.correctMoveEnhancedShot(sceltaMovimento)) {
+
+            update(player, Message.inputError());
+            sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+
+        }
+
+        boolean canShot = false;
+        boolean canDoSecondMove = false;
+
+        while(!canShot && !canDoSecondMove){
+
+            if (sceltaMovimento.equalsIgnoreCase("stop")){
+
+                for (Weapon weapon : player.getPlayerboard().getWeapons()) {
+
+                    if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
+
+                        canShot = true;
+                        break;
+
+                    }
+
+                }
+
+                if (!canShot) {
+
+                    update(player, "Non puoi sparare");
+
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
+
+                }
+
+
+            }
+
+
+            if (sceltaMovimento.equalsIgnoreCase("su")){
+
+                if (player.getPosition().getUpConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getUpConnection().getType().equalsIgnoreCase(FREE)){
+
+                    player.setPosition(player.getPosition().getUpConnection().getConnectedCell());
+
+                    Cell fakePosition = player.getPosition();
+
+                    CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+
+                    reachableCells.add(fakePosition);
+
+                    for (Cell cell:reachableCells){
+
+                        player.setPosition(cell);
+
+                        for (Weapon weapon:player.getPlayerboard().getWeapons()){
+
+                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))){
+
+                                canDoSecondMove = true;
+
+                                player.setPosition(fakePosition);
+
+                                break;
+
+                            }
+
+
+
+                        }
+
+
+                    }
+
+                    if (canDoSecondMove){
+
+                        update(player, "Ti sei spostato in alto di una cella!");
+
+                        selectShotMove(player);
+
+                    }
+
+                    else{
+
+                        player.setPosition(position);
+                        update(player, "Non puoi sparare");
+                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                        continue;
+
+                    }
+
+
+
+                }
+
+
+                else{
+
+                    update(player, "Cella non valida!");
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
+
+                }
+
+
+            }
+
+            if (sceltaMovimento.equalsIgnoreCase("giu")){
+
+                if (player.getPosition().getDownConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getDownConnection().getType().equalsIgnoreCase(FREE)){
+
+                    player.setPosition(player.getPosition().getDownConnection().getConnectedCell());
+
+                    Cell fakePosition = player.getPosition();
+
+                    CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+
+                    reachableCells.add(fakePosition);
+
+                    for (Cell cell:reachableCells){
+
+                        player.setPosition(cell);
+
+                        for (Weapon weapon:player.getPlayerboard().getWeapons()){
+
+                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))){
+
+                                canDoSecondMove = true;
+
+                                player.setPosition(fakePosition);
+
+                                break;
+
+                            }
+
+
+
+                        }
+
+
+                    }
+
+                    if (canDoSecondMove){
+
+                        update(player, "Ti sei spostato in basso di una cella!");
+
+                        selectShotMove(player);
+
+                    }
+
+                    else{
+
+                        player.setPosition(position);
+                        update(player, "Non puoi sparare");
+                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                        continue;
+
+                    }
+
+
+
+                }
+
+
+                else{
+
+                    update(player, "Cella non valida!");
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
+
+                }
+
+
+            }
+
+
+
+
+            if (sceltaMovimento.equalsIgnoreCase("sinistra")){
+
+                if (player.getPosition().getLeftConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getLeftConnection().getType().equalsIgnoreCase(FREE)){
+
+                    player.setPosition(player.getPosition().getLeftConnection().getConnectedCell());
+
+                    Cell fakePosition = player.getPosition();
+
+                    CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+
+                    reachableCells.add(fakePosition);
+
+                    for (Cell cell:reachableCells){
+
+                        player.setPosition(cell);
+
+                        for (Weapon weapon:player.getPlayerboard().getWeapons()){
+
+                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))){
+
+                                canDoSecondMove = true;
+
+                                player.setPosition(fakePosition);
+
+                                break;
+
+                            }
+
+
+
+                        }
+
+
+                    }
+
+                    if (canDoSecondMove){
+
+                        update(player, "Ti sei spostato a sinistra di una cella!");
+
+                        selectShotMove(player);
+
+                    }
+
+                    else{
+
+                        player.setPosition(position);
+                        update(player, "Non puoi sparare");
+                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                        continue;
+
+                    }
+
+
+
+                }
+
+
+                else{
+
+                    update(player, "Cella non valida!");
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
+
+                }
+
+
+            }
+
+
+            if (sceltaMovimento.equalsIgnoreCase("destra")){
+
+                if (player.getPosition().getRightConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getRightConnection().getType().equalsIgnoreCase(FREE)){
+
+                    player.setPosition(player.getPosition().getRightConnection().getConnectedCell());
+
+                    Cell fakePosition = player.getPosition();
+
+                    CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+
+                    reachableCells.add(fakePosition);
+
+                    for (Cell cell:reachableCells){
+
+                        player.setPosition(cell);
+
+                        for (Weapon weapon:player.getPlayerboard().getWeapons()){
+
+                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))){
+
+                                canDoSecondMove = true;
+
+                                player.setPosition(fakePosition);
+
+                                break;
+
+                            }
+
+
+
+                        }
+
+
+                    }
+
+                    if (canDoSecondMove){
+
+                        update(player, "Ti sei spostato a destra di una cella!");
+
+                        selectShotMove(player);
+
+                    }
+
+                    else{
+
+                        player.setPosition(position);
+                        update(player, "Non puoi sparare");
+                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                        continue;
+
+                    }
+
+
+
+                }
+
+
+                else{
+
+                    update(player, "Cella non valida!");
+                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
+                    continue;
+
+                }
+
+
+            }
+
+
+        }
+
+
+    }
+
+
+
 }

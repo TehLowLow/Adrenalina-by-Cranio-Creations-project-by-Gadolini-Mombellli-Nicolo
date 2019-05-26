@@ -1,12 +1,9 @@
 package it.polimi.se2019.View;
 
-import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import static it.polimi.se2019.Network.Server.update;
 
 public class Message {
 
@@ -604,7 +601,25 @@ public class Message {
         return "Vuoi colpire qualcuno?";
     }
 
-public static String nessunLoot(){return  "Non c'è nessun loot qua, raccogli in un altra cella";}
+    public static String nessunLoot(){return  "Non c'è nessun loot qua, raccogli in un altra cella";}
+
+    public static String scegliArmaRF(CopyOnWriteArrayList<Weapon> useableWeapons){
+
+        String finalString = "";
+
+        finalString = finalString + "Queste sono le armi che puoi ricaricare e che hanno bersagli a disposizione:\n";
+
+        for (Weapon weapon:useableWeapons){
+
+            finalString = finalString + weapon.getName() + "\n\n";
+
+        }
+
+        finalString = finalString + "Scegline una tra quelle elencate sopra!\n";
+
+        return finalString;
+
+    }
 
 }
 
