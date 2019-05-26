@@ -428,6 +428,23 @@ public class Message {
 
     }
 
+    public static String powerupTerminati(){
+
+         return "Non hai più powerup da convertire in cubi munizione.";
+    }
+
+    public static String vuoiPagareConPU(){
+
+         return "Vuoi utilizzare un PowerUp per pagare?";
+
+    }
+
+    public static String vuoiPagareConPUAncora(){
+
+        return "Vuoi pagare con un altro powerup?";
+
+    }
+
     public static String vuoiSpostartiAncora(){
          return "Vuoi spostarti ancora?";
     }

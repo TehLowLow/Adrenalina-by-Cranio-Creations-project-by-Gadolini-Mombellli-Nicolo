@@ -11,8 +11,6 @@ import it.polimi.se2019.View.Message;
 import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static it.polimi.se2019.Model.Connection.DOOR;
-import static it.polimi.se2019.Model.Connection.FREE;
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
@@ -22,7 +20,6 @@ import static it.polimi.se2019.Network.Server.updateWithAnswer;
  */
 public class Interaction {
 
-    private Check check = new Check();
 
     /*
     ----------------------METHODS--------------------------------
@@ -94,7 +91,6 @@ public class Interaction {
     public static void placeWeapons() {
 
         Map map = Board.getMap();
-        CopyOnWriteArrayList<Weapon> weaponDeck = Board.getWeaponDeck();
 
         CopyOnWriteArrayList<Room> spawnRooms = new CopyOnWriteArrayList<Room>();
         CopyOnWriteArrayList<SpawnCell> spawnCells = new CopyOnWriteArrayList<SpawnCell>();
@@ -135,53 +131,7 @@ public class Interaction {
     }
 
 
-    /**
-     * this method is used to recharge a unloaded weapon
-     *
-     * @param weapon is the weapon to reload
-     */
 
-    public void reloadWeapon(Weapon weapon) {
-
-        weapon.setLoaded(true);
-
-    }
-
-
-    /**
-     * this method allows the player to get a weapon
-     * from the available weapons in the spawn point
-     *
-     * @param player is the player who gets the weapon
-     * @param weapon is the selected weapon
-     */
-
-    public void getWeapon(Player player, SpawnCell spawnCell, Weapon weapon) {
-
-        player.getPlayerboard().getWeapons().add(weapon);
-        spawnCell.getAvailableWeapons().remove(weapon);
-
-    }
-
-    /**
-     * this method replaces a player's weapon with a new
-     * weapon taken from the spawn cell.
-     * the old player's weapon is placed instead of the
-     * new one.
-     *
-     * @param oldWeapon is the weapon that is placed on the board
-     * @param newWeapon is the weapon taken by the player
-     */
-
-    public void switchWeapon(Player player, Weapon oldWeapon, Weapon newWeapon, SpawnCell spawnCell) {
-
-        player.getPlayerboard().getWeapons().add(newWeapon);
-        spawnCell.getAvailableWeapons().remove(newWeapon);
-
-        player.getPlayerboard().getWeapons().remove(oldWeapon);
-        spawnCell.getAvailableWeapons().add(oldWeapon);
-
-    }
 
     /**
      * this method reloads on the board the Loots that
@@ -248,20 +198,6 @@ public class Interaction {
     }
 
 
-    /**
-     * this method discards a loot picked up in the turn
-     *
-     * @param cell  is the cell where the loot has been picked up
-     * @param board is the main board
-     */
-
-    public void discardLoot(LootCell cell, Board board) {
-
-        board.getLootDeck().add(cell.getLoot());
-        cell.setLoot(null);
-
-    }
-
 
     /**
      * this method manages a player's rybamount payment
@@ -273,6 +209,32 @@ public class Interaction {
     public static void pay(Player player, Rybamount billRybamount) {
 
         Rybamount playerRybAmount = player.getPlayerboard().getAmmoCubes();
+
+        int yellowCost = billRybamount.getYellow();
+        int blueCost = billRybamount.getBlue();
+        int redCost = billRybamount.getRed();
+
+        CopyOnWriteArrayList <Powerup> playerPowerUp = player.getPlayerboard().getPowerups();
+
+        if(!playerPowerUp.isEmpty()){
+            payWithPowerUp(player, playerPowerUp, billRybamount);
+        }
+
+        int yellowAvailable = playerRybAmount.getYellow();
+        int redAvailable = playerRybAmount.getRed();
+        int blueAvailable = playerRybAmount.getBlue();
+
+        playerRybAmount.setYellowCubes(yellowAvailable - yellowCost);
+        playerRybAmount.setRedCubes(redAvailable - redCost);
+        playerRybAmount.setBlueCubes(blueAvailable - blueCost);
+
+    }
+
+    private static void payWithPowerUp(Player player , CopyOnWriteArrayList<Powerup> playerPowerUp, Rybamount billRybamount){
+
+
+        Rybamount playerRybAmount = player.getPlayerboard().getAmmoCubes();
+
         int yellowAvailable = playerRybAmount.getYellow();
         int redAvailable = playerRybAmount.getRed();
         int blueAvailable = playerRybAmount.getBlue();
@@ -281,60 +243,170 @@ public class Interaction {
         int blueCost = billRybamount.getBlue();
         int redCost = billRybamount.getRed();
 
-        while (yellowAvailable < yellowCost) {
-            yellowAvailable = yellowAvailable + convertPowerUp(player, Colour.YELLOW);
+        if(yellowAvailable<yellowCost){
+            forcePayment(player, billRybamount, Colour.YELLOW);
         }
 
-        while (redAvailable < redCost) {
-            redAvailable = redAvailable + convertPowerUp(player, Colour.RED);
+        if(redAvailable<redCost){
+            forcePayment(player, billRybamount, Colour.RED);
         }
 
-        while (blueAvailable < blueCost) {
-            blueAvailable = blueAvailable + convertPowerUp(player, Colour.BLUE);
+        if(blueAvailable<blueCost){
+            forcePayment(player, billRybamount, Colour.BLUE);
         }
 
-        playerRybAmount.setYellowCubes(yellowAvailable - yellowCost);
-        playerRybAmount.setRedCubes(redAvailable - redCost);
-        playerRybAmount.setBlueCubes(blueAvailable - blueCost);
+        yellowAvailable = playerRybAmount.getYellow();
+        redAvailable = playerRybAmount.getRed();
+        blueAvailable = playerRybAmount.getBlue();
+
+        boolean hasChosen = false;
+        String answer = "";
+
+        while(!hasChosen){
+
+            if(player.getPlayerboard().getPowerups().size()==0){
+
+                Server.update(player, Message.powerupTerminati());
+                hasChosen=true;
+                continue;
+
+            }
+
+            answer = Server.updateWithAnswer(player, Message.vuoiPagareConPU());
+
+            if(!InputCheck.correctYesNo(answer)){
+                Server.update(player, Message.inputError());
+                continue;
+            }
+
+            if(InputCheck.yesOrNo(answer)) {
+
+                int index = 0;
+                boolean hasChosenPU = false;
+
+                while (!hasChosenPU) {
+
+                    String chosenPUindex = Server.updateWithAnswer(player, Message.payWithPowerUp(playerPowerUp));
+
+                    try {
+                        index = InputCheck.numberCheck(chosenPUindex);
+                        if (index < 0 || index > playerPowerUp.size() - 1) {
+                            Server.update(player, Message.inputError());
+                            continue;
+                        }
+                        hasChosenPU = true;
+                    } catch (NumberFormatException e) {
+                        Server.update(player, Message.inputError());
+                        continue;
+                    }
+
+                    Powerup chosenPU = playerPowerUp.get(index);
+
+                    if (chosenPU.getColour() == Colour.YELLOW) {
+
+                        yellowAvailable++;
+                        playerPowerUp.remove(chosenPU);
+                        Board.getDiscardedPowerUps().add(chosenPU);
+
+                    }
+
+                    if (chosenPU.getColour() == Colour.RED) {
+
+                        redAvailable++;
+                        playerPowerUp.remove(chosenPU);
+                        Board.getDiscardedPowerUps().add(chosenPU);
+
+                    }
+
+                    if (chosenPU.getColour() == Colour.BLUE) {
+
+                        blueAvailable++;
+                        playerPowerUp.remove(chosenPU);
+                        Board.getDiscardedPowerUps().add(chosenPU);
+
+                    }
+
+
+                }
+
+
+            }
+
+            if(!InputCheck.yesOrNo(answer)) {
+                hasChosen = true;
+            }
+
+        }
+
+        player.getPlayerboard().getAmmoCubes().setYellowCubes(yellowAvailable);
+        player.getPlayerboard().getAmmoCubes().setRedCubes(redAvailable);
+        player.getPlayerboard().getAmmoCubes().setBlueCubes(blueAvailable);
 
     }
 
-    private static int convertPowerUp(Player player, int colour) {
+    private static void forcePayment(Player player, Rybamount billRybamount, int colour){
 
-        CopyOnWriteArrayList<Powerup> discardable = new CopyOnWriteArrayList<Powerup>();
-        CopyOnWriteArrayList<Powerup> availablePowerups = player.getPlayerboard().getPowerups();
+        CopyOnWriteArrayList <Powerup> discardables;
+        int amountToPay = 0;
+        int available = 0;
 
+        if(colour == Colour.YELLOW){
+            amountToPay = billRybamount.getYellow();
+            available = player.getPlayerboard().getAmmoCubes().getYellow();
+        }
 
-        for (Powerup powerup : availablePowerups) {
+        if(colour == Colour.RED){
+            amountToPay = billRybamount.getRed();
+            available = player.getPlayerboard().getAmmoCubes().getRed();
+        }
 
-            if (colour == Colour.RED) {
-                if (powerup.getTradeValue().getRed() == 1) {
-                    discardable.add(powerup);
+        if(colour == Colour.BLUE){
+            amountToPay = billRybamount.getBlue();
+            available = player.getPlayerboard().getAmmoCubes().getBlue();
+        }
+
+        while(available<amountToPay){
+
+            discardables = new CopyOnWriteArrayList<>();
+
+            for(Powerup powerup : player.getPlayerboard().getPowerups()){
+
+                if(powerup.getColour()==colour){
+                    discardables.add(powerup);
                 }
             }
-            if (colour == Colour.YELLOW) {
-                if (powerup.getTradeValue().getYellow() == 1) {
-                    discardable.add(powerup);
-                }
-            }
-            if (colour == Colour.BLUE) {
-                if (powerup.getTradeValue().getBlue() == 1) {
-                    discardable.add(powerup);
-                }
-            }
 
+            available = available + convertPowerUp(player, discardables);
 
         }
+
+        if(colour == Colour.YELLOW){
+            player.getPlayerboard().getAmmoCubes().setYellowCubes(available);
+        }
+
+        if(colour == Colour.RED){
+            player.getPlayerboard().getAmmoCubes().setRedCubes(available);
+        }
+
+        if(colour == Colour.BLUE){
+            player.getPlayerboard().getAmmoCubes().setBlueCubes(available);
+        }
+
+
+    }
+
+    private static int convertPowerUp(Player player, CopyOnWriteArrayList<Powerup> availablePowerups) {
+
 
         boolean chosen = false;
         int index = 0;
         while (!chosen) {
 
-            String chosenPU = Server.updateWithAnswer(player, Message.payWithPowerUp(discardable));
+            String chosenPU = Server.updateWithAnswer(player, Message.payWithPowerUp(availablePowerups));
 
             try {
                 index = InputCheck.numberCheck(chosenPU);
-                if (index < 0 || index > discardable.size() - 1) {
+                if (index < 0 || index > availablePowerups.size() - 1) {
                     Server.update(player, Message.inputError());
                     continue;
                 }
@@ -347,8 +419,9 @@ public class Interaction {
 
         }
 
-        Powerup toRemove = discardable.get(index);
+        Powerup toRemove = availablePowerups.get(index);
         player.getPlayerboard().getPowerups().remove(toRemove);
+        Board.getDiscardedPowerUps().add(toRemove);
 
         return 1;
     }
@@ -457,231 +530,32 @@ public class Interaction {
         CopyOnWriteArrayList<Loot> newDeck = Board.getDiscardedLoot();
         Board.setLootDeck(newDeck);
         Board.shuffleLootDeck();
+        Board.setDiscardedLoot(new CopyOnWriteArrayList<Loot>());
 
     }
 
+    /**
+     * If the PowerUp deck is empty, this method recovers the discarded PowerUps and puts them on the deck once again.
+     */
+    public static void recoverPowerUps(){
+
+        CopyOnWriteArrayList<Powerup> newDeck = Board.getDiscardedPowerUps();
+        Board.setPowerUpDeck(newDeck);
+        Board.shuffleLootDeck();
+        Board.setDiscardedPowerUps(new CopyOnWriteArrayList<Powerup>());
 
-    public static void selectShotMove(Player player) {
-
-        Cell position = player.getPosition();
-
-        String sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-
-        while (!InputCheck.correctMoveEnhancedShot(sceltaMovimento)) {
-
-            update(player, Message.inputError());
-            sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-
-        }
-
-        boolean canShot = false;
-
-        while (!canShot) {
-
-            if (sceltaMovimento.equalsIgnoreCase("stop")) {
-
-                for (Weapon weapon : player.getPlayerboard().getWeapons()) {
-
-                    if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
-
-                        canShot = true;
-                        break;
-
-                    }
-
-                }
-
-                if (!canShot) {
-
-                    update(player, "Non puoi sparare");
-
-                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-                    continue;
-
-                }
-
-            }
-
-            if (sceltaMovimento.equalsIgnoreCase("su")) {
-
-                if (player.getPosition().getUpConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getUpConnection().getType().equalsIgnoreCase(FREE)){
-
-                    player.setPosition(player.getPosition().getUpConnection().getConnectedCell());
-
-                    for (Weapon weapon : player.getPlayerboard().getWeapons()) {
-
-                        if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
-
-
-                            canShot = true;
-                            update(player, "Ti sei spostato in su di una cella!");
-                            break;
-
-                        }
-
-                    }
-
-                    if (!canShot) {
-
-                        player.setPosition(position);
-                        update(player, "Non puoi sparare");
-                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-                        continue;
-
-                    }
-
-                }
-
-                else{
-                    update(player, "Cella non valida!");
-                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-                    continue;
-
-                }
-
-
-
-            }
-
-
-            if (sceltaMovimento.equalsIgnoreCase("giu")) {
-
-                if (player.getPosition().getDownConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getDownConnection().getType().equalsIgnoreCase(FREE)){
-
-                    player.setPosition(player.getPosition().getDownConnection().getConnectedCell());
-
-                    for (Weapon weapon : player.getPlayerboard().getWeapons()) {
-
-                        if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
-
-
-                            canShot = true;
-                            update(player, "Ti sei spostato in giù di una cella!");
-                            break;
-
-                        }
-
-                    }
-
-                    if (!canShot) {
-
-                        update(player, "Non puoi sparare");
-                        player.setPosition(position);
-                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-                        continue;
-
-                    }
-
-                }
-
-                else{
-                    update(player, "Cella non valida!");
-                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-                    continue;
-
-                }
-
-            }
-
-
-            if (sceltaMovimento.equalsIgnoreCase("destra")) {
-
-                if (player.getPosition().getRightConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getRightConnection().getType().equalsIgnoreCase(FREE)){
-
-                    player.setPosition(player.getPosition().getRightConnection().getConnectedCell());
-
-                    for (Weapon weapon : player.getPlayerboard().getWeapons()) {
-
-                        if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
-
-
-                            canShot = true;
-                            update(player, "Ti sei spostato a destra di una cella!");
-                            break;
-
-                        }
-
-                    }
-
-                    if (!canShot) {
-
-
-                        player.setPosition(position);
-                        update(player, "Non puoi sparare");
-                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-                        continue;
-
-                    }
-
-                }
-
-                else{
-                    update(player, "Cella non valida!");
-                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-                    continue;
-
-                }
-
-            }
-
-            if (sceltaMovimento.equalsIgnoreCase("sinistra")) {
-
-                    if (player.getPosition().getLeftConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getLeftConnection().getType().equalsIgnoreCase(FREE)){
-
-                    player.setPosition(player.getPosition().getLeftConnection().getConnectedCell());
-
-                    for (Weapon weapon : player.getPlayerboard().getWeapons()) {
-
-                        if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
-
-
-                            canShot = true;
-                            update(player, "Ti sei spostato a sinistra di una cella!");
-                            break;
-
-                        }
-
-                    }
-
-                    if (!canShot) {
-
-
-                        player.setPosition(position);
-                        update(player, "Non puoi sparare");
-                        sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-                        continue;
-
-                    }
-
-                }
-
-                else{
-                    update(player, "Cella non valida!");
-                    sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
-                    continue;
-
-                }
-
-            }
-
-
-        }
 
     }
 
     public static void shuffleAndDraw(Player player) {
 
-        CopyOnWriteArrayList<Loot> discarded = Board.getDiscardedLoot();
-        Collections.shuffle(discarded);
-        Board.setLootDeck(discarded);
-        Board.setDiscardedLoot(new CopyOnWriteArrayList<Loot>());
-
-        CopyOnWriteArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
-        Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
-        Board.getPowerUpDeck().remove(drawnPowerUp);
-        powerUps.add(drawnPowerUp);
-        player.getPlayerboard().setPowerups(powerUps);
-
+        Interaction.recoverPowerUps();
+        try {
+            drawPowerUp(player);
+        }
+        catch (Exception e){
+            Server.update(player, Message.limitePowerup());
+        }
 
     }
 

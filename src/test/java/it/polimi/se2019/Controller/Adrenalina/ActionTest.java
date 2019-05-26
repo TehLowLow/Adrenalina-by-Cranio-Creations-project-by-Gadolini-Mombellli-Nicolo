@@ -59,7 +59,7 @@ public class ActionTest {
 
         Cell spawn = (SpawnCell) Board.getMap().getBlueRoom().getCells().get(0);
 
-        ((SpawnCell) spawn).getAvailableWeapons().add(flamethrower);
+        ((SpawnCell)spawn).getAvailableWeapons().add(flamethrower);
 
         Player player = Server.connectedPlayers.get(0);
 
@@ -198,7 +198,7 @@ public class ActionTest {
     }
 
 
-    @Test
+    /*@Test
     public void performEnhancedShot(){
 
         Player player = Server.connectedPlayers.get(0);
@@ -240,7 +240,7 @@ public class ActionTest {
 
 
 
-    }
+    }*/
 
 
     @Test

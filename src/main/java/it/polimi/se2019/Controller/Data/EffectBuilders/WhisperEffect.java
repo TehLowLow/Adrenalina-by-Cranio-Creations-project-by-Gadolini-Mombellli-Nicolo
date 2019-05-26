@@ -2,7 +2,9 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
+import it.polimi.se2019.Model.Connection;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
@@ -17,7 +19,7 @@ public class WhisperEffect extends Effect {
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        if (targets == null){
+        if (targets == null) {
 
             update(user, Message.nessunBersaglio());
             return;
@@ -34,29 +36,23 @@ public class WhisperEffect extends Effect {
         }
 
 
-
     }
 
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        if (!hasTargets(user)){
-
-            return null;
-
-        }
 
         CopyOnWriteArrayList<Player> possibleTargets = Check.visiblePlayers(user);
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
 
-        for (Player player:possibleTargets){
+        for (Player player : possibleTargets) {
 
             /*
             verifico che non sia nella stessa cella
              */
 
-            if (player.getPosition().equals(user.getPosition())){
+            if (player.getPosition().equals(user.getPosition())) {
 
                 possibleTargets.remove(player);
 
@@ -66,87 +62,14 @@ public class WhisperEffect extends Effect {
             verifico che non sia a distanza unitaria
              */
 
-            if (player.getPosition().getUpConnection().getConnectedCell().equals(user.getPosition())){
-
+            if(unitDistace(player, user)){
                 possibleTargets.remove(player);
-
-            }
-
-            if (player.getPosition().getDownConnection().getConnectedCell().equals(user.getPosition())){
-
-                possibleTargets.remove(player);
-
-            }
-
-            if (player.getPosition().getLeftConnection().getConnectedCell().equals(user.getPosition())){
-
-                possibleTargets.remove(player);
-
-            }
-
-            if (player.getPosition().getRightConnection().getConnectedCell().equals(user.getPosition())){
-
-                possibleTargets.remove(player);
-
-            }
-        }
-
-
-        String chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        /*
-        controllo validità dell'input dell'utente
-         */
-
-        while (!InputCheck.nicknameCheck(chosenTarget)) {
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-        }
-
-        boolean valid = false;
-
-        for (Player target:possibleTargets){
-
-            if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                valid = true;
-
             }
 
         }
 
 
-
-        while (!valid) {
-
-            update(user, Message.bersaglioNonValido());
-
-            chosenTarget = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-            for (Player target:targets){
-
-                if (target.getNickname().equalsIgnoreCase(chosenTarget)){
-
-                    valid = true;
-
-                }
-
-            }
-        }
-
-
-        for (Player player : connectedPlayers) {
-
-            if (player.getNickname().equals(chosenTarget)) {
-
-                targets.add(player);
-
-            }
-
-        }
+        targets.add(ChoosePlayer.one(user, possibleTargets));
 
         return targets;
 
@@ -155,15 +78,15 @@ public class WhisperEffect extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-       CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+        CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
 
-        for(Player player : visiblePlayers){
+        for (Player player : visiblePlayers) {
 
             /*
             verifico che non sia nella stessa cella
              */
 
-            if (player.getPosition().equals(user.getPosition())){
+            if (player.getPosition().equals(user.getPosition())) {
 
                 visiblePlayers.remove(player);
                 continue;
@@ -173,28 +96,28 @@ public class WhisperEffect extends Effect {
             verifico che non sia a distanza unitaria
              */
 
-            if (player.getPosition().getUpConnection().getConnectedCell() != null && player.getPosition().getUpConnection().getConnectedCell().equals(user.getPosition())){
+            if (player.getPosition().getUpConnection().getConnectedCell() != null && player.getPosition().getUpConnection().getConnectedCell().equals(user.getPosition())) {
 
                 visiblePlayers.remove(player);
                 continue;
 
             }
 
-            if (player.getPosition().getDownConnection().getConnectedCell() != null && player.getPosition().getDownConnection().getConnectedCell().equals(user.getPosition())){
+            if (player.getPosition().getDownConnection().getConnectedCell() != null && player.getPosition().getDownConnection().getConnectedCell().equals(user.getPosition())) {
 
                 visiblePlayers.remove(player);
                 continue;
 
             }
 
-            if (player.getPosition().getLeftConnection().getConnectedCell() != null && player.getPosition().getLeftConnection().getConnectedCell().equals(user.getPosition())){
+            if (player.getPosition().getLeftConnection().getConnectedCell() != null && player.getPosition().getLeftConnection().getConnectedCell().equals(user.getPosition())) {
 
                 visiblePlayers.remove(player);
                 continue;
 
             }
 
-            if (player.getPosition().getRightConnection().getConnectedCell() != null && player.getPosition().getRightConnection().getConnectedCell().equals(user.getPosition())){
+            if (player.getPosition().getRightConnection().getConnectedCell() != null && player.getPosition().getRightConnection().getConnectedCell().equals(user.getPosition())) {
 
                 visiblePlayers.remove(player);
                 continue;
@@ -203,7 +126,7 @@ public class WhisperEffect extends Effect {
 
         }
 
-        if(visiblePlayers.isEmpty()){
+        if (visiblePlayers.isEmpty()) {
             return false;
         }
 
@@ -211,4 +134,41 @@ public class WhisperEffect extends Effect {
 
 
     }
+
+
+    private boolean unitDistace(Player target, Player user) {
+
+
+        Connection up = user.getPosition().getUpConnection();
+        Connection down = user.getPosition().getDownConnection();
+        Connection left = user.getPosition().getLeftConnection();
+        Connection right = user.getPosition().getRightConnection();
+
+        if (up.getType().equals(Connection.FREE) || up.getType().equals(Connection.DOOR)) {
+            if (target.getPosition().equals(up.getConnectedCell())) {
+                return true;
+            }
+        }
+
+        if (down.getType().equals(Connection.FREE) || down.getType().equals(Connection.DOOR)) {
+            if (target.getPosition().equals(down.getConnectedCell())) {
+                return true;
+            }
+        }
+
+        if (left.getType().equals(Connection.FREE) || left.getType().equals(Connection.DOOR)) {
+            if (target.getPosition().equals(left.getConnectedCell())) {
+                return true;
+            }
+        }
+
+        if (right.getType().equals(Connection.FREE) || right.getType().equals(Connection.DOOR)) {
+            if (target.getPosition().equals(right.getConnectedCell())) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }
