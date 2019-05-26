@@ -603,6 +603,9 @@ public class Message {
     public static String vuoiColpire(){
         return "Vuoi colpire qualcuno?";
     }
+
+public static String nessunLoot(){return  "Non c'è nessun loot qua, raccogli in un altra cella";}
+
 }
 
 

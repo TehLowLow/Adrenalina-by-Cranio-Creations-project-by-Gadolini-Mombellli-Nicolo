@@ -18,7 +18,7 @@ public class Client {
     private static String response;
     static SocketClient sClient = new SocketClient();
     static RMIClient rClient = new RMIClient();
-    private static volatile int myPort = 4000;
+
 
 
     /**

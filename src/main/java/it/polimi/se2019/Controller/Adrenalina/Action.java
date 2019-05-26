@@ -592,6 +592,13 @@ public class Action {
         LootCell position = (LootCell) player.getPosition();
         Loot pickedUp = position.getLoot();
 
+
+        if (pickedUp == null) {
+            update(player, Message.nessunLoot());  //TODO fixato da lollo
+            return;
+        }
+
+
         Interaction.giveRybamount(player, pickedUp);
 
         if (pickedUp.hasPowerUp()) {
