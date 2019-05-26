@@ -227,7 +227,14 @@ public class Turn {
         } catch (EmptyDeckException e) {
             Interaction.shuffleAndDraw(player);
         } catch (LimitPowerUpException e) {
-            Server.update(player, Message.limitePowerup());
+
+            //Anche se il giocatore ne ha già 3, deve comunque poterlo pescare.
+            CopyOnWriteArrayList<Powerup> powerUps = player.getPlayerboard().getPowerups();
+            Powerup drawnPowerUp = Board.getPowerUpDeck().get(0);
+            Board.getPowerUpDeck().remove(drawnPowerUp);
+            powerUps.add(drawnPowerUp);
+            player.getPlayerboard().setPowerups(powerUps);
+
         }
 
         boolean chosen = false;

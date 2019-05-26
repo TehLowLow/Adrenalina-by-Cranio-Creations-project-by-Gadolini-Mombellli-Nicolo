@@ -4,6 +4,7 @@ import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.Network.TestBot;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +19,42 @@ public class BasicFlameThrowerTest {
     public void preparePlayers(){
 
         ConfigurationTest.createTestConfiguration();
+
+    }
+
+    @Test
+    public void getTargetsTest(){
+
+        CopyOnWriteArrayList <String> answers = new CopyOnWriteArrayList<>();
+
+        answers.add("destra");
+        answers.add("player1");
+        answers.add("si");
+        answers.add("player3");
+
+        TestBot.initAnswers(answers);
+
+        Player user = Server.connectedPlayers.get(0);
+        Player target1 = Server.connectedPlayers.get(1);
+        Player target2 = Server.connectedPlayers.get(2);
+        Player target3 = Server.connectedPlayers.get(3);
+        Player target4 = Server.connectedPlayers.get(4);
+
+        user.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+        target1.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        target4.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        target2.setPosition(Board.getMap().getRedRoom().getCells().get(0));
+
+        Weapon flamethrower = new Weapon();
+        flamethrower.setBaseEffect(new BasicFlamethrower());
+
+        CopyOnWriteArrayList <Player> targets = flamethrower.getBaseEffect().getTargets(user);
+
+        assertTrue(targets.contains(target3));
+        assertTrue(targets.contains(target1));
+
+
+
 
     }
 

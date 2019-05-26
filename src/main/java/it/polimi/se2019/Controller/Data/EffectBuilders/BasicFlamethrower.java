@@ -2,6 +2,7 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Model.*;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -22,118 +23,200 @@ public class BasicFlamethrower extends Effect {
 
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
-        CopyOnWriteArrayList<Player> possibleTargets;
-        CopyOnWriteArrayList<Player> chosenTargets = new CopyOnWriteArrayList<>();
-        boolean foundFirst = false;
+        CopyOnWriteArrayList <Player> chosenTargets = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList <Player> possibleTargets = new CopyOnWriteArrayList<>();
+        String chosenDirection =  "";
 
-        Cell firstTargetCell = new LootCell();
-        String direction = new String();
+        Connection upConnection = user.getPosition().getUpConnection();
+        Connection downConnection = user.getPosition().getDownConnection();
+        Connection leftConnection = user.getPosition().getLeftConnection();
+        Connection rightConnection = user.getPosition().getRightConnection();
 
-        while (!foundFirst) {
+        CopyOnWriteArrayList <Cell> chosenCells = new CopyOnWriteArrayList<>();
 
-            direction = Server.updateWithAnswer(user, Message.scegliDirezioneSparo());
+        boolean chosen = false;
 
-            if (!InputCheck.directionCheck(direction)) {
+        while (!chosen){
+
+            chosenDirection = Server.updateWithAnswer(user, Message.scegliDirezioneSparo());
+
+            if(!InputCheck.directionCheck(chosenDirection)){
                 Server.update(user, Message.inputError());
-                continue;
             }
 
-            if (!directionFree(user.getPosition(), direction)) {
-                Server.update(user, Message.direzioneOstruita());
-                continue;
-            }
+            if(chosenDirection.equals("alto")){
 
-            firstTargetCell = returnConnectedCell(user.getPosition(), direction);
-
-            possibleTargets = getPlayersInCell(firstTargetCell);
-
-            boolean firstTargetFound = false;
-
-            if (possibleTargets.size() == 0) {
-                firstTargetFound = true;
-            }
-
-            while (!firstTargetFound) {
-
-                String chosenNickname = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-                if (!InputCheck.nicknameCheck(chosenNickname)) {
-                    Server.update(user, Message.inputError());
-                    continue;
-                }
-
-                for (Player target : possibleTargets) {
-
-                    if (target.getNickname().equalsIgnoreCase(chosenNickname)) {
-                        firstTargetFound = true;
-                        chosenTargets.add(target);
-                        break;
-
+                if(directionFree(user.getPosition(), "alto")){
+                    
+                    if(directionFree(upConnection.getConnectedCell(), "alto")){
+                        if(hasPlayers(upConnection.getConnectedCell().getUpConnection().getConnectedCell())){
+                            chosen = true;
+                            chosenCells.add(upConnection.getConnectedCell().getUpConnection().getConnectedCell());
+                        }
                     }
+                    
+                    if(hasPlayers(upConnection.getConnectedCell())){
+                     
+                        chosen = true;
+                        chosenCells.add(upConnection.getConnectedCell());
+                    }
+                    
                 }
 
-                Server.update(user, Message.bersaglioNonValido());
+            }
+
+            if(chosenDirection.equals("basso")){
+
+                if(directionFree(user.getPosition(), "basso")){
+
+                    if(directionFree(downConnection.getConnectedCell(), "basso")){
+                        if(hasPlayers(downConnection.getConnectedCell().getDownConnection().getConnectedCell())){
+                            chosen = true;
+                            chosenCells.add(downConnection.getConnectedCell().getDownConnection().getConnectedCell());
+                        }
+                    }
+
+                    if(hasPlayers(downConnection.getConnectedCell())){
+
+                        chosen = true;
+                        chosenCells.add(downConnection.getConnectedCell());
+                    }
+
+                }
+
+            }
+
+            if(chosenDirection.equals("sinistra")){
 
 
+                if(directionFree(user.getPosition(), "sinistra")){
+
+                    if(directionFree(leftConnection.getConnectedCell(), "sinistra")){
+                        if(hasPlayers(leftConnection.getConnectedCell().getLeftConnection().getConnectedCell())){
+                            chosen = true;
+                            chosenCells.add(leftConnection.getConnectedCell().getLeftConnection().getConnectedCell());
+                        }
+                    }
+
+                    if(hasPlayers(leftConnection.getConnectedCell())){
+
+                        chosen = true;
+                        chosenCells.add(leftConnection.getConnectedCell());
+                    }
+
+                }
+
+
+
+            }
+
+            if(chosenDirection.equals("destra")){
+
+
+                if(directionFree(user.getPosition(), "destra")){
+
+                    if(directionFree(rightConnection.getConnectedCell(), "destra")){
+                        if(hasPlayers(rightConnection.getConnectedCell().getRightConnection().getConnectedCell())){
+                            chosen = true;
+                            chosenCells.add(rightConnection.getConnectedCell().getRightConnection().getConnectedCell());
+                        }
+                    }
+
+                    if(hasPlayers(rightConnection.getConnectedCell())){
+
+                        chosen = true;
+                        chosenCells.add(rightConnection.getConnectedCell());
+                        continue;
+                    }
+
+                }
+
+
+            }
+
+
+            if(!chosen) {
+                Server.update(user, Message.direzioneSenzaBersagli());
             }
 
 
         }
 
-        boolean foundSecond = false;
+        //Dentro chosenCells ho la/le celle da colpire. Una cella è presente solo se ha i bersagli. Ricavo i bersagli.
 
-        while (!foundSecond) {
+        for(Cell cell : chosenCells){
 
-            if (!directionFree(firstTargetCell, direction)) {
-                break;
-            }
+            for(Player player : Server.connectedPlayers){
 
-            Cell secondTargetCell = returnConnectedCell(firstTargetCell, direction);
+                if(player.getPosition().equals(cell)){
 
-            possibleTargets = getPlayersInCell(secondTargetCell);
-
-            boolean secondTargetFound = false;
-
-            if (possibleTargets.size() == 0) {
-                break;
-            }
-
-            while (!secondTargetFound) {
-
-                String chosenNickname = Server.updateWithAnswer(user, Message.scegliBersaglio(possibleTargets));
-
-                if (!InputCheck.nicknameCheck(chosenNickname)) {
-                    Server.update(user, Message.inputError());
-                    continue;
-                }
-
-                for (Player target : possibleTargets) {
-
-                    if (target.getNickname().equalsIgnoreCase(chosenNickname)) {
-                        secondTargetFound = true;
-                        chosenTargets.add(target);
-                        break;
-                    }
+                    possibleTargets.add(player);
 
                 }
-
-                Server.update(user, Message.bersaglioNonValido());
-
 
             }
 
         }
 
+        //Ora scelgo un bersaglio.
 
-        if (chosenTargets.size() == 0) {
-            Server.update(user, Message.nessunBersaglio());
-            return getTargets(user);
+        Player firstChosen = ChoosePlayer.one(user, possibleTargets);
+        possibleTargets.remove(firstChosen);
+
+        for(Player player : possibleTargets){
+            if(player.getPosition().equals(firstChosen.getPosition())){
+                possibleTargets.remove(player);
+            }
+        }
+
+        chosenTargets.add(firstChosen);
+
+        Player secondChosen = null;
+
+        //Se ci sono due celle con giocatori, ne scelgo un altro.
+
+        chosen = false;
+
+        if(chosenCells.size()==2 && !possibleTargets.isEmpty()) {
+
+            while (!chosen) {
+
+                String ans = Server.updateWithAnswer(user, Message.scegliAltroBersaglio());
+
+                if (!InputCheck.correctYesNo(ans)) {
+                    Server.update(user, Message.inputError());
+                    continue;
+                }
+
+                if (InputCheck.yesOrNo(ans)) {
+
+                    secondChosen = ChoosePlayer.one(user, possibleTargets);
+                    chosenTargets.add(secondChosen);
+
+                }
+
+                chosen = true;
+
+            }
+
         }
 
         return chosenTargets;
 
+
     }
 
+
+    public boolean hasPlayers(Cell cell){
+
+        for(Player player : Server.connectedPlayers){
+            if(player.getPosition().equals(cell)){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     public boolean hasTargets(Player user) {
 

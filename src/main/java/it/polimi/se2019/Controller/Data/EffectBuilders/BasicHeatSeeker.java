@@ -56,7 +56,7 @@ public class BasicHeatSeeker extends Effect {
 
         for (Player target : players) {
 
-            if (!visiblePlayers.contains(target)) {
+            if (!visiblePlayers.contains(target) && !target.equals(user)) {
                 possibleTargets.add(target);
             }
 
