@@ -1228,6 +1228,36 @@ public class Check {
 
     }
 
+
+    public static boolean canShotFrenzy(Player player) {
+
+        Cell position = player.getPosition();
+        CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(player, 1);
+        reachableCells.add(player.getPosition());
+
+        for (Cell cell : reachableCells) {
+
+            player.setPosition(cell);
+
+            for (Weapon weapon : player.getPlayerboard().getWeapons()) {
+
+                if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
+
+                    if (Check.affordable(player, weapon.getRechargeCost()) || weapon.isLoaded()) {
+                        player.setPosition(position);
+                        return true;
+                    }
+
+                }
+            }
+
+        }
+
+        return false;
+
+    }
+
+
     /**
      * This method checks if the user can perform the enhanced frenzy shot
      * @param player is the user

@@ -6,7 +6,6 @@ import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
 
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * This class analyzes the input strings provided by the user.
@@ -312,5 +311,22 @@ public class InputCheck {
         return false;
 
     }
+
+
+    public static boolean correctWeaponRF(String input, CopyOnWriteArrayList<Weapon> usableWeapons){
+
+        for (Weapon weapon:usableWeapons){
+
+            if (input.equalsIgnoreCase(weapon.getName())){
+
+                return true;
+
+            }
+
+        }
+
+        return false;
+    }
+
 
 }

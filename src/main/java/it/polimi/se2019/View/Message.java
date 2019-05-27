@@ -1,12 +1,9 @@
 package it.polimi.se2019.View;
 
-import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import static it.polimi.se2019.Network.Server.update;
 
 public class Message {
 
@@ -128,7 +125,7 @@ public class Message {
     }
 
     public static String vuoiSpostare(){
-        return "Vuoi spostare il bersaglio?";
+        return "Vuoi spostare il bersaglio? (si/no)";
     }
 
 
@@ -152,7 +149,7 @@ public class Message {
     }
 
     public static String scegliAltroBersaglio(){
-        return "Vuoi scegliere un altro bersaglio?";
+        return "Vuoi scegliere un altro bersaglio? (si/no)";
     }
 
     public static String nessunBersaglioFase(){
@@ -370,12 +367,12 @@ public class Message {
 
      public static String usareEffettoOpzionale(){
 
-         return "Vuoi usare l'effetto opzionale?";
+         return "Vuoi usare l'effetto opzionale? (si/no)";
      }
 
      public static String usareEffettoBase(){
 
-         return "Vuoi usare l'effetto base?";
+         return "Vuoi usare l'effetto base? (si/no)";
      }
 
     public static String lanciaGranateScegliEffetto() {
@@ -388,31 +385,31 @@ public class Message {
 
     public static String usaTestata(){
 
-         return "Vuoi usare la testata a frammentazione?";
+         return "Vuoi usare la testata a frammentazione? (si/no)";
     }
 
 
     public static String usareRazzi(){
 
-         return "Vuoi utilizzare i razzi? Potrai attivarli prima o dopo l'effetto base.";
+         return "Vuoi utilizzare i razzi? Potrai attivarli prima o dopo l'effetto base. (si/no)";
 
     }
 
     public static String usaRazziPortatiliPrima(){
 
-         return "Vuoi usare i razzi portatili adesso?";
+         return "Vuoi usare i razzi portatili adesso? (si/no)";
 
     }
 
     public static String usaShadowStep(){
 
-         return "Vuoi usare il passo d'ombra adesso?";
+         return "Vuoi usare il passo d'ombra adesso? (si/no)";
 
     }
 
     public static String useDice(){
 
-         return "Vuoi attivare la modalità sminuzzare?";
+         return "Vuoi attivare la modalità sminuzzare? (si/no)";
 
     }
 
@@ -435,18 +432,18 @@ public class Message {
 
     public static String vuoiPagareConPU(){
 
-         return "Vuoi utilizzare un PowerUp per pagare?";
+         return "Vuoi utilizzare un PowerUp per pagare? (si/no)";
 
     }
 
     public static String vuoiPagareConPUAncora(){
 
-        return "Vuoi pagare con un altro powerup?";
+        return "Vuoi pagare con un altro powerup? (si/no)";
 
     }
 
     public static String vuoiSpostartiAncora(){
-         return "Vuoi spostarti ancora?";
+         return "Vuoi spostarti ancora? (si/no)";
     }
 
     public static String direzioneSenzaBersagli(){
@@ -462,11 +459,11 @@ public class Message {
     }
 
     public static String usareSlittamento(){
-         return "Vuoi attivare lo slittamento di fase ora?";
+         return "Vuoi attivare lo slittamento di fase ora? (si/no)";
     }
 
     public static String usareSovraccarico(){
-         return "Vuoi usare il colpo sovraccarico?";
+         return "Vuoi usare il colpo sovraccarico? (si/no)";
     }
 
     public static String scegliColoreAmmo(){
@@ -489,7 +486,7 @@ public class Message {
 
     public static String scegliArma(CopyOnWriteArrayList<Weapon> weapons){
 
-        String stringaFinale = "Scegli un'arma\n";;
+        String stringaFinale = "Scegli un'arma digitandone il nome:\n";;
 
         for (Weapon weapon:weapons){
 
@@ -507,7 +504,7 @@ public class Message {
 
     public static String scegliBaseAlternativo(){
 
-        return "Scegli se usare l'effetto base o quello alternativo";
+        return "Scegli se usare l'effetto base o quello alternativo (base/alternativo)";
 
     }
 
@@ -563,7 +560,7 @@ public class Message {
     }
 
     public static String vuoiRicaricare(){
-        return "Vuoi ricaricare qualche arma?";
+        return "Vuoi ricaricare qualche arma? (si/no)";
     }
 
     public static String haiRicaricato(Weapon weapon){
@@ -578,12 +575,12 @@ public class Message {
 
     public static String scegliMovimento(){
 
-        return "Scegli una direzione (su, giu, destra, sinistra) o se stare fermo (stop)";
+        return "Scegli una direzione (su/giu/destra/sinistra) o se stare fermo (stop)";
 
     }
 
     public static String vuoiUsarePowerup(){
-        return "Vuoi usare un potenziamento?";
+        return "Vuoi usare un potenziamento? (si/no)";
     }
 
     public static String scegliPowerUp(CopyOnWriteArrayList<Powerup> powerups){
@@ -601,10 +598,28 @@ public class Message {
     }
 
     public static String vuoiColpire(){
-        return "Vuoi colpire qualcuno?";
+        return "Vuoi colpire qualcuno? (si/no)";
     }
 
-public static String nessunLoot(){return  "Non c'è nessun loot qua, raccogli in un altra cella";}
+    public static String nessunLoot(){return  "Non c'è nessun loot qua, raccogli in un altra cella";}
+
+    public static String scegliArmaRF(CopyOnWriteArrayList<Weapon> useableWeapons){
+
+        String finalString = "";
+
+        finalString = finalString + "Queste sono le armi che puoi ricaricare e che hanno bersagli a disposizione:\n";
+
+        for (Weapon weapon:useableWeapons){
+
+            finalString = finalString + weapon.getName() + "\n\n";
+
+        }
+
+        finalString = finalString + "Scegline una tra quelle elencate sopra!\n";
+
+        return finalString;
+
+    }
 
 }
 

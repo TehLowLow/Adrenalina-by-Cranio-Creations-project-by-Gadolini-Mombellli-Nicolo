@@ -1,8 +1,10 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
+import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.Network.TestBot;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +20,30 @@ public class BasicElectroschytheTest {
     public void preparePlayers(){
 
         ConfigurationTest.createTestConfiguration();
+
+    }
+
+    @Test
+    public void getTargetsTest(){
+
+        Weapon electro = new Weapon();
+        electro.setBaseEffect(new BasicElectroschythe());
+
+        Player user = Server.connectedPlayers.get(0);
+        Player target1 = Server.connectedPlayers.get(1);
+        Player target2 = Server.connectedPlayers.get(2);
+        Player target3 = Server.connectedPlayers.get(3);
+        Player target4 = Server.connectedPlayers.get(4);
+
+
+        target1.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        target2.setPosition(Board.getMap().getRedRoom().getCells().get(0));
+
+        CopyOnWriteArrayList <Player> targets = electro.getBaseEffect().getTargets(user);
+
+        assertEquals(2, targets.size());
+        assertTrue(targets.contains(target3));
+        assertTrue(targets.contains(target4));
 
     }
 
