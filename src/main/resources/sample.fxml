@@ -1,8 +1,25 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<GridPane fx:controller="it.polimi.se2019.View.GUI.Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="526.5569458007812" prefWidth="865.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="-1.0" prefWidth="-1.0">
+      <children>
+        <Button layoutX="721.0" layoutY="448.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="85.0" text="Bestemmia" />
+        <Button layoutX="721.0" layoutY="396.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="85.0" text="Spara" />
+        <ImageView fitHeight="526.5569682302845" fitWidth="693.2999877929688" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@assets/map1_final.png" />
+          </image>
+        </ImageView>
+        <Button layoutX="721.0" layoutY="345.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="85.0" text="Muovi" />
+      </children>
+    </Pane>
+  </children>
+</AnchorPane>

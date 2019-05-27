@@ -2,7 +2,6 @@ package it.polimi.se2019.Network;
 
 import it.polimi.se2019.Network.RMI.Client.RMIClient;
 import it.polimi.se2019.Network.Socket.Client.SocketClient;
-import it.polimi.se2019.View.GUI.GuiController;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
