@@ -216,13 +216,45 @@ public class Interaction {
 
         CopyOnWriteArrayList <Powerup> playerPowerUp = player.getPlayerboard().getPowerups();
 
-        if(!playerPowerUp.isEmpty()){
-            payWithPowerUp(player, playerPowerUp, billRybamount);
-        }
+        int redPU = 0;
+        int yellowPU = 0;
+        int bluePU = 0;
 
         int yellowAvailable = playerRybAmount.getYellow();
         int redAvailable = playerRybAmount.getRed();
         int blueAvailable = playerRybAmount.getBlue();
+
+        if(yellowAvailable<yellowCost){
+            forcePayment(player, billRybamount, Colour.YELLOW);
+        }
+
+        if(redAvailable<redCost){
+            forcePayment(player, billRybamount, Colour.RED);
+        }
+
+        if(blueAvailable<blueCost){
+            forcePayment(player, billRybamount, Colour.BLUE);
+        }
+
+        for(Powerup powerup : playerPowerUp){
+            if(powerup.getColour() == Colour.RED){
+                redPU++;
+            }
+            if(powerup.getColour() == Colour.YELLOW){
+                yellowPU++;
+            }
+            if(powerup.getColour() == Colour.BLUE){
+                bluePU++;
+            }
+        }
+
+        if((redCost != 0 && redCost <= redPU) || (blueCost != 0 && blueCost <= bluePU) || (yellowCost != 0 && yellowCost <= yellowPU)){
+            payWithPowerUp(player, playerPowerUp, billRybamount);
+        }
+
+        yellowAvailable = playerRybAmount.getYellow();
+        redAvailable = playerRybAmount.getRed();
+        blueAvailable = playerRybAmount.getBlue();
 
         playerRybAmount.setYellowCubes(yellowAvailable - yellowCost);
         playerRybAmount.setRedCubes(redAvailable - redCost);
@@ -238,26 +270,6 @@ public class Interaction {
         int yellowAvailable = playerRybAmount.getYellow();
         int redAvailable = playerRybAmount.getRed();
         int blueAvailable = playerRybAmount.getBlue();
-
-        int yellowCost = billRybamount.getYellow();
-        int blueCost = billRybamount.getBlue();
-        int redCost = billRybamount.getRed();
-
-        if(yellowAvailable<yellowCost){
-            forcePayment(player, billRybamount, Colour.YELLOW);
-        }
-
-        if(redAvailable<redCost){
-            forcePayment(player, billRybamount, Colour.RED);
-        }
-
-        if(blueAvailable<blueCost){
-            forcePayment(player, billRybamount, Colour.BLUE);
-        }
-
-        yellowAvailable = playerRybAmount.getYellow();
-        redAvailable = playerRybAmount.getRed();
-        blueAvailable = playerRybAmount.getBlue();
 
         boolean hasChosen = false;
         String answer = "";

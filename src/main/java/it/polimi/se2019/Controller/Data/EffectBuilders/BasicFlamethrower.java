@@ -112,7 +112,6 @@ public class BasicFlamethrower extends Effect {
 
             if(chosenDirection.equals("destra")){
 
-
                 if(directionFree(user.getPosition(), "destra")){
 
                     if(directionFree(rightConnection.getConnectedCell(), "destra")){
@@ -130,7 +129,6 @@ public class BasicFlamethrower extends Effect {
                     }
 
                 }
-
 
             }
 
