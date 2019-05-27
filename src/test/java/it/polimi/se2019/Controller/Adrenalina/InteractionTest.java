@@ -150,7 +150,6 @@ public class InteractionTest {
 
     }
 
-
     @Test
     public void payEnoughCubes() {
 
@@ -312,7 +311,6 @@ public class InteractionTest {
         assertTrue(user.getPlayerboard().getPowerups().contains(blueNewton));
 
     }
-
 
     @Test
     public void recoverLoots() {
