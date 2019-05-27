@@ -6,6 +6,7 @@ import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.RMI.Server.RMIServer;
+import it.polimi.se2019.Network.Socket.Server.Manager;
 import it.polimi.se2019.View.CLI.*;
 import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
@@ -13,11 +14,11 @@ import it.polimi.se2019.Network.Socket.SocketLogger;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.*;
 import java.util.concurrent.*;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -35,6 +36,7 @@ public class Server {
     public static final int SOCKETPORT = 2200;
     private static int lobbyTimer;
     public static volatile boolean matchStarted = false;
+    public static volatile boolean matchFinished = false;
     private static ServerSocket loginSocket;
     private static ServerSocket gameSocket;
     public static boolean start = false;
@@ -106,7 +108,7 @@ public class Server {
      * ends, starts a new game.
      */
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         //All avvio del server devono accadere due cose:
         //1) il server avvia i thread di inizializzazione delle connessioni dedicate alla partita
@@ -154,6 +156,8 @@ public class Server {
             continue;
         }
 
+        Lobby lobby = new Lobby();
+
         Match match = new Match();
         match.start();
 
@@ -184,9 +188,7 @@ public class Server {
             System.out.println(msg + '\n' + answer);
             return answer;
 
-        }
-
-        if (player.getConnectionTech().equalsIgnoreCase("socket")) {
+        } else if (player.getConnectionTech().equalsIgnoreCase("socket")) {
 
             Socket stream = (Socket) playerClient.get(player.getPORT());
 
@@ -199,11 +201,34 @@ public class Server {
                 out.writeUTF(msg);
                 return in.readUTF();
 
+            } catch (SocketException e) {
+
+                Manager manager = new Manager(player);
+                manager.start();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
+        } else if (msg.equals("Polling")) {
 
+            Socket stream = (Socket) playerClient.get(player.getPORT());
+
+            try {
+
+                DataOutputStream out = new DataOutputStream(stream.getOutputStream());
+                DataInputStream echo = new DataInputStream(stream.getInputStream());
+                out.writeInt(200);
+                System.out.println(echo.readInt());
+
+            } catch (SocketException e) {
+
+                Manager manager = new Manager(player);
+                manager.start();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
@@ -238,13 +263,35 @@ public class Server {
 
             try {
 
-
                 DataOutputStream out = new DataOutputStream(stream.getOutputStream());
                 DataInputStream echo = new DataInputStream(stream.getInputStream());
                 out.writeInt(1);
                 System.out.println(echo.readInt());
                 out.writeUTF(msg);
 
+            } catch (SocketException e) {
+
+                Manager manager = new Manager(player);
+                manager.start();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (msg.equals("Polling")) {
+
+            Socket stream = (Socket) playerClient.get(player.getPORT());
+
+            try {
+
+                DataOutputStream out = new DataOutputStream(stream.getOutputStream());
+                DataInputStream echo = new DataInputStream(stream.getInputStream());
+                out.writeInt(200);
+                System.out.println(echo.readInt());
+
+            } catch (SocketException e) {
+
+                Manager manager = new Manager(player);
+                manager.start();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -286,6 +333,7 @@ public class Server {
         return clientPort;
 
     }
+
 
 
 

@@ -21,10 +21,8 @@ public class SocketClient extends Client implements Runnable {
     private static Socket client;
     private int gamePort;
     private int localPort;
-   private byte[] address = {127,0,0,1};
+    private byte[] address ={(byte)192,(byte)168,0,(byte)202} ;//{127, 0, 0, 1};
     private int signal;
-
-
 
 
     private static DataOutputStream out;
@@ -100,8 +98,14 @@ public class SocketClient extends Client implements Runnable {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+            } else if (signal == 200) {
 
+                try {
+                    out.writeUTF("200 OK");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -113,7 +117,7 @@ public class SocketClient extends Client implements Runnable {
 
             try {
 
-                client = new Socket("localhost",  LOGINSOCKETPORT); //"localhost"-------> IP del server remoto per login LAN
+                client = new Socket("192.168.0.202", LOGINSOCKETPORT); //"localhost"-------> IP del server remoto per login LAN
                 connected = true;
 
             } catch (ConnectException e) {
@@ -136,8 +140,8 @@ public class SocketClient extends Client implements Runnable {
         while (!connected) {
 
             try {
-                InetAddress gameserver =  InetAddress.getByAddress(address);              //InetAddress.getLocalHost();
-                client = new Socket("localhost", SOCKETPORT, gameserver, localPort); // "localhost" ----> IP del server remoto per game LAN
+                InetAddress gameserver =  InetAddress.getByAddress(address);   //InetAddress.getLocalHost();
+                client = new Socket("192.168.0.202", SOCKETPORT, gameserver, localPort); // "localhost" ----> IP del server remoto per game LAN
                 connected = true;
             } catch (Exception e) {
                 e.printStackTrace();

@@ -210,6 +210,8 @@ public class Match extends Thread {
 
         Check.winner();
 
+        //TODO inserire chiusura di tutto qua dentro
+
     }
 
     /**

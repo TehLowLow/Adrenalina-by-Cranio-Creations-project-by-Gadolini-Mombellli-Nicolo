@@ -19,10 +19,10 @@ import java.util.Scanner;
 
 public class RMIClient extends Client implements Runnable, RMIClientInterface, Remote {
 
-    private static volatile RMILoggerInterface Logger;
-    private static volatile RMILoggerInterface rServer;
-    private static volatile RMIServerInterface Game;
-    private static volatile RMIServerInterface gServer;
+    private static RMILoggerInterface Logger;
+    private static RMILoggerInterface rServer;
+    private static RMIServerInterface Game;
+    private static RMIServerInterface gServer;
 
     private boolean connected = false;
     private boolean logged = false;
