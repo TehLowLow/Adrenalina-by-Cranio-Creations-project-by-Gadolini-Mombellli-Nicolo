@@ -2,10 +2,10 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
-import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
@@ -61,7 +61,12 @@ public class TargetingScopeEffect extends Effect {
         }
 
         Player chosen = ChoosePlayer.one(user, targets);
-        Damage.giveDamage(1, user, chosen);
+
+        Token damage = new Token();
+        damage.setChampionName(user.getPlayerboard().getChampionName());
+        CopyOnWriteArrayList<Token> damages = chosen.getPlayerboard().getDamage();
+        damages.add(damage);
+        chosen.getPlayerboard().setDamage(damages);
 
     }
 

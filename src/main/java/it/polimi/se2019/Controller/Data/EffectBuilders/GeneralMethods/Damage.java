@@ -112,7 +112,10 @@ public class Damage {
 
             }
 
-            chosen.getEffect().applyEffect(user, null);
+            CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
+            targets.add(target);
+
+            chosen.getEffect().applyEffect(user, targets);
             user.getPlayerboard().getPowerups().remove(chosen);
             Board.getDiscardedPowerUps().add(chosen);
 

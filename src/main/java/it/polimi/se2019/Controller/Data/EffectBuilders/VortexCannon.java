@@ -2,6 +2,7 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Adrenalina.Interaction;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.*;
@@ -91,6 +92,14 @@ public class VortexCannon extends Effect {
         newTargets = getNewTargets(user, newTargets);
 
         //Applico danno ai bersagli
+
+        Rybamount cost = new Rybamount();
+
+        cost.setYellowCubes(0);
+        cost.setBlueCubes(0);
+        cost.setRedCubes(1);
+
+        Interaction.pay(user, cost);
 
         for(Player newTarget : newTargets){
 

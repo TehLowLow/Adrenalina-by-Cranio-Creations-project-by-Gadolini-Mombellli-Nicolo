@@ -2,11 +2,14 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
-import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
+import it.polimi.se2019.Model.Cell;
+import it.polimi.se2019.Model.Connection;
+import it.polimi.se2019.Model.Effect;
+import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.lang.reflect.Array;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -29,23 +32,8 @@ public class CozyFireMode extends Effect {
         //Ad ogni bersaglio, assegno un danno e un marker.
         for (Player target : targets) {
 
-            Token damage = new Token();
-            damage.setChampionName(user.getPlayerboard().getChampionName());
-
-            Token marker = new Token();
-            marker.setChampionName(user.getPlayerboard().getChampionName());
-
-            CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
-            CopyOnWriteArrayList<Token> markers = target.getPlayerboard().getMarker();
-
-            damages.add(damage);
-            markers.add(marker);
-
-            target.getPlayerboard().setDamage(damages);
-            target.getPlayerboard().setMarker(markers);
-            //Controllo che non abbia più di 3 marker da parte dell'user. Il metodo rimuove quelli in eccesso.
-            Check.limitMarkers(target, user);
-
+            Damage.giveDamage(1, user, target);
+            Damage.giveMarker(1, user, target);
         }
 
 

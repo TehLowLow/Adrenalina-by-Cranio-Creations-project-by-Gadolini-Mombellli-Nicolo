@@ -165,6 +165,8 @@ public class Turn {
 
         }
 
+        Server.update(player, "Hai finito il tuo turno!");
+
 
     }
 
@@ -299,7 +301,7 @@ public class Turn {
 
         }
 
-
+        Server.update(player, "Hai finito il tuo turno!");
     }
 
 

@@ -1,9 +1,9 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
-import it.polimi.se2019.Controller.Adrenalina.Action;
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Adrenalina.Interaction;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
@@ -146,14 +146,7 @@ public class RocketLauncher extends Effect {
 
 
         Player target = targets.get(0);
-        Token d1 = new Token();
-        Token d2 = new Token();
-        d1.setChampionName(user.getPlayerboard().getChampionName());
-        d2.setChampionName(user.getPlayerboard().getChampionName());
-        CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
-        damages.add(d1);
-        damages.add(d2);
-        target.getPlayerboard().setDamage(damages);
+        Damage.giveDamage(2, user, target);
 
         //Chiedo all'utente se vuole muovere il bersaglio.
 
@@ -217,13 +210,16 @@ public class RocketLauncher extends Effect {
 
         if (useWarhead) {
 
+            Rybamount cost = new Rybamount();
+            cost.setBlueCubes(0);
+            cost.setYellowCubes(1);
+            cost.setRedCubes(0);
+
+            Interaction.pay(user, cost);
+
             for (Player warheadTarget : warheadTargets) {
 
-                Token d = new Token();
-                d.setChampionName(user.getPlayerboard().getChampionName());
-                CopyOnWriteArrayList<Token> damagesWarhead = warheadTarget.getPlayerboard().getDamage();
-                damagesWarhead.add(d);
-                warheadTarget.getPlayerboard().setDamage(damagesWarhead);
+                Damage.giveDamage(1, user, warheadTarget);
 
             }
 

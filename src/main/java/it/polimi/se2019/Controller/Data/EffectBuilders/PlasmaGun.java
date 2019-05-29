@@ -2,6 +2,7 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Adrenalina.Interaction;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Cell;
@@ -74,6 +75,7 @@ public class PlasmaGun extends Effect {
                 }
 
                 if (InputCheck.yesOrNo(answer)) {
+                    Interaction.pay(user, effectRyb);
                     Damage.giveDamage(1, user, targets.get(0));
                 }
 

@@ -415,6 +415,7 @@ public class Action {
 
             chosenWeapon.getBaseEffect().applyEffect(player, chosenWeapon.getBaseEffect().getTargets(player));
             chosenWeapon.setLoaded(false);
+            update(player, "Hai sparato!");
             return;
 
         }
@@ -480,8 +481,9 @@ public class Action {
 
             if (effettoScelto.equalsIgnoreCase("alternativo")) {
 
-                chosenWeapon.getAlternativeEffect().applyEffect(player, chosenWeapon.getAlternativeEffect().getTargets(player));
                 Interaction.pay(player, chosenWeapon.getAlternativeEffectCost());
+                chosenWeapon.getAlternativeEffect().applyEffect(player, chosenWeapon.getAlternativeEffect().getTargets(player));
+
 
 
             }
@@ -490,6 +492,7 @@ public class Action {
 
 
         chosenWeapon.setLoaded(false);
+        update(player, "Hai sparato!");
 
 
     }
@@ -511,6 +514,7 @@ public class Action {
             Weapon newWeapon = new Weapon();
 
             boolean chosen = false;
+            boolean notAffordable = false;
 
             //Scelta dell'arma. Ricordati che può scambiarla e che può anche pagarla.
 
@@ -524,6 +528,7 @@ public class Action {
 
                         if (!Check.affordable(player, weapon.getPrice())) {
                             Server.update(player, Message.cubiInsuff());
+                            notAffordable = true;
                             continue;
                         }
 
@@ -535,9 +540,11 @@ public class Action {
                 }
 
 
-                if (!chosen) {
+                if (!chosen && !notAffordable) {
                     Server.update(player, Message.inputError());
                 }
+
+                notAffordable = false;
 
 
             }

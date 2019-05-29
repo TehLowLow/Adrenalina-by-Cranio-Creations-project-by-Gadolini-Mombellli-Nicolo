@@ -47,7 +47,7 @@ public class BasicHellionTest {
 
             if(hit.getPosition().equals(target)){
 
-                assertEquals(1, hit.getPlayerboard().getMarker());
+                assertEquals(1, hit.getPlayerboard().getMarker().size());
 
             }
 
@@ -89,7 +89,7 @@ public class BasicHellionTest {
         Weapon hellion = new Weapon();
         hellion.setBaseEffect(new BasicHellion());
         boolean result = hellion.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertTrue(result);
+        assertFalse(result);
 
         for(int i = 1; i<5; i++) {
 
@@ -98,5 +98,8 @@ public class BasicHellionTest {
         }
         result = hellion.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
         assertFalse(result);
+
+
+
     }
 }

@@ -3,10 +3,7 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
-import it.polimi.se2019.Model.Cell;
-import it.polimi.se2019.Model.Connection;
-import it.polimi.se2019.Model.Effect;
-import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
@@ -62,7 +59,7 @@ public class Newton extends Effect {
 
         while(!chosen) {
 
-            String direction = Server.updateWithAnswer(user, Message.spostaBersaglio(user, reachableCells));
+            String direction = Server.updateWithAnswer(user, Message.spostaBersaglio(target, reachableCells));
 
             if(!InputCheck.directionCheck(direction)){
                 Server.update(user, Message.inputError());
@@ -166,6 +163,10 @@ public class Newton extends Effect {
         for(Player target : Server.connectedPlayers){
 
             if(target.getNickname().equalsIgnoreCase(user.getNickname())){
+                continue;
+            }
+
+            if (target.getPosition().equals(Board.getLimbo())){
                 continue;
             }
 

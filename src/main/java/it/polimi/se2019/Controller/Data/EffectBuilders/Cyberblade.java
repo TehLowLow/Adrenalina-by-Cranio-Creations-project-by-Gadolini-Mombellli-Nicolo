@@ -4,7 +4,11 @@ import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Adrenalina.Interaction;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
-import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
+import it.polimi.se2019.Model.Cell;
+import it.polimi.se2019.Model.Effect;
+import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
@@ -81,7 +85,7 @@ public class Cyberblade extends Effect {
 
         Player target = ChoosePlayer.one(user, targets);
 
-        givedamage(user, target);
+        Damage.giveDamage(2, user, target);
 
 
         if(!usedStep){
@@ -131,19 +135,6 @@ public class Cyberblade extends Effect {
 
     }
 
-    private void givedamage(Player user, Player target){
-
-        Token d1 = new Token();
-        Token d2 = new Token();
-        d1.setChampionName(user.getPlayerboard().getChampionName());
-        d2.setChampionName(user.getPlayerboard().getChampionName());
-        CopyOnWriteArrayList <Token> damages = target.getPlayerboard().getDamage();
-        damages.add(d1);
-        damages.add(d2);
-
-        target.getPlayerboard().setDamage(damages);
-
-    }
 
 
     private void shadowStep(Player user){
@@ -219,9 +210,11 @@ public class Cyberblade extends Effect {
 
         }
 
-        givedamage(user, target);
-
         Interaction.pay(user, diceCost);
+
+        Damage.giveDamage(2, user, target);
+
+
 
         if(!usedStep){
 

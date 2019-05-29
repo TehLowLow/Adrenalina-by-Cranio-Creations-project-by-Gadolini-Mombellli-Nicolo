@@ -2,13 +2,14 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Adrenalina.Interaction;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Cell;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
-import it.polimi.se2019.Model.Token;
+import it.polimi.se2019.Model.Rybamount;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
-import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.*;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -108,12 +109,19 @@ public class GrenadeLauncher extends Effect {
             if (useGrenade) {
 
                 CopyOnWriteArrayList<Player> targetsExtraGrenade = getTargetsExtraGrenade(user);
-                applyExtraGrenade(user, targetsExtraGrenade);
 
                 //Scalo il costo
 
-                int red = user.getPlayerboard().getAmmoCubes().getRed();
-                user.getPlayerboard().getAmmoCubes().setRedCubes(red - 1);
+                Rybamount cost = new Rybamount();
+
+                cost.setRedCubes(1);
+                cost.setYellowCubes(0);
+                cost.setBlueCubes(0);
+
+                Interaction.pay(user, cost);
+
+                applyExtraGrenade(user, targetsExtraGrenade);
+
 
 
                 if (!moved) {

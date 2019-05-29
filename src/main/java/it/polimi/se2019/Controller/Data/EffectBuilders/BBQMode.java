@@ -2,11 +2,11 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -30,20 +30,14 @@ public class BBQMode extends Effect {
 
         for (Player target : targets) {
 
-            Token d = new Token();
-            d.setChampionName(user.getPlayerboard().getChampionName());
-            CopyOnWriteArrayList<Token> damages = target.getPlayerboard().getDamage();
-            damages.add(d);
+            Damage.giveDamage(1, user, target);
 
 
             if (doubleDamageCells.contains(target.getPosition())) {
 
-                Token d1 = new Token();
-                d1.setChampionName(user.getPlayerboard().getChampionName());
-                damages.add(d1);
+                Damage.giveDamage(1, user, target);
             }
 
-            target.getPlayerboard().setDamage(damages);
 
         }
 

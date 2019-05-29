@@ -1,6 +1,7 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
+import it.polimi.se2019.Controller.Adrenalina.Interaction;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
@@ -130,11 +131,18 @@ public class LockRifleEffect extends Effect {
 
         for (Player target : targets) {
 
+            Rybamount cost = new Rybamount();
+
+            cost.setRedCubes(1);
+            cost.setBlueCubes(0);
+            cost.setYellowCubes(0);
+
+            Interaction.pay(user, cost);
+
             Damage.giveMarker(1, user, target);
 
             update(target, Message.colpito(user));
 
-            user.getPlayerboard().getAmmoCubes().setRedCubes(user.getPlayerboard().getAmmoCubes().getRed() - 1);
         }
 
 

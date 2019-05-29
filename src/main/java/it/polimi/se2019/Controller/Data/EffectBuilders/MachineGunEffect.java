@@ -213,18 +213,21 @@ public class MachineGunEffect extends Effect {
             return;
         }
 
+
+        Rybamount cost = new Rybamount();
+        cost.setBlueCubes(0);
+        cost.setRedCubes(0);
+        cost.setYellowCubes(1);
+
+        Interaction.pay(user, cost);
+
         for (Player player : targets) {
 
             Damage.giveDamage(1, user, player);
 
             update(player, Message.colpito(user));
 
-            Rybamount cost = new Rybamount();
-            cost.setBlueCubes(0);
-            cost.setRedCubes(0);
-            cost.setYellowCubes(1);
 
-            Interaction.pay(user, cost);
         }
 
 
@@ -460,18 +463,21 @@ public class MachineGunEffect extends Effect {
 
     public void applyTurretTripod(Player user, CopyOnWriteArrayList<Player> targets) {
 
-        for (Player player : targets) {
-
-            Damage.giveDamage(1, user, player);
-
-        }
-
         Rybamount cost = new Rybamount();
         cost.setBlueCubes(1);
         cost.setRedCubes(0);
         cost.setYellowCubes(0);
 
         Interaction.pay(user, cost);
+
+
+        for (Player player : targets) {
+
+            Damage.giveDamage(1, user, player);
+
+        }
+
+
 
     }
 

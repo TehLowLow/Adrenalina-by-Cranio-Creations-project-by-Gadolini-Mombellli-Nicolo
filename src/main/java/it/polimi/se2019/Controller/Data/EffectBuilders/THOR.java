@@ -268,6 +268,15 @@ public class THOR extends Effect {
 
     public void applyHighVoltage(Player user, CopyOnWriteArrayList<Player> targets){
 
+        Rybamount cost = new Rybamount();
+
+
+        cost.setRedCubes(0);
+        cost.setBlueCubes(1);
+        cost.setYellowCubes(0);
+        Interaction.pay(user, cost);
+
+
         for (Player player:targets){
 
             Damage.giveDamage(2, user, player);

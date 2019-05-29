@@ -40,6 +40,14 @@ public class BoardSetup {
         CopyOnWriteArrayList<Loot> discardedLoots = new CopyOnWriteArrayList<>();
         Board.setDiscardedLoot(discardedLoots);
 
+        CopyOnWriteArrayList<Integer> mortalBlowTrackValue = new CopyOnWriteArrayList<>();
+        Board.getMortalBlowTrackValue().add(8);
+        Board.getMortalBlowTrackValue().add(6);
+        Board.getMortalBlowTrackValue().add(4);
+        Board.getMortalBlowTrackValue().add(2);
+        Board.getMortalBlowTrackValue().add(1);
+        Board.getMortalBlowTrackValue().add(1);
+
         Interaction.placeLoot();
         Interaction.placeWeapons();
 
