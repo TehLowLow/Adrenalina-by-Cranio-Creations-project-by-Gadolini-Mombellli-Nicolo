@@ -119,11 +119,9 @@ public class SelectChampionController implements Initializable {
         if(!message.contains("Sprog")){
             sprogButton.setDisable(true);
         }
-        if(!message.contains("Violetta")){
-            violettaButton.setDisable(true);
-        }
+
         if(!message.contains(":D-strutt-or3")){
-            violettaButton.setDisable(true);
+            distruttoreButton.setDisable(true);
         }
 
     }
