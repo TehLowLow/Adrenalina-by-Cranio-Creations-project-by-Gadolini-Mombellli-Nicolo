@@ -260,7 +260,7 @@ public class Match extends Thread {
 
             String chosenMap = updateWithAnswer(player, Message.scegliMappa());
 
-            while (!inputCheck.checkMapInput(chosenMap)) {
+            while (!InputCheck.checkMapInput(chosenMap)) {
 
                 update(player, Message.inputError());
                 chosenMap = updateWithAnswer(player, Message.scegliMappa());

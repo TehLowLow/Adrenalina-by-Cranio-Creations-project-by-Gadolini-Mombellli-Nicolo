@@ -241,7 +241,7 @@ public class Server {
                 DataOutputStream out = new DataOutputStream(stream.getOutputStream());
                 DataInputStream echo = new DataInputStream(stream.getInputStream());
                 out.writeInt(200);
-                System.out.println(echo.readInt());
+                System.out.println(echo.readUTF());
 
             } catch (SocketException e) {
 
