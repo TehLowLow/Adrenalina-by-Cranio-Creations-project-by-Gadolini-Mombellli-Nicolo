@@ -34,7 +34,7 @@ public class Server {
     public static final int LOGINRMIPORT = 8888;
     public static final int RMIPORT = 2100;
     public static final int SOCKETPORT = 2200;
-    private static int lobbyTimer;
+    public static int lobbyTimer;
     public static volatile boolean matchStarted = false;
     public static volatile boolean matchFinished = false;
     private static ServerSocket loginSocket;
@@ -152,15 +152,9 @@ public class Server {
             gamePool.submit(new SocketServer(gameSocket));
         }
 
-        while (Server.connectedPlayers.size() < 3) {
-            continue;
-        }
 
         Lobby lobby = new Lobby();
-
-        Match match = new Match();
-        match.start();
-
+        lobby.start();
 
     }
 
@@ -210,25 +204,6 @@ public class Server {
                 e.printStackTrace();
             }
 
-        } else if (msg.equals("Polling")) {
-
-            Socket stream = (Socket) playerClient.get(player.getPORT());
-
-            try {
-
-                DataOutputStream out = new DataOutputStream(stream.getOutputStream());
-                DataInputStream echo = new DataInputStream(stream.getInputStream());
-                out.writeInt(200);
-                System.out.println(echo.readInt());
-
-            } catch (SocketException e) {
-
-                Manager manager = new Manager(player);
-                manager.start();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return null;
     }
@@ -244,7 +219,7 @@ public class Server {
     public static synchronized void update(Player player, String msg) {
 
 
-        if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null) {
+        if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null && matchStarted) {
 
             msg = CLIprinter.print(player) + msg;
 
@@ -257,27 +232,7 @@ public class Server {
 
         }
 
-
-        if (player.getConnectionTech().equalsIgnoreCase("socket")) {
-            Socket stream = (Socket) playerClient.get(player.getPORT());
-
-            try {
-
-                DataOutputStream out = new DataOutputStream(stream.getOutputStream());
-                DataInputStream echo = new DataInputStream(stream.getInputStream());
-                out.writeInt(1);
-                System.out.println(echo.readInt());
-                out.writeUTF(msg);
-
-            } catch (SocketException e) {
-
-                Manager manager = new Manager(player);
-                manager.start();
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        } else if (msg.equals("Polling")) {
+        if (msg.equals("Polling")) {
 
             Socket stream = (Socket) playerClient.get(player.getPORT());
 
@@ -287,6 +242,27 @@ public class Server {
                 DataInputStream echo = new DataInputStream(stream.getInputStream());
                 out.writeInt(200);
                 System.out.println(echo.readInt());
+
+            } catch (SocketException e) {
+
+                Manager manager = new Manager(player);
+                manager.start();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        } else if (player.getConnectionTech().equalsIgnoreCase("socket")) {
+            Socket stream = (Socket) playerClient.get(player.getPORT());
+
+            try {
+
+                DataOutputStream out = new DataOutputStream(stream.getOutputStream());
+                DataInputStream echo = new DataInputStream(stream.getInputStream());
+                out.writeInt(1);
+                System.out.println(echo.readInt());
+                out.writeUTF(msg);
 
             } catch (SocketException e) {
 

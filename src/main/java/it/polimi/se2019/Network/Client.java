@@ -21,7 +21,6 @@ public class Client {
     static RMIClient rClient = new RMIClient();
 
 
-
     /**
      * Starts the client side of the connection and asks the server for a port to connect to after the login of the player.
      */
@@ -34,7 +33,7 @@ public class Client {
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine();
 
-        while(!InputCheck.correctYesNo(answer)){
+        while (!InputCheck.correctYesNo(answer)) {
 
             System.out.println(Message.inputError());
             System.out.println("Vuoi giocare con la CLI?");
@@ -42,18 +41,13 @@ public class Client {
 
         }
 
-        if (!InputCheck.yesOrNo(answer)){
-
+        if (!InputCheck.yesOrNo(answer)) {
             isGui = true;
-
         }
 
-        if (isGui){
-
+        if (isGui) {
             GUI gui = new GUI();
             gui.main(null);
-
-
         }
 
 

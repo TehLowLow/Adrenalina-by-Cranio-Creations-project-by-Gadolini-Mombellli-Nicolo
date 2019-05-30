@@ -41,6 +41,7 @@ public class BoardSetup {
         Board.setDiscardedLoot(discardedLoots);
 
         CopyOnWriteArrayList<Integer> mortalBlowTrackValue = new CopyOnWriteArrayList<>();
+        Board.setMortalBlowTrackValue(mortalBlowTrackValue);
         Board.getMortalBlowTrackValue().add(8);
         Board.getMortalBlowTrackValue().add(6);
         Board.getMortalBlowTrackValue().add(4);
