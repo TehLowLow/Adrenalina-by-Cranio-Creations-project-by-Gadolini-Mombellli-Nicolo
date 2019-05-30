@@ -1,10 +1,7 @@
 package it.polimi.se2019.Network;
 
-import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Network.RMI.Client.RMIClient;
 import it.polimi.se2019.Network.Socket.Client.SocketClient;
-import it.polimi.se2019.View.GUI.GUI;
-import it.polimi.se2019.View.Message;
 
 import java.util.Scanner;
 
@@ -27,33 +24,10 @@ public class Client {
 
     public static void main(String args[]) {
 
-        boolean isGui = false;
 
-        System.out.println("Vuoi giocare con la CLI?");
-        Scanner scanner = new Scanner(System.in);
-        String answer = scanner.nextLine();
-
-        while (!InputCheck.correctYesNo(answer)) {
-
-            System.out.println(Message.inputError());
-            System.out.println("Vuoi giocare con la CLI?");
-            answer = scanner.nextLine();
-
-        }
-
-        if (!InputCheck.yesOrNo(answer)) {
-            isGui = true;
-        }
-
-        if (isGui) {
-            GUI gui = new GUI();
-            gui.main(null);
-        }
-
-
-        //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.
-        System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
-        initConnection();//qua vengono lanciati i thread.
+            //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.
+            System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
+            initConnection();//qua vengono lanciati i thread.
     }
 
 //----------------------------------------------------------------------------------------------------
@@ -73,7 +47,7 @@ public class Client {
 
             String string = scanner.nextLine();
 
-            if (string.equalsIgnoreCase("socket")) {
+            if (string.equalsIgnoreCase("socket")){
 
                 //avvia una connessione socket
 

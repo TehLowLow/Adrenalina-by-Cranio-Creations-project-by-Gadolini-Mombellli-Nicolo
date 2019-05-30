@@ -52,6 +52,24 @@ public class Message {
     }
 
     /*
+    SCELTA CAMPIONE
+     */
+
+   public static String choseChampion(CopyOnWriteArrayList <String> champions){
+
+       String message = "Scegli il tuo campione tra:\n";
+
+       for(String c : champions){
+
+           message = message + c + "\n";
+
+       }
+
+       return message;
+
+   }
+
+    /*
     SCELTA DIREZIONE
      */
 

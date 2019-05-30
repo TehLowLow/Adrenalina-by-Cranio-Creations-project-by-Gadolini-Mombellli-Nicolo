@@ -1,7 +1,8 @@
 package it.polimi.se2019.Network.Socket.Client;
 
-import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Network.Client;
+import it.polimi.se2019.View.GUI.GUI;
+import javafx.application.Platform;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -27,6 +28,8 @@ public class SocketClient extends Client implements Runnable {
 
     private static DataOutputStream out;
     private static DataInputStream in;
+
+    private boolean useGui = false;
 
 
     @Override
@@ -61,6 +64,16 @@ public class SocketClient extends Client implements Runnable {
 
         streamInit();
 
+        askGui();
+        Runnable gui= new GUI();
+
+        if(useGui) {
+
+            GUI.out = out;
+            Thread executingGui = new Thread(gui);
+            executingGui.start();
+        }
+
         while (true) {
 
             //I messaggi sulla rete son di due tipi, quelli per cui un utente non deve rispondere e quelli
@@ -81,7 +94,15 @@ public class SocketClient extends Client implements Runnable {
                 try {//update
 
                     out.writeInt(signal); //Echo al server
-                    System.out.println(in.readUTF());
+                    String received = in.readUTF();
+
+                    if(useGui){
+                        System.out.println(received);
+                    }
+
+                    else {
+                        System.out.println(received);
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -91,9 +112,15 @@ public class SocketClient extends Client implements Runnable {
 
                 try {
                     out.writeInt(signal);
-                    System.out.println(in.readUTF());
-                    Scanner scanner = new Scanner(System.in);
-                    out.writeUTF(scanner.nextLine());
+                    String received = in.readUTF();
+                    System.out.println(received);
+                    if(useGui) {
+                        Platform.runLater(() -> ((GUI) gui).update(received));
+                    }
+                    else {
+                        Scanner scanner = new Scanner(System.in);
+                        out.writeUTF(scanner.nextLine());
+                    }
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -158,6 +185,33 @@ public class SocketClient extends Client implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    private void askGui(){
+
+        System.out.println("Vuoi usare la GUI?");
+        Scanner scanner = new Scanner(System.in);
+        String answer = "";
+        boolean answered = false;
+
+        while(!answered){
+
+            answer = scanner.nextLine();
+
+            if(answer.equals("si")){
+                answered = true;
+                useGui = true;
+            }
+
+            if(answer.equals("no")){
+                answered = true;
+            }
+
+
+        }
+
+
 
     }
 }

@@ -1,24 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="179.0" prefWidth="1063.0" SplitPane.resizableWithParent="false">
-         <children>
-            <ToggleButton layoutX="24.0" layoutY="287.0" mnemonicParsing="false" text="ToggleButton" />
-            <ToggleButton layoutX="596.0" layoutY="287.0" mnemonicParsing="false" text="ToggleButton" />
-            <ToggleButton layoutX="298.0" layoutY="287.0" mnemonicParsing="false" text="ToggleButton" />
-            <ToggleButton layoutX="875.0" layoutY="287.0" mnemonicParsing="false" text="ToggleButton" />
-            <Text layoutX="96.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" />
-            <Text layoutX="370.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6" />
-            <Text layoutX="668.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7" />
-            <Text layoutX="947.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8" />
-            <Text layoutX="359.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli con quanti Teschi vuoi giocare:" />
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="920.0" SplitPane.resizableWithParent="false" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.SkullController">
+  <children>
+    <ImageView fitHeight="500.0" fitWidth="920.0" layoutX="0.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@assets/cover/background.jpg" />
+      </image>
+    </ImageView>
+    <ToggleButton fx:id="fivebutton" layoutX="65.0" layoutY="266.0" mnemonicParsing="false" onAction="#chose5" prefHeight="35.0" prefWidth="100.0" text="5 teschi">
+      <font>
+        <Font size="16.0" fx:id="x1" />
+      </font>
+    </ToggleButton>
+    <ToggleButton fx:id="sevenbutton" font="$x1" layoutX="541.0" layoutY="268.0" mnemonicParsing="false" onAction="#chose7" prefHeight="35.0" prefWidth="100.0" text="7 teschi" />
+    <ToggleButton fx:id="sixbutton" font="$x1" layoutX="249.0" layoutY="268.0" mnemonicParsing="false" onAction="#chose6" prefHeight="35.0" prefWidth="100.0" text="6 teschi" />
+    <ToggleButton fx:id="eightbutton" font="$x1" layoutX="737.0" layoutY="268.0" mnemonicParsing="false" onAction="#chose8" prefHeight="35.0" prefWidth="100.0" text="8 teschi" />
+    <Text fill="WHITE" fontSmoothingType="GRAY" layoutX="65.0" layoutY="46.0" strikethrough="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli con quanti teschi vuoi giocare:" underline="false">
+      <font>
+        <Font name="Calibri Italic" size="52.0" fx:id="x2" />
+      </font>
+    </Text>
+    <Button fx:id="okbutton" layoutX="374.0" layoutY="331.0" mnemonicParsing="false" onAction="#confirm" prefHeight="64.0" prefWidth="145.0" text="Conferma">
+      <font>
+        <Font name="System Bold" size="20.0" />
+      </font>
+    </Button>
+    <ImageView fitHeight="125.0" fitWidth="96.77419662475586" layoutX="68.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="251.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="125.0" fitWidth="96.77419662475586" layoutX="543.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="739.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <Text fill="WHITE" font="$x2" layoutX="103.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" />
+    <Text fill="WHITE" font="$x2" layoutX="286.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6" />
+    <Text fill="WHITE" font="$x2" layoutX="578.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7" />
+    <Text fill="WHITE" font="$x2" layoutX="774.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8" />
+  </children>
+</AnchorPane>

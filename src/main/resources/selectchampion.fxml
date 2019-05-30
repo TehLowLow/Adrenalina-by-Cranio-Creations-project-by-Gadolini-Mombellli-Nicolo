@@ -1,81 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.control.*?>
 <?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.se2019.View.GUI.championSelection">
-   <children>
-      <ImageView fitHeight="333.0" fitWidth="266.0" layoutX="223.0" layoutY="228.0" pickOnBounds="true">
-         <image>
-            <Image url="@assets/Weapons/AD_weapons_IT_02.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="262.0" fitWidth="239.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/Champions/Banshee_Chmp.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="260.0" fitWidth="376.0" layoutX="239.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/Champions/Dozer_Chmp.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="273.0" fitWidth="248.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/Champions/Destructor_Chmp.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="260.0" fitWidth="248.0" layoutX="470.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/Champions/Sprog_Chmp.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="257.0" fitWidth="371.0" layoutX="470.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/Champions/Violet_Chmp.png" />
-         </image>
-      </ImageView>
-      <RadioButton fx:id="championButton" layoutX="74.0" layoutY="240.0" mnemonicParsing="false" onAction="#selectBanshee" prefHeight="93.0" prefWidth="147.0" text="Banshee" textFill="#f5f5f8">
-         <font>
-            <Font name="Arial Black" size="17.0" />
-         </font>
-         <toggleGroup>
-            <ToggleGroup fx:id="Champion" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton layoutX="311.0" layoutY="240.0" mnemonicParsing="false" onAction="#selectDozer" prefHeight="93.0" prefWidth="147.0" text="Dozer" textFill="#f2efef" toggleGroup="$Champion">
-         <font>
-            <Font name="Arial Black" size="17.0" />
-         </font>
-      </RadioButton>
-      <RadioButton layoutX="540.0" layoutY="240.0" mnemonicParsing="false" onAction="#selectSprog" prefHeight="93.0" prefWidth="147.0" text="Sprog" textFill="#fcf9f9" toggleGroup="$Champion">
-         <font>
-            <Font name="Arial Black" size="17.0" />
-         </font>
-      </RadioButton>
-      <RadioButton layoutX="61.0" layoutY="481.0" mnemonicParsing="false" onAction="#selectDistruttore" prefHeight="93.0" prefWidth="147.0" text=":D-strutt-or3" textFill="WHITE" toggleGroup="$Champion">
-         <font>
-            <Font name="Arial Black" size="17.0" />
-         </font>
-      </RadioButton>
-      <RadioButton layoutX="540.0" layoutY="481.0" mnemonicParsing="false" onAction="#selectVioletta" prefHeight="93.0" prefWidth="147.0" text="Violetta" textFill="#fffdfd" toggleGroup="$Champion">
-         <font>
-            <Font name="Arial Black" size="17.0" />
-         </font>
-      </RadioButton>
-      <Button layoutX="270.0" layoutY="467.0" mnemonicParsing="false" onAction="#select" prefHeight="50.0" prefWidth="172.0" text="SCEGLI">
-         <font>
-            <Font name="Arial Black" size="21.0" />
-         </font>
-      </Button>
-      <Text layoutX="93.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona il tuo campione!" wrappingWidth="580.0">
-         <font>
-            <Font name="Calibri Italic" size="52.0" />
-         </font>
-      </Text>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="711.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.SelectChampionController">
+  <children>
+    <ImageView fitHeight="333.0" fitWidth="266.0" layoutX="223.0" layoutY="228.0" pickOnBounds="true">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_02.png" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="262.0" fitWidth="239.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Champions/Banshee_Chmp.png" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="260.0" fitWidth="376.0" layoutX="239.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Champions/Dozer_Chmp.png" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="273.0" fitWidth="248.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Champions/Destructor_Chmp.png" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="260.0" fitWidth="248.0" layoutX="470.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Champions/Sprog_Chmp.png" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="257.0" fitWidth="371.0" layoutX="470.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Champions/Violet_Chmp.png" />
+      </image>
+    </ImageView>
+    <RadioButton id="championButton" fx:id="bansheeButton" layoutX="74.0" layoutY="240.0" mnemonicParsing="false" onAction="#selectBanshee" prefHeight="93.0" prefWidth="147.0" text="Banshee" textFill="#f5f5f8">
+      <font>
+        <Font name="Arial Black" size="17.0" fx:id="x1" />
+      </font>
+      <toggleGroup>
+        <ToggleGroup fx:id="Champion" />
+      </toggleGroup>
+    </RadioButton>
+    <RadioButton fx:id="dozerButton" font="$x1" layoutX="311.0" layoutY="240.0" mnemonicParsing="false" onAction="#selectDozer" prefHeight="93.0" prefWidth="147.0" text="Dozer" textFill="#f2efef" toggleGroup="$Champion" />
+    <RadioButton fx:id="sprogButton" font="$x1" layoutX="540.0" layoutY="240.0" mnemonicParsing="false" onAction="#selectSprog" prefHeight="93.0" prefWidth="147.0" text="Sprog" textFill="#fcf9f9" toggleGroup="$Champion" />
+    <RadioButton fx:id="distruttoreButton" font="$x1" layoutX="61.0" layoutY="481.0" mnemonicParsing="false" onAction="#selectDistruttore" prefHeight="93.0" prefWidth="147.0" text=":D-strutt-or3" textFill="WHITE" toggleGroup="$Champion" />
+    <RadioButton fx:id="violettaButton" font="$x1" layoutX="540.0" layoutY="481.0" mnemonicParsing="false" onAction="#selectVioletta" prefHeight="93.0" prefWidth="147.0" text="Violetta" textFill="#fffdfd" toggleGroup="$Champion" />
+    <Button layoutX="270.0" layoutY="467.0" mnemonicParsing="false" onAction="#select" prefHeight="50.0" prefWidth="172.0" text="SCEGLI">
+      <font>
+        <Font name="Arial Black" size="21.0" />
+      </font>
+    </Button>
+    <Text layoutX="93.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona il tuo campione!" wrappingWidth="580.0">
+      <font>
+        <Font name="Calibri Italic" size="52.0" />
+      </font>
+    </Text>
+  </children>
 </AnchorPane>

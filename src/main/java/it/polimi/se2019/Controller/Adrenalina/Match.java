@@ -404,20 +404,14 @@ public class Match extends Thread {
 
         for (Player player : connectedPlayers) {
 
-            update(player, "Scegli il tuo campione tra:");
+            String toSend = Message.choseChampion(champions);
 
-            for (String champion : champions) {
-
-                update(player, "" + champion);
-
-            }
-
-            String scelta = updateWithAnswer(player, "Fai la tua scelta");
+            String scelta = updateWithAnswer(player, toSend);
 
             while (!InputCheck.chooseChampion(scelta, champions)) {
 
                 update(player, Message.inputError());
-                scelta = updateWithAnswer(player, "Fai la tua scelta");
+                scelta = updateWithAnswer(player, toSend);
 
             }
 
