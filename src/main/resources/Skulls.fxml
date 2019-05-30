@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="1065.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="179.0" prefWidth="1063.0" SplitPane.resizableWithParent="false">
+         <children>
+            <ToggleButton layoutX="24.0" layoutY="287.0" mnemonicParsing="false" text="ToggleButton" />
+            <ToggleButton layoutX="596.0" layoutY="287.0" mnemonicParsing="false" text="ToggleButton" />
+            <ToggleButton layoutX="298.0" layoutY="287.0" mnemonicParsing="false" text="ToggleButton" />
+            <ToggleButton layoutX="875.0" layoutY="287.0" mnemonicParsing="false" text="ToggleButton" />
+            <Text layoutX="96.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" />
+            <Text layoutX="370.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="6" />
+            <Text layoutX="668.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="7" />
+            <Text layoutX="947.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="8" />
+            <Text layoutX="359.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli con quanti Teschi vuoi giocare:" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>
