@@ -88,8 +88,25 @@ public class Turn {
      * @param player is the player who has to play the first turn
      */
     public void first(Player player) {
-        firstSpawn(player);
-        standard(player);
+        firstSpawn(player, false);
+        standard(player, false);
+    }
+
+    public void firstTerminator(Player player) {
+
+        if (player.isFirstPlayer()) {
+
+            firstSpawn(player, true);
+            standard(player, false);
+
+        }
+
+        if (!player.isFirstPlayer()) {
+
+            firstSpawn(player, false);
+            standard(player, true);
+
+        }
     }
 
 
@@ -98,7 +115,7 @@ public class Turn {
      *
      * @param player is the player who has to play the turn
      */
-    public void standard(Player player) {
+    public void standard(Player player, boolean terminator) {
 
         boolean usedPowerUp;
 
@@ -106,11 +123,15 @@ public class Turn {
 
             usedPowerUp = Action.usePowerUp(player);
 
-            if (!usedPowerUp){
+            if (!usedPowerUp) {
                 break;
             }
         }
 
+        if (terminator) {
+
+            Action.performTerminator(player, false);
+        }
 
         Action.perform(player);
 
@@ -124,6 +145,10 @@ public class Turn {
             }
         }
 
+        if (terminator) {
+            Action.performTerminator(player, false);
+        }
+
 
         Action.perform(player);
 
@@ -135,6 +160,10 @@ public class Turn {
                 break;
             }
         }
+        if(terminator) {
+            Action.performTerminator(player, true);
+        }
+
 
         Action.reload(player);
 
@@ -144,15 +173,27 @@ public class Turn {
 
         for (Player dead : Server.connectedPlayers) {
 
-            if (Check.death(dead) == 0) {
-                continue;
-            } else {
-                deadPlayers.add(dead);
+            if (!dead.getNickname().equalsIgnoreCase("Terminator")) {
+
+                if (Check.death(dead) == 0) {
+                    continue;
+                } else {
+                    deadPlayers.add(dead);
+                }
+
             }
+        }
+
+        //DOUBLE KILL
+
+        if (deadPlayers.size() > 1 || (deadPlayers.size()>0 && Check.death(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1)) == 0)){
+
+            player.setScore(player.getScore() + 1);
 
         }
 
         for (Player dead : deadPlayers) {
+
 
             boolean overkill = false;
 
@@ -177,13 +218,61 @@ public class Turn {
      * @param player is the player that has to spawn
      */
 
-    private void firstSpawn(Player player) {
+    private void firstSpawn(Player player, boolean terminator) {
 
         try {
             Interaction.drawPowerUp(player);
             Interaction.drawPowerUp(player);
         } catch (Exception e) {
             System.out.println("Errore: mazzi non inizializzati");
+        }
+
+        if (terminator){
+
+            String spawnTerminator = Server.updateWithAnswer(player, "Hai pescato " + player.getPlayerboard().getPowerups().get(0).getName() + " e " + player.getPlayerboard().getPowerups().get(1).getName() + ".\nOra scegli un colore tra rosso, blu e giallo per posizionare il Terminator nella Spawn Cell di quel colore.");
+
+            boolean spawned = false;
+
+            if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")){
+
+                spawned = true;
+
+            }
+
+
+            while (!spawned){
+
+                Server.update(player, Message.inputError());
+                spawnTerminator = Server.updateWithAnswer(player, "Hai pescato " + player.getPlayerboard().getPowerups().get(0).getName() + " e " + player.getPlayerboard().getPowerups().get(1).getName() + ".\nOra scegli un colore tra rosso, blu e giallo per posizionare il Terminator nella Spawn Cell di quel colore.");
+
+                if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")){
+
+                    spawned = true;
+
+                }
+            }
+
+            if (spawnTerminator.equalsIgnoreCase("rosso")){
+
+                Board.getTerminator().setPosition(Board.getMap().getRedRoom().getCells().get(0));
+
+            }
+
+
+            if (spawnTerminator.equalsIgnoreCase("blu")){
+
+                Board.getTerminator().setPosition(Board.getMap().getBlueRoom().getCells().get(0));
+
+            }
+
+            if (spawnTerminator.equalsIgnoreCase("giallo")){
+
+                Board.getTerminator().setPosition(Board.getMap().getYellowRoom().getCells().get(0));
+
+
+            }
+
+
         }
 
         boolean chosen = false;
@@ -273,12 +362,64 @@ public class Turn {
      * @param player is who has to play the FinalFrenzy turn
      */
 
-    public void frenzy(Player player, boolean afterFirstPlayer) {
+    public void frenzy(Player player, boolean afterFirstPlayer, boolean terminator) {
 
         CopyOnWriteArrayList<Player> deadPlayers;
 
 
+        boolean usedPowerUp;
+
+        for (int i = 0; i < 3; i++) {
+
+            usedPowerUp = Action.usePowerUp(player);
+
+            if (!usedPowerUp) {
+                break;
+            }
+        }
+
+        if (terminator) {
+
+            Action.performTerminator(player, false);
+        }
+
+
         Action.performFrenzy(player, afterFirstPlayer);
+
+
+        for (int i = 0; i < 3; i++) {
+
+            usedPowerUp = Action.usePowerUp(player);
+
+            if (!usedPowerUp){
+                break;
+            }
+        }
+
+        if (terminator) {
+            Action.performTerminator(player, false);
+        }
+
+        Action.performFrenzy(player, afterFirstPlayer);
+
+
+
+
+        for (int i = 0; i < 3; i++) {
+
+            usedPowerUp = Action.usePowerUp(player);
+
+            if (!usedPowerUp){
+                break;
+            }
+        }
+
+        if (terminator) {
+            Action.performTerminator(player, true);
+        }
+
+
+
 
         Action.reload(player);
 
@@ -287,6 +428,29 @@ public class Turn {
 
         deadPlayers = respawner();
 
+        if(terminator) {
+
+            if (deadPlayers.contains(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1))) {
+
+                deadPlayers.remove(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1));
+
+            }
+
+        }
+
+
+
+
+        //DOUBLE KILL
+
+        if (deadPlayers.size() > 1 || (deadPlayers.size() > 0 && Check.death(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1)) == 0)){
+
+            player.setScore(player.getScore() + 1);
+
+        }
+
+
+
         for (Player dead : deadPlayers) {
 
             boolean overkill = false;
@@ -294,6 +458,9 @@ public class Turn {
             if (Check.death(dead) == 2) {
                 overkill = true;
             }
+
+
+
 
             Check.resolveFrenzyboard(dead, overkill);
             respawn(dead);
@@ -304,8 +471,6 @@ public class Turn {
         Server.update(player, "Hai finito il tuo turno!");
     }
 
-
-    //TODO ricordarsi di assegnare i punti aggiuntivi per le doublekill
 
     private static void pUpSelector(Player player, int index) {
 

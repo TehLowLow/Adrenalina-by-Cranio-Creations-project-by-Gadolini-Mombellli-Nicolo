@@ -79,8 +79,11 @@ public class Match extends Thread {
      */
     public void run() {
 
+
+
         chooseMap();
         chooseSkulls();
+        boolean terminator = chooseMode();
 
         /*
         inizializzo board
@@ -119,7 +122,37 @@ public class Match extends Thread {
         }
 
         chooseFirstPlayer();
-        chooseChampion();
+
+
+        //PARTITA CON TERMINATOR
+        if (terminator) {
+
+
+            //inizializzo il terminator
+            Board.setTerminator(new Player());
+            Board.getTerminator().setPlayerboard(new Playerboard());
+            Board.getTerminator().getPlayerboard().setFrenzyboard(false);
+            Board.getTerminator().getPlayerboard().setDamage(new CopyOnWriteArrayList<>());
+            Board.getTerminator().getPlayerboard().setMarker(new CopyOnWriteArrayList<>());
+            Board.getTerminator().getPlayerboard().setPlayerboardValue(new CopyOnWriteArrayList<>());
+            Board.getTerminator().getPlayerboard().getPlayerboardValue().add(8);
+            Board.getTerminator().getPlayerboard().getPlayerboardValue().add(6);
+            Board.getTerminator().getPlayerboard().getPlayerboardValue().add(4);
+            Board.getTerminator().getPlayerboard().getPlayerboardValue().add(2);
+            Board.getTerminator().getPlayerboard().getPlayerboardValue().add(1);
+            Board.getTerminator().getPlayerboard().getPlayerboardValue().add(1);
+            Board.getTerminator().setNickname("Terminator");
+            connectedPlayers.add(Board.getTerminator());
+
+        }
+
+
+
+
+
+        chooseChampion(terminator);
+
+
 
 
         Player lastPlayer = new Player();
@@ -129,10 +162,30 @@ public class Match extends Thread {
 
         for (Player player : connectedPlayers) {
 
-            Turn t = new Turn();
-            t.first(player);
-            Interaction.placeLoot();
-            Interaction.placeWeapons();
+
+            if (!terminator) {
+
+                Turn t = new Turn();
+                t.first(player);
+                Interaction.placeLoot();
+                Interaction.placeWeapons();
+
+            }
+
+
+            else{
+
+                if (!player.getNickname().equalsIgnoreCase("Terminator")){
+
+                    Turn t = new Turn();
+                    t.firstTerminator(player);
+                    Interaction.placeLoot();
+                    Interaction.placeWeapons();
+
+                }
+
+
+            }
         }
 
 
@@ -140,22 +193,48 @@ public class Match extends Thread {
 
             for (Player player : connectedPlayers) {
 
-                Turn t = new Turn();
-                finish = checkFrenzy();
-                if (finish) {
-                    continue;
+                if (!terminator) {
+                    Turn t = new Turn();
+                    finish = checkFrenzy();
+                    if (finish) {
+                        continue;
+                    }
+                    t.standard(player, false);
+                    Interaction.placeLoot();
+                    Interaction.placeWeapons();
+                    lastPlayer = player;
                 }
-                t.standard(player);
-                Interaction.placeLoot();
-                Interaction.placeWeapons();
-                lastPlayer = player;
 
+                else{
+
+                    if(!player.getNickname().equalsIgnoreCase("Terminator")){
+
+                        Turn t = new Turn();
+                        finish = checkFrenzy();
+                        if (finish) {
+                            continue;
+                        }
+                        t.standard(player, true);
+                        Interaction.placeLoot();
+                        Interaction.placeWeapons();
+                        lastPlayer = player;
+
+                    }
+
+                }
             }
 
         }
 
 
         //Devo riordinare l'array connectedPlayers in modo tale da avere l'ordine di esecuzione giusto.
+
+        if(terminator){
+            //se sono in modalità terminator lo tolgo prima di riordinare l'array
+            Board.setTerminator(connectedPlayers.get(connectedPlayers.size()-1));
+            connectedPlayers.remove(connectedPlayers.size()-1);
+
+        }
 
         CopyOnWriteArrayList<Player> newOrder = new CopyOnWriteArrayList<>();
 
@@ -186,6 +265,14 @@ public class Match extends Thread {
 
         connectedPlayers = newOrder;
 
+
+        //se sono in modalità terminator lo riaggiungo alla fine
+        if(terminator){
+
+            connectedPlayers.add(Board.getTerminator());
+
+        }
+
         //Controllo quali giocatori devono cambiare playerboard
 
         for (Player player : connectedPlayers) {
@@ -204,7 +291,16 @@ public class Match extends Thread {
             }
 
             Turn t = new Turn();
-            t.frenzy(player, afterFirstPlayer);
+
+            if(!terminator) {
+                t.frenzy(player, afterFirstPlayer, false);
+            }
+
+            else{
+
+                t.frenzy(player, afterFirstPlayer, true);
+
+            }
 
         }
 
@@ -388,7 +484,7 @@ public class Match extends Thread {
     }
 
 
-    public static void chooseChampion() {
+    public static void chooseChampion(boolean isTerminator) {
 
         /*
         QUA VIENE INIZIALIZZATA LA PLAYERBOARD
@@ -403,6 +499,9 @@ public class Match extends Thread {
         champions.add("Sprog");
 
         for (Player player : connectedPlayers) {
+            if(player.getNickname().equalsIgnoreCase("Terminator")){
+                continue;
+            }
 
             String toSend = Message.choseChampion(champions);
 
@@ -428,6 +527,47 @@ public class Match extends Thread {
                 }
 
             }
+
+
+        }
+
+
+        if (isTerminator){
+
+            Player terminator = connectedPlayers.get(connectedPlayers.size()-1);
+            Player firstPlayer = connectedPlayers.get(0);
+
+            String campioneTerminator = updateWithAnswer(firstPlayer, "Scegli un campione da assegnare al Terminator\n" + Message.choseChampion(champions));
+            boolean scelto = false;
+
+            for (String champion:champions){
+                if (champion.equalsIgnoreCase(campioneTerminator)){
+                    terminator.getPlayerboard().setChampionName(champion);
+                    scelto = true;
+                    champions.remove(champion);
+
+                }
+            }
+
+
+            while (!scelto){
+
+                update(firstPlayer, Message.inputError());
+                campioneTerminator = updateWithAnswer(firstPlayer, "Scegli un campione da assegnare al Terminator\n" + Message.choseChampion(champions));
+
+
+                for (String champion:champions){
+                    if (champion.equalsIgnoreCase(campioneTerminator)){
+                        terminator.getPlayerboard().setChampionName(champion);
+                        champions.remove(champion);
+                        scelto = true;
+
+
+                    }
+                }
+
+            }
+
         }
 
 
@@ -443,6 +583,58 @@ public class Match extends Thread {
             update(player, "Il primo giocatore è " + connectedPlayers.get(0).getNickname());
 
         }
+
+    }
+
+    public static boolean chooseMode(){
+
+        if (connectedPlayers.size() == 5){
+
+            return false;
+
+        }
+
+        CopyOnWriteArrayList<Integer> preferenze = new CopyOnWriteArrayList<>();
+        preferenze.add(0);
+        preferenze.add(0);
+
+        for (Player player:connectedPlayers){
+
+            String choice = updateWithAnswer(player, "Vuoi usare la modalità classica o il terminator? (Rispondi classica/terminator)");
+
+            while (!InputCheck.chooseTerminator(choice)){
+
+                update(player, Message.inputError());
+                choice = updateWithAnswer(player, "Vuoi usare la modalità classica o il terminator? (Rispondi classica/terminator)");
+
+
+            }
+
+            if (choice.equalsIgnoreCase("classica")){
+
+                preferenze.set(0, preferenze.get(0) + 1);
+
+            }
+
+            if (choice.equalsIgnoreCase("terminator")){
+
+                preferenze.set(1, preferenze.get(1) + 1);
+
+            }
+
+
+
+
+
+        }
+
+        if (preferenze.get(1) >= preferenze.get(0)){
+
+            return true;
+
+        }
+
+        return false;
 
     }
 

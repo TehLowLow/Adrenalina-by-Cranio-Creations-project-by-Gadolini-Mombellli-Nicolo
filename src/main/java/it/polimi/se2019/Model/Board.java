@@ -76,6 +76,8 @@ public class Board implements java.io.Serializable{
 
     private static Cell limbo;
 
+    private static Player terminator;
+
     /*
      * ----------------------METHODS----------------------
      * ----------------------------------------------------
@@ -171,6 +173,10 @@ public class Board implements java.io.Serializable{
 
     public static CopyOnWriteArrayList<Integer> getMortalBlowTrackValue(){
         return mortalBlowTrackValue;
+    }
+
+    public static Player getTerminator(){
+        return terminator;
     }
 
     /*
@@ -273,6 +279,10 @@ public class Board implements java.io.Serializable{
         mortalBlowTrackValue = mBlowTrackValue;
     }
 
+    public static void setTerminator(Player player){
+        terminator = player;
+    }
+
     /*
      *  ---------------------- SHUFFLING METHODS
      *  Methods that perform a shuffle of a given deck.
@@ -303,6 +313,7 @@ public class Board implements java.io.Serializable{
     public static void shuffleWeaponDeck(){
         Collections.shuffle(weaponDeck);
     }
+
 
 
 

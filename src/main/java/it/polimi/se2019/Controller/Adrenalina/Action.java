@@ -2,6 +2,8 @@ package it.polimi.se2019.Controller.Adrenalina;
 
 import it.polimi.se2019.Controller.Adrenalina.Exceptions.EmptyDeckException;
 import it.polimi.se2019.Controller.Adrenalina.Exceptions.LimitPowerUpException;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
+import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
@@ -10,8 +12,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Model.Connection.DOOR;
 import static it.polimi.se2019.Model.Connection.FREE;
-import static it.polimi.se2019.Network.Server.update;
-import static it.polimi.se2019.Network.Server.updateWithAnswer;
+import static it.polimi.se2019.Network.Server.*;
 
 
 /**
@@ -237,6 +238,80 @@ public class Action {
     }
 
     /**
+     * Perform an action in terminator mode
+     *
+     * @param player is who performs the action
+     * @param last   is true if the player has already done his 2 actions, else otherwise
+     */
+
+    public static void performTerminator(Player player, boolean last) {
+
+        if (!last) {
+
+            String useTerminator = updateWithAnswer(player, "Vuoi effettuare ora l'azione Terminator?");
+            while (!InputCheck.correctYesNo(useTerminator)) {
+
+                update(player, Message.inputError());
+                useTerminator = updateWithAnswer(player, "Vuoi effettuare ora l'azione Terminator?");
+
+            }
+
+            if (!InputCheck.yesOrNo(useTerminator)) {
+                return;
+            }
+
+        }
+
+        String move = updateWithAnswer(player, "Vuoi muovere il Terminator di una cella?");
+        while (!InputCheck.correctYesNo(move)) {
+
+            update(player, Message.inputError());
+            move = updateWithAnswer(player, "Vuoi muovere il Terminator di una cella?");
+
+        }
+
+        if (InputCheck.yesOrNo(move)) {
+
+            String response = "";
+            boolean correct = false;
+
+            while(!correct) {
+
+                reachable = Check.moveManager(connectedPlayers.get(connectedPlayers.size() - 1), 1);
+                response = updateWithAnswer(player, Message.scegliCella(reachable));
+
+                try {
+                    cell = InputCheck.numberCheck(response);
+                } catch (NumberFormatException e) {
+                    update(player, Message.inputError());
+                    updateWithAnswer(player, Message.scegliCella(reachable));
+                }
+
+
+                if (cell >= 0 && cell < reachable.size()) {
+
+                    player.setPosition(reachable.get(cell));
+                    update(player, Message.movedTo());
+                    correct = true;
+
+                } else {
+                    update(player, Message.inputError());
+                    updateWithAnswer(player, Message.scegliCella(reachable));
+                }
+
+            }
+
+
+        }
+
+
+        shotTerminator(player);
+
+
+    }
+
+
+    /**
      * This method allows a player to reload a weapon.
      *
      * @param player the player that wants to perform the reload action.
@@ -322,7 +397,9 @@ public class Action {
 
         while (!correct) {
 
+
             s = updateWithAnswer(player, Message.stepNumber());
+
 
             try {
                 steps = InputCheck.numberCheck(s);
@@ -483,7 +560,6 @@ public class Action {
 
                 Interaction.pay(player, chosenWeapon.getAlternativeEffectCost());
                 chosenWeapon.getAlternativeEffect().applyEffect(player, chosenWeapon.getAlternativeEffect().getTargets(player));
-
 
 
             }
@@ -754,9 +830,9 @@ public class Action {
         CopyOnWriteArrayList<Weapon> usableWeapons = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<Weapon> playersWeapons = player.getPlayerboard().getWeapons();
 
-        for (Weapon weapon:playersWeapons){
+        for (Weapon weapon : playersWeapons) {
 
-            if (weapon.getBaseEffect().hasTargets(player) && weapon.isLoaded()){
+            if (weapon.getBaseEffect().hasTargets(player) && weapon.isLoaded()) {
 
                 usableWeapons.add(weapon);
 
@@ -764,17 +840,15 @@ public class Action {
 
         }
 
-        if (!usableWeapons.isEmpty()){
+        if (!usableWeapons.isEmpty()) {
 
             reload(player);
 
-        }
+        } else {
 
-        else{
+            for (Weapon weapon : playersWeapons) {
 
-            for (Weapon weapon:playersWeapons){
-
-                if (weapon.getBaseEffect().hasTargets(player) && Check.affordable(player, weapon.getRechargeCost())){
+                if (weapon.getBaseEffect().hasTargets(player) && Check.affordable(player, weapon.getRechargeCost())) {
 
                     usableWeapons.add(weapon);
 
@@ -785,8 +859,6 @@ public class Action {
             reloadFrenzy(player, usableWeapons);
 
         }
-
-
 
 
         shot(player);
@@ -835,9 +907,9 @@ public class Action {
         CopyOnWriteArrayList<Weapon> usableWeapons = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<Weapon> playersWeapons = player.getPlayerboard().getWeapons();
 
-        for (Weapon weapon:playersWeapons){
+        for (Weapon weapon : playersWeapons) {
 
-            if (weapon.getBaseEffect().hasTargets(player) && weapon.isLoaded()){
+            if (weapon.getBaseEffect().hasTargets(player) && weapon.isLoaded()) {
 
                 usableWeapons.add(weapon);
 
@@ -845,17 +917,15 @@ public class Action {
 
         }
 
-        if (!usableWeapons.isEmpty()){
+        if (!usableWeapons.isEmpty()) {
 
             reload(player);
 
-        }
+        } else {
 
-        else{
+            for (Weapon weapon : playersWeapons) {
 
-            for (Weapon weapon:playersWeapons){
-
-                if (weapon.getBaseEffect().hasTargets(player) && Check.affordable(player, weapon.getRechargeCost())){
+                if (weapon.getBaseEffect().hasTargets(player) && Check.affordable(player, weapon.getRechargeCost())) {
 
                     usableWeapons.add(weapon);
 
@@ -866,10 +936,6 @@ public class Action {
             reloadFrenzy(player, usableWeapons);
 
         }
-
-
-
-
 
 
         shot(player);
@@ -1214,11 +1280,11 @@ public class Action {
         }
     }
 
-    private static void reloadFrenzy(Player player, CopyOnWriteArrayList<Weapon> usableWeapons){
+    private static void reloadFrenzy(Player player, CopyOnWriteArrayList<Weapon> usableWeapons) {
 
         String chosenWeapon = updateWithAnswer(player, Message.scegliArmaRF(usableWeapons));
 
-        while (!InputCheck.correctWeaponRF(chosenWeapon, usableWeapons)){
+        while (!InputCheck.correctWeaponRF(chosenWeapon, usableWeapons)) {
 
             update(player, Message.inputError());
             chosenWeapon = updateWithAnswer(player, Message.scegliArmaRF(usableWeapons));
@@ -1227,9 +1293,9 @@ public class Action {
 
         Weapon chosen = new Weapon();
 
-        for (Weapon weapon:usableWeapons){
+        for (Weapon weapon : usableWeapons) {
 
-            if (weapon.getName().equalsIgnoreCase(chosenWeapon)){
+            if (weapon.getName().equalsIgnoreCase(chosenWeapon)) {
 
                 chosen = weapon;
                 break;
@@ -1246,7 +1312,7 @@ public class Action {
     }
 
 
-    private static void selectEnhancedFrenzyShotMove(Player player){
+    private static void selectEnhancedFrenzyShotMove(Player player) {
 
 
         String sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
@@ -1263,9 +1329,9 @@ public class Action {
         boolean canShot = false;
         boolean canDoSecondMove = false;
 
-        while(!canShot && !canDoSecondMove){
+        while (!canShot && !canDoSecondMove) {
 
-            if (sceltaMovimento.equalsIgnoreCase("stop")){
+            if (sceltaMovimento.equalsIgnoreCase("stop")) {
 
                 for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
@@ -1291,9 +1357,9 @@ public class Action {
             }
 
 
-            if (sceltaMovimento.equalsIgnoreCase("su")){
+            if (sceltaMovimento.equalsIgnoreCase("su")) {
 
-                if (player.getPosition().getUpConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getUpConnection().getType().equalsIgnoreCase(FREE)){
+                if (player.getPosition().getUpConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getUpConnection().getType().equalsIgnoreCase(FREE)) {
 
                     player.setPosition(player.getPosition().getUpConnection().getConnectedCell());
 
@@ -1303,13 +1369,13 @@ public class Action {
 
                     reachableCells.add(fakePosition);
 
-                    for (Cell cell:reachableCells){
+                    for (Cell cell : reachableCells) {
 
                         player.setPosition(cell);
 
-                        for (Weapon weapon:player.getPlayerboard().getWeapons()){
+                        for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))){
+                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                                 canDoSecondMove = true;
 
@@ -1320,21 +1386,18 @@ public class Action {
                             }
 
 
-
                         }
 
 
                     }
 
-                    if (canDoSecondMove){
+                    if (canDoSecondMove) {
 
                         update(player, "Ti sei spostato in alto di una cella!");
 
                         selectShotMove(player);
 
-                    }
-
-                    else{
+                    } else {
 
                         player.setPosition(position);
                         update(player, "Non puoi sparare");
@@ -1344,11 +1407,7 @@ public class Action {
                     }
 
 
-
-                }
-
-
-                else{
+                } else {
 
                     update(player, "Cella non valida!");
                     sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
@@ -1359,9 +1418,9 @@ public class Action {
 
             }
 
-            if (sceltaMovimento.equalsIgnoreCase("giu")){
+            if (sceltaMovimento.equalsIgnoreCase("giu")) {
 
-                if (player.getPosition().getDownConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getDownConnection().getType().equalsIgnoreCase(FREE)){
+                if (player.getPosition().getDownConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getDownConnection().getType().equalsIgnoreCase(FREE)) {
 
                     player.setPosition(player.getPosition().getDownConnection().getConnectedCell());
 
@@ -1371,13 +1430,13 @@ public class Action {
 
                     reachableCells.add(fakePosition);
 
-                    for (Cell cell:reachableCells){
+                    for (Cell cell : reachableCells) {
 
                         player.setPosition(cell);
 
-                        for (Weapon weapon:player.getPlayerboard().getWeapons()){
+                        for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))){
+                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                                 canDoSecondMove = true;
 
@@ -1388,21 +1447,18 @@ public class Action {
                             }
 
 
-
                         }
 
 
                     }
 
-                    if (canDoSecondMove){
+                    if (canDoSecondMove) {
 
                         update(player, "Ti sei spostato in basso di una cella!");
 
                         selectShotMove(player);
 
-                    }
-
-                    else{
+                    } else {
 
                         player.setPosition(position);
                         update(player, "Non puoi sparare");
@@ -1412,11 +1468,7 @@ public class Action {
                     }
 
 
-
-                }
-
-
-                else{
+                } else {
 
                     update(player, "Cella non valida!");
                     sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
@@ -1428,11 +1480,9 @@ public class Action {
             }
 
 
+            if (sceltaMovimento.equalsIgnoreCase("sinistra")) {
 
-
-            if (sceltaMovimento.equalsIgnoreCase("sinistra")){
-
-                if (player.getPosition().getLeftConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getLeftConnection().getType().equalsIgnoreCase(FREE)){
+                if (player.getPosition().getLeftConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getLeftConnection().getType().equalsIgnoreCase(FREE)) {
 
                     player.setPosition(player.getPosition().getLeftConnection().getConnectedCell());
 
@@ -1442,13 +1492,13 @@ public class Action {
 
                     reachableCells.add(fakePosition);
 
-                    for (Cell cell:reachableCells){
+                    for (Cell cell : reachableCells) {
 
                         player.setPosition(cell);
 
-                        for (Weapon weapon:player.getPlayerboard().getWeapons()){
+                        for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))){
+                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                                 canDoSecondMove = true;
 
@@ -1459,21 +1509,18 @@ public class Action {
                             }
 
 
-
                         }
 
 
                     }
 
-                    if (canDoSecondMove){
+                    if (canDoSecondMove) {
 
                         update(player, "Ti sei spostato a sinistra di una cella!");
 
                         selectShotMove(player);
 
-                    }
-
-                    else{
+                    } else {
 
                         player.setPosition(position);
                         update(player, "Non puoi sparare");
@@ -1483,11 +1530,7 @@ public class Action {
                     }
 
 
-
-                }
-
-
-                else{
+                } else {
 
                     update(player, "Cella non valida!");
                     sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
@@ -1499,9 +1542,9 @@ public class Action {
             }
 
 
-            if (sceltaMovimento.equalsIgnoreCase("destra")){
+            if (sceltaMovimento.equalsIgnoreCase("destra")) {
 
-                if (player.getPosition().getRightConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getRightConnection().getType().equalsIgnoreCase(FREE)){
+                if (player.getPosition().getRightConnection().getType().equalsIgnoreCase(DOOR) || player.getPosition().getRightConnection().getType().equalsIgnoreCase(FREE)) {
 
                     player.setPosition(player.getPosition().getRightConnection().getConnectedCell());
 
@@ -1511,13 +1554,13 @@ public class Action {
 
                     reachableCells.add(fakePosition);
 
-                    for (Cell cell:reachableCells){
+                    for (Cell cell : reachableCells) {
 
                         player.setPosition(cell);
 
-                        for (Weapon weapon:player.getPlayerboard().getWeapons()){
+                        for (Weapon weapon : player.getPlayerboard().getWeapons()) {
 
-                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))){
+                            if (weapon.getBaseEffect().hasTargets(player) || (weapon.getAlternativeEffect() != null && weapon.getAlternativeEffect().hasTargets(player))) {
 
                                 canDoSecondMove = true;
 
@@ -1528,21 +1571,18 @@ public class Action {
                             }
 
 
-
                         }
 
 
                     }
 
-                    if (canDoSecondMove){
+                    if (canDoSecondMove) {
 
                         update(player, "Ti sei spostato a destra di una cella!");
 
                         selectShotMove(player);
 
-                    }
-
-                    else{
+                    } else {
 
                         player.setPosition(position);
                         update(player, "Non puoi sparare");
@@ -1552,11 +1592,7 @@ public class Action {
                     }
 
 
-
-                }
-
-
-                else{
+                } else {
 
                     update(player, "Cella non valida!");
                     sceltaMovimento = updateWithAnswer(player, Message.scegliMovimento());
@@ -1573,6 +1609,37 @@ public class Action {
 
     }
 
+    private static void shotTerminator(Player player) {
+
+        CopyOnWriteArrayList<Player> visible = Check.visiblePlayers(connectedPlayers.get(connectedPlayers.size() - 1));
+
+        if (visible.isEmpty()) {
+
+            return;
+
+        }
+
+        for (Player target : visible) {
+
+            if (target.equals(player)) {
+
+                visible.remove(target);
+
+            }
+
+        }
+
+        Player target = ChoosePlayer.one(player, visible);
+
+        Damage.giveDamage(1, connectedPlayers.get(connectedPlayers.size()-1), target);
+
+        if (Board.getTerminator().getPlayerboard().getDamage().size() >= 6) {
+
+            Damage.giveMarker(1, Board.getTerminator(), target);
+
+        }
+
+    }
 
 
 }
