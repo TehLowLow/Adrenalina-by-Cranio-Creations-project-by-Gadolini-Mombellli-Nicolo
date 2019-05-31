@@ -158,6 +158,7 @@ public class GUI extends Application implements Runnable {
 
             Stage stage = new Stage();
             stage.setScene(scene);
+            stage.setTitle("Adrenalina: messaggio dal server!");
             stage.show();
 
 
