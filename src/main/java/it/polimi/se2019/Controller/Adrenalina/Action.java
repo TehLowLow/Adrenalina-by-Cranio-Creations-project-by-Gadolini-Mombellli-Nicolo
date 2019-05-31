@@ -244,7 +244,7 @@ public class Action {
      * @param last   is true if the player has already done his 2 actions, else otherwise
      */
 
-    public static void performTerminator(Player player, boolean last) {
+    public static boolean performTerminator(Player player, boolean last) {
 
         if (!last) {
 
@@ -257,7 +257,7 @@ public class Action {
             }
 
             if (!InputCheck.yesOrNo(useTerminator)) {
-                return;
+                return false;
             }
 
         }
@@ -290,7 +290,7 @@ public class Action {
 
                 if (cell >= 0 && cell < reachable.size()) {
 
-                    player.setPosition(reachable.get(cell));
+                    connectedPlayers.get(connectedPlayers.size()-1).setPosition(reachable.get(cell));
                     update(player, Message.movedTo());
                     correct = true;
 
@@ -306,6 +306,7 @@ public class Action {
 
 
         shotTerminator(player);
+        return true;
 
 
     }
