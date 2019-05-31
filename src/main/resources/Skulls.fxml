@@ -39,7 +39,7 @@
         <Image url="@assets/Placeable/GreySkull.png" />
       </image>
     </ImageView>
-    <ImageView fx:id="im5" fitHeight="125.0" fitWidth="96.77419662475586" layoutX="68.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" visible="false">
+    <ImageView fx:id="im5" fitHeight="125.0" fitWidth="96.77419662475586" layoutX="100.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
         <Image url="@assets/Placeable/RedSkull.png" />
       </image>
@@ -49,7 +49,7 @@
         <Image url="@assets/Placeable/GreySkull.png" />
       </image>
     </ImageView>
-    <ImageView id="" fx:id="im6" fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="252.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" visible="false">
+    <ImageView id="" fx:id="im6" fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="300.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
         <Image url="@assets/Placeable/RedSkull.png" />
       </image>
@@ -59,7 +59,7 @@
         <Image url="@assets/Placeable/GreySkull.png" />
       </image>
     </ImageView>
-    <ImageView id="" fx:id="im7" fitHeight="125.0" fitWidth="96.77419662475586" layoutX="543.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" visible="false">
+    <ImageView id="" fx:id="im7" fitHeight="125.0" fitWidth="96.77419662475586" layoutX="500.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
         <Image url="@assets/Placeable/RedSkull.png" />
       </image>
@@ -69,7 +69,7 @@
         <Image url="@assets/Placeable/GreySkull.png" />
       </image>
     </ImageView>
-    <ImageView id="" fx:id="im8" fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="739.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" visible="false">
+    <ImageView id="" fx:id="im8" fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="700.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
         <Image url="@assets/Placeable/RedSkull.png" />
       </image>
