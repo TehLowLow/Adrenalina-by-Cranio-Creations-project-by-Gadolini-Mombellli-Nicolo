@@ -36,6 +36,7 @@ public class GUI extends Application implements Runnable {
 
     }
 
+    //----- METODI DI AGGIORNAMENTO -----//
 
     public void initGUI(){
 
@@ -141,14 +142,11 @@ public class GUI extends Application implements Runnable {
 
     }
 
+    public void showStandardDialog(String message){
 
 
-    public void run() {
-
-        launch(null);
 
     }
-
 
     public void update(String message) {
 
@@ -170,6 +168,13 @@ public class GUI extends Application implements Runnable {
         }
 
     }
+
+    public void run() {
+
+        launch(null);
+
+    }
+
 
 
 }
