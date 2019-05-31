@@ -19,22 +19,22 @@
         <Font name="Space Ranger" size="18.0" />
       </font>
     </Text>
-    <ImageView fitHeight="257.0" fitWidth="342.66665499550953" layoutX="53.0" layoutY="114.0" onMouseClicked="#chosen1" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="" fx:id="map1" fitHeight="257.0" fitWidth="342.66665499550953" layoutX="53.0" layoutY="114.0" onMouseClicked="#chosen1" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@assets/Maps/map1_final.png" />
       </image>
     </ImageView>
-    <ImageView fitHeight="257.0" fitWidth="342.66665499550953" layoutX="437.0" layoutY="114.0" onMouseClicked="#chosen2" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="" fx:id="map2" fitHeight="257.0" fitWidth="342.66665499550953" layoutX="437.0" layoutY="114.0" onMouseClicked="#chosen2" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@assets/Maps/map2_final.png" />
       </image>
     </ImageView>
-    <ImageView fitHeight="257.0" fitWidth="342.66665499550953" layoutX="53.0" layoutY="392.0" onMouseClicked="#chosen3" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="" fx:id="map3" fitHeight="257.0" fitWidth="342.66665499550953" layoutX="53.0" layoutY="392.0" onMouseClicked="#chosen3" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@assets/Maps/map3_final.png" />
       </image>
     </ImageView>
-    <ImageView fitHeight="257.0" fitWidth="342.66665499550953" layoutX="437.0" layoutY="392.0" onMouseClicked="#chosen4" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="" fx:id="map4" fitHeight="257.0" fitWidth="342.66665499550953" layoutX="437.0" layoutY="392.0" onMouseClicked="#chosen4" pickOnBounds="true" preserveRatio="true">
       <image>
         <Image url="@assets/Maps/map4_final.png" />
       </image>

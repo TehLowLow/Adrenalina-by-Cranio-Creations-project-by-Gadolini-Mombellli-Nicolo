@@ -9,7 +9,7 @@
 
 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="920.0" SplitPane.resizableWithParent="false" styleClass="fontstyles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.SkullController">
   <children>
-    <ImageView fitHeight="500.0" fitWidth="920.0" layoutX="0.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="false">
+    <ImageView fitHeight="500.0" fitWidth="920.0" layoutX="0.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="false" visible="true">
       <image>
         <Image url="@assets/cover/background.jpg" />
       </image>
@@ -33,22 +33,42 @@
         <Font name="Space Ranger" size="20.0" />
       </font>
     </Button>
-    <ImageView fitHeight="125.0" fitWidth="96.77419662475586" layoutX="68.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="" fitHeight="125.0" fitWidth="96.77419662475586" layoutX="68.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/GreySkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="im5" fitHeight="125.0" fitWidth="96.77419662475586" layoutX="68.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
         <Image url="@assets/Placeable/RedSkull.png" />
       </image>
     </ImageView>
-    <ImageView fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="251.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="" fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="251.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/GreySkull.png" />
+      </image>
+    </ImageView>
+    <ImageView id="" fx:id="im6" fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="252.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
         <Image url="@assets/Placeable/RedSkull.png" />
       </image>
     </ImageView>
-    <ImageView fitHeight="125.0" fitWidth="96.77419662475586" layoutX="543.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="" fitHeight="125.0" fitWidth="96.77419662475586" layoutX="543.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/GreySkull.png" />
+      </image>
+    </ImageView>
+    <ImageView id="" fx:id="im7" fitHeight="125.0" fitWidth="96.77419662475586" layoutX="543.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
         <Image url="@assets/Placeable/RedSkull.png" />
       </image>
     </ImageView>
-    <ImageView fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="739.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+    <ImageView id="" fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="739.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/GreySkull.png" />
+      </image>
+    </ImageView>
+    <ImageView id="" fx:id="im8" fitHeight="125.00001478195142" fitWidth="96.77420806884766" layoutX="739.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true" visible="false">
       <image>
         <Image url="@assets/Placeable/RedSkull.png" />
       </image>

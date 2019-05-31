@@ -36,6 +36,7 @@ public class GUI extends Application implements Runnable {
 
     }
 
+    //----- METODI DI AGGIORNAMENTO -----//
 
     public void initGUI(){
 
@@ -141,14 +142,32 @@ public class GUI extends Application implements Runnable {
 
     }
 
+    public void showCommonDialog(String message){
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/commonDialog.fxml"));
+            AnchorPane commonDialog = (AnchorPane) loader.load();
+
+            CommonDialogController commonDialogController = loader.getController();
+
+            commonDialogController.setText(message);
+
+            Scene scene = new Scene(commonDialog);
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Adrenalina: messaggio dal server!");
+            stage.show();
 
 
-    public void run() {
-
-        launch(null);
+        }catch(Exception e){
+            System.out.println("Eccezione.");
+            e.printStackTrace();
+        }
 
     }
-
 
     public void update(String message) {
 
@@ -166,10 +185,17 @@ public class GUI extends Application implements Runnable {
 
 
         else{
-            System.out.println("Situazione non gestita dalla GUI. Terminare.");
+            showCommonDialog(message);
         }
 
     }
+
+    public void run() {
+
+        launch(null);
+
+    }
+
 
 
 }

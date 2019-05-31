@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="502.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.CommonDialogController">
+  <children>
+    <ImageView fitHeight="338.71978471691403" fitWidth="502.0001220703125" layoutX="0.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/cover/cover.png" />
+      </image>
+    </ImageView>
+    <Button fx:id="okButton" layoutX="194.0" layoutY="253.0" mnemonicParsing="false" onAction="#close" prefHeight="54.0" prefWidth="115.0" text="Ok">
+      <font>
+        <Font name="System Bold" size="23.0" />
+      </font>
+    </Button>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa6" height="130.0" layoutX="14.0" layoutY="96.0" stroke="BLACK" strokeType="INSIDE" width="474.0001220703125" />
+    <Label fx:id="label" layoutX="21.0" layoutY="96.0" prefHeight="130.0" prefWidth="461.0" text="" textAlignment="LEFT" wrapText="true">
+      <font>
+        <Font name="System Bold" size="16.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

@@ -98,6 +98,7 @@ public class SocketClient extends Client implements Runnable {
 
                     if(useGui){
                         System.out.println(received);
+                        Platform.runLater(()->((GUI) gui).update(received));
                     }
 
                     else {
