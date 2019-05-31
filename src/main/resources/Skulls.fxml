@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="920.0" SplitPane.resizableWithParent="false" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.SkullController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="920.0" SplitPane.resizableWithParent="false" styleClass="fontstyles.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.SkullController">
   <children>
     <ImageView fitHeight="500.0" fitWidth="920.0" layoutX="0.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="false">
       <image>
@@ -16,7 +16,8 @@
     </ImageView>
     <ToggleButton fx:id="fivebutton" layoutX="65.0" layoutY="266.0" mnemonicParsing="false" onAction="#chose5" prefHeight="35.0" prefWidth="100.0" text="5 teschi">
       <font>
-        <Font size="16.0" fx:id="x1" />
+        <Font size="16.0" fx:id="x1"
+              name = "Space Ranger"/>
       </font>
     </ToggleButton>
     <ToggleButton fx:id="sevenbutton" font="$x1" layoutX="541.0" layoutY="268.0" mnemonicParsing="false" onAction="#chose7" prefHeight="35.0" prefWidth="100.0" text="7 teschi" />
@@ -24,12 +25,12 @@
     <ToggleButton fx:id="eightbutton" font="$x1" layoutX="737.0" layoutY="268.0" mnemonicParsing="false" onAction="#chose8" prefHeight="35.0" prefWidth="100.0" text="8 teschi" />
     <Text fill="WHITE" fontSmoothingType="GRAY" layoutX="65.0" layoutY="46.0" strikethrough="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli con quanti teschi vuoi giocare:" underline="false">
       <font>
-        <Font name="Calibri Italic" size="52.0" fx:id="x2" />
+        <Font name="Space Ranger" size="38.0" fx:id="x2" />
       </font>
     </Text>
     <Button fx:id="okbutton" layoutX="374.0" layoutY="331.0" mnemonicParsing="false" onAction="#confirm" prefHeight="64.0" prefWidth="145.0" text="Conferma">
       <font>
-        <Font name="System Bold" size="20.0" />
+        <Font name="Space Ranger" size="20.0" />
       </font>
     </Button>
     <ImageView fitHeight="125.0" fitWidth="96.77419662475586" layoutX="68.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
