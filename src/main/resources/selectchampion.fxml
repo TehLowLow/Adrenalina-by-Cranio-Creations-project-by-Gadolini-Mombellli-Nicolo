@@ -61,7 +61,7 @@
         <Font name="Space Ranger" size="21.0" />
       </font>
     </Button>
-    <Text fill="WHITE" layoutX="66.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0"  text="Seleziona il tuo campione!" wrappingWidth="580.0">
+    <Text fill="WHITE" layoutX="66.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleziona il tuo campione!" wrappingWidth="580.0">
       <font>
         <Font name="Space Ranger" size="38.0" />
       </font>
