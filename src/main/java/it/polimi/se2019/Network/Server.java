@@ -121,7 +121,7 @@ public class Server {
         lobbyTimer = scanner.nextInt();
 
 
-       /* //Avvio il logger di rmi
+       /*//Avvio il logger di rmi
         Runnable loggerRMI = new RMILogger();
         Thread loginRMI = new Thread(loggerRMI);
         loginRMI.start();*/
@@ -136,7 +136,7 @@ public class Server {
         }
 
 
-      /*  //avvio il server di gioco
+       /* //avvio il server di gioco
         Runnable gameServer = new RMIServer();
         Thread game = new Thread(gameServer);
         game.start();*/
@@ -309,9 +309,6 @@ public class Server {
         return clientPort;
 
     }
-
-
-
 
     /*
     Per gestire le connessioni devo ricordarmi di inserire nel daemon thread che controlla i connessi una regola tale

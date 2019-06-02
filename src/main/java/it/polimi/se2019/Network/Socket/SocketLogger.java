@@ -146,13 +146,14 @@ public class SocketLogger implements Logger, Runnable {
 
 
         //Se si è gia connesso ma non compare fra i connessi, gli permetto di riconnettersi
-        if (registrations.get(userName) != null && passWord.equals(registrations.get(userName))) {
+        if (registrations.get(userName) != null && passWord.equals(registrations.get(userName)) && matchStarted) {
 
             try {
                 out.writeUTF("Bentornato " + userName);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
             return true;
 
 
@@ -160,7 +161,7 @@ public class SocketLogger implements Logger, Runnable {
 
 
             try {
-                out.writeUTF("Password errata!");
+                out.writeUTF("Credenziali errate!");
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -205,9 +206,6 @@ public class SocketLogger implements Logger, Runnable {
     }
 
 
-
-
-
 /*
 
 Login server si avvia e avvia una thread pool di 5 logger, i logger come concorrenza avranno solamente il metodo che fa
@@ -224,3 +222,6 @@ avviato, ancora prima di aprire le connessioni ai logger).
 
 
 //TODO 1, 2: vedi todo di RMILogger
+
+
+//TODO: testare disconnessioni prima e dopo start del match

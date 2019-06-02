@@ -48,6 +48,8 @@ public class Manager extends Thread {
         if (!matchStarted) {
 
             connectedPlayers.remove(toPoll);
+            registrations.remove(toPoll.getNickname());
+
 
         }
 

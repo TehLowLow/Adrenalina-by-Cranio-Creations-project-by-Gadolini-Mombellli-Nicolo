@@ -22,7 +22,7 @@ public class SocketClient extends Client implements Runnable {
     private static Socket client;
     private int gamePort;
     private int localPort;
-    private byte[] address ={127,0,0,1} ;//{127, 0, 0, 1};
+    private byte[] address ={(byte)192,(byte)168,0,(byte)202} ;//{127, 0, 0, 1};
     private int signal;
 
 
@@ -145,7 +145,7 @@ public class SocketClient extends Client implements Runnable {
 
             try {
 
-                client = new Socket("localhost", LOGINSOCKETPORT); //"localhost"-------> IP del server remoto per login LAN
+                client = new Socket("Inserire qua nome del pc server", LOGINSOCKETPORT); //"localhost"-------> IP del server remoto per login LAN
                 connected = true;
 
             } catch (ConnectException e) {
@@ -153,7 +153,9 @@ public class SocketClient extends Client implements Runnable {
                 System.err.println("ritento la connessione");
 
             } catch (Exception e) {
+
                 e.printStackTrace();
+
 
             }
         }
@@ -168,8 +170,8 @@ public class SocketClient extends Client implements Runnable {
         while (!connected) {
 
             try {
-                InetAddress gameserver =  InetAddress.getByAddress(address); //   InetAddress.getLocalHost();
-                client = new Socket("localhost", SOCKETPORT, gameserver, localPort); // "192.168.0.202" ----> IP del server remoto per game LAN
+                InetAddress gameserver = InetAddress.getLocalHost();
+                client = new Socket("Inserire qua nome del pc server", SOCKETPORT, gameserver, localPort); // IP remoto, port remota, ip locale, port locale.
                 connected = true;
             } catch (Exception e) {
                 e.printStackTrace();
@@ -217,4 +219,8 @@ public class SocketClient extends Client implements Runnable {
     }
 }
 
-//TODO le righe marcate con todo sono modificate da localhost a ip LAN.
+//Per connettersi il codice funziona, serve solo controllare che il pc abbia:
+//1) la scheda di rete connessa alla lan come primaria, e si nota debuggando connect game, se il valore che becca il getlocalhost non combacia sistemare
+//2) impostando la rete come privata windows setta il pc come visibile nella lan
+//3) l' hostname sostituisce l' ip, meglio come soluzione dinamica.
+//4) molti problemi spariscono con del buon tinkering nel pannello di rete e di schede di rete.
