@@ -542,6 +542,7 @@ public class Action {
         else {
 
             String effettoScelto = updateWithAnswer(player, Message.scegliBaseAlternativo());
+            boolean done = false;
 
             while (!InputCheck.correctBasicOrAlternative(effettoScelto)) {
 
@@ -551,17 +552,32 @@ public class Action {
 
             }
 
-            if (effettoScelto.equalsIgnoreCase("base")) {
+            while (!done){
 
-                chosenWeapon.getBaseEffect().applyEffect(player, chosenWeapon.getBaseEffect().getTargets(player));
+                if (effettoScelto.equalsIgnoreCase("base") && chosenWeapon.getBaseEffect().hasTargets(player)) {
 
-            }
+                    chosenWeapon.getBaseEffect().applyEffect(player, chosenWeapon.getBaseEffect().getTargets(player));
+                    done = true;
+                    continue;
 
-            if (effettoScelto.equalsIgnoreCase("alternativo")) {
+                }
 
-                Interaction.pay(player, chosenWeapon.getAlternativeEffectCost());
-                chosenWeapon.getAlternativeEffect().applyEffect(player, chosenWeapon.getAlternativeEffect().getTargets(player));
+                if (effettoScelto.equalsIgnoreCase("alternativo") && chosenWeapon.getAlternativeEffect().hasTargets(player)) {
 
+                    Interaction.pay(player, chosenWeapon.getAlternativeEffectCost());
+                    chosenWeapon.getAlternativeEffect().applyEffect(player, chosenWeapon.getAlternativeEffect().getTargets(player));
+                    done = true;
+                    continue;
+
+                }
+
+                while (!InputCheck.correctBasicOrAlternative(effettoScelto)) {
+
+                    update(player, Message.inputError());
+                    effettoScelto = updateWithAnswer(player, Message.scegliBaseAlternativo());
+
+
+                }
 
             }
 
@@ -1614,12 +1630,6 @@ public class Action {
 
         CopyOnWriteArrayList<Player> visible = Check.visiblePlayers(connectedPlayers.get(connectedPlayers.size() - 1));
 
-        if (visible.isEmpty()) {
-
-            return;
-
-        }
-
         for (Player target : visible) {
 
             if (target.equals(player)) {
@@ -1627,6 +1637,13 @@ public class Action {
                 visible.remove(target);
 
             }
+
+        }
+
+
+        if (visible.isEmpty()) {
+
+            return;
 
         }
 

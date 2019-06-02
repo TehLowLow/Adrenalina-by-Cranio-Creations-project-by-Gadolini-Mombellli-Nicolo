@@ -123,7 +123,7 @@ public class Turn {
         boolean terminatorPerformed = false;
 
 
-        if (terminatorKilled){
+        if (terminator && terminatorKilled){
 
             String spawnTerminator = Server.updateWithAnswer(player, "Scegli un colore tra rosso, blu e giallo per far rinascere il Terminator nella corrispondente Spawn Cell");
 
@@ -168,6 +168,9 @@ public class Turn {
 
 
             }
+
+
+            terminatorKilled = false;
 
 
         }
@@ -247,7 +250,7 @@ public class Turn {
 
         //DOUBLE KILL
 
-        if (deadPlayers.size() > 1 || (deadPlayers.size()>0 && Check.death(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1)) == 0)){
+        if (deadPlayers.size() > 1){
 
             player.setScore(player.getScore() + 1);
 
@@ -266,10 +269,11 @@ public class Turn {
 
             if(terminator) {
 
-                if (deadPlayers.contains(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1))) {
+                if (dead.getNickname().equalsIgnoreCase("terminator")) {
 
-                    deadPlayers.remove(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1));
+                    deadPlayers.remove(dead);
                     terminatorKilled = true;
+                    continue;
 
                 }
 
@@ -516,7 +520,7 @@ public class Turn {
 
         //DOUBLE KILL
 
-        if (deadPlayers.size() > 1 || (deadPlayers.size() > 0 && Check.death(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1)) == 0)){
+        if (deadPlayers.size() > 1){
 
             player.setScore(player.getScore() + 1);
 
@@ -541,7 +545,9 @@ public class Turn {
 
                 if (deadPlayers.contains(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1))) {
 
+                    terminatorKilled = true;
                     deadPlayers.remove(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1));
+                    continue;
 
                 }
 

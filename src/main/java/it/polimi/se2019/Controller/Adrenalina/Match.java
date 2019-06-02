@@ -80,7 +80,7 @@ public class Match extends Thread {
     public void run() {
 
 
-
+        Turn t = new Turn();
         chooseMap();
         chooseSkulls();
         boolean terminator = chooseMode();
@@ -165,7 +165,7 @@ public class Match extends Thread {
 
             if (!terminator) {
 
-                Turn t = new Turn();
+
                 t.first(player);
                 Interaction.placeLoot();
                 Interaction.placeWeapons();
@@ -177,7 +177,6 @@ public class Match extends Thread {
 
                 if (!player.getNickname().equalsIgnoreCase("Terminator")){
 
-                    Turn t = new Turn();
                     t.firstTerminator(player);
                     Interaction.placeLoot();
                     Interaction.placeWeapons();
@@ -194,7 +193,6 @@ public class Match extends Thread {
             for (Player player : connectedPlayers) {
 
                 if (!terminator) {
-                    Turn t = new Turn();
                     finish = checkFrenzy();
                     if (finish) {
                         continue;
@@ -209,7 +207,7 @@ public class Match extends Thread {
 
                     if(!player.getNickname().equalsIgnoreCase("Terminator")){
 
-                        Turn t = new Turn();
+
                         finish = checkFrenzy();
                         if (finish) {
                             continue;
@@ -289,8 +287,7 @@ public class Match extends Thread {
             if (player.isFirstPlayer()) {
                 afterFirstPlayer = true;
             }
-
-            Turn t = new Turn();
+            
 
             if(!terminator) {
                 t.frenzy(player, afterFirstPlayer, false);

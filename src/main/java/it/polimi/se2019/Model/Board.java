@@ -201,6 +201,8 @@ public class Board implements java.io.Serializable{
         limbo.setDownConnection(new Connection());
         limbo.getDownConnection().setType(Connection.EDGE);
 
+        limbo.setName("Limbo");
+
         Board.limbo = limbo;
     }
     /**
