@@ -333,7 +333,7 @@ public class Check {
              */
             if (!player1.equals(player)) {
 
-                if (player1.getPosition() != null) {
+                if (player1.getPosition() != null || !player1.getPosition().getName().equalsIgnoreCase("limbo")) {
 
                     if (player.getPosition().getColour() == player1.getPosition().getColour()) {
                         if (!visiblePlayers.contains(player1)) {
@@ -378,7 +378,11 @@ public class Check {
             }
 
 
+
+
         }
+
+
 
         return visiblePlayers;
 

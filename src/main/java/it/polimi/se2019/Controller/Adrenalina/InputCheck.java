@@ -328,5 +328,17 @@ public class InputCheck {
         return false;
     }
 
+    public static boolean chooseTerminator(String input){
+
+        if (input.equalsIgnoreCase("classica") || input.equalsIgnoreCase("terminator")){
+
+            return true;
+
+        }
+
+        return false;
+
+    }
+
 
 }

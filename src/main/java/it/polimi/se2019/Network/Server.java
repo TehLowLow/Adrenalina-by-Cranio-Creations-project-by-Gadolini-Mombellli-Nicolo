@@ -1,24 +1,23 @@
 package it.polimi.se2019.Network;
 
 
-import it.polimi.se2019.Controller.Adrenalina.Match;
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
-import it.polimi.se2019.Network.RMI.RMILogger;
-import it.polimi.se2019.Network.RMI.Server.RMIServer;
 import it.polimi.se2019.Network.Socket.Server.Manager;
-import it.polimi.se2019.View.CLI.*;
 import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
-
+import it.polimi.se2019.View.CLI.CLIprinter;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.net.*;
-import java.util.*;
-import java.util.concurrent.*;
-
-import static java.lang.Thread.sleep;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.SocketException;
+import java.util.Hashtable;
+import java.util.Scanner;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 /**
@@ -218,6 +217,11 @@ public class Server {
 
     public static synchronized void update(Player player, String msg) {
 
+        if (player.getNickname().equalsIgnoreCase("terminator")){
+
+            return;
+
+        }
 
         if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null && matchStarted) {
 

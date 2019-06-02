@@ -1,15 +1,12 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Controller.Adrenalina.Check;
-import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
+import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
-import it.polimi.se2019.Model.Token;
 import it.polimi.se2019.Network.Server;
-import it.polimi.se2019.View.Message;
 
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
@@ -57,7 +54,10 @@ public class BasicHeatSeeker extends Effect {
         for (Player target : players) {
 
             if (!visiblePlayers.contains(target) && !target.equals(user)) {
-                possibleTargets.add(target);
+                if (!target.getPosition().equals(Board.getLimbo())) {
+
+                    possibleTargets.add(target);
+                }
             }
 
         }

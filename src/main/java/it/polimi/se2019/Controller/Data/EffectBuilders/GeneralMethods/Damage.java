@@ -10,8 +10,7 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static it.polimi.se2019.Network.Server.update;
-import static it.polimi.se2019.Network.Server.updateWithAnswer;
+import static it.polimi.se2019.Network.Server.*;
 
 public class Damage {
 
@@ -51,11 +50,15 @@ public class Damage {
         CopyOnWriteArrayList<Powerup> availableTargetingScopes = new CopyOnWriteArrayList<>();
         CopyOnWriteArrayList<Powerup> availableTagBacks = new CopyOnWriteArrayList<>();
 
-        for (Powerup powerup : userPowerups) {
+        if(!user.getNickname().equalsIgnoreCase("terminator")) {
 
-            if (powerup.getName().contains("Mirino")) {
+            for (Powerup powerup : userPowerups) {
 
-                availableTargetingScopes.add(powerup);
+                if (powerup.getName().contains("Mirino")) {
+
+                    availableTargetingScopes.add(powerup);
+
+                }
 
             }
 
@@ -125,15 +128,18 @@ public class Damage {
 
         update(target, Message.colpito(user));
 
+        if (!target.getNickname().equalsIgnoreCase("terminator")) {
 
-        for (Powerup powerup : targetPowerups) {
+            for (Powerup powerup : targetPowerups) {
 
-            if (powerup.getName().contains("Granata Venom")) {
 
-                availableTagBacks.add(powerup);
+                if (powerup.getName().contains("Granata Venom")) {
+
+                    availableTagBacks.add(powerup);
+
+                }
 
             }
-
         }
 
 
