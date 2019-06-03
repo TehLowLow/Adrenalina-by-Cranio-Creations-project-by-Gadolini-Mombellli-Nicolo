@@ -395,41 +395,63 @@ public class Action {
         String s;
         boolean correct = false;
 
+        s = updateWithAnswer(player, Message.stepNumber());
 
         while (!correct) {
 
 
-            s = updateWithAnswer(player, Message.stepNumber());
-
-
             try {
                 steps = InputCheck.numberCheck(s);
-                correct = true;
             } catch (NumberFormatException e) {
                 update(player, Message.inputError());
+                s = updateWithAnswer(player, Message.stepNumber());
+                continue;
             }
+
+            boolean correctCell = false;
 
 
             if (steps > 0 && steps < 4) {
                 reachable = Check.moveManager(player, steps);
                 response = updateWithAnswer(player, Message.scegliCella(reachable));
+                correct = true;
 
-                try {
-                    cell = InputCheck.numberCheck(response);
-                } catch (NumberFormatException e) {
-                    update(player, Message.inputError());
+
+                while (!correctCell) {
+
+                    try {
+                        cell = InputCheck.numberCheck(response);
+
+
+
+
+                    } catch (NumberFormatException e) {
+                        update(player, Message.inputError());
+                        response = updateWithAnswer(player, Message.scegliCella(reachable));
+                        continue;
+                    }
+
+                    if (cell >= 0 && cell < reachable.size()) {
+
+                        player.setPosition(reachable.get(cell));
+                        correctCell = true;
+                        update(player, Message.movedTo());
+
+
+                    } else {
+                        update(player, Message.inputError());
+                        response = updateWithAnswer(player, Message.scegliCella(reachable));
+
+                    }
                 }
-
             }
 
-
-            if (cell >= 0 && cell < reachable.size()) {
-
-                player.setPosition(reachable.get(cell));
-                update(player, Message.movedTo());
-
-            } else {
+            else{
                 update(player, Message.inputError());
+                s = updateWithAnswer(player, Message.stepNumber());
+
+
+
             }
 
         }
@@ -792,39 +814,66 @@ public class Action {
         String s;
         boolean correct = false;
 
+        s = updateWithAnswer(player, Message.stepNumber());
 
         while (!correct) {
 
-            s = updateWithAnswer(player, Message.stepNumber());
 
             try {
+
+
                 steps = InputCheck.numberCheck(s);
-                correct = true;
             } catch (NumberFormatException e) {
                 update(player, Message.inputError());
+                s = updateWithAnswer(player, Message.stepNumber());
+                continue;
             }
+
+            boolean correctCell = false;
 
 
             if (steps > 0 && steps < 5) {
                 reachable = Check.moveManager(player, steps);
+                correct = true;
                 response = updateWithAnswer(player, Message.scegliCella(reachable));
 
-                try {
-                    cell = InputCheck.numberCheck(response);
-                } catch (NumberFormatException e) {
-                    update(player, Message.inputError());
-                }
+                while (!correctCell) {
 
+                    try {
+                        cell = InputCheck.numberCheck(response);
+
+
+
+
+                    } catch (NumberFormatException e) {
+                        update(player, Message.inputError());
+                        response = updateWithAnswer(player, Message.scegliCella(reachable));
+                        continue;
+                    }
+
+                    if (cell >= 0 && cell < reachable.size()) {
+
+
+                        correctCell = true;
+                        player.setPosition(reachable.get(cell));
+
+                        update(player, Message.movedTo());
+
+
+                    } else {
+                        update(player, Message.inputError());
+                        response = updateWithAnswer(player, Message.scegliCella(reachable));
+
+                    }
+                }
             }
 
-
-            if (cell >= 0 && cell < reachable.size()) {
-
-                player.setPosition(reachable.get(cell));
-                update(player, Message.movedTo());
-
-            } else {
+            else{
                 update(player, Message.inputError());
+                s = updateWithAnswer(player, Message.stepNumber());
+
+
+
             }
 
         }

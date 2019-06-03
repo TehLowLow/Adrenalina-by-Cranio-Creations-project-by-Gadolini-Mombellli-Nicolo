@@ -22,7 +22,7 @@ public class SocketClient extends Client implements Runnable {
     private static Socket client;
     private int gamePort;
     private int localPort;
-    private byte[] address ={127,0,0,1} ;//{127, 0, 0, 1};
+    private byte[] address = {127, 0, 0, 1};//{127, 0, 0, 1};
     private int signal;
 
 
@@ -65,9 +65,9 @@ public class SocketClient extends Client implements Runnable {
         streamInit();
 
         askGui();
-        Runnable gui= new GUI();
+        Runnable gui = new GUI();
 
-        if(useGui) {
+        if (useGui) {
 
             GUI.out = out;
             Thread executingGui = new Thread(gui);
@@ -96,19 +96,16 @@ public class SocketClient extends Client implements Runnable {
                     out.writeInt(signal); //Echo al server
                     String received = in.readUTF();
 
-                    if(useGui){
+                    if (useGui) {
                         System.out.println(received);
-                        Platform.runLater(()->((GUI) gui).update(received));
-                    }
-
-                    else {
+                        Platform.runLater(() -> ((GUI) gui).update(received));
+                    } else {
 
                         //Se devo stampare la stringa che contiene anche le info per la GUI...
-                        if(received.contains("$")){
+                        if (received.contains("$")) {
                             String[] tokens = received.split("\\$");
                             System.out.println(tokens[0]);
-                        }
-                        else{
+                        } else {
                             System.out.println(received);
                         }
                     }
@@ -123,23 +120,20 @@ public class SocketClient extends Client implements Runnable {
                     out.writeInt(signal);
                     String received = in.readUTF();
 
-                    if(useGui) {
+                    if (useGui) {
 
                         System.out.println(received);
                         Platform.runLater(() -> ((GUI) gui).update(received));
-                    }
-                    else {
+                    } else {
 
                         //Nel caso in cui ci sia la stringa da parsare con la mappa...
-                        if(received.contains("\\$")){
+                        if (received.contains("\\$")) {
 
                             String[] tokens = received.split("\\$");
                             System.out.println(tokens[0]);
                             Scanner scanner = new Scanner(System.in);
                             out.writeUTF(scanner.nextLine());
-                        }
-
-                        else {
+                        } else {
                             System.out.println(received);
                             Scanner scanner = new Scanner(System.in);
                             out.writeUTF(scanner.nextLine());
@@ -212,29 +206,28 @@ public class SocketClient extends Client implements Runnable {
 
     }
 
-    private void askGui(){
+    private void askGui() {
 
         System.out.println("Vuoi usare la GUI?");
         Scanner scanner = new Scanner(System.in);
         String answer = "";
         boolean answered = false;
 
-        while(!answered){
+        while (!answered) {
 
             answer = scanner.nextLine();
 
-            if(answer.equals("si")){
+            if (answer.equals("si")) {
                 answered = true;
                 useGui = true;
             }
 
-            if(answer.equals("no")){
+            if (answer.equals("no")) {
                 answered = true;
             }
 
 
         }
-
 
 
     }
