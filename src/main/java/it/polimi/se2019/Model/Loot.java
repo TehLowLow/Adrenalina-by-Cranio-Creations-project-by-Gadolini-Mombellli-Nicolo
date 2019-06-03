@@ -21,6 +21,8 @@ public class Loot {
      */
    private boolean powerUp;
 
+   private String name;
+
     /*
      * ---------------------- GETTERS
      */
@@ -31,6 +33,12 @@ public class Loot {
      */
     public Rybamount getRewardValue() {
         return rewardValue;
+    }
+
+    public String getName(){
+
+        return this.name;
+
     }
 
 
@@ -60,6 +68,12 @@ public class Loot {
      */
     public void setPowerUp(boolean powerUp) {
         this.powerUp = powerUp;
+    }
+
+    public void setName(String name){
+
+        this.name = name;
+
     }
 
 }

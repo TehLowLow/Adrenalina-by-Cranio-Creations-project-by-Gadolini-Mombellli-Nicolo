@@ -31,6 +31,8 @@ public class PybBuilder {
 
         pyb = new Loot();
 
+        pyb.setName("pyb");
+
         /*
         setting the Rybamount corresponding to the loot.
          */

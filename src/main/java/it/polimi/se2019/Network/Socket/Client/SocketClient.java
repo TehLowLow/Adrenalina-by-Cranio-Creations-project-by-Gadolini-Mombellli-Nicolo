@@ -102,7 +102,15 @@ public class SocketClient extends Client implements Runnable {
                     }
 
                     else {
-                        System.out.println(received);
+
+                        //Se devo stampare la stringa che contiene anche le info per la GUI...
+                        if(received.contains("$")){
+                            String[] tokens = received.split("\\$");
+                            System.out.println(tokens[0]);
+                        }
+                        else{
+                            System.out.println(received);
+                        }
                     }
 
                 } catch (Exception e) {
@@ -114,13 +122,28 @@ public class SocketClient extends Client implements Runnable {
                 try {
                     out.writeInt(signal);
                     String received = in.readUTF();
-                    System.out.println(received);
+
                     if(useGui) {
+
+                        System.out.println(received);
                         Platform.runLater(() -> ((GUI) gui).update(received));
                     }
                     else {
-                        Scanner scanner = new Scanner(System.in);
-                        out.writeUTF(scanner.nextLine());
+
+                        //Nel caso in cui ci sia la stringa da parsare con la mappa...
+                        if(received.contains("\\$")){
+
+                            String[] tokens = received.split("\\$");
+                            System.out.println(tokens[0]);
+                            Scanner scanner = new Scanner(System.in);
+                            out.writeUTF(scanner.nextLine());
+                        }
+
+                        else {
+                            System.out.println(received);
+                            Scanner scanner = new Scanner(System.in);
+                            out.writeUTF(scanner.nextLine());
+                        }
                     }
 
                 } catch (Exception e) {
@@ -217,4 +240,8 @@ public class SocketClient extends Client implements Runnable {
     }
 }
 
-//TODO le righe marcate con todo sono modificate da localhost a ip LAN.
+//Per connettersi il codice funziona, serve solo controllare che il pc abbia:
+//1) la scheda di rete connessa alla lan come primaria, e si nota debuggando connect game, se il valore che becca il getlocalhost non combacia sistemare
+//2) impostando la rete come privata windows setta il pc come visibile nella lan
+//3) l' hostname sostituisce l' ip, meglio come soluzione dinamica.
+//4) molti problemi spariscono con del buon tinkering nel pannello di rete e di schede di rete.

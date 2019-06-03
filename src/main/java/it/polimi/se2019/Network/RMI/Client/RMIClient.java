@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class RMIClient extends Client implements Runnable, RMIClientInterface, Remote {
 
-    private static RMILoggerInterface Logger;
+     static RMILoggerInterface Logger;
     private static RMILoggerInterface rServer;
     private static RMIServerInterface Game;
     private static RMIServerInterface gServer;
@@ -35,19 +35,19 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     @Override
     public void run() {
 
+        Scanner scanner = new Scanner(System.in);
+
         System.out.println("hai avviato una connessione RMI");
 
-        connect(LOGINRMIPORT);
+        Logger = connect(LOGINRMIPORT);
 
         while (!logged) {
 
             try {
 
-                Scanner scanner = new Scanner(System.in);
-
-                System.out.println("inserisci username");
+                System.out.println("inserisci username: ");
                 user = scanner.nextLine();
-                System.out.println("Inserisci psw");
+                System.out.println("Inserisci psw:");
                 psw = scanner.nextLine();
 
 
@@ -65,17 +65,16 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
                     System.out.println("Null Pointer su Login.verify");
 
-                }
-
-                catch(NoSuchObjectException e){
+                } catch (NoSuchObjectException e) {
 
                     e.printStackTrace();
 
+                    System.err.println("nosuch");
                 }
 
 
             } catch (Exception e) {
-                //
+
                 System.out.println("Ritento la connessione");
             }
         }
@@ -96,7 +95,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     }
 
 
-    private synchronized void connect(int port) {
+    private synchronized RMILoggerInterface connect(int port) {
 
         while (!connected) {
 
@@ -108,8 +107,8 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
                     rServer = (RMILoggerInterface) registry.lookup("LoginRMI");
 
                     if (rServer != null) {
-                        Logger = rServer;
-                        connected = true;
+                        return rServer;
+                        //connected = true;
                     }
 
                 } catch (Exception e) {
@@ -135,6 +134,9 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
                 }
             }
         }
+
+        return null;
+
     }
 
 

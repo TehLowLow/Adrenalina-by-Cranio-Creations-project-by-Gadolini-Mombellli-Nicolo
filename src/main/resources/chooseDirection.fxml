@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="342.999977929685" prefWidth="566.04931640625" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.ChooseDirectionController">
+  <children>
+    <ImageView fitHeight="349.0" fitWidth="566.0493170958375" layoutX="0.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/cover/weaponBack.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="29.0" layoutY="36.0" text="Scegli una direzione." textFill="WHITE">
+      <font>
+        <Font name="System Bold" size="20.0" />
+      </font>
+    </Label>
+    <Button fx:id="altoButton" layoutX="244.0" layoutY="104.0" mnemonicParsing="false" onAction="#chooseAlto" prefHeight="65.0" prefWidth="79.0" text="Alto">
+      <font>
+        <Font name="System Bold" size="12.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button font="$x1" layoutX="244.0" layoutY="234.0" mnemonicParsing="false" onAction="#chooseBasso" prefHeight="65.0" prefWidth="79.0" text="Basso" />
+    <Button font="$x1" layoutX="165.0" layoutY="169.0" mnemonicParsing="false" onAction="#chooseSinistra" prefHeight="65.0" prefWidth="79.0" text="Sinistra" />
+    <Button font="$x1" layoutX="323.0" layoutY="169.0" mnemonicParsing="false" onAction="#chooseDestra" prefHeight="65.0" prefWidth="79.0" text="Destra" />
+  </children>
+</AnchorPane>

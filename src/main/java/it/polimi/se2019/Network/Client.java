@@ -25,9 +25,9 @@ public class Client {
     public static void main(String args[]) {
 
 
-            //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.
-            System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
-            initConnection();//qua vengono lanciati i thread.
+        //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.
+        System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
+        initConnection();//qua vengono lanciati i thread.
     }
 
 //----------------------------------------------------------------------------------------------------
@@ -47,7 +47,8 @@ public class Client {
 
             String string = scanner.nextLine();
 
-            if (string.equalsIgnoreCase("socket")){
+            if (string.equalsIgnoreCase("socket")) {
+
 
                 //avvia una connessione socket
 
@@ -60,14 +61,14 @@ public class Client {
 
             } else if (string.equalsIgnoreCase("RMI")) {
 
+
                 //avvia una connessione RMI
 
-           /* Runnable clientRMI = new RMIClient();
-            Thread rClient = new Thread(clientRMI);
-            rClient.start();*/
+                connected= true;
 
-                System.out.println("Il servizio richiesto è momentaneamente non disponibile, utilizza la connessione socket");
-
+                Runnable clientRMI = new RMIClient();
+                Thread rClient = new Thread(clientRMI);
+                rClient.start();
 
             } else {
 

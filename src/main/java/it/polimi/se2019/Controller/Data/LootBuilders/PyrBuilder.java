@@ -31,6 +31,8 @@ public class PyrBuilder {
 
         pyr = new Loot();
 
+        pyr.setName("pyr");
+
         /*
         setting the Rybamount corresponding to the loot.
          */

@@ -7,6 +7,7 @@ import it.polimi.se2019.Network.Socket.Server.Manager;
 import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
 import it.polimi.se2019.View.CLI.CLIprinter;
+import it.polimi.se2019.View.CLI.GameStringRep;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -28,11 +29,11 @@ import java.util.concurrent.Executors;
 public class Server {
 
 
-    private static volatile int clientPort = 4000;
-    public static final int LOGINSOCKETPORT = 9999;
-    public static final int LOGINRMIPORT = 8888;
-    public static final int RMIPORT = 2100;
-    public static final int SOCKETPORT = 2200;
+    private static volatile int clientPort = 50000;
+    public static final int LOGINSOCKETPORT = 55000;
+    public static final int LOGINRMIPORT = 56000;
+    public static final int RMIPORT = 59000;
+    public static final int SOCKETPORT = 60000;
     public static int lobbyTimer;
     public static volatile boolean matchStarted = false;
     public static volatile boolean matchFinished = false;
@@ -120,7 +121,7 @@ public class Server {
         lobbyTimer = scanner.nextInt();
 
 
-       /* //Avvio il logger di rmi
+       /*//Avvio il logger di rmi
         Runnable loggerRMI = new RMILogger();
         Thread loginRMI = new Thread(loggerRMI);
         loginRMI.start();*/
@@ -135,7 +136,7 @@ public class Server {
         }
 
 
-      /*  //avvio il server di gioco
+       /* //avvio il server di gioco
         Runnable gameServer = new RMIServer();
         Thread game = new Thread(gameServer);
         game.start();*/
@@ -169,9 +170,9 @@ public class Server {
 
     public static synchronized String updateWithAnswer(Player player, String msg) {
 
-        if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null) {
+        if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null && matchStarted) {
 
-            msg = CLIprinter.print(player) + msg;
+            msg = CLIprinter.print(player) + "~" + msg + "~\n" + GameStringRep.print(player);
 
         }
 
@@ -192,7 +193,9 @@ public class Server {
                 out.writeInt(2);
                 System.out.println(in.readInt());
                 out.writeUTF(msg);
-                return in.readUTF();
+                String answer = in.readUTF(); //debug gui  TODO
+                System.out.println(player.getNickname() + ": " + answer); //debug gui
+                return answer; //in.readUTF(); debug gui
 
             } catch (SocketException e) {
 
@@ -217,7 +220,7 @@ public class Server {
 
     public static synchronized void update(Player player, String msg) {
 
-        if (player.getNickname().equalsIgnoreCase("terminator")){
+        if (player.getNickname().equalsIgnoreCase("terminator")) {
 
             return;
 
@@ -225,7 +228,7 @@ public class Server {
 
         if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null && matchStarted) {
 
-            msg = CLIprinter.print(player) + msg;
+            msg = CLIprinter.print(player) + "~" + msg + "~\n" + GameStringRep.print(player);
 
         }
 
@@ -313,9 +316,6 @@ public class Server {
         return clientPort;
 
     }
-
-
-
 
     /*
     Per gestire le connessioni devo ricordarmi di inserire nel daemon thread che controlla i connessi una regola tale

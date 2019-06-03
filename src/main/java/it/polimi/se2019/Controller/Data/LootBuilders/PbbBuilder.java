@@ -31,6 +31,8 @@ public class PbbBuilder {
 
         pbb = new Loot();
 
+        pbb.setName("pbb");
+
         /*
         setting the Rybamount corresponding to the loot.
          */

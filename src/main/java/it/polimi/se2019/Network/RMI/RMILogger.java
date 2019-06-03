@@ -13,24 +13,27 @@ import java.rmi.server.UnicastRemoteObject;
 
 import static it.polimi.se2019.Network.Server.*;
 
-public class RMILogger implements Logger, Runnable, RMILoggerInterface {
+public class  RMILogger implements Logger, Runnable, RMILoggerInterface {
 
 
     private String userName;
 
     private String passWord;
+
     Player temp;
 
 
     @Override
     public void run() {
         //In questo thread devo avviare un registry, accettare una connessione alla volta, e verificare il login.
+
         initServer(this);
+
 
     }
 
 
-    private synchronized void initServer(RMILogger loginRMI) {
+    private static synchronized void initServer(RMILogger loginRMI) {
 
         try { //avvio il server registry
 

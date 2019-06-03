@@ -14,6 +14,7 @@ public class ByyBuilder {
 
     private Loot byy;
 
+
     /*
      * ----------------------METHODS-------------------------------
      */
@@ -30,6 +31,8 @@ public class ByyBuilder {
          */
 
         byy = new Loot();
+
+        byy.setName("byy");
 
 
 

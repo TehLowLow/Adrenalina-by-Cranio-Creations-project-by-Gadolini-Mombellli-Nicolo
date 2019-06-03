@@ -1,6 +1,7 @@
 package it.polimi.se2019.View.GUI;
 
 import it.polimi.se2019.Model.Connection;
+import it.polimi.se2019.View.Message;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -25,6 +26,15 @@ public class GUI extends Application implements Runnable {
     private static AnchorPane rootLayout;
     public static DataOutputStream out;
 
+    public int chosenMap;
+    public int chosenSkulls;
+
+    Map1UIController map1UIController;
+
+
+    public boolean isMapActive;
+    public String toWrite;
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -39,6 +49,8 @@ public class GUI extends Application implements Runnable {
     //----- METODI DI AGGIORNAMENTO -----//
 
     public void initGUI(){
+
+        isMapActive = false;
 
         try {
 
@@ -88,6 +100,35 @@ public class GUI extends Application implements Runnable {
             System.out.println("Ho beccato un'eccezione");
             e.printStackTrace();
         }
+
+    }
+
+    private void showChooseTerminator() {
+
+        try {
+
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/selectTerminator.fxml"));
+            AnchorPane chooseTerminator = (AnchorPane) loader.load();
+
+            SelectTerminatorController controller = loader.getController();
+            controller.out = out;
+
+
+            Scene scene = new Scene(chooseTerminator);
+
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+            System.out.println("Grafica disegnata correttamente.");
+
+        }
+        catch(Exception e){
+            System.out.println("Ho beccato un'eccezione");
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -169,26 +210,327 @@ public class GUI extends Application implements Runnable {
 
     }
 
-    public void update(String message) {
+    public void showSpawn(String message){
 
-        if(message.contains("combattere")){
-            showChooseMap();
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/discardPowerUpSpawn.fxml"));
+            AnchorPane showSpawn = (AnchorPane) loader.load();
+
+            ShowSpawnController showSpawnController = loader.getController();
+
+            showSpawnController.out = out;
+
+            showSpawnController.setUp(message);
+
+            Scene scene = new Scene(showSpawn);
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Scegli dove spawnare!");
+            stage.show();
+
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
         }
 
-        else if(message.contains("teschi da piazzare")){
-            showChooseSkulls();
+
+
+    }
+
+    public void showChooseSteps(){
+
+        try {
+
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/chooseSteps.fxml"));
+            AnchorPane chooseSteps = (AnchorPane) loader.load();
+
+            ChooseStepsController controller = loader.getController();
+            controller.out = out;
+
+
+            Scene scene = new Scene(chooseSteps);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            stage.show();
+
+            System.out.println("Grafica disegnata correttamente");
+
+        }
+        catch(Exception e){
+            System.out.println("Ho beccato un'eccezione");
+            e.printStackTrace();
         }
 
-        else if(message.contains("Scegli il tuo campione tra:")){
-            showChooseChampion(message);
+
+    }
+
+    public void showChooseDirection(){
+
+        try {
+
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/chooseDirection.fxml"));
+            AnchorPane chooseDirection = (AnchorPane) loader.load();
+
+            ChooseDirectionController controller = loader.getController();
+            controller.out = out;
+
+
+            Scene scene = new Scene(chooseDirection);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            stage.show();
+
+            System.out.println("Grafica disegnata correttamente");
+
+        }
+        catch(Exception e){
+            System.out.println("Ho beccato un'eccezione");
+            e.printStackTrace();
         }
 
 
-        else{
-            showCommonDialog(message);
+    }
+
+    public void showMainStage(String message){
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+
+            if (chosenMap == 1) {
+
+                loader.setLocation(GUI.class.getResource("/map1UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map1UIController = loader.getController();
+                map1UIController.out = out;
+
+                map1UIController.setMessage(message);
+                map1UIController.parser(message);
+                map1UIController.initUI();
+                map1UIController.refresh();
+
+                System.out.println(map1UIController.provaStampa());
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
+
+
+
+        }catch(Exception e){
+
+         e.printStackTrace();
         }
 
     }
+
+    public void showMainStageChooseCell(String message){
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+
+            if (chosenMap == 1) {
+
+                loader.setLocation(GUI.class.getResource("/map1UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map1UIController = loader.getController();
+                map1UIController.out = out;
+
+                map1UIController.setMessage("Scegli una cella tra quelle evidenziate cliccandoci sopra.");
+                map1UIController.parseChooseCell(message);
+                map1UIController.lightCells();
+                map1UIController.parser(message);
+                map1UIController.initUI();
+                map1UIController.refresh();
+
+                System.out.println(map1UIController.provaStampa());
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
+
+
+
+        }catch(Exception e){
+
+            e.printStackTrace();
+        }
+
+    }
+
+    public void refreshGUI(String message){
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+
+            if (chosenMap == 1) {
+
+                loader.setLocation(GUI.class.getResource("/map1UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map1UIController.setMessage(message);
+                map1UIController.parser(message);
+                map1UIController.refresh();
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
+
+
+
+        }catch(Exception e){
+
+
+        }
+
+    }
+
+    public void showChooseShootingMode() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/chooseShootingMode.fxml"));
+            AnchorPane chooseMode = (AnchorPane) loader.load();
+
+            ChooseShootingModeController controller = loader.getController();
+            controller.out = out;
+
+
+            Scene scene = new Scene(chooseMode);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            stage.show();
+
+            System.out.println("Grafica disegnata correttamente");
+
+        } catch (Exception e) {
+            System.out.println("Ho beccato un'eccezione");
+            e.printStackTrace();
+        }
+    }
+
+
+    public void update(String message) {
+
+        if (message.contains("combattere")) {
+            showChooseMap();
+        }
+
+        else if (message.contains("teschi da piazzare")) {
+            showChooseSkulls();
+        }
+
+        else if (message.contains("Scegli il tuo campione tra:")) {
+            showChooseChampion(message);
+        }
+
+        else if (message.contains("Spawnerai")) {
+
+            showSpawn(message);
+
+        }
+
+        else if (message.contains("Il tuo campione è")) {
+
+            showMainStage(message);
+            //Da questo momento si mostra la mappa quando arriva un messaggio.
+            isMapActive = true;
+
+        }
+
+        else if (message.contains("classica o il terminator")) {
+            showChooseTerminator();
+        }
+
+        else if (message.contains("passi vuoi fare")) {
+
+            showMainStage(message);
+            showChooseSteps();
+        }
+
+        else if(message.contains("direzione vuoi") || message.contains("basso")){
+            showMainStage(message);
+            showChooseDirection();
+        }
+
+        else if(message.contains("cella") && message.contains("indicandone il numero")){
+
+            showMainStageChooseCell(message);
+
+        }
+
+        else if(isMapActive){
+
+            showMainStage(message);
+
+        }
+
+        else if (!isMapActive) {
+
+            //Se non c'è ancora la mappa, siamo nelle prime fasi
+            showCommonDialog(message);
+
+            //Se mi capita il messaggio in cui trovo la conferma della mappa,
+            // leggo che mappa hanno scelto,così poi so caricare la UI giusta.
+
+            if(message.contains("numero 1")){
+                chosenMap = 1;
+            }
+
+            if(message.contains("numero 2")){
+                chosenMap = 2;
+            }
+
+            if(message.contains("numero 3")){
+                chosenMap = 3;
+            }
+
+            if(message.contains("numero 4")){
+                chosenMap = 4;
+            }
+        }
+
+        else if (message.contains("alternativo")) {
+
+            showChooseShootingMode();
+
+        }
+
+
+
+    }
+
 
     public void run() {
 
