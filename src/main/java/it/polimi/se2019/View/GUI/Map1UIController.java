@@ -925,27 +925,26 @@ public class Map1UIController implements Initializable {
 
             ArrayList<String> weaponAList = new ArrayList<String>(Arrays.asList(weaponList));
 
-            if (weaponAList.size() >= 1) {
+            if (weaponAList.size() >= 2) {
 
                 weapon1 = weaponList[0];
                 loaded1 = weaponList[1];
 
             }
 
-            if (weaponAList.size() >= 2) {
+            if (weaponAList.size() >= 4) {
 
                 weapon2 = weaponList[2];
                 loaded2 = weaponList[3];
 
             }
 
-            if (weaponAList.size() == 3) {
+            if (weaponAList.size() == 6) {
 
                 weapon1 = weaponList[4];
                 loaded1 = weaponList[5];
 
             }
-
 
         }
 
