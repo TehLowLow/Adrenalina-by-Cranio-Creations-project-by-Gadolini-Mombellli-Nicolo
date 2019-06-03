@@ -149,6 +149,22 @@ public class Map1UIController implements Initializable {
     String violettaRoom = "empty";
     String sprogRoom = "empty";
     String bansheeRoom = "empty";
+
+    //Quadrati che attivano le celle
+
+    String blueSpawnCellIndex = "empty";
+    String blueLootCell1Index = "empty";
+    String blueLootCell2Index = "empty";
+
+    String redSpawnCellIndex = "empty";
+    String redLootCell1Index = "empty";
+    String redLootCell2Index = "empty";
+    
+    String yellowSpawnCellIndex = "empty";
+    String yellowLootCellIndex = "empty";
+    
+    String whiteLootCell1Index = "empty";
+    String whiteLootCell2Index = "empty";
     
     
 
@@ -578,12 +594,233 @@ public class Map1UIController implements Initializable {
 
     @FXML
     public ImageView sprogIcon;
+    
+    @FXML
+    public ImageView blueSpawnCellSquare;
+    
+    @FXML
+    public ImageView blueLootCell1Square;
+    
+    @FXML
+    public ImageView blueLootCell2Square;
+
+    @FXML
+    public ImageView redSpawnCellSquare;
+
+    @FXML
+    public ImageView redLootCell1Square;
+
+    @FXML
+    public ImageView redLootCell2Square;
+
+    @FXML
+    public ImageView yellowSpawnCellSquare;
+
+    @FXML
+    public ImageView yellowLootCellSquare;
+
+    @FXML
+    public ImageView whiteLootCell1Square;
+
+    @FXML
+    public ImageView whiteLootCell2Square;
+    
 
 
 //--------------------------------------------------------------------------
 
     public Map1UIController() {
     }
+
+    public void initRoomSquares(){
+
+         blueSpawnCellIndex = "empty";
+         blueLootCell1Index = "empty";
+         blueLootCell2Index = "empty";
+
+         redSpawnCellIndex = "empty";
+         redLootCell1Index = "empty";
+         redLootCell2Index = "empty";
+
+         yellowSpawnCellIndex = "empty";
+         yellowLootCellIndex = "empty";
+
+         whiteLootCell1Index = "empty";
+         whiteLootCell2Index = "empty";
+        
+    }
+
+    @FXML
+    public void parseChooseCell(String message) {
+
+        initRoomSquares();
+
+        String[] messageTokens = message.split("\\)");
+
+        ArrayList<String> messageARL = new ArrayList<String>(Arrays.asList(messageTokens));
+
+        int size = messageARL.size();
+
+        for (int i = 1; i < size; i++) {
+
+            if (messageTokens[i].contains("blu")) {
+
+                if (messageTokens[i].contains("spawnCell")) {
+                    blueSpawnCellIndex = "" + (i - 1);
+                }
+
+                if (messageTokens[i].contains("lootCell1")) {
+                    blueLootCell1Index = "" + (i - 1);
+                }
+
+                if (messageTokens[i].contains("lootCell2")) {
+                    blueLootCell2Index = "" + (i - 1);
+                }
+
+
+            }
+
+            if (messageTokens[i].contains("rosso")) {
+
+                if (messageTokens[i].contains("spawnCell")) {
+                    redSpawnCellIndex = "" + (i - 1);
+                }
+
+                if (messageTokens[i].contains("lootCell1")) {
+                    redLootCell1Index = "" + (i - 1);
+                }
+
+                if (messageTokens[i].contains("lootCell2")) {
+                    redLootCell2Index = "" + (i - 1);
+                }
+
+            }
+
+            if (messageTokens[i].contains("giallo")) {
+
+                if (messageTokens[i].contains("spawnCell")) {
+                    yellowSpawnCellIndex = "" + (i - 1);
+                }
+
+                if (messageTokens[i].contains("lootCell1")) {
+                    yellowLootCellIndex = "" + (i - 1);
+                }
+
+            }
+
+            if (messageTokens[i].contains("bianco")) {
+
+                if (messageTokens[i].contains("lootCell1")) {
+                    whiteLootCell1Index = "" + (i - 1);
+                }
+
+                if (messageTokens[i].contains("lootCell2")) {
+                    whiteLootCell2Index = "" + (i - 1);
+                }
+
+            }
+            
+
+        }
+    }
+    
+    @FXML
+    public void lightCells(){
+        
+        if(blueSpawnCellIndex.equalsIgnoreCase("empty")){
+            
+            blueSpawnCellSquare.setVisible(true);
+        }
+        
+        if(blueLootCell1Index.equalsIgnoreCase("empty")){
+            
+            blueLootCell1Square.setVisible(true);
+        }
+        if(blueLootCell2Index.equalsIgnoreCase("empty")){
+            
+            blueLootCell2Square.setVisible(true);
+        }
+
+        if(redSpawnCellIndex.equalsIgnoreCase("empty")){
+
+            redSpawnCellSquare.setVisible(true);
+
+        }
+
+        if(redLootCell1Index.equalsIgnoreCase("empty")){
+    
+            redLootCell1Square.setVisible(true);
+
+        }
+        if(redLootCell2Index.equalsIgnoreCase("empty")){
+
+            redLootCell2Square.setVisible(true);
+        }
+
+        if(yellowSpawnCellIndex.equalsIgnoreCase("empty")){
+
+            yellowSpawnCellSquare.setVisible(true);
+        }
+
+        if(yellowLootCellIndex.equalsIgnoreCase("empty")){
+        
+            yellowLootCellSquare.setVisible(true);
+
+        }
+
+        if(whiteLootCell1Index.equalsIgnoreCase("empty")){
+        
+            whiteLootCell1Square.setVisible(true);
+
+        }
+        
+        if(whiteLootCell2Index.equalsIgnoreCase("empty")){
+
+            whiteLootCell2Square.setVisible(true);
+
+        }
+        
+        
+        
+    }
+    
+    @FXML
+    public void restoreCells(){
+
+        
+          blueSpawnCellSquare.setVisible(false);
+
+        
+          blueLootCell1Square.setVisible(false);
+
+        
+          blueLootCell2Square.setVisible(false);
+
+        
+          redSpawnCellSquare.setVisible(false);
+
+        
+          redLootCell1Square.setVisible(false);
+
+        
+          redLootCell2Square.setVisible(false);
+
+        
+          yellowSpawnCellSquare.setVisible(false);
+
+        
+          yellowLootCellSquare.setVisible(false);
+
+        
+          whiteLootCell1Square.setVisible(false);
+
+        
+          whiteLootCell2Square.setVisible(false);
+        
+    }
+
+
+    
 
     @FXML
     public void setMessage(String message) {
@@ -598,6 +835,8 @@ public class Map1UIController implements Initializable {
         }
 
     }
+
+
 
     public void parser(String message) {
 
@@ -1247,6 +1486,8 @@ public class Map1UIController implements Initializable {
 
 
     }
+
+
 
     public String provaStampa() {
 
@@ -2688,6 +2929,159 @@ public class Map1UIController implements Initializable {
         }
 
     }
+    
+    //
+    
+    @FXML
+    public void chooseBlueSpawnCell(){
+        
+        try{
+            
+            out.writeUTF(blueSpawnCellIndex);
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+        
+    }
+
+    @FXML
+    public void chooseBlueLootCell1(){
+
+        try{
+
+            out.writeUTF(blueLootCell1Index);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseBlueLootCell2(){
+
+        try{
+
+            out.writeUTF(blueLootCell2Index);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseRedSpawnCell(){
+
+        try{
+
+            out.writeUTF(redSpawnCellIndex);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseRedLootCell1(){
+
+        try{
+
+            out.writeUTF(redLootCell1Index);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseRedLootCell2(){
+
+        try{
+
+            out.writeUTF(redLootCell2Index);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseYellowSpawnCell(){
+
+        try{
+
+            out.writeUTF(yellowSpawnCellIndex);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseYellowLootCell(){
+
+        try{
+
+            out.writeUTF(yellowLootCellIndex);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseWhiteLootCell1(){
+
+        try{
+
+            out.writeUTF(whiteLootCell1Index);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseWhiteLootCell2(){
+
+        try{
+
+            out.writeUTF(whiteLootCell2Index);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+    
     
 
     @Override

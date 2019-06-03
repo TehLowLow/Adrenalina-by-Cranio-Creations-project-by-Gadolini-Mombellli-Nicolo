@@ -340,6 +340,47 @@ public class GUI extends Application implements Runnable {
 
     }
 
+    public void showMainStageChooseCell(String message){
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+
+            if (chosenMap == 1) {
+
+                loader.setLocation(GUI.class.getResource("/map1UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map1UIController = loader.getController();
+                map1UIController.out = out;
+
+                map1UIController.setMessage("Scegli una cella tra quelle evidenziate cliccandoci sopra.");
+                map1UIController.parseChooseCell(message);
+                map1UIController.lightCells();
+                map1UIController.parser(message);
+                map1UIController.initUI();
+                map1UIController.refresh();
+
+                System.out.println(map1UIController.provaStampa());
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
+
+
+
+        }catch(Exception e){
+
+            e.printStackTrace();
+        }
+
+    }
+
     public void refreshGUI(String message){
 
         try {
@@ -430,6 +471,12 @@ public class GUI extends Application implements Runnable {
         else if(message.contains("direzione vuoi") || message.contains("basso")){
             showMainStage(message);
             showChooseDirection();
+        }
+
+        else if(message.contains("cella") && message.contains("indicandone il numero")){
+
+            showMainStageChooseCell(message);
+
         }
 
         else if(isMapActive){
