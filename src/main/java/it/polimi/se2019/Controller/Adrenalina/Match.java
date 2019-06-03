@@ -517,7 +517,7 @@ public class Match extends Thread {
 
                     player.getPlayerboard().setChampionName(champion);
 
-                    update(player, "Hai scelto " + champion);
+                    update(player, "Il tuo campione è " + champion);
 
                     champions.remove(champion);
 

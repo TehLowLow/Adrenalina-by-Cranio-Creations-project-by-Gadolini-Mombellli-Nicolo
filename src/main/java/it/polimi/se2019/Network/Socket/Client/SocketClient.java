@@ -102,7 +102,15 @@ public class SocketClient extends Client implements Runnable {
                     }
 
                     else {
-                        System.out.println(received);
+
+                        //Se devo stampare la stringa che contiene anche le info per la GUI...
+                        if(received.contains("$")){
+                            String[] tokens = received.split("\\$");
+                            System.out.println(tokens[0]);
+                        }
+                        else{
+                            System.out.println(received);
+                        }
                     }
 
                 } catch (Exception e) {
@@ -112,15 +120,32 @@ public class SocketClient extends Client implements Runnable {
             } else if (signal == 2) {//updatewithanswer
 
                 try {
+
                     out.writeInt(signal);
                     String received = in.readUTF();
-                    System.out.println(received);
+
                     if(useGui) {
+
+                        System.out.println(received);
                         Platform.runLater(() -> ((GUI) gui).update(received));
                     }
+
                     else {
-                        Scanner scanner = new Scanner(System.in);
-                        out.writeUTF(scanner.nextLine());
+
+                        //Nel caso in cui ci sia la stringa da parsare con la mappa...
+                        if(received.contains("\\$")){
+
+                            String[] tokens = received.split("\\$");
+                            System.out.println(tokens[0]);
+                            Scanner scanner = new Scanner(System.in);
+                            out.writeUTF(scanner.nextLine());
+                        }
+
+                        else {
+                            System.out.println(received);
+                            Scanner scanner = new Scanner(System.in);
+                            out.writeUTF(scanner.nextLine());
+                        }
                     }
 
                 } catch (Exception e) {
@@ -145,7 +170,7 @@ public class SocketClient extends Client implements Runnable {
 
             try {
 
-                client = new Socket("Inserire qua nome del pc server", LOGINSOCKETPORT); //"localhost"-------> IP del server remoto per login LAN
+                client = new Socket("Lollo-PC", LOGINSOCKETPORT); //"localhost"-------> IP del server remoto per login LAN
                 connected = true;
 
             } catch (ConnectException e) {
@@ -171,7 +196,7 @@ public class SocketClient extends Client implements Runnable {
 
             try {
                 InetAddress gameserver = InetAddress.getLocalHost();
-                client = new Socket("Inserire qua nome del pc server", SOCKETPORT, gameserver, localPort); // IP remoto, port remota, ip locale, port locale.
+                client = new Socket("Lollo-PC", SOCKETPORT, gameserver, localPort); // IP remoto, port remota, ip locale, port locale.
                 connected = true;
             } catch (Exception e) {
                 e.printStackTrace();

@@ -31,6 +31,8 @@ public class BrrBuilder {
 
         brr = new Loot();
 
+        brr.setName("brr");
+
 
         /*
         setting the Rybamount corresponding to the loot.

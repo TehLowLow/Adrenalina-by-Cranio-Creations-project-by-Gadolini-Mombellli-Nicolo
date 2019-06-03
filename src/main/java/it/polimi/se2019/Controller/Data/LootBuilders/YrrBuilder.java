@@ -31,6 +31,8 @@ public class YrrBuilder {
 
         yrr = new Loot();
 
+        yrr.setName("yrr");
+
         /*
         setting the Rybamount corresponding to the loot.
          */

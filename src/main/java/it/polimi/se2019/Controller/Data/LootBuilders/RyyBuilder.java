@@ -31,6 +31,8 @@ public class RyyBuilder {
 
         ryy = new Loot();
 
+        ryy.setName("ryy");
+
         /*
         setting the Rybamount corresponding to the loot.
          */

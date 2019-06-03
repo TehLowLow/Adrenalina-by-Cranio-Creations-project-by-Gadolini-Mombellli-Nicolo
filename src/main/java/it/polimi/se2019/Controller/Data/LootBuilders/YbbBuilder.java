@@ -31,6 +31,8 @@ public class YbbBuilder {
 
         ybb = new Loot();
 
+        ybb.setName("ybb");
+
         /*
         setting the Rybamount corresponding to the loot.
          */

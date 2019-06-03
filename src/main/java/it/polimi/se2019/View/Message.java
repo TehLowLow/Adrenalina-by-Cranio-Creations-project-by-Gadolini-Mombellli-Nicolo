@@ -102,6 +102,7 @@ public class Message {
 
         return str;
     }
+
     public static String direzioneOstruita(){
         return "Questa direzione è ostruita! Scegline un'altra.";
     }
@@ -331,7 +332,6 @@ public class Message {
         return str;
 
     }
-
 
     public static String cellaNonDisponibile(){
         return "Errore: scegli una cella disponibile.";

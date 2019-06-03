@@ -31,6 +31,8 @@ public class PyyBuilder {
 
         pyy = new Loot();
 
+        pyy.setName("pyy");
+
         /*
         setting the Rybamount corresponding to the loot.
          */

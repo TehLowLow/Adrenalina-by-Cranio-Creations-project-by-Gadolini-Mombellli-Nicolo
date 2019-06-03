@@ -32,6 +32,8 @@ public class PrbBuilder {
 
         prb = new Loot();
 
+        prb.setName("prb");
+
 
         /*
         setting the Rybamount corresponding to the loot.

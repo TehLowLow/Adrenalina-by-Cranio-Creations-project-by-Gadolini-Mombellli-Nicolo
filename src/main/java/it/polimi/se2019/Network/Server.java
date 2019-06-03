@@ -7,6 +7,7 @@ import it.polimi.se2019.Network.Socket.Server.Manager;
 import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
 import it.polimi.se2019.View.CLI.CLIprinter;
+import it.polimi.se2019.View.CLI.GameStringRep;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -169,9 +170,9 @@ public class Server {
 
     public static synchronized String updateWithAnswer(Player player, String msg) {
 
-        if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null) {
+        if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null && matchStarted) {
 
-            msg = CLIprinter.print(player) + msg;
+            msg = CLIprinter.print(player) + "~" + msg + "~\n" + GameStringRep.print(player);
 
         }
 
@@ -225,7 +226,7 @@ public class Server {
 
         if (Board.getMap() != null && player.getPosition() != null && player.getPlayerboard().getChampionName() != null && matchStarted) {
 
-            msg = CLIprinter.print(player) + msg;
+            msg = CLIprinter.print(player) + "~" + msg + "~\n" + GameStringRep.print(player);
 
         }
 

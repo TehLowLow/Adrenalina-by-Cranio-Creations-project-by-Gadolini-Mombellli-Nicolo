@@ -31,6 +31,8 @@ public class RbbBuilder {
 
         rbb = new Loot();
 
+        rbb.setName("rbb");
+
         /*
         setting the Rybamount corresponding to the loot.
          */
