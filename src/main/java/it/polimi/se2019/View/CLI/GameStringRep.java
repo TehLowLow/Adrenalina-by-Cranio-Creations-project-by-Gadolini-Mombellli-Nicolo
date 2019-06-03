@@ -51,8 +51,9 @@ codificata e inviata.
         }
 
         if(player.getPlayerboard().getWeapons().size()==0){
+
             GUIData = GUIData + "noweapons";
-            GUIData = GUIData + '*';
+
         }
 
         GUIData = GUIData + "*";
