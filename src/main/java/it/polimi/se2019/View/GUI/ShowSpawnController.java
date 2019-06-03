@@ -60,8 +60,8 @@ public class ShowSpawnController implements Initializable {
 
         String[] tokens = message.split("\\)");
 
-        firstPUName = getPUname(tokens[0]);
-        secondPUName = getPUname(tokens[1]);
+        firstPUName = getPUname(tokens[1]);
+        secondPUName = getPUname(tokens[2]);
 
         loadImages();
 
@@ -207,6 +207,8 @@ public class ShowSpawnController implements Initializable {
             firstPU.setImage(image);
 
         }
+
+        //-------//
 
 
         if(secondPUName.equalsIgnoreCase("Raggio Cinetico Blu")){

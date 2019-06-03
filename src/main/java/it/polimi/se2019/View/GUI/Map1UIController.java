@@ -1063,9 +1063,9 @@ public class Map1UIController implements Initializable {
         }
 
         if(championName.equalsIgnoreCase(":d-strutt-or3")){
-            dozerUser = nickname;
-            dozerRoom = cellName;
-            dozerRoomColour = colour;
+            destructorUser = nickname;
+            destructorRoom = cellName;
+            destructorRoomColour = colour;
         }
 
         if(otherPlayerNumber>=2){
@@ -1285,6 +1285,67 @@ public class Map1UIController implements Initializable {
         toPrint = toPrint + "Redcubes: " + redCubes + "\n";
 
         toPrint = toPrint + "Yellowcubes: " + yellowCubes + "\n";
+        
+        toPrint = toPrint + "Danno1: " + damage1Name + "\n";
+
+        toPrint = toPrint + "Danno2: " + damage2Name + "\n";
+
+        toPrint = toPrint + "Danno3: " + damage3Name + "\n";
+
+        toPrint = toPrint + "Danno4: " + damage4Name + "\n";
+
+        toPrint = toPrint + "Danno5: " + damage5Name + "\n";
+
+        toPrint = toPrint + "Danno6: " + damage6Name + "\n";
+
+        toPrint = toPrint + "Danno7: " + damage7Name + "\n";
+
+        toPrint = toPrint + "Danno8: " + damage8Name + "\n";
+
+        toPrint = toPrint + "Danno9: " + damage9Name + "\n";
+
+        toPrint = toPrint + "Danno10: " + damage10Name + "\n";
+
+        toPrint = toPrint + "Danno11: " + damage11Name + "\n";
+
+        toPrint = toPrint + "Danno12: " + damage12Name + "\n";
+
+
+        toPrint = toPrint + "Marker1: " + marker1Name + "\n";
+
+        toPrint = toPrint + "Marker2: " + marker2Name + "\n";
+
+        toPrint = toPrint + "Marker3: " + marker3Name + "\n";
+
+        toPrint = toPrint + "Marker4: " + marker4Name + "\n";
+
+        toPrint = toPrint + "Marker5: " + marker5Name + "\n";
+
+        toPrint = toPrint + "Marker6: " + marker6Name + "\n";
+
+        toPrint = toPrint + "Marker7: " + marker7Name + "\n";
+
+        toPrint = toPrint + "Marker8: " + marker8Name + "\n";
+
+        toPrint = toPrint + "Marker9: " + marker9Name + "\n";
+
+        toPrint = toPrint + "Marker10: " + marker10Name + "\n";
+
+        toPrint = toPrint + "Marker11: " + marker11Name + "\n";
+
+        toPrint = toPrint + "Marker12: " + marker12Name + "\n";
+
+        toPrint = toPrint + "Dozer user: " + dozerUser + "\n";
+
+        toPrint = toPrint + "Destructor user: " + destructorUser + "\n";
+
+        toPrint = toPrint + "Violetta user: " + violettaUser + "\n";
+
+        toPrint = toPrint + "Sprog user: " + sprogUser + "\n";
+
+        toPrint = toPrint + "Banshee user: " + bansheeUser + "\n";
+
+
 
 
         return toPrint;
@@ -2338,7 +2399,7 @@ public class Map1UIController implements Initializable {
            return new Image("/assets/Placeable/Dozer_Mk.png");
        }
 
-        if(championName.equalsIgnoreCase("violet")){
+        if(championName.equalsIgnoreCase("violetta")){
             return new Image("/assets/Placeable/Violet_Mk.png");
         }
 

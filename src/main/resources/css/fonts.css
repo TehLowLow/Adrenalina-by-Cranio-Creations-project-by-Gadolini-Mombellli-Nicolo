@@ -1,0 +1,7 @@
+@font-face {
+src: url("../assets/Fonts/Ethnocentric/spaceranger.ttf");
+}
+
+.label {
+-fx-font-family: �Adrenaline�;
+}

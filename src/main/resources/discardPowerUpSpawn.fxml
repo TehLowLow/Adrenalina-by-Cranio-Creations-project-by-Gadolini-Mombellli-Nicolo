@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="363.0" prefWidth="540.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.ShowSpawnController">
+  <children>
+    <ImageView fitHeight="363.0" fitWidth="540.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@assets/cover/weaponBack.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="23.0" layoutY="23.0" text="Scegli un potenziamento da scartare." textFill="WHITE">
+      <font>
+        <Font name="System Bold" size="20.0" />
+      </font>
+    </Label>
+    <ImageView fx:id="firstPU" fitHeight="270.28401734166965" fitWidth="173.02272033691406" layoutX="48.0" layoutY="65.0" onMouseClicked="#selectFirst" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Powerups/AD_powerups_IT_02.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="secondPU" fitHeight="270.28401734166965" fitWidth="173.02272033691406" layoutX="303.0" layoutY="65.0" onMouseClicked="#selectSecond" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Powerups/AD_powerups_IT_02.png" />
+      </image>
+    </ImageView>
+  </children>
+</AnchorPane>

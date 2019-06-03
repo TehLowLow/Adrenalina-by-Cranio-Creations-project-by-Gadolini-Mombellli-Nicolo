@@ -289,6 +289,8 @@ public class GUI extends Application implements Runnable {
                 map1UIController.initUI();
                 map1UIController.refresh();
 
+                System.out.println(map1UIController.provaStampa());
+
                 rootLayout = UIPane;
 
                 Scene scene = new Scene(rootLayout);

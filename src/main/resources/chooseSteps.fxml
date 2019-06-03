@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="285.46453857421875" prefWidth="456.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.ChooseStepsController">
+  <children>
+    <ImageView fitHeight="285.4645394571867" fitWidth="463.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/cover/weaponBack.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="40.0" layoutY="28.0" text="Quanti passi vuoi fare?" textFill="WHITE">
+      <font>
+        <Font name="System Bold" size="20.0" />
+      </font>
+    </Label>
+    <Button fx:id="chose1" layoutX="48.0" layoutY="116.0" mnemonicParsing="false" onAction="#chosen1" prefHeight="54.477203369140625" prefWidth="99.0" text="1">
+      <font>
+        <Font name="System Bold" size="23.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button fx:id="chose2" font="$x1" layoutX="179.0" layoutY="116.0" mnemonicParsing="false" onAction="#chosen2" prefHeight="54.477203369140625" prefWidth="99.0" text="2" />
+    <Button fx:id="chose3" font="$x1" layoutX="310.0" layoutY="116.0" mnemonicParsing="false" onAction="#chosen3" prefHeight="54.477203369140625" prefWidth="99.0" text="3" />
+  </children>
+</AnchorPane>
