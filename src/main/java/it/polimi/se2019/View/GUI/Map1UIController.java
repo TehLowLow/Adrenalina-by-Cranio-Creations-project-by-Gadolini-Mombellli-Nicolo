@@ -811,7 +811,6 @@ public class Map1UIController implements Initializable {
           blueSpawnCellSquare.setDisable(true);
           blueSpawnCellSquare.setOpacity(0);
 
-        
           blueLootCell1Square.setDisable(true);
           blueLootCell1Square.setOpacity(0);
         
@@ -838,6 +837,7 @@ public class Map1UIController implements Initializable {
         
           whiteLootCell2Square.setDisable(true);
           whiteLootCell2Square.setOpacity(0);
+
     }
 
 

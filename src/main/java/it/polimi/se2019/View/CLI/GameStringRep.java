@@ -55,6 +55,8 @@ codificata e inviata.
             GUIData = GUIData + '*';
         }
 
+        GUIData = GUIData + "*";
+
         // -- AGGIUNTA INFORMAZIONI POWERUP GIOCATORE -- //
 
         for(Powerup powerup : player.getPlayerboard().getPowerups()){
