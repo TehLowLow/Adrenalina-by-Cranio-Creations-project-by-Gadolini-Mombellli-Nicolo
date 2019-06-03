@@ -13,7 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import static it.polimi.se2019.Network.Server.*;
 
-public class RMILogger implements Logger, Runnable, RMILoggerInterface {
+public class  RMILogger implements Logger, Runnable, RMILoggerInterface {
 
 
     private String userName;

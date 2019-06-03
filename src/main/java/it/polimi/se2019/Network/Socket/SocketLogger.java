@@ -178,7 +178,7 @@ public class SocketLogger implements Logger, Runnable {
      * @return the inputstream for communication.
      */
 
-    private DataInputStream inStream(Socket socket) {
+    private synchronized DataInputStream inStream(Socket socket) {
         try {
             return new DataInputStream(socket.getInputStream());
         } catch (Exception e) {
@@ -195,7 +195,7 @@ public class SocketLogger implements Logger, Runnable {
      * @param socket is the socket where outputs for the vclient will be pushed.
      * @return the outputstream for communication.
      */
-    private DataOutputStream outStream(Socket socket) {
+    private synchronized DataOutputStream outStream(Socket socket) {
 
         try {
             return new DataOutputStream(socket.getOutputStream());

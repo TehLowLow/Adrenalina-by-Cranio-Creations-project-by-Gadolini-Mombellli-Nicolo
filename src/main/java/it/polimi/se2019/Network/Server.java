@@ -29,11 +29,11 @@ import java.util.concurrent.Executors;
 public class Server {
 
 
-    private static volatile int clientPort = 4000;
-    public static final int LOGINSOCKETPORT = 9999;
-    public static final int LOGINRMIPORT = 8888;
-    public static final int RMIPORT = 2100;
-    public static final int SOCKETPORT = 2200;
+    private static volatile int clientPort = 50000;
+    public static final int LOGINSOCKETPORT = 55000;
+    public static final int LOGINRMIPORT = 56000;
+    public static final int RMIPORT = 59000;
+    public static final int SOCKETPORT = 60000;
     public static int lobbyTimer;
     public static volatile boolean matchStarted = false;
     public static volatile boolean matchFinished = false;
@@ -194,7 +194,7 @@ public class Server {
                 System.out.println(in.readInt());
                 out.writeUTF(msg);
                 String answer = in.readUTF(); //debug gui  TODO
-                System.out.println(player.getNickname() +": " + answer); //debug gui
+                System.out.println(player.getNickname() + ": " + answer); //debug gui
                 return answer; //in.readUTF(); debug gui
 
             } catch (SocketException e) {
@@ -220,7 +220,7 @@ public class Server {
 
     public static synchronized void update(Player player, String msg) {
 
-        if (player.getNickname().equalsIgnoreCase("terminator")){
+        if (player.getNickname().equalsIgnoreCase("terminator")) {
 
             return;
 
