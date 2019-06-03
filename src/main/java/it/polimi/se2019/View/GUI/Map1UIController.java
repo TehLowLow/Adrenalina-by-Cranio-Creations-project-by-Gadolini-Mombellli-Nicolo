@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.effect.SepiaTone;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 import java.io.DataOutputStream;
@@ -596,34 +597,34 @@ public class Map1UIController implements Initializable {
     public ImageView sprogIcon;
     
     @FXML
-    public ImageView blueSpawnCellSquare;
+    public Rectangle blueSpawnCellSquare;
     
     @FXML
-    public ImageView blueLootCell1Square;
+    public Rectangle blueLootCell1Square;
     
     @FXML
-    public ImageView blueLootCell2Square;
+    public Rectangle blueLootCell2Square;
 
     @FXML
-    public ImageView redSpawnCellSquare;
+    public Rectangle redSpawnCellSquare;
 
     @FXML
-    public ImageView redLootCell1Square;
+    public Rectangle redLootCell1Square;
 
     @FXML
-    public ImageView redLootCell2Square;
+    public Rectangle redLootCell2Square;
 
     @FXML
-    public ImageView yellowSpawnCellSquare;
+    public Rectangle yellowSpawnCellSquare;
 
     @FXML
-    public ImageView yellowLootCellSquare;
+    public Rectangle yellowLootCellSquare;
 
     @FXML
-    public ImageView whiteLootCell1Square;
+    public Rectangle whiteLootCell1Square;
 
     @FXML
-    public ImageView whiteLootCell2Square;
+    public Rectangle whiteLootCell2Square;
     
 
 
