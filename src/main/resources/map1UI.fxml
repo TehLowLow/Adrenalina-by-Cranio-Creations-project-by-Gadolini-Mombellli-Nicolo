@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.7341918945312" prefWidth="1355.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.se2019.View.GUI.Map1UIController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.7341918945312" prefWidth="1355.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.Map1UIController">
   <children>
     <ImageView fitHeight="704.7341918945312" fitWidth="1362.122802734375" layoutX="2.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
       <image>
@@ -469,15 +476,15 @@
       </font>
     </Button>
     <Button font="$x8" layoutX="1241.0" layoutY="487.0" mnemonicParsing="false" onAction="#noAction" prefHeight="38.0" prefWidth="76.0" text="NO" textFill="RED" />
-      <Rectangle fx:id="blueLootCell1Square" arcHeight="5.0" arcWidth="5.0" height="148.0" layoutX="134.0" layoutY="146.0" onMouseClicked="#chooseBlueLootCell1" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="144.0" />
-      <Rectangle fx:id="blueLootCell2Square" arcHeight="5.0" arcWidth="5.0" height="149.0" layoutX="277.0" layoutY="145.0" onMouseClicked="#chooseBlueLootCell2" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="145.0" />
-      <Rectangle fx:id="blueSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" height="148.0" layoutX="423.0" layoutY="146.0" onMouseClicked="#chooseBlueSpawnCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0" />
-      <Rectangle fx:id="redSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" height="175.0" layoutX="137.0" layoutY="306.0" onMouseClicked="#chooseRedSpawnCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="139.0" />
-      <Rectangle fx:id="redLootCell1Square" arcHeight="5.0" arcWidth="5.0" height="165.0" layoutX="276.0" layoutY="303.0" onMouseClicked="#chooseRedLootCell1" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="141.0" />
-      <Rectangle fx:id="redLootCell2Square" arcHeight="5.0" arcWidth="5.0" height="165.0" layoutX="416.0" layoutY="306.0" onMouseClicked="#chooseRedLootCell2" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="158.0" />
-      <Rectangle fx:id="whiteLootCell1Square" arcHeight="5.0" arcWidth="5.0" height="149.0" layoutX="249.0" layoutY="480.0" onMouseClicked="#chooseWhiteLootCell1" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="174.0" />
-      <Rectangle fx:id="whiteLootCell2Square" arcHeight="5.0" arcWidth="5.0" height="148.0" layoutX="422.0" layoutY="480.0" onMouseClicked="#chooseWhiteLootCell2" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="152.0" />
-      <Rectangle fx:id="yellowLootCellSquare" arcHeight="5.0" arcWidth="5.0" height="158.0" layoutX="582.0" layoutY="306.0" onMouseClicked="#chooseYellowLootCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="131.0" />
-      <Rectangle fx:id="yellowSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" height="166.0" layoutX="580.0" layoutY="462.0" onMouseClicked="#chooseYellowSpawnCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="132.0" />
+    <Rectangle fx:id="blueLootCell1Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="148.0" layoutX="134.0" layoutY="146.0" onMouseClicked="#chooseBlueLootCell1" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="144.0" />
+    <Rectangle fx:id="blueLootCell2Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="149.0" layoutX="277.0" layoutY="145.0" onMouseClicked="#chooseBlueLootCell2" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="145.0" />
+    <Rectangle fx:id="blueSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="148.0" layoutX="423.0" layoutY="146.0" onMouseClicked="#chooseBlueSpawnCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="true" width="150.0" />
+    <Rectangle fx:id="redSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="175.0" layoutX="137.0" layoutY="306.0" onMouseClicked="#chooseRedSpawnCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="true" width="139.0" />
+    <Rectangle fx:id="redLootCell1Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="165.0" layoutX="276.0" layoutY="303.0" onMouseClicked="#chooseRedLootCell1" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="true" width="141.0" />
+    <Rectangle fx:id="redLootCell2Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="165.0" layoutX="416.0" layoutY="306.0" onMouseClicked="#chooseRedLootCell2" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="true" width="158.0" />
+    <Rectangle fx:id="whiteLootCell1Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="149.0" layoutX="249.0" layoutY="480.0" onMouseClicked="#chooseWhiteLootCell1" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="true" width="174.0" />
+    <Rectangle fx:id="whiteLootCell2Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="148.0" layoutX="422.0" layoutY="480.0" onMouseClicked="#chooseWhiteLootCell2" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="true" width="152.0" />
+    <Rectangle fx:id="yellowLootCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="158.0" layoutX="582.0" layoutY="306.0" onMouseClicked="#chooseYellowLootCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="true" width="131.0" />
+    <Rectangle fx:id="yellowSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="166.0" layoutX="580.0" layoutY="462.0" onMouseClicked="#chooseYellowSpawnCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="true" width="132.0" />
   </children>
 </AnchorPane>

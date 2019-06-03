@@ -63,6 +63,9 @@ public class ShowSpawnController implements Initializable {
         firstPUName = getPUname(tokens[1]);
         secondPUName = getPUname(tokens[2]);
 
+        System.out.println("Primo pescato: " + firstPUName + '\n');
+        System.out.println("Secondo pescato: " + secondPUName + '\n');
+
         loadImages();
 
     }

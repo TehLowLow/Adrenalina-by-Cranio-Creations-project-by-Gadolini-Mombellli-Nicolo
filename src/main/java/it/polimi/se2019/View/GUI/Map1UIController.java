@@ -727,57 +727,76 @@ public class Map1UIController implements Initializable {
     
     @FXML
     public void lightCells(){
-        
+
+        blueSpawnCellSquare.setDisable(false);
+        blueLootCell1Square.setDisable(false);
+        blueLootCell2Square.setDisable(false);
+        redSpawnCellSquare.setDisable(false);
+        redLootCell1Square.setDisable(false);
+        redLootCell1Square.setDisable(false);
+        redLootCell2Square.setDisable(false);
+        yellowSpawnCellSquare.setDisable(false);
+        yellowLootCellSquare.setDisable(false);
+        whiteLootCell2Square.setDisable(false);
+        whiteLootCell1Square.setDisable(false);
+
         if(blueSpawnCellIndex.equalsIgnoreCase("empty")){
-            
-            blueSpawnCellSquare.setVisible(true);
+
+            blueSpawnCellSquare.setOpacity(0.55);
         }
         
         if(blueLootCell1Index.equalsIgnoreCase("empty")){
-            
-            blueLootCell1Square.setVisible(true);
+
+            blueLootCell1Square.setOpacity(0.55);
         }
         if(blueLootCell2Index.equalsIgnoreCase("empty")){
             
-            blueLootCell2Square.setVisible(true);
+
+            blueLootCell2Square.setOpacity(0.55);
         }
 
         if(redSpawnCellIndex.equalsIgnoreCase("empty")){
 
-            redSpawnCellSquare.setVisible(true);
+
+            redSpawnCellSquare.setOpacity(0.55);
 
         }
 
         if(redLootCell1Index.equalsIgnoreCase("empty")){
     
-            redLootCell1Square.setVisible(true);
+
+            redLootCell1Square.setOpacity(0.55);
 
         }
         if(redLootCell2Index.equalsIgnoreCase("empty")){
 
-            redLootCell2Square.setVisible(true);
+
+            redLootCell2Square.setOpacity(0.55);
         }
 
         if(yellowSpawnCellIndex.equalsIgnoreCase("empty")){
 
-            yellowSpawnCellSquare.setVisible(true);
+            yellowSpawnCellSquare.setOpacity(0.55);
         }
 
         if(yellowLootCellIndex.equalsIgnoreCase("empty")){
         
-            yellowLootCellSquare.setVisible(true);
+
+            yellowLootCellSquare.setOpacity(0.55);
 
         }
 
         if(whiteLootCell1Index.equalsIgnoreCase("empty")){
         
-            whiteLootCell1Square.setVisible(true);
+
+            whiteLootCell1Square.setOpacity(0.55);
 
         }
         
         if(whiteLootCell2Index.equalsIgnoreCase("empty")){
 
-            whiteLootCell2Square.setVisible(true);
+
+            whiteLootCell2Square.setOpacity(0.55);
 
         }
         
@@ -789,35 +808,36 @@ public class Map1UIController implements Initializable {
     public void restoreCells(){
 
         
-          blueSpawnCellSquare.setVisible(false);
+          blueSpawnCellSquare.setDisable(true);
+          blueSpawnCellSquare.setOpacity(0);
 
         
-          blueLootCell1Square.setVisible(false);
-
+          blueLootCell1Square.setDisable(true);
+          blueLootCell1Square.setOpacity(0);
         
-          blueLootCell2Square.setVisible(false);
-
+          blueLootCell2Square.setDisable(true);
+          blueLootCell2Square.setOpacity(0);
         
-          redSpawnCellSquare.setVisible(false);
-
+          redSpawnCellSquare.setDisable(true);
+          redSpawnCellSquare.setOpacity(0);
         
-          redLootCell1Square.setVisible(false);
-
+          redLootCell1Square.setDisable(true);
+          redLootCell1Square.setOpacity(0);
         
-          redLootCell2Square.setVisible(false);
-
+          redLootCell2Square.setDisable(true);
+        redLootCell2Square.setOpacity(0);
         
-          yellowSpawnCellSquare.setVisible(false);
-
+          yellowSpawnCellSquare.setDisable(true);
+          yellowSpawnCellSquare.setOpacity(0);
         
-          yellowLootCellSquare.setVisible(false);
-
+          yellowLootCellSquare.setDisable(true);
+          yellowLootCellSquare.setOpacity(0);
         
-          whiteLootCell1Square.setVisible(false);
-
+          whiteLootCell1Square.setDisable(true);
+          whiteLootCell1Square.setOpacity(0);
         
-          whiteLootCell2Square.setVisible(false);
-        
+          whiteLootCell2Square.setDisable(true);
+          whiteLootCell2Square.setOpacity(0);
     }
 
 
