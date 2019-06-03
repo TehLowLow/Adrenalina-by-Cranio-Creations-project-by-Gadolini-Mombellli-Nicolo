@@ -67,7 +67,7 @@ public class Map1UIController implements Initializable {
 
     String whiteLoot1;
     String whiteLoot2;
-    
+
     //Armi delle celle
     String blueWeapon1name;
     String blueWeapon2name;
@@ -85,7 +85,7 @@ public class Map1UIController implements Initializable {
 
     String damage1Name = "empty";
     String damage2Name = "empty";
-    String damage3Name= "empty";
+    String damage3Name = "empty";
     String damage4Name = "empty";
     String damage5Name = "empty";
     String damage6Name = "empty";
@@ -95,7 +95,7 @@ public class Map1UIController implements Initializable {
     String damage10Name = "empty";
     String damage11Name = "empty";
     String damage12Name = "empty";
-    
+
     String[] damagesTaken = {damage1Name, damage2Name, damage3Name, damage4Name, damage5Name, damage6Name, damage7Name, damage8Name, damage9Name, damage10Name, damage11Name, damage12Name};
 
     //Valore PB
@@ -111,13 +111,13 @@ public class Map1UIController implements Initializable {
     String token6Name = "empty";
     String token7Name = "empty";
     String token8Name = "empty";
-    
+
 
     //Markers
 
     String marker1Name = "empty";
     String marker2Name = "empty";
-    String marker3Name= "empty";
+    String marker3Name = "empty";
     String marker4Name = "empty";
     String marker5Name = "empty";
     String marker6Name = "empty";
@@ -137,7 +137,7 @@ public class Map1UIController implements Initializable {
     String violettaUser = "empty";
     String sprogUser = "empty";
     String bansheeUser = "empty";
-    
+
     String dozerRoomColour = "empty";
     String destructorRoomColour = "empty";
     String violettaRoomColour = "empty";
@@ -194,7 +194,7 @@ public class Map1UIController implements Initializable {
 
     public int blueLootCell1BansheeX = 193;
     public int blueLootCell1BansheeY = 235;
-    
+
     //lootCell2
 
     public int blueLootCell2DestructorX = 329;
@@ -211,9 +211,9 @@ public class Map1UIController implements Initializable {
 
     public int blueLootCell2BansheeX = 375;
     public int blueLootCell2BansheeY = 238;
-    
+
     // Stanza rossa
-    
+
     ///Spawn cell
 
     public int redSpawnCellDestructorX = 151;
@@ -265,9 +265,9 @@ public class Map1UIController implements Initializable {
 
     public int redLootCell2BansheeX = 502;
     public int redLootCell2BansheeY = 418;
-    
+
     //Stanza gialla
-    
+
     //SpawnCell
 
     public int yellowSpawnCellDestructorX = 586;
@@ -284,7 +284,7 @@ public class Map1UIController implements Initializable {
 
     public int yellowSpawnCellBansheeX = 591;
     public int yellowSpawnCellBansheeY = 567;
-    
+
     //LootCell
 
     public int yellowLootCellDestructorX = 608;
@@ -321,7 +321,7 @@ public class Map1UIController implements Initializable {
 
     public int whiteLootCell1BansheeX = 278;
     public int whiteLootCell1BansheeY = 495;
-    
+
     //LootCell2
 
     public int whiteLootCell2DestructorX = 469;
@@ -354,7 +354,7 @@ public class Map1UIController implements Initializable {
 
     @FXML
     public Text scoreText;
-    
+
     //
 
     @FXML
@@ -365,12 +365,12 @@ public class Map1UIController implements Initializable {
 
     @FXML
     public Text yellowCubesText;
-    
+
     //
-    
+
     @FXML
     public ImageView playerboardImage;
-    
+
     @FXML
     public ImageView damage1;
     @FXML
@@ -439,8 +439,7 @@ public class Map1UIController implements Initializable {
     @FXML
     public ImageView marker12Image;
 
-    
-    
+
     //
 
     @FXML
@@ -453,7 +452,7 @@ public class Map1UIController implements Initializable {
     public ImageView weapon3Image;
 
     //
-    
+
     @FXML
     public ImageView pu1Image;
 
@@ -462,7 +461,7 @@ public class Map1UIController implements Initializable {
 
     @FXML
     public ImageView pu3Image;
-    
+
     //
 
     @FXML
@@ -485,7 +484,7 @@ public class Map1UIController implements Initializable {
 
     @FXML
     public ImageView whiteLoot2Tile;
-    
+
     //
 
     @FXML
@@ -514,7 +513,7 @@ public class Map1UIController implements Initializable {
 
     @FXML
     public ImageView yellowWeapon3;
-    
+
     //
 
     @FXML
@@ -581,30 +580,26 @@ public class Map1UIController implements Initializable {
     public ImageView sprogIcon;
 
 
-
-
-
 //--------------------------------------------------------------------------
 
-    public Map1UIController(){}
+    public Map1UIController() {
+    }
 
     @FXML
-    public void setMessage(String message){
+    public void setMessage(String message) {
 
 
-        if(message.contains("~")) {
+        if (message.contains("~")) {
             String copy = message;
             String[] tokens = copy.split("~");
             terminal.setText(tokens[1]);
-        }
-
-        else{
+        } else {
             terminal.setText(message);
         }
 
     }
 
-    public void parser(String message){
+    public void parser(String message) {
 
         //Divido la CLI dalla stringa che rappresenta il gioco.
         String[] firstSplit = message.split("\\$");
@@ -633,7 +628,7 @@ public class Map1UIController implements Initializable {
         String pbValue = sections[8];
 
         String mbTrack = sections[9];
-        
+
         String markerToken = sections[10];
 
         String playersPositions = sections[11];
@@ -649,7 +644,7 @@ public class Map1UIController implements Initializable {
         // -- SEZIONE 2: POSIZIONE DEL GIOCATORE -- //
 
         String positionList[] = playerPosition.split("@");
-            
+
         colour = positionList[0];
         cellName = positionList[1];
 
@@ -664,33 +659,32 @@ public class Map1UIController implements Initializable {
         weapon3 = "No weapon";
         loaded3 = "0";
 
-        if(!playerWeapon.contains("noweapon")){
+        if (!playerWeapon.contains("noweapon")) {
 
             String[] weaponList = playerWeapon.split("@");
 
-            ArrayList <String> weaponAList = new ArrayList<String>(Arrays.asList(weaponList));
+            ArrayList<String> weaponAList = new ArrayList<String>(Arrays.asList(weaponList));
 
-            if(weaponAList.size()>=1){
+            if (weaponAList.size() >= 1) {
 
                 weapon1 = weaponList[0];
                 loaded1 = weaponList[1];
 
             }
 
-            if(weaponAList.size()>=2){
+            if (weaponAList.size() >= 2) {
 
                 weapon2 = weaponList[2];
                 loaded2 = weaponList[3];
 
             }
 
-            if(weaponAList.size()==3){
+            if (weaponAList.size() == 3) {
 
                 weapon1 = weaponList[4];
                 loaded1 = weaponList[5];
 
             }
-
 
 
         }
@@ -701,31 +695,30 @@ public class Map1UIController implements Initializable {
         pu2 = "no pu";
         pu3 = "no pu";
 
-        if(!playerPU.contains("nopowerups")){
+        if (!playerPU.contains("nopowerups")) {
 
 
-            String[] arrayPu =  playerPU.split("@");
+            String[] arrayPu = playerPU.split("@");
 
-            ArrayList <String> PUList = new ArrayList<String>(Arrays.asList(arrayPu));
+            ArrayList<String> PUList = new ArrayList<String>(Arrays.asList(arrayPu));
 
-            if(PUList.size()>=1){
+            if (PUList.size() >= 1) {
 
                 pu1 = arrayPu[0];
 
             }
 
-            if(PUList.size()>=2){
+            if (PUList.size() >= 2) {
 
                 pu2 = arrayPu[1];
 
             }
 
-            if(PUList.size()==3){
+            if (PUList.size() == 3) {
 
                 pu3 = arrayPu[2];
 
             }
-
 
 
         }
@@ -764,24 +757,24 @@ public class Map1UIController implements Initializable {
         whiteLoot2 = whiteLoots[1];
 
         // -- SEZIONE 7: ARMI DELLA MAPPA -- //
-        
+
         String[] weaponRooms = mapWeapons.split("#");
-        
+
         blueRoom = weaponRooms[0];
         redRoom = weaponRooms[1];
         yellowRoom = weaponRooms[2];
-        
+
         String[] blueWeapons = blueRoom.split("@");
         blueWeapon1name = blueWeapons[0];
         blueWeapon2name = blueWeapons[1];
         blueWeapon3name = blueWeapons[2];
-        
+
         String[] redWeapons = redRoom.split("@");
         redWeapon1name = redWeapons[0];
         redWeapon2name = redWeapons[1];
         redWeapon3name = redWeapons[2];
-        
-        
+
+
         String[] yellowWeapons = yellowRoom.split("@");
         yellowWeapon1name = yellowWeapons[0];
         yellowWeapon2name = yellowWeapons[1];
@@ -789,22 +782,22 @@ public class Map1UIController implements Initializable {
 
 
         // -- SEZIONE 8: DANNI SUBITI DAL GIOCATORE -- //
-        
+
         String[] damageString = damageToken.split("@");
-        
+
         int damageNumber = Integer.parseInt(damageString[0]);
-        
+
         int i = 0;
-        
-        for(i=0; i<damageNumber; i++){
-            
-            damagesTaken[i] = damageString[i+1];
-            
+
+        for (i = 0; i < damageNumber; i++) {
+
+            damagesTaken[i] = damageString[i + 1];
+
         }
 
         damage1Name = damagesTaken[0];
         damage2Name = damagesTaken[1];
-        damage3Name= damagesTaken[2];
+        damage3Name = damagesTaken[2];
         damage4Name = damagesTaken[3];
         damage5Name = damagesTaken[4];
         damage6Name = damagesTaken[5];
@@ -814,7 +807,7 @@ public class Map1UIController implements Initializable {
         damage10Name = damagesTaken[9];
         damage11Name = damagesTaken[10];
         damage12Name = damagesTaken[11];
-        
+
         // -- SEZIONE 9: VALORE DELLA PLAYERBOARD -- //
 
 
@@ -826,36 +819,36 @@ public class Map1UIController implements Initializable {
 
         int skullNumber = Integer.parseInt(mbTokens[0]);
 
-        if(skullNumber==5){
+        if (skullNumber == 5) {
             mbToken1.setVisible(false);
             mbToken2.setVisible(false);
             mbToken3.setVisible(false);
 
-            if(mbTokens[1].equalsIgnoreCase("1")){
+            if (mbTokens[1].equalsIgnoreCase("1")) {
                 mb4Overkill.setVisible(true);
             }
 
             token4Name = mbTokens[2];
 
-            if(mbTokens[3].equalsIgnoreCase("1")){
+            if (mbTokens[3].equalsIgnoreCase("1")) {
                 mb5Overkill.setVisible(true);
             }
 
             token5Name = mbTokens[4];
 
-            if(mbTokens[5].equalsIgnoreCase("1")){
+            if (mbTokens[5].equalsIgnoreCase("1")) {
                 mb6Overkill.setVisible(true);
             }
 
             token6Name = mbTokens[6];
 
-            if(mbTokens[7].equalsIgnoreCase("1")){
+            if (mbTokens[7].equalsIgnoreCase("1")) {
                 mb7Overkill.setVisible(true);
             }
 
             token7Name = mbTokens[8];
 
-            if(mbTokens[9].equalsIgnoreCase("1")){
+            if (mbTokens[9].equalsIgnoreCase("1")) {
                 mb8Overkill.setVisible(true);
             }
 
@@ -864,41 +857,41 @@ public class Map1UIController implements Initializable {
 
         }
 
-        if(skullNumber==6){
+        if (skullNumber == 6) {
             mbToken1.setVisible(false);
             mbToken2.setVisible(false);
 
-            if(mbTokens[1].equalsIgnoreCase("1")){
+            if (mbTokens[1].equalsIgnoreCase("1")) {
                 mb3Overkill.setVisible(true);
             }
 
             token3Name = mbTokens[2];
 
-            if(mbTokens[3].equalsIgnoreCase("1")){
+            if (mbTokens[3].equalsIgnoreCase("1")) {
                 mb4Overkill.setVisible(true);
             }
 
             token4Name = mbTokens[4];
 
-            if(mbTokens[5].equalsIgnoreCase("1")){
+            if (mbTokens[5].equalsIgnoreCase("1")) {
                 mb5Overkill.setVisible(true);
             }
 
             token5Name = mbTokens[6];
 
-            if(mbTokens[7].equalsIgnoreCase("1")){
+            if (mbTokens[7].equalsIgnoreCase("1")) {
                 mb6Overkill.setVisible(true);
             }
 
             token6Name = mbTokens[8];
 
-            if(mbTokens[9].equalsIgnoreCase("1")){
+            if (mbTokens[9].equalsIgnoreCase("1")) {
                 mb7Overkill.setVisible(true);
             }
 
             token7Name = mbTokens[10];
 
-            if(mbTokens[11].equalsIgnoreCase("1")){
+            if (mbTokens[11].equalsIgnoreCase("1")) {
                 mb8Overkill.setVisible(true);
             }
 
@@ -907,98 +900,98 @@ public class Map1UIController implements Initializable {
 
         }
 
-        if(skullNumber==7){
+        if (skullNumber == 7) {
 
             mbToken1.setVisible(false);
 
-            if(mbTokens[1].equalsIgnoreCase("1")){
+            if (mbTokens[1].equalsIgnoreCase("1")) {
                 mb2Overkill.setVisible(true);
             }
 
             token2Name = mbTokens[2];
 
-            if(mbTokens[3].equalsIgnoreCase("1")){
+            if (mbTokens[3].equalsIgnoreCase("1")) {
                 mb3Overkill.setVisible(true);
             }
 
             token3Name = mbTokens[4];
 
-            if(mbTokens[5].equalsIgnoreCase("1")){
+            if (mbTokens[5].equalsIgnoreCase("1")) {
                 mb4Overkill.setVisible(true);
             }
 
             token4Name = mbTokens[6];
 
-            if(mbTokens[7].equalsIgnoreCase("1")){
+            if (mbTokens[7].equalsIgnoreCase("1")) {
                 mb5Overkill.setVisible(true);
             }
 
             token5Name = mbTokens[8];
 
-            if(mbTokens[9].equalsIgnoreCase("1")){
+            if (mbTokens[9].equalsIgnoreCase("1")) {
                 mb6Overkill.setVisible(true);
             }
 
             token6Name = mbTokens[10];
 
-            if(mbTokens[11].equalsIgnoreCase("1")){
+            if (mbTokens[11].equalsIgnoreCase("1")) {
                 mb7Overkill.setVisible(true);
             }
 
             token7Name = mbTokens[12];
 
-            if(mbTokens[13].equalsIgnoreCase("1")){
+            if (mbTokens[13].equalsIgnoreCase("1")) {
                 mb8Overkill.setVisible(true);
             }
 
             token8Name = mbTokens[14];
         }
 
-        if(skullNumber==8){
+        if (skullNumber == 8) {
 
-            if(mbTokens[1].equalsIgnoreCase("1")){
+            if (mbTokens[1].equalsIgnoreCase("1")) {
                 mb1Overkill.setVisible(true);
             }
 
             token1Name = mbTokens[2];
 
-            if(mbTokens[3].equalsIgnoreCase("1")){
+            if (mbTokens[3].equalsIgnoreCase("1")) {
                 mb2Overkill.setVisible(true);
             }
 
             token2Name = mbTokens[4];
 
-            if(mbTokens[5].equalsIgnoreCase("1")){
+            if (mbTokens[5].equalsIgnoreCase("1")) {
                 mb3Overkill.setVisible(true);
             }
 
             token3Name = mbTokens[6];
 
-            if(mbTokens[7].equalsIgnoreCase("1")){
+            if (mbTokens[7].equalsIgnoreCase("1")) {
                 mb4Overkill.setVisible(true);
             }
 
             token4Name = mbTokens[8];
 
-            if(mbTokens[9].equalsIgnoreCase("1")){
+            if (mbTokens[9].equalsIgnoreCase("1")) {
                 mb5Overkill.setVisible(true);
             }
 
             token5Name = mbTokens[10];
 
-            if(mbTokens[11].equalsIgnoreCase("1")){
+            if (mbTokens[11].equalsIgnoreCase("1")) {
                 mb6Overkill.setVisible(true);
             }
 
             token6Name = mbTokens[12];
 
-            if(mbTokens[13].equalsIgnoreCase("1")){
+            if (mbTokens[13].equalsIgnoreCase("1")) {
                 mb7Overkill.setVisible(true);
             }
 
             token7Name = mbTokens[14];
 
-            if(mbTokens[15].equalsIgnoreCase("1")){
+            if (mbTokens[15].equalsIgnoreCase("1")) {
                 mb8Overkill.setVisible(true);
             }
 
@@ -1006,23 +999,23 @@ public class Map1UIController implements Initializable {
 
         }
 
-       //SEZIONE 11: MARKER
-        
+        //SEZIONE 11: MARKER
+
         String[] markerString = markerToken.split("@");
-        
+
         int markerNumber = Integer.parseInt(markerString[0]);
 
         i = 0;
 
-        for(i=0; i<markerNumber; i++){
+        for (i = 0; i < markerNumber; i++) {
 
-            markersTaken[i] = markerString[i+1];
+            markersTaken[i] = markerString[i + 1];
 
         }
 
         marker1Name = markersTaken[0];
         marker2Name = markersTaken[1];
-        marker3Name= markersTaken[2];
+        marker3Name = markersTaken[2];
         marker4Name = markersTaken[3];
         marker5Name = markersTaken[4];
         marker6Name = markersTaken[5];
@@ -1037,44 +1030,44 @@ public class Map1UIController implements Initializable {
 
         String[] tokenPosition = playersPositions.split("@");
         int otherPlayerNumber = Integer.parseInt(tokenPosition[0]);
-        
-        if(championName.equalsIgnoreCase("dozer")){
+
+        if (championName.equalsIgnoreCase("dozer")) {
             dozerUser = nickname;
             dozerRoom = cellName;
             dozerRoomColour = colour;
         }
 
-        if(championName.equalsIgnoreCase("sprog")){
+        if (championName.equalsIgnoreCase("sprog")) {
             sprogUser = nickname;
             sprogRoom = cellName;
             sprogRoomColour = colour;
         }
 
-        if(championName.equalsIgnoreCase("banshee")){
+        if (championName.equalsIgnoreCase("banshee")) {
             bansheeUser = nickname;
             bansheeRoom = cellName;
             bansheeRoomColour = colour;
         }
 
-        if(championName.equalsIgnoreCase("violetta")){
+        if (championName.equalsIgnoreCase("violetta")) {
             violettaUser = nickname;
             violettaRoom = cellName;
             violettaRoomColour = colour;
         }
 
-        if(championName.equalsIgnoreCase(":d-strutt-or3")){
+        if (championName.equalsIgnoreCase(":d-strutt-or3")) {
             destructorUser = nickname;
             destructorRoom = cellName;
             destructorRoomColour = colour;
         }
 
-        if(otherPlayerNumber>=2){
+        if (otherPlayerNumber >= 2) {
 
             //Di sicuro avrò personaggi nella tokenposition[1] e nella tokenposition[5].
-            
+
             //tokenPosition[1]:
 
-            if(tokenPosition[1].equalsIgnoreCase("dozer")){
+            if (tokenPosition[1].equalsIgnoreCase("dozer")) {
 
                 dozerUser = tokenPosition[2];
                 dozerRoomColour = tokenPosition[3];
@@ -1082,7 +1075,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[1].equalsIgnoreCase("violetta")){
+            if (tokenPosition[1].equalsIgnoreCase("violetta")) {
 
                 violettaUser = tokenPosition[2];
                 violettaRoomColour = tokenPosition[3];
@@ -1090,7 +1083,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[1].equalsIgnoreCase(":d-strutt-or3")){
+            if (tokenPosition[1].equalsIgnoreCase(":d-strutt-or3")) {
 
                 destructorUser = tokenPosition[2];
                 destructorRoomColour = tokenPosition[3];
@@ -1098,25 +1091,25 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[1].equalsIgnoreCase("sprog")){
+            if (tokenPosition[1].equalsIgnoreCase("sprog")) {
 
                 sprogUser = tokenPosition[2];
                 sprogRoomColour = tokenPosition[3];
                 sprogRoom = tokenPosition[4];
 
             }
-            
-            if(tokenPosition[1].equalsIgnoreCase("banshee")){
+
+            if (tokenPosition[1].equalsIgnoreCase("banshee")) {
 
                 bansheeUser = tokenPosition[2];
                 bansheeRoomColour = tokenPosition[3];
                 bansheeRoom = tokenPosition[4];
 
             }
-            
+
             //tokenPosition[5]:
 
-            if(tokenPosition[5].equalsIgnoreCase("dozer")){
+            if (tokenPosition[5].equalsIgnoreCase("dozer")) {
 
                 dozerUser = tokenPosition[6];
                 dozerRoomColour = tokenPosition[7];
@@ -1124,7 +1117,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[5].equalsIgnoreCase("violetta")){
+            if (tokenPosition[5].equalsIgnoreCase("violetta")) {
 
                 violettaUser = tokenPosition[6];
                 violettaRoomColour = tokenPosition[7];
@@ -1132,7 +1125,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[5].equalsIgnoreCase(":d-strutt-or3")){
+            if (tokenPosition[5].equalsIgnoreCase(":d-strutt-or3")) {
 
                 destructorUser = tokenPosition[6];
                 destructorRoomColour = tokenPosition[7];
@@ -1140,7 +1133,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[5].equalsIgnoreCase("sprog")){
+            if (tokenPosition[5].equalsIgnoreCase("sprog")) {
 
                 sprogUser = tokenPosition[6];
                 sprogRoomColour = tokenPosition[7];
@@ -1148,26 +1141,22 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[5].equalsIgnoreCase("banshee")){
+            if (tokenPosition[5].equalsIgnoreCase("banshee")) {
 
                 bansheeUser = tokenPosition[6];
                 bansheeRoomColour = tokenPosition[7];
                 bansheeRoom = tokenPosition[8];
 
             }
-            
-            
-            
-            
-            
+
 
         }
 
-        if(otherPlayerNumber>=3){
-            
+        if (otherPlayerNumber >= 3) {
+
             //Di sicuro avrò personaggi nella tokenPosition[9]
 
-            if(tokenPosition[9].equalsIgnoreCase("dozer")){
+            if (tokenPosition[9].equalsIgnoreCase("dozer")) {
 
                 dozerUser = tokenPosition[10];
                 dozerRoomColour = tokenPosition[11];
@@ -1175,7 +1164,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[9].equalsIgnoreCase("violetta")){
+            if (tokenPosition[9].equalsIgnoreCase("violetta")) {
 
                 violettaUser = tokenPosition[10];
                 violettaRoomColour = tokenPosition[11];
@@ -1183,7 +1172,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[9].equalsIgnoreCase(":d-strutt-or3")){
+            if (tokenPosition[9].equalsIgnoreCase(":d-strutt-or3")) {
 
                 destructorUser = tokenPosition[10];
                 destructorRoomColour = tokenPosition[11];
@@ -1191,7 +1180,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[9].equalsIgnoreCase("sprog")){
+            if (tokenPosition[9].equalsIgnoreCase("sprog")) {
 
                 sprogUser = tokenPosition[10];
                 sprogRoomColour = tokenPosition[11];
@@ -1199,21 +1188,21 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[9].equalsIgnoreCase("banshee")){
+            if (tokenPosition[9].equalsIgnoreCase("banshee")) {
 
                 bansheeUser = tokenPosition[10];
                 bansheeRoomColour = tokenPosition[11];
                 bansheeRoom = tokenPosition[12];
 
             }
-            
+
         }
-        
-        if(otherPlayerNumber==4){
+
+        if (otherPlayerNumber == 4) {
 
             //Di sicuro qui avrò personaggi nella tokenPosition[13].
 
-            if(tokenPosition[13].equalsIgnoreCase("dozer")){
+            if (tokenPosition[13].equalsIgnoreCase("dozer")) {
 
                 dozerUser = tokenPosition[14];
                 dozerRoomColour = tokenPosition[15];
@@ -1221,7 +1210,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[13].equalsIgnoreCase("violetta")){
+            if (tokenPosition[13].equalsIgnoreCase("violetta")) {
 
                 violettaUser = tokenPosition[14];
                 violettaRoomColour = tokenPosition[15];
@@ -1229,7 +1218,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[13].equalsIgnoreCase(":d-strutt-or3")){
+            if (tokenPosition[13].equalsIgnoreCase(":d-strutt-or3")) {
 
                 destructorUser = tokenPosition[14];
                 destructorRoomColour = tokenPosition[15];
@@ -1237,7 +1226,7 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[13].equalsIgnoreCase("sprog")){
+            if (tokenPosition[13].equalsIgnoreCase("sprog")) {
 
                 sprogUser = tokenPosition[14];
                 sprogRoomColour = tokenPosition[15];
@@ -1245,22 +1234,21 @@ public class Map1UIController implements Initializable {
 
             }
 
-            if(tokenPosition[13].equalsIgnoreCase("banshee")){
+            if (tokenPosition[13].equalsIgnoreCase("banshee")) {
 
                 bansheeUser = tokenPosition[14];
                 bansheeRoomColour = tokenPosition[15];
                 bansheeRoom = tokenPosition[16];
 
             }
-            
-            
-        }
 
+
+        }
 
 
     }
 
-    public String provaStampa(){
+    public String provaStampa() {
 
         String toPrint = "";
 
@@ -1268,11 +1256,11 @@ public class Map1UIController implements Initializable {
 
         toPrint = toPrint + "Colour: " + colour + " - Cell name: " + cellName + "\n";
 
-        toPrint = toPrint + "Weapon1: " + weapon1 + "Loaded: " +  loaded1 + "\n";
+        toPrint = toPrint + "Weapon1: " + weapon1 + "Loaded: " + loaded1 + "\n";
 
-        toPrint = toPrint + "Weapon2: " + weapon2 + "Loaded: " +  loaded2 + "\n";
+        toPrint = toPrint + "Weapon2: " + weapon2 + "Loaded: " + loaded2 + "\n";
 
-        toPrint = toPrint + "Weapon3: " + weapon3 + "Loaded: " +  loaded3 + "\n";
+        toPrint = toPrint + "Weapon3: " + weapon3 + "Loaded: " + loaded3 + "\n";
 
         toPrint = toPrint + "PU1 " + pu1 + "\n";
 
@@ -1285,7 +1273,7 @@ public class Map1UIController implements Initializable {
         toPrint = toPrint + "Redcubes: " + redCubes + "\n";
 
         toPrint = toPrint + "Yellowcubes: " + yellowCubes + "\n";
-        
+
         toPrint = toPrint + "Danno1: " + damage1Name + "\n";
 
         toPrint = toPrint + "Danno2: " + damage2Name + "\n";
@@ -1346,20 +1334,17 @@ public class Map1UIController implements Initializable {
         toPrint = toPrint + "Banshee user: " + bansheeUser + "\n";
 
 
-
-
         return toPrint;
 
     }
-    
 
 
     @FXML
-    public void initUI(){
+    public void initUI() {
 
         nicknameText.setText(nickname);
 
-        if(championName.equalsIgnoreCase("dozer")){
+        if (championName.equalsIgnoreCase("dozer")) {
 
             Image image = new Image("/assets/Playerboards/Dozer_PB.png");
             playerboardImage.setImage(image);
@@ -1367,7 +1352,7 @@ public class Map1UIController implements Initializable {
 
         }
 
-        if(championName.equalsIgnoreCase("violetta")){
+        if (championName.equalsIgnoreCase("violetta")) {
 
             Image image = new Image("/assets/Playerboards/Violet_PB.png");
             playerboardImage.setImage(image);
@@ -1375,7 +1360,7 @@ public class Map1UIController implements Initializable {
 
         }
 
-        if(championName.equalsIgnoreCase("sprog")){
+        if (championName.equalsIgnoreCase("sprog")) {
 
             Image image = new Image("/assets/Playerboards/Sprog_PB.png");
             playerboardImage.setImage(image);
@@ -1383,7 +1368,7 @@ public class Map1UIController implements Initializable {
 
         }
 
-        if(championName.equalsIgnoreCase("banshee")){
+        if (championName.equalsIgnoreCase("banshee")) {
 
             Image image = new Image("/assets/Playerboards/Banshee_PB.png");
             playerboardImage.setImage(image);
@@ -1391,7 +1376,7 @@ public class Map1UIController implements Initializable {
 
         }
 
-        if(championName.equalsIgnoreCase("d-strutt-or3")){
+        if (championName.equalsIgnoreCase("d-strutt-or3")) {
 
             Image image = new Image("/assets/Playerboards/Destructor_PB.png");
             playerboardImage.setImage(image);
@@ -1417,7 +1402,7 @@ public class Map1UIController implements Initializable {
 
         whiteLoot1Tile.setImage(getLootTileImage(whiteLoot1));
         whiteLoot2Tile.setImage(getLootTileImage(whiteLoot2));
-        
+
         blueWeapon1.setImage(getWeaponImage(blueWeapon1name));
         blueWeapon2.setImage(getWeaponImage(blueWeapon2name));
         blueWeapon3.setImage(getWeaponImage(blueWeapon3name));
@@ -1466,14 +1451,12 @@ public class Map1UIController implements Initializable {
         marker12Image.setImage(getTokenImage(marker12Name));
 
         drawPositions();
-        
-
 
 
     }
 
     @FXML
-    public void refresh(){
+    public void refresh() {
 
         //----- Impostazione punteggio ---- //
 
@@ -1488,26 +1471,26 @@ public class Map1UIController implements Initializable {
         //---- Impostazione armi giocatore ---//
 
         weapon1Image.setImage(getWeaponImage(weapon1));
-        
-        if(loaded1.equalsIgnoreCase("0")){
+
+        if (loaded1.equalsIgnoreCase("0")) {
             weapon1Image.setEffect(new SepiaTone());
         }
-        
-        
+
+
         weapon2Image.setImage(getWeaponImage(weapon2));
 
-        if(loaded2.equalsIgnoreCase("0")){
+        if (loaded2.equalsIgnoreCase("0")) {
             weapon2Image.setEffect(new SepiaTone());
         }
 
         weapon3Image.setImage(getWeaponImage(weapon3));
 
-        if(loaded3.equalsIgnoreCase("0")){
+        if (loaded3.equalsIgnoreCase("0")) {
             weapon3Image.setEffect(new SepiaTone());
         }
-        
+
         // -- Impostazione Potenziamenti --- //
-        
+
         pu1Image.setImage(getPowerupImage(pu1));
         pu2Image.setImage(getPowerupImage(pu2));
         pu3Image.setImage(getPowerupImage(pu3));
@@ -1538,7 +1521,7 @@ public class Map1UIController implements Initializable {
         yellowWeapon1.setImage(getWeaponImage(yellowWeapon1name));
         yellowWeapon2.setImage(getWeaponImage(yellowWeapon2name));
         yellowWeapon3.setImage(getWeaponImage(yellowWeapon3name));
-        
+
         // -- Carico segnalini danno -- //
 
         damage1.setImage(getTokenImage(damage1Name));
@@ -1556,23 +1539,23 @@ public class Map1UIController implements Initializable {
 
         // -- Carico teschi PB -- //
 
-        if(playerboardValue.equalsIgnoreCase("6")){
+        if (playerboardValue.equalsIgnoreCase("6")) {
             PBSkull1.setVisible(true);
         }
 
-        if(playerboardValue.equalsIgnoreCase("4")){
+        if (playerboardValue.equalsIgnoreCase("4")) {
             PBSkull2.setVisible(true);
         }
 
-        if(playerboardValue.equalsIgnoreCase("2")){
+        if (playerboardValue.equalsIgnoreCase("2")) {
             PBSkull3.setVisible(true);
         }
 
-        if(playerboardValue.equalsIgnoreCase("1")){
+        if (playerboardValue.equalsIgnoreCase("1")) {
             PBSkull4.setVisible(true);
         }
 
-        if(playerboardValue.equalsIgnoreCase("0")){
+        if (playerboardValue.equalsIgnoreCase("0")) {
             PBSkull5.setVisible(true);
         }
 
@@ -1608,142 +1591,138 @@ public class Map1UIController implements Initializable {
         drawPositions();
 
 
-
     }
-    
-    
 
 
     @FXML
-    public void drawPositions(){
+    public void drawPositions() {
 
         //Questa funzione deve prendere i giocatori e posizionarne le pedine
 
-        if(!sprogUser.equalsIgnoreCase("empty")){
+        if (!sprogUser.equalsIgnoreCase("empty")) {
 
-            
+
             //Se sprog è nella gialla...
-            if(sprogRoomColour.equalsIgnoreCase("0")){
+            if (sprogRoomColour.equalsIgnoreCase("0")) {
 
                 sprogIcon.setVisible(true);
 
-                if(sprogRoom.equalsIgnoreCase("spawnCell")){
+                if (sprogRoom.equalsIgnoreCase("spawnCell")) {
 
-                    sprogIcon.setLayoutX((double)yellowSpawnCellSprogX);
-                    sprogIcon.setLayoutY((double)yellowSpawnCellSprogY);
+                    sprogIcon.setLayoutX((double) yellowSpawnCellSprogX);
+                    sprogIcon.setLayoutY((double) yellowSpawnCellSprogY);
 
                 }
-                
-                if(sprogRoom.equalsIgnoreCase("lootCell")){
-                    
-                    sprogIcon.setLayoutX((double)yellowLootCellSprogX);
-                    sprogIcon.setLayoutY((double)yellowLootCellSprogY);
-                    
+
+                if (sprogRoom.equalsIgnoreCase("lootCell")) {
+
+                    sprogIcon.setLayoutX((double) yellowLootCellSprogX);
+                    sprogIcon.setLayoutY((double) yellowLootCellSprogY);
+
                 }
-                
-                
+
+
             }
-            
+
             //Se sprog è nella rossa...
-            if(sprogRoomColour.equalsIgnoreCase("1")){
+            if (sprogRoomColour.equalsIgnoreCase("1")) {
 
                 sprogIcon.setVisible(true);
 
-                if(sprogRoom.equalsIgnoreCase("spawnCell")){
+                if (sprogRoom.equalsIgnoreCase("spawnCell")) {
 
-                    sprogIcon.setLayoutX((double)redSpawnCellSprogX);
-                    sprogIcon.setLayoutY((double)redSpawnCellSprogY);
-
-                }
-
-                if(sprogRoom.equalsIgnoreCase("lootCell1")){
-
-                    sprogIcon.setLayoutX((double)redLootCell1SprogX);
-                    sprogIcon.setLayoutY((double)redLootCell1SprogY);
+                    sprogIcon.setLayoutX((double) redSpawnCellSprogX);
+                    sprogIcon.setLayoutY((double) redSpawnCellSprogY);
 
                 }
 
-                if(sprogRoom.equalsIgnoreCase("lootCell2")){
+                if (sprogRoom.equalsIgnoreCase("lootCell1")) {
 
-                    sprogIcon.setLayoutX((double)redLootCell2SprogX);
-                    sprogIcon.setLayoutY((double)redLootCell2SprogY);
+                    sprogIcon.setLayoutX((double) redLootCell1SprogX);
+                    sprogIcon.setLayoutY((double) redLootCell1SprogY);
 
                 }
-                
+
+                if (sprogRoom.equalsIgnoreCase("lootCell2")) {
+
+                    sprogIcon.setLayoutX((double) redLootCell2SprogX);
+                    sprogIcon.setLayoutY((double) redLootCell2SprogY);
+
+                }
+
             }
 
             //Se sprog è nella blu...
-            if(sprogRoomColour.equalsIgnoreCase("2")){
+            if (sprogRoomColour.equalsIgnoreCase("2")) {
 
                 sprogIcon.setVisible(true);
 
-                if(sprogRoom.equalsIgnoreCase("spawnCell")){
+                if (sprogRoom.equalsIgnoreCase("spawnCell")) {
 
-                    sprogIcon.setLayoutX((double)blueSpawnCellSprogX);
-                    sprogIcon.setLayoutY((double)blueSpawnCellSprogY);
-
-                }
-
-                if(sprogRoom.equalsIgnoreCase("lootCell1")){
-
-                    sprogIcon.setLayoutX((double)blueLootCell1SprogX);
-                    sprogIcon.setLayoutY((double)blueLootCell1SprogY);
+                    sprogIcon.setLayoutX((double) blueSpawnCellSprogX);
+                    sprogIcon.setLayoutY((double) blueSpawnCellSprogY);
 
                 }
 
-                if(sprogRoom.equalsIgnoreCase("lootCell2")){
+                if (sprogRoom.equalsIgnoreCase("lootCell1")) {
 
-                    sprogIcon.setLayoutX((double)blueLootCell2SprogX);
-                    sprogIcon.setLayoutY((double)blueLootCell2SprogY);
+                    sprogIcon.setLayoutX((double) blueLootCell1SprogX);
+                    sprogIcon.setLayoutY((double) blueLootCell1SprogY);
+
+                }
+
+                if (sprogRoom.equalsIgnoreCase("lootCell2")) {
+
+                    sprogIcon.setLayoutX((double) blueLootCell2SprogX);
+                    sprogIcon.setLayoutY((double) blueLootCell2SprogY);
 
                 }
 
             }
-            
+
             //Se è nella bianca
-            if(sprogRoomColour.equalsIgnoreCase("3")){
+            if (sprogRoomColour.equalsIgnoreCase("3")) {
 
                 sprogIcon.setVisible(true);
 
-                if(sprogRoom.equalsIgnoreCase("lootCell1")){
+                if (sprogRoom.equalsIgnoreCase("lootCell1")) {
 
-                    sprogIcon.setLayoutX((double)whiteLootCell1SprogX);
-                    sprogIcon.setLayoutY((double)whiteLootCell1SprogY);
+                    sprogIcon.setLayoutX((double) whiteLootCell1SprogX);
+                    sprogIcon.setLayoutY((double) whiteLootCell1SprogY);
+
+                }
+
+                if (sprogRoom.equalsIgnoreCase("lootCell2")) {
+
+                    sprogIcon.setLayoutX((double) whiteLootCell2SprogX);
+                    sprogIcon.setLayoutY((double) whiteLootCell2SprogY);
 
                 }
 
-                if(sprogRoom.equalsIgnoreCase("lootCell2")){
-
-                    sprogIcon.setLayoutX((double)whiteLootCell2SprogX);
-                    sprogIcon.setLayoutY((double)whiteLootCell2SprogY);
-
-                }
-                
             }
-
 
 
         }
 
-        if(!violettaUser.equalsIgnoreCase("empty")){
+        if (!violettaUser.equalsIgnoreCase("empty")) {
 
 
             //Se violet è nella gialla...
-            if(violettaRoomColour.equalsIgnoreCase("0")){
+            if (violettaRoomColour.equalsIgnoreCase("0")) {
 
                 violetIcon.setVisible(true);
 
-                if(violettaRoom.equalsIgnoreCase("spawnCell")){
+                if (violettaRoom.equalsIgnoreCase("spawnCell")) {
 
-                    violetIcon.setLayoutX((double)yellowSpawnCellVioletX);
-                    violetIcon.setLayoutY((double)yellowSpawnCellVioletY);
+                    violetIcon.setLayoutX((double) yellowSpawnCellVioletX);
+                    violetIcon.setLayoutY((double) yellowSpawnCellVioletY);
 
                 }
 
-                if(violettaRoom.equalsIgnoreCase("lootCell")){
+                if (violettaRoom.equalsIgnoreCase("lootCell")) {
 
-                    violetIcon.setLayoutX((double)yellowLootCellVioletX);
-                    violetIcon.setLayoutY((double)yellowLootCellVioletY);
+                    violetIcon.setLayoutX((double) yellowLootCellVioletX);
+                    violetIcon.setLayoutY((double) yellowLootCellVioletY);
 
                 }
 
@@ -1751,106 +1730,104 @@ public class Map1UIController implements Initializable {
             }
 
             //Se violet è nella rossa...
-            if(violettaRoomColour.equalsIgnoreCase("1")){
+            if (violettaRoomColour.equalsIgnoreCase("1")) {
 
                 violetIcon.setVisible(true);
 
-                if(violettaRoom.equalsIgnoreCase("spawnCell")){
+                if (violettaRoom.equalsIgnoreCase("spawnCell")) {
 
-                    violetIcon.setLayoutX((double)redSpawnCellVioletX);
-                    violetIcon.setLayoutY((double)redSpawnCellVioletY);
-
-                }
-
-                if(violettaRoom.equalsIgnoreCase("lootCell1")){
-
-                    violetIcon.setLayoutX((double)redLootCell1VioletX);
-                    violetIcon.setLayoutY((double)redLootCell1VioletY);
+                    violetIcon.setLayoutX((double) redSpawnCellVioletX);
+                    violetIcon.setLayoutY((double) redSpawnCellVioletY);
 
                 }
 
-                if(violettaRoom.equalsIgnoreCase("lootCell2")){
+                if (violettaRoom.equalsIgnoreCase("lootCell1")) {
 
-                    violetIcon.setLayoutX((double)redLootCell2VioletX);
-                    violetIcon.setLayoutY((double)redLootCell2VioletY);
+                    violetIcon.setLayoutX((double) redLootCell1VioletX);
+                    violetIcon.setLayoutY((double) redLootCell1VioletY);
+
+                }
+
+                if (violettaRoom.equalsIgnoreCase("lootCell2")) {
+
+                    violetIcon.setLayoutX((double) redLootCell2VioletX);
+                    violetIcon.setLayoutY((double) redLootCell2VioletY);
 
                 }
 
             }
 
             //Se violet è nella blu...
-            if(violettaRoomColour.equalsIgnoreCase("2")){
+            if (violettaRoomColour.equalsIgnoreCase("2")) {
 
                 violetIcon.setVisible(true);
 
-                if(violettaRoom.equalsIgnoreCase("spawnCell")){
+                if (violettaRoom.equalsIgnoreCase("spawnCell")) {
 
-                    violetIcon.setLayoutX((double)blueSpawnCellVioletX);
-                    violetIcon.setLayoutY((double)blueSpawnCellVioletY);
-
-                }
-
-                if(violettaRoom.equalsIgnoreCase("lootCell1")){
-
-                    violetIcon.setLayoutX((double)blueLootCell1VioletX);
-                    violetIcon.setLayoutY((double)blueLootCell1VioletY);
+                    violetIcon.setLayoutX((double) blueSpawnCellVioletX);
+                    violetIcon.setLayoutY((double) blueSpawnCellVioletY);
 
                 }
 
-                if(violettaRoom.equalsIgnoreCase("lootCell2")){
+                if (violettaRoom.equalsIgnoreCase("lootCell1")) {
 
-                    violetIcon.setLayoutX((double)blueLootCell2VioletX);
-                    violetIcon.setLayoutY((double)blueLootCell2VioletY);
+                    violetIcon.setLayoutX((double) blueLootCell1VioletX);
+                    violetIcon.setLayoutY((double) blueLootCell1VioletY);
+
+                }
+
+                if (violettaRoom.equalsIgnoreCase("lootCell2")) {
+
+                    violetIcon.setLayoutX((double) blueLootCell2VioletX);
+                    violetIcon.setLayoutY((double) blueLootCell2VioletY);
 
                 }
 
             }
 
             //Se è nella bianca
-            if(violettaRoomColour.equalsIgnoreCase("3")){
+            if (violettaRoomColour.equalsIgnoreCase("3")) {
 
                 violetIcon.setVisible(true);
 
-                if(violettaRoom.equalsIgnoreCase("lootCell1")){
+                if (violettaRoom.equalsIgnoreCase("lootCell1")) {
 
-                    violetIcon.setLayoutX((double)whiteLootCell1VioletX);
-                    violetIcon.setLayoutY((double)whiteLootCell1VioletY);
+                    violetIcon.setLayoutX((double) whiteLootCell1VioletX);
+                    violetIcon.setLayoutY((double) whiteLootCell1VioletY);
 
                 }
 
-                if(violettaRoom.equalsIgnoreCase("lootCell2")){
+                if (violettaRoom.equalsIgnoreCase("lootCell2")) {
 
-                    violetIcon.setLayoutX((double)whiteLootCell2VioletX);
-                    violetIcon.setLayoutY((double)whiteLootCell2VioletY);
+                    violetIcon.setLayoutX((double) whiteLootCell2VioletX);
+                    violetIcon.setLayoutY((double) whiteLootCell2VioletY);
 
                 }
 
             }
 
 
-
         }
 
-        if(!bansheeUser.equalsIgnoreCase("empty")){
-
+        if (!bansheeUser.equalsIgnoreCase("empty")) {
 
 
             //Se banshee è nella gialla...
-            if(bansheeRoomColour.equalsIgnoreCase("0")){
+            if (bansheeRoomColour.equalsIgnoreCase("0")) {
 
                 bansheeIcon.setVisible(true);
 
-                if(bansheeRoom.equalsIgnoreCase("spawnCell")){
+                if (bansheeRoom.equalsIgnoreCase("spawnCell")) {
 
-                    bansheeIcon.setLayoutX((double)yellowSpawnCellBansheeX);
-                    bansheeIcon.setLayoutY((double)yellowSpawnCellBansheeY);
+                    bansheeIcon.setLayoutX((double) yellowSpawnCellBansheeX);
+                    bansheeIcon.setLayoutY((double) yellowSpawnCellBansheeY);
 
                 }
 
-                if(bansheeRoom.equalsIgnoreCase("lootCell")){
+                if (bansheeRoom.equalsIgnoreCase("lootCell")) {
 
-                    bansheeIcon.setLayoutX((double)yellowLootCellBansheeX);
-                    bansheeIcon.setLayoutY((double)yellowLootCellBansheeY);
+                    bansheeIcon.setLayoutX((double) yellowLootCellBansheeX);
+                    bansheeIcon.setLayoutY((double) yellowLootCellBansheeY);
 
                 }
 
@@ -1858,105 +1835,104 @@ public class Map1UIController implements Initializable {
             }
 
             //Se banshee è nella rossa...
-            if(bansheeRoomColour.equalsIgnoreCase("1")){
+            if (bansheeRoomColour.equalsIgnoreCase("1")) {
 
                 bansheeIcon.setVisible(true);
 
-                if(bansheeRoom.equalsIgnoreCase("spawnCell")){
+                if (bansheeRoom.equalsIgnoreCase("spawnCell")) {
 
-                    bansheeIcon.setLayoutX((double)redSpawnCellBansheeX);
-                    bansheeIcon.setLayoutY((double)redSpawnCellBansheeY);
-
-                }
-
-                if(bansheeRoom.equalsIgnoreCase("lootCell1")){
-
-                    bansheeIcon.setLayoutX((double)redLootCell1BansheeX);
-                    bansheeIcon.setLayoutY((double)redLootCell1BansheeY);
+                    bansheeIcon.setLayoutX((double) redSpawnCellBansheeX);
+                    bansheeIcon.setLayoutY((double) redSpawnCellBansheeY);
 
                 }
 
-                if(bansheeRoom.equalsIgnoreCase("lootCell2")){
+                if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
 
-                    bansheeIcon.setLayoutX((double)redLootCell2BansheeX);
-                    bansheeIcon.setLayoutY((double)redLootCell2BansheeY);
+                    bansheeIcon.setLayoutX((double) redLootCell1BansheeX);
+                    bansheeIcon.setLayoutY((double) redLootCell1BansheeY);
+
+                }
+
+                if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
+
+                    bansheeIcon.setLayoutX((double) redLootCell2BansheeX);
+                    bansheeIcon.setLayoutY((double) redLootCell2BansheeY);
 
                 }
 
             }
 
             //Se banshee è nella blu...
-            if(bansheeRoomColour.equalsIgnoreCase("2")){
+            if (bansheeRoomColour.equalsIgnoreCase("2")) {
 
                 bansheeIcon.setVisible(true);
 
-                if(bansheeRoom.equalsIgnoreCase("spawnCell")){
+                if (bansheeRoom.equalsIgnoreCase("spawnCell")) {
 
-                    bansheeIcon.setLayoutX((double)blueSpawnCellBansheeX);
-                    bansheeIcon.setLayoutY((double)blueSpawnCellBansheeY);
-
-                }
-
-                if(bansheeRoom.equalsIgnoreCase("lootCell1")){
-
-                    bansheeIcon.setLayoutX((double)blueLootCell1BansheeX);
-                    bansheeIcon.setLayoutY((double)blueLootCell1BansheeY);
+                    bansheeIcon.setLayoutX((double) blueSpawnCellBansheeX);
+                    bansheeIcon.setLayoutY((double) blueSpawnCellBansheeY);
 
                 }
 
-                if(bansheeRoom.equalsIgnoreCase("lootCell2")){
+                if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
 
-                    bansheeIcon.setLayoutX((double)blueLootCell2BansheeX);
-                    bansheeIcon.setLayoutY((double)blueLootCell2BansheeY);
+                    bansheeIcon.setLayoutX((double) blueLootCell1BansheeX);
+                    bansheeIcon.setLayoutY((double) blueLootCell1BansheeY);
+
+                }
+
+                if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
+
+                    bansheeIcon.setLayoutX((double) blueLootCell2BansheeX);
+                    bansheeIcon.setLayoutY((double) blueLootCell2BansheeY);
 
                 }
 
             }
 
             //Se è nella bianca
-            if(bansheeRoomColour.equalsIgnoreCase("3")){
+            if (bansheeRoomColour.equalsIgnoreCase("3")) {
 
                 bansheeIcon.setVisible(true);
 
-                if(bansheeRoom.equalsIgnoreCase("lootCell1")){
+                if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
 
-                    bansheeIcon.setLayoutX((double)whiteLootCell1BansheeX);
-                    bansheeIcon.setLayoutY((double)whiteLootCell1BansheeY);
+                    bansheeIcon.setLayoutX((double) whiteLootCell1BansheeX);
+                    bansheeIcon.setLayoutY((double) whiteLootCell1BansheeY);
 
                 }
 
-                if(bansheeRoom.equalsIgnoreCase("lootCell2")){
+                if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
 
-                    bansheeIcon.setLayoutX((double)whiteLootCell2BansheeX);
-                    bansheeIcon.setLayoutY((double)whiteLootCell2BansheeY);
+                    bansheeIcon.setLayoutX((double) whiteLootCell2BansheeX);
+                    bansheeIcon.setLayoutY((double) whiteLootCell2BansheeY);
 
                 }
 
             }
 
 
-
         }
 
-        if(!dozerUser.equalsIgnoreCase("empty")){
+        if (!dozerUser.equalsIgnoreCase("empty")) {
 
 
             //Se dozer è nella gialla...
-            if(dozerRoomColour.equalsIgnoreCase("0")){
+            if (dozerRoomColour.equalsIgnoreCase("0")) {
 
                 dozerIcon.setVisible(true);
 
-                if(dozerRoom.equalsIgnoreCase("spawnCell")){
+                if (dozerRoom.equalsIgnoreCase("spawnCell")) {
 
-                    dozerIcon.setLayoutX((double)yellowSpawnCellDozerX);
-                    dozerIcon.setLayoutY((double)yellowSpawnCellDozerY);
+                    dozerIcon.setLayoutX((double) yellowSpawnCellDozerX);
+                    dozerIcon.setLayoutY((double) yellowSpawnCellDozerY);
 
                 }
 
-                if(dozerRoom.equalsIgnoreCase("lootCell")){
+                if (dozerRoom.equalsIgnoreCase("lootCell")) {
 
-                    dozerIcon.setLayoutX((double)yellowLootCellDozerX);
-                    dozerIcon.setLayoutY((double)yellowLootCellDozerY);
+                    dozerIcon.setLayoutX((double) yellowLootCellDozerX);
+                    dozerIcon.setLayoutY((double) yellowLootCellDozerY);
 
                 }
 
@@ -1964,105 +1940,104 @@ public class Map1UIController implements Initializable {
             }
 
             //Se dozer è nella rossa...
-            if(dozerRoomColour.equalsIgnoreCase("1")){
+            if (dozerRoomColour.equalsIgnoreCase("1")) {
 
-                if(dozerRoom.equalsIgnoreCase("spawnCell")){
+                if (dozerRoom.equalsIgnoreCase("spawnCell")) {
 
                     dozerIcon.setVisible(true);
 
-                    dozerIcon.setLayoutX((double)redSpawnCellDozerX);
-                    dozerIcon.setLayoutY((double)redSpawnCellDozerY);
+                    dozerIcon.setLayoutX((double) redSpawnCellDozerX);
+                    dozerIcon.setLayoutY((double) redSpawnCellDozerY);
 
                 }
 
-                if(dozerRoom.equalsIgnoreCase("lootCell1")){
+                if (dozerRoom.equalsIgnoreCase("lootCell1")) {
 
-                    dozerIcon.setLayoutX((double)redLootCell1DozerX);
-                    dozerIcon.setLayoutY((double)redLootCell1DozerY);
+                    dozerIcon.setLayoutX((double) redLootCell1DozerX);
+                    dozerIcon.setLayoutY((double) redLootCell1DozerY);
 
                 }
 
-                if(dozerRoom.equalsIgnoreCase("lootCell2")){
+                if (dozerRoom.equalsIgnoreCase("lootCell2")) {
 
-                    dozerIcon.setLayoutX((double)redLootCell2DozerX);
-                    dozerIcon.setLayoutY((double)redLootCell2DozerY);
+                    dozerIcon.setLayoutX((double) redLootCell2DozerX);
+                    dozerIcon.setLayoutY((double) redLootCell2DozerY);
 
                 }
 
             }
 
             //Se dozer è nella blu...
-            if(dozerRoomColour.equalsIgnoreCase("2")){
+            if (dozerRoomColour.equalsIgnoreCase("2")) {
 
                 dozerIcon.setVisible(true);
 
-                if(dozerRoom.equalsIgnoreCase("spawnCell")){
+                if (dozerRoom.equalsIgnoreCase("spawnCell")) {
 
-                    dozerIcon.setLayoutX((double)blueSpawnCellDozerX);
-                    dozerIcon.setLayoutY((double)blueSpawnCellDozerY);
-
-                }
-
-                if(dozerRoom.equalsIgnoreCase("lootCell1")){
-
-                    dozerIcon.setLayoutX((double)blueLootCell1DozerX);
-                    dozerIcon.setLayoutY((double)blueLootCell1DozerY);
+                    dozerIcon.setLayoutX((double) blueSpawnCellDozerX);
+                    dozerIcon.setLayoutY((double) blueSpawnCellDozerY);
 
                 }
 
-                if(dozerRoom.equalsIgnoreCase("lootCell2")){
+                if (dozerRoom.equalsIgnoreCase("lootCell1")) {
 
-                    dozerIcon.setLayoutX((double)blueLootCell2DozerX);
-                    dozerIcon.setLayoutY((double)blueLootCell2DozerY);
+                    dozerIcon.setLayoutX((double) blueLootCell1DozerX);
+                    dozerIcon.setLayoutY((double) blueLootCell1DozerY);
+
+                }
+
+                if (dozerRoom.equalsIgnoreCase("lootCell2")) {
+
+                    dozerIcon.setLayoutX((double) blueLootCell2DozerX);
+                    dozerIcon.setLayoutY((double) blueLootCell2DozerY);
 
                 }
 
             }
 
             //Se è nella bianca
-            if(dozerRoomColour.equalsIgnoreCase("3")){
+            if (dozerRoomColour.equalsIgnoreCase("3")) {
 
                 dozerIcon.setVisible(true);
 
-                if(dozerRoom.equalsIgnoreCase("lootCell1")){
+                if (dozerRoom.equalsIgnoreCase("lootCell1")) {
 
-                    dozerIcon.setLayoutX((double)whiteLootCell1DozerX);
-                    dozerIcon.setLayoutY((double)whiteLootCell1DozerY);
+                    dozerIcon.setLayoutX((double) whiteLootCell1DozerX);
+                    dozerIcon.setLayoutY((double) whiteLootCell1DozerY);
 
                 }
 
-                if(dozerRoom.equalsIgnoreCase("lootCell2")){
+                if (dozerRoom.equalsIgnoreCase("lootCell2")) {
 
-                    dozerIcon.setLayoutX((double)whiteLootCell2DozerX);
-                    dozerIcon.setLayoutY((double)whiteLootCell2DozerY);
+                    dozerIcon.setLayoutX((double) whiteLootCell2DozerX);
+                    dozerIcon.setLayoutY((double) whiteLootCell2DozerY);
 
                 }
 
             }
 
 
-
         }
 
-        if(!destructorUser.equalsIgnoreCase("empty")){
+        if (!destructorUser.equalsIgnoreCase("empty")) {
 
 
             //Se destructor è nella gialla...
-            if(destructorRoomColour.equalsIgnoreCase("0")){
+            if (destructorRoomColour.equalsIgnoreCase("0")) {
 
                 destructorIcon.setVisible(true);
 
-                if(destructorRoom.equalsIgnoreCase("spawnCell")){
+                if (destructorRoom.equalsIgnoreCase("spawnCell")) {
 
-                    destructorIcon.setLayoutX((double)yellowSpawnCellDestructorX);
-                    destructorIcon.setLayoutY((double)yellowSpawnCellDestructorY);
+                    destructorIcon.setLayoutX((double) yellowSpawnCellDestructorX);
+                    destructorIcon.setLayoutY((double) yellowSpawnCellDestructorY);
 
                 }
 
-                if(destructorRoom.equalsIgnoreCase("lootCell")){
+                if (destructorRoom.equalsIgnoreCase("lootCell")) {
 
-                    destructorIcon.setLayoutX((double)yellowLootCellDestructorX);
-                    destructorIcon.setLayoutY((double)yellowLootCellDestructorY);
+                    destructorIcon.setLayoutX((double) yellowLootCellDestructorX);
+                    destructorIcon.setLayoutY((double) yellowLootCellDestructorY);
 
                 }
 
@@ -2070,174 +2045,172 @@ public class Map1UIController implements Initializable {
             }
 
             //Se destructor è nella rossa...
-            if(destructorRoomColour.equalsIgnoreCase("1")){
+            if (destructorRoomColour.equalsIgnoreCase("1")) {
 
                 destructorIcon.setVisible(true);
 
-                if(destructorRoom.equalsIgnoreCase("spawnCell")){
+                if (destructorRoom.equalsIgnoreCase("spawnCell")) {
 
-                    destructorIcon.setLayoutX((double)redSpawnCellDestructorX);
-                    destructorIcon.setLayoutY((double)redSpawnCellDestructorY);
-
-                }
-
-                if(destructorRoom.equalsIgnoreCase("lootCell1")){
-
-                    destructorIcon.setLayoutX((double)redLootCell1DestructorX);
-                    destructorIcon.setLayoutY((double)redLootCell1DestructorY);
+                    destructorIcon.setLayoutX((double) redSpawnCellDestructorX);
+                    destructorIcon.setLayoutY((double) redSpawnCellDestructorY);
 
                 }
 
-                if(destructorRoom.equalsIgnoreCase("lootCell2")){
+                if (destructorRoom.equalsIgnoreCase("lootCell1")) {
 
-                    destructorIcon.setLayoutX((double)redLootCell2DestructorX);
-                    destructorIcon.setLayoutY((double)redLootCell2DestructorY);
+                    destructorIcon.setLayoutX((double) redLootCell1DestructorX);
+                    destructorIcon.setLayoutY((double) redLootCell1DestructorY);
+
+                }
+
+                if (destructorRoom.equalsIgnoreCase("lootCell2")) {
+
+                    destructorIcon.setLayoutX((double) redLootCell2DestructorX);
+                    destructorIcon.setLayoutY((double) redLootCell2DestructorY);
 
                 }
 
             }
 
             //Se destructor è nella blu...
-            if(destructorRoomColour.equalsIgnoreCase("2")){
+            if (destructorRoomColour.equalsIgnoreCase("2")) {
 
                 destructorIcon.setVisible(true);
 
-                if(destructorRoom.equalsIgnoreCase("spawnCell")){
+                if (destructorRoom.equalsIgnoreCase("spawnCell")) {
 
-                    destructorIcon.setLayoutX((double)blueSpawnCellDestructorX);
-                    destructorIcon.setLayoutY((double)blueSpawnCellDestructorY);
-
-                }
-
-                if(destructorRoom.equalsIgnoreCase("lootCell1")){
-
-                    destructorIcon.setLayoutX((double)blueLootCell1DestructorX);
-                    destructorIcon.setLayoutY((double)blueLootCell1DestructorY);
+                    destructorIcon.setLayoutX((double) blueSpawnCellDestructorX);
+                    destructorIcon.setLayoutY((double) blueSpawnCellDestructorY);
 
                 }
 
-                if(destructorRoom.equalsIgnoreCase("lootCell2")){
+                if (destructorRoom.equalsIgnoreCase("lootCell1")) {
 
-                    destructorIcon.setLayoutX((double)blueLootCell2DestructorX);
-                    destructorIcon.setLayoutY((double)blueLootCell2DestructorY);
+                    destructorIcon.setLayoutX((double) blueLootCell1DestructorX);
+                    destructorIcon.setLayoutY((double) blueLootCell1DestructorY);
+
+                }
+
+                if (destructorRoom.equalsIgnoreCase("lootCell2")) {
+
+                    destructorIcon.setLayoutX((double) blueLootCell2DestructorX);
+                    destructorIcon.setLayoutY((double) blueLootCell2DestructorY);
 
                 }
 
             }
 
             //Se è nella bianca
-            if(destructorRoomColour.equalsIgnoreCase("3")){
+            if (destructorRoomColour.equalsIgnoreCase("3")) {
 
                 destructorIcon.setVisible(true);
 
-                if(destructorRoom.equalsIgnoreCase("lootCell1")){
+                if (destructorRoom.equalsIgnoreCase("lootCell1")) {
 
-                    destructorIcon.setLayoutX((double)whiteLootCell1DestructorX);
-                    destructorIcon.setLayoutY((double)whiteLootCell1DestructorY);
+                    destructorIcon.setLayoutX((double) whiteLootCell1DestructorX);
+                    destructorIcon.setLayoutY((double) whiteLootCell1DestructorY);
 
                 }
 
-                if(destructorRoom.equalsIgnoreCase("lootCell2")){
+                if (destructorRoom.equalsIgnoreCase("lootCell2")) {
 
-                    destructorIcon.setLayoutX((double)whiteLootCell2DestructorX);
-                    destructorIcon.setLayoutY((double)whiteLootCell2DestructorY);
+                    destructorIcon.setLayoutX((double) whiteLootCell2DestructorX);
+                    destructorIcon.setLayoutY((double) whiteLootCell2DestructorY);
 
                 }
 
             }
 
 
-
         }
-
 
 
     }
 
     @FXML
-    public Image getWeaponImage(String weaponName){
+    public Image getWeaponImage(String weaponName) {
 
-        if(weaponName.equalsIgnoreCase("Martello ionico")){
+        if (weaponName.equalsIgnoreCase("Martello ionico")) {
             return new Image("/assets/Weapons/AD_weapons_IT_022.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Spada fotonica")){
+        if (weaponName.equalsIgnoreCase("Spada fotonica")) {
             return new Image("/assets/Weapons/AD_weapons_IT_023.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Cyberguanto")){
+        if (weaponName.equalsIgnoreCase("Cyberguanto")) {
             return new Image("/assets/Weapons/AD_weapons_IT_024.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Fucile a pompa")){
+        if (weaponName.equalsIgnoreCase("Fucile a pompa")) {
             return new Image("/assets/Weapons/AD_weapons_IT_025.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Fucile laser")){
+        if (weaponName.equalsIgnoreCase("Fucile laser")) {
             return new Image("/assets/Weapons/AD_weapons_IT_026.png");
         }
 
-        if(weaponName.equalsIgnoreCase("zx-2")){
+        if (weaponName.equalsIgnoreCase("zx-2")) {
             return new Image("/assets/Weapons/AD_weapons_IT_027.png");
         }
 
-        if(weaponName.equalsIgnoreCase("onda d'urto")){
+        if (weaponName.equalsIgnoreCase("onda d'urto")) {
             return new Image("/assets/Weapons/AD_weapons_IT_028.png");
         }
 
-        if(weaponName.equalsIgnoreCase("cannone vortex")){
+        if (weaponName.equalsIgnoreCase("cannone vortex")) {
             return new Image("/assets/Weapons/AD_weapons_IT_029.png");
         }
 
-        if(weaponName.equalsIgnoreCase("razzo termico")){
+        if (weaponName.equalsIgnoreCase("razzo termico")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0210.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Lanciarazzi")){
+        if (weaponName.equalsIgnoreCase("Lanciarazzi")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0211.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Lanciagranate")){
+        if (weaponName.equalsIgnoreCase("Lanciagranate")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0212.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Lanciafiamme")){
+        if (weaponName.equalsIgnoreCase("Lanciafiamme")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0213.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Vulcanizzatore")){
+        if (weaponName.equalsIgnoreCase("Vulcanizzatore")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0214.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Raggio solare")){
+        if (weaponName.equalsIgnoreCase("Raggio solare")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0215.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Torpedine")){
+        if (weaponName.equalsIgnoreCase("Torpedine")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0216.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Raggio traente")){
+        if (weaponName.equalsIgnoreCase("Raggio traente")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0217.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Fucile di precisione")){
+        if (weaponName.equalsIgnoreCase("Fucile di precisione")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0218.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Fucile al plasma")){
+        if (weaponName.equalsIgnoreCase("Fucile al plasma")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0219.png");
         }
 
-        if(weaponName.equalsIgnoreCase("Mitragliatrice")){
+        if (weaponName.equalsIgnoreCase("Mitragliatrice")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0220.png");
         }
 
-        if(weaponName.equalsIgnoreCase("distruttore")){
+        if (weaponName.equalsIgnoreCase("distruttore")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0221.png");
         }
 
-        if(weaponName.equalsIgnoreCase("falce protonica")){
+        if (weaponName.equalsIgnoreCase("falce protonica")) {
             return new Image("/assets/Weapons/AD_weapons_IT_0222.png");
         }
 
@@ -2245,86 +2218,86 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public Image getPowerupImage(String PUName){
+    public Image getPowerupImage(String PUName) {
 
-        if(PUName.equalsIgnoreCase("Raggio Cinetico Blu")){
+        if (PUName.equalsIgnoreCase("Raggio Cinetico Blu")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Mirino Blu")){
+        if (PUName.equalsIgnoreCase("Mirino Blu")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Granata Venom Blu")){
+        if (PUName.equalsIgnoreCase("Granata Venom Blu")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Teletrasporto Blu")){
+        if (PUName.equalsIgnoreCase("Teletrasporto Blu")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Raggio Cinetico Rosso")){
+        if (PUName.equalsIgnoreCase("Raggio Cinetico Rosso")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Mirino Rosso")){
+        if (PUName.equalsIgnoreCase("Mirino Rosso")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Granata Venom Rossa")){
+        if (PUName.equalsIgnoreCase("Granata Venom Rossa")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Teletrasporto Rosso")){
+        if (PUName.equalsIgnoreCase("Teletrasporto Rosso")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Raggio Cinetico Giallo")){
+        if (PUName.equalsIgnoreCase("Raggio Cinetico Giallo")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Mirino Giallo")){
+        if (PUName.equalsIgnoreCase("Mirino Giallo")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Granata Venom Gialla")){
+        if (PUName.equalsIgnoreCase("Granata Venom Gialla")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
             return image;
 
         }
 
-        if(PUName.equalsIgnoreCase("Teletrasporto Giallo")){
+        if (PUName.equalsIgnoreCase("Teletrasporto Giallo")) {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
             return image;
@@ -2333,57 +2306,57 @@ public class Map1UIController implements Initializable {
 
         return new Image("/assets/Powerups/AD_Powerups_IT_02.png");
 
-        
+
     }
 
     @FXML
-    public Image getLootTileImage(String name){
+    public Image getLootTileImage(String name) {
 
-        if(name.equalsIgnoreCase("brr")){
+        if (name.equalsIgnoreCase("brr")) {
             return new Image("/assets/Loot/AD_ammo_0413.png");
         }
 
-        if(name.equalsIgnoreCase("byy")){
+        if (name.equalsIgnoreCase("byy")) {
             return new Image("/assets/Loot/AD_ammo_0412.png");
         }
 
-        if(name.equalsIgnoreCase("pbb")){
+        if (name.equalsIgnoreCase("pbb")) {
             return new Image("/assets/Loot/AD_ammo_0422.png");
         }
 
-        if(name.equalsIgnoreCase("prb")){
+        if (name.equalsIgnoreCase("prb")) {
             return new Image("/assets/Loot/AD_ammo_0428.png");
         }
 
-        if(name.equalsIgnoreCase("prr")){
+        if (name.equalsIgnoreCase("prr")) {
             return new Image("/assets/Loot/AD_ammo_0430.png");
         }
 
-        if(name.equalsIgnoreCase("pyb")){
+        if (name.equalsIgnoreCase("pyb")) {
             return new Image("/assets/Loot/AD_ammo_0427.png");
         }
 
-        if(name.equalsIgnoreCase("pyr")){
+        if (name.equalsIgnoreCase("pyr")) {
             return new Image("/assets/Loot/AD_ammo_0432.png");
         }
 
-        if(name.equalsIgnoreCase("pyy")){
+        if (name.equalsIgnoreCase("pyy")) {
             return new Image("/assets/loot/AD_ammo_0429.png");
         }
 
-        if(name.equalsIgnoreCase("rbb")){
+        if (name.equalsIgnoreCase("rbb")) {
             return new Image("/assets/Loot/AD_ammo_0410.png");
         }
 
-        if(name.equalsIgnoreCase("ryy")){
+        if (name.equalsIgnoreCase("ryy")) {
             return new Image("/assets/loot/AD_ammo_0417.png");
         }
 
-        if(name.equalsIgnoreCase("ybb")){
+        if (name.equalsIgnoreCase("ybb")) {
             return new Image("/assets/Loot/AD_ammo_0414.png");
         }
 
-        if(name.equalsIgnoreCase("yrr")){
+        if (name.equalsIgnoreCase("yrr")) {
             return new Image("/assets/Loot/AD_ammo_043.png");
         }
 
@@ -2392,68 +2365,68 @@ public class Map1UIController implements Initializable {
 
     }
 
-    @FXML 
-    public Image getTokenImage(String championName){
-        
-       if(championName.equalsIgnoreCase("dozer")){
-           return new Image("/assets/Placeable/Dozer_Mk.png");
-       }
+    @FXML
+    public Image getTokenImage(String championName) {
 
-        if(championName.equalsIgnoreCase("violetta")){
+        if (championName.equalsIgnoreCase("dozer")) {
+            return new Image("/assets/Placeable/Dozer_Mk.png");
+        }
+
+        if (championName.equalsIgnoreCase("violetta")) {
             return new Image("/assets/Placeable/Violet_Mk.png");
         }
 
-        if(championName.equalsIgnoreCase("banshee")){
+        if (championName.equalsIgnoreCase("banshee")) {
             return new Image("/assets/Placeable/Banshee_Mk.png");
         }
 
-        if(championName.equalsIgnoreCase("sprog")){
+        if (championName.equalsIgnoreCase("sprog")) {
             return new Image("/assets/Placeable/Sprog_Mk.png");
         }
 
-        if(championName.equalsIgnoreCase(":d-strutt-or3")){
+        if (championName.equalsIgnoreCase(":d-strutt-or3")) {
             return new Image("/assets/Placeable/Destructor_Mk.png");
         }
 
-        if(championName.equalsIgnoreCase("skull")){
-            return new Image ("/assets/Placeable/RedSkull.png");
+        if (championName.equalsIgnoreCase("skull")) {
+            return new Image("/assets/Placeable/RedSkull.png");
         }
-        
+
         return null;
-        
+
     }
 
 
     // ----- AZIONI DEI CONTROLLI ----///
 
     @FXML
-    public void moveAction(){
+    public void moveAction() {
 
-        try{
+        try {
             out.writeUTF("muovi");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void shotAction(){
+    public void shotAction() {
 
-        try{
+        try {
             out.writeUTF("spara");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void pickupAction(){
+    public void pickupAction() {
 
-        try{
+        try {
             out.writeUTF("raccogli");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -2462,11 +2435,11 @@ public class Map1UIController implements Initializable {
     ////
 
     @FXML
-    public void choseSprog(){
+    public void choseSprog() {
 
-        try{
+        try {
             out.writeUTF(sprogUser);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -2474,11 +2447,11 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void choseViolet(){
+    public void choseViolet() {
 
-        try{
+        try {
             out.writeUTF(violettaUser);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -2486,21 +2459,21 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void choseDestructor(){
-        try{
+    public void choseDestructor() {
+        try {
             out.writeUTF(destructorUser);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void choseBanshee(){
+    public void choseBanshee() {
 
-        try{
+        try {
             out.writeUTF(bansheeUser);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -2508,11 +2481,11 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void choseDozer(){
+    public void choseDozer() {
 
-        try{
+        try {
             out.writeUTF(dozerUser);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -2522,27 +2495,84 @@ public class Map1UIController implements Initializable {
     ///
 
 
-
     @FXML
-    public void noAction(){
+    public void noAction() {
 
-        try{
+        try {
             out.writeUTF("no");
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void yesAction(){
+    public void yesAction() {
 
-        try{
+        try {
             out.writeUTF("si");
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
+    }
+
+
+    public void chooseBlueWeapon1() {
+
+        try {
+            out.writeUTF(blueWeapon1name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void chooseBlueWeapon2() {
+
+        try {
+            out.writeUTF(blueWeapon2name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void chooseBlueWeapon3() {
+
+        try {
+            out.writeUTF(blueWeapon3name);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void chooseWeapon1() {
+
+        try {
+            out.writeUTF(weapon1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void chooseWeapon2() {
+
+        try {
+            out.writeUTF(weapon2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void chooseWeapon3() {
+
+        try {
+            out.writeUTF(weapon3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     ///
