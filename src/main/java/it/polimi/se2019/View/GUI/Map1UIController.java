@@ -652,11 +652,13 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void parseChooseCell(String message) {
+    public void parseChooseCell(String messageReceived) {
 
         initRoomSquares();
 
-        String[] messageTokens = message.split("\\)");
+        String[] message = messageReceived.split("~");
+
+        String[] messageTokens = message[1].split("\\)");
 
         ArrayList<String> messageARL = new ArrayList<String>(Arrays.asList(messageTokens));
 
@@ -703,7 +705,7 @@ public class Map1UIController implements Initializable {
                     yellowSpawnCellIndex = "" + (i - 1);
                 }
 
-                if (messageTokens[i].contains("lootCell1")) {
+                if (messageTokens[i].contains("lootCell")) {
                     yellowLootCellIndex = "" + (i - 1);
                 }
 

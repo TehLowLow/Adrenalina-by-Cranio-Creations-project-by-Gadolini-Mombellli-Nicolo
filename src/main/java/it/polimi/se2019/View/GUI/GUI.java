@@ -490,6 +490,15 @@ public class GUI extends Application implements Runnable {
 
         }
 
+
+        else if (message.contains("alternativo")) {
+
+            showChooseShootingMode();
+
+        }
+
+
+
         else if(isMapActive){
 
             showMainStage(message);
@@ -521,11 +530,6 @@ public class GUI extends Application implements Runnable {
             }
         }
 
-        else if (message.contains("alternativo")) {
-
-            showChooseShootingMode();
-
-        }
 
 
 
