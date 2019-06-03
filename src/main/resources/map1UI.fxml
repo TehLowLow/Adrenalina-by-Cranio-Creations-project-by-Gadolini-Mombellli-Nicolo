@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.7341918945312" prefWidth="1355.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.Map1UIController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.7341918945312" prefWidth="1355.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.se2019.View.GUI.Map1UIController">
   <children>
     <ImageView fitHeight="704.7341918945312" fitWidth="1362.122802734375" layoutX="2.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
       <image>
@@ -37,17 +40,17 @@
                     <Image url="@assets/cover/weaponBack.png" />
                   </image>
                 </ImageView>
-                <ImageView fx:id="weapon1Image" fitHeight="177.9752103399581" fitWidth="105.20702362060547" layoutX="15.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="weapon1Image" fitHeight="177.9752103399581" fitWidth="105.20702362060547" layoutX="15.0" layoutY="28.0" onMouseClicked="#chooseWeapon1" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@assets/Weapons/AD_weapons_IT_022.png" />
                   </image>
                 </ImageView>
-                <ImageView fx:id="weapon2Image" fitHeight="177.9752103399581" fitWidth="105.20702362060547" layoutX="136.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="weapon2Image" fitHeight="177.9752103399581" fitWidth="105.20702362060547" layoutX="136.0" layoutY="29.0" onMouseClicked="#chooseWeapon2" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@assets/Weapons/AD_weapons_IT_027.png" />
                   </image>
                 </ImageView>
-                <ImageView fx:id="weapon3Image" fitHeight="177.9752103399581" fitWidth="105.20702362060547" layoutX="258.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="weapon3Image" fitHeight="177.9752103399581" fitWidth="105.20702362060547" layoutX="258.0" layoutY="29.0" onMouseClicked="#chooseWeapon3" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@assets/Weapons/AD_weapons_IT_028.png" />
                   </image>
@@ -378,17 +381,17 @@
         <Image url="@assets/Weapons/AD_weapons_IT_022.png" />
       </image>
     </ImageView>
-    <ImageView fx:id="blueWeapon1" fitHeight="136.950439453125" fitWidth="84.8988037109375" layoutX="440.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" rotate="0.0">
+    <ImageView fx:id="blueWeapon1" fitHeight="136.950439453125" fitWidth="84.8988037109375" layoutX="440.0" layoutY="0.0" onMouseClicked="#chooseBlueWeapon1" pickOnBounds="true" preserveRatio="false" rotate="0.0">
       <image>
         <Image url="@assets/Weapons/AD_weapons_IT_0212.png" />
       </image>
     </ImageView>
-    <ImageView fx:id="blueWeapon2" fitHeight="136.950439453125" fitWidth="84.8988037109375" layoutX="539.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false" rotate="0.0">
+    <ImageView fx:id="blueWeapon2" fitHeight="136.950439453125" fitWidth="84.8988037109375" layoutX="539.0" layoutY="1.0" onMouseClicked="#chooseBlueWeapon2" pickOnBounds="true" preserveRatio="false" rotate="0.0">
       <image>
         <Image url="@assets/Weapons/AD_weapons_IT_0211.png" />
       </image>
     </ImageView>
-    <ImageView fx:id="blueWeapon3" fitHeight="136.950439453125" fitWidth="84.8988037109375" layoutX="632.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false" rotate="0.0">
+    <ImageView fx:id="blueWeapon3" fitHeight="136.950439453125" fitWidth="84.8988037109375" layoutX="632.0" layoutY="0.0" onMouseClicked="#chooseBlueWeapon3" pickOnBounds="true" preserveRatio="false" rotate="0.0">
       <image>
         <Image url="@assets/Weapons/AD_weapons_IT_0222.png" />
       </image>

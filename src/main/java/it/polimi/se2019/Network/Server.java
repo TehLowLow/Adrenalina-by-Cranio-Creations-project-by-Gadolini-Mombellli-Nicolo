@@ -194,7 +194,7 @@ public class Server {
                 System.out.println(in.readInt());
                 out.writeUTF(msg);
                 String answer = in.readUTF(); //debug gui  TODO
-                System.out.println(answer); //debug gui
+                System.out.println(player.getNickname() +": " + answer); //debug gui
                 return answer; //in.readUTF(); debug gui
 
             } catch (SocketException e) {

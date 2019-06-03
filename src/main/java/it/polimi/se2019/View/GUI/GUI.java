@@ -1,6 +1,7 @@
 package it.polimi.se2019.View.GUI;
 
 import it.polimi.se2019.Model.Connection;
+import it.polimi.se2019.View.Message;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -372,45 +373,58 @@ public class GUI extends Application implements Runnable {
 
     }
 
+    public void showChooseShootingMode() {
 
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/chooseShootingMode.fxml"));
+            AnchorPane chooseMode = (AnchorPane) loader.load();
+
+            ChooseShootingModeController controller = loader.getController();
+            controller.out = out;
+
+
+            Scene scene = new Scene(chooseMode);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            stage.show();
+
+            System.out.println("Grafica disegnata correttamente");
+
+        } catch (Exception e) {
+            System.out.println("Ho beccato un'eccezione");
+            e.printStackTrace();
+        }
+    }
 
 
     public void update(String message) {
 
-        if(message.contains("combattere")){
+        if (message.contains("combattere")) {
             showChooseMap();
-        }
-
-        else if(message.contains("teschi da piazzare")){
+        } else if (message.contains("teschi da piazzare")) {
             showChooseSkulls();
-        }
-
-        else if(message.contains("Scegli il tuo campione tra:")){
+        } else if (message.contains("Scegli il tuo campione tra:")) {
             showChooseChampion(message);
-        }
-
-        else if(message.contains("Spawnerai")){
+        } else if (message.contains("Spawnerai")) {
 
             showSpawn(message);
 
-        }
-
-        else if(message.contains("Il tuo campione è")){
+        } else if (message.contains("Il tuo campione è")) {
 
             showMainStage(message);
             //Da questo momento si mostra la mappa quando arriva un messaggio.
             isMapActive = true;
 
-        }
-
-        else if(message.contains("classica o il terminator")){
+        } else if (message.contains("classica o il terminator")) {
             showChooseTerminator();
-        }
-
-        else if(message.contains("passi vuoi fare")){
+        } else if (message.contains("passi vuoi fare")) {
 
             showMainStage(message);
             showChooseSteps();
+        } else if (isMapActive) {
         }
 
         else if(message.contains("direzione vuoi") || message.contains("basso")){
@@ -422,9 +436,7 @@ public class GUI extends Application implements Runnable {
 
             showMainStage(message);
 
-        }
-
-        else if(!isMapActive){
+        } else if (!isMapActive) {
 
             //Se non c'è ancora la mappa, siamo nelle prime fasi
             showCommonDialog(message);
@@ -447,6 +459,10 @@ public class GUI extends Application implements Runnable {
             if(message.contains("numero 4")){
                 chosenMap = 4;
             }
+        } else if (message.contains("alternativo")) {
+
+            showChooseShootingMode();
+
         }
 
 
