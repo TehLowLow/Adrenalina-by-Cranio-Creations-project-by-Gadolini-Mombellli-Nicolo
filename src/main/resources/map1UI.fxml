@@ -68,17 +68,17 @@
                     <Image url="@assets/cover/weaponBack.png" />
                   </image>
                 </ImageView>
-                <ImageView fx:id="pu1Image" fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="pu1Image" fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="36.0" onMouseClicked="#choosePU1" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@assets/Powerups/AD_powerups_IT_028.png" />
                   </image>
                 </ImageView>
-                <ImageView fx:id="pu2Image" fitHeight="150.0" fitWidth="200.0" layoutX="140.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="pu2Image" fitHeight="150.0" fitWidth="200.0" layoutX="140.0" layoutY="36.0" onMouseClicked="#choosePU2" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@assets/Powerups/AD_powerups_IT_022.png" />
                   </image>
                 </ImageView>
-                <ImageView fx:id="pu3Image" fitHeight="150.0" fitWidth="200.0" layoutX="256.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="pu3Image" fitHeight="150.0" fitWidth="200.0" layoutX="256.0" layoutY="36.0" onMouseClicked="#choosePU3" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@assets/Powerups/AD_powerups_IT_0211.png" />
                   </image>
@@ -351,32 +351,32 @@
     </ImageView>
     <Text fx:id="nicknameText" fill="WHITE" font="$x2" layoutX="2.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname" />
     <Text fx:id="scoreText" fill="WHITE" font="$x2" layoutX="289.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
-    <ImageView fx:id="redWeapon1" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="20.0" layoutY="239.0" pickOnBounds="true" preserveRatio="false" rotate="90.0">
+    <ImageView fx:id="redWeapon1" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="20.0" layoutY="239.0" onMouseClicked="#chooseRedWeapon1" pickOnBounds="true" preserveRatio="false" rotate="90.0">
       <image>
         <Image url="@assets/Weapons/AD_weapons_IT_022.png" />
       </image>
     </ImageView>
-    <ImageView fx:id="redWeapon2" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="21.0" layoutY="342.0" pickOnBounds="true" preserveRatio="false" rotate="90.0">
+    <ImageView fx:id="redWeapon2" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="21.0" layoutY="342.0" onMouseClicked="#chooseRedWeapon2" pickOnBounds="true" preserveRatio="false" rotate="90.0">
       <image>
         <Image url="@assets/Weapons/AD_weapons_IT_027.png" />
       </image>
     </ImageView>
-    <ImageView fx:id="redWeapon3" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="21.0" layoutY="445.0" pickOnBounds="true" preserveRatio="false" rotate="90.0">
+    <ImageView fx:id="redWeapon3" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="21.0" layoutY="445.0" onMouseClicked="#chooseRedWeapon3" pickOnBounds="true" preserveRatio="false" rotate="90.0">
       <image>
         <Image url="@assets/Weapons/AD_weapons_IT_024.png" />
       </image>
     </ImageView>
-    <ImageView fx:id="yellowWeapon1" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="736.0" layoutY="384.0" pickOnBounds="true" preserveRatio="false" rotate="270.0">
+    <ImageView fx:id="yellowWeapon1" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="736.0" layoutY="384.0" onMouseClicked="#chooseYellowWeapon1" pickOnBounds="true" preserveRatio="false" rotate="270.0">
       <image>
         <Image url="@assets/Weapons/AD_weapons_IT_0222.png" />
       </image>
     </ImageView>
-    <ImageView fx:id="yellowWeapon2" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="736.0" layoutY="483.0" pickOnBounds="true" preserveRatio="false" rotate="270.0">
+    <ImageView fx:id="yellowWeapon2" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="736.0" layoutY="483.0" onMouseClicked="#chooseYellowWeapon2" pickOnBounds="true" preserveRatio="false" rotate="270.0">
       <image>
         <Image url="@assets/Weapons/AD_weapons_IT_0216.png" />
       </image>
     </ImageView>
-    <ImageView fx:id="yellowWeapon3" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="736.0" layoutY="586.0" pickOnBounds="true" preserveRatio="false" rotate="270.0">
+    <ImageView fx:id="yellowWeapon3" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="736.0" layoutY="586.0" onMouseClicked="#chooseYellowWeapon3" pickOnBounds="true" preserveRatio="false" rotate="270.0">
       <image>
         <Image url="@assets/Weapons/AD_weapons_IT_022.png" />
       </image>
