@@ -2547,6 +2547,119 @@ public class Map1UIController implements Initializable {
 
     ///
 
+    public void chooseYellowWeapon1(){
+
+        try{
+
+            out.writeUTF(yellowWeapon1name);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void chooseYellowWeapon2(){
+
+        try{
+
+            out.writeUTF(yellowWeapon2name);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void chooseYellowWeapon3(){
+
+        try{
+
+            out.writeUTF(yellowWeapon3name);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    
+    //
+
+    public void chooseRedWeapon1(){
+
+        try{
+
+            out.writeUTF(redWeapon1name);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void chooseRedWeapon2(){
+
+        try{
+
+            out.writeUTF(redWeapon2name);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void chooseRedWeapon3(){
+
+        try{
+
+            out.writeUTF(redWeapon3name);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    //
+
+    public void choosePU1(){
+
+        try{
+
+            out.writeUTF(pu1);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void choosePU2(){
+
+        try{
+
+            out.writeUTF(pu2);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public void choosePU3(){
+
+        try{
+
+            out.writeUTF(pu3);
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

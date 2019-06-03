@@ -270,6 +270,36 @@ public class GUI extends Application implements Runnable {
 
     }
 
+    public void showChooseDirection(){
+
+        try {
+
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/chooseDirection.fxml"));
+            AnchorPane chooseDirection = (AnchorPane) loader.load();
+
+            ChooseDirectionController controller = loader.getController();
+            controller.out = out;
+
+
+            Scene scene = new Scene(chooseDirection);
+            Stage stage = new Stage();
+
+            stage.setScene(scene);
+            stage.show();
+
+            System.out.println("Grafica disegnata correttamente");
+
+        }
+        catch(Exception e){
+            System.out.println("Ho beccato un'eccezione");
+            e.printStackTrace();
+        }
+
+
+    }
+
     public void showMainStage(String message){
 
         try {
@@ -379,7 +409,13 @@ public class GUI extends Application implements Runnable {
 
         else if(message.contains("passi vuoi fare")){
 
+            showMainStage(message);
             showChooseSteps();
+        }
+
+        else if(message.contains("direzione vuoi") || message.contains("basso")){
+            showMainStage(message);
+            showChooseDirection();
         }
 
         else if(isMapActive){
