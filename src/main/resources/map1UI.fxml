@@ -477,7 +477,7 @@
       <Rectangle fx:id="redLootCell2Square" arcHeight="5.0" arcWidth="5.0" height="165.0" layoutX="416.0" layoutY="306.0" onMouseClicked="#chooseRedLootCell2" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="158.0" />
       <Rectangle fx:id="whiteLootCell1Square" arcHeight="5.0" arcWidth="5.0" height="149.0" layoutX="249.0" layoutY="480.0" onMouseClicked="#chooseWhiteLootCell1" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="174.0" />
       <Rectangle fx:id="whiteLootCell2Square" arcHeight="5.0" arcWidth="5.0" height="148.0" layoutX="422.0" layoutY="480.0" onMouseClicked="#chooseWhiteLootCell2" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="152.0" />
-      <Rectangle fx:id="yellowLootCellSquare" arcHeight="5.0" arcWidth="5.0" height="158.0" layoutX="582.0" layoutY="306.0" onMouseClicked="#chooseYellowLootCell1" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="131.0" />
+      <Rectangle fx:id="yellowLootCellSquare" arcHeight="5.0" arcWidth="5.0" height="158.0" layoutX="582.0" layoutY="306.0" onMouseClicked="#chooseYellowLootCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="131.0" />
       <Rectangle fx:id="yellowSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" height="166.0" layoutX="580.0" layoutY="462.0" onMouseClicked="#chooseYellowSpawnCell" opacity="0.55" stroke="BLACK" strokeType="INSIDE" visible="false" width="132.0" />
   </children>
 </AnchorPane>

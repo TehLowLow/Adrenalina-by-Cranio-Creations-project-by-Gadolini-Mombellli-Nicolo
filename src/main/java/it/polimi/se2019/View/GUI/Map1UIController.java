@@ -2760,6 +2760,7 @@ public class Map1UIController implements Initializable {
     }
 
 
+    @FXML
     public void chooseBlueWeapon1() {
 
         try {
@@ -2770,6 +2771,7 @@ public class Map1UIController implements Initializable {
     }
 
 
+    @FXML
     public void chooseBlueWeapon2() {
 
         try {
@@ -2779,7 +2781,7 @@ public class Map1UIController implements Initializable {
         }
     }
 
-
+    @FXML
     public void chooseBlueWeapon3() {
 
         try {
@@ -2789,7 +2791,7 @@ public class Map1UIController implements Initializable {
         }
     }
 
-
+    @FXML
     public void chooseWeapon1() {
 
         try {
@@ -2799,6 +2801,7 @@ public class Map1UIController implements Initializable {
         }
     }
 
+    @FXML
     public void chooseWeapon2() {
 
         try {
@@ -2808,6 +2811,7 @@ public class Map1UIController implements Initializable {
         }
     }
 
+    @FXML
     public void chooseWeapon3() {
 
         try {
@@ -2819,6 +2823,7 @@ public class Map1UIController implements Initializable {
 
     ///
 
+    @FXML
     public void chooseYellowWeapon1(){
 
         try{
@@ -2831,6 +2836,7 @@ public class Map1UIController implements Initializable {
 
     }
 
+    @FXML
     public void chooseYellowWeapon2(){
 
         try{
@@ -2843,6 +2849,7 @@ public class Map1UIController implements Initializable {
 
     }
 
+    @FXML
     public void chooseYellowWeapon3(){
 
         try{
@@ -2857,6 +2864,7 @@ public class Map1UIController implements Initializable {
     
     //
 
+    @FXML
     public void chooseRedWeapon1(){
 
         try{
@@ -2869,6 +2877,7 @@ public class Map1UIController implements Initializable {
 
     }
 
+    @FXML
     public void chooseRedWeapon2(){
 
         try{
@@ -2881,6 +2890,7 @@ public class Map1UIController implements Initializable {
 
     }
 
+    @FXML
     public void chooseRedWeapon3(){
 
         try{
@@ -2895,6 +2905,7 @@ public class Map1UIController implements Initializable {
 
     //
 
+    @FXML
     public void choosePU1(){
 
         try{
@@ -2907,6 +2918,7 @@ public class Map1UIController implements Initializable {
 
     }
 
+    @FXML
     public void choosePU2(){
 
         try{
@@ -2919,6 +2931,7 @@ public class Map1UIController implements Initializable {
 
     }
 
+    @FXML
     public void choosePU3(){
 
         try{
