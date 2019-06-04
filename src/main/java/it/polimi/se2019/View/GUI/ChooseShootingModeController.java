@@ -1,6 +1,8 @@
 package it.polimi.se2019.View.GUI;
 
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 import java.io.DataOutputStream;
 import java.net.URL;
@@ -13,12 +15,16 @@ public class ChooseShootingModeController implements Initializable {
 
     DataOutputStream out;
 
+    @FXML
+    Button base;
+
 
     public void chooseBasic() {
 
         try {
 
             out.writeUTF("base");
+            base.getScene().getWindow().hide();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -30,6 +36,7 @@ public class ChooseShootingModeController implements Initializable {
         try {
 
             out.writeUTF("alternativo");
+            base.getScene().getWindow().hide();
 
         } catch (Exception e) {
             e.printStackTrace();

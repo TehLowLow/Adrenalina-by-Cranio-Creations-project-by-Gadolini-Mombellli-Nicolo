@@ -15,64 +15,85 @@ public class ChooseDirectionController implements Initializable {
     @FXML
     Button altoButton;
 
+    @FXML
+    Button stop;
+
 
     @FXML
-    public void chooseAlto(){
+    public void chooseAlto() {
 
-        try{
+        try {
 
             out.writeUTF("alto");
+            stop.setVisible(false);
             altoButton.getScene().getWindow().hide();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void chooseBasso(){
+    public void chooseBasso() {
 
-        try{
+        try {
 
             out.writeUTF("basso");
+            stop.setVisible(false);
             altoButton.getScene().getWindow().hide();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void chooseDestra(){
+    public void chooseDestra() {
 
-        try{
+        try {
 
             out.writeUTF("destra");
+            stop.setVisible(false);
             altoButton.getScene().getWindow().hide();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void chooseSinistra(){
+    public void chooseSinistra() {
 
-        try{
+        try {
 
             out.writeUTF("sinistra");
+            stop.setVisible(false);
             altoButton.getScene().getWindow().hide();
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public ChooseDirectionController(){}
+    @FXML
+    public void chooseStop() {
+
+        try {
+            out.writeUTF("stop");
+            stop.setVisible(false);
+            altoButton.getScene().getWindow().hide();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public ChooseDirectionController() {
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

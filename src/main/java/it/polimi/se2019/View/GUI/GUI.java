@@ -37,18 +37,18 @@ public class GUI extends Application implements Runnable {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
 
-            this.primaryStage = primaryStage;
-            this.primaryStage.setTitle("Adrenalina");
-            initGUI();
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Adrenalina");
+        initGUI();
 
     }
 
     //----- METODI DI AGGIORNAMENTO -----//
 
-    public void initGUI(){
+    public void initGUI() {
 
         isMapActive = false;
 
@@ -67,15 +67,14 @@ public class GUI extends Application implements Runnable {
             this.primaryStage.setScene(scene);
             this.primaryStage.show();
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Eccezione in initGUI");
         }
 
     }
 
-    public void showChooseMap(){
+    public void showChooseMap() {
 
         try {
 
@@ -95,8 +94,7 @@ public class GUI extends Application implements Runnable {
 
             System.out.println("Grafica disegnata correttamente.");
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Ho beccato un'eccezione");
             e.printStackTrace();
         }
@@ -123,8 +121,7 @@ public class GUI extends Application implements Runnable {
 
             System.out.println("Grafica disegnata correttamente.");
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Ho beccato un'eccezione");
             e.printStackTrace();
         }
@@ -132,7 +129,7 @@ public class GUI extends Application implements Runnable {
 
     }
 
-    public void showChooseChampion(String message){
+    public void showChooseChampion(String message) {
 
         try {
 
@@ -148,13 +145,13 @@ public class GUI extends Application implements Runnable {
             this.primaryStage.setScene(scene);
             this.primaryStage.show();
 
+        } catch (Exception e) {
         }
-        catch(Exception e){}
 
 
     }
 
-    public void showChooseSkulls(){
+    public void showChooseSkulls() {
 
         try {
 
@@ -174,8 +171,7 @@ public class GUI extends Application implements Runnable {
 
             System.out.println("Grafica disegnata correttamente");
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Ho beccato un'eccezione");
             e.printStackTrace();
         }
@@ -183,7 +179,7 @@ public class GUI extends Application implements Runnable {
 
     }
 
-    public void showCommonDialog(String message){
+    public void showCommonDialog(String message) {
 
         try {
 
@@ -203,14 +199,14 @@ public class GUI extends Application implements Runnable {
             stage.show();
 
 
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Eccezione.");
             e.printStackTrace();
         }
 
     }
 
-    public void showSpawn(String message){
+    public void showSpawn(String message) {
 
 
         try {
@@ -231,16 +227,14 @@ public class GUI extends Application implements Runnable {
             stage.show();
 
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-
     }
 
-    public void showChooseSteps(){
+    public void showChooseSteps() {
 
         try {
 
@@ -261,8 +255,7 @@ public class GUI extends Application implements Runnable {
 
             System.out.println("Grafica disegnata correttamente");
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Ho beccato un'eccezione");
             e.printStackTrace();
         }
@@ -270,7 +263,7 @@ public class GUI extends Application implements Runnable {
 
     }
 
-    public void showChooseDirection(){
+    public void showChooseDirection(boolean enhanced) {
 
         try {
 
@@ -289,10 +282,13 @@ public class GUI extends Application implements Runnable {
             stage.setScene(scene);
             stage.show();
 
+            if (enhanced) {
+                controller.stop.setVisible(true);
+            }
+
             System.out.println("Grafica disegnata correttamente");
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Ho beccato un'eccezione");
             e.printStackTrace();
         }
@@ -300,7 +296,7 @@ public class GUI extends Application implements Runnable {
 
     }
 
-    public void showMainStage(String message){
+    public void showMainStage(String message) {
 
         try {
 
@@ -330,16 +326,14 @@ public class GUI extends Application implements Runnable {
             }
 
 
+        } catch (Exception e) {
 
-
-        }catch(Exception e){
-
-         e.printStackTrace();
+            e.printStackTrace();
         }
 
     }
 
-    public void showMainStageChooseCell(String message){
+    public void showMainStageChooseCell(String message) {
 
         try {
 
@@ -371,16 +365,14 @@ public class GUI extends Application implements Runnable {
             }
 
 
-
-
-        }catch(Exception e){
+        } catch (Exception e) {
 
             e.printStackTrace();
         }
 
     }
 
-    public void refreshGUI(String message){
+    public void refreshGUI(String message) {
 
         try {
 
@@ -404,9 +396,7 @@ public class GUI extends Application implements Runnable {
             }
 
 
-
-
-        }catch(Exception e){
+        } catch (Exception e) {
 
 
         }
@@ -439,7 +429,7 @@ public class GUI extends Application implements Runnable {
         }
     }
 
-    public void showChoosePayPU(String message){
+    public void showChoosePayPU(String message) {
 
 
         try {
@@ -460,15 +450,13 @@ public class GUI extends Application implements Runnable {
             stage.show();
 
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
 
-
-
     }
+
     public void showExtraGrenade() {
 
         try {
@@ -498,75 +486,55 @@ public class GUI extends Application implements Runnable {
 
         if (message.contains("combattere")) {
             showChooseMap();
-        }
-
-        else if (message.contains("teschi da piazzare")) {
+        } else if (message.contains("teschi da piazzare")) {
             showChooseSkulls();
-        }
-
-        else if (message.contains("Scegli il tuo campione tra:")) {
+        } else if (message.contains("Scegli il tuo campione tra:")) {
             showChooseChampion(message);
-        }
-
-        else if (message.contains("Spawnerai")) {
+        } else if (message.contains("Spawnerai")) {
 
             showSpawn(message);
 
-        }
-
-        else if (message.contains("Il tuo campione è")) {
+        } else if (message.contains("Il tuo campione è")) {
 
             showMainStage(message);
             //Da questo momento si mostra la mappa quando arriva un messaggio.
             isMapActive = true;
 
-        }
-
-        else if (message.contains("classica o il terminator")) {
+        } else if (message.contains("classica o il terminator")) {
             showChooseTerminator();
-        }
-
-        else if (message.contains("passi vuoi fare")) {
+        } else if (message.contains("passi vuoi fare")) {
 
             showMainStage(message);
             showChooseSteps();
-        }
-
-        else if(message.contains("direzione vuoi") || message.contains("basso")){
+        } else if (message.contains("direzione vuoi") || message.contains("basso")) {
             showMainStage(message);
-            showChooseDirection();
-        }
-
-        else if(message.contains("cella") && message.contains("indicandone il numero")){
+            showChooseDirection(false);
+        } else if (message.contains("cella") && message.contains("indicandone il numero")) {
 
             showMainStageChooseCell(message);
 
-        }
-
-
-        else if (message.contains("alternativo")) {
+        } else if (message.contains("alternativo")) {
 
             showChooseShootingMode();
 
-        }
-
-        else if (message.contains("da scartare per pagare il costo indicandone il numero")){
+        } else if (message.contains("da scartare per pagare il costo indicandone il numero")) {
 
             showChoosePayPU(message);
 
-        } else if(message.contains("granata extra")){
+        } else if (message.contains("granata extra")) {
 
             showExtraGrenade();
 
-        }
+        } else if (message.contains("stop")) {
 
-        else if(isMapActive){
+
+            showChooseDirection(true);
+
+        } else if (isMapActive) {
 
             showMainStage(message);
 
-        }
-
-        else if (!isMapActive) {
+        } else if (!isMapActive) {
 
             //Se non c'è ancora la mappa, siamo nelle prime fasi
             showCommonDialog(message);
@@ -574,24 +542,22 @@ public class GUI extends Application implements Runnable {
             //Se mi capita il messaggio in cui trovo la conferma della mappa,
             // leggo che mappa hanno scelto,così poi so caricare la UI giusta.
 
-            if(message.contains("numero 1")){
+            if (message.contains("numero 1")) {
                 chosenMap = 1;
             }
 
-            if(message.contains("numero 2")){
+            if (message.contains("numero 2")) {
                 chosenMap = 2;
             }
 
-            if(message.contains("numero 3")){
+            if (message.contains("numero 3")) {
                 chosenMap = 3;
             }
 
-            if(message.contains("numero 4")){
+            if (message.contains("numero 4")) {
                 chosenMap = 4;
             }
         }
-
-
 
 
     }
@@ -604,9 +570,7 @@ public class GUI extends Application implements Runnable {
     }
 
 
-
 }
-
 
 
 //TODO: Bug nella gui per gli spostamenti, powerup all inizio (falsi) doppi, testare base o alternativo, escape character per azioni
