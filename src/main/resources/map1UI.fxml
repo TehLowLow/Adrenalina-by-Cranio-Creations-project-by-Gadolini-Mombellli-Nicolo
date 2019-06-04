@@ -19,7 +19,7 @@
         <Image url="@assets/cover/background.jpg" />
       </image>
     </ImageView>
-    <ImageView fitHeight="705.0" fitWidth="838.022705078125" layoutX="2.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
+    <ImageView fitHeight="705.0" fitWidth="838.022705078125" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
       <image>
         <Image url="@assets/Maps/map1_final.png" />
       </image>
@@ -479,5 +479,10 @@
     <Rectangle fx:id="whiteLootCell2Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="148.0" layoutX="422.0" layoutY="480.0" onMouseClicked="#chooseWhiteLootCell2" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="152.0" />
     <Rectangle fx:id="yellowLootCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="158.0" layoutX="582.0" layoutY="306.0" onMouseClicked="#chooseYellowLootCell" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="131.0" />
     <Rectangle fx:id="yellowSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="166.0" layoutX="580.0" layoutY="462.0" onMouseClicked="#chooseYellowSpawnCell" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="132.0" />
+      <ImageView fx:id="firstplayer" fitHeight="40.0" fitWidth="40.0" layoutX="127.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/Icons/First_ico.png" />
+         </image>
+      </ImageView>
   </children>
 </AnchorPane>
