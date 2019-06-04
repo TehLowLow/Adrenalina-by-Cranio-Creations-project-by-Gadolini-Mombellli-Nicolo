@@ -639,6 +639,13 @@ public class Message {
 
     }
 
+
+    public static String altroBersaglio(){
+
+        return "Vuoi colpire un altro bersaglio?";
+
+    }
+
 }
 
 
