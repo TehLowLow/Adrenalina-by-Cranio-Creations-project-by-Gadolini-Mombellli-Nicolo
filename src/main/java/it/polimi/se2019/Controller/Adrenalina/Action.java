@@ -262,6 +262,8 @@ public class Action {
 
         }
 
+        Server.updateAll(player.getNickname() + " sta facendo l'azione Terminator!");
+
         String move = updateWithAnswer(player, "Vuoi muovere il Terminator di una cella?");
         while (!InputCheck.correctYesNo(move)) {
 
@@ -293,6 +295,7 @@ public class Action {
                     connectedPlayers.get(connectedPlayers.size()-1).setPosition(reachable.get(cell));
                     update(player, Message.movedTo());
                     correct = true;
+                    updateAll("Il Terminator si è spostato di una cella!");
 
                 } else {
                     update(player, Message.inputError());
@@ -362,6 +365,7 @@ public class Action {
                                     Interaction.pay(player, weapon.getRechargeCost());
                                     weapon.setLoaded(true);
                                     Server.update(player, Message.haiRicaricato(weapon));
+                                    updateAll(player.getNickname() + " ha ricaricato " + weapon.getName());
 
                                 }
                             }
@@ -456,7 +460,7 @@ public class Action {
 
         }
 
-        updateAll(player + " si è mosso di " + steps + " celle!");
+        updateAll(player.getNickname() + " si è mosso di " + steps + " celle!");
 
     }
 
@@ -710,6 +714,12 @@ public class Action {
 
             Server.update(player, "Hai acquistato l'arma " + newWeapon.getName() + "!");
 
+            if (Check.isSpawn(player.getPosition())){
+
+                updateAll(player.getNickname() + " ha acquistato l'arma " + newWeapon.getName()+ "!");
+
+            }
+
             return;
         }
 
@@ -752,16 +762,12 @@ public class Action {
         Server.update(player, "Hai raccolto il loot!");
 
 
-        if (Check.isSpawn(player.getPosition())){
-
-            updateAll(player + " ha raccolto un'arma!");
-
-        }
 
 
-        else{
 
-            updateAll(player + " ha raccolto un loot!");
+        if (!Check.isSpawn(player.getPosition())){
+
+            updateAll(player.getNickname() + " ha raccolto un loot!");
 
         }
 
@@ -893,7 +899,7 @@ public class Action {
 
         }
 
-        updateAll(player + " si è mosso di " + steps + " celle!");
+        updateAll(player.getNickname() + " si è mosso di " + steps + " celle!");
 
     }
 
@@ -1107,6 +1113,7 @@ public class Action {
         chosen.getEffect().applyEffect(player, targets);
         player.getPlayerboard().getPowerups().remove(chosen);
         Board.getDiscardedPowerUps().add(chosen);
+        updateAll(player.getNickname() + " ha usato il " + chosen.getName());
 
 
         return true;
@@ -1390,6 +1397,8 @@ public class Action {
         chosen.setLoaded(true);
         Interaction.pay(player, chosen.getRechargeCost());
         update(player, Message.haiRicaricato(chosen));
+
+        updateAll(player.getNickname() + " ha ricaricato l'arma " + chosen.getName());
 
 
     }
@@ -1722,6 +1731,8 @@ public class Action {
             Damage.giveMarker(1, Board.getTerminator(), target);
 
         }
+
+        updateAll("Il Terminator ha sparato " + target.getNickname());
 
     }
 

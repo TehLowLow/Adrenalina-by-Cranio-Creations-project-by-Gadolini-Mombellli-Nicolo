@@ -165,7 +165,7 @@ public class Match extends Thread {
 
             if (!terminator) {
 
-
+                updateAll("Primo turno per " + player.getNickname());
                 t.first(player);
                 Interaction.placeLoot();
                 Interaction.placeWeapons();
@@ -177,6 +177,7 @@ public class Match extends Thread {
 
                 if (!player.getNickname().equalsIgnoreCase("Terminator")){
 
+                    updateAll("Primo turno per " + player.getNickname());
                     t.firstTerminator(player);
                     Interaction.placeLoot();
                     Interaction.placeWeapons();
@@ -195,8 +196,11 @@ public class Match extends Thread {
                 if (!terminator) {
                     finish = checkFrenzy();
                     if (finish) {
+                        updateAll("Inizia la Frenesia Finale!");
                         continue;
                     }
+
+                    updateAll("Ora è il turno di " + player.getNickname());
                     t.standard(player, false);
                     Interaction.placeLoot();
                     Interaction.placeWeapons();
@@ -210,8 +214,11 @@ public class Match extends Thread {
 
                         finish = checkFrenzy();
                         if (finish) {
+                            updateAll("Inizia la Frenesia Finale!");
                             continue;
                         }
+
+                        updateAll("Ora è il turno di " + player.getNickname());
                         t.standard(player, true);
                         Interaction.placeLoot();
                         Interaction.placeWeapons();
@@ -290,11 +297,14 @@ public class Match extends Thread {
             
 
             if(!terminator) {
+
+                updateAll("Turno della Frenesia Finale per " + player.getNickname());
                 t.frenzy(player, afterFirstPlayer, false);
             }
 
             else{
 
+                updateAll("Turno della Frenesia Finale per " + player.getNickname());
                 t.frenzy(player, afterFirstPlayer, true);
 
             }

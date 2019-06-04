@@ -122,7 +122,7 @@ public class Damage {
             chosen.getEffect().applyEffect(user, targets);
             user.getPlayerboard().getPowerups().remove(chosen);
             Board.getDiscardedPowerUps().add(chosen);
-
+            updateAll(user.getNickname() + " ha usato il Mirino per colpire " + target.getNickname());
         }
 
         Check.markers(user, target);
@@ -204,6 +204,7 @@ public class Damage {
 
 
             update(user, target.getNickname() + " ti ha colpito con una Granata Venom!");
+            Server.updateAll(target.getNickname() + " ha colpito " + user.getNickname() + " con una Granata Venom!");
         }
 
         Server.updateAll(user.getNickname() + " ha colpito " + target.getNickname());
@@ -231,6 +232,8 @@ public class Damage {
         Check.limitMarkers(target, user);
 
         update(target, Message.colpito(user));
+
+        updateAll(user.getNickname() + " ha colpito " + target.getNickname());
 
     }
 

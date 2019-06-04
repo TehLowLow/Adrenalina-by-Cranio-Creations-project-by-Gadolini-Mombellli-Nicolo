@@ -152,6 +152,8 @@ public class Turn {
             if (spawnTerminator.equalsIgnoreCase("rosso")){
 
                 Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getRedRoom().getCells().get(0));
+                Server.updateAll("Il Terminator è respawnato nella Spawn Cell rossa!");
+
 
             }
 
@@ -159,12 +161,16 @@ public class Turn {
             if (spawnTerminator.equalsIgnoreCase("blu")){
 
                 Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getBlueRoom().getCells().get(0));
+                Server.updateAll("Il Terminator è respawnato nella Spawn Cell blu!");
+
+
 
             }
 
             if (spawnTerminator.equalsIgnoreCase("giallo")){
 
                 Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getYellowRoom().getCells().get(0));
+                Server.updateAll("Il Terminator è respawnato nella Spawn Cell blu!");
 
 
             }
@@ -189,6 +195,7 @@ public class Turn {
         if (terminator) {
 
             if (!terminatorPerformed) {
+
                 terminatorPerformed = Action.performTerminator(player, false);
             }
         }
@@ -208,6 +215,7 @@ public class Turn {
         if (terminator) {
 
             if (!terminatorPerformed) {
+
                 terminatorPerformed = Action.performTerminator(player, false);
             }
         }
@@ -226,6 +234,7 @@ public class Turn {
         if (terminator) {
 
             if (!terminatorPerformed) {
+
                 terminatorPerformed = Action.performTerminator(player, true);
             }
         }
@@ -242,6 +251,8 @@ public class Turn {
                 if (Check.death(dead) == 0) {
                     continue;
                 } else {
+
+                    Server.updateAll(dead.getNickname() + " è stato ucciso da " + player.getNickname());
                     deadPlayers.add(dead);
                 }
 
@@ -252,6 +263,7 @@ public class Turn {
 
         if (deadPlayers.size() > 1){
 
+            Server.updateAll(player.getNickname() + " ha appena fatto una doppia uccisione!");
             player.setScore(player.getScore() + 1);
 
         }
@@ -262,6 +274,8 @@ public class Turn {
             boolean overkill = false;
 
             if (Check.death(dead) == 2) {
+
+                Server.updateAll(player.getNickname()+ " ha infierito su " + dead.getNickname());
                 overkill = true;
             }
 
@@ -271,6 +285,7 @@ public class Turn {
 
                 if (dead.getNickname().equalsIgnoreCase("terminator")) {
 
+                    Server.updateAll("Il Terminator è stato ucciso da " + player.getNickname());
                     deadPlayers.remove(dead);
                     terminatorKilled = true;
                     continue;
@@ -285,6 +300,7 @@ public class Turn {
         }
 
         Server.update(player, "Hai finito il tuo turno!");
+        Server.updateAll("Il turno di " + player.getNickname() + " è finito!");
 
 
     }
@@ -333,6 +349,7 @@ public class Turn {
             if (spawnTerminator.equalsIgnoreCase("rosso")){
 
                 Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getRedRoom().getCells().get(0));
+                Server.updateAll("Il terminator è spawnato nella Spawn Cell rossa!");
 
             }
 
@@ -340,12 +357,14 @@ public class Turn {
             if (spawnTerminator.equalsIgnoreCase("blu")){
 
                 Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getBlueRoom().getCells().get(0));
+                Server.updateAll("Il terminator è spawnato nella Spawn Cell blu!");
 
             }
 
             if (spawnTerminator.equalsIgnoreCase("giallo")){
 
                 Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getYellowRoom().getCells().get(0));
+                Server.updateAll("Il terminator è spawnato nella Spawn Cell gialla!");
 
 
             }
@@ -513,7 +532,7 @@ public class Turn {
 
         //Risolvo la board e respawno i morti
 
-        deadPlayers = respawner();
+        deadPlayers = respawner(player);
 
 
 
@@ -522,6 +541,7 @@ public class Turn {
 
         if (deadPlayers.size() > 1){
 
+            Server.updateAll(player.getNickname() + " ha fatto una doppia uccisione!");
             player.setScore(player.getScore() + 1);
 
         }
@@ -533,6 +553,7 @@ public class Turn {
             boolean overkill = false;
 
             if (Check.death(dead) == 2) {
+                Server.updateAll(player.getNickname()+ " ha infierito su " + dead.getNickname());
                 overkill = true;
             }
 
@@ -545,6 +566,7 @@ public class Turn {
 
                 if (deadPlayers.contains(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1))) {
 
+                    Server.updateAll("Il terminator è stato ucciso da " + player.getNickname());
                     terminatorKilled = true;
                     deadPlayers.remove(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1));
                     continue;
@@ -613,7 +635,7 @@ public class Turn {
 
     }
 
-    private static CopyOnWriteArrayList<Player> respawner() {
+    private static CopyOnWriteArrayList<Player> respawner(Player killer) {
 
         CopyOnWriteArrayList<Player> deadPlayers = new CopyOnWriteArrayList<>();
 
@@ -623,6 +645,7 @@ public class Turn {
                 continue;
             } else {
                 deadPlayers.add(dead);
+                Server.updateAll(dead.getNickname() + " è stato ucciso da " + killer.getNickname());
             }
 
         }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="407.0" prefWidth="578.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.PayPowerUpController">
+  <children>
+    <ImageView fitHeight="413.0000305175781" fitWidth="584.2739868164062" layoutX="0.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@assets/cover/weaponBack.png" />
+      </image>
+    </ImageView>
+    <Label layoutX="14.0" layoutY="30.0" prefHeight="83.0" prefWidth="461.0" text="Scegli un potenziamento da usare per pagare:" textFill="WHITE" wrapText="true">
+      <font>
+        <Font name="System Bold" size="26.0" />
+      </font>
+    </Label>
+    <ImageView id="pu1Image" fx:id="pu0" fitHeight="230.0" fitWidth="147.23484954833984" layoutX="26.0" layoutY="133.0" onMouseClicked="#choosePU0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Powerups/AD_powerups_IT_02.png" />
+      </image>
+    </ImageView>
+    <ImageView id="pu2Image" fx:id="pu1" fitHeight="230.0" fitWidth="147.23484954833984" layoutX="215.0" layoutY="133.0" onMouseClicked="#choosePU1" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Powerups/AD_powerups_IT_02.png" />
+      </image>
+    </ImageView>
+    <ImageView id="pu3Image" fx:id="pu2" fitHeight="230.0" fitWidth="147.23484954833984" layoutX="401.0" layoutY="133.0" onMouseClicked="#choosePU2" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Powerups/AD_powerups_IT_02.png" />
+      </image>
+    </ImageView>
+  </children>
+</AnchorPane>
