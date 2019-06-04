@@ -203,8 +203,6 @@ public class Damage {
             Board.getDiscardedPowerUps().add(chosen);
 
 
-            Check.markers(target, user);
-
             update(user, target.getNickname() + " ti ha colpito con una Granata Venom!");
         }
 
