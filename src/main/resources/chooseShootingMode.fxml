@@ -6,14 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="it.polimi.se2019.View.GUI.ChooseShootingModeController" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="279.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.se2019.View.GUI.ChooseShootingModeController">
    <children>
       <ImageView fitHeight="279.0" fitWidth="600.0" pickOnBounds="true" smooth="false">
          <image>
             <Image url="@assets/cover/weaponBack.png" />
          </image>
       </ImageView>
-      <Button layoutX="93.0" layoutY="185.0" mnemonicParsing="false" onAction="#chooseBasic" prefHeight="72.0" prefWidth="136.0" text="Base" />
+      <Button fx:id="base" layoutX="93.0" layoutY="185.0" mnemonicParsing="false" onAction="#chooseBasic" prefHeight="72.0" prefWidth="136.0" text="Base" />
       <Button layoutX="370.0" layoutY="185.0" mnemonicParsing="false" onAction="#chooseAlternative" prefHeight="72.0" prefWidth="136.0" text="Alternativa" />
       <Text fill="WHITE" layoutX="93.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli se usare la modalità base o alternativa" />
    </children>
