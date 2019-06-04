@@ -305,9 +305,7 @@ public class Server {
             }
 
             update(player, msg);
-
         }
-
     }
 
     /**

@@ -209,6 +209,10 @@ public class CheckTest {
 
     @Test
     public void affordable() {
+
+
+
+
     }
 
 

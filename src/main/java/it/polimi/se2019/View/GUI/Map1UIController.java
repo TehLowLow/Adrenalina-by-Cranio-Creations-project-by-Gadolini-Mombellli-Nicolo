@@ -160,10 +160,10 @@ public class Map1UIController implements Initializable {
     String redSpawnCellIndex = "empty";
     String redLootCell1Index = "empty";
     String redLootCell2Index = "empty";
-    
+
     String yellowSpawnCellIndex = "empty";
     String yellowLootCellIndex = "empty";
-    
+
     String whiteLootCell1Index = "empty";
     String whiteLootCell2Index = "empty";
     
@@ -595,13 +595,13 @@ public class Map1UIController implements Initializable {
 
     @FXML
     public ImageView sprogIcon;
-    
+
     @FXML
     public Rectangle blueSpawnCellSquare;
-    
+
     @FXML
     public Rectangle blueLootCell1Square;
-    
+
     @FXML
     public Rectangle blueLootCell2Square;
 
@@ -625,7 +625,6 @@ public class Map1UIController implements Initializable {
 
     @FXML
     public Rectangle whiteLootCell2Square;
-    
 
 
 //--------------------------------------------------------------------------
@@ -633,22 +632,22 @@ public class Map1UIController implements Initializable {
     public Map1UIController() {
     }
 
-    public void initRoomSquares(){
+    public void initRoomSquares() {
 
-         blueSpawnCellIndex = "empty";
-         blueLootCell1Index = "empty";
-         blueLootCell2Index = "empty";
+        blueSpawnCellIndex = "empty";
+        blueLootCell1Index = "empty";
+        blueLootCell2Index = "empty";
 
-         redSpawnCellIndex = "empty";
-         redLootCell1Index = "empty";
-         redLootCell2Index = "empty";
+        redSpawnCellIndex = "empty";
+        redLootCell1Index = "empty";
+        redLootCell2Index = "empty";
 
-         yellowSpawnCellIndex = "empty";
-         yellowLootCellIndex = "empty";
+        yellowSpawnCellIndex = "empty";
+        yellowLootCellIndex = "empty";
 
-         whiteLootCell1Index = "empty";
-         whiteLootCell2Index = "empty";
-        
+        whiteLootCell1Index = "empty";
+        whiteLootCell2Index = "empty";
+
     }
 
     @FXML
@@ -722,13 +721,13 @@ public class Map1UIController implements Initializable {
                 }
 
             }
-            
+
 
         }
     }
-    
+
     @FXML
-    public void lightCells(){
+    public void lightCells() {
 
         blueSpawnCellSquare.setDisable(false);
         blueLootCell1Square.setDisable(false);
@@ -742,108 +741,105 @@ public class Map1UIController implements Initializable {
         whiteLootCell2Square.setDisable(false);
         whiteLootCell1Square.setDisable(false);
 
-        if(blueSpawnCellIndex.equalsIgnoreCase("empty")){
+        if (blueSpawnCellIndex.equalsIgnoreCase("empty")) {
 
             blueSpawnCellSquare.setOpacity(0.55);
         }
-        
-        if(blueLootCell1Index.equalsIgnoreCase("empty")){
+
+        if (blueLootCell1Index.equalsIgnoreCase("empty")) {
 
             blueLootCell1Square.setOpacity(0.55);
         }
-        if(blueLootCell2Index.equalsIgnoreCase("empty")){
-            
+        if (blueLootCell2Index.equalsIgnoreCase("empty")) {
+
 
             blueLootCell2Square.setOpacity(0.55);
         }
 
-        if(redSpawnCellIndex.equalsIgnoreCase("empty")){
+        if (redSpawnCellIndex.equalsIgnoreCase("empty")) {
 
 
             redSpawnCellSquare.setOpacity(0.55);
 
         }
 
-        if(redLootCell1Index.equalsIgnoreCase("empty")){
-    
+        if (redLootCell1Index.equalsIgnoreCase("empty")) {
+
 
             redLootCell1Square.setOpacity(0.55);
 
         }
-        if(redLootCell2Index.equalsIgnoreCase("empty")){
+        if (redLootCell2Index.equalsIgnoreCase("empty")) {
 
 
             redLootCell2Square.setOpacity(0.55);
         }
 
-        if(yellowSpawnCellIndex.equalsIgnoreCase("empty")){
+        if (yellowSpawnCellIndex.equalsIgnoreCase("empty")) {
 
             yellowSpawnCellSquare.setOpacity(0.55);
         }
 
-        if(yellowLootCellIndex.equalsIgnoreCase("empty")){
-        
+        if (yellowLootCellIndex.equalsIgnoreCase("empty")) {
+
 
             yellowLootCellSquare.setOpacity(0.55);
 
         }
 
-        if(whiteLootCell1Index.equalsIgnoreCase("empty")){
-        
+        if (whiteLootCell1Index.equalsIgnoreCase("empty")) {
+
 
             whiteLootCell1Square.setOpacity(0.55);
 
         }
-        
-        if(whiteLootCell2Index.equalsIgnoreCase("empty")){
+
+        if (whiteLootCell2Index.equalsIgnoreCase("empty")) {
 
 
             whiteLootCell2Square.setOpacity(0.55);
 
         }
-        
-        
-        
+
+
     }
-    
+
     @FXML
-    public void restoreCells(){
+    public void restoreCells() {
 
-        
-          blueSpawnCellSquare.setDisable(true);
-          blueSpawnCellSquare.setOpacity(0);
 
-          blueLootCell1Square.setDisable(true);
-          blueLootCell1Square.setOpacity(0);
-        
-          blueLootCell2Square.setDisable(true);
-          blueLootCell2Square.setOpacity(0);
-        
-          redSpawnCellSquare.setDisable(true);
-          redSpawnCellSquare.setOpacity(0);
-        
-          redLootCell1Square.setDisable(true);
-          redLootCell1Square.setOpacity(0);
-        
-          redLootCell2Square.setDisable(true);
+        blueSpawnCellSquare.setDisable(true);
+        blueSpawnCellSquare.setOpacity(0);
+
+        blueLootCell1Square.setDisable(true);
+        blueLootCell1Square.setOpacity(0);
+
+        blueLootCell2Square.setDisable(true);
+        blueLootCell2Square.setOpacity(0);
+
+        redSpawnCellSquare.setDisable(true);
+        redSpawnCellSquare.setOpacity(0);
+
+        redLootCell1Square.setDisable(true);
+        redLootCell1Square.setOpacity(0);
+
+        redLootCell2Square.setDisable(true);
         redLootCell2Square.setOpacity(0);
-        
-          yellowSpawnCellSquare.setDisable(true);
-          yellowSpawnCellSquare.setOpacity(0);
-        
-          yellowLootCellSquare.setDisable(true);
-          yellowLootCellSquare.setOpacity(0);
-        
-          whiteLootCell1Square.setDisable(true);
-          whiteLootCell1Square.setOpacity(0);
-        
-          whiteLootCell2Square.setDisable(true);
-          whiteLootCell2Square.setOpacity(0);
+
+        yellowSpawnCellSquare.setDisable(true);
+        yellowSpawnCellSquare.setOpacity(0);
+
+        yellowLootCellSquare.setDisable(true);
+        yellowLootCellSquare.setOpacity(0);
+
+        whiteLootCell1Square.setDisable(true);
+        whiteLootCell1Square.setOpacity(0);
+
+        whiteLootCell2Square.setDisable(true);
+        whiteLootCell2Square.setOpacity(0);
 
     }
 
-
-    
 
     @FXML
     public void setMessage(String message) {
@@ -858,7 +854,6 @@ public class Map1UIController implements Initializable {
         }
 
     }
-
 
 
     public void parser(String message) {
@@ -1508,7 +1503,6 @@ public class Map1UIController implements Initializable {
 
 
     }
-
 
 
     public String provaStampa() {
@@ -2845,80 +2839,80 @@ public class Map1UIController implements Initializable {
     ///
 
     @FXML
-    public void chooseYellowWeapon1(){
+    public void chooseYellowWeapon1() {
 
-        try{
+        try {
 
             out.writeUTF(yellowWeapon1name);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void chooseYellowWeapon2(){
+    public void chooseYellowWeapon2() {
 
-        try{
+        try {
 
             out.writeUTF(yellowWeapon2name);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void chooseYellowWeapon3(){
+    public void chooseYellowWeapon3() {
 
-        try{
+        try {
 
             out.writeUTF(yellowWeapon3name);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-    
+
     //
 
     @FXML
-    public void chooseRedWeapon1(){
+    public void chooseRedWeapon1() {
 
-        try{
+        try {
 
             out.writeUTF(redWeapon1name);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void chooseRedWeapon2(){
+    public void chooseRedWeapon2() {
 
-        try{
+        try {
 
             out.writeUTF(redWeapon2name);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void chooseRedWeapon3(){
+    public void chooseRedWeapon3() {
 
-        try{
+        try {
 
             out.writeUTF(redWeapon3name);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -2927,69 +2921,69 @@ public class Map1UIController implements Initializable {
     //
 
     @FXML
-    public void choosePU1(){
+    public void choosePU1() {
 
-        try{
+        try {
 
             out.writeUTF(pu1);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void choosePU2(){
+    public void choosePU2() {
 
-        try{
+        try {
 
             out.writeUTF(pu2);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
     @FXML
-    public void choosePU3(){
+    public void choosePU3() {
 
-        try{
+        try {
 
             out.writeUTF(pu3);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-    
+
     //
-    
+
     @FXML
-    public void chooseBlueSpawnCell(){
-        
-        try{
-            
+    public void chooseBlueSpawnCell() {
+
+        try {
+
             out.writeUTF(blueSpawnCellIndex);
-            
-        }catch(Exception e){
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         restoreCells();
-        
+
     }
 
     @FXML
-    public void chooseBlueLootCell1(){
+    public void chooseBlueLootCell1() {
 
-        try{
+        try {
 
             out.writeUTF(blueLootCell1Index);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -2998,13 +2992,13 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void chooseBlueLootCell2(){
+    public void chooseBlueLootCell2() {
 
-        try{
+        try {
 
             out.writeUTF(blueLootCell2Index);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -3013,13 +3007,13 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void chooseRedSpawnCell(){
+    public void chooseRedSpawnCell() {
 
-        try{
+        try {
 
             out.writeUTF(redSpawnCellIndex);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -3028,13 +3022,13 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void chooseRedLootCell1(){
+    public void chooseRedLootCell1() {
 
-        try{
+        try {
 
             out.writeUTF(redLootCell1Index);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -3043,13 +3037,13 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void chooseRedLootCell2(){
+    public void chooseRedLootCell2() {
 
-        try{
+        try {
 
             out.writeUTF(redLootCell2Index);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -3058,13 +3052,13 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void chooseYellowSpawnCell(){
+    public void chooseYellowSpawnCell() {
 
-        try{
+        try {
 
             out.writeUTF(yellowSpawnCellIndex);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -3073,13 +3067,13 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void chooseYellowLootCell(){
+    public void chooseYellowLootCell() {
 
-        try{
+        try {
 
             out.writeUTF(yellowLootCellIndex);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -3088,13 +3082,13 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void chooseWhiteLootCell1(){
+    public void chooseWhiteLootCell1() {
 
-        try{
+        try {
 
             out.writeUTF(whiteLootCell1Index);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -3103,21 +3097,49 @@ public class Map1UIController implements Initializable {
     }
 
     @FXML
-    public void chooseWhiteLootCell2(){
+    public void chooseWhiteLootCell2() {
 
-        try{
+        try {
 
             out.writeUTF(whiteLootCell2Index);
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         restoreCells();
 
     }
-    
-    
+
+    @FXML
+    public void chooseRedAmmo() {
+
+        try {
+            out.writeUTF("rosso");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void chooseBlueAmmo() {
+
+        try {
+            out.writeUTF("blu");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void chooseYellowAmmo() {
+
+        try {
+            out.writeUTF("giallo");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
