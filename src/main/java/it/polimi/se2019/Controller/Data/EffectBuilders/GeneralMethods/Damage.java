@@ -6,6 +6,7 @@ import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Powerup;
 import it.polimi.se2019.Model.Token;
+import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -207,6 +208,7 @@ public class Damage {
             update(user, target.getNickname() + " ti ha colpito con una Granata Venom!");
         }
 
+        Server.updateAll(user.getNickname() + " ha colpito " + target.getNickname());
 
     }
 
