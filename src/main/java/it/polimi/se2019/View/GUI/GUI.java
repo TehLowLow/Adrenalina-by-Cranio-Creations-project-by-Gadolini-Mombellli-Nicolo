@@ -217,7 +217,6 @@ public class GUI extends Application implements Runnable {
             ShowSpawnController showSpawnController = loader.getController();
 
             showSpawnController.out = out;
-
             showSpawnController.setUp(message);
 
             Scene scene = new Scene(showSpawn);
