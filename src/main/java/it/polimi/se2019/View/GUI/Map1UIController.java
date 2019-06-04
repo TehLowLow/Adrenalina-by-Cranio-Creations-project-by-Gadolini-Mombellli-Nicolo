@@ -938,8 +938,8 @@ public class Map1UIController implements Initializable {
 
             if (weaponAList.size() == 6) {
 
-                weapon1 = weaponList[4];
-                loaded1 = weaponList[5];
+                weapon3 = weaponList[4];
+                loaded3 = weaponList[5];
 
             }
 
