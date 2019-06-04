@@ -22,7 +22,6 @@ public class SocketClient extends Client implements Runnable {
     private static Socket client;
     private int gamePort;
     private int localPort;
-    private byte[] address = {127, 0, 0, 1};//{127, 0, 0, 1};
     private int signal;
 
 

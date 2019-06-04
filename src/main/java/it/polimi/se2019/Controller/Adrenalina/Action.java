@@ -456,6 +456,8 @@ public class Action {
 
         }
 
+        updateAll(player + " si è mosso di " + steps + " celle!");
+
     }
 
     /**
@@ -716,7 +718,7 @@ public class Action {
 
 
         if (pickedUp == null) {
-            update(player, Message.nessunLoot());  //TODO fixato da lollo
+            update(player, Message.nessunLoot());
             return;
         }
 
@@ -748,7 +750,20 @@ public class Action {
 
         position.setLoot(null);
         Server.update(player, "Hai raccolto il loot!");
-        return;
+
+
+        if (Check.isSpawn(player.getPosition())){
+
+            updateAll(player + " ha raccolto un'arma!");
+
+        }
+
+
+        else{
+
+            updateAll(player + " ha raccolto un loot!");
+
+        }
 
     }
 
@@ -877,6 +892,8 @@ public class Action {
             }
 
         }
+
+        updateAll(player + " si è mosso di " + steps + " celle!");
 
     }
 

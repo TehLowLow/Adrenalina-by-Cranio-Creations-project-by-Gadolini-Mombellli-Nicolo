@@ -545,3 +545,10 @@ public class GUI extends Application implements Runnable {
 
 
 }
+
+
+
+//TODO: Bug nella gui per gli spostamenti, powerup all inizio (falsi) doppi, testare base o alternativo, escape character per azioni
+
+
+

@@ -300,6 +300,10 @@ public class Server {
 
         for (Player player : connectedPlayers) {
 
+            if (player.getNickname().equalsIgnoreCase("Terminator")){
+                continue;
+            }
+
             update(player, msg);
 
         }

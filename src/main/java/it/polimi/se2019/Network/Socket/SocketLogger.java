@@ -19,9 +19,7 @@ public class SocketLogger implements Logger, Runnable {
     private ServerSocket mySocket;
     private DataInputStream in;
     private DataOutputStream out;
-    private int SOCKETPORT = 2200;
-    private int clientPort;
-    private Player temp;
+       private Player temp;
 
 
     /**
