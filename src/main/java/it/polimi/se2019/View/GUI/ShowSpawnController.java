@@ -57,9 +57,12 @@ public class ShowSpawnController implements Initializable {
     }
 
     @FXML
-    public void setUp(String message){
+    public void setUp(String messageReceived){
 
-        String[] tokens = message.split("\\)");
+        String[] message = messageReceived.split("~");
+
+
+        String[] tokens = message[1].split("\\)");
 
         firstPUName = getPUname(tokens[1]);
         secondPUName = getPUname(tokens[2]);
