@@ -59,16 +59,16 @@ public class BasicHellionTest {
     public void getTargets() {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
-        answers.add("player2");
         answers.add("player1");
+        answers.add("player2");
         TestBot.initAnswers(answers);
 
         Player user = Server.connectedPlayers.get(0);
         Player player1 = Server.connectedPlayers.get(1);
         Player player2 = Server.connectedPlayers.get(2);
 
-        player1.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
-        player2.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+        player2.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        player1.setPosition(Board.getMap().getBlueRoom().getCells().get(0));
 
         Weapon hellion = new Weapon();
         hellion.setBaseEffect(new BasicHellion());
@@ -76,8 +76,8 @@ public class BasicHellionTest {
         hellion.getBaseEffect().hasTargets(user);
         CopyOnWriteArrayList <Player> targets = hellion.getBaseEffect().getTargets(user);
 
-        assertFalse(targets.contains(player2));
-        assertTrue(targets.contains(player1));
+        assertTrue(targets.contains(player2));
+        assertFalse(targets.contains(player1));
         assertEquals(1, targets.size());
 
     }
@@ -97,8 +97,17 @@ public class BasicHellionTest {
 
         }
         result = hellion.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertFalse(result);
+        assertTrue(result);
 
+
+
+        for(int i = 1; i<5; i++) {
+
+            Server.connectedPlayers.get(i).setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+
+        }
+        result = hellion.getBaseEffect().hasTargets(Server.connectedPlayers.get(0));
+        assertTrue(result);
 
 
     }

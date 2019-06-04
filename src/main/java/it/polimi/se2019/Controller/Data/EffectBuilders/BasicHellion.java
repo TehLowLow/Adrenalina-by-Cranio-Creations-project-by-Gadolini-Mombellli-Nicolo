@@ -3,7 +3,6 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
-import it.polimi.se2019.Model.Cell;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
@@ -42,22 +41,19 @@ public class BasicHellion extends Effect {
 
         CopyOnWriteArrayList<Player> chosenTarget = new CopyOnWriteArrayList<>();
 
-        CopyOnWriteArrayList<Cell> oneMoveAway = Check.reachableCells(user, 1);
+        CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
 
-        CopyOnWriteArrayList <Player> possibleTargets = new CopyOnWriteArrayList<>();
+        for (Player player:visiblePlayers){
 
-        for (Player target : Server.connectedPlayers) {
+            if (player.getPosition().equals(user.getPosition())){
 
-            if (!target.getNickname().equalsIgnoreCase(user.getNickname())) {
-                if (oneMoveAway.contains(target.getPosition())) {
-                    possibleTargets.add(target);
-                }
+                visiblePlayers.remove(player);
+
             }
-
 
         }
 
-        chosenTarget.add(ChoosePlayer.one(user, possibleTargets));
+        chosenTarget.add(ChoosePlayer.one(user, visiblePlayers));
 
         return chosenTarget;
     }
@@ -65,16 +61,22 @@ public class BasicHellion extends Effect {
     @Override
     public boolean hasTargets(Player user) {
 
-        CopyOnWriteArrayList<Cell> oneMoveAway = Check.reachableCells(user, 1);
 
-        for (Player target : Server.connectedPlayers) {
+        CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
 
-            if (!target.getNickname().equalsIgnoreCase(user.getNickname())) {
-                if (oneMoveAway.contains(target.getPosition())) {
-                    return true;
-                }
+        for (Player player:visiblePlayers){
+
+            if (player.getPosition().equals(user.getPosition())){
+
+                visiblePlayers.remove(player);
+
             }
 
+        }
+
+        if (!visiblePlayers.isEmpty()){
+
+            return true;
 
         }
 
