@@ -191,7 +191,7 @@ public class Server {
                 DataOutputStream out = new DataOutputStream(stream.getOutputStream());
                 DataInputStream in = new DataInputStream(stream.getInputStream());
                 out.writeInt(2);
-                System.out.println(in.readInt());
+                System.out.println("Echo UWA: " + in.readInt());
                 out.writeUTF(msg);
                 String answer = in.readUTF(); //debug gui  TODO
                 System.out.println(player.getNickname() + ": " + answer); //debug gui
@@ -268,7 +268,7 @@ public class Server {
                 DataOutputStream out = new DataOutputStream(stream.getOutputStream());
                 DataInputStream echo = new DataInputStream(stream.getInputStream());
                 out.writeInt(1);
-                System.out.println(echo.readInt());
+                System.out.println("Echo update: " + echo.readInt());
                 out.writeUTF(msg);
 
             } catch (SocketException e) {

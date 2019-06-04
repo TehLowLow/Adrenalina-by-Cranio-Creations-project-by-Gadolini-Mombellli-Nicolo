@@ -1,7 +1,6 @@
 package it.polimi.se2019.Network.Socket.Server;
 
-import it.polimi.se2019.Model.Player;
-import it.polimi.se2019.Network.Logger;
+
 import it.polimi.se2019.Network.Server;
 
 import java.io.DataInputStream;
@@ -35,11 +34,5 @@ public class SocketServer extends Server implements Runnable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-
-
     }
-
 }
