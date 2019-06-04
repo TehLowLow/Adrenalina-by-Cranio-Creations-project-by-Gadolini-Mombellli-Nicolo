@@ -383,6 +383,7 @@ public class PayPowerUpController implements Initializable {
 
         try {
             out.writeUTF("0");
+            pu1.getScene().getWindow().hide();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -396,6 +397,7 @@ public class PayPowerUpController implements Initializable {
 
         try {
             out.writeUTF("1");
+            pu1.getScene().getWindow().hide();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -409,6 +411,7 @@ public class PayPowerUpController implements Initializable {
 
         try {
             out.writeUTF("2");
+            pu1.getScene().getWindow().hide();
         }
         catch(Exception e){
             e.printStackTrace();
