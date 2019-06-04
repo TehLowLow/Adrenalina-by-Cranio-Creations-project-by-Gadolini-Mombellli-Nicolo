@@ -26,6 +26,8 @@ codificata e inviata.
         GUIData = GUIData + player.getNickname() + '@';
         GUIData = GUIData + player.getPlayerboard().getChampionName() + '@';
         GUIData = GUIData + player.getScore() + '@';
+        GUIData = GUIData + player.isFirstPlayer();
+        GUIData = GUIData + '@';
         GUIData = GUIData + "*";
 
         //----- AGGIUNTA INFORMAZIONI POSIZIONE GIOCATORE ----//

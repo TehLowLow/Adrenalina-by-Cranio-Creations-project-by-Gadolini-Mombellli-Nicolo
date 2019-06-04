@@ -28,6 +28,7 @@ public class Map1UIController implements Initializable {
     public String nickname;
     public String championName;
     public String score;
+    public String firstPlayer;
 
     //Posizione giocatore
     String colour;
@@ -626,6 +627,9 @@ public class Map1UIController implements Initializable {
     @FXML
     public Rectangle whiteLootCell2Square;
 
+    @FXML
+    public ImageView firstplayer;
+
 
 //--------------------------------------------------------------------------
 
@@ -897,6 +901,7 @@ public class Map1UIController implements Initializable {
         nickname = infoList[0];
         championName = infoList[1];
         score = infoList[2];
+        firstPlayer = infoList[3];
 
         // -- SEZIONE 2: POSIZIONE DEL GIOCATORE -- //
 
@@ -1600,6 +1605,14 @@ public class Map1UIController implements Initializable {
     public void initUI() {
 
         nicknameText.setText(nickname);
+
+        if(firstPlayer.equalsIgnoreCase("true")){
+
+            Image image = new Image("/assets/Icons/First_ico.png");
+            firstplayer.setImage(image);
+            firstplayer.setVisible(true);
+
+        }
 
         if (championName.equalsIgnoreCase("dozer")) {
 
