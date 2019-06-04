@@ -56,6 +56,7 @@ public class ShowSpawnController implements Initializable {
 
     }
 
+    @FXML
     public void setUp(String message){
 
         String[] tokens = message.split("\\)");
@@ -125,6 +126,7 @@ public class ShowSpawnController implements Initializable {
         
     }
 
+    @FXML
     public void loadImages(){
 
         if(firstPUName.equalsIgnoreCase("Raggio Cinetico Blu")){
