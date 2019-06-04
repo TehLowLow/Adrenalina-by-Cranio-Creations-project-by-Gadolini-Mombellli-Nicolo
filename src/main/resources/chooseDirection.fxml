@@ -27,7 +27,7 @@
     <Button font="$x1" layoutX="244.0" layoutY="264.0" mnemonicParsing="false" onAction="#chooseBasso" prefHeight="65.0" prefWidth="79.0" text="Basso" />
     <Button font="$x1" layoutX="135.0" layoutY="169.0" mnemonicParsing="false" onAction="#chooseSinistra" prefHeight="65.0" prefWidth="79.0" text="Sinistra" />
     <Button font="$x1" layoutX="353.0" layoutY="169.0" mnemonicParsing="false" onAction="#chooseDestra" prefHeight="65.0" prefWidth="79.0" text="Destra" />
-      <Button layoutX="244.0" layoutY="169.0" mnemonicParsing="false" onAction="#chooseStop" prefHeight="65.0" prefWidth="79.0" text="Stop" visible="false">
+      <Button fx:id="stop" layoutX="244.0" layoutY="169.0" mnemonicParsing="false" onAction="#chooseStop" prefHeight="65.0" prefWidth="79.0" text="Stop" visible="false">
          <font>
             <Font name="OldSansBlack" size="12.0" />
          </font></Button>
