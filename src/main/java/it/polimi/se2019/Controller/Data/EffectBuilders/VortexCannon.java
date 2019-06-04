@@ -39,7 +39,15 @@ public class VortexCannon extends Effect {
         //----- INIZIO EFFETTO SECONDARIO ---- //
 
         //Innanzitutto, controllo che il giocatore abbia abbastanza soldi.
-        if(user.getPlayerboard().getAmmoCubes().getRed()==0){
+
+        Rybamount cost = new Rybamount();
+
+        cost.setYellowCubes(0);
+        cost.setBlueCubes(0);
+        cost.setRedCubes(1);
+
+
+        if(!Check.affordable(user, cost)){
             return;
         }
 
@@ -93,12 +101,6 @@ public class VortexCannon extends Effect {
 
         //Applico danno ai bersagli
 
-        Rybamount cost = new Rybamount();
-
-        cost.setYellowCubes(0);
-        cost.setBlueCubes(0);
-        cost.setRedCubes(1);
-
         Interaction.pay(user, cost);
 
         for(Player newTarget : newTargets){
@@ -148,6 +150,8 @@ public class VortexCannon extends Effect {
 
         chosenTargets.add(chosenPlayer);
 
+        newTargets.remove(chosenPlayer);
+
 
 
         //Se ci sono altri giocatori da colpire, chiedo all'utente se vuole sceglierne altri.
@@ -160,7 +164,7 @@ public class VortexCannon extends Effect {
 
             while(!answerReceived){
 
-                answer = Server.updateWithAnswer(user, Message.usareEffettoBase());
+                answer = Server.updateWithAnswer(user, Message.altroBersaglio());
 
                 if(!InputCheck.correctYesNo(answer)){
                     Server.update(user, Message.inputError());
@@ -172,14 +176,12 @@ public class VortexCannon extends Effect {
             }
 
             if(!InputCheck.yesOrNo(answer)){
-                newTargets = chosenTargets;
+
                 return chosenTargets;
             }
 
             //Se vuole sceglierne un altro, lo ottengo.
 
-            boolean chosen2 = false;
-            String chosen2Target = null;
 
             chosenPlayer = ChoosePlayer.one(user, newTargets);
 
