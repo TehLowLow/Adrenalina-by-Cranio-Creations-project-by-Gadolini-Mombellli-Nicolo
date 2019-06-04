@@ -1011,6 +1011,13 @@ public class Check {
             notifico a tutti il nome del vincitore
              */
 
+
+            if (connectedPlayers.get(connectedPlayers.size()-1).getNickname().equalsIgnoreCase("terminator")){
+
+                connectedPlayers.remove(connectedPlayers.size()-1);
+
+            }
+
             for (Player player : connectedPlayers) {
 
                 update(player, "Il vincitore è " + winner.getNickname());

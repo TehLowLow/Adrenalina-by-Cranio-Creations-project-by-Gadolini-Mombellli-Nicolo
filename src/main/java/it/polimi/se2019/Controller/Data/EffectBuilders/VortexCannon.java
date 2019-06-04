@@ -56,7 +56,7 @@ public class VortexCannon extends Effect {
 
         while(!answerReceived){
 
-            answer = Server.updateWithAnswer(user, Message.usareEffettoBase());
+            answer = Server.updateWithAnswer(user, Message.usareEffettoOpzionale());
 
             if(!InputCheck.correctYesNo(answer)){
                 Server.update(user, Message.inputError());

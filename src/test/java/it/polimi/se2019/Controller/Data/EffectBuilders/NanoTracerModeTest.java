@@ -67,7 +67,7 @@ public class NanoTracerModeTest {
         Player player2 = Server.connectedPlayers.get(2);
 
         player1.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
-        player2.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+        player2.setPosition(Board.getMap().getBlueRoom().getCells().get(0));
 
         Weapon nanotracer= new Weapon();
         nanotracer.setBaseEffect(new NanoTracerMode());
@@ -89,7 +89,8 @@ public class NanoTracerModeTest {
         Weapon weapon = new Weapon();
         weapon.setAlternativeEffect(new NanoTracerMode());
         boolean result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
-        assertTrue(result);
+
+        assertFalse(result);
 
 
         for(int i = 1; i<5; i++){
@@ -99,7 +100,7 @@ public class NanoTracerModeTest {
 
         result = weapon.getAlternativeEffect().hasTargets(Server.connectedPlayers.get(0));
 
-        assertFalse(result);
+        assertTrue(result);
 
     }
 }
