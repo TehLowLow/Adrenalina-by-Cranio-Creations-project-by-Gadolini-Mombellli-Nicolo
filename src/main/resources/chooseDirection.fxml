@@ -14,7 +14,7 @@
         <Image url="@assets/cover/weaponBack.png" />
       </image>
     </ImageView>
-    <Label id="textArea" layoutX="29.0" layoutY="23.0" text="Scegli una direzione." textFill="WHITE">
+    <Label id="textArea" layoutX="29.0" layoutY="23.0" stylesheets="@fontstyles.css" text="Scegli una direzione." textFill="WHITE">
       <font>
         <Font name="Space Ranger" size="20.0" />
       </font>
