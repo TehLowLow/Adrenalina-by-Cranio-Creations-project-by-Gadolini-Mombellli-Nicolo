@@ -439,6 +439,60 @@ public class GUI extends Application implements Runnable {
         }
     }
 
+    public void showChoosePayPU(String message){
+
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/choosePayPU.fxml"));
+            AnchorPane showPUPay = (AnchorPane) loader.load();
+
+            PayPowerUpController showPayPUController = loader.getController();
+
+            showPayPUController.out = out;
+            showPayPUController.setUp(message);
+
+            Scene scene = new Scene(showPUPay);
+
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Scegli come pagare!");
+            stage.show();
+
+
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
+    }
+    public void showExtraGrenade() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/ExtraGrenade.fxml"));
+            AnchorPane chooseExtra = loader.load();
+
+            ChooseExtraGrenade control = loader.getController();
+
+            control.out = out;
+
+            Scene scene = new Scene(chooseExtra);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     public void update(String message) {
 
@@ -496,7 +550,15 @@ public class GUI extends Application implements Runnable {
 
         }
 
+        else if (message.contains("da scartare per pagare il costo indicandone il numero")){
 
+            showChoosePayPU(message);
+
+        } else if(message.contains("granata extra")){
+
+            showExtraGrenade();
+
+        }
 
         else if(isMapActive){
 
