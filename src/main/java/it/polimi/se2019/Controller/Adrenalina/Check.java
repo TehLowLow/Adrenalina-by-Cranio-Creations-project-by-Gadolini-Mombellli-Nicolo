@@ -1255,6 +1255,11 @@ public class Check {
 
     }
 
+    /**
+     * This method checks if the player can shot in the frenzy mode.
+     * @param player is who has to shot.
+     * @return true if player has targets and his weapon is charged or chargeable.
+     */
 
     public static boolean canShotFrenzy(Player player) {
 
@@ -1321,6 +1326,14 @@ public class Check {
         return false;
 
     }
+
+    /**
+     * This method manages the move action.
+     * @param player is who has to move.
+     * @param steps are the steps he decides to do.
+     * @return the list of cells reachable with exactly n steps.
+     */
+
 
     public static CopyOnWriteArrayList<Cell> moveManager(Player player, int steps) {
 
