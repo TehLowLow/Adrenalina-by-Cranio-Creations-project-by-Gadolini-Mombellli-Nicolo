@@ -32,10 +32,10 @@ public class Server {
 
 
     private static volatile int clientPort = 50000;
-    public static final int LOGINSOCKETPORT = 55000;
+    public static final int LOGINSOCKETPORT = 30000;
     public static final int LOGINRMIPORT = 56000;
     public static final int RMIPORT = 59000;
-    public static final int SOCKETPORT = 60000;
+    public static final int SOCKETPORT = 31000;
     public static int lobbyTimer;
     public static volatile boolean matchStarted = false;
     public static volatile boolean matchFinished = false;
