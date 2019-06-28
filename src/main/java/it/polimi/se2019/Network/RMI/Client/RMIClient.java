@@ -19,7 +19,7 @@ import java.util.Scanner;
 
 public class RMIClient extends Client implements Runnable, RMIClientInterface, Remote {
 
-     static RMILoggerInterface Logger;
+    static RMILoggerInterface Logger;
     private static RMILoggerInterface rServer;
     private static RMIServerInterface Game;
     private static RMIServerInterface gServer;
@@ -103,7 +103,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
                 try {
 
-                    Registry registry = LocateRegistry.getRegistry(port);
+                    Registry registry = LocateRegistry.getRegistry("Lollo", port);
                     rServer = (RMILoggerInterface) registry.lookup("LoginRMI");
 
                     if (rServer != null) {
@@ -121,7 +121,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
                 try {
 
-                    Registry registry = LocateRegistry.getRegistry(port);
+                    Registry registry = LocateRegistry.getRegistry("Lollo", port);
                     gServer = (RMIServerInterface) registry.lookup("GameRMI");
 
                     if (gServer != null) {

@@ -17,7 +17,6 @@ public class RMIServer extends Server implements RMIServerInterface, Runnable {
     @Override
     public void run() {
 
-
         try { //avvio il server registry
 
             RMIServer server = new RMIServer();
@@ -33,9 +32,6 @@ public class RMIServer extends Server implements RMIServerInterface, Runnable {
             e.printStackTrace();
 
         }
-
-
-
     }
 
 
