@@ -30,6 +30,7 @@ public class GUI extends Application implements Runnable {
     public int chosenSkulls;
 
     Map1UIController map1UIController;
+    Map2UIController map2UIController;
 
 
     public boolean isMapActive;
@@ -325,6 +326,29 @@ public class GUI extends Application implements Runnable {
 
             }
 
+            if (chosenMap == 2) {
+
+                loader.setLocation(GUI.class.getResource("/map2UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map2UIController = loader.getController();
+                map2UIController.out = out;
+
+                map2UIController.setMessage(message);
+                map2UIController.parser(message);
+                map2UIController.initUI();
+                map2UIController.refresh();
+
+                System.out.println(map2UIController.provaStampa());
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
 
         } catch (Exception e) {
 
@@ -364,6 +388,31 @@ public class GUI extends Application implements Runnable {
 
             }
 
+            if (chosenMap == 2) {
+
+                loader.setLocation(GUI.class.getResource("/map2UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map2UIController = loader.getController();
+                map2UIController.out = out;
+
+                map2UIController.setMessage("Scegli una cella tra quelle evidenziate cliccandoci sopra.");
+                map2UIController.parseChooseCell(message);
+                map2UIController.lightCells();
+                map2UIController.parser(message);
+                map2UIController.initUI();
+                map2UIController.refresh();
+
+                System.out.println(map2UIController.provaStampa());
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
 
         } catch (Exception e) {
 
@@ -386,6 +435,23 @@ public class GUI extends Application implements Runnable {
                 map1UIController.setMessage(message);
                 map1UIController.parser(message);
                 map1UIController.refresh();
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
+            if (chosenMap == 2) {
+
+                loader.setLocation(GUI.class.getResource("/map2UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map2UIController.setMessage(message);
+                map2UIController.parser(message);
+                map2UIController.refresh();
 
                 rootLayout = UIPane;
 

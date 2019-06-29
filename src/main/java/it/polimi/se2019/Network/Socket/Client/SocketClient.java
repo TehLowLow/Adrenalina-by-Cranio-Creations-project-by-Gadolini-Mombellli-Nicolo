@@ -161,7 +161,7 @@ public class SocketClient extends Client implements Runnable {
 
             try {
 
-                client = new Socket("Lollo-PC", LOGINSOCKETPORT); //"localhost"-------> IP del server remoto per login LAN
+                client = new Socket("AcerLolepls", LOGINSOCKETPORT); //"localhost"-------> IP del server remoto per login LAN
                 connected = true;
 
             } catch (ConnectException e) {
@@ -185,7 +185,7 @@ public class SocketClient extends Client implements Runnable {
 
             try {
                 InetAddress gameserver = InetAddress.getLocalHost();
-                client = new Socket("Lollo-PC", SOCKETPORT, gameserver, localPort); // "192.168.0.202" ----> IP del server remoto per game LAN
+                client = new Socket("AcerLolepls", SOCKETPORT, gameserver, localPort); // "192.168.0.202" ----> IP del server remoto per game LAN
                 connected = true;
             } catch (Exception e) {
                 e.printStackTrace();
