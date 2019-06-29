@@ -556,7 +556,7 @@ public class Action {
             se non lo può usare uso il base
              */
 
-        if (!Check.affordable(player, chosenWeapon.getAlternativeEffectCost())) {
+        if (chosenWeapon.getAlternativeEffect()==null || !Check.affordable(player, chosenWeapon.getAlternativeEffectCost())) {
 
             chosenWeapon.getBaseEffect().applyEffect(player, chosenWeapon.getBaseEffect().getTargets(player));
 

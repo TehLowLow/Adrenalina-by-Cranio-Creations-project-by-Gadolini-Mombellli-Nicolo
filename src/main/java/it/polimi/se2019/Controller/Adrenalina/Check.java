@@ -3,14 +3,14 @@ package it.polimi.se2019.Controller.Adrenalina;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 
-
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-import static it.polimi.se2019.Model.Connection.*;
+import static it.polimi.se2019.Model.Connection.DOOR;
+import static it.polimi.se2019.Model.Connection.FREE;
 import static it.polimi.se2019.Network.Server.connectedPlayers;
-import static it.polimi.se2019.Network.Server.update;
+import static it.polimi.se2019.Network.Server.updateAll;
 
 
 /**
@@ -56,7 +56,7 @@ public class Check {
      *
      * @param killed the defeated player whose board needs to be resolved.
      */
-    public static void resolveBoard(Player killed,  boolean overkill) {
+    public static void resolveBoard(Player killed, boolean overkill) {
 
         CopyOnWriteArrayList<Token> damages = killed.getPlayerboard().getDamage();
         CopyOnWriteArrayList<PlayerWithScore> playersWithScore;
@@ -141,9 +141,9 @@ public class Check {
 
         Player killer = new Player();
 
-        for (Player player: connectedPlayers){
+        for (Player player : connectedPlayers) {
 
-            if (player.getPlayerboard().getChampionName().equalsIgnoreCase(killerChampionName)){
+            if (player.getPlayerboard().getChampionName().equalsIgnoreCase(killerChampionName)) {
 
                 killer = player;
 
@@ -244,8 +244,6 @@ public class Check {
     }
 
 
-
-
     /**
      * Runs to limit the total amount of ammo per color to 3 ammos. For example, if a player has more than 3 red
      * ammo cubes this method will return the amount of cubes to 3.
@@ -301,7 +299,7 @@ public class Check {
             if (marker.getChampionName().equals(attacker.getPlayerboard().getChampionName())) {
                 attackerMarkers++;
 
-                if (attackerMarkers>3){
+                if (attackerMarkers > 3) {
 
                     attackerMarkers--;
                     markers.remove(marker);
@@ -378,10 +376,7 @@ public class Check {
             }
 
 
-
-
         }
-
 
 
         return visiblePlayers;
@@ -512,6 +507,7 @@ public class Check {
 
     /**
      * This method checks if there are the conditions to perform the final frenzy.
+     *
      * @return true if final frenzy can start, else otherwise.
      */
 
@@ -543,7 +539,8 @@ public class Check {
 
     /**
      * This method resolves a board in the final franzy mode.
-     * @param killed is the player whom board has to be resolved.
+     *
+     * @param killed   is the player whom board has to be resolved.
      * @param overkill is true if the player has been overkilled, else otherwise.
      */
 
@@ -603,10 +600,9 @@ public class Check {
         String killerChampionName = killed.getPlayerboard().getDamage().get(10).getChampionName();
 
 
+        for (Player player : connectedPlayers) {
 
-        for (Player player: connectedPlayers){
-
-            if (player.getPlayerboard().getChampionName().equalsIgnoreCase(killerChampionName)){
+            if (player.getPlayerboard().getChampionName().equalsIgnoreCase(killerChampionName)) {
 
                 killer = player;
 
@@ -799,7 +795,7 @@ public class Check {
 
             for (Player killer : connectedPlayers) {
 
-                if (mortalBlow.getKiller()!= null && mortalBlow.getKiller().equals(killer)) {
+                if (mortalBlow.getKiller() != null && mortalBlow.getKiller().equals(killer)) {
 
                     if (!whoKilledFirst.contains(killer)) {
 
@@ -999,6 +995,14 @@ public class Check {
 
         Player winner = new Player();
 
+
+        /*
+        CREAZIONE STRINGA CON VINCITORE E CLASSIFICA
+         */
+
+        String schermataFinale = "";
+
+
         /*
         caso di un solo vincitore
          */
@@ -1012,17 +1016,20 @@ public class Check {
              */
 
 
-            if (connectedPlayers.get(connectedPlayers.size()-1).getNickname().equalsIgnoreCase("terminator")){
+            if (connectedPlayers.get(connectedPlayers.size() - 1).getNickname().equalsIgnoreCase("terminator")) {
 
-                connectedPlayers.remove(connectedPlayers.size()-1);
-
-            }
-
-            for (Player player : connectedPlayers) {
-
-                update(player, "Il vincitore è " + winner.getNickname());
+                connectedPlayers.remove(connectedPlayers.size() - 1);
 
             }
+
+
+
+            /*
+            aggiungo il vincitore alla schermata finale
+             */
+
+
+            schermataFinale = schermataFinale + "Il vincitore è " + winner.getNickname() + "!\n";
 
 
         }
@@ -1041,46 +1048,52 @@ public class Check {
 
             firstWinner = potentialWinners.get(0);
 
-            for (Player player : connectedPlayers) {
 
-                update(player, "I vincitori sono:");
+            schermataFinale = schermataFinale + "I vincitori sono:\n";
 
                 /*
                 stampo gli altri
                  */
 
-                for (PotentialWinner potentialWinner : potentialWinners) {
-                    if (potentialWinner.points == firstWinner.points && potentialWinner.scoreOnMortalBlowTrack == firstWinner.scoreOnMortalBlowTrack) {
+            for (PotentialWinner potentialWinner : potentialWinners) {
+                if (potentialWinner.points == firstWinner.points && potentialWinner.scoreOnMortalBlowTrack == firstWinner.scoreOnMortalBlowTrack) {
 
-                        update(player, "" + potentialWinner.player.getNickname());
+                    schermataFinale = schermataFinale + potentialWinner.player.getNickname() + "\n";
 
-                    }
 
                 }
 
             }
 
+
         }
+
+        schermataFinale = schermataFinale + "\n";
 
 
         /*
         notifico a tutti i giocatori la classifica finale
          */
 
-        for (Player player : connectedPlayers) {
 
-            update(player, "Classifica Finale:");
+        schermataFinale = schermataFinale + "Classifica Finale:\n";
 
-            for (PotentialWinner potentialWinner : potentialWinners) {
+        for (PotentialWinner potentialWinner : potentialWinners) {
 
                 /*
                 faccio vedere per ogni giocatore il nome, il punteggio totale e quello sul tracciato colpo mortale
                  */
 
-                update(player, "Nome: " + potentialWinner.player.getNickname() + " Punteggio Totale: " + potentialWinner.points + " Punti tracciato colpo mortale " + potentialWinner.scoreOnMortalBlowTrack);
+            schermataFinale = schermataFinale + "Nome: " + potentialWinner.player.getNickname() + " Punteggio Totale: " + potentialWinner.points + " Punti tracciato colpo mortale " + potentialWinner.scoreOnMortalBlowTrack + "\n";
 
-            }
         }
+
+            /*
+            infine stampo la stringa con le informazioni finali
+             */
+
+
+        updateAll(schermataFinale);
 
 
     }
@@ -1106,6 +1119,7 @@ public class Check {
 
     /**
      * this method is used to check which cells are visible by a player
+     *
      * @param user is who has to check the visible cells.
      * @return an array containins the visible cells.
      */
@@ -1180,6 +1194,7 @@ public class Check {
 
     /**
      * Checks if the user can perform the shot action
+     *
      * @param player is the user
      * @return true if he can shot, false otherwise
      */
@@ -1206,6 +1221,7 @@ public class Check {
 
     /**
      * This method check if the enhanced shot can be performed
+     *
      * @param player is who has to shoot
      * @return true if he can shoot enhanced, false otherwise
      */
@@ -1239,6 +1255,11 @@ public class Check {
 
     }
 
+    /**
+     * This method checks if the player can shot in the frenzy mode.
+     * @param player is who has to shot.
+     * @return true if player has targets and his weapon is charged or chargeable.
+     */
 
     public static boolean canShotFrenzy(Player player) {
 
@@ -1271,6 +1292,7 @@ public class Check {
 
     /**
      * This method checks if the user can perform the enhanced frenzy shot
+     *
      * @param player is the user
      * @return true if he can perform it, else otherwise
      */
@@ -1304,6 +1326,14 @@ public class Check {
         return false;
 
     }
+
+    /**
+     * This method manages the move action.
+     * @param player is who has to move.
+     * @param steps are the steps he decides to do.
+     * @return the list of cells reachable with exactly n steps.
+     */
+
 
     public static CopyOnWriteArrayList<Cell> moveManager(Player player, int steps) {
 

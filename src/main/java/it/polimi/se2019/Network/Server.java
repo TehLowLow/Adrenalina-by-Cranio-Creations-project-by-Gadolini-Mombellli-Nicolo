@@ -3,6 +3,8 @@ package it.polimi.se2019.Network;
 
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Network.RMI.RMILogger;
+import it.polimi.se2019.Network.RMI.Server.RMIServer;
 import it.polimi.se2019.Network.Socket.Server.Manager;
 import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
@@ -30,10 +32,10 @@ public class Server {
 
 
     private static volatile int clientPort = 50000;
-    public static final int LOGINSOCKETPORT = 55000;
+    public static final int LOGINSOCKETPORT = 30000;
     public static final int LOGINRMIPORT = 56000;
     public static final int RMIPORT = 59000;
-    public static final int SOCKETPORT = 60000;
+    public static final int SOCKETPORT = 31000;
     public static int lobbyTimer;
     public static volatile boolean matchStarted = false;
     public static volatile boolean matchFinished = false;
@@ -121,10 +123,10 @@ public class Server {
         lobbyTimer = scanner.nextInt();
 
 
-       /*//Avvio il logger di rmi
+        //Avvio il logger di rmi
         Runnable loggerRMI = new RMILogger();
         Thread loginRMI = new Thread(loggerRMI);
-        loginRMI.start();*/
+        loginRMI.start();
 
 
         //Avvio thread pool logger di socket
@@ -136,14 +138,13 @@ public class Server {
         }
 
 
-       /* //avvio il server di gioco
+        //avvio il server di gioco
         Runnable gameServer = new RMIServer();
         Thread game = new Thread(gameServer);
-        game.start();*/
+        game.start();
 
 
         ExecutorService gamePool = Executors.newFixedThreadPool(5);
-
 
         gameSocket = initServer(SOCKETPORT);
 
@@ -300,7 +301,7 @@ public class Server {
 
         for (Player player : connectedPlayers) {
 
-            if (player.getNickname().equalsIgnoreCase("Terminator")){
+            if (player.getNickname().equalsIgnoreCase("Terminator")) {
                 continue;
             }
 

@@ -16,6 +16,7 @@ public class Client {
     private static String response;
     static SocketClient sClient = new SocketClient();
     static RMIClient rClient = new RMIClient();
+    public static String host;
 
 
     /**
@@ -26,6 +27,13 @@ public class Client {
 
 
         //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.
+
+        System.out.println("Inserisci il nome del pc Host sul quale è in esecuzione il server:");
+        Scanner scanner = new Scanner(System.in);
+        host = scanner.nextLine();
+
+
+
         System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
         initConnection();//qua vengono lanciati i thread.
     }

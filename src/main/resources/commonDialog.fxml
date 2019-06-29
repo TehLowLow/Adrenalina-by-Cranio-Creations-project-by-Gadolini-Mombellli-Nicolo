@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="502.0000999999975" stylesheets="fontstyles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.se2019.View.GUI.CommonDialogController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="502.0000999999975" stylesheets="@fontstyles.css" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.se2019.View.GUI.CommonDialogController">
   <children>
     <ImageView fitHeight="338.71978471691403" fitWidth="502.0001220703125" layoutX="0.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
       <image>
@@ -21,7 +21,7 @@
       </font>
     </Button>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffffa6" height="130.0" layoutX="14.0" layoutY="96.0" stroke="BLACK" strokeType="INSIDE" width="474.0001220703125" />
-    <Label fx:id="label" layoutX="21.0" layoutY="96.0" prefHeight="130.0" prefWidth="461.0" textAlignment="LEFT" wrapText="true">
+    <Label fx:id="label" layoutX="21.0" layoutY="96.0" prefHeight="130.0" prefWidth="461.0" textAlignment="CENTER" wrapText="true">
       <font>
         <Font name="OldSansBlack" size="22.0" />
       </font>
