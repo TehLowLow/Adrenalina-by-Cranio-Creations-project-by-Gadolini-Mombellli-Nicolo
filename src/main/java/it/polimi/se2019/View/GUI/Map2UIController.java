@@ -288,7 +288,7 @@ public class Map2UIController implements Initializable {
     public int yellowSpawnCellSprogX = 591;
     public int yellowSpawnCellSprogY = 516;
 
-    public int yellowSpawnCellBansheeX = 591;
+    public int yellowSpawnCellBansheeX = 651;
     public int yellowSpawnCellBansheeY = 567;
 
     //LootCell2

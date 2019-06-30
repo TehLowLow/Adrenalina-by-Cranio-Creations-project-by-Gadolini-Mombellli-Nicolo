@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="704.7341918945312" prefWidth="1355.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.Map4UIController">
+  <children>
+    <ImageView fitHeight="704.7341918945312" fitWidth="1362.122802734375" layoutX="2.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@assets/cover/background.jpg" />
+      </image>
+    </ImageView>
+    <ImageView fitHeight="705.0" fitWidth="838.022705078125" layoutX="2.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@assets/Maps/map4_final.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="playerboardImage" fitHeight="171.2882537841797" fitWidth="630.1227416992188" layoutX="734.0" layoutY="1.0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@assets/Playerboards/Destructor_PB.png" />
+      </image>
+    </ImageView>
+    <TabPane blendMode="SRC_OVER" layoutX="840.0" layoutY="171.0" prefHeight="252.0" prefWidth="377.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="Armi">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <ImageView fitHeight="232.44088420867922" fitWidth="377.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@assets/cover/weaponBack.png" />
+                  </image>
+                </ImageView>
+                <ImageView fx:id="weapon1Image" fitHeight="177.9752103399581" fitWidth="105.20702362060547" layoutX="15.0" layoutY="28.0" onMouseClicked="#chooseWeapon1" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@assets/Weapons/AD_weapons_IT_022.png" />
+                  </image>
+                </ImageView>
+                <ImageView fx:id="weapon2Image" fitHeight="177.9752103399581" fitWidth="105.20702362060547" layoutX="136.0" layoutY="29.0" onMouseClicked="#chooseWeapon2" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@assets/Weapons/AD_weapons_IT_027.png" />
+                  </image>
+                </ImageView>
+                <ImageView fx:id="weapon3Image" fitHeight="177.9752103399581" fitWidth="105.20702362060547" layoutX="258.0" layoutY="29.0" onMouseClicked="#chooseWeapon3" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@assets/Weapons/AD_weapons_IT_028.png" />
+                  </image>
+                </ImageView>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="Potenziamenti">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <ImageView fitHeight="232.44088420867922" fitWidth="377.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@assets/cover/weaponBack.png" />
+                  </image>
+                </ImageView>
+                <ImageView fx:id="pu1Image" fitHeight="150.0" fitWidth="200.0" layoutX="24.0" layoutY="36.0" onMouseClicked="#choosePU1" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@assets/Powerups/AD_powerups_IT_028.png" />
+                  </image>
+                </ImageView>
+                <ImageView fx:id="pu2Image" fitHeight="150.0" fitWidth="200.0" layoutX="140.0" layoutY="36.0" onMouseClicked="#choosePU2" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@assets/Powerups/AD_powerups_IT_022.png" />
+                  </image>
+                </ImageView>
+                <ImageView fx:id="pu3Image" fitHeight="150.0" fitWidth="200.0" layoutX="256.0" layoutY="36.0" onMouseClicked="#choosePU3" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@assets/Powerups/AD_powerups_IT_0211.png" />
+                  </image>
+                </ImageView>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
+    <Text fill="BLACK" layoutX="1053.0" layoutY="192.0" scaleX="1.9495756209778596" scaleY="1.7865736120033857" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipaggiamenti">
+      <font>
+        <Font name="System Bold" size="12.0" />
+      </font>
+    </Text>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="252.0" layoutX="1217.0" layoutY="172.0" opacity="0.35" stroke="BLACK" strokeType="INSIDE" width="147.122802734375" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLACK" height="31.0" layoutX="1217.0" layoutY="172.0" opacity="0.61" stroke="BLACK" strokeType="INSIDE" width="139.513671875" />
+    <Text fill="WHITE" layoutX="1244.0" layoutY="195.0" scaleX="1.2064053662796932" scaleY="1.165345080763583" strokeType="OUTSIDE" strokeWidth="0.0" text="Munizioni">
+      <font>
+        <Font name="System Bold" size="20.0" fx:id="x6" />
+      </font>
+    </Text>
+    <ImageView fx:id="blueAmmo" fitHeight="40.855072677043275" fitWidth="46.21311569213867" layoutX="1226.0" layoutY="217.0" onMouseClicked="#chooseBlueAmmo" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Cubes/BlueCube.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="yellowAmmo" fitHeight="40.855072677043275" fitWidth="46.21311569213867" layoutX="1226.0" layoutY="284.0" onMouseClicked="#chooseYellowAmmo" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Cubes/YellowCube.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="redAmmo" fitHeight="40.855072677043275" fitWidth="46.21311569213867" layoutX="1226.0" layoutY="352.0" onMouseClicked="#chooseRedAmmo" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Cubes/RedCube.png" />
+      </image>
+    </ImageView>
+    <Text layoutX="1288.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x ">
+      <fill>
+        <Color blue="1.000" green="0.714" red="0.200" fx:id="x3" />
+      </fill>
+      <font>
+        <Font name="System Bold" size="35.0" fx:id="x1" />
+      </font>
+    </Text>
+    <Text font="$x1" layoutX="1288.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x ">
+      <fill>
+        <Color blue="0.000" green="0.961" red="1.000" fx:id="x4" />
+      </fill>
+    </Text>
+    <Text font="$x1" layoutX="1288.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x ">
+      <fill>
+        <Color blue="0.200" green="0.200" red="1.000" fx:id="x5" />
+      </fill>
+    </Text>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.552734375" layoutX="0.0" layoutY="658.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="165.8499755859375" />
+    <Text fill="WHITE" layoutX="2.0" layoutY="652.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giocatore:">
+      <font>
+        <Font name="System Bold" size="25.0" fx:id="x2" />
+      </font>
+    </Text>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.552734375" layoutX="231.0" layoutY="658.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="139.513671875" />
+    <Text fill="WHITE" font="$x2" layoutX="239.0" layoutY="652.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Punteggio:" />
+    <Text fx:id="blueCubesText" fill="$x3" font="$x1" layoutX="1317.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" />
+    <Text fx:id="yellowCubesText" fill="$x4" font="$x1" layoutX="1317.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" />
+    <Text fx:id="redCubesText" fill="$x5" font="$x1" layoutX="1317.0" layoutY="384.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3" />
+    <Button font="$x6" layoutX="855.0" layoutY="446.0" mnemonicParsing="false" onAction="#moveAction" prefHeight="61.0382080078125" prefWidth="101.702392578125" text="Muovi" />
+    <Button font="$x6" layoutX="970.0" layoutY="446.0" mnemonicParsing="false" onAction="#shotAction" prefHeight="62.0" prefWidth="109.702392578125" text="Spara" />
+    <Button font="$x6" layoutX="1091.0" layoutY="446.0" mnemonicParsing="false" onAction="#pickupAction" prefHeight="62.0" prefWidth="128.9794921875" text="Raccogli" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" height="129.0" layoutX="861.0" layoutY="541.0" opacity="0.53" stroke="BLACK" strokeType="INSIDE" width="453.0">
+      <fill>
+        <Color blue="0.000" green="0.600" red="0.047" fx:id="x9" />
+      </fill>
+    </Rectangle>
+    <Label fx:id="terminal" font="$x6" layoutX="869.0" layoutY="541.0" prefHeight="129.0" prefWidth="433.984375" text="Benvenuto nella GUI di Adrenalina!" textFill="WHITE" wrapText="true" />
+    <ImageView id="blueLoot1Tile" fx:id="redLootTile" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="174.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Loot/AD_ammo_04.png" />
+      </image>
+    </ImageView>
+    <ImageView id="blueLoot2Tile" fx:id="blueLootTile" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="297.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Loot/AD_ammo_04.png" />
+      </image>
+    </ImageView>
+    <ImageView id="redLoot1Tile" fx:id="purpleLootTile" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="288.0" layoutY="361.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Loot/AD_ammo_04.png" />
+      </image>
+    </ImageView>
+    <ImageView id="redLoot2Tile" fx:id="yellowLoot1Tile" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="449.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Loot/AD_ammo_04.png" />
+      </image>
+    </ImageView>
+    <ImageView id="whiteLoot1Tile" fx:id="whiteLoot2Tile" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="289.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Loot/AD_ammo_04.png" />
+      </image>
+    </ImageView>
+    <ImageView id="whiteLoot2Tile" fx:id="yellowLoot3Tile" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="452.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Loot/AD_ammo_04.png" />
+      </image>
+    </ImageView>
+    <ImageView id="yellowLootTile" fx:id="yellowLoot2Tile" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="573.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Loot/AD_ammo_04.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="mbToken2" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="101.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="mbToken1" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="67.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true" visible="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="mbToken3" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="137.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="mbToken4" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="174.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="mbToken5" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="210.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="mbToken6" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="246.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="mbToken7" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="280.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="mbToken8" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="314.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="PBSkull1" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="869.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="PBSkull2" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="904.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="PBSkull3" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="934.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="PBSkull4" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="969.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="PBSkull5" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="1000.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="PBSkull6" fitHeight="37.43815494941799" fitWidth="28.984378814697266" layoutX="1035.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Placeable/RedSkull.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage1" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="789.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage2" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="825.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage3" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="861.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage4" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="898.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage5" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="933.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage6" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="970.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage7" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1005.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage8" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1042.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage9" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1076.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage10" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1106.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage11" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1147.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="damage12" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1180.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="marker1Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1034.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="marker2Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1049.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="marker3Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1064.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="marker4Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1079.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="marker5Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1094.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="marker6Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1108.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <Text fx:id="nicknameText" fill="WHITE" font="$x2" layoutX="2.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nickname" />
+    <Text fx:id="scoreText" fill="WHITE" font="$x2" layoutX="289.0" layoutY="692.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+    <ImageView fx:id="redWeapon1" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="20.0" layoutY="239.0" onMouseClicked="#chooseRedWeapon1" pickOnBounds="true" preserveRatio="false" rotate="90.0">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_022.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="redWeapon2" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="21.0" layoutY="342.0" onMouseClicked="#chooseRedWeapon2" pickOnBounds="true" preserveRatio="false" rotate="90.0">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_027.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="redWeapon3" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="21.0" layoutY="445.0" onMouseClicked="#chooseRedWeapon3" pickOnBounds="true" preserveRatio="false" rotate="90.0">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_024.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="yellowWeapon1" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="736.0" layoutY="384.0" onMouseClicked="#chooseYellowWeapon1" pickOnBounds="true" preserveRatio="false" rotate="270.0">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_0222.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="yellowWeapon2" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="736.0" layoutY="483.0" onMouseClicked="#chooseYellowWeapon2" pickOnBounds="true" preserveRatio="false" rotate="270.0">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_0216.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="yellowWeapon3" fitHeight="122.9752197265625" fitWidth="84.8988037109375" layoutX="736.0" layoutY="586.0" onMouseClicked="#chooseYellowWeapon3" pickOnBounds="true" preserveRatio="false" rotate="270.0">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_022.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="blueWeapon1" fitHeight="136.950439453125" fitWidth="84.8988037109375" layoutX="440.0" layoutY="0.0" onMouseClicked="#chooseBlueWeapon1" pickOnBounds="true" preserveRatio="false" rotate="0.0">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_0212.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="blueWeapon2" fitHeight="136.950439453125" fitWidth="84.8988037109375" layoutX="539.0" layoutY="1.0" onMouseClicked="#chooseBlueWeapon2" pickOnBounds="true" preserveRatio="false" rotate="0.0">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_0211.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="blueWeapon3" fitHeight="136.950439453125" fitWidth="84.8988037109375" layoutX="632.0" layoutY="0.0" onMouseClicked="#chooseBlueWeapon3" pickOnBounds="true" preserveRatio="false" rotate="0.0">
+      <image>
+        <Image url="@assets/Weapons/AD_weapons_IT_0222.png" />
+      </image>
+    </ImageView>
+    <ImageView id="marker6Image" fx:id="marker7Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1123.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView id="marker6Image" fx:id="marker8Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1137.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView id="marker6Image" fx:id="marker9Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1155.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView id="marker6Image" fx:id="marker10Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1172.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView id="marker6Image" fx:id="marker11Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1187.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <ImageView id="marker6Image" fx:id="marker12Image" fitHeight="46.552734375" fitWidth="29.7023576627536" layoutX="1202.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Placeable/Violet_Mk.png" />
+      </image>
+    </ImageView>
+    <Text fx:id="mb1Overkill" fill="WHITE" layoutX="73.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false">
+      <font>
+        <Font name="System Bold" size="15.0" fx:id="x7" />
+      </font>
+    </Text>
+    <Text fx:id="mb2Overkill" fill="WHITE" font="$x7" layoutX="108.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false" />
+    <Text fx:id="mb3Overkill" fill="WHITE" font="$x7" layoutX="143.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false" />
+    <Text fx:id="mb4Overkill" fill="WHITE" font="$x7" layoutX="181.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false" />
+    <Text fx:id="mb5Overkill" fill="WHITE" font="$x7" layoutX="216.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false" />
+    <Text fx:id="mb6Overkill" fill="WHITE" font="$x7" layoutX="252.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false" />
+    <Text fx:id="mb7Overkill" fill="WHITE" font="$x7" layoutX="285.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false" />
+    <Text fx:id="mb8Overkill" fill="WHITE" font="$x7" layoutX="319.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false" />
+    <ImageView fx:id="violetIcon" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="712.0" layoutY="294.0" onMouseClicked="#choseViolet" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Icons/Violet_ico.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="dozerIcon" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="789.0" layoutY="225.0" onMouseClicked="#choseDozer" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Icons/Dozer_ico.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="destructorIcon" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="772.0" layoutY="260.0" onMouseClicked="#choseDestructor" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Icons/Destructor_ico.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="sprogIcon" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="732.0" layoutY="271.0" onMouseClicked="#choseSprog" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Icons/Sprog_ico.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="bansheeIcon" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="766.0" layoutY="298.0" onMouseClicked="#choseBanshee" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Icons/Banshee_ico.png" />
+      </image>
+    </ImageView>
+    <Button layoutX="1241.0" layoutY="434.0" mnemonicParsing="false" onAction="#yesAction" prefHeight="37.0382080078125" prefWidth="76.0" text="SI" textFill="$x9">
+      <font>
+        <Font name="System Bold" size="16.0" fx:id="x8" />
+      </font>
+    </Button>
+    <Button font="$x8" layoutX="1241.0" layoutY="487.0" mnemonicParsing="false" onAction="#noAction" prefHeight="38.0" prefWidth="76.0" text="NO" textFill="RED" />
+    <Rectangle id="blueLootCell1Square" fx:id="redLootCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="148.0" layoutX="134.0" layoutY="146.0" onMouseClicked="#chooseRedLootCell" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="144.0" />
+    <Rectangle id="blueLootCell2Square" fx:id="blueLootCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="149.0" layoutX="277.0" layoutY="145.0" onMouseClicked="#chooseBlueLootCell" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="145.0" />
+    <Rectangle fx:id="blueSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="148.0" layoutX="423.0" layoutY="146.0" onMouseClicked="#chooseBlueSpawnCell" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="150.0" />
+    <Rectangle fx:id="redSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="175.0" layoutX="137.0" layoutY="306.0" onMouseClicked="#chooseRedSpawnCell" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="139.0" />
+    <Rectangle id="redLootCell1Square" fx:id="purpleLootCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="165.0" layoutX="276.0" layoutY="303.0" onMouseClicked="#choosePurpleLootCell" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="141.0" />
+    <Rectangle id="redLootCell2Square" fx:id="yellowLootCell1Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="165.0" layoutX="416.0" layoutY="306.0" onMouseClicked="#chooseYellowLootCell1" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="158.0" />
+    <Rectangle id="whiteLootCell1Square" fx:id="whiteLootCell2Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="149.0" layoutX="273.0" layoutY="480.0" onMouseClicked="#chooseWhiteLootCell2" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="150.0" />
+    <Rectangle id="whiteLootCell2Square" fx:id="yellowLootCell3Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="148.0" layoutX="422.0" layoutY="480.0" onMouseClicked="#chooseYellowLootCell3" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="152.0" />
+    <Rectangle id="yellowLootCellSquare" fx:id="yellowLootCell2Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="158.0" layoutX="582.0" layoutY="306.0" onMouseClicked="#chooseYellowLootCell2" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="131.0" />
+    <Rectangle fx:id="yellowSpawnCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="166.0" layoutX="580.0" layoutY="462.0" onMouseClicked="#chooseYellowSpawnCell" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="132.0" />
+    <Rectangle id="blueSpawnCellSquare" fx:id="greenLootCellSquare" arcHeight="5.0" arcWidth="5.0" disable="true" height="148.0" layoutX="571.0" layoutY="148.0" onMouseClicked="#chooseGreenLootCell" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="150.0" />
+    <Rectangle fx:id="whiteLootCell1Square" arcHeight="5.0" arcWidth="5.0" disable="true" height="149.0" layoutX="134.0" layoutY="487.0" onMouseClicked="#chooseWhiteLootCell1" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="true" width="150.0" />
+    <ImageView fx:id="firstplayer" fitHeight="40.0" fitWidth="40.0" layoutX="127.0" layoutY="663.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <image>
+        <Image url="@assets/Icons/First_ico.png" />
+      </image>
+    </ImageView>
+    <ImageView id="redLoot2Tile" fx:id="greenLootTile" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="637.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Loot/AD_ammo_04.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="whiteLoot1Tile" fitHeight="46.213134765625" fitWidth="46.213134765625" layoutX="174.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Loot/AD_ammo_04.png" />
+      </image>
+    </ImageView>
+  </children>
+</AnchorPane>
