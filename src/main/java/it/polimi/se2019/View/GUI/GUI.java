@@ -31,6 +31,8 @@ public class GUI extends Application implements Runnable {
 
     Map1UIController map1UIController;
     Map2UIController map2UIController;
+    Map3UIController map3UIController;
+    Map4UIController map4UIController;
 
 
     public boolean isMapActive;
@@ -349,6 +351,52 @@ public class GUI extends Application implements Runnable {
 
             }
 
+            if (chosenMap == 3) {
+
+                loader.setLocation(GUI.class.getResource("/map3UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map3UIController = loader.getController();
+                map3UIController.out = out;
+
+                map3UIController.setMessage(message);
+                map3UIController.parser(message);
+                map3UIController.initUI();
+                map3UIController.refresh();
+
+                System.out.println(map3UIController.provaStampa());
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
+            if (chosenMap == 4) {
+
+                loader.setLocation(GUI.class.getResource("/map4UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map4UIController = loader.getController();
+                map4UIController.out = out;
+
+                map4UIController.setMessage(message);
+                map4UIController.parser(message);
+                map4UIController.initUI();
+                map4UIController.refresh();
+
+                System.out.println(map4UIController.provaStampa());
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
 
         } catch (Exception e) {
 
@@ -413,6 +461,57 @@ public class GUI extends Application implements Runnable {
 
             }
 
+            if (chosenMap == 3) {
+
+                loader.setLocation(GUI.class.getResource("/map3UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map3UIController = loader.getController();
+                map3UIController.out = out;
+
+                map3UIController.setMessage("Scegli una cella tra quelle evidenziate cliccandoci sopra.");
+                map3UIController.parseChooseCell(message);
+                map3UIController.lightCells();
+                map3UIController.parser(message);
+                map3UIController.initUI();
+                map3UIController.refresh();
+
+                System.out.println(map3UIController.provaStampa());
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
+
+            if (chosenMap == 4) {
+
+                loader.setLocation(GUI.class.getResource("/map4UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map4UIController = loader.getController();
+                map4UIController.out = out;
+
+                map4UIController.setMessage("Scegli una cella tra quelle evidenziate cliccandoci sopra.");
+                map4UIController.parseChooseCell(message);
+                map4UIController.lightCells();
+                map4UIController.parser(message);
+                map4UIController.initUI();
+                map4UIController.refresh();
+
+                System.out.println(map4UIController.provaStampa());
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
 
         } catch (Exception e) {
 
@@ -452,6 +551,41 @@ public class GUI extends Application implements Runnable {
                 map2UIController.setMessage(message);
                 map2UIController.parser(message);
                 map2UIController.refresh();
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
+            if (chosenMap == 3) {
+
+                loader.setLocation(GUI.class.getResource("/map3UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map3UIController.setMessage(message);
+                map3UIController.parser(message);
+                map3UIController.refresh();
+
+                rootLayout = UIPane;
+
+                Scene scene = new Scene(rootLayout);
+                this.primaryStage.setScene(scene);
+                this.primaryStage.show();
+
+            }
+
+
+            if (chosenMap == 4) {
+
+                loader.setLocation(GUI.class.getResource("/map4UI.fxml"));
+                AnchorPane UIPane = (AnchorPane) loader.load();
+
+                map4UIController.setMessage(message);
+                map4UIController.parser(message);
+                map4UIController.refresh();
 
                 rootLayout = UIPane;
 

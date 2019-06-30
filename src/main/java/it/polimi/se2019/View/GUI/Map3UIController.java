@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class Map2UIController implements Initializable {
+public class Map3UIController implements Initializable {
 
     public DataOutputStream out;
 
@@ -59,18 +59,18 @@ public class Map2UIController implements Initializable {
 
     //Loot posizionati
 
-    String blueLoot1;
-    String blueLoot2;
-
-    String greenLoot;
+    String blueLoot;
 
     String redLoot;
 
-    String yellowLoot1;
-    String yellowLoot2;
-    String yellowLoot3;
+    String purpleLoot1;
+    String purpleLoot2;
 
-    String whiteLoot;
+    String yellowLoot;
+
+    String whiteLoot1;
+    String whiteLoot2;
+    String whiteLoot3;
 
     //Armi delle celle
     String blueWeapon1name;
@@ -157,20 +157,22 @@ public class Map2UIController implements Initializable {
     //Quadrati che attivano le celle
 
     String blueSpawnCellIndex = "empty";
-    String blueLootCell1Index = "empty";
-    String blueLootCell2Index = "empty";
+    String blueLootCellIndex = "empty";
 
     String redSpawnCellIndex = "empty";
     String redLootCellIndex = "empty";
 
 
     String yellowSpawnCellIndex = "empty";
-    String yellowLootCell1Index = "empty";
-    String yellowLootCell2Index = "empty";
-    String yellowLootCell3Index = "empty";
+    String yellowLootCellIndex = "empty";
 
-    String whiteLootCellIndex = "empty";
-    String greenLootCellIndex= "empty";
+    String whiteLootCell1Index = "empty";
+    String whiteLootCell2Index = "empty";
+    String whiteLootCell3Index = "empty";
+
+    String purpleLootCell1Index = "empty";
+    String purpleLootCell2Index = "empty";
+
 
 
 
@@ -200,39 +202,22 @@ public class Map2UIController implements Initializable {
     public int blueSpawnCellBansheeY = 238;
 
 
-    //lootCell1
+    //lootCell
 
-    public int blueLootCell1DestructorX = 231;
-    public int blueLootCell1DestructorY = 187;
+    public int blueLootCellDestructorX = 329;
+    public int blueLootCellDestructorY = 162;
 
-    public int blueLootCell1VioletX = 237;
-    public int blueLootCell1VioletY = 237;
+    public int blueLootCellVioletX = 375;
+    public int blueLootCellVioletY = 180;
 
-    public int blueLootCell1DozerX = 143;
-    public int blueLootCell1DozerY = 222;
+    public int blueLootCellDozerX = 329;
+    public int blueLootCellDozerY = 162;
 
-    public int blueLootCell1SprogX = 210;
-    public int blueLootCell1SprogY = 164;
+    public int blueLootCellSprogX = 288;
+    public int blueLootCellSprogY = 180;
 
-    public int blueLootCell1BansheeX = 193;
-    public int blueLootCell1BansheeY = 235;
-
-    //lootCell2
-
-    public int blueLootCell2DestructorX = 329;
-    public int blueLootCell2DestructorY = 162;
-
-    public int blueLootCell2VioletX = 375;
-    public int blueLootCell2VioletY = 180;
-
-    public int blueLootCell2DozerX = 329;
-    public int blueLootCell2DozerY = 162;
-
-    public int blueLootCell2SprogX = 288;
-    public int blueLootCell2SprogY = 180;
-
-    public int blueLootCell2BansheeX = 375;
-    public int blueLootCell2BansheeY = 238;
+    public int blueLootCellBansheeX = 375;
+    public int blueLootCellBansheeY = 238;
 
     // Stanza rossa
 
@@ -256,20 +241,20 @@ public class Map2UIController implements Initializable {
     //LootCell
 
 
-    public int redLootCellDestructorX = 360;
-    public int redLootCellDestructorY = 315;
+    public int redLootCellDestructorX = 137;
+    public int redLootCellDestructorY = 150;
 
-    public int redLootCellVioletX = 314;
-    public int redLootCellVioletY = 315;
+    public int redLootCellVioletX = 178;
+    public int redLootCellVioletY = 150;
 
-    public int redLootCellDozerX = 301;
-    public int redLootCellDozerY = 407;
+    public int redLootCellDozerX = 137;
+    public int redLootCellDozerY = 203;
 
-    public int redLootCellSprogX = 360;
-    public int redLootCellSprogY = 361;
+    public int redLootCellSprogX = 183;
+    public int redLootCellSprogY = 203;
 
-    public int redLootCellBansheeX = 360;
-    public int redLootCellBansheeY = 407;
+    public int redLootCellBansheeX = 223;
+    public int redLootCellBansheeY = 248;
 
 
     //Stanza gialla
@@ -291,94 +276,116 @@ public class Map2UIController implements Initializable {
     public int yellowSpawnCellBansheeX = 591;
     public int yellowSpawnCellBansheeY = 567;
 
-    //LootCell2
+    //LootCell
 
-    public int yellowLootCell2DestructorX = 608;
-    public int yellowLootCell2DestructorY = 315;
+    public int yellowLootCellDestructorX = 608;
+    public int yellowLootCellDestructorY = 315;
 
-    public int yellowLootCell2VioletX = 581;
-    public int yellowLootCell2VioletY = 357;
+    public int yellowLootCellVioletX = 581;
+    public int yellowLootCellVioletY = 357;
 
-    public int yellowLootCell2DozerX = 654;
-    public int yellowLootCell2DozerY = 329;
+    public int yellowLootCellDozerX = 654;
+    public int yellowLootCellDozerY = 329;
 
-    public int yellowLootCell2SprogX = 647;
-    public int yellowLootCell2SprogY = 418;
+    public int yellowLootCellSprogX = 647;
+    public int yellowLootCellSprogY = 418;
 
-    public int yellowLootCell2BansheeX = 581;
-    public int yellowLootCell2BansheeY = 407;
-
-    //LootCell1
-
-    public int yellowLootCell1DestructorX = 440;
-    public int yellowLootCell1DestructorY = 320;
-
-    public int yellowLootCell1VioletX = 493;
-    public int yellowLootCell1VioletY = 320;
-
-    public int yellowLootCell1DozerX = 449;
-    public int yellowLootCell1DozerY = 370;
-
-    public int yellowLootCell1SprogX = 502;
-    public int yellowLootCell1SprogY = 372;
-
-    public int yellowLootCell1BansheeX = 509;
-    public int yellowLootCell1BansheeY = 413;
-
-    //LootCell3
-
-    public int yellowLootCell3DestructorX = 436;
-    public int yellowLootCell3DestructorY = 471;
-
-    public int yellowLootCell3VioletX = 479;
-    public int yellowLootCell3VioletY = 472;
-
-    public int yellowLootCell3DozerX = 525;
-    public int yellowLootCell3DozerY = 480;
-
-    public int yellowLootCell3SprogX = 516;
-    public int yellowLootCell3SprogY = 531;
-
-    public int yellowLootCell3BansheeX = 502;
-    public int yellowLootCell3BansheeY = 579;
+    public int yellowLootCellBansheeX = 581;
+    public int yellowLootCellBansheeY = 407;
+    
 
     //Stanza bianca
 
-    //LootCell
+    //LootCell1
+
+    public int whiteLootCell1DestructorX = 142;
+    public int whiteLootCell1DestructorY = 488;
+
+    public int whiteLootCell1VioletX = 188;
+    public int whiteLootCell1VioletY = 488;
+
+    public int whiteLootCell1DozerX = 239;
+    public int whiteLootCell1DozerY = 488;
+
+    public int whiteLootCell1SprogX = 224;
+    public int whiteLootCell1SprogY = 538;
+
+    public int whiteLootCell1BansheeX = 227;
+    public int whiteLootCell1BansheeY = 583;
+
+    //LootCell2
 
 
-    public int whiteLootCellDestructorX = 327;
-    public int whiteLootCellDestructorY = 488;
+    public int whiteLootCell2DestructorX = 327;
+    public int whiteLootCell2DestructorY = 488;
 
-    public int whiteLootCellVioletX = 328;
-    public int whiteLootCellVioletY = 534;
+    public int whiteLootCell2VioletX = 328;
+    public int whiteLootCell2VioletY = 534;
 
-    public int whiteLootCellDozerX = 373;
-    public int whiteLootCellDozerY = 506;
+    public int whiteLootCell2DozerX = 373;
+    public int whiteLootCell2DozerY = 506;
 
-    public int whiteLootCellSprogX = 368;
-    public int whiteLootCellSprogY = 567;
+    public int whiteLootCell2SprogX = 368;
+    public int whiteLootCell2SprogY = 567;
 
-    public int whiteLootCellBansheeX = 278;
-    public int whiteLootCellBansheeY = 495;
+    public int whiteLootCell2BansheeX = 278;
+    public int whiteLootCell2BansheeY = 495;
     
-    //Stanza verde
+    //LootCell3
 
-    public int greenLootCellDestructorX = 586;
-    public int greenLootCellDestructorY = 153;
+    public int whiteLootCell3DestructorX = 436;
+    public int whiteLootCell3DestructorY = 471;
 
-    public int greenLootCellVioletX = 631;
-    public int greenLootCellVioletY = 153;
+    public int whiteLootCell3VioletX = 479;
+    public int whiteLootCell3VioletY = 472;
 
-    public int greenLootCellDozerX = 586;
-    public int greenLootCellDozerY = 201;
+    public int whiteLootCell3DozerX = 525;
+    public int whiteLootCell3DozerY = 480;
 
-    public int greenLootCellSprogX = 654;
-    public int greenLootCellSprogY = 196;
+    public int whiteLootCell3SprogX = 516;
+    public int whiteLootCell3SprogY = 531;
 
-    public int greenLootCellBansheeX = 586;
-    public int greenLootCellBansheeY = 248;
-    
+    public int whiteLootCell3BansheeX = 502;
+    public int whiteLootCell3BansheeY = 579;
+
+
+    //Stanza viola
+
+    //LootCell2
+
+    public int purpleLootCell2DestructorX = 440;
+    public int purpleLootCell2DestructorY = 320;
+
+    public int purpleLootCell2VioletX = 493;
+    public int purpleLootCell2VioletY = 320;
+
+    public int purpleLootCell2DozerX = 449;
+    public int purpleLootCell2DozerY = 370;
+
+    public int purpleLootCell2SprogX = 502;
+    public int purpleLootCell2SprogY = 372;
+
+    public int purpleLootCell2BansheeX = 509;
+    public int purpleLootCell2BansheeY = 413;
+
+
+    //LootCell1
+
+    public int purpleLootCell1DestructorX = 277;
+    public int purpleLootCell1DestructorY = 315;
+
+    public int purpleLootCell1VioletX = 328;
+    public int purpleLootCell1VioletY = 320;
+
+    public int purpleLootCell1DozerX = 334;
+    public int purpleLootCell1DozerY = 370;
+
+    public int purpleLootCell1SprogX = 288;
+    public int purpleLootCell1SprogY = 418;
+
+    public int purpleLootCell1BansheeX = 361;
+    public int purpleLootCell1BansheeY = 422;
+
 
 
 
@@ -504,29 +511,31 @@ public class Map2UIController implements Initializable {
 
     //
 
-    @FXML
-    public ImageView blueLoot1Tile;
 
     @FXML
-    public ImageView blueLoot2Tile;
+    public ImageView blueLootTile;
 
     @FXML
     public ImageView redLootTile;
 
     @FXML
-    public ImageView yellowLoot1Tile;
+    public ImageView yellowLootTile;
 
     @FXML
-    public ImageView yellowLoot2Tile;
+    public ImageView whiteLoot1Tile;
 
     @FXML
-    public ImageView yellowLoot3Tile;
+    public ImageView whiteLoot2Tile;
 
     @FXML
-    public ImageView whiteLootTile;
+    public ImageView whiteLoot3Tile;
+
 
     @FXML
-    public ImageView greenLootTile;
+    public ImageView purpleLoot1Tile;
+
+    @FXML
+    public ImageView purpleLoot2Tile;
 
     //
 
@@ -624,17 +633,13 @@ public class Map2UIController implements Initializable {
 
     //------------- QUADRATI
 
-    @FXML
-    public Rectangle greenLootCellSquare;
 
     @FXML
     public Rectangle blueSpawnCellSquare;
 
     @FXML
-    public Rectangle blueLootCell1Square;
+    public Rectangle blueLootCellSquare;
 
-    @FXML
-    public Rectangle blueLootCell2Square;
 
     @FXML
     public Rectangle redSpawnCellSquare;
@@ -646,17 +651,24 @@ public class Map2UIController implements Initializable {
     public Rectangle yellowSpawnCellSquare;
 
     @FXML
-    public Rectangle yellowLootCell1Square;
+    public Rectangle yellowLootCellSquare;
 
-    @FXML
-    public Rectangle yellowLootCell2Square;
-
-    @FXML
-    public Rectangle yellowLootCell3Square;
 
 
     @FXML
-    public Rectangle whiteLootCellSquare;
+    public Rectangle whiteLootCell1Square;
+
+    @FXML
+    public Rectangle whiteLootCell2Square;
+
+    @FXML
+    public Rectangle whiteLootCell3Square;
+
+    @FXML
+    public Rectangle purpleLootCell1Square;
+
+    @FXML
+    public Rectangle purpleLootCell2Square;
 
 
     @FXML
@@ -665,26 +677,26 @@ public class Map2UIController implements Initializable {
 
 //--------------------------------------------------------------------------
 
-    public Map2UIController() {
+    public Map3UIController() {
     }
 
     public void initRoomSquares() {
 
         blueSpawnCellIndex = "empty";
-        blueLootCell1Index = "empty";
-        blueLootCell2Index = "empty";
+        blueLootCellIndex = "empty";
 
         redSpawnCellIndex = "empty";
         redLootCellIndex = "empty";
 
         yellowSpawnCellIndex = "empty";
-        yellowLootCell1Index = "empty";
-        yellowLootCell2Index = "empty";
-        yellowLootCell3Index = "empty";
+        yellowLootCellIndex = "empty";
 
-        whiteLootCellIndex = "empty";
+        whiteLootCell1Index = "empty";
+        whiteLootCell2Index = "empty";
 
-        greenLootCellIndex = "empty";
+        purpleLootCell1Index = "empty";
+        purpleLootCell2Index = "empty";
+
 
     }
 
@@ -709,12 +721,8 @@ public class Map2UIController implements Initializable {
                     blueSpawnCellIndex = "" + (i - 1);
                 }
 
-                if (messageTokens[i].contains("lootCell1")) {
-                    blueLootCell1Index = "" + (i - 1);
-                }
-
-                if (messageTokens[i].contains("lootCell2")) {
-                    blueLootCell2Index = "" + (i - 1);
+                if (messageTokens[i].contains("lootCell")) {
+                    blueLootCellIndex = "" + (i - 1);
                 }
 
 
@@ -738,35 +746,42 @@ public class Map2UIController implements Initializable {
                     yellowSpawnCellIndex = "" + (i - 1);
                 }
 
-                if (messageTokens[i].contains("lootCell1")) {
-                    yellowLootCell1Index = "" + (i - 1);
-                }
-
-                if (messageTokens[i].contains("lootCell2")) {
-                    yellowLootCell2Index = "" + (i - 1);
-                }
-
-                if (messageTokens[i].contains("lootCell3")) {
-                    yellowLootCell3Index = "" + (i - 1);
+                if (messageTokens[i].contains("lootCell")) {
+                    yellowLootCellIndex = "" + (i - 1);
                 }
 
             }
 
             if (messageTokens[i].contains("bianco")) {
 
-                if (messageTokens[i].contains("lootCell")) {
-                    whiteLootCellIndex = "" + (i - 1);
+                if (messageTokens[i].contains("lootCell1")) {
+                    whiteLootCell1Index = "" + (i - 1);
+                }
+
+                if (messageTokens[i].contains("lootCell2")) {
+                    whiteLootCell2Index = "" + (i - 1);
+                }
+
+                if (messageTokens[i].contains("lootCell3")) {
+                    whiteLootCell3Index = "" + (i - 1);
+                }
+
+
+            }
+
+
+            if (messageTokens[i].contains("viola")) {
+
+                if (messageTokens[i].contains("lootCell1")) {
+                    purpleLootCell1Index = "" + (i - 1);
+                }
+
+                if (messageTokens[i].contains("lootCell2")) {
+                    purpleLootCell2Index = "" + (i - 1);
                 }
 
             }
 
-            if (messageTokens[i].contains("verde")) {
-
-                if (messageTokens[i].contains("lootCell")) {
-                    greenLootCellIndex = "" + (i - 1);
-                }
-
-            }
 
 
         }
@@ -776,31 +791,28 @@ public class Map2UIController implements Initializable {
     public void lightCells() {
 
         blueSpawnCellSquare.setDisable(false);
-        blueLootCell1Square.setDisable(false);
-        blueLootCell2Square.setDisable(false);
+        blueLootCellSquare.setDisable(false);
         redSpawnCellSquare.setDisable(false);
         redLootCellSquare.setDisable(false);
         yellowSpawnCellSquare.setDisable(false);
-        yellowLootCell1Square.setDisable(false);
-        yellowLootCell2Square.setDisable(false);
-        yellowLootCell3Square.setDisable(false);
-        whiteLootCellSquare.setDisable(false);
-        greenLootCellSquare.setDisable(false);
+        yellowLootCellSquare.setDisable(false);
+        whiteLootCell1Square.setDisable(false);
+        whiteLootCell2Square.setDisable(false);
+        whiteLootCell3Square.setDisable(false);
+        purpleLootCell1Square.setDisable(false);
+        purpleLootCell2Square.setDisable(false);
+
 
         if (blueSpawnCellIndex.equalsIgnoreCase("empty")) {
 
             blueSpawnCellSquare.setOpacity(0.55);
         }
 
-        if (blueLootCell1Index.equalsIgnoreCase("empty")) {
+        if (blueLootCellIndex.equalsIgnoreCase("empty")) {
 
-            blueLootCell1Square.setOpacity(0.55);
+            blueLootCellSquare.setOpacity(0.55);
         }
-        
-        if (blueLootCell2Index.equalsIgnoreCase("empty")) {
-            
-            blueLootCell2Square.setOpacity(0.55);
-        }
+
 
         if (redSpawnCellIndex.equalsIgnoreCase("empty")) {
 
@@ -821,38 +833,47 @@ public class Map2UIController implements Initializable {
             yellowSpawnCellSquare.setOpacity(0.55);
         }
 
-        if (yellowLootCell1Index.equalsIgnoreCase("empty")) {
+        if (yellowLootCellIndex.equalsIgnoreCase("empty")) {
 
 
-            yellowLootCell1Square.setOpacity(0.55);
-
-        }
-
-        if (yellowLootCell2Index.equalsIgnoreCase("empty")) {
-
-
-            yellowLootCell2Square.setOpacity(0.55);
+            yellowLootCellSquare.setOpacity(0.55);
 
         }
 
-        if (yellowLootCell3Index.equalsIgnoreCase("empty")) {
+
+        if (whiteLootCell1Index.equalsIgnoreCase("empty")) {
 
 
-            yellowLootCell3Square.setOpacity(0.55);
-
-        }
-
-        if (whiteLootCellIndex.equalsIgnoreCase("empty")) {
-
-
-            whiteLootCellSquare.setOpacity(0.55);
+            whiteLootCell1Square.setOpacity(0.55);
 
         }
 
-        if (greenLootCellIndex.equalsIgnoreCase("empty")) {
+        if (whiteLootCell2Index.equalsIgnoreCase("empty")) {
 
 
-            greenLootCellSquare.setOpacity(0.55);
+            whiteLootCell2Square.setOpacity(0.55);
+
+        }
+
+        if (whiteLootCell3Index.equalsIgnoreCase("empty")) {
+
+
+            whiteLootCell3Square.setOpacity(0.55);
+
+        }
+
+
+        if (purpleLootCell1Index.equalsIgnoreCase("empty")) {
+
+
+            purpleLootCell1Square.setOpacity(0.55);
+
+        }
+
+        if (purpleLootCell2Index.equalsIgnoreCase("empty")) {
+
+
+            purpleLootCell2Square.setOpacity(0.55);
 
         }
 
@@ -866,11 +887,9 @@ public class Map2UIController implements Initializable {
         blueSpawnCellSquare.setDisable(true);
         blueSpawnCellSquare.setOpacity(0);
 
-        blueLootCell1Square.setDisable(true);
-        blueLootCell1Square.setOpacity(0);
+        blueLootCellSquare.setDisable(true);
+        blueLootCellSquare.setOpacity(0);
 
-        blueLootCell2Square.setDisable(true);
-        blueLootCell2Square.setOpacity(0);
 
         redSpawnCellSquare.setDisable(true);
         redSpawnCellSquare.setOpacity(0);
@@ -881,20 +900,25 @@ public class Map2UIController implements Initializable {
         yellowSpawnCellSquare.setDisable(true);
         yellowSpawnCellSquare.setOpacity(0);
 
-        yellowLootCell1Square.setDisable(true);
-        yellowLootCell1Square.setOpacity(0);
+        yellowLootCellSquare.setDisable(true);
+        yellowLootCellSquare.setOpacity(0);
 
-        yellowLootCell2Square.setDisable(true);
-        yellowLootCell2Square.setOpacity(0);
 
-        yellowLootCell3Square.setDisable(true);
-        yellowLootCell3Square.setOpacity(0);
+        whiteLootCell1Square.setDisable(true);
+        whiteLootCell1Square.setOpacity(0);
 
-        whiteLootCellSquare.setDisable(true);
-        whiteLootCellSquare.setOpacity(0);
+        whiteLootCell2Square.setDisable(true);
+        whiteLootCell2Square.setOpacity(0);
 
-        greenLootCellSquare.setDisable(true);
-        greenLootCellSquare.setOpacity(0);
+        whiteLootCell3Square.setDisable(true);
+        whiteLootCell3Square.setOpacity(0);
+        
+        purpleLootCell1Square.setDisable(true);
+        purpleLootCell1Square.setOpacity(0);
+
+
+        purpleLootCell2Square.setDisable(true);
+        purpleLootCell2Square.setOpacity(0);
 
     }
 
@@ -1055,25 +1079,27 @@ public class Map2UIController implements Initializable {
         String redRoom = rooms[1];
         String yellowRoom = rooms[2];
         String whiteRoom = rooms[3];
-        String greenRoom = rooms[4];
+        String purpleRoom = rooms[4];
 
         String[] blueLoots = blueRoom.split("@");
-        blueLoot1 = blueLoots[0];
-        blueLoot2 = blueLoots[1];
+        blueLoot = blueLoots[0];
+
 
         String[] redLoots = redRoom.split("@");
         redLoot = redLoots[0];
 
         String[] yellowLoots = yellowRoom.split("@");
-        yellowLoot1 = yellowLoots[0];
-        yellowLoot2 = yellowLoots[1];
-        yellowLoot3 = yellowLoots[2];
+        yellowLoot = yellowLoots[0];
 
         String[] whiteLoots = whiteRoom.split("@");
-        whiteLoot = whiteLoots[0];
+        whiteLoot1 = whiteLoots[0];
+        whiteLoot2 = whiteLoots[1];
+        whiteLoot3 = whiteLoots[2];
         
-        String[] greenLoots = greenRoom.split("@");
-        greenLoot = greenLoots[0];
+
+        String[] purpleLoots = purpleRoom.split("@");
+        purpleLoot1 = purpleLoots[0];
+        purpleLoot2 = purpleLoots[1];
 
         // -- SEZIONE 7: ARMI DELLA MAPPA -- //
 
@@ -1664,7 +1690,7 @@ public class Map2UIController implements Initializable {
 
         nicknameText.setText(nickname);
 
-        if(firstPlayer.equalsIgnoreCase("true")){
+        if (firstPlayer.equalsIgnoreCase("true")) {
 
             Image image = new Image("/assets/Icons/First_ico.png");
             firstplayer.setImage(image);
@@ -1720,19 +1746,19 @@ public class Map2UIController implements Initializable {
         pu2Image.setImage(getPowerupImage(pu2));
         pu3Image.setImage(getPowerupImage(pu3));
 
-        blueLoot1Tile.setImage(getLootTileImage(blueLoot1));
-        blueLoot2Tile.setImage(getLootTileImage(blueLoot2));
+        blueLootTile.setImage(getLootTileImage(blueLoot));
 
         redLootTile.setImage(getLootTileImage(redLoot));
-        
 
-        yellowLoot1Tile.setImage(getLootTileImage(yellowLoot1));
-        yellowLoot2Tile.setImage(getLootTileImage(yellowLoot2));
-        yellowLoot3Tile.setImage(getLootTileImage(yellowLoot3));
 
-        whiteLootTile.setImage(getLootTileImage(whiteLoot));
+        yellowLootTile.setImage(getLootTileImage(yellowLoot));
         
-        greenLootTile.setImage(getLootTileImage(greenLoot));
+        whiteLoot1Tile.setImage(getLootTileImage(whiteLoot1));
+        whiteLoot2Tile.setImage(getLootTileImage(whiteLoot2));
+        whiteLoot3Tile.setImage(getLootTileImage(whiteLoot3));
+
+        purpleLoot1Tile.setImage(getLootTileImage(purpleLoot1));
+        purpleLoot2Tile.setImage(getLootTileImage(purpleLoot2));
 
         blueWeapon1.setImage(getWeaponImage(blueWeapon1name));
         blueWeapon2.setImage(getWeaponImage(blueWeapon2name));
@@ -1828,18 +1854,21 @@ public class Map2UIController implements Initializable {
 
         // -- Piazzare Loots -- //
 
-        blueLoot1Tile.setImage(getLootTileImage(blueLoot1));
-        blueLoot2Tile.setImage(getLootTileImage(blueLoot2));
+        blueLootTile.setImage(getLootTileImage(blueLoot));
 
         redLootTile.setImage(getLootTileImage(redLoot));
 
-        yellowLoot1Tile.setImage(getLootTileImage(yellowLoot1));
-        yellowLoot2Tile.setImage(getLootTileImage(yellowLoot2));
-        yellowLoot3Tile.setImage(getLootTileImage(yellowLoot3));
+        yellowLootTile.setImage(getLootTileImage(yellowLoot));
         
 
-        whiteLootTile.setImage(getLootTileImage(whiteLoot));
-        greenLootTile.setImage(getLootTileImage(greenLoot));
+
+        whiteLoot1Tile.setImage(getLootTileImage(whiteLoot1));
+        whiteLoot2Tile.setImage(getLootTileImage(whiteLoot2));
+        whiteLoot3Tile.setImage(getLootTileImage(whiteLoot3));
+
+        purpleLoot1Tile.setImage(getLootTileImage(purpleLoot1));
+        purpleLoot2Tile.setImage(getLootTileImage(purpleLoot2));
+        
 
         // -- Piazzare armi spawncells -- //
 
@@ -1947,26 +1976,13 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (sprogRoom.equalsIgnoreCase("lootCell1")) {
+                if (sprogRoom.equalsIgnoreCase("lootCell")) {
 
-                    sprogIcon.setLayoutX((double) yellowLootCell1SprogX);
-                    sprogIcon.setLayoutY((double) yellowLootCell1SprogY);
-
-                }
-
-                if (sprogRoom.equalsIgnoreCase("lootCell2")) {
-
-                    sprogIcon.setLayoutX((double) yellowLootCell2SprogX);
-                    sprogIcon.setLayoutY((double) yellowLootCell2SprogY);
+                    sprogIcon.setLayoutX((double) yellowLootCellSprogX);
+                    sprogIcon.setLayoutY((double) yellowLootCellSprogY);
 
                 }
-
-                if (sprogRoom.equalsIgnoreCase("lootCell3")) {
-
-                    sprogIcon.setLayoutX((double) yellowLootCell3SprogX);
-                    sprogIcon.setLayoutY((double) yellowLootCell3SprogY);
-
-                }
+                
 
 
             }
@@ -1989,7 +2005,7 @@ public class Map2UIController implements Initializable {
                     sprogIcon.setLayoutY((double) redLootCellSprogY);
 
                 }
-                
+
 
             }
 
@@ -2005,17 +2021,10 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (sprogRoom.equalsIgnoreCase("lootCell1")) {
+                if (sprogRoom.equalsIgnoreCase("lootCell")) {
 
-                    sprogIcon.setLayoutX((double) blueLootCell1SprogX);
-                    sprogIcon.setLayoutY((double) blueLootCell1SprogY);
-
-                }
-
-                if (sprogRoom.equalsIgnoreCase("lootCell2")) {
-
-                    sprogIcon.setLayoutX((double) blueLootCell2SprogX);
-                    sprogIcon.setLayoutY((double) blueLootCell2SprogY);
+                    sprogIcon.setLayoutX((double) blueLootCellSprogX);
+                    sprogIcon.setLayoutY((double) blueLootCellSprogY);
 
                 }
 
@@ -2026,24 +2035,47 @@ public class Map2UIController implements Initializable {
 
                 sprogIcon.setVisible(true);
 
-                if (sprogRoom.equalsIgnoreCase("lootCell")) {
+                if (sprogRoom.equalsIgnoreCase("lootCell1")) {
 
-                    sprogIcon.setLayoutX((double) whiteLootCellSprogX);
-                    sprogIcon.setLayoutY((double) whiteLootCellSprogY);
+                    sprogIcon.setLayoutX((double) whiteLootCell1SprogX);
+                    sprogIcon.setLayoutY((double) whiteLootCell1SprogY);
 
                 }
-                
+
+                if (sprogRoom.equalsIgnoreCase("lootCell2")) {
+
+                    sprogIcon.setLayoutX((double) whiteLootCell2SprogX);
+                    sprogIcon.setLayoutY((double) whiteLootCell2SprogY);
+
+                }
+
+                if (sprogRoom.equalsIgnoreCase("lootCell3")) {
+
+                    sprogIcon.setLayoutX((double) whiteLootCell3SprogX);
+                    sprogIcon.setLayoutY((double) whiteLootCell3SprogY);
+
+                }
+
             }
 
-            //Se è nella verde
-            if (sprogRoomColour.equalsIgnoreCase("4")) {
+           
+
+            //Se è nella viola
+            if (sprogRoomColour.equalsIgnoreCase("5")) {
 
                 sprogIcon.setVisible(true);
 
-                if (sprogRoom.equalsIgnoreCase("lootCell")) {
+                if (sprogRoom.equalsIgnoreCase("lootCell1")) {
 
-                    sprogIcon.setLayoutX((double) greenLootCellSprogX);
-                    sprogIcon.setLayoutY((double) greenLootCellSprogY);
+                    sprogIcon.setLayoutX((double) purpleLootCell1SprogX);
+                    sprogIcon.setLayoutY((double) purpleLootCell1SprogY);
+
+                }
+
+                if (sprogRoom.equalsIgnoreCase("lootCell2")) {
+
+                    sprogIcon.setLayoutX((double) purpleLootCell2SprogX);
+                    sprogIcon.setLayoutY((double) purpleLootCell2SprogY);
 
                 }
 
@@ -2067,24 +2099,10 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (violettaRoom.equalsIgnoreCase("lootCell1")) {
+                if (violettaRoom.equalsIgnoreCase("lootCell")) {
 
-                    violetIcon.setLayoutX((double) yellowLootCell1VioletX);
-                    violetIcon.setLayoutY((double) yellowLootCell1VioletY);
-
-                }
-
-                if (violettaRoom.equalsIgnoreCase("lootCell2")) {
-
-                    violetIcon.setLayoutX((double) yellowLootCell2VioletX);
-                    violetIcon.setLayoutY((double) yellowLootCell2VioletY);
-
-                }
-
-                if (violettaRoom.equalsIgnoreCase("lootCell3")) {
-
-                    violetIcon.setLayoutX((double) yellowLootCell3VioletX);
-                    violetIcon.setLayoutY((double) yellowLootCell3VioletY);
+                    violetIcon.setLayoutX((double) yellowLootCellVioletX);
+                    violetIcon.setLayoutY((double) yellowLootCellVioletY);
 
                 }
 
@@ -2125,17 +2143,10 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (violettaRoom.equalsIgnoreCase("lootCell1")) {
+                if (violettaRoom.equalsIgnoreCase("lootCell")) {
 
-                    violetIcon.setLayoutX((double) blueLootCell1VioletX);
-                    violetIcon.setLayoutY((double) blueLootCell1VioletY);
-
-                }
-
-                if (violettaRoom.equalsIgnoreCase("lootCell2")) {
-
-                    violetIcon.setLayoutX((double) blueLootCell2VioletX);
-                    violetIcon.setLayoutY((double) blueLootCell2VioletY);
+                    violetIcon.setLayoutX((double) blueLootCellVioletX);
+                    violetIcon.setLayoutY((double) blueLootCellVioletY);
 
                 }
 
@@ -2146,28 +2157,51 @@ public class Map2UIController implements Initializable {
 
                 violetIcon.setVisible(true);
 
-                if (violettaRoom.equalsIgnoreCase("lootCell")) {
+                if (violettaRoom.equalsIgnoreCase("lootCell1")) {
 
-                    violetIcon.setLayoutX((double) whiteLootCellVioletX);
-                    violetIcon.setLayoutY((double) whiteLootCellVioletY);
+                    violetIcon.setLayoutX((double) whiteLootCell1VioletX);
+                    violetIcon.setLayoutY((double) whiteLootCell1VioletY);
+
+                }
+
+                if (violettaRoom.equalsIgnoreCase("lootCell2")) {
+
+                    violetIcon.setLayoutX((double) whiteLootCell2VioletX);
+                    violetIcon.setLayoutY((double) whiteLootCell2VioletY);
+
+                }
+
+                if (violettaRoom.equalsIgnoreCase("lootCell3")) {
+
+                    violetIcon.setLayoutX((double) whiteLootCell3VioletX);
+                    violetIcon.setLayoutY((double) whiteLootCell3VioletY);
 
                 }
 
 
             }
+            
 
-            //Se è nella verde
-            if (violettaRoomColour.equalsIgnoreCase("4")) {
+            //Se è nella viola
+            if (violettaRoomColour.equalsIgnoreCase("5")) {
 
                 violetIcon.setVisible(true);
 
-                if (violettaRoom.equalsIgnoreCase("lootCell")) {
+                if (violettaRoom.equalsIgnoreCase("lootCell1")) {
 
-                    violetIcon.setLayoutX((double) greenLootCellVioletX);
-                    violetIcon.setLayoutY((double) greenLootCellVioletY);
+                    violetIcon.setLayoutX((double) purpleLootCell1VioletX);
+                    violetIcon.setLayoutY((double) purpleLootCell1VioletY);
 
                 }
 
+
+                if (violettaRoom.equalsIgnoreCase("lootCell2")) {
+
+                    violetIcon.setLayoutX((double) purpleLootCell2VioletX);
+                    violetIcon.setLayoutY((double) purpleLootCell2VioletY);
+
+                }
+                
 
             }
 
@@ -2175,6 +2209,8 @@ public class Map2UIController implements Initializable {
         }
 
         if (!bansheeUser.equalsIgnoreCase("empty")) {
+
+
 
             //Se banshee è nella gialla...
             if (bansheeRoomColour.equalsIgnoreCase("0")) {
@@ -2188,26 +2224,13 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
+                if (bansheeRoom.equalsIgnoreCase("lootCell")) {
 
-                    bansheeIcon.setLayoutX((double) yellowLootCell1BansheeX);
-                    bansheeIcon.setLayoutY((double) yellowLootCell1BansheeY);
-
-                }
-
-                if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
-
-                    bansheeIcon.setLayoutX((double) yellowLootCell2BansheeX);
-                    bansheeIcon.setLayoutY((double) yellowLootCell2BansheeY);
+                    bansheeIcon.setLayoutX((double) yellowLootCellBansheeX);
+                    bansheeIcon.setLayoutY((double) yellowLootCellBansheeY);
 
                 }
 
-                if (bansheeRoom.equalsIgnoreCase("lootCell3")) {
-
-                    bansheeIcon.setLayoutX((double) yellowLootCell3BansheeX);
-                    bansheeIcon.setLayoutY((double) yellowLootCell3BansheeY);
-
-                }
 
 
             }
@@ -2246,17 +2269,10 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
+                if (bansheeRoom.equalsIgnoreCase("lootCell")) {
 
-                    bansheeIcon.setLayoutX((double) blueLootCell1BansheeX);
-                    bansheeIcon.setLayoutY((double) blueLootCell1BansheeY);
-
-                }
-
-                if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
-
-                    bansheeIcon.setLayoutX((double) blueLootCell2BansheeX);
-                    bansheeIcon.setLayoutY((double) blueLootCell2BansheeY);
+                    bansheeIcon.setLayoutX((double) blueLootCellBansheeX);
+                    bansheeIcon.setLayoutY((double) blueLootCellBansheeY);
 
                 }
 
@@ -2267,30 +2283,51 @@ public class Map2UIController implements Initializable {
 
                 bansheeIcon.setVisible(true);
 
-                if (bansheeRoom.equalsIgnoreCase("lootCell")) {
+                if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
 
-                    bansheeIcon.setLayoutX((double) whiteLootCellBansheeX);
-                    bansheeIcon.setLayoutY((double) whiteLootCellBansheeY);
+                    bansheeIcon.setLayoutX((double) whiteLootCell1BansheeX);
+                    bansheeIcon.setLayoutY((double) whiteLootCell1BansheeY);
+
+                }
+
+                if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
+
+                    bansheeIcon.setLayoutX((double) whiteLootCell2BansheeX);
+                    bansheeIcon.setLayoutY((double) whiteLootCell2BansheeY);
+
+                }
+
+                if (bansheeRoom.equalsIgnoreCase("lootCell3")) {
+
+                    bansheeIcon.setLayoutX((double) whiteLootCell3BansheeX);
+                    bansheeIcon.setLayoutY((double) whiteLootCell3BansheeY);
 
                 }
 
             }
 
-            //Se è nella verde
-            if (bansheeRoomColour.equalsIgnoreCase("4")) {
+
+
+            //Se è nella viola
+            if (bansheeRoomColour.equalsIgnoreCase("5")) {
 
                 bansheeIcon.setVisible(true);
 
-                if (bansheeRoom.equalsIgnoreCase("lootCell")) {
+                if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
 
-                    bansheeIcon.setLayoutX((double) greenLootCellBansheeX);
-                    bansheeIcon.setLayoutY((double) greenLootCellBansheeY);
+                    bansheeIcon.setLayoutX((double) purpleLootCell1BansheeX);
+                    bansheeIcon.setLayoutY((double) purpleLootCell1BansheeY);
+
+                }
+
+                if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
+
+                    bansheeIcon.setLayoutX((double) purpleLootCell2BansheeX);
+                    bansheeIcon.setLayoutY((double) purpleLootCell2BansheeY);
 
                 }
 
             }
-
-
 
         }
 
@@ -2309,26 +2346,13 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (dozerRoom.equalsIgnoreCase("lootCell1")) {
+                if (dozerRoom.equalsIgnoreCase("lootCell")) {
 
-                    dozerIcon.setLayoutX((double) yellowLootCell1DozerX);
-                    dozerIcon.setLayoutY((double) yellowLootCell1DozerY);
-
-                }
-
-                if (dozerRoom.equalsIgnoreCase("lootCell2")) {
-
-                    dozerIcon.setLayoutX((double) yellowLootCell2DozerX);
-                    dozerIcon.setLayoutY((double) yellowLootCell2DozerY);
+                    dozerIcon.setLayoutX((double) yellowLootCellDozerX);
+                    dozerIcon.setLayoutY((double) yellowLootCellDozerY);
 
                 }
 
-                if (dozerRoom.equalsIgnoreCase("lootCell3")) {
-
-                    dozerIcon.setLayoutX((double) yellowLootCell3DozerX);
-                    dozerIcon.setLayoutY((double) yellowLootCell3DozerY);
-
-                }
 
 
             }
@@ -2367,17 +2391,10 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (dozerRoom.equalsIgnoreCase("lootCell1")) {
+                if (dozerRoom.equalsIgnoreCase("lootCell")) {
 
-                    dozerIcon.setLayoutX((double) blueLootCell1DozerX);
-                    dozerIcon.setLayoutY((double) blueLootCell1DozerY);
-
-                }
-
-                if (dozerRoom.equalsIgnoreCase("lootCell2")) {
-
-                    dozerIcon.setLayoutX((double) blueLootCell2DozerX);
-                    dozerIcon.setLayoutY((double) blueLootCell2DozerY);
+                    dozerIcon.setLayoutX((double) blueLootCellDozerX);
+                    dozerIcon.setLayoutY((double) blueLootCellDozerY);
 
                 }
 
@@ -2388,31 +2405,52 @@ public class Map2UIController implements Initializable {
 
                 dozerIcon.setVisible(true);
 
-                if (dozerRoom.equalsIgnoreCase("lootCell")) {
+                if (dozerRoom.equalsIgnoreCase("lootCell1")) {
 
-                    dozerIcon.setLayoutX((double) whiteLootCellDozerX);
-                    dozerIcon.setLayoutY((double) whiteLootCellDozerY);
+                    dozerIcon.setLayoutX((double) whiteLootCell1DozerX);
+                    dozerIcon.setLayoutY((double) whiteLootCell1DozerY);
+
+                }
+
+                if (dozerRoom.equalsIgnoreCase("lootCell2")) {
+
+                    dozerIcon.setLayoutX((double) whiteLootCell2DozerX);
+                    dozerIcon.setLayoutY((double) whiteLootCell2DozerY);
+
+                }
+
+                if (dozerRoom.equalsIgnoreCase("lootCell3")) {
+
+                    dozerIcon.setLayoutX((double) whiteLootCell3DozerX);
+                    dozerIcon.setLayoutY((double) whiteLootCell3DozerY);
 
                 }
 
             }
 
-            //Se è nella verde
-            if (dozerRoomColour.equalsIgnoreCase("4")) {
+
+
+            //Se è nella viola
+            if (dozerRoomColour.equalsIgnoreCase("5")) {
 
                 dozerIcon.setVisible(true);
 
-                if (dozerRoom.equalsIgnoreCase("lootCell")) {
+                if (dozerRoom.equalsIgnoreCase("lootCell1")) {
 
-                    dozerIcon.setLayoutX((double) greenLootCellDozerX);
-                    dozerIcon.setLayoutY((double) greenLootCellDozerY);
+                    dozerIcon.setLayoutX((double) purpleLootCell1DozerX);
+                    dozerIcon.setLayoutY((double) purpleLootCell1DozerY);
+
+                }
+
+                if (dozerRoom.equalsIgnoreCase("lootCell2")) {
+
+                    dozerIcon.setLayoutX((double) purpleLootCell2DozerX);
+                    dozerIcon.setLayoutY((double) purpleLootCell2DozerY);
 
                 }
 
             }
-
-
-
+           
         }
 
         if (!destructorUser.equalsIgnoreCase("empty")) {
@@ -2430,26 +2468,13 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (destructorRoom.equalsIgnoreCase("lootCell1")) {
+                if (destructorRoom.equalsIgnoreCase("lootCell")) {
 
-                    destructorIcon.setLayoutX((double) yellowLootCell1DestructorX);
-                    destructorIcon.setLayoutY((double) yellowLootCell1DestructorY);
-
-                }
-
-                if (destructorRoom.equalsIgnoreCase("lootCell2")) {
-
-                    destructorIcon.setLayoutX((double) yellowLootCell2DestructorX);
-                    destructorIcon.setLayoutY((double) yellowLootCell2DestructorY);
+                    destructorIcon.setLayoutX((double) yellowLootCellDestructorX);
+                    destructorIcon.setLayoutY((double) yellowLootCellDestructorY);
 
                 }
 
-                if (destructorRoom.equalsIgnoreCase("lootCell3")) {
-
-                    destructorIcon.setLayoutX((double) yellowLootCell3DestructorX);
-                    destructorIcon.setLayoutY((double) yellowLootCell3DestructorY);
-
-                }
 
 
             }
@@ -2488,17 +2513,10 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (destructorRoom.equalsIgnoreCase("lootCell1")) {
+                if (destructorRoom.equalsIgnoreCase("lootCell")) {
 
-                    destructorIcon.setLayoutX((double) blueLootCell1DestructorX);
-                    destructorIcon.setLayoutY((double) blueLootCell1DestructorY);
-
-                }
-
-                if (destructorRoom.equalsIgnoreCase("lootCell2")) {
-
-                    destructorIcon.setLayoutX((double) blueLootCell2DestructorX);
-                    destructorIcon.setLayoutY((double) blueLootCell2DestructorY);
+                    destructorIcon.setLayoutX((double) blueLootCellDestructorX);
+                    destructorIcon.setLayoutY((double) blueLootCellDestructorY);
 
                 }
 
@@ -2509,24 +2527,47 @@ public class Map2UIController implements Initializable {
 
                 destructorIcon.setVisible(true);
 
-                if (destructorRoom.equalsIgnoreCase("lootCell")) {
+                if (destructorRoom.equalsIgnoreCase("lootCell1")) {
 
-                    destructorIcon.setLayoutX((double) whiteLootCellDestructorX);
-                    destructorIcon.setLayoutY((double) whiteLootCellDestructorY);
+                    destructorIcon.setLayoutX((double) whiteLootCell1DestructorX);
+                    destructorIcon.setLayoutY((double) whiteLootCell1DestructorY);
+
+                }
+
+                if (destructorRoom.equalsIgnoreCase("lootCell2")) {
+
+                    destructorIcon.setLayoutX((double) whiteLootCell2DestructorX);
+                    destructorIcon.setLayoutY((double) whiteLootCell2DestructorY);
+
+                }
+
+                if (destructorRoom.equalsIgnoreCase("lootCell3")) {
+
+                    destructorIcon.setLayoutX((double) whiteLootCell3DestructorX);
+                    destructorIcon.setLayoutY((double) whiteLootCell3DestructorY);
 
                 }
 
             }
 
-            //Se è nella verde
-            if (destructorRoomColour.equalsIgnoreCase("4")) {
+
+
+            //Se è nella viola
+            if (destructorRoomColour.equalsIgnoreCase("5")) {
 
                 destructorIcon.setVisible(true);
 
-                if (destructorRoom.equalsIgnoreCase("lootCell")) {
+                if (destructorRoom.equalsIgnoreCase("lootCell1")) {
 
-                    destructorIcon.setLayoutX((double) greenLootCellDestructorX);
-                    destructorIcon.setLayoutY((double) greenLootCellDestructorY);
+                    destructorIcon.setLayoutX((double) purpleLootCell1DestructorX);
+                    destructorIcon.setLayoutY((double) purpleLootCell1DestructorY);
+
+                }
+
+                if (destructorRoom.equalsIgnoreCase("lootCell2")) {
+
+                    destructorIcon.setLayoutX((double) purpleLootCell2DestructorX);
+                    destructorIcon.setLayoutY((double) purpleLootCell2DestructorY);
 
                 }
 
@@ -2539,7 +2580,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public Image getWeaponImage(String weaponName) {
+    public Image getWeaponImage (String weaponName){
 
         if (weaponName.equalsIgnoreCase("Martello ionico")) {
             return new Image("/assets/Weapons/AD_weapons_IT_022.png");
@@ -2629,7 +2670,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public Image getPowerupImage(String PUName) {
+    public Image getPowerupImage (String PUName){
 
         if (PUName.equalsIgnoreCase("Raggio Cinetico Blu")) {
 
@@ -2721,7 +2762,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public Image getLootTileImage(String name) {
+    public Image getLootTileImage (String name){
 
         if (name.equalsIgnoreCase("brr")) {
             return new Image("/assets/Loot/AD_ammo_0413.png");
@@ -2777,7 +2818,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public Image getTokenImage(String championName) {
+    public Image getTokenImage (String championName){
 
         if (championName.equalsIgnoreCase("dozer")) {
             return new Image("/assets/Placeable/Dozer_Mk.png");
@@ -2811,7 +2852,7 @@ public class Map2UIController implements Initializable {
     // ----- AZIONI DEI CONTROLLI ----///
 
     @FXML
-    public void moveAction() {
+    public void moveAction () {
 
         try {
             out.writeUTF("muovi");
@@ -2822,7 +2863,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void shotAction() {
+    public void shotAction () {
 
         try {
             out.writeUTF("spara");
@@ -2833,7 +2874,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void pickupAction() {
+    public void pickupAction () {
 
         try {
             out.writeUTF("raccogli");
@@ -2846,7 +2887,7 @@ public class Map2UIController implements Initializable {
     ////
 
     @FXML
-    public void choseSprog() {
+    public void choseSprog () {
 
         try {
             out.writeUTF(sprogUser);
@@ -2858,7 +2899,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void choseViolet() {
+    public void choseViolet () {
 
         try {
             out.writeUTF(violettaUser);
@@ -2870,7 +2911,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void choseDestructor() {
+    public void choseDestructor () {
         try {
             out.writeUTF(destructorUser);
         } catch (Exception e) {
@@ -2880,7 +2921,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void choseBanshee() {
+    public void choseBanshee () {
 
         try {
             out.writeUTF(bansheeUser);
@@ -2892,7 +2933,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void choseDozer() {
+    public void choseDozer () {
 
         try {
             out.writeUTF(dozerUser);
@@ -2907,7 +2948,7 @@ public class Map2UIController implements Initializable {
 
 
     @FXML
-    public void noAction() {
+    public void noAction () {
 
         try {
             out.writeUTF("no");
@@ -2918,7 +2959,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void yesAction() {
+    public void yesAction () {
 
         try {
             out.writeUTF("si");
@@ -2930,7 +2971,7 @@ public class Map2UIController implements Initializable {
 
 
     @FXML
-    public void chooseBlueWeapon1() {
+    public void chooseBlueWeapon1 () {
 
         try {
             out.writeUTF(blueWeapon1name);
@@ -2941,7 +2982,7 @@ public class Map2UIController implements Initializable {
 
 
     @FXML
-    public void chooseBlueWeapon2() {
+    public void chooseBlueWeapon2 () {
 
         try {
             out.writeUTF(blueWeapon2name);
@@ -2951,7 +2992,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseBlueWeapon3() {
+    public void chooseBlueWeapon3 () {
 
         try {
             out.writeUTF(blueWeapon3name);
@@ -2961,7 +3002,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseWeapon1() {
+    public void chooseWeapon1 () {
 
         try {
             out.writeUTF(weapon1);
@@ -2971,7 +3012,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseWeapon2() {
+    public void chooseWeapon2 () {
 
         try {
             out.writeUTF(weapon2);
@@ -2981,7 +3022,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseWeapon3() {
+    public void chooseWeapon3 () {
 
         try {
             out.writeUTF(weapon3);
@@ -2993,7 +3034,7 @@ public class Map2UIController implements Initializable {
     ///
 
     @FXML
-    public void chooseYellowWeapon1() {
+    public void chooseYellowWeapon1 () {
 
         try {
 
@@ -3006,7 +3047,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseYellowWeapon2() {
+    public void chooseYellowWeapon2 () {
 
         try {
 
@@ -3019,7 +3060,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseYellowWeapon3() {
+    public void chooseYellowWeapon3 () {
 
         try {
 
@@ -3034,7 +3075,7 @@ public class Map2UIController implements Initializable {
     //
 
     @FXML
-    public void chooseRedWeapon1() {
+    public void chooseRedWeapon1 () {
 
         try {
 
@@ -3047,7 +3088,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseRedWeapon2() {
+    public void chooseRedWeapon2 () {
 
         try {
 
@@ -3060,7 +3101,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseRedWeapon3() {
+    public void chooseRedWeapon3 () {
 
         try {
 
@@ -3075,7 +3116,7 @@ public class Map2UIController implements Initializable {
     //
 
     @FXML
-    public void choosePU1() {
+    public void choosePU1 () {
 
         try {
 
@@ -3088,7 +3129,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void choosePU2() {
+    public void choosePU2 () {
 
         try {
 
@@ -3101,7 +3142,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void choosePU3() {
+    public void choosePU3 () {
 
         try {
 
@@ -3116,7 +3157,7 @@ public class Map2UIController implements Initializable {
     //
 
     @FXML
-    public void chooseBlueSpawnCell() {
+    public void chooseBlueSpawnCell () {
 
         try {
 
@@ -3131,11 +3172,11 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseBlueLootCell1() {
+    public void chooseBlueLootCell () {
 
         try {
 
-            out.writeUTF(blueLootCell1Index);
+            out.writeUTF(blueLootCellIndex);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3145,23 +3186,10 @@ public class Map2UIController implements Initializable {
 
     }
 
-    @FXML
-    public void chooseBlueLootCell2() {
 
-        try {
-
-            out.writeUTF(blueLootCell2Index);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        restoreCells();
-
-    }
 
     @FXML
-    public void chooseRedSpawnCell() {
+    public void chooseRedSpawnCell () {
 
         try {
 
@@ -3192,7 +3220,7 @@ public class Map2UIController implements Initializable {
 
 
     @FXML
-    public void chooseYellowSpawnCell() {
+    public void chooseYellowSpawnCell () {
 
         try {
 
@@ -3207,11 +3235,59 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseYellowLootCell1() {
+    public void chooseYellowLootCell () {
 
         try {
 
-            out.writeUTF(yellowLootCell1Index);
+            out.writeUTF(yellowLootCellIndex);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+
+
+
+    @FXML
+    public void chooseWhiteLootCell1 () {
+
+        try {
+
+            out.writeUTF(whiteLootCell1Index);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseWhiteLootCell2 () {
+
+        try {
+
+            out.writeUTF(whiteLootCell2Index);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        restoreCells();
+
+    }
+
+    @FXML
+    public void chooseWhiteLootCell3() {
+
+        try {
+
+            out.writeUTF(whiteLootCell2Index);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3223,11 +3299,11 @@ public class Map2UIController implements Initializable {
 
 
     @FXML
-    public void chooseYellowLootCell2() {
+    public void choosePurpleLootCell1() {
 
         try {
 
-            out.writeUTF(yellowLootCell2Index);
+            out.writeUTF(purpleLootCell1Index);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3238,11 +3314,11 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseYellowLootCell3() {
+    public void choosePurpleLootCell2() {
 
         try {
 
-            out.writeUTF(yellowLootCell3Index);
+            out.writeUTF(purpleLootCell2Index);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3252,38 +3328,9 @@ public class Map2UIController implements Initializable {
 
     }
 
-    @FXML
-    public void chooseWhiteLootCell() {
-
-        try {
-
-            out.writeUTF(whiteLootCellIndex);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        restoreCells();
-
-    }
 
     @FXML
-    public void chooseGreenLootCell() {
-
-        try {
-
-            out.writeUTF(greenLootCellIndex);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        restoreCells();
-
-    }
-
-    @FXML
-    public void chooseRedAmmo() {
+    public void chooseRedAmmo () {
 
         try {
             out.writeUTF("rosso");
@@ -3293,7 +3340,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseBlueAmmo() {
+    public void chooseBlueAmmo () {
 
         try {
             out.writeUTF("blu");
@@ -3303,7 +3350,7 @@ public class Map2UIController implements Initializable {
     }
 
     @FXML
-    public void chooseYellowAmmo() {
+    public void chooseYellowAmmo () {
 
         try {
             out.writeUTF("giallo");
@@ -3313,8 +3360,9 @@ public class Map2UIController implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize (URL location, ResourceBundle resources){
 
     }
 
 }
+

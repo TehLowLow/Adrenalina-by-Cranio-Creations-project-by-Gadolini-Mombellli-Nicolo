@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-public class Map2UIController implements Initializable {
+public class Map4UIController implements Initializable {
 
     public DataOutputStream out;
 
@@ -59,18 +59,20 @@ public class Map2UIController implements Initializable {
 
     //Loot posizionati
 
-    String blueLoot1;
-    String blueLoot2;
+    String blueLoot;
 
     String greenLoot;
 
     String redLoot;
 
+    String purpleLoot;
+
     String yellowLoot1;
     String yellowLoot2;
     String yellowLoot3;
 
-    String whiteLoot;
+    String whiteLoot1;
+    String whiteLoot2;
 
     //Armi delle celle
     String blueWeapon1name;
@@ -157,8 +159,7 @@ public class Map2UIController implements Initializable {
     //Quadrati che attivano le celle
 
     String blueSpawnCellIndex = "empty";
-    String blueLootCell1Index = "empty";
-    String blueLootCell2Index = "empty";
+    String blueLootCellIndex = "empty";
 
     String redSpawnCellIndex = "empty";
     String redLootCellIndex = "empty";
@@ -169,8 +170,13 @@ public class Map2UIController implements Initializable {
     String yellowLootCell2Index = "empty";
     String yellowLootCell3Index = "empty";
 
-    String whiteLootCellIndex = "empty";
-    String greenLootCellIndex= "empty";
+    String whiteLootCell1Index = "empty";
+
+    String whiteLootCell2Index = "empty";
+
+    String purpleLootCellIndex = "empty";
+
+    String greenLootCellIndex = "empty";
 
 
 
@@ -200,39 +206,22 @@ public class Map2UIController implements Initializable {
     public int blueSpawnCellBansheeY = 238;
 
 
-    //lootCell1
+    //lootCell
 
-    public int blueLootCell1DestructorX = 231;
-    public int blueLootCell1DestructorY = 187;
+    public int blueLootCellDestructorX = 329;
+    public int blueLootCellDestructorY = 162;
 
-    public int blueLootCell1VioletX = 237;
-    public int blueLootCell1VioletY = 237;
+    public int blueLootCellVioletX = 375;
+    public int blueLootCellVioletY = 180;
 
-    public int blueLootCell1DozerX = 143;
-    public int blueLootCell1DozerY = 222;
+    public int blueLootCellDozerX = 329;
+    public int blueLootCellDozerY = 162;
 
-    public int blueLootCell1SprogX = 210;
-    public int blueLootCell1SprogY = 164;
+    public int blueLootCellSprogX = 288;
+    public int blueLootCellSprogY = 180;
 
-    public int blueLootCell1BansheeX = 193;
-    public int blueLootCell1BansheeY = 235;
-
-    //lootCell2
-
-    public int blueLootCell2DestructorX = 329;
-    public int blueLootCell2DestructorY = 162;
-
-    public int blueLootCell2VioletX = 375;
-    public int blueLootCell2VioletY = 180;
-
-    public int blueLootCell2DozerX = 329;
-    public int blueLootCell2DozerY = 162;
-
-    public int blueLootCell2SprogX = 288;
-    public int blueLootCell2SprogY = 180;
-
-    public int blueLootCell2BansheeX = 375;
-    public int blueLootCell2BansheeY = 238;
+    public int blueLootCellBansheeX = 375;
+    public int blueLootCellBansheeY = 238;
 
     // Stanza rossa
 
@@ -256,20 +245,20 @@ public class Map2UIController implements Initializable {
     //LootCell
 
 
-    public int redLootCellDestructorX = 360;
-    public int redLootCellDestructorY = 315;
+    public int redLootCellDestructorX = 137;
+    public int redLootCellDestructorY = 150;
 
-    public int redLootCellVioletX = 314;
-    public int redLootCellVioletY = 315;
+    public int redLootCellVioletX = 178;
+    public int redLootCellVioletY = 150;
 
-    public int redLootCellDozerX = 301;
-    public int redLootCellDozerY = 407;
+    public int redLootCellDozerX = 137;
+    public int redLootCellDozerY = 203;
 
-    public int redLootCellSprogX = 360;
-    public int redLootCellSprogY = 361;
+    public int redLootCellSprogX = 183;
+    public int redLootCellSprogY = 203;
 
-    public int redLootCellBansheeX = 360;
-    public int redLootCellBansheeY = 407;
+    public int redLootCellBansheeX = 223;
+    public int redLootCellBansheeY = 248;
 
 
     //Stanza gialla
@@ -344,24 +333,41 @@ public class Map2UIController implements Initializable {
 
     //Stanza bianca
 
-    //LootCell
+    //LootCell1
+
+    public int whiteLootCell1DestructorX = 142;
+    public int whiteLootCell1DestructorY = 488;
+
+    public int whiteLootCell1VioletX = 188;
+    public int whiteLootCell1VioletY = 488;
+
+    public int whiteLootCell1DozerX = 239;
+    public int whiteLootCell1DozerY = 488;
+
+    public int whiteLootCell1SprogX = 224;
+    public int whiteLootCell1SprogY = 538;
+
+    public int whiteLootCell1BansheeX = 227;
+    public int whiteLootCell1BansheeY = 583;
+
+    //LootCell2
 
 
-    public int whiteLootCellDestructorX = 327;
-    public int whiteLootCellDestructorY = 488;
+    public int whiteLootCell2DestructorX = 327;
+    public int whiteLootCell2DestructorY = 488;
 
-    public int whiteLootCellVioletX = 328;
-    public int whiteLootCellVioletY = 534;
+    public int whiteLootCell2VioletX = 328;
+    public int whiteLootCell2VioletY = 534;
 
-    public int whiteLootCellDozerX = 373;
-    public int whiteLootCellDozerY = 506;
+    public int whiteLootCell2DozerX = 373;
+    public int whiteLootCell2DozerY = 506;
 
-    public int whiteLootCellSprogX = 368;
-    public int whiteLootCellSprogY = 567;
+    public int whiteLootCell2SprogX = 368;
+    public int whiteLootCell2SprogY = 567;
 
-    public int whiteLootCellBansheeX = 278;
-    public int whiteLootCellBansheeY = 495;
-    
+    public int whiteLootCell2BansheeX = 278;
+    public int whiteLootCell2BansheeY = 495;
+
     //Stanza verde
 
     public int greenLootCellDestructorX = 586;
@@ -378,6 +384,25 @@ public class Map2UIController implements Initializable {
 
     public int greenLootCellBansheeX = 586;
     public int greenLootCellBansheeY = 248;
+
+
+    //Stanza viola
+
+
+    public int purpleLootCellDestructorX = 277;
+    public int purpleLootCellDestructorY = 315;
+
+    public int purpleLootCellVioletX = 328;
+    public int purpleLootCellVioletY = 320;
+
+    public int purpleLootCellDozerX = 334;
+    public int purpleLootCellDozerY = 370;
+
+    public int purpleLootCellSprogX = 288;
+    public int purpleLootCellSprogY = 418;
+
+    public int purpleLootCellBansheeX = 361;
+    public int purpleLootCellBansheeY = 422;
     
 
 
@@ -504,11 +529,9 @@ public class Map2UIController implements Initializable {
 
     //
 
-    @FXML
-    public ImageView blueLoot1Tile;
 
     @FXML
-    public ImageView blueLoot2Tile;
+    public ImageView blueLootTile;
 
     @FXML
     public ImageView redLootTile;
@@ -523,10 +546,16 @@ public class Map2UIController implements Initializable {
     public ImageView yellowLoot3Tile;
 
     @FXML
-    public ImageView whiteLootTile;
+    public ImageView whiteLoot1Tile;
+
+    @FXML
+    public ImageView whiteLoot2Tile;
 
     @FXML
     public ImageView greenLootTile;
+
+    @FXML
+    public ImageView purpleLootTile;
 
     //
 
@@ -631,10 +660,8 @@ public class Map2UIController implements Initializable {
     public Rectangle blueSpawnCellSquare;
 
     @FXML
-    public Rectangle blueLootCell1Square;
+    public Rectangle blueLootCellSquare;
 
-    @FXML
-    public Rectangle blueLootCell2Square;
 
     @FXML
     public Rectangle redSpawnCellSquare;
@@ -656,7 +683,13 @@ public class Map2UIController implements Initializable {
 
 
     @FXML
-    public Rectangle whiteLootCellSquare;
+    public Rectangle whiteLootCell1Square;
+
+    @FXML
+    public Rectangle whiteLootCell2Square;
+
+    @FXML
+    public Rectangle purpleLootCellSquare;
 
 
     @FXML
@@ -665,14 +698,13 @@ public class Map2UIController implements Initializable {
 
 //--------------------------------------------------------------------------
 
-    public Map2UIController() {
+    public Map4UIController() {
     }
 
     public void initRoomSquares() {
 
         blueSpawnCellIndex = "empty";
-        blueLootCell1Index = "empty";
-        blueLootCell2Index = "empty";
+        blueLootCellIndex = "empty";
 
         redSpawnCellIndex = "empty";
         redLootCellIndex = "empty";
@@ -682,9 +714,13 @@ public class Map2UIController implements Initializable {
         yellowLootCell2Index = "empty";
         yellowLootCell3Index = "empty";
 
-        whiteLootCellIndex = "empty";
+        whiteLootCell1Index = "empty";
+        whiteLootCell2Index = "empty";
 
         greenLootCellIndex = "empty";
+
+        purpleLootCellIndex = "empty";
+
 
     }
 
@@ -709,12 +745,8 @@ public class Map2UIController implements Initializable {
                     blueSpawnCellIndex = "" + (i - 1);
                 }
 
-                if (messageTokens[i].contains("lootCell1")) {
-                    blueLootCell1Index = "" + (i - 1);
-                }
-
-                if (messageTokens[i].contains("lootCell2")) {
-                    blueLootCell2Index = "" + (i - 1);
+                if (messageTokens[i].contains("lootCell")) {
+                    blueLootCellIndex = "" + (i - 1);
                 }
 
 
@@ -754,9 +786,14 @@ public class Map2UIController implements Initializable {
 
             if (messageTokens[i].contains("bianco")) {
 
-                if (messageTokens[i].contains("lootCell")) {
-                    whiteLootCellIndex = "" + (i - 1);
+                if (messageTokens[i].contains("lootCell1")) {
+                    whiteLootCell1Index = "" + (i - 1);
                 }
+
+                if (messageTokens[i].contains("lootCell2")) {
+                    whiteLootCell2Index = "" + (i - 1);
+                }
+
 
             }
 
@@ -764,6 +801,14 @@ public class Map2UIController implements Initializable {
 
                 if (messageTokens[i].contains("lootCell")) {
                     greenLootCellIndex = "" + (i - 1);
+                }
+
+            }
+
+            if (messageTokens[i].contains("viola")) {
+
+                if (messageTokens[i].contains("lootCell")) {
+                    purpleLootCellIndex = "" + (i - 1);
                 }
 
             }
@@ -776,31 +821,28 @@ public class Map2UIController implements Initializable {
     public void lightCells() {
 
         blueSpawnCellSquare.setDisable(false);
-        blueLootCell1Square.setDisable(false);
-        blueLootCell2Square.setDisable(false);
+        blueLootCellSquare.setDisable(false);
         redSpawnCellSquare.setDisable(false);
         redLootCellSquare.setDisable(false);
         yellowSpawnCellSquare.setDisable(false);
         yellowLootCell1Square.setDisable(false);
         yellowLootCell2Square.setDisable(false);
         yellowLootCell3Square.setDisable(false);
-        whiteLootCellSquare.setDisable(false);
+        whiteLootCell1Square.setDisable(false);
+        whiteLootCell2Square.setDisable(false);
         greenLootCellSquare.setDisable(false);
+        purpleLootCellSquare.setDisable(false);
 
         if (blueSpawnCellIndex.equalsIgnoreCase("empty")) {
 
             blueSpawnCellSquare.setOpacity(0.55);
         }
 
-        if (blueLootCell1Index.equalsIgnoreCase("empty")) {
+        if (blueLootCellIndex.equalsIgnoreCase("empty")) {
 
-            blueLootCell1Square.setOpacity(0.55);
+            blueLootCellSquare.setOpacity(0.55);
         }
-        
-        if (blueLootCell2Index.equalsIgnoreCase("empty")) {
-            
-            blueLootCell2Square.setOpacity(0.55);
-        }
+
 
         if (redSpawnCellIndex.equalsIgnoreCase("empty")) {
 
@@ -842,10 +884,17 @@ public class Map2UIController implements Initializable {
 
         }
 
-        if (whiteLootCellIndex.equalsIgnoreCase("empty")) {
+        if (whiteLootCell1Index.equalsIgnoreCase("empty")) {
 
 
-            whiteLootCellSquare.setOpacity(0.55);
+            whiteLootCell1Square.setOpacity(0.55);
+
+        }
+
+        if (whiteLootCell2Index.equalsIgnoreCase("empty")) {
+
+
+            whiteLootCell2Square.setOpacity(0.55);
 
         }
 
@@ -853,6 +902,13 @@ public class Map2UIController implements Initializable {
 
 
             greenLootCellSquare.setOpacity(0.55);
+
+        }
+
+        if (purpleLootCellIndex.equalsIgnoreCase("empty")) {
+
+
+            purpleLootCellSquare.setOpacity(0.55);
 
         }
 
@@ -866,11 +922,9 @@ public class Map2UIController implements Initializable {
         blueSpawnCellSquare.setDisable(true);
         blueSpawnCellSquare.setOpacity(0);
 
-        blueLootCell1Square.setDisable(true);
-        blueLootCell1Square.setOpacity(0);
+        blueLootCellSquare.setDisable(true);
+        blueLootCellSquare.setOpacity(0);
 
-        blueLootCell2Square.setDisable(true);
-        blueLootCell2Square.setOpacity(0);
 
         redSpawnCellSquare.setDisable(true);
         redSpawnCellSquare.setOpacity(0);
@@ -890,11 +944,17 @@ public class Map2UIController implements Initializable {
         yellowLootCell3Square.setDisable(true);
         yellowLootCell3Square.setOpacity(0);
 
-        whiteLootCellSquare.setDisable(true);
-        whiteLootCellSquare.setOpacity(0);
+        whiteLootCell1Square.setDisable(true);
+        whiteLootCell1Square.setOpacity(0);
+
+        whiteLootCell2Square.setDisable(true);
+        whiteLootCell2Square.setOpacity(0);
 
         greenLootCellSquare.setDisable(true);
         greenLootCellSquare.setOpacity(0);
+
+        purpleLootCellSquare.setDisable(true);
+        purpleLootCellSquare.setOpacity(0);
 
     }
 
@@ -1056,10 +1116,11 @@ public class Map2UIController implements Initializable {
         String yellowRoom = rooms[2];
         String whiteRoom = rooms[3];
         String greenRoom = rooms[4];
+        String purpleRoom = rooms[5];
 
         String[] blueLoots = blueRoom.split("@");
-        blueLoot1 = blueLoots[0];
-        blueLoot2 = blueLoots[1];
+        blueLoot = blueLoots[0];
+
 
         String[] redLoots = redRoom.split("@");
         redLoot = redLoots[0];
@@ -1070,10 +1131,14 @@ public class Map2UIController implements Initializable {
         yellowLoot3 = yellowLoots[2];
 
         String[] whiteLoots = whiteRoom.split("@");
-        whiteLoot = whiteLoots[0];
-        
+        whiteLoot1 = whiteLoots[0];
+        whiteLoot2 = whiteLoots[1];
+
         String[] greenLoots = greenRoom.split("@");
         greenLoot = greenLoots[0];
+
+        String[] purpleLoots = purpleRoom.split("@");
+        purpleLoot = purpleLoots[0];
 
         // -- SEZIONE 7: ARMI DELLA MAPPA -- //
 
@@ -1664,7 +1729,7 @@ public class Map2UIController implements Initializable {
 
         nicknameText.setText(nickname);
 
-        if(firstPlayer.equalsIgnoreCase("true")){
+        if (firstPlayer.equalsIgnoreCase("true")) {
 
             Image image = new Image("/assets/Icons/First_ico.png");
             firstplayer.setImage(image);
@@ -1720,19 +1785,21 @@ public class Map2UIController implements Initializable {
         pu2Image.setImage(getPowerupImage(pu2));
         pu3Image.setImage(getPowerupImage(pu3));
 
-        blueLoot1Tile.setImage(getLootTileImage(blueLoot1));
-        blueLoot2Tile.setImage(getLootTileImage(blueLoot2));
+        blueLootTile.setImage(getLootTileImage(blueLoot));
 
         redLootTile.setImage(getLootTileImage(redLoot));
-        
+
 
         yellowLoot1Tile.setImage(getLootTileImage(yellowLoot1));
         yellowLoot2Tile.setImage(getLootTileImage(yellowLoot2));
         yellowLoot3Tile.setImage(getLootTileImage(yellowLoot3));
 
-        whiteLootTile.setImage(getLootTileImage(whiteLoot));
-        
+        whiteLoot1Tile.setImage(getLootTileImage(whiteLoot1));
+        whiteLoot2Tile.setImage(getLootTileImage(whiteLoot2));
+
         greenLootTile.setImage(getLootTileImage(greenLoot));
+
+        purpleLootTile.setImage(getLootTileImage(purpleLoot));
 
         blueWeapon1.setImage(getWeaponImage(blueWeapon1name));
         blueWeapon2.setImage(getWeaponImage(blueWeapon2name));
@@ -1828,17 +1895,20 @@ public class Map2UIController implements Initializable {
 
         // -- Piazzare Loots -- //
 
-        blueLoot1Tile.setImage(getLootTileImage(blueLoot1));
-        blueLoot2Tile.setImage(getLootTileImage(blueLoot2));
+        blueLootTile.setImage(getLootTileImage(blueLoot));
 
         redLootTile.setImage(getLootTileImage(redLoot));
 
         yellowLoot1Tile.setImage(getLootTileImage(yellowLoot1));
         yellowLoot2Tile.setImage(getLootTileImage(yellowLoot2));
         yellowLoot3Tile.setImage(getLootTileImage(yellowLoot3));
-        
 
-        whiteLootTile.setImage(getLootTileImage(whiteLoot));
+
+        whiteLoot1Tile.setImage(getLootTileImage(whiteLoot1));
+        whiteLoot2Tile.setImage(getLootTileImage(whiteLoot2));
+
+        purpleLootTile.setImage(getLootTileImage(purpleLoot));
+
         greenLootTile.setImage(getLootTileImage(greenLoot));
 
         // -- Piazzare armi spawncells -- //
@@ -1989,7 +2059,7 @@ public class Map2UIController implements Initializable {
                     sprogIcon.setLayoutY((double) redLootCellSprogY);
 
                 }
-                
+
 
             }
 
@@ -2005,17 +2075,10 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (sprogRoom.equalsIgnoreCase("lootCell1")) {
+                if (sprogRoom.equalsIgnoreCase("lootCell")) {
 
-                    sprogIcon.setLayoutX((double) blueLootCell1SprogX);
-                    sprogIcon.setLayoutY((double) blueLootCell1SprogY);
-
-                }
-
-                if (sprogRoom.equalsIgnoreCase("lootCell2")) {
-
-                    sprogIcon.setLayoutX((double) blueLootCell2SprogX);
-                    sprogIcon.setLayoutY((double) blueLootCell2SprogY);
+                    sprogIcon.setLayoutX((double) blueLootCellSprogX);
+                    sprogIcon.setLayoutY((double) blueLootCellSprogY);
 
                 }
 
@@ -2026,13 +2089,20 @@ public class Map2UIController implements Initializable {
 
                 sprogIcon.setVisible(true);
 
-                if (sprogRoom.equalsIgnoreCase("lootCell")) {
+                if (sprogRoom.equalsIgnoreCase("lootCell1")) {
 
-                    sprogIcon.setLayoutX((double) whiteLootCellSprogX);
-                    sprogIcon.setLayoutY((double) whiteLootCellSprogY);
+                    sprogIcon.setLayoutX((double) whiteLootCell1SprogX);
+                    sprogIcon.setLayoutY((double) whiteLootCell1SprogY);
 
                 }
-                
+
+                if (sprogRoom.equalsIgnoreCase("lootCell2")) {
+
+                    sprogIcon.setLayoutX((double) whiteLootCell2SprogX);
+                    sprogIcon.setLayoutY((double) whiteLootCell2SprogY);
+
+                }
+
             }
 
             //Se è nella verde
@@ -2049,10 +2119,24 @@ public class Map2UIController implements Initializable {
 
             }
 
+            //Se è nella viola
+            if (sprogRoomColour.equalsIgnoreCase("5")) {
+
+                sprogIcon.setVisible(true);
+
+                if (sprogRoom.equalsIgnoreCase("lootCell")) {
+
+                    sprogIcon.setLayoutX((double) purpleLootCellSprogX);
+                    sprogIcon.setLayoutY((double) purpleLootCellSprogY);
+
+                }
+
+            }
+
 
         }
 
-        if (!violettaUser.equalsIgnoreCase("empty")) {
+            if (!violettaUser.equalsIgnoreCase("empty")) {
 
 
             //Se violet è nella gialla...
@@ -2125,17 +2209,10 @@ public class Map2UIController implements Initializable {
 
                 }
 
-                if (violettaRoom.equalsIgnoreCase("lootCell1")) {
+                if (violettaRoom.equalsIgnoreCase("lootCell")) {
 
-                    violetIcon.setLayoutX((double) blueLootCell1VioletX);
-                    violetIcon.setLayoutY((double) blueLootCell1VioletY);
-
-                }
-
-                if (violettaRoom.equalsIgnoreCase("lootCell2")) {
-
-                    violetIcon.setLayoutX((double) blueLootCell2VioletX);
-                    violetIcon.setLayoutY((double) blueLootCell2VioletY);
+                    violetIcon.setLayoutX((double) blueLootCellVioletX);
+                    violetIcon.setLayoutY((double) blueLootCellVioletY);
 
                 }
 
@@ -2146,10 +2223,17 @@ public class Map2UIController implements Initializable {
 
                 violetIcon.setVisible(true);
 
-                if (violettaRoom.equalsIgnoreCase("lootCell")) {
+                if (violettaRoom.equalsIgnoreCase("lootCell1")) {
 
-                    violetIcon.setLayoutX((double) whiteLootCellVioletX);
-                    violetIcon.setLayoutY((double) whiteLootCellVioletY);
+                    violetIcon.setLayoutX((double) whiteLootCell1VioletX);
+                    violetIcon.setLayoutY((double) whiteLootCell1VioletY);
+
+                }
+
+                if (violettaRoom.equalsIgnoreCase("lootCell2")) {
+
+                    violetIcon.setLayoutX((double) whiteLootCell2VioletX);
+                    violetIcon.setLayoutY((double) whiteLootCell2VioletY);
 
                 }
 
@@ -2168,959 +2252,1149 @@ public class Map2UIController implements Initializable {
 
                 }
 
-
             }
 
+                //Se è nella viola
+                if (violettaRoomColour.equalsIgnoreCase("5")) {
 
-        }
+                    violetIcon.setVisible(true);
 
-        if (!bansheeUser.equalsIgnoreCase("empty")) {
+                    if (violettaRoom.equalsIgnoreCase("lootCell")) {
 
-            //Se banshee è nella gialla...
-            if (bansheeRoomColour.equalsIgnoreCase("0")) {
+                        violetIcon.setLayoutX((double) purpleLootCellVioletX);
+                        violetIcon.setLayoutY((double) purpleLootCellVioletY);
 
-                bansheeIcon.setVisible(true);
+                    }
 
-                if (bansheeRoom.equalsIgnoreCase("spawnCell")) {
-
-                    bansheeIcon.setLayoutX((double) yellowSpawnCellBansheeX);
-                    bansheeIcon.setLayoutY((double) yellowSpawnCellBansheeY);
-
-                }
-
-                if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
-
-                    bansheeIcon.setLayoutX((double) yellowLootCell1BansheeX);
-                    bansheeIcon.setLayoutY((double) yellowLootCell1BansheeY);
-
-                }
-
-                if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
-
-                    bansheeIcon.setLayoutX((double) yellowLootCell2BansheeX);
-                    bansheeIcon.setLayoutY((double) yellowLootCell2BansheeY);
-
-                }
-
-                if (bansheeRoom.equalsIgnoreCase("lootCell3")) {
-
-                    bansheeIcon.setLayoutX((double) yellowLootCell3BansheeX);
-                    bansheeIcon.setLayoutY((double) yellowLootCell3BansheeY);
 
                 }
 
 
             }
 
-            //Se banshee è nella rossa...
-            if (bansheeRoomColour.equalsIgnoreCase("1")) {
+            if (!bansheeUser.equalsIgnoreCase("empty")) {
 
-                bansheeIcon.setVisible(true);
+                //Se banshee è nella gialla...
+                if (bansheeRoomColour.equalsIgnoreCase("0")) {
 
-                if (bansheeRoom.equalsIgnoreCase("spawnCell")) {
+                    bansheeIcon.setVisible(true);
 
-                    bansheeIcon.setLayoutX((double) redSpawnCellBansheeX);
-                    bansheeIcon.setLayoutY((double) redSpawnCellBansheeY);
+                    if (bansheeRoom.equalsIgnoreCase("spawnCell")) {
+
+                        bansheeIcon.setLayoutX((double) yellowSpawnCellBansheeX);
+                        bansheeIcon.setLayoutY((double) yellowSpawnCellBansheeY);
+
+                    }
+
+                    if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
+
+                        bansheeIcon.setLayoutX((double) yellowLootCell1BansheeX);
+                        bansheeIcon.setLayoutY((double) yellowLootCell1BansheeY);
+
+                    }
+
+                    if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
+
+                        bansheeIcon.setLayoutX((double) yellowLootCell2BansheeX);
+                        bansheeIcon.setLayoutY((double) yellowLootCell2BansheeY);
+
+                    }
+
+                    if (bansheeRoom.equalsIgnoreCase("lootCell3")) {
+
+                        bansheeIcon.setLayoutX((double) yellowLootCell3BansheeX);
+                        bansheeIcon.setLayoutY((double) yellowLootCell3BansheeY);
+
+                    }
+
 
                 }
 
-                if (bansheeRoom.equalsIgnoreCase("lootCell")) {
+                //Se banshee è nella rossa...
+                if (bansheeRoomColour.equalsIgnoreCase("1")) {
 
-                    bansheeIcon.setLayoutX((double) redLootCellBansheeX);
-                    bansheeIcon.setLayoutY((double) redLootCellBansheeY);
+                    bansheeIcon.setVisible(true);
+
+                    if (bansheeRoom.equalsIgnoreCase("spawnCell")) {
+
+                        bansheeIcon.setLayoutX((double) redSpawnCellBansheeX);
+                        bansheeIcon.setLayoutY((double) redSpawnCellBansheeY);
+
+                    }
+
+                    if (bansheeRoom.equalsIgnoreCase("lootCell")) {
+
+                        bansheeIcon.setLayoutX((double) redLootCellBansheeX);
+                        bansheeIcon.setLayoutY((double) redLootCellBansheeY);
+
+                    }
+
 
                 }
 
+                //Se banshee è nella blu...
+                if (bansheeRoomColour.equalsIgnoreCase("2")) {
 
-            }
+                    bansheeIcon.setVisible(true);
 
-            //Se banshee è nella blu...
-            if (bansheeRoomColour.equalsIgnoreCase("2")) {
+                    if (bansheeRoom.equalsIgnoreCase("spawnCell")) {
 
-                bansheeIcon.setVisible(true);
+                        bansheeIcon.setLayoutX((double) blueSpawnCellBansheeX);
+                        bansheeIcon.setLayoutY((double) blueSpawnCellBansheeY);
 
-                if (bansheeRoom.equalsIgnoreCase("spawnCell")) {
+                    }
 
-                    bansheeIcon.setLayoutX((double) blueSpawnCellBansheeX);
-                    bansheeIcon.setLayoutY((double) blueSpawnCellBansheeY);
+                    if (bansheeRoom.equalsIgnoreCase("lootCell")) {
 
-                }
+                        bansheeIcon.setLayoutX((double) blueLootCellBansheeX);
+                        bansheeIcon.setLayoutY((double) blueLootCellBansheeY);
 
-                if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
-
-                    bansheeIcon.setLayoutX((double) blueLootCell1BansheeX);
-                    bansheeIcon.setLayoutY((double) blueLootCell1BansheeY);
-
-                }
-
-                if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
-
-                    bansheeIcon.setLayoutX((double) blueLootCell2BansheeX);
-                    bansheeIcon.setLayoutY((double) blueLootCell2BansheeY);
+                    }
 
                 }
 
-            }
+                //Se è nella bianca
+                if (bansheeRoomColour.equalsIgnoreCase("3")) {
 
-            //Se è nella bianca
-            if (bansheeRoomColour.equalsIgnoreCase("3")) {
+                    bansheeIcon.setVisible(true);
 
-                bansheeIcon.setVisible(true);
+                    if (bansheeRoom.equalsIgnoreCase("lootCell1")) {
 
-                if (bansheeRoom.equalsIgnoreCase("lootCell")) {
+                        bansheeIcon.setLayoutX((double) whiteLootCell1BansheeX);
+                        bansheeIcon.setLayoutY((double) whiteLootCell1BansheeY);
 
-                    bansheeIcon.setLayoutX((double) whiteLootCellBansheeX);
-                    bansheeIcon.setLayoutY((double) whiteLootCellBansheeY);
+                    }
 
-                }
+                    if (bansheeRoom.equalsIgnoreCase("lootCell2")) {
 
-            }
+                        bansheeIcon.setLayoutX((double) whiteLootCell2BansheeX);
+                        bansheeIcon.setLayoutY((double) whiteLootCell2BansheeY);
 
-            //Se è nella verde
-            if (bansheeRoomColour.equalsIgnoreCase("4")) {
-
-                bansheeIcon.setVisible(true);
-
-                if (bansheeRoom.equalsIgnoreCase("lootCell")) {
-
-                    bansheeIcon.setLayoutX((double) greenLootCellBansheeX);
-                    bansheeIcon.setLayoutY((double) greenLootCellBansheeY);
+                    }
 
                 }
 
-            }
+                //Se è nella verde
+                if (bansheeRoomColour.equalsIgnoreCase("4")) {
 
+                    bansheeIcon.setVisible(true);
 
+                    if (bansheeRoom.equalsIgnoreCase("lootCell")) {
 
-        }
+                        bansheeIcon.setLayoutX((double) greenLootCellBansheeX);
+                        bansheeIcon.setLayoutY((double) greenLootCellBansheeY);
 
-        if (!dozerUser.equalsIgnoreCase("empty")) {
-
-
-            //Se dozer è nella gialla...
-            if (dozerRoomColour.equalsIgnoreCase("0")) {
-
-                dozerIcon.setVisible(true);
-
-                if (dozerRoom.equalsIgnoreCase("spawnCell")) {
-
-                    dozerIcon.setLayoutX((double) yellowSpawnCellDozerX);
-                    dozerIcon.setLayoutY((double) yellowSpawnCellDozerY);
+                    }
 
                 }
 
-                if (dozerRoom.equalsIgnoreCase("lootCell1")) {
+                //Se è nella viola
+                if (bansheeRoomColour.equalsIgnoreCase("5")) {
 
-                    dozerIcon.setLayoutX((double) yellowLootCell1DozerX);
-                    dozerIcon.setLayoutY((double) yellowLootCell1DozerY);
+                    bansheeIcon.setVisible(true);
 
-                }
+                    if (bansheeRoom.equalsIgnoreCase("lootCell")) {
 
-                if (dozerRoom.equalsIgnoreCase("lootCell2")) {
+                        bansheeIcon.setLayoutX((double) purpleLootCellBansheeX);
+                        bansheeIcon.setLayoutY((double) purpleLootCellBansheeY);
 
-                    dozerIcon.setLayoutX((double) yellowLootCell2DozerX);
-                    dozerIcon.setLayoutY((double) yellowLootCell2DozerY);
-
-                }
-
-                if (dozerRoom.equalsIgnoreCase("lootCell3")) {
-
-                    dozerIcon.setLayoutX((double) yellowLootCell3DozerX);
-                    dozerIcon.setLayoutY((double) yellowLootCell3DozerY);
-
-                }
-
-
-            }
-
-            //Se dozer è nella rossa...
-            if (dozerRoomColour.equalsIgnoreCase("1")) {
-
-                dozerIcon.setVisible(true);
-
-                if (dozerRoom.equalsIgnoreCase("spawnCell")) {
-
-                    dozerIcon.setLayoutX((double) redSpawnCellDozerX);
-                    dozerIcon.setLayoutY((double) redSpawnCellDozerY);
-
-                }
-
-                if (dozerRoom.equalsIgnoreCase("lootCell")) {
-
-                    dozerIcon.setLayoutX((double) redLootCellDozerX);
-                    dozerIcon.setLayoutY((double) redLootCellDozerY);
-
-                }
-
-
-            }
-
-            //Se dozer è nella blu...
-            if (dozerRoomColour.equalsIgnoreCase("2")) {
-
-                dozerIcon.setVisible(true);
-
-                if (dozerRoom.equalsIgnoreCase("spawnCell")) {
-
-                    dozerIcon.setLayoutX((double) blueSpawnCellDozerX);
-                    dozerIcon.setLayoutY((double) blueSpawnCellDozerY);
-
-                }
-
-                if (dozerRoom.equalsIgnoreCase("lootCell1")) {
-
-                    dozerIcon.setLayoutX((double) blueLootCell1DozerX);
-                    dozerIcon.setLayoutY((double) blueLootCell1DozerY);
-
-                }
-
-                if (dozerRoom.equalsIgnoreCase("lootCell2")) {
-
-                    dozerIcon.setLayoutX((double) blueLootCell2DozerX);
-                    dozerIcon.setLayoutY((double) blueLootCell2DozerY);
+                    }
 
                 }
 
             }
 
-            //Se è nella bianca
-            if (dozerRoomColour.equalsIgnoreCase("3")) {
+            if (!dozerUser.equalsIgnoreCase("empty")) {
 
-                dozerIcon.setVisible(true);
 
-                if (dozerRoom.equalsIgnoreCase("lootCell")) {
+                //Se dozer è nella gialla...
+                if (dozerRoomColour.equalsIgnoreCase("0")) {
 
-                    dozerIcon.setLayoutX((double) whiteLootCellDozerX);
-                    dozerIcon.setLayoutY((double) whiteLootCellDozerY);
+                    dozerIcon.setVisible(true);
+
+                    if (dozerRoom.equalsIgnoreCase("spawnCell")) {
+
+                        dozerIcon.setLayoutX((double) yellowSpawnCellDozerX);
+                        dozerIcon.setLayoutY((double) yellowSpawnCellDozerY);
+
+                    }
+
+                    if (dozerRoom.equalsIgnoreCase("lootCell1")) {
+
+                        dozerIcon.setLayoutX((double) yellowLootCell1DozerX);
+                        dozerIcon.setLayoutY((double) yellowLootCell1DozerY);
+
+                    }
+
+                    if (dozerRoom.equalsIgnoreCase("lootCell2")) {
+
+                        dozerIcon.setLayoutX((double) yellowLootCell2DozerX);
+                        dozerIcon.setLayoutY((double) yellowLootCell2DozerY);
+
+                    }
+
+                    if (dozerRoom.equalsIgnoreCase("lootCell3")) {
+
+                        dozerIcon.setLayoutX((double) yellowLootCell3DozerX);
+                        dozerIcon.setLayoutY((double) yellowLootCell3DozerY);
+
+                    }
+
+
+                }
+
+                //Se dozer è nella rossa...
+                if (dozerRoomColour.equalsIgnoreCase("1")) {
+
+                    dozerIcon.setVisible(true);
+
+                    if (dozerRoom.equalsIgnoreCase("spawnCell")) {
+
+                        dozerIcon.setLayoutX((double) redSpawnCellDozerX);
+                        dozerIcon.setLayoutY((double) redSpawnCellDozerY);
+
+                    }
+
+                    if (dozerRoom.equalsIgnoreCase("lootCell")) {
+
+                        dozerIcon.setLayoutX((double) redLootCellDozerX);
+                        dozerIcon.setLayoutY((double) redLootCellDozerY);
+
+                    }
+
+
+                }
+
+                //Se dozer è nella blu...
+                if (dozerRoomColour.equalsIgnoreCase("2")) {
+
+                    dozerIcon.setVisible(true);
+
+                    if (dozerRoom.equalsIgnoreCase("spawnCell")) {
+
+                        dozerIcon.setLayoutX((double) blueSpawnCellDozerX);
+                        dozerIcon.setLayoutY((double) blueSpawnCellDozerY);
+
+                    }
+
+                    if (dozerRoom.equalsIgnoreCase("lootCell")) {
+
+                        dozerIcon.setLayoutX((double) blueLootCellDozerX);
+                        dozerIcon.setLayoutY((double) blueLootCellDozerY);
+
+                    }
+
+                }
+
+                //Se è nella bianca
+                if (dozerRoomColour.equalsIgnoreCase("3")) {
+
+                    dozerIcon.setVisible(true);
+
+                    if (dozerRoom.equalsIgnoreCase("lootCell1")) {
+
+                        dozerIcon.setLayoutX((double) whiteLootCell1DozerX);
+                        dozerIcon.setLayoutY((double) whiteLootCell1DozerY);
+
+                    }
+
+                    if (dozerRoom.equalsIgnoreCase("lootCell2")) {
+
+                        dozerIcon.setLayoutX((double) whiteLootCell2DozerX);
+                        dozerIcon.setLayoutY((double) whiteLootCell2DozerY);
+
+                    }
+
+                }
+
+                //Se è nella verde
+                if (dozerRoomColour.equalsIgnoreCase("4")) {
+
+                    dozerIcon.setVisible(true);
+
+                    if (dozerRoom.equalsIgnoreCase("lootCell")) {
+
+                        dozerIcon.setLayoutX((double) greenLootCellDozerX);
+                        dozerIcon.setLayoutY((double) greenLootCellDozerY);
+
+                    }
+
+                }
+
+                //Se è nella viola
+                if (dozerRoomColour.equalsIgnoreCase("5")) {
+
+                    dozerIcon.setVisible(true);
+
+                    if (dozerRoom.equalsIgnoreCase("lootCell")) {
+
+                        dozerIcon.setLayoutX((double) purpleLootCellDozerX);
+                        dozerIcon.setLayoutY((double) purpleLootCellDozerY);
+
+                    }
 
                 }
 
             }
 
-            //Se è nella verde
-            if (dozerRoomColour.equalsIgnoreCase("4")) {
+            if (!destructorUser.equalsIgnoreCase("empty")) {
 
-                dozerIcon.setVisible(true);
+                //Se destructor è nella gialla...
+                if (destructorRoomColour.equalsIgnoreCase("0")) {
 
-                if (dozerRoom.equalsIgnoreCase("lootCell")) {
+                    destructorIcon.setVisible(true);
 
-                    dozerIcon.setLayoutX((double) greenLootCellDozerX);
-                    dozerIcon.setLayoutY((double) greenLootCellDozerY);
+                    if (destructorRoom.equalsIgnoreCase("spawnCell")) {
+
+                        destructorIcon.setLayoutX((double) yellowSpawnCellDestructorX);
+                        destructorIcon.setLayoutY((double) yellowSpawnCellDestructorY);
+
+                    }
+
+                    if (destructorRoom.equalsIgnoreCase("lootCell1")) {
+
+                        destructorIcon.setLayoutX((double) yellowLootCell1DestructorX);
+                        destructorIcon.setLayoutY((double) yellowLootCell1DestructorY);
+
+                    }
+
+                    if (destructorRoom.equalsIgnoreCase("lootCell2")) {
+
+                        destructorIcon.setLayoutX((double) yellowLootCell2DestructorX);
+                        destructorIcon.setLayoutY((double) yellowLootCell2DestructorY);
+
+                    }
+
+                    if (destructorRoom.equalsIgnoreCase("lootCell3")) {
+
+                        destructorIcon.setLayoutX((double) yellowLootCell3DestructorX);
+                        destructorIcon.setLayoutY((double) yellowLootCell3DestructorY);
+
+                    }
+
 
                 }
+
+                //Se destructor è nella rossa...
+                if (destructorRoomColour.equalsIgnoreCase("1")) {
+
+                    destructorIcon.setVisible(true);
+
+                    if (destructorRoom.equalsIgnoreCase("spawnCell")) {
+
+                        destructorIcon.setLayoutX((double) redSpawnCellDestructorX);
+                        destructorIcon.setLayoutY((double) redSpawnCellDestructorY);
+
+                    }
+
+                    if (destructorRoom.equalsIgnoreCase("lootCell")) {
+
+                        destructorIcon.setLayoutX((double) redLootCellDestructorX);
+                        destructorIcon.setLayoutY((double) redLootCellDestructorY);
+
+                    }
+
+
+                }
+
+                //Se destructor è nella blu...
+                if (destructorRoomColour.equalsIgnoreCase("2")) {
+
+                    destructorIcon.setVisible(true);
+
+                    if (destructorRoom.equalsIgnoreCase("spawnCell")) {
+
+                        destructorIcon.setLayoutX((double) blueSpawnCellDestructorX);
+                        destructorIcon.setLayoutY((double) blueSpawnCellDestructorY);
+
+                    }
+
+                    if (destructorRoom.equalsIgnoreCase("lootCell")) {
+
+                        destructorIcon.setLayoutX((double) blueLootCellDestructorX);
+                        destructorIcon.setLayoutY((double) blueLootCellDestructorY);
+
+                    }
+
+                }
+
+                //Se è nella bianca
+                if (destructorRoomColour.equalsIgnoreCase("3")) {
+
+                    destructorIcon.setVisible(true);
+
+                    if (destructorRoom.equalsIgnoreCase("lootCell1")) {
+
+                        destructorIcon.setLayoutX((double) whiteLootCell1DestructorX);
+                        destructorIcon.setLayoutY((double) whiteLootCell1DestructorY);
+
+                    }
+
+                    if (destructorRoom.equalsIgnoreCase("lootCell2")) {
+
+                        destructorIcon.setLayoutX((double) whiteLootCell2DestructorX);
+                        destructorIcon.setLayoutY((double) whiteLootCell2DestructorY);
+
+                    }
+
+                }
+
+                //Se è nella verde
+                if (destructorRoomColour.equalsIgnoreCase("4")) {
+
+                    destructorIcon.setVisible(true);
+
+                    if (destructorRoom.equalsIgnoreCase("lootCell")) {
+
+                        destructorIcon.setLayoutX((double) greenLootCellDestructorX);
+                        destructorIcon.setLayoutY((double) greenLootCellDestructorY);
+
+                    }
+
+                }
+
+                //Se è nella viola
+                if (destructorRoomColour.equalsIgnoreCase("5")) {
+
+                    destructorIcon.setVisible(true);
+
+                    if (destructorRoom.equalsIgnoreCase("lootCell")) {
+
+                        destructorIcon.setLayoutX((double) purpleLootCellDestructorX);
+                        destructorIcon.setLayoutY((double) purpleLootCellDestructorY);
+
+                    }
+
+                }
+               
 
             }
 
 
-
         }
 
-        if (!destructorUser.equalsIgnoreCase("empty")) {
+        @FXML
+        public Image getWeaponImage (String weaponName){
 
+            if (weaponName.equalsIgnoreCase("Martello ionico")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_022.png");
+            }
 
-            //Se destructor è nella gialla...
-            if (destructorRoomColour.equalsIgnoreCase("0")) {
+            if (weaponName.equalsIgnoreCase("Spada fotonica")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_023.png");
+            }
 
-                destructorIcon.setVisible(true);
+            if (weaponName.equalsIgnoreCase("Cyberguanto")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_024.png");
+            }
 
-                if (destructorRoom.equalsIgnoreCase("spawnCell")) {
+            if (weaponName.equalsIgnoreCase("Fucile a pompa")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_025.png");
+            }
 
-                    destructorIcon.setLayoutX((double) yellowSpawnCellDestructorX);
-                    destructorIcon.setLayoutY((double) yellowSpawnCellDestructorY);
+            if (weaponName.equalsIgnoreCase("Fucile laser")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_026.png");
+            }
 
-                }
+            if (weaponName.equalsIgnoreCase("zx-2")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_027.png");
+            }
 
-                if (destructorRoom.equalsIgnoreCase("lootCell1")) {
+            if (weaponName.equalsIgnoreCase("onda d'urto")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_028.png");
+            }
 
-                    destructorIcon.setLayoutX((double) yellowLootCell1DestructorX);
-                    destructorIcon.setLayoutY((double) yellowLootCell1DestructorY);
+            if (weaponName.equalsIgnoreCase("cannone vortex")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_029.png");
+            }
 
-                }
+            if (weaponName.equalsIgnoreCase("razzo termico")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0210.png");
+            }
 
-                if (destructorRoom.equalsIgnoreCase("lootCell2")) {
+            if (weaponName.equalsIgnoreCase("Lanciarazzi")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0211.png");
+            }
 
-                    destructorIcon.setLayoutX((double) yellowLootCell2DestructorX);
-                    destructorIcon.setLayoutY((double) yellowLootCell2DestructorY);
+            if (weaponName.equalsIgnoreCase("Lanciagranate")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0212.png");
+            }
 
-                }
+            if (weaponName.equalsIgnoreCase("Lanciafiamme")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0213.png");
+            }
 
-                if (destructorRoom.equalsIgnoreCase("lootCell3")) {
+            if (weaponName.equalsIgnoreCase("Vulcanizzatore")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0214.png");
+            }
 
-                    destructorIcon.setLayoutX((double) yellowLootCell3DestructorX);
-                    destructorIcon.setLayoutY((double) yellowLootCell3DestructorY);
+            if (weaponName.equalsIgnoreCase("Raggio solare")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0215.png");
+            }
 
-                }
+            if (weaponName.equalsIgnoreCase("Torpedine")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0216.png");
+            }
 
+            if (weaponName.equalsIgnoreCase("Raggio traente")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0217.png");
+            }
+
+            if (weaponName.equalsIgnoreCase("Fucile di precisione")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0218.png");
+            }
+
+            if (weaponName.equalsIgnoreCase("Fucile al plasma")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0219.png");
+            }
+
+            if (weaponName.equalsIgnoreCase("Mitragliatrice")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0220.png");
+            }
+
+            if (weaponName.equalsIgnoreCase("distruttore")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0221.png");
+            }
+
+            if (weaponName.equalsIgnoreCase("falce protonica")) {
+                return new Image("/assets/Weapons/AD_weapons_IT_0222.png");
+            }
+
+            return new Image("/assets/Weapons/AD_weapons_IT_0225.png");
+        }
+
+        @FXML
+        public Image getPowerupImage (String PUName){
+
+            if (PUName.equalsIgnoreCase("Raggio Cinetico Blu")) {
+
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+                return image;
 
             }
 
-            //Se destructor è nella rossa...
-            if (destructorRoomColour.equalsIgnoreCase("1")) {
+            if (PUName.equalsIgnoreCase("Mirino Blu")) {
 
-                destructorIcon.setVisible(true);
-
-                if (destructorRoom.equalsIgnoreCase("spawnCell")) {
-
-                    destructorIcon.setLayoutX((double) redSpawnCellDestructorX);
-                    destructorIcon.setLayoutY((double) redSpawnCellDestructorY);
-
-                }
-
-                if (destructorRoom.equalsIgnoreCase("lootCell")) {
-
-                    destructorIcon.setLayoutX((double) redLootCellDestructorX);
-                    destructorIcon.setLayoutY((double) redLootCellDestructorY);
-
-                }
-
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+                return image;
 
             }
 
-            //Se destructor è nella blu...
-            if (destructorRoomColour.equalsIgnoreCase("2")) {
+            if (PUName.equalsIgnoreCase("Granata Venom Blu")) {
 
-                destructorIcon.setVisible(true);
-
-                if (destructorRoom.equalsIgnoreCase("spawnCell")) {
-
-                    destructorIcon.setLayoutX((double) blueSpawnCellDestructorX);
-                    destructorIcon.setLayoutY((double) blueSpawnCellDestructorY);
-
-                }
-
-                if (destructorRoom.equalsIgnoreCase("lootCell1")) {
-
-                    destructorIcon.setLayoutX((double) blueLootCell1DestructorX);
-                    destructorIcon.setLayoutY((double) blueLootCell1DestructorY);
-
-                }
-
-                if (destructorRoom.equalsIgnoreCase("lootCell2")) {
-
-                    destructorIcon.setLayoutX((double) blueLootCell2DestructorX);
-                    destructorIcon.setLayoutY((double) blueLootCell2DestructorY);
-
-                }
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+                return image;
 
             }
 
-            //Se è nella bianca
-            if (destructorRoomColour.equalsIgnoreCase("3")) {
+            if (PUName.equalsIgnoreCase("Teletrasporto Blu")) {
 
-                destructorIcon.setVisible(true);
-
-                if (destructorRoom.equalsIgnoreCase("lootCell")) {
-
-                    destructorIcon.setLayoutX((double) whiteLootCellDestructorX);
-                    destructorIcon.setLayoutY((double) whiteLootCellDestructorY);
-
-                }
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+                return image;
 
             }
 
-            //Se è nella verde
-            if (destructorRoomColour.equalsIgnoreCase("4")) {
+            if (PUName.equalsIgnoreCase("Raggio Cinetico Rosso")) {
 
-                destructorIcon.setVisible(true);
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+                return image;
 
-                if (destructorRoom.equalsIgnoreCase("lootCell")) {
+            }
 
-                    destructorIcon.setLayoutX((double) greenLootCellDestructorX);
-                    destructorIcon.setLayoutY((double) greenLootCellDestructorY);
+            if (PUName.equalsIgnoreCase("Mirino Rosso")) {
 
-                }
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+                return image;
 
+            }
+
+            if (PUName.equalsIgnoreCase("Granata Venom Rossa")) {
+
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+                return image;
+
+            }
+
+            if (PUName.equalsIgnoreCase("Teletrasporto Rosso")) {
+
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+                return image;
+
+            }
+
+            if (PUName.equalsIgnoreCase("Raggio Cinetico Giallo")) {
+
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+                return image;
+
+            }
+
+            if (PUName.equalsIgnoreCase("Mirino Giallo")) {
+
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+                return image;
+
+            }
+
+            if (PUName.equalsIgnoreCase("Granata Venom Gialla")) {
+
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+                return image;
+
+            }
+
+            if (PUName.equalsIgnoreCase("Teletrasporto Giallo")) {
+
+                Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+                return image;
+
+            }
+
+            return new Image("/assets/Powerups/AD_Powerups_IT_02.png");
+
+
+        }
+
+        @FXML
+        public Image getLootTileImage (String name){
+
+            if (name.equalsIgnoreCase("brr")) {
+                return new Image("/assets/Loot/AD_ammo_0413.png");
+            }
+
+            if (name.equalsIgnoreCase("byy")) {
+                return new Image("/assets/Loot/AD_ammo_0412.png");
+            }
+
+            if (name.equalsIgnoreCase("pbb")) {
+                return new Image("/assets/Loot/AD_ammo_0422.png");
+            }
+
+            if (name.equalsIgnoreCase("prb")) {
+                return new Image("/assets/Loot/AD_ammo_0428.png");
+            }
+
+            if (name.equalsIgnoreCase("prr")) {
+                return new Image("/assets/Loot/AD_ammo_0430.png");
+            }
+
+            if (name.equalsIgnoreCase("pyb")) {
+                return new Image("/assets/Loot/AD_ammo_0427.png");
+            }
+
+            if (name.equalsIgnoreCase("pyr")) {
+                return new Image("/assets/Loot/AD_ammo_0432.png");
+            }
+
+            if (name.equalsIgnoreCase("pyy")) {
+                return new Image("/assets/loot/AD_ammo_0429.png");
+            }
+
+            if (name.equalsIgnoreCase("rbb")) {
+                return new Image("/assets/Loot/AD_ammo_0410.png");
+            }
+
+            if (name.equalsIgnoreCase("ryy")) {
+                return new Image("/assets/loot/AD_ammo_0417.png");
+            }
+
+            if (name.equalsIgnoreCase("ybb")) {
+                return new Image("/assets/Loot/AD_ammo_0414.png");
+            }
+
+            if (name.equalsIgnoreCase("yrr")) {
+                return new Image("/assets/Loot/AD_ammo_043.png");
+            }
+
+            return new Image("/assets/Loot/AD_ammo_04.png");
+
+
+        }
+
+        @FXML
+        public Image getTokenImage (String championName){
+
+            if (championName.equalsIgnoreCase("dozer")) {
+                return new Image("/assets/Placeable/Dozer_Mk.png");
+            }
+
+            if (championName.equalsIgnoreCase("violetta")) {
+                return new Image("/assets/Placeable/Violet_Mk.png");
+            }
+
+            if (championName.equalsIgnoreCase("banshee")) {
+                return new Image("/assets/Placeable/Banshee_Mk.png");
+            }
+
+            if (championName.equalsIgnoreCase("sprog")) {
+                return new Image("/assets/Placeable/Sprog_Mk.png");
+            }
+
+            if (championName.equalsIgnoreCase(":d-strutt-or3")) {
+                return new Image("/assets/Placeable/Destructor_Mk.png");
+            }
+
+            if (championName.equalsIgnoreCase("skull")) {
+                return new Image("/assets/Placeable/RedSkull.png");
+            }
+
+            return null;
+
+        }
+
+
+        // ----- AZIONI DEI CONTROLLI ----///
+
+        @FXML
+        public void moveAction () {
+
+            try {
+                out.writeUTF("muovi");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void shotAction () {
+
+            try {
+                out.writeUTF("spara");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void pickupAction () {
+
+            try {
+                out.writeUTF("raccogli");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        ////
+
+        @FXML
+        public void choseSprog () {
+
+            try {
+                out.writeUTF(sprogUser);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
 
         }
 
+        @FXML
+        public void choseViolet () {
 
-    }
+            try {
+                out.writeUTF(violettaUser);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        @FXML
+        public void choseDestructor () {
+            try {
+                out.writeUTF(destructorUser);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void choseBanshee () {
+
+            try {
+                out.writeUTF(bansheeUser);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        @FXML
+        public void choseDozer () {
+
+            try {
+                out.writeUTF(dozerUser);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        ///
+
+
+        @FXML
+        public void noAction () {
+
+            try {
+                out.writeUTF("no");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void yesAction () {
+
+            try {
+                out.writeUTF("si");
+            } catch (Exception e) {
+
+            }
+
+        }
+
+
+        @FXML
+        public void chooseBlueWeapon1 () {
+
+            try {
+                out.writeUTF(blueWeapon1name);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        @FXML
+        public void chooseBlueWeapon2 () {
+
+            try {
+                out.writeUTF(blueWeapon2name);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @FXML
+        public void chooseBlueWeapon3 () {
+
+            try {
+                out.writeUTF(blueWeapon3name);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @FXML
+        public void chooseWeapon1 () {
+
+            try {
+                out.writeUTF(weapon1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @FXML
+        public void chooseWeapon2 () {
+
+            try {
+                out.writeUTF(weapon2);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @FXML
+        public void chooseWeapon3 () {
+
+            try {
+                out.writeUTF(weapon3);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        ///
+
+        @FXML
+        public void chooseYellowWeapon1 () {
+
+            try {
+
+                out.writeUTF(yellowWeapon1name);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void chooseYellowWeapon2 () {
+
+            try {
+
+                out.writeUTF(yellowWeapon2name);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void chooseYellowWeapon3 () {
+
+            try {
+
+                out.writeUTF(yellowWeapon3name);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        //
+
+        @FXML
+        public void chooseRedWeapon1 () {
+
+            try {
+
+                out.writeUTF(redWeapon1name);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void chooseRedWeapon2 () {
+
+            try {
+
+                out.writeUTF(redWeapon2name);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void chooseRedWeapon3 () {
+
+            try {
+
+                out.writeUTF(redWeapon3name);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        //
+
+        @FXML
+        public void choosePU1 () {
+
+            try {
+
+                out.writeUTF(pu1);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void choosePU2 () {
+
+            try {
+
+                out.writeUTF(pu2);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        @FXML
+        public void choosePU3 () {
+
+            try {
+
+                out.writeUTF(pu3);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        //
+
+        @FXML
+        public void chooseBlueSpawnCell () {
+
+            try {
+
+                out.writeUTF(blueSpawnCellIndex);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
+        }
+
+        @FXML
+        public void chooseBlueLootCell () {
+
+            try {
+
+                out.writeUTF(blueLootCellIndex);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
+        }
+
+
+
+        @FXML
+        public void chooseRedSpawnCell () {
+
+            try {
+
+                out.writeUTF(redSpawnCellIndex);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
+        }
+
+        @FXML
+        public void chooseRedLootCell() {
+
+            try {
+
+                out.writeUTF(redLootCellIndex);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
+        }
+
+
+        @FXML
+        public void chooseYellowSpawnCell () {
+
+            try {
+
+                out.writeUTF(yellowSpawnCellIndex);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
+        }
+
+        @FXML
+        public void chooseYellowLootCell1 () {
+
+            try {
+
+                out.writeUTF(yellowLootCell1Index);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
+        }
+
+
+        @FXML
+        public void chooseYellowLootCell2 () {
+
+            try {
+
+                out.writeUTF(yellowLootCell2Index);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
+        }
+
+        @FXML
+        public void chooseYellowLootCell3 () {
+
+            try {
+
+                out.writeUTF(yellowLootCell3Index);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
+        }
+
+        @FXML
+        public void chooseWhiteLootCell1 () {
+
+            try {
+
+                out.writeUTF(whiteLootCell1Index);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
+        }
 
     @FXML
-    public Image getWeaponImage(String weaponName) {
-
-        if (weaponName.equalsIgnoreCase("Martello ionico")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_022.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Spada fotonica")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_023.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Cyberguanto")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_024.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Fucile a pompa")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_025.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Fucile laser")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_026.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("zx-2")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_027.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("onda d'urto")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_028.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("cannone vortex")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_029.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("razzo termico")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0210.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Lanciarazzi")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0211.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Lanciagranate")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0212.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Lanciafiamme")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0213.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Vulcanizzatore")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0214.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Raggio solare")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0215.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Torpedine")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0216.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Raggio traente")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0217.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Fucile di precisione")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0218.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Fucile al plasma")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0219.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("Mitragliatrice")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0220.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("distruttore")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0221.png");
-        }
-
-        if (weaponName.equalsIgnoreCase("falce protonica")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0222.png");
-        }
-
-        return new Image("/assets/Weapons/AD_weapons_IT_0225.png");
-    }
-
-    @FXML
-    public Image getPowerupImage(String PUName) {
-
-        if (PUName.equalsIgnoreCase("Raggio Cinetico Blu")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Mirino Blu")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Granata Venom Blu")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Teletrasporto Blu")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Raggio Cinetico Rosso")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Mirino Rosso")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Granata Venom Rossa")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Teletrasporto Rosso")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Raggio Cinetico Giallo")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Mirino Giallo")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Granata Venom Gialla")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
-            return image;
-
-        }
-
-        if (PUName.equalsIgnoreCase("Teletrasporto Giallo")) {
-
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
-            return image;
-
-        }
-
-        return new Image("/assets/Powerups/AD_Powerups_IT_02.png");
-
-
-    }
-
-    @FXML
-    public Image getLootTileImage(String name) {
-
-        if (name.equalsIgnoreCase("brr")) {
-            return new Image("/assets/Loot/AD_ammo_0413.png");
-        }
-
-        if (name.equalsIgnoreCase("byy")) {
-            return new Image("/assets/Loot/AD_ammo_0412.png");
-        }
-
-        if (name.equalsIgnoreCase("pbb")) {
-            return new Image("/assets/Loot/AD_ammo_0422.png");
-        }
-
-        if (name.equalsIgnoreCase("prb")) {
-            return new Image("/assets/Loot/AD_ammo_0428.png");
-        }
-
-        if (name.equalsIgnoreCase("prr")) {
-            return new Image("/assets/Loot/AD_ammo_0430.png");
-        }
-
-        if (name.equalsIgnoreCase("pyb")) {
-            return new Image("/assets/Loot/AD_ammo_0427.png");
-        }
-
-        if (name.equalsIgnoreCase("pyr")) {
-            return new Image("/assets/Loot/AD_ammo_0432.png");
-        }
-
-        if (name.equalsIgnoreCase("pyy")) {
-            return new Image("/assets/loot/AD_ammo_0429.png");
-        }
-
-        if (name.equalsIgnoreCase("rbb")) {
-            return new Image("/assets/Loot/AD_ammo_0410.png");
-        }
-
-        if (name.equalsIgnoreCase("ryy")) {
-            return new Image("/assets/loot/AD_ammo_0417.png");
-        }
-
-        if (name.equalsIgnoreCase("ybb")) {
-            return new Image("/assets/Loot/AD_ammo_0414.png");
-        }
-
-        if (name.equalsIgnoreCase("yrr")) {
-            return new Image("/assets/Loot/AD_ammo_043.png");
-        }
-
-        return new Image("/assets/Loot/AD_ammo_04.png");
-
-
-    }
-
-    @FXML
-    public Image getTokenImage(String championName) {
-
-        if (championName.equalsIgnoreCase("dozer")) {
-            return new Image("/assets/Placeable/Dozer_Mk.png");
-        }
-
-        if (championName.equalsIgnoreCase("violetta")) {
-            return new Image("/assets/Placeable/Violet_Mk.png");
-        }
-
-        if (championName.equalsIgnoreCase("banshee")) {
-            return new Image("/assets/Placeable/Banshee_Mk.png");
-        }
-
-        if (championName.equalsIgnoreCase("sprog")) {
-            return new Image("/assets/Placeable/Sprog_Mk.png");
-        }
-
-        if (championName.equalsIgnoreCase(":d-strutt-or3")) {
-            return new Image("/assets/Placeable/Destructor_Mk.png");
-        }
-
-        if (championName.equalsIgnoreCase("skull")) {
-            return new Image("/assets/Placeable/RedSkull.png");
-        }
-
-        return null;
-
-    }
-
-
-    // ----- AZIONI DEI CONTROLLI ----///
-
-    @FXML
-    public void moveAction() {
-
-        try {
-            out.writeUTF("muovi");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void shotAction() {
-
-        try {
-            out.writeUTF("spara");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void pickupAction() {
-
-        try {
-            out.writeUTF("raccogli");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    ////
-
-    @FXML
-    public void choseSprog() {
-
-        try {
-            out.writeUTF(sprogUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    @FXML
-    public void choseViolet() {
-
-        try {
-            out.writeUTF(violettaUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    @FXML
-    public void choseDestructor() {
-        try {
-            out.writeUTF(destructorUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void choseBanshee() {
-
-        try {
-            out.writeUTF(bansheeUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    @FXML
-    public void choseDozer() {
-
-        try {
-            out.writeUTF(dozerUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-    ///
-
-
-    @FXML
-    public void noAction() {
-
-        try {
-            out.writeUTF("no");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void yesAction() {
-
-        try {
-            out.writeUTF("si");
-        } catch (Exception e) {
-
-        }
-
-    }
-
-
-    @FXML
-    public void chooseBlueWeapon1() {
-
-        try {
-            out.writeUTF(blueWeapon1name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    @FXML
-    public void chooseBlueWeapon2() {
-
-        try {
-            out.writeUTF(blueWeapon2name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void chooseBlueWeapon3() {
-
-        try {
-            out.writeUTF(blueWeapon3name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void chooseWeapon1() {
-
-        try {
-            out.writeUTF(weapon1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void chooseWeapon2() {
-
-        try {
-            out.writeUTF(weapon2);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void chooseWeapon3() {
-
-        try {
-            out.writeUTF(weapon3);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    ///
-
-    @FXML
-    public void chooseYellowWeapon1() {
+    public void chooseWhiteLootCell2 () {
 
         try {
 
-            out.writeUTF(yellowWeapon1name);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void chooseYellowWeapon2() {
-
-        try {
-
-            out.writeUTF(yellowWeapon2name);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void chooseYellowWeapon3() {
-
-        try {
-
-            out.writeUTF(yellowWeapon3name);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    //
-
-    @FXML
-    public void chooseRedWeapon1() {
-
-        try {
-
-            out.writeUTF(redWeapon1name);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void chooseRedWeapon2() {
-
-        try {
-
-            out.writeUTF(redWeapon2name);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void chooseRedWeapon3() {
-
-        try {
-
-            out.writeUTF(redWeapon3name);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    //
-
-    @FXML
-    public void choosePU1() {
-
-        try {
-
-            out.writeUTF(pu1);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void choosePU2() {
-
-        try {
-
-            out.writeUTF(pu2);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @FXML
-    public void choosePU3() {
-
-        try {
-
-            out.writeUTF(pu3);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    //
-
-    @FXML
-    public void chooseBlueSpawnCell() {
-
-        try {
-
-            out.writeUTF(blueSpawnCellIndex);
+            out.writeUTF(whiteLootCell2Index);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3130,57 +3404,27 @@ public class Map2UIController implements Initializable {
 
     }
 
-    @FXML
-    public void chooseBlueLootCell1() {
+        @FXML
+        public void chooseGreenLootCell () {
 
-        try {
+            try {
 
-            out.writeUTF(blueLootCell1Index);
+                out.writeUTF(greenLootCellIndex);
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            restoreCells();
+
         }
 
-        restoreCells();
-
-    }
-
     @FXML
-    public void chooseBlueLootCell2() {
+    public void choosePurpleLootCell () {
 
         try {
 
-            out.writeUTF(blueLootCell2Index);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        restoreCells();
-
-    }
-
-    @FXML
-    public void chooseRedSpawnCell() {
-
-        try {
-
-            out.writeUTF(redSpawnCellIndex);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        restoreCells();
-
-    }
-
-    @FXML
-    public void chooseRedLootCell() {
-
-        try {
-
-            out.writeUTF(redLootCellIndex);
+            out.writeUTF(purpleLootCellIndex);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3192,129 +3436,40 @@ public class Map2UIController implements Initializable {
 
 
     @FXML
-    public void chooseYellowSpawnCell() {
+        public void chooseRedAmmo () {
 
-        try {
-
-            out.writeUTF(yellowSpawnCellIndex);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                out.writeUTF("rosso");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        restoreCells();
+        @FXML
+        public void chooseBlueAmmo () {
 
-    }
-
-    @FXML
-    public void chooseYellowLootCell1() {
-
-        try {
-
-            out.writeUTF(yellowLootCell1Index);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                out.writeUTF("blu");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        restoreCells();
+        @FXML
+        public void chooseYellowAmmo () {
 
-    }
-
-
-    @FXML
-    public void chooseYellowLootCell2() {
-
-        try {
-
-            out.writeUTF(yellowLootCell2Index);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            try {
+                out.writeUTF("giallo");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
-        restoreCells();
+        @Override
+        public void initialize (URL location, ResourceBundle resources){
 
-    }
-
-    @FXML
-    public void chooseYellowLootCell3() {
-
-        try {
-
-            out.writeUTF(yellowLootCell3Index);
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
-        restoreCells();
-
     }
 
-    @FXML
-    public void chooseWhiteLootCell() {
 
-        try {
-
-            out.writeUTF(whiteLootCellIndex);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        restoreCells();
-
-    }
-
-    @FXML
-    public void chooseGreenLootCell() {
-
-        try {
-
-            out.writeUTF(greenLootCellIndex);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        restoreCells();
-
-    }
-
-    @FXML
-    public void chooseRedAmmo() {
-
-        try {
-            out.writeUTF("rosso");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void chooseBlueAmmo() {
-
-        try {
-            out.writeUTF("blu");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    public void chooseYellowAmmo() {
-
-        try {
-            out.writeUTF("giallo");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
-    }
-
-}
