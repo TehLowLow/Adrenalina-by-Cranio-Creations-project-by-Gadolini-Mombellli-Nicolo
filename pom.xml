@@ -28,6 +28,14 @@
         <!--sonar.login>admin</sonar.login>
         <sonar.password>admin</sonar.password-->
 
+	<sonar.exclusions>
+
+		src/main/java/it/polimi/se2019/View/GUI/**/*,
+		src/main/java/it/polimi/se2019/View/Network/**/*
+
+	</sonar.exclusions>
+	
+	
     </properties>
 
     <dependencies>
@@ -67,6 +75,12 @@
                 <configuration>
                     <destFile>${sonar.jacoco.reportPath}</destFile>
                     <append>true</append>
+
+                    <excludes>
+                        <exclude>src/main/java/it/polimi/se2019/View/GUI/**/*</exclude>
+                        <exclude>src/main/java/it/polimi/se2019/Network/**/*</exclude>
+                    </excludes>
+
                 </configuration>
                 <executions>
                     <execution>
