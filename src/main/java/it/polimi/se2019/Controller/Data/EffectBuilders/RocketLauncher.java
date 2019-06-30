@@ -22,7 +22,13 @@ public class RocketLauncher extends Effect {
 
         boolean hasBlue = false;
 
-        if (user.getPlayerboard().getAmmoCubes().getBlue() > 0) {
+        Rybamount cost = new Rybamount();
+        cost.setBlueCubes(1);
+        cost.setRedCubes(0);
+        cost.setYellowCubes(0);
+
+
+        if (Check.affordable(user,cost)) {
 
             hasBlue = true;
 

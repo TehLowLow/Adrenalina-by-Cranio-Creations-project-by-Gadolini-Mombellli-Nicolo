@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+         <image>
+            <Image url="@../../../target/classes/assets/cover/background.jpg" />
+         </image>
+      </ImageView>
+      <Text fill="#f2f0f0" layoutX="40.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLASSIFICA FINALE" wrappingWidth="488.13671875">
+         <font>
+            <Font name="Space Ranger" size="48.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="9.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../target/classes/assets/Points/1PT.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="58.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../../../target/classes/assets/Placeable/1stPlayer.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="283.0" layoutY="58.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../../../target/classes/assets/Placeable/1stPlayer.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="433.0" layoutY="58.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../../../target/classes/assets/Placeable/1stPlayer.png" />
+         </image>
+      </ImageView>
+      <Text fill="#d3c900" layoutX="107.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pipo            Pti: 50            MBTrack: 8" wrappingWidth="425.640625">
+         <font>
+            <Font name="Space Ranger" size="24.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="198.0" fitWidth="121.0" layoutX="83.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../target/classes/assets/Weapons/AD_weapons_IT_02.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="198.0" fitWidth="121.0" layoutX="200.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../target/classes/assets/Weapons/AD_weapons_IT_02.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="198.0" fitWidth="121.0" layoutX="317.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../target/classes/assets/Weapons/AD_weapons_IT_02.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="198.0" fitWidth="121.0" layoutX="434.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../target/classes/assets/Weapons/AD_weapons_IT_02.png" />
+         </image>
+      </ImageView>
+      <Text fill="#ddffd6" layoutX="107.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meroni        Pti: 36            MBTrack: 6" wrappingWidth="425.640625">
+         <font>
+            <Font name="Space Ranger" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#ddffd6" layoutX="107.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meroni        Pti: 36            MBTrack: 6" wrappingWidth="425.640625">
+         <font>
+            <Font name="Space Ranger" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#ddffd6" layoutX="107.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meroni        Pti: 36            MBTrack: 6" wrappingWidth="425.640625">
+         <font>
+            <Font name="Space Ranger" size="24.0" />
+         </font>
+      </Text>
+      <Text fill="#ddffd6" layoutX="104.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meroni        Pti: 36            MBTrack: 6" wrappingWidth="425.640625">
+         <font>
+            <Font name="Space Ranger" size="24.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
