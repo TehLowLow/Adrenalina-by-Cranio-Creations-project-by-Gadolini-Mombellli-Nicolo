@@ -1060,7 +1060,15 @@ public class Action {
 
             if (powerup.getName().contains("Raggio Cinetico")) {
 
-                available.add(powerup);
+
+                for (Player other : connectedPlayers) {
+
+                    if (!other.getPosition().equals(Board.getLimbo()) && !other.equals(player)) {
+                        available.add(powerup);
+                        break;
+                    }
+                }
+
 
             }
 

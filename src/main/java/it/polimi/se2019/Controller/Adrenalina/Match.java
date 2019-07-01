@@ -142,6 +142,7 @@ public class Match extends Thread {
             Board.getTerminator().getPlayerboard().getPlayerboardValue().add(1);
             Board.getTerminator().getPlayerboard().getPlayerboardValue().add(1);
             Board.getTerminator().setNickname("Terminator");
+            Board.getTerminator().setPosition(Board.getLimbo());
             connectedPlayers.add(Board.getTerminator());
 
         }
@@ -292,8 +293,12 @@ public class Match extends Thread {
                 t.frenzy(player, afterFirstPlayer, false);
             } else {
 
-                updateAll("Turno della Frenesia Finale per " + player.getNickname());
-                t.frenzy(player, afterFirstPlayer, true);
+                if (!player.getNickname().equalsIgnoreCase("Terminator")){
+
+                    updateAll("Turno della Frenesia Finale per " + player.getNickname());
+                    t.frenzy(player, afterFirstPlayer, true);
+
+                }
 
             }
 

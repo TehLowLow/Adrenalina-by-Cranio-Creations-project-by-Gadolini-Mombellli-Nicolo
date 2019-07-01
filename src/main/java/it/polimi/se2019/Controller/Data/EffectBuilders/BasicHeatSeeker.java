@@ -73,9 +73,20 @@ public class BasicHeatSeeker extends Effect {
     public boolean hasTargets(Player user) {
 
         CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
+        CopyOnWriteArrayList<Player> invisiblePlayers = new CopyOnWriteArrayList<>();
 
-        if (visiblePlayers.size() == Server.connectedPlayers.size() - 1) {
-            return false;
+        for (Player player:Server.connectedPlayers){
+
+            if (!player.equals(user) && !visiblePlayers.contains(user) && !user.getPosition().equals(Board.getLimbo())){
+
+                invisiblePlayers.add(player);
+
+            }
+
+        }
+
+        if (invisiblePlayers.isEmpty()) {
+                return false;
         }
 
         return true;

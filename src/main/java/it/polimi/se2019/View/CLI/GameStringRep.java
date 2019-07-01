@@ -1,9 +1,7 @@
 package it.polimi.se2019.View.CLI;
 
-import com.sun.java.accessibility.util.GUIInitializedListener;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
-import it.polimi.se2019.View.GUI.GUI;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -402,7 +400,7 @@ codificata e inviata.
 
         for(Player other : Server.connectedPlayers){
 
-            if(!other.equals(player)){
+            if(!other.equals(player) && !other.getNickname().equalsIgnoreCase("Terminator")){
 
                 GUIData = GUIData + other.getPlayerboard().getChampionName() + '@';
                 GUIData = GUIData + other.getNickname() + '@';

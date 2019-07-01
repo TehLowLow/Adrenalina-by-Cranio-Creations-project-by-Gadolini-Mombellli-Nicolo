@@ -214,7 +214,7 @@ public class GUI extends Application implements Runnable {
 
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(GUI.class.getResource("/discardPowerUpSpawn.fxml"));
+            loader.setLocation(GUI.class.getResource("/Respawn.fxml"));
             AnchorPane showSpawn = (AnchorPane) loader.load();
 
             ShowSpawnController showSpawnController = loader.getController();
@@ -682,6 +682,31 @@ public class GUI extends Application implements Runnable {
 
     }
 
+    public void showWinner(String message) {
+
+
+        try{
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(GUI.class.getResource("/leaderboard.fxml"));
+        AnchorPane winner = loader.load();
+
+        LeaderboardController control = loader.getController();
+
+        control.parseMessage(message);
+
+        Scene scene = new Scene(winner);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+
+}
+
     public void update(String message) {
 
         if (message.contains("combattere")) {
@@ -730,7 +755,15 @@ public class GUI extends Application implements Runnable {
 
             showChooseDirection(true);
 
-        } else if (isMapActive) {
+        }
+
+        else if (message.contains("vincitori sono") || message.contains("vincitore è")){
+
+            showWinner(message);
+
+        }
+
+        else if (isMapActive) {
 
             showMainStage(message);
 
