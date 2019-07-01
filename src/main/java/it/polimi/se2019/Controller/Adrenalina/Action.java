@@ -277,7 +277,7 @@ public class Action {
             String response = "";
             boolean correct = false;
 
-            while(!correct) {
+            while (!correct) {
 
                 reachable = Check.moveManager(connectedPlayers.get(connectedPlayers.size() - 1), 1);
                 response = updateWithAnswer(player, Message.scegliCella(reachable));
@@ -292,7 +292,7 @@ public class Action {
 
                 if (cell >= 0 && cell < reachable.size()) {
 
-                    connectedPlayers.get(connectedPlayers.size()-1).setPosition(reachable.get(cell));
+                    connectedPlayers.get(connectedPlayers.size() - 1).setPosition(reachable.get(cell));
                     update(player, Message.movedTo());
                     correct = true;
                     updateAll("Il Terminator si è spostato di una cella!");
@@ -427,8 +427,6 @@ public class Action {
                         cell = InputCheck.numberCheck(response);
 
 
-
-
                     } catch (NumberFormatException e) {
                         update(player, Message.inputError());
                         response = updateWithAnswer(player, Message.scegliCella(reachable));
@@ -448,12 +446,9 @@ public class Action {
 
                     }
                 }
-            }
-
-            else{
+            } else {
                 update(player, Message.inputError());
                 s = updateWithAnswer(player, Message.stepNumber());
-
 
 
             }
@@ -556,7 +551,7 @@ public class Action {
             se non lo può usare uso il base
              */
 
-        if (chosenWeapon.getAlternativeEffect()==null || !Check.affordable(player, chosenWeapon.getAlternativeEffectCost())) {
+        if (chosenWeapon.getAlternativeEffect() == null || !Check.affordable(player, chosenWeapon.getAlternativeEffectCost())) {
 
             chosenWeapon.getBaseEffect().applyEffect(player, chosenWeapon.getBaseEffect().getTargets(player));
 
@@ -580,7 +575,7 @@ public class Action {
 
             }
 
-            while (!done){
+            while (!done) {
 
                 if (effettoScelto.equalsIgnoreCase("base") && chosenWeapon.getBaseEffect().hasTargets(player)) {
 
@@ -714,9 +709,9 @@ public class Action {
 
             Server.update(player, "Hai acquistato l'arma " + newWeapon.getName() + "!");
 
-            if (Check.isSpawn(player.getPosition())){
+            if (Check.isSpawn(player.getPosition())) {
 
-                updateAll(player.getNickname() + " ha acquistato l'arma " + newWeapon.getName()+ "!");
+                updateAll(player.getNickname() + " ha acquistato l'arma " + newWeapon.getName() + "!");
 
             }
 
@@ -762,10 +757,7 @@ public class Action {
         Server.update(player, "Hai raccolto il loot!");
 
 
-
-
-
-        if (!Check.isSpawn(player.getPosition())){
+        if (!Check.isSpawn(player.getPosition())) {
 
             updateAll(player.getNickname() + " ha raccolto un loot!");
 
@@ -864,8 +856,6 @@ public class Action {
                         cell = InputCheck.numberCheck(response);
 
 
-
-
                     } catch (NumberFormatException e) {
                         update(player, Message.inputError());
                         response = updateWithAnswer(player, Message.scegliCella(reachable));
@@ -887,12 +877,9 @@ public class Action {
 
                     }
                 }
-            }
-
-            else{
+            } else {
                 update(player, Message.inputError());
                 s = updateWithAnswer(player, Message.stepNumber());
-
 
 
             }
@@ -1047,7 +1034,15 @@ public class Action {
 
             if (powerup.getName().contains("Raggio Cinetico")) {
 
-                available.add(powerup);
+
+                for (Player other : connectedPlayers) {
+
+                    if (!other.getPosition().equals(Board.getLimbo()) && !other.equals(player)) {
+                        available.add(powerup);
+                        break;
+                    }
+                }
+
 
             }
 
@@ -1724,7 +1719,7 @@ public class Action {
 
         Player target = ChoosePlayer.one(player, visible);
 
-        Damage.giveDamage(1, connectedPlayers.get(connectedPlayers.size()-1), target);
+        Damage.giveDamage(1, connectedPlayers.get(connectedPlayers.size() - 1), target);
 
         if (Board.getTerminator().getPlayerboard().getDamage().size() >= 6) {
 
