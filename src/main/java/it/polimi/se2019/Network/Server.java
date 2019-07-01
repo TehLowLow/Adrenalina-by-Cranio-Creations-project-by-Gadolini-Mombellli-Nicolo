@@ -3,6 +3,8 @@ package it.polimi.se2019.Network;
 
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Network.RMI.Client.RMIClient;
+import it.polimi.se2019.Network.RMI.Client.RMIClientInterface;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.RMI.Server.RMIServer;
 import it.polimi.se2019.Network.Socket.Server.Manager;
@@ -16,6 +18,9 @@ import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -32,10 +37,10 @@ public class Server {
 
 
     private static volatile int clientPort = 50000;
-    public static final int LOGINSOCKETPORT = 30000;
+    public static final int LOGINSOCKETPORT = 55000;
     public static final int LOGINRMIPORT = 56000;
     public static final int RMIPORT = 59000;
-    public static final int SOCKETPORT = 31000;
+    public static final int SOCKETPORT = 60000;
     public static int lobbyTimer;
     public static volatile boolean matchStarted = false;
     public static volatile boolean matchFinished = false;
@@ -45,6 +50,9 @@ public class Server {
     public static Hashtable registrations = new Hashtable();  //associazione user psw
     public static Hashtable playerClient = new Hashtable();  //associazione fra giocatore e suo client
     public static CopyOnWriteArrayList<Player> connectedPlayers = new CopyOnWriteArrayList<>();  //Arraylist di player connessi.
+
+
+    private static RMIClientInterface rmiplayer;
 
     /**
      * Creates and starts a socket for incoming connections over a predetermined PORT.
@@ -207,6 +215,17 @@ public class Server {
                 e.printStackTrace();
             }
 
+        } else if (player.getConnectionTech().equalsIgnoreCase("rmi")) {
+
+            try {
+
+                Registry registry = LocateRegistry.getRegistry((String) playerClient.get(player.getNickname()), player.getPORT());
+                RMIClientInterface rmiplayer = (RMIClientInterface) registry.lookup(player.getNickname());  //TODO fixato questo il progetto è finito
+                return rmiplayer.sendMsgWithAnswer(msg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
         return null;
     }
@@ -280,7 +299,20 @@ public class Server {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        } else if (player.getConnectionTech().equalsIgnoreCase("RMI")) {
+
+            try {
+
+                Registry registry = LocateRegistry.getRegistry((String) playerClient.get(player.getNickname()), player.getPORT());
+                RMIClientInterface rmiplayer = (RMIClientInterface) registry.lookup(player.getNickname());  //TODO fixato questo il progetto è finito
+                rmiplayer.sendMsg(msg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
+
+
     }
 
 

@@ -43,11 +43,11 @@ public class Match extends Thread {
      */
     private Board board;
 
+    /**
+     * Boolean value that stores the status of a match, in progress (false) or finished(true)
+     */
+
     private boolean finish = false;
-
-    private static Interaction interaction = new Interaction();
-
-
 
     /*
      * ---------- METHODS ----------
@@ -95,7 +95,7 @@ public class Match extends Thread {
         /*
         inizializzo i player
          */
-        for (Player player:connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             player.setPosition(Board.getLimbo());
 
@@ -147,12 +147,7 @@ public class Match extends Thread {
         }
 
 
-
-
-
         chooseChampion(terminator);
-
-
 
 
         Player lastPlayer = new Player();
@@ -170,12 +165,9 @@ public class Match extends Thread {
                 Interaction.placeLoot();
                 Interaction.placeWeapons();
 
-            }
+            } else {
 
-
-            else{
-
-                if (!player.getNickname().equalsIgnoreCase("Terminator")){
+                if (!player.getNickname().equalsIgnoreCase("Terminator")) {
 
                     updateAll("Primo turno per " + player.getNickname());
                     t.firstTerminator(player);
@@ -205,11 +197,9 @@ public class Match extends Thread {
                     Interaction.placeLoot();
                     Interaction.placeWeapons();
                     lastPlayer = player;
-                }
+                } else {
 
-                else{
-
-                    if(!player.getNickname().equalsIgnoreCase("Terminator")){
+                    if (!player.getNickname().equalsIgnoreCase("Terminator")) {
 
 
                         finish = checkFrenzy();
@@ -234,10 +224,10 @@ public class Match extends Thread {
 
         //Devo riordinare l'array connectedPlayers in modo tale da avere l'ordine di esecuzione giusto.
 
-        if(terminator){
+        if (terminator) {
             //se sono in modalità terminator lo tolgo prima di riordinare l'array
-            Board.setTerminator(connectedPlayers.get(connectedPlayers.size()-1));
-            connectedPlayers.remove(connectedPlayers.size()-1);
+            Board.setTerminator(connectedPlayers.get(connectedPlayers.size() - 1));
+            connectedPlayers.remove(connectedPlayers.size() - 1);
 
         }
 
@@ -272,7 +262,7 @@ public class Match extends Thread {
 
 
         //se sono in modalità terminator lo riaggiungo alla fine
-        if(terminator){
+        if (terminator) {
 
             connectedPlayers.add(Board.getTerminator());
 
@@ -294,15 +284,13 @@ public class Match extends Thread {
             if (player.isFirstPlayer()) {
                 afterFirstPlayer = true;
             }
-            
 
-            if(!terminator) {
+
+            if (!terminator) {
 
                 updateAll("Turno della Frenesia Finale per " + player.getNickname());
                 t.frenzy(player, afterFirstPlayer, false);
-            }
-
-            else{
+            } else {
 
                 updateAll("Turno della Frenesia Finale per " + player.getNickname());
                 t.frenzy(player, afterFirstPlayer, true);
@@ -313,7 +301,6 @@ public class Match extends Thread {
 
         Check.winner();
 
-        //TODO inserire chiusura di tutto qua dentro
 
     }
 
@@ -336,6 +323,11 @@ public class Match extends Thread {
         this.board = board;
 
     }
+
+    /**
+     * Asks all the players to vote for playing into one of the maps.
+     */
+
 
     public void chooseMap() {
 
@@ -491,6 +483,12 @@ public class Match extends Thread {
     }
 
 
+    /**
+     * Asks all the players which champion they want to use.
+     *
+     * @param isTerminator is true if a player is deciding which champion the terminator will use.
+     */
+
     public static void chooseChampion(boolean isTerminator) {
 
         /*
@@ -506,7 +504,7 @@ public class Match extends Thread {
         champions.add("Sprog");
 
         for (Player player : connectedPlayers) {
-            if(player.getNickname().equalsIgnoreCase("Terminator")){
+            if (player.getNickname().equalsIgnoreCase("Terminator")) {
                 continue;
             }
 
@@ -539,16 +537,16 @@ public class Match extends Thread {
         }
 
 
-        if (isTerminator){
+        if (isTerminator) {
 
-            Player terminator = connectedPlayers.get(connectedPlayers.size()-1);
+            Player terminator = connectedPlayers.get(connectedPlayers.size() - 1);
             Player firstPlayer = connectedPlayers.get(0);
 
             String campioneTerminator = updateWithAnswer(firstPlayer, "Scegli un campione da assegnare al Terminator\n" + Message.choseChampion(champions));
             boolean scelto = false;
 
-            for (String champion:champions){
-                if (champion.equalsIgnoreCase(campioneTerminator)){
+            for (String champion : champions) {
+                if (champion.equalsIgnoreCase(campioneTerminator)) {
                     terminator.getPlayerboard().setChampionName(champion);
                     scelto = true;
                     champions.remove(champion);
@@ -557,14 +555,14 @@ public class Match extends Thread {
             }
 
 
-            while (!scelto){
+            while (!scelto) {
 
                 update(firstPlayer, Message.inputError());
                 campioneTerminator = updateWithAnswer(firstPlayer, "Scegli un campione da assegnare al Terminator\n" + Message.choseChampion(champions));
 
 
-                for (String champion:champions){
-                    if (champion.equalsIgnoreCase(campioneTerminator)){
+                for (String champion : champions) {
+                    if (champion.equalsIgnoreCase(campioneTerminator)) {
                         terminator.getPlayerboard().setChampionName(champion);
                         champions.remove(champion);
                         scelto = true;
@@ -580,12 +578,16 @@ public class Match extends Thread {
 
     }
 
+    /**
+     * Choose a random first player.
+     */
+
 
     public static void chooseFirstPlayer() {
 
         Collections.shuffle(connectedPlayers);
         connectedPlayers.get(0).setFirstPlayer(true);
-        for (Player player:connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             update(player, "Il primo giocatore è " + connectedPlayers.get(0).getNickname());
 
@@ -593,9 +595,15 @@ public class Match extends Thread {
 
     }
 
-    public static boolean chooseMode(){
+    /**
+     * Asks the players which game mode they want to play.
+     *
+     * @return
+     */
 
-        if (connectedPlayers.size() == 5){
+    public static boolean chooseMode() {
+
+        if (connectedPlayers.size() == 5) {
 
             return false;
 
@@ -605,11 +613,11 @@ public class Match extends Thread {
         preferenze.add(0);
         preferenze.add(0);
 
-        for (Player player:connectedPlayers){
+        for (Player player : connectedPlayers) {
 
             String choice = updateWithAnswer(player, "Vuoi usare la modalità classica o il terminator? (Rispondi classica/terminator)");
 
-            while (!InputCheck.chooseTerminator(choice)){
+            while (!InputCheck.chooseTerminator(choice)) {
 
                 update(player, Message.inputError());
                 choice = updateWithAnswer(player, "Vuoi usare la modalità classica o il terminator? (Rispondi classica/terminator)");
@@ -617,25 +625,21 @@ public class Match extends Thread {
 
             }
 
-            if (choice.equalsIgnoreCase("classica")){
+            if (choice.equalsIgnoreCase("classica")) {
 
                 preferenze.set(0, preferenze.get(0) + 1);
 
             }
 
-            if (choice.equalsIgnoreCase("terminator")){
+            if (choice.equalsIgnoreCase("terminator")) {
 
                 preferenze.set(1, preferenze.get(1) + 1);
 
             }
 
-
-
-
-
         }
 
-        if (preferenze.get(1) >= preferenze.get(0)){
+        if (preferenze.get(1) >= preferenze.get(0)) {
 
             return true;
 

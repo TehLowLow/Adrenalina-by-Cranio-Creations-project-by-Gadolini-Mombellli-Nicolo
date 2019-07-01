@@ -9,6 +9,8 @@ import it.polimi.se2019.View.Parser;
 import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
 import static it.polimi.se2019.Network.Server.RMIPORT;
 
+import java.net.InetAddress;
+import java.rmi.Naming;
 import java.rmi.NoSuchObjectException;
 import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
@@ -39,7 +41,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
         System.out.println("hai avviato una connessione RMI");
 
-        Logger = connect(LOGINRMIPORT);
+        connect(LOGINRMIPORT);
 
         while (!logged) {
 
@@ -95,7 +97,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     }
 
 
-    private synchronized RMILoggerInterface connect(int port) {
+    private synchronized void connect(int port) {
 
         while (!connected) {
 
@@ -103,12 +105,12 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
                 try {
 
-                    Registry registry = LocateRegistry.getRegistry("Lollo", port);
+                    Registry registry = LocateRegistry.getRegistry(host, port);
                     rServer = (RMILoggerInterface) registry.lookup("LoginRMI");
 
                     if (rServer != null) {
-                        return rServer;
-                        //connected = true;
+                        Logger = rServer;
+                        connected = true;
                     }
 
                 } catch (Exception e) {
@@ -121,11 +123,12 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
                 try {
 
-                    Registry registry = LocateRegistry.getRegistry("Lollo", port);
+                    Registry registry = LocateRegistry.getRegistry(host, port);
                     gServer = (RMIServerInterface) registry.lookup("GameRMI");
 
                     if (gServer != null) {
                         Game = gServer;
+                        Game.addPlayerHN(user, InetAddress.getLocalHost().getHostName());
                         Game.sendMsg("bella");
                         connected = true;
                     }
@@ -134,8 +137,6 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
                 }
             }
         }
-
-        return null;
 
     }
 
@@ -146,7 +147,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
             RMIClientInterface stub = (RMIClientInterface) UnicastRemoteObject.exportObject(this, localPort);
             Registry registry = LocateRegistry.createRegistry(localPort);
-            registry.rebind(User, stub);
+            registry.rebind(User, stub);   //assegno il nome del player al registry locale
 
         } catch (Exception e) {
 
@@ -155,14 +156,19 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
         }
     }
 
+    @Override
     public String sendMsgWithAnswer(String msg) {
 
         System.out.println(msg);
 
-        Parser parser = new Parser();
-        return Parser.parse();
+        Scanner scanner = new Scanner(System.in);
+
+        return scanner.nextLine();
+
+
     }
 
+    @Override
     public void sendMsg(String msg) {
 
         System.out.println(msg);

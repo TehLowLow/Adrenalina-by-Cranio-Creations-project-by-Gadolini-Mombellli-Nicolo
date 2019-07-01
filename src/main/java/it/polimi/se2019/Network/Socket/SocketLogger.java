@@ -19,7 +19,7 @@ public class SocketLogger implements Logger, Runnable {
     private ServerSocket mySocket;
     private DataInputStream in;
     private DataOutputStream out;
-       private Player temp;
+    private Player temp;
 
 
     /**
@@ -131,7 +131,7 @@ public class SocketLogger implements Logger, Runnable {
         //Se il player compare fra i giocatori che si son gia registrati una volta devo verificare che sia disconnesso (evito double connection)
         for (Player player : connectedPlayers) {
 
-            if (player.getNickname().equals(userName)) {
+            if (player.getNickname().equals(userName) && player.isConnected()) {
 
                 try {
                     out.writeUTF("Un player è gia connesso con queste credenziali");
@@ -217,9 +217,3 @@ avviato, ancora prima di aprire le connessioni ai logger).
 
 
 }
-
-
-//TODO 1, 2: vedi todo di RMILogger
-
-
-//TODO: testare disconnessioni prima e dopo start del match

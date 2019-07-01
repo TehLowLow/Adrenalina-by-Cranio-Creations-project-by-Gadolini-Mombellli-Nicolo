@@ -865,6 +865,11 @@ public class Check {
         controllo dei punti, risoluzione parità e calcolo del vincitore
          */
 
+
+        /**
+         * This class is a temporary data structure that helps during the resolution of the game.
+         */
+
         class PotentialWinner {
 
             Player player;
@@ -1163,6 +1168,14 @@ public class Check {
 
     }
 
+
+    /**
+     * Creates a list of all the visible cells of the adjacent rooms of a player.
+     *
+     * @param visibleSquares are the squares that a player can see.
+     * @param room           is the room where the player is.
+     */
+
     private static void addVisibleCells(CopyOnWriteArrayList<Cell> visibleSquares, int room) {
 
         if (room == Colour.RED) {
@@ -1257,6 +1270,7 @@ public class Check {
 
     /**
      * This method checks if the player can shot in the frenzy mode.
+     *
      * @param player is who has to shot.
      * @return true if player has targets and his weapon is charged or chargeable.
      */
@@ -1329,8 +1343,9 @@ public class Check {
 
     /**
      * This method manages the move action.
+     *
      * @param player is who has to move.
-     * @param steps are the steps he decides to do.
+     * @param steps  are the steps he decides to do.
      * @return the list of cells reachable with exactly n steps.
      */
 
@@ -1356,6 +1371,13 @@ public class Check {
 
     }
 
+
+    /**
+     * Creates a list of possible paths starting from a Cell.
+     *
+     * @param start is the starting point of the path.
+     * @return a path connecting two cells.
+     */
 
     private static CopyOnWriteArrayList<Cell> pathFinder(Cell start) {
 
@@ -1389,6 +1411,13 @@ public class Check {
     }
 
 
+    /**
+     * Creates the initial leaderborad that will be filled with the points later.
+     *
+     * @param damages Is the arraylist of tokens containing the informations about who made damages and kills.
+     * @return an arraylist of players with their relative scores.
+     */
+
     private static CopyOnWriteArrayList<PlayerWithScore> initLeaderboard(CopyOnWriteArrayList<Token> damages) {
 
 
@@ -1419,6 +1448,13 @@ public class Check {
         return playersWithScore;
 
     }
+
+    /**
+     * Looks for the player who made the first damage to another player.
+     *
+     * @param damages is the damages array of the dead player.
+     * @return the player who made the first damage.
+     */
 
     private static CopyOnWriteArrayList<Player> whoShotFirst(CopyOnWriteArrayList<Token> damages) {
 

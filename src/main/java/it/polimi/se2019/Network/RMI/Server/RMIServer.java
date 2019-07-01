@@ -1,5 +1,6 @@
 package it.polimi.se2019.Network.RMI.Server;
 
+import it.polimi.se2019.Network.RMI.Client.RMIClientInterface;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.Server;
 
@@ -8,7 +9,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-
 
 
 public class RMIServer extends Server implements RMIServerInterface, Runnable {
@@ -34,14 +34,14 @@ public class RMIServer extends Server implements RMIServerInterface, Runnable {
         }
     }
 
-
-    public void sendMsg(String msg){
+    @Override
+    public void sendMsg(String msg) {
 
         System.out.println(msg);
 
     }
 
-
+    @Override
     public synchronized boolean logIn(String u, String p) {
 
         RMILogger logger = new RMILogger();
@@ -50,4 +50,25 @@ public class RMIServer extends Server implements RMIServerInterface, Runnable {
     }
 
 
+    @Override
+    public synchronized void addPlayerHN(String userName, String hostname) {
+
+        playerClient.put(userName, hostname);
+
+        System.out.println("test");
+
+    }
+
+
+    //Devo chiamarla per mettere in playerclient ogni nome e host dei vari player, cosi da poter avere tutto per cercare i registry
+    //Una volta presi, chiama il registry e chiama i metodi remoti.
+    //Una volta fatto cio gli update funzionano e possiamo giocare tutto con cli
+
+
+
+
+
+    //NB: avviare sempre tutti i registry, come dice luca creare un batch che fa partire le porte necessarie.
+    //Inoltre pensare a come fare per la presentazione, perche se apro le porte socket e poi ci apro sopra rmi potrebbe dare
+    //errore.
 }

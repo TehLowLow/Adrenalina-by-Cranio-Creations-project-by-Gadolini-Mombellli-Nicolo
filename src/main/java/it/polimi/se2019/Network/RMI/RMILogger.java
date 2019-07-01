@@ -16,9 +16,9 @@ import static it.polimi.se2019.Network.Server.*;
 public class  RMILogger implements Logger, Runnable, RMILoggerInterface {
 
 
-    private String userName;
+    private static String userName;
 
-    private String passWord;
+    private static String passWord;
 
     Player temp;
 
@@ -27,18 +27,18 @@ public class  RMILogger implements Logger, Runnable, RMILoggerInterface {
     public void run() {
         //In questo thread devo avviare un registry, accettare una connessione alla volta, e verificare il login.
 
-        initServer(this);
+        initServer();
 
 
     }
 
 
-    private static synchronized void initServer(RMILogger loginRMI) {
+    private synchronized void initServer() {
 
         try { //avvio il server registry
 
             String nome = "LoginRMI";
-            RMILoggerInterface stub = (RMILoggerInterface) UnicastRemoteObject.exportObject(loginRMI, LOGINRMIPORT);
+            RMILoggerInterface stub = (RMILoggerInterface) UnicastRemoteObject.exportObject(this, LOGINRMIPORT);
             Registry registry = LocateRegistry.createRegistry(LOGINRMIPORT);
             registry.rebind(nome, stub);
             System.out.println("Server online listening on port " + LOGINRMIPORT);

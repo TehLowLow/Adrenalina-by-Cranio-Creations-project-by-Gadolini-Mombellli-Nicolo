@@ -77,6 +77,10 @@ public class InputCheck {
         return -1;
     }
 
+    /**
+     * @return true if a player sent an input that is an integer between 1 and 4 included.
+     */
+
     public static boolean checkMapInput(String input) {
         if (input.equals("1") || input.equals("2") || input.equals("3") || input.equals("4")) {
             return true;
@@ -85,6 +89,9 @@ public class InputCheck {
         }
     }
 
+    /**
+     * @return true if the player sent an input of the four allowed: "alto" "basso" "sinistra" "destra".
+     */
     public static boolean directionCheck(String input) {
 
         if (input.equalsIgnoreCase("alto") || input.equalsIgnoreCase("basso") || input.equalsIgnoreCase("sinistra") || input.equalsIgnoreCase("destra")) {
@@ -92,6 +99,11 @@ public class InputCheck {
         }
         return false;
     }
+
+
+    /**
+     * @return true if a player entered the correct nickname of a player.
+     */
 
     public static boolean nicknameCheck(String input) {
 
@@ -109,6 +121,10 @@ public class InputCheck {
     /*
     Questo metodo controlla se l'utente ha digitato una stringa valida e ritorna l'intero corrispondente al colore.
     Se la stringa è invalida, ritorna -1.
+     */
+
+    /**
+     * @return the colour of the room that a player choose to shoot into.
      */
     public static int colourCheck(String input) {
 
@@ -141,6 +157,11 @@ public class InputCheck {
     /*
     Questo metodo controlla se l'utente ha digitato un numero valido.
      */
+
+    /**
+     * @return a valid result of an integer input.
+     * @throws NumberFormatException
+     */
     public static int numberCheck(String input) throws NumberFormatException {
 
         int result = Integer.parseInt(input);
@@ -152,6 +173,11 @@ public class InputCheck {
     serve nella scelta del numero di teschi da mettere nel tracciato colpo mortale
      */
 
+
+    /**
+     * @return true if the players entered a valid number between 5 and 8 included.
+     */
+
     public static boolean checkSkullsInput(String input) {
         if (input.equals("5") || input.equals("6") || input.equals("7") || input.equals("8")) {
             return true;
@@ -161,6 +187,9 @@ public class InputCheck {
     }
 
 
+    /**
+     * @return true if a player entered a correct "Yes", false if a player wrote a correct "No".
+     */
     public static boolean yesOrNo(String input) {
 
         if (input.equalsIgnoreCase("si")) {
@@ -172,6 +201,9 @@ public class InputCheck {
         }
     }
 
+    /**
+     * @return true if a player wrote a correct input, either yes or no.
+     */
     public static boolean correctYesNo(String input) {
 
         if (input.equalsIgnoreCase("si") || input.equalsIgnoreCase("no")) {
@@ -180,6 +212,11 @@ public class InputCheck {
         return false;
 
     }
+
+
+    /**
+     * @return true if the player wrote a correct answer between basic or extra mode
+     */
 
     public static boolean baseEffectGrenadeLauncher(String input) {
 
@@ -190,6 +227,11 @@ public class InputCheck {
         return false;
 
     }
+
+
+    /**
+     * @return true if a player entered a correct nickname of another player.
+     */
 
     public static boolean availablePlayer(String nickname, CopyOnWriteArrayList<Player> players) {
 
@@ -209,6 +251,9 @@ public class InputCheck {
     SCELTA BERSAGLI PER TURRET TRIPOD (MACHINE GUN)
      */
 
+    /**
+     * @return true if a player enterd the correct integer between 0 and 2 included.
+     */
     public static boolean chooseTurretTripodTarget(String input) {
 
         if (input.equalsIgnoreCase("0") || input.equalsIgnoreCase("1") || input.equalsIgnoreCase("2")) {
@@ -225,6 +270,10 @@ public class InputCheck {
     SCELTA CAMPIONE
      */
 
+
+    /**
+     * @return true if a player entered the correct champion name.
+     */
     public static boolean chooseChampion(String input, CopyOnWriteArrayList<String> champions) {
 
         for (String champion : champions) {
@@ -243,6 +292,10 @@ public class InputCheck {
 
     /*
     SCELTA ARMA
+     */
+
+    /**
+     * @return true if a player entered the correct name of a weapon.
      */
 
     public static boolean correctWeapon(String input, CopyOnWriteArrayList<Weapon> weapons) {
@@ -266,6 +319,10 @@ public class InputCheck {
     SCELTA EFFETTO BASE O ALTERNATIVO
      */
 
+    /**
+     * @return true if the player entered a valid answer between base and alternative.
+     */
+
     public static boolean correctBasicOrAlternative(String input) {
 
         if (input.equalsIgnoreCase("base") || input.equalsIgnoreCase("alternativo")) {
@@ -275,6 +332,10 @@ public class InputCheck {
 
         return false;
     }
+
+    /**
+     * @return true if a player entered a valid action name.
+     */
 
     public static boolean correctAction(String action) {
 
@@ -300,6 +361,10 @@ public class InputCheck {
     ENHANCED SHOT SCELTA MOVIMENTO
      */
 
+    /**
+     * @return true if a player  entered a valid move of a frenzy action.
+     */
+
     public static boolean correctMoveEnhancedShot(String input) {
 
         if (input.equalsIgnoreCase("stop") || input.equalsIgnoreCase("su") || input.equalsIgnoreCase("giu") || input.equalsIgnoreCase("destra") || input.equalsIgnoreCase("sinistra")) {
@@ -312,12 +377,15 @@ public class InputCheck {
 
     }
 
+    /**
+     * @return true if a player can reload a weapon during the frenzy action.
+     */
 
-    public static boolean correctWeaponRF(String input, CopyOnWriteArrayList<Weapon> usableWeapons){
+    public static boolean correctWeaponRF(String input, CopyOnWriteArrayList<Weapon> usableWeapons) {
 
-        for (Weapon weapon:usableWeapons){
+        for (Weapon weapon : usableWeapons) {
 
-            if (input.equalsIgnoreCase(weapon.getName())){
+            if (input.equalsIgnoreCase(weapon.getName())) {
 
                 return true;
 
@@ -328,9 +396,13 @@ public class InputCheck {
         return false;
     }
 
-    public static boolean chooseTerminator(String input){
+    /**
+     * @return true if the player entered a valid game mode.
+     */
 
-        if (input.equalsIgnoreCase("classica") || input.equalsIgnoreCase("terminator")){
+    public static boolean chooseTerminator(String input) {
+
+        if (input.equalsIgnoreCase("classica") || input.equalsIgnoreCase("terminator")) {
 
             return true;
 

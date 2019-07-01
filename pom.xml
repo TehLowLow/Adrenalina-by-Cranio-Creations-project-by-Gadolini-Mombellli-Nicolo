@@ -30,8 +30,8 @@
 
 	<sonar.exclusions>
 
-		src/main/java/it/polimi/se2019/View/GUI/**/*,
-		src/main/java/it/polimi/se2019/View/Network/**/*
+		src/main/java/it/polimi/se2019/View/**/*,
+		src/main/java/it/polimi/se2019/Network/**/*
 
 	</sonar.exclusions>
 	

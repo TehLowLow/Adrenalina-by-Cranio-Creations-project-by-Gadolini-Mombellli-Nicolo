@@ -24,8 +24,20 @@ import static it.polimi.se2019.Network.Server.*;
 
 public class Action {
 
+
+    /**
+     * The number of steps a player wants to make.
+     */
     private static int steps;
+
+    /**
+     * The index of a cell.
+     */
     private static int cell;
+
+    /**
+     * The array of reachable cells from a player's position.
+     */
     private static CopyOnWriteArrayList<Cell> reachable;
 
     /*
@@ -129,6 +141,13 @@ public class Action {
 
 
     }
+
+    /**
+     * Allows the player to perform one of the last frenzy actions for the final turn.
+     *
+     * @param player           is the player that has the turn.
+     * @param afterFirstPlayer is the list of players after the first player of the game.
+     */
 
     public static void performFrenzy(Player player, boolean afterFirstPlayer) {
 
@@ -277,7 +296,7 @@ public class Action {
             String response = "";
             boolean correct = false;
 
-            while(!correct) {
+            while (!correct) {
 
                 reachable = Check.moveManager(connectedPlayers.get(connectedPlayers.size() - 1), 1);
                 response = updateWithAnswer(player, Message.scegliCella(reachable));
@@ -292,7 +311,7 @@ public class Action {
 
                 if (cell >= 0 && cell < reachable.size()) {
 
-                    connectedPlayers.get(connectedPlayers.size()-1).setPosition(reachable.get(cell));
+                    connectedPlayers.get(connectedPlayers.size() - 1).setPosition(reachable.get(cell));
                     update(player, Message.movedTo());
                     correct = true;
                     updateAll("Il Terminator si è spostato di una cella!");
@@ -427,8 +446,6 @@ public class Action {
                         cell = InputCheck.numberCheck(response);
 
 
-
-
                     } catch (NumberFormatException e) {
                         update(player, Message.inputError());
                         response = updateWithAnswer(player, Message.scegliCella(reachable));
@@ -448,12 +465,9 @@ public class Action {
 
                     }
                 }
-            }
-
-            else{
+            } else {
                 update(player, Message.inputError());
                 s = updateWithAnswer(player, Message.stepNumber());
-
 
 
             }
@@ -556,7 +570,7 @@ public class Action {
             se non lo può usare uso il base
              */
 
-        if (chosenWeapon.getAlternativeEffect()==null || !Check.affordable(player, chosenWeapon.getAlternativeEffectCost())) {
+        if (chosenWeapon.getAlternativeEffect() == null || !Check.affordable(player, chosenWeapon.getAlternativeEffectCost())) {
 
             chosenWeapon.getBaseEffect().applyEffect(player, chosenWeapon.getBaseEffect().getTargets(player));
 
@@ -580,7 +594,7 @@ public class Action {
 
             }
 
-            while (!done){
+            while (!done) {
 
                 if (effettoScelto.equalsIgnoreCase("base") && chosenWeapon.getBaseEffect().hasTargets(player)) {
 
@@ -714,9 +728,9 @@ public class Action {
 
             Server.update(player, "Hai acquistato l'arma " + newWeapon.getName() + "!");
 
-            if (Check.isSpawn(player.getPosition())){
+            if (Check.isSpawn(player.getPosition())) {
 
-                updateAll(player.getNickname() + " ha acquistato l'arma " + newWeapon.getName()+ "!");
+                updateAll(player.getNickname() + " ha acquistato l'arma " + newWeapon.getName() + "!");
 
             }
 
@@ -762,10 +776,7 @@ public class Action {
         Server.update(player, "Hai raccolto il loot!");
 
 
-
-
-
-        if (!Check.isSpawn(player.getPosition())){
+        if (!Check.isSpawn(player.getPosition())) {
 
             updateAll(player.getNickname() + " ha raccolto un loot!");
 
@@ -864,8 +875,6 @@ public class Action {
                         cell = InputCheck.numberCheck(response);
 
 
-
-
                     } catch (NumberFormatException e) {
                         update(player, Message.inputError());
                         response = updateWithAnswer(player, Message.scegliCella(reachable));
@@ -887,12 +896,9 @@ public class Action {
 
                     }
                 }
-            }
-
-            else{
+            } else {
                 update(player, Message.inputError());
                 s = updateWithAnswer(player, Message.stepNumber());
-
 
 
             }
@@ -1031,6 +1037,13 @@ public class Action {
 
     }
 
+    /**
+     * Allows the player to use a powerup from his hand.
+     *
+     * @param player is the player asked to use a powerup.
+     * @return true if the player has successfully used the powerup.
+     */
+
     public static boolean usePowerUp(Player player) {
 
         CopyOnWriteArrayList<Powerup> available = new CopyOnWriteArrayList<>();
@@ -1120,6 +1133,14 @@ public class Action {
 
     }
 
+
+    /**
+     * Asks a player if he wants to move and reach an adjacent cell.
+     *
+     * @param input  contains the positive or negative answer after being asked if the player wants to move.
+     * @param player is the player that wants to move
+     */
+
     private static void toReachOneStep(String input, Player player) {
 
         if (InputCheck.yesOrNo(input)) {
@@ -1153,6 +1174,12 @@ public class Action {
     }
 
 
+    /**
+     * Asks a player if he wants to move to loot a power up
+     *
+     * @param player is the player playing the action.
+     */
+
     private static void askForMovementOneStep(Player player) {
         String answer;
         boolean answered = false;
@@ -1173,6 +1200,11 @@ public class Action {
         }
     }
 
+    /**
+     * Asks a player if he wants to move before shooting. This is asked only when enhanced shot is active.
+     *
+     * @param player is the player that is playing the turn.
+     */
 
     private static void selectShotMove(Player player) {
 
@@ -1370,6 +1402,14 @@ public class Action {
         }
     }
 
+
+    /**
+     * Asks a player if he wants to perform the reload Frenzy move.
+     *
+     * @param player        is the player playing the frenzy turn.
+     * @param usableWeapons is the list of available weapons to the player.
+     */
+
     private static void reloadFrenzy(Player player, CopyOnWriteArrayList<Weapon> usableWeapons) {
 
         String chosenWeapon = updateWithAnswer(player, Message.scegliArmaRF(usableWeapons));
@@ -1403,6 +1443,12 @@ public class Action {
 
     }
 
+
+    /**
+     * Asks a player if he wants to move before shooting another player during the frenzy turn.
+     *
+     * @param player is the player playing the frenzy turn.
+     */
 
     private static void selectEnhancedFrenzyShotMove(Player player) {
 
@@ -1701,6 +1747,13 @@ public class Action {
 
     }
 
+
+    /**
+     * Is the terminator shot action.
+     *
+     * @param player is the player that is playing the terminator turn.
+     */
+
     private static void shotTerminator(Player player) {
 
         CopyOnWriteArrayList<Player> visible = Check.visiblePlayers(connectedPlayers.get(connectedPlayers.size() - 1));
@@ -1724,7 +1777,7 @@ public class Action {
 
         Player target = ChoosePlayer.one(player, visible);
 
-        Damage.giveDamage(1, connectedPlayers.get(connectedPlayers.size()-1), target);
+        Damage.giveDamage(1, connectedPlayers.get(connectedPlayers.size() - 1), target);
 
         if (Board.getTerminator().getPlayerboard().getDamage().size() >= 6) {
 

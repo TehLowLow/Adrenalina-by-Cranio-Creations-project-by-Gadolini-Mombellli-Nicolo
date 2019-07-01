@@ -13,6 +13,10 @@ import it.polimi.se2019.View.*;
 
 public class BasicFlamethrower extends Effect {
 
+    /**
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect. It can be the user itself.
+     */
 
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -20,6 +24,10 @@ public class BasicFlamethrower extends Effect {
 
     }
 
+    /**
+     * @param user the Player thant wants to use the effect.
+     * @return the target or targets of the effect.
+     */
 
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -205,6 +213,12 @@ public class BasicFlamethrower extends Effect {
     }
 
 
+    /**
+     * Checks if other players are in the same cell.
+     * @param cell is the cell to be checked.
+     * @return true if there are other players in the cell.
+     */
+
     public boolean hasPlayers(Cell cell){
 
         for(Player player : Server.connectedPlayers){
@@ -215,6 +229,7 @@ public class BasicFlamethrower extends Effect {
 
         return false;
     }
+
 
     public boolean hasTargets(Player user) {
 

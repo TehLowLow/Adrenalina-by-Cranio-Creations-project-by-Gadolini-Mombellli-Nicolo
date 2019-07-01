@@ -8,9 +8,8 @@ public interface RMIServerInterface extends Remote {
 
     void sendMsg(String msg) throws RemoteException;
 
-    boolean logIn(String u, String p)throws RemoteException;
+    boolean logIn(String u, String p) throws RemoteException;
 
-
-
+    void addPlayerHN(String Username, String Hostname) throws RemoteException;
 
 }

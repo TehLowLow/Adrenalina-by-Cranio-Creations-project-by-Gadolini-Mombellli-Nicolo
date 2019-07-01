@@ -131,8 +131,6 @@ public class Interaction {
     }
 
 
-
-
     /**
      * this method reloads on the board the Loots that
      * have been picked up during the turn
@@ -198,7 +196,6 @@ public class Interaction {
     }
 
 
-
     /**
      * this method manages a player's rybamount payment
      *
@@ -214,7 +211,7 @@ public class Interaction {
         int blueCost = billRybamount.getBlue();
         int redCost = billRybamount.getRed();
 
-        CopyOnWriteArrayList <Powerup> playerPowerUp = player.getPlayerboard().getPowerups();
+        CopyOnWriteArrayList<Powerup> playerPowerUp = player.getPlayerboard().getPowerups();
 
         int redPU = 0;
         int yellowPU = 0;
@@ -224,31 +221,31 @@ public class Interaction {
         int redAvailable = playerRybAmount.getRed();
         int blueAvailable = playerRybAmount.getBlue();
 
-        if(yellowAvailable<yellowCost){
+        if (yellowAvailable < yellowCost) {
             forcePayment(player, billRybamount, Colour.YELLOW);
         }
 
-        if(redAvailable<redCost){
+        if (redAvailable < redCost) {
             forcePayment(player, billRybamount, Colour.RED);
         }
 
-        if(blueAvailable<blueCost){
+        if (blueAvailable < blueCost) {
             forcePayment(player, billRybamount, Colour.BLUE);
         }
 
-        for(Powerup powerup : playerPowerUp){
-            if(powerup.getColour() == Colour.RED){
+        for (Powerup powerup : playerPowerUp) {
+            if (powerup.getColour() == Colour.RED) {
                 redPU++;
             }
-            if(powerup.getColour() == Colour.YELLOW){
+            if (powerup.getColour() == Colour.YELLOW) {
                 yellowPU++;
             }
-            if(powerup.getColour() == Colour.BLUE){
+            if (powerup.getColour() == Colour.BLUE) {
                 bluePU++;
             }
         }
 
-        if((redCost != 0 && redCost <= redPU) || (blueCost != 0 && blueCost <= bluePU) || (yellowCost != 0 && yellowCost <= yellowPU)){
+        if ((redCost != 0 && redCost <= redPU) || (blueCost != 0 && blueCost <= bluePU) || (yellowCost != 0 && yellowCost <= yellowPU)) {
             payWithPowerUp(player, playerPowerUp, billRybamount);
         }
 
@@ -262,7 +259,15 @@ public class Interaction {
 
     }
 
-    private static void payWithPowerUp(Player player , CopyOnWriteArrayList<Powerup> playerPowerUp, Rybamount billRybamount){
+    /**
+     * Checks if a player wants to pay using his powerups instead of the cubes.
+     *
+     * @param player        is the player that is playing.
+     * @param playerPowerUp is the list of powerups of the players.
+     * @param billRybamount is the price of the purchase.
+     */
+
+    private static void payWithPowerUp(Player player, CopyOnWriteArrayList<Powerup> playerPowerUp, Rybamount billRybamount) {
 
 
         Rybamount playerRybAmount = player.getPlayerboard().getAmmoCubes();
@@ -274,24 +279,24 @@ public class Interaction {
         boolean hasChosen = false;
         String answer = "";
 
-        while(!hasChosen){
+        while (!hasChosen) {
 
-            if(player.getPlayerboard().getPowerups().size()==0){
+            if (player.getPlayerboard().getPowerups().size() == 0) {
 
                 Server.update(player, Message.powerupTerminati());
-                hasChosen=true;
+                hasChosen = true;
                 continue;
 
             }
 
             answer = Server.updateWithAnswer(player, Message.vuoiPagareConPU());
 
-            if(!InputCheck.correctYesNo(answer)){
+            if (!InputCheck.correctYesNo(answer)) {
                 Server.update(player, Message.inputError());
                 continue;
             }
 
-            if(InputCheck.yesOrNo(answer)) {
+            if (InputCheck.yesOrNo(answer)) {
 
                 int index = 0;
                 boolean hasChosenPU = false;
@@ -344,7 +349,7 @@ public class Interaction {
 
             }
 
-            if(!InputCheck.yesOrNo(answer)) {
+            if (!InputCheck.yesOrNo(answer)) {
                 hasChosen = true;
             }
 
@@ -356,34 +361,42 @@ public class Interaction {
 
     }
 
-    private static void forcePayment(Player player, Rybamount billRybamount, int colour){
+    /**
+     * If a player has chosen to pay for an effect, and has no cubes, is forced to use a powerup to pay for it.
+     *
+     * @param player        is the player that is playing.
+     * @param billRybamount ids the price for the purchase.
+     * @param colour        is the colour of the powerup used to pay.
+     */
 
-        CopyOnWriteArrayList <Powerup> discardables;
+    private static void forcePayment(Player player, Rybamount billRybamount, int colour) {
+
+        CopyOnWriteArrayList<Powerup> discardables;
         int amountToPay = 0;
         int available = 0;
 
-        if(colour == Colour.YELLOW){
+        if (colour == Colour.YELLOW) {
             amountToPay = billRybamount.getYellow();
             available = player.getPlayerboard().getAmmoCubes().getYellow();
         }
 
-        if(colour == Colour.RED){
+        if (colour == Colour.RED) {
             amountToPay = billRybamount.getRed();
             available = player.getPlayerboard().getAmmoCubes().getRed();
         }
 
-        if(colour == Colour.BLUE){
+        if (colour == Colour.BLUE) {
             amountToPay = billRybamount.getBlue();
             available = player.getPlayerboard().getAmmoCubes().getBlue();
         }
 
-        while(available<amountToPay){
+        while (available < amountToPay) {
 
             discardables = new CopyOnWriteArrayList<>();
 
-            for(Powerup powerup : player.getPlayerboard().getPowerups()){
+            for (Powerup powerup : player.getPlayerboard().getPowerups()) {
 
-                if(powerup.getColour()==colour){
+                if (powerup.getColour() == colour) {
                     discardables.add(powerup);
                 }
             }
@@ -392,20 +405,28 @@ public class Interaction {
 
         }
 
-        if(colour == Colour.YELLOW){
+        if (colour == Colour.YELLOW) {
             player.getPlayerboard().getAmmoCubes().setYellowCubes(available);
         }
 
-        if(colour == Colour.RED){
+        if (colour == Colour.RED) {
             player.getPlayerboard().getAmmoCubes().setRedCubes(available);
         }
 
-        if(colour == Colour.BLUE){
+        if (colour == Colour.BLUE) {
             player.getPlayerboard().getAmmoCubes().setBlueCubes(available);
         }
 
 
     }
+
+    /**
+     * Converts the value of the powerups into cubes, for an easy calculation ofthe purchases.
+     *
+     * @param player            is the player playing the turn.
+     * @param availablePowerups are all the powerups that the player has in the hand.
+     * @return
+     */
 
     private static int convertPowerUp(Player player, CopyOnWriteArrayList<Powerup> availablePowerups) {
 
@@ -507,11 +528,6 @@ public class Interaction {
 
     }
 
-    /**
-     * this method turns the action tile for the FinalFrenzy mode
-     * @param player is linked to the tile to turn
-     */
-
 
     /**
      * this method gives to a player the cubes corresponding
@@ -549,7 +565,7 @@ public class Interaction {
     /**
      * If the PowerUp deck is empty, this method recovers the discarded PowerUps and puts them on the deck once again.
      */
-    public static void recoverPowerUps(){
+    public static void recoverPowerUps() {
 
         CopyOnWriteArrayList<Powerup> newDeck = Board.getDiscardedPowerUps();
         Board.setPowerUpDeck(newDeck);
@@ -559,13 +575,20 @@ public class Interaction {
 
     }
 
+
+    /**
+     * In the event of drawing all the powerups, thediscarded ones are shuffled into a new deck and the player that needed to
+     * draw now can.
+     *
+     * @param player is the player that is playing the turn.
+     */
+
     public static void shuffleAndDraw(Player player) {
 
         Interaction.recoverPowerUps();
         try {
             drawPowerUp(player);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             Server.update(player, Message.limitePowerup());
         }
 

@@ -94,6 +94,12 @@ public class Turn {
         standard(player, false);
     }
 
+    /**
+     * Performs the first terminator turn.
+     *
+     * @param player is the first player.
+     */
+
     public void firstTerminator(Player player) {
 
         if (player.isFirstPlayer()) {
@@ -123,53 +129,52 @@ public class Turn {
         boolean terminatorPerformed = false;
 
 
-        if (terminator && terminatorKilled){
+        if (terminator && terminatorKilled) {
 
             String spawnTerminator = Server.updateWithAnswer(player, "Scegli un colore tra rosso, blu e giallo per far rinascere il Terminator nella corrispondente Spawn Cell");
 
 
             boolean spawned = false;
 
-            if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")){
+            if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")) {
 
                 spawned = true;
 
             }
 
 
-            while (!spawned){
+            while (!spawned) {
 
                 Server.update(player, Message.inputError());
                 spawnTerminator = Server.updateWithAnswer(player, "Scegli un colore tra rosso, blu e giallo per far rinascere il Terminator nella corrispondente Spawn Cell");
 
-                if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")){
+                if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")) {
 
                     spawned = true;
 
                 }
             }
 
-            if (spawnTerminator.equalsIgnoreCase("rosso")){
+            if (spawnTerminator.equalsIgnoreCase("rosso")) {
 
-                Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getRedRoom().getCells().get(0));
+                Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getRedRoom().getCells().get(0));
                 Server.updateAll("Il Terminator è respawnato nella Spawn Cell rossa!");
 
 
             }
 
 
-            if (spawnTerminator.equalsIgnoreCase("blu")){
+            if (spawnTerminator.equalsIgnoreCase("blu")) {
 
-                Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getBlueRoom().getCells().get(0));
+                Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getBlueRoom().getCells().get(0));
                 Server.updateAll("Il Terminator è respawnato nella Spawn Cell blu!");
-
 
 
             }
 
-            if (spawnTerminator.equalsIgnoreCase("giallo")){
+            if (spawnTerminator.equalsIgnoreCase("giallo")) {
 
-                Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getYellowRoom().getCells().get(0));
+                Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getYellowRoom().getCells().get(0));
                 Server.updateAll("Il Terminator è respawnato nella Spawn Cell blu!");
 
 
@@ -180,7 +185,6 @@ public class Turn {
 
 
         }
-
 
 
         for (int i = 0; i < 3; i++) {
@@ -207,7 +211,7 @@ public class Turn {
 
             usedPowerUp = Action.usePowerUp(player);
 
-            if (!usedPowerUp){
+            if (!usedPowerUp) {
                 break;
             }
         }
@@ -227,7 +231,7 @@ public class Turn {
 
             usedPowerUp = Action.usePowerUp(player);
 
-            if (!usedPowerUp){
+            if (!usedPowerUp) {
                 break;
             }
         }
@@ -248,20 +252,20 @@ public class Turn {
 
         for (Player dead : Server.connectedPlayers) {
 
-                if (Check.death(dead) == 0) {
-                    continue;
-                } else {
+            if (Check.death(dead) == 0) {
+                continue;
+            } else {
 
-                    Server.updateAll(dead.getNickname() + " è stato ucciso da " + player.getNickname());
-                    deadPlayers.add(dead);
-                }
+                Server.updateAll(dead.getNickname() + " è stato ucciso da " + player.getNickname());
+                deadPlayers.add(dead);
+            }
 
 
         }
 
         //DOUBLE KILL
 
-        if (deadPlayers.size() > 1){
+        if (deadPlayers.size() > 1) {
 
             Server.updateAll(player.getNickname() + " ha appena fatto una doppia uccisione!");
             player.setScore(player.getScore() + 1);
@@ -275,13 +279,13 @@ public class Turn {
 
             if (Check.death(dead) == 2) {
 
-                Server.updateAll(player.getNickname()+ " ha infierito su " + dead.getNickname());
+                Server.updateAll(player.getNickname() + " ha infierito su " + dead.getNickname());
                 overkill = true;
             }
 
             Check.resolveBoard(dead, overkill);
 
-            if(terminator) {
+            if (terminator) {
 
                 if (dead.getNickname().equalsIgnoreCase("terminator")) {
 
@@ -321,49 +325,49 @@ public class Turn {
             System.out.println("Errore: mazzi non inizializzati");
         }
 
-        if (terminator){
+        if (terminator) {
 
             String spawnTerminator = Server.updateWithAnswer(player, "Hai pescato " + player.getPlayerboard().getPowerups().get(0).getName() + " e " + player.getPlayerboard().getPowerups().get(1).getName() + ".\nOra scegli un colore tra rosso, blu e giallo per posizionare il Terminator nella Spawn Cell di quel colore.");
 
             boolean spawned = false;
 
-            if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")){
+            if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")) {
 
                 spawned = true;
 
             }
 
 
-            while (!spawned){
+            while (!spawned) {
 
                 Server.update(player, Message.inputError());
                 spawnTerminator = Server.updateWithAnswer(player, "Hai pescato " + player.getPlayerboard().getPowerups().get(0).getName() + " e " + player.getPlayerboard().getPowerups().get(1).getName() + ".\nOra scegli un colore tra rosso, blu e giallo per posizionare il Terminator nella Spawn Cell di quel colore.");
 
-                if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")){
+                if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")) {
 
                     spawned = true;
 
                 }
             }
 
-            if (spawnTerminator.equalsIgnoreCase("rosso")){
+            if (spawnTerminator.equalsIgnoreCase("rosso")) {
 
-                Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getRedRoom().getCells().get(0));
+                Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getRedRoom().getCells().get(0));
                 Server.updateAll("Il terminator è spawnato nella Spawn Cell rossa!");
 
             }
 
 
-            if (spawnTerminator.equalsIgnoreCase("blu")){
+            if (spawnTerminator.equalsIgnoreCase("blu")) {
 
-                Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getBlueRoom().getCells().get(0));
+                Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getBlueRoom().getCells().get(0));
                 Server.updateAll("Il terminator è spawnato nella Spawn Cell blu!");
 
             }
 
-            if (spawnTerminator.equalsIgnoreCase("giallo")){
+            if (spawnTerminator.equalsIgnoreCase("giallo")) {
 
-                Server.connectedPlayers.get(Server.connectedPlayers.size()-1).setPosition(Board.getMap().getYellowRoom().getCells().get(0));
+                Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getYellowRoom().getCells().get(0));
                 Server.updateAll("Il terminator è spawnato nella Spawn Cell gialla!");
 
 
@@ -385,7 +389,7 @@ public class Turn {
                 if (index >= 0 && index <= 1) {
 
                     pUpSelector(player, index);
-                    chosen=true;
+                    chosen = true;
 
                 } else {
                     Server.update(player, Message.inputError());
@@ -491,7 +495,7 @@ public class Turn {
 
             usedPowerUp = Action.usePowerUp(player);
 
-            if (!usedPowerUp){
+            if (!usedPowerUp) {
                 break;
             }
         }
@@ -506,13 +510,11 @@ public class Turn {
         Action.performFrenzy(player, afterFirstPlayer);
 
 
-
-
         for (int i = 0; i < 3; i++) {
 
             usedPowerUp = Action.usePowerUp(player);
 
-            if (!usedPowerUp){
+            if (!usedPowerUp) {
                 break;
             }
         }
@@ -525,8 +527,6 @@ public class Turn {
         }
 
 
-
-
         Action.reload(player);
 
 
@@ -535,11 +535,9 @@ public class Turn {
         deadPlayers = respawner(player);
 
 
-
-
         //DOUBLE KILL
 
-        if (deadPlayers.size() > 1){
+        if (deadPlayers.size() > 1) {
 
             Server.updateAll(player.getNickname() + " ha fatto una doppia uccisione!");
             player.setScore(player.getScore() + 1);
@@ -547,22 +545,19 @@ public class Turn {
         }
 
 
-
         for (Player dead : deadPlayers) {
 
             boolean overkill = false;
 
             if (Check.death(dead) == 2) {
-                Server.updateAll(player.getNickname()+ " ha infierito su " + dead.getNickname());
+                Server.updateAll(player.getNickname() + " ha infierito su " + dead.getNickname());
                 overkill = true;
             }
 
 
-
-
             Check.resolveFrenzyboard(dead, overkill);
 
-            if(terminator) {
+            if (terminator) {
 
                 if (deadPlayers.contains(Server.connectedPlayers.get(Server.connectedPlayers.size() - 1))) {
 
@@ -584,6 +579,13 @@ public class Turn {
         Server.update(player, "Hai finito il tuo turno!");
     }
 
+
+    /**
+     * Asks a player to choose a powerup for the spawn action.
+     *
+     * @param player is the player spwaning.
+     * @param index  is the index of the powerups array, containing the position of the topdeck card
+     */
 
     private static void pUpSelector(Player player, int index) {
 
@@ -635,6 +637,12 @@ public class Turn {
 
     }
 
+    /**
+     * Looks for all the dead player during the turn.
+     *
+     * @param killer is the player that killed the respawning champion.
+     * @return all the dead players.
+     */
     private static CopyOnWriteArrayList<Player> respawner(Player killer) {
 
         CopyOnWriteArrayList<Player> deadPlayers = new CopyOnWriteArrayList<>();
@@ -653,5 +661,6 @@ public class Turn {
         return deadPlayers;
 
     }
+
 
 }

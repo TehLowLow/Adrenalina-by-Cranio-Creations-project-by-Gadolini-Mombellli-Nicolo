@@ -12,9 +12,11 @@ public class Parser {
         String input;
 
         Scanner scanIn = new Scanner(System.in);
+
         input = scanIn.nextLine();
 
         scanIn.close();
+
         //System.out.println(input);
 
         return input;
