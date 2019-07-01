@@ -8,7 +8,9 @@ import javafx.scene.image.ImageView;
 
 import java.io.DataOutputStream;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ShowSpawnController implements Initializable {
 
@@ -17,11 +19,19 @@ public class ShowSpawnController implements Initializable {
     @FXML
     public ImageView firstPU;
 
-    public String firstPUName;
-    public String secondPUName;
-
     @FXML
     public ImageView secondPU;
+
+    @FXML
+    public ImageView thirdPU;
+
+    @FXML
+    public ImageView fourthPU;
+
+    public String firstPUName = "null";
+    public String secondPUName = "null";
+    public String thirdPUName = "null";
+    public String fourthPUName = "null";
 
     public ShowSpawnController(){}
 
@@ -57,18 +67,58 @@ public class ShowSpawnController implements Initializable {
     }
 
     @FXML
+    public void selectThird(){
+
+        try {
+
+            out.writeUTF("2");
+            thirdPU.setEffect(new Bloom());
+            thirdPU.getScene().getWindow().hide();
+        }
+        catch (Exception e){
+
+        }
+
+    }
+
+    @FXML
+    public void selectFourth(){
+
+        try {
+
+            out.writeUTF("3");
+            fourthPU.setEffect(new Bloom());
+            fourthPU.getScene().getWindow().hide();
+        }
+        catch (Exception e){
+
+        }
+
+    }
+
+    @FXML
     public void setUp(String messageReceived){
 
         String[] message = messageReceived.split("~");
 
 
         String[] tokens = message[1].split("\\)");
+        
+        CopyOnWriteArrayList<String> powerups = new CopyOnWriteArrayList<String>(Arrays.asList(tokens));
 
-        firstPUName = getPUname(tokens[1]);
-        secondPUName = getPUname(tokens[2]);
+        firstPUName = getPUname(powerups.get(1));
+        
+        if(powerups.size()>=3) {
+            secondPUName = getPUname(powerups.get(2));
+        }
 
-        System.out.println("Primo pescato: " + firstPUName + '\n');
-        System.out.println("Secondo pescato: " + secondPUName + '\n');
+        if(powerups.size()>=4){
+            thirdPUName = getPUname(powerups.get(3));
+        }
+
+        if(powerups.size()>=5){
+            thirdPUName = getPUname(powerups.get(4));
+        }
 
         loadImages();
 
@@ -300,6 +350,178 @@ public class ShowSpawnController implements Initializable {
 
             Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
             secondPU.setImage(image);
+
+        }
+        
+        //-------------------
+
+        if(thirdPUName.equalsIgnoreCase("Raggio Cinetico Blu")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Mirino Blu")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Granata Venom Blu")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Teletrasporto Blu")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Raggio Cinetico Rosso")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Mirino Rosso")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Granata Venom Rossa")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Teletrasporto Rosso")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Raggio Cinetico Giallo")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Mirino Giallo")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Granata Venom Gialla")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            thirdPU.setImage(image);
+
+        }
+
+        if(thirdPUName.equalsIgnoreCase("Teletrasporto Giallo")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            thirdPU.setImage(image);
+
+        }
+        
+        //---------
+
+        if(fourthPUName.equalsIgnoreCase("Raggio Cinetico Blu")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Mirino Blu")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Granata Venom Blu")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Teletrasporto Blu")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Raggio Cinetico Rosso")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Mirino Rosso")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Granata Venom Rossa")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Teletrasporto Rosso")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Raggio Cinetico Giallo")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Mirino Giallo")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Granata Venom Gialla")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            fourthPU.setImage(image);
+
+        }
+
+        if(fourthPUName.equalsIgnoreCase("Teletrasporto Giallo")){
+
+            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            fourthPU.setImage(image);
 
         }
 

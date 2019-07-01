@@ -1084,7 +1084,9 @@ public class Check {
                 faccio vedere per ogni giocatore il nome, il punteggio totale e quello sul tracciato colpo mortale
                  */
 
-            schermataFinale = schermataFinale + "Nome: " + potentialWinner.player.getNickname() + " Punteggio Totale: " + potentialWinner.points + " Punti tracciato colpo mortale " + potentialWinner.scoreOnMortalBlowTrack + "\n";
+            schermataFinale = schermataFinale + "Nome: " + potentialWinner.player.getNickname() + " Punteggio Totale: " + potentialWinner.points + " Punti tracciato colpo mortale: " + potentialWinner.scoreOnMortalBlowTrack + "\n";
+
+
 
         }
 

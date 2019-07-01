@@ -1,42 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
 <?import java.lang.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../target/classes/assets/cover/background.jpg" />
-         </image>
-      </ImageView>
-      <Text fill="WHITE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sei morto! Scegli un Powerup da scartare e spawnerai nella cella di quel colore!" wrappingWidth="583.28125">
-         <font>
-            <Font name="Arial" size="32.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="210.0" fitWidth="131.0" layoutX="10.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../target/classes/assets/Powerups/AD_powerups_IT_02.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="210.0" fitWidth="131.0" layoutX="157.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../target/classes/assets/Powerups/AD_powerups_IT_02.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="210.0" fitWidth="131.0" layoutX="306.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../target/classes/assets/Powerups/AD_powerups_IT_02.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="210.0" fitWidth="131.0" layoutX="455.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../target/classes/assets/Powerups/AD_powerups_IT_02.png" />
-         </image>
-      </ImageView>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.ShowSpawnController">
+  <children>
+    <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true">
+      <image>
+        <Image url="@assets/cover/background.jpg" />
+      </image>
+    </ImageView>
+    <Text fill="WHITE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli un Powerup da scartare e spawnerai nella cella di quel colore!" wrappingWidth="583.28125">
+      <font>
+        <Font name="Arial Bold" size="32.0" />
+      </font>
+    </Text>
+    <ImageView fx:id="firstPU" fitHeight="210.0" fitWidth="131.0" layoutX="10.0" layoutY="152.0" onMouseClicked="#selectFirst" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Powerups/AD_powerups_IT_02.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="secondPU" fitHeight="210.0" fitWidth="131.0" layoutX="157.0" layoutY="152.0" onMouseClicked="#selectSecond" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Powerups/AD_powerups_IT_02.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="thirdPU" fitHeight="210.0" fitWidth="131.0" layoutX="306.0" layoutY="152.0" onMouseClicked="#selectThird" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Powerups/AD_powerups_IT_02.png" />
+      </image>
+    </ImageView>
+    <ImageView fx:id="fourthPU" fitHeight="210.0" fitWidth="131.0" layoutX="455.0" layoutY="152.0" onMouseClicked="#selectFourth" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@assets/Powerups/AD_powerups_IT_02.png" />
+      </image>
+    </ImageView>
+  </children>
 </AnchorPane>
