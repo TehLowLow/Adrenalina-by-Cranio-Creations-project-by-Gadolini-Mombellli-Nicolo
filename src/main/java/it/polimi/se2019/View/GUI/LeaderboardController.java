@@ -1,12 +1,16 @@
 package it.polimi.se2019.View.GUI;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.text.Text;
 
+import javax.xml.bind.SchemaOutputResolver;
+import java.net.URL;
+import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Arrays;
 
-public class LeaderboardController {
+public class LeaderboardController implements Initializable {
 
 
     @FXML
@@ -60,11 +64,11 @@ public class LeaderboardController {
 
        String results = firstSplit[1];
 
-       String resultsCleaned = results.replaceAll("\r", "").replaceAll("\n", "");
+       String resultsCleaned = results.replaceAll("\r", "").replaceAll("\n", "").replaceAll(" ", "");
 
        System.out.println(resultsCleaned);
 
-       String[] splitted = resultsCleaned.split(": |- ");
+       String[] splitted = resultsCleaned.split(":|-");
 
        CopyOnWriteArrayList<String> winners = new CopyOnWriteArrayList<String>();
        CopyOnWriteArrayList <String> score = new CopyOnWriteArrayList<String>();
@@ -94,6 +98,14 @@ public class LeaderboardController {
 
            }
 
+
+       }
+
+       System.out.println("Tokens:");
+
+       for(String string : tokenList){
+
+           System.out.println(string);
 
        }
 
@@ -156,16 +168,38 @@ public class LeaderboardController {
        }
 
 
+       System.out.println("Vincitori:");
+       for(String string : winners){
+
+           System.out.println(string);
+
+       }
+
+       System.out.println("Punteggi:");
+       for(String string : score){
+
+           System.out.println(string);
+
+       }
+
+       System.out.println("MBTrack:");
+       for(String string : mbTrack){
+
+           System.out.println(string);
+
+       }
 
 
    }
-
-
 
 
    public LeaderboardController(){
 
    }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
 }

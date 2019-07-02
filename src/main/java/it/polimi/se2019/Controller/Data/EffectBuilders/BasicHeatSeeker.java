@@ -77,7 +77,7 @@ public class BasicHeatSeeker extends Effect {
 
         for (Player player:Server.connectedPlayers){
 
-            if (!player.equals(user) && !visiblePlayers.contains(user) && !user.getPosition().equals(Board.getLimbo())){
+            if (!player.equals(user) && !visiblePlayers.contains(user) && !player.getPosition().equals(Board.getLimbo())){
 
                 invisiblePlayers.add(player);
 
