@@ -324,11 +324,21 @@ codificata e inviata.
 
         int damageNumber = player.getPlayerboard().getDamage().size();
 
+        if(damageNumber>12){
+            damageNumber = 12;
+        }
+
         GUIData = GUIData + damageNumber + '@';
+
+        int i = 0;
 
         for(Token damage : player.getPlayerboard().getDamage()){
 
+            if (i > 11) {
+                break;
+            }
             GUIData = GUIData + damage.getChampionName() + '@';
+            i++;
 
         }
 
