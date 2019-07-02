@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="it.polimi.se2019.View.GUI.ChooseRoomController">
+  <children>
+    <ImageView fitHeight="400.0" fitWidth="600.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="false">
+      <image>
+        <Image url="@assets/cover/weaponBack.png" backgroundLoading="true" />
+      </image>
+    </ImageView>
+    <Text fill="WHITE" layoutX="94.0" layoutY="56.0" scaleX="1.3896848639117136" scaleY="1.97738618599857" strokeType="OUTSIDE" strokeWidth="0.0" text="Scegli un colore per identificare una stanza!">
+      <font>
+        <Font name="System Bold" size="20.0" fx:id="x1" />
+      </font>
+    </Text>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="100.0" layoutX="45.0" layoutY="100.0" onMouseClicked="#selectRed" stroke="BLACK" strokeType="INSIDE" width="115.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffb800" height="100.0" layoutX="236.0" layoutY="100.0" onMouseClicked="#selectYellow" stroke="BLACK" strokeType="INSIDE" width="115.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#0029ff" height="100.0" layoutX="427.0" layoutY="100.0" onMouseClicked="#selectBlue" stroke="BLACK" strokeType="INSIDE" width="115.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#41cc00" height="100.0" layoutX="45.0" layoutY="245.0" onMouseClicked="#selectGreen" stroke="BLACK" strokeType="INSIDE" width="115.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dfdfdf" height="100.0" layoutX="236.0" layoutY="245.0" onMouseClicked="#selectWhite" stroke="BLACK" strokeType="INSIDE" width="115.0" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cc0093" height="100.0" layoutX="427.0" layoutY="245.0" onMouseClicked="#selectPurple" stroke="BLACK" strokeType="INSIDE" width="115.0" />
+    <Text font="$x1" layoutX="70.0" layoutY="158.0" onMouseClicked="#selectRed" strokeType="OUTSIDE" strokeWidth="0.0" text="ROSSO" />
+    <Text font="$x1" layoutX="261.0" layoutY="158.0" onMouseClicked="#selectYellow" strokeType="OUTSIDE" strokeWidth="0.0" text="GIALLO" />
+    <Text font="$x1" layoutX="466.0" layoutY="158.0" onMouseClicked="#selectBlue" strokeType="OUTSIDE" strokeWidth="0.0" text="BLU" />
+    <Text font="$x1" layoutX="71.0" layoutY="303.0" onMouseClicked="#selectGreen" strokeType="OUTSIDE" strokeWidth="0.0" text="VERDE" />
+    <Text font="$x1" layoutX="258.0" layoutY="303.0" onMouseClicked="#selectWhite" strokeType="OUTSIDE" strokeWidth="0.0" text="BIANCO" />
+    <Text font="$x1" layoutX="455.0" layoutY="303.0" onMouseClicked="#selectPurple" strokeType="OUTSIDE" strokeWidth="0.0" text="VIOLA" />
+  </children>
+</AnchorPane>

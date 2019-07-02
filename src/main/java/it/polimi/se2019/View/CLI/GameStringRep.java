@@ -400,7 +400,7 @@ codificata e inviata.
 
         for(Player other : Server.connectedPlayers){
 
-            if(!other.equals(player) && !other.getNickname().equalsIgnoreCase("Terminator")){
+            if(!other.equals(player)){
 
                 GUIData = GUIData + other.getPlayerboard().getChampionName() + '@';
                 GUIData = GUIData + other.getNickname() + '@';

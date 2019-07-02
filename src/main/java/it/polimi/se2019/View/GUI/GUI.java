@@ -144,6 +144,13 @@ public class GUI extends Application implements Runnable {
             controller.out = out;
             controller.activateRadioButtons(message);
 
+            if(message.contains("Terminator")){
+                this.primaryStage.setTitle("Scegli un campione per il Terminator!");
+            }
+            else{
+                this.primaryStage.setTitle("Scegli il tuo campione!");
+            }
+
             Scene scene = new Scene(chooseChampion);
             this.primaryStage.setScene(scene);
             this.primaryStage.show();
@@ -629,6 +636,33 @@ public class GUI extends Application implements Runnable {
         }
     }
 
+    public void showChooseRoom() {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(GUI.class.getResource("/chooseRoomColour.fxml"));
+            AnchorPane chooseRoom = (AnchorPane) loader.load();
+
+            ChooseRoomController controller = loader.getController();
+            controller.out = out;
+
+
+            Scene scene = new Scene(chooseRoom);
+            Stage stage = new Stage();
+
+            stage.setTitle("Scegli il colore di una stanza.");
+            stage.setScene(scene);
+            stage.show();
+
+            System.out.println("Grafica disegnata correttamente");
+
+        } catch (Exception e) {
+            System.out.println("Ho beccato un'eccezione");
+            e.printStackTrace();
+        }
+    }
+
     public void showChoosePayPU(String message) {
 
 
@@ -760,6 +794,18 @@ public class GUI extends Application implements Runnable {
         else if (message.contains("vincitori sono") || message.contains("vincitore è")){
 
             showWinner(message);
+
+        }
+
+        else if (message.contains("Scegli una stanza tra:")){
+
+            showChooseRoom();
+
+        }
+
+        else if (message.contains("da assegnare al Terminator")){
+
+            showChooseChampion(message);
 
         }
 
