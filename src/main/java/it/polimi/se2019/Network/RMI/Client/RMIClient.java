@@ -8,7 +8,10 @@ import it.polimi.se2019.View.Parser;
 
 import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
 import static it.polimi.se2019.Network.Server.RMIPORT;
+import static java.lang.Thread.sleep;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.net.InetAddress;
 import java.rmi.Naming;
 import java.rmi.NoSuchObjectException;
@@ -145,9 +148,25 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
         try {
 
+            String pathfile = System.getProperty("user.home") + "\\Desktop";
+
+            File file = new File(pathfile + "\\rmiClient" + user +".bat");
+
+            FileWriter fw = new FileWriter(file, true);
+
+            fw.write("javaw rmiregistry " + localPort + "\n" + "cmd \\k");
+
+            fw.close();
+
+            try {
+                sleep(10 * 1000);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             RMIClientInterface stub = (RMIClientInterface) UnicastRemoteObject.exportObject(this, localPort);
             Registry registry = LocateRegistry.createRegistry(localPort);
-            registry.rebind(User, stub);   //assegno il nome del player al registry locale
+            Naming.rebind(User, stub);   //assegno il nome del player al registry locale
 
         } catch (Exception e) {
 

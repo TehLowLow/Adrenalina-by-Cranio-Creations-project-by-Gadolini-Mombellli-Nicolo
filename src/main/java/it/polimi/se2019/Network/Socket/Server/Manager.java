@@ -44,6 +44,7 @@ public class Manager extends Thread {
         }
 
         playerClient.remove(toPoll);
+        toPoll.setConnectionAlive(false);
 
         if (!matchStarted) {
 
