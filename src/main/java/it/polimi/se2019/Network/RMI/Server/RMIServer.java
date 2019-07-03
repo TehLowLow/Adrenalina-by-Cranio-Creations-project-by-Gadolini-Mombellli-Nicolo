@@ -59,13 +59,16 @@ public class RMIServer extends Server implements RMIServerInterface, Runnable {
 
     }
 
+    @Override
+    public synchronized String guiUpdate(String status) {
+
+        return status;
+
+    }
 
     //Devo chiamarla per mettere in playerclient ogni nome e host dei vari player, cosi da poter avere tutto per cercare i registry
     //Una volta presi, chiama il registry e chiama i metodi remoti.
     //Una volta fatto cio gli update funzionano e possiamo giocare tutto con cli
-
-
-
 
 
     //NB: avviare sempre tutti i registry, come dice luca creare un batch che fa partire le porte necessarie.

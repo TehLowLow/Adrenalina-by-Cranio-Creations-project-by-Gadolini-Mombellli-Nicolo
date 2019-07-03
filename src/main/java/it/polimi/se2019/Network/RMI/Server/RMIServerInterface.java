@@ -12,4 +12,6 @@ public interface RMIServerInterface extends Remote {
 
     void addPlayerHN(String Username, String Hostname) throws RemoteException;
 
+    String guiUpdate(String status) throws RemoteException;
+
 }

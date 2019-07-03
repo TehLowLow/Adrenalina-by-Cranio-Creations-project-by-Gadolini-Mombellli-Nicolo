@@ -220,7 +220,7 @@ public class Server {
             try {
 
                 Registry registry = LocateRegistry.getRegistry((String) playerClient.get(player.getNickname()), player.getPORT());
-                RMIClientInterface rmiplayer = (RMIClientInterface) registry.lookup(player.getNickname());  //TODO fixato questo il progetto è finito
+                RMIClientInterface rmiplayer = (RMIClientInterface) registry.lookup(player.getNickname());
                 return rmiplayer.sendMsgWithAnswer(msg);
             } catch (Exception e) {
                 e.printStackTrace();

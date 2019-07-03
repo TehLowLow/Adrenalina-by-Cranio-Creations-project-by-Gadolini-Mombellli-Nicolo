@@ -4,6 +4,7 @@ package it.polimi.se2019.Network.RMI.Client;
 import it.polimi.se2019.Network.Client;
 import it.polimi.se2019.Network.RMI.RMILoggerInterface;
 import it.polimi.se2019.Network.RMI.Server.RMIServerInterface;
+import it.polimi.se2019.View.GUI.GUI;
 import it.polimi.se2019.View.Parser;
 
 import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
@@ -25,9 +26,9 @@ import java.util.Scanner;
 public class RMIClient extends Client implements Runnable, RMIClientInterface, Remote {
 
     static RMILoggerInterface Logger;
-    private static RMILoggerInterface rServer;
-    private static RMIServerInterface Game;
-    private static RMIServerInterface gServer;
+    public static RMILoggerInterface rServer;
+    public static RMIServerInterface Game;
+    public static RMIServerInterface gServer;
 
     private boolean connected = false;
     private boolean logged = false;
@@ -35,6 +36,8 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     private String psw;
     private int localPort;
     private int value;
+    private boolean isGui = false;
+    private boolean answered = false;
 
 
     @Override
@@ -96,7 +99,22 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
             e.printStackTrace();
         }
 
-        //Metodo per avviare il callback da parte del server
+
+        while (!answered) {
+            askGui();
+        }
+
+        if(isGui){
+
+            Runnable gui = new GUI();
+
+
+
+
+
+
+        }
+
     }
 
 
@@ -150,7 +168,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
             String pathfile = System.getProperty("user.home") + "\\Desktop";
 
-            File file = new File(pathfile + "\\rmiClient" + user +".bat");
+            File file = new File(pathfile + "\\rmiClient" + user + ".bat");
 
             FileWriter fw = new FileWriter(file, true);
 
@@ -166,7 +184,8 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
             RMIClientInterface stub = (RMIClientInterface) UnicastRemoteObject.exportObject(this, localPort);
             Registry registry = LocateRegistry.createRegistry(localPort);
-            Naming.rebind(User, stub);   //assegno il nome del player al registry locale
+            registry.rebind(User, stub);   //assegno il nome del player al registry locale
+
 
         } catch (Exception e) {
 
@@ -178,12 +197,10 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     @Override
     public String sendMsgWithAnswer(String msg) {
 
+
         System.out.println(msg);
-
         Scanner scanner = new Scanner(System.in);
-
         return scanner.nextLine();
-
 
     }
 
@@ -192,6 +209,38 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
         System.out.println(msg);
 
+
     }
+
+
+    private synchronized void askGui() {
+
+        System.out.println("Vuoi usare la gui? Si/No");
+
+        Scanner scanner = new Scanner(System.in);
+
+        String answer = scanner.nextLine();
+
+        if (answer.equalsIgnoreCase("si") || answer.equalsIgnoreCase("no")) {
+
+            if (answer.equalsIgnoreCase("si")) {
+
+                isGui = true;
+                answered = true;
+
+            } else {
+
+                isGui = false;
+                answered = true;
+
+            }
+
+        } else {
+
+            System.out.println("Digita la risposta corretta");
+
+        }
+    }
+
 
 }
