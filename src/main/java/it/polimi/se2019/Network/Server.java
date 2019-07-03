@@ -352,17 +352,4 @@ public class Server {
 
     }
 
-    /*
-    Per gestire le connessioni devo ricordarmi di inserire nel daemon thread che controlla i connessi una regola tale
-    per cui a circa 5/10 secondi dalla fine imposto il match come "iniziato". Questo previene falsi positivi di client
-    che aprono la connessione e poi vanno afk falsando il numero di connessi con registeredPlayers.
-    Con sto sgamo impedisco che cio accada chiudendo preventivamente le iscrizioni a pochi secondi dalla fine cosi che
-    ogni user possa con calma finire la registrazione.
-
-
-    Pensare per il futuro di inserire anche un timer per la registrazione, cosi da impedire ulteriormente casini legati
-    al login
-     */
-
-
 }
