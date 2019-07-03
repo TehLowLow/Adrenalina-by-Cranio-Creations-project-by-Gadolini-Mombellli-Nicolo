@@ -7,13 +7,13 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.Network.TestBot;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class BasicTractorBeamTest {
 
@@ -58,6 +58,27 @@ public class BasicTractorBeamTest {
 
     @Test
     public void getTargets() {
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("player4");
+        answers.add("player1");
+        TestBot.initAnswers(answers);
+
+        Player user = Server.connectedPlayers.get(0);
+        Player target = Server.connectedPlayers.get(1);
+        user.setPosition(Board.getMap().getYellowRoom().getCells().get(0));
+        Server.connectedPlayers.get(4).setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+
+        Weapon weapon = new Weapon();
+        weapon.setBaseEffect(new BasicTractorBeam());
+
+        CopyOnWriteArrayList<Player> targets = weapon.getBaseEffect().getTargets(user);
+
+        assertEquals(target, targets.get(0));
+
+
+
+
 
     }
 
