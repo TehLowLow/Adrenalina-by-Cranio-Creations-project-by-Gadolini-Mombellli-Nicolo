@@ -1787,7 +1787,7 @@ public class Action {
 
         Damage.giveDamage(1, connectedPlayers.get(connectedPlayers.size() - 1), target);
 
-        if (Board.getTerminator().getPlayerboard().getDamage().size() >= 6) {
+        if (connectedPlayers.get(connectedPlayers.size() - 1).getPlayerboard().getDamage().size() >= 6) {
 
             Damage.giveMarker(1, Board.getTerminator(), target);
 
