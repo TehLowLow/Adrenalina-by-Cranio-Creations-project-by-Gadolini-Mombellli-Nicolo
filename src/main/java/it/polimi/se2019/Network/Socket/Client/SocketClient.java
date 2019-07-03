@@ -126,8 +126,7 @@ public class SocketClient extends Client implements Runnable {
                     } else {
 
                         //Nel caso in cui ci sia la stringa da parsare con la mappa...
-                        if (received.contains("\\$")) {
-
+                        if (received.contains("$")) {
                             String[] tokens = received.split("\\$");
                             System.out.println(tokens[0]);
                             Scanner scanner = new Scanner(System.in);

@@ -13,52 +13,52 @@
   <children>
     <ImageView fitHeight="420.0" fitWidth="600.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true">
       <image>
-        <Image url="@../../../target/classes/assets/cover/background.jpg" />
+        <Image url="@assets/cover/background.jpg" />
       </image>
     </ImageView>
-    <Text fill="#f2f0f0" layoutX="90.0" layoutY="52.0" scaleX="0.9424497151156742" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLASSIFICA FINALE" wrappingWidth="488.13671875">
+    <Text fill="#f2f0f0" layoutX="69.0" layoutY="52.0" scaleX="0.9424497151156742" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLASSIFICA FINALE" wrappingWidth="488.13671875">
       <font>
-        <Font size="48.0" />
+        <Font name="System Bold" size="48.0" />
       </font>
     </Text>
     <ImageView fitHeight="49.0" fitWidth="54.0" layoutX="9.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@../../../target/classes/assets/Points/1PT.png" />
+        <Image url="@assets/Points/1PT.png" />
       </image>
     </ImageView>
     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="133.0" layoutY="58.0" opacity="0.64" pickOnBounds="true" preserveRatio="true" rotate="270.0">
       <image>
-        <Image url="@../../../target/classes/assets/Placeable/1stPlayer.png" />
+        <Image url="@assets/Placeable/1stPlayer.png" />
       </image>
     </ImageView>
     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="283.0" layoutY="58.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" rotate="270.0">
       <image>
-        <Image url="@../../../target/classes/assets/Placeable/1stPlayer.png" />
+        <Image url="@assets/Placeable/1stPlayer.png" />
       </image>
     </ImageView>
     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="433.0" layoutY="58.0" opacity="0.6" pickOnBounds="true" preserveRatio="true" rotate="270.0">
       <image>
-        <Image url="@../../../target/classes/assets/Placeable/1stPlayer.png" />
+        <Image url="@assets/Placeable/1stPlayer.png" />
       </image>
     </ImageView>
     <ImageView fitHeight="198.0" fitWidth="121.0" layoutX="83.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@../../../target/classes/assets/Weapons/AD_weapons_IT_02.png" />
+        <Image url="@assets/Weapons/AD_weapons_IT_02.png" />
       </image>
     </ImageView>
     <ImageView fitHeight="198.0" fitWidth="121.0" layoutX="200.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@../../../target/classes/assets/Weapons/AD_weapons_IT_02.png" />
+        <Image url="@assets/Weapons/AD_weapons_IT_02.png" />
       </image>
     </ImageView>
     <ImageView fitHeight="198.0" fitWidth="121.0" layoutX="317.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@../../../target/classes/assets/Weapons/AD_weapons_IT_02.png" />
+        <Image url="@assets/Weapons/AD_weapons_IT_02.png" />
       </image>
     </ImageView>
     <ImageView fitHeight="198.0" fitWidth="121.0" layoutX="434.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
       <image>
-        <Image url="@../../../target/classes/assets/Weapons/AD_weapons_IT_02.png" />
+        <Image url="@assets/Weapons/AD_weapons_IT_02.png" />
       </image>
     </ImageView>
     <Text fx:id="firstPlayer" fill="WHITE" layoutX="107.0" layoutY="140.0" scaleX="1.4618334499650105" scaleY="1.3540381791483114" strokeType="OUTSIDE" strokeWidth="0.0" text="Player1" visible="false">
@@ -70,9 +70,9 @@
     <Text fx:id="thirdPlayer" fill="WHITE" font="$x1" layoutX="107.0" layoutY="253.0" scaleX="1.4618334499650105" scaleY="1.3540381791483114" strokeType="OUTSIDE" strokeWidth="0.0" text="Player3" visible="false" />
     <Text fx:id="fourthPlayer" fill="WHITE" font="$x1" layoutX="107.0" layoutY="298.0" scaleX="1.4618334499650105" scaleY="1.3540381791483114" strokeType="OUTSIDE" strokeWidth="0.0" text="Player4" visible="false" />
     <Text fx:id="fifthPlayer" fill="WHITE" font="$x1" layoutX="107.0" layoutY="346.0" scaleX="1.4618334499650105" scaleY="1.3540381791483114" strokeType="OUTSIDE" strokeWidth="0.0" text="Player5" visible="false" />
-    <Text fill="WHITE" font="$x1" layoutX="94.0" layoutY="102.0" scaleX="1.1969026081182577" scaleY="1.0908957528265486" strokeType="OUTSIDE" strokeWidth="0.0" text="GIOCATORE" />
-    <Text fill="WHITE" font="$x1" layoutX="248.0" layoutY="102.0" scaleX="1.0880270574390898" scaleY="1.0908957528265486" strokeType="OUTSIDE" strokeWidth="0.0" text="PUNTEGGIO" />
-    <Text fill="WHITE" font="$x1" layoutX="407.0" layoutY="87.0" scaleX="1.0553852322291748" scaleY="1.0908957528265486" strokeType="OUTSIDE" strokeWidth="0.0" text="TRACCIATO" />
+    <Text fill="WHITE" font="$x1" layoutX="94.0" layoutY="107.0" scaleX="1.1969026081182577" scaleY="1.0908957528265486" strokeType="OUTSIDE" strokeWidth="0.0" text="GIOCATORE" />
+    <Text fill="WHITE" font="$x1" layoutX="248.0" layoutY="107.0" scaleX="1.0880270574390898" scaleY="1.0908957528265486" strokeType="OUTSIDE" strokeWidth="0.0" text="PUNTEGGIO" />
+    <Text fill="WHITE" font="$x1" layoutX="404.0" layoutY="87.0" scaleX="1.0553852322291748" scaleY="1.0908957528265486" strokeType="OUTSIDE" strokeWidth="0.0" text="TRACCIATO" />
     <Text fill="WHITE" font="$x1" layoutX="377.0" layoutY="107.0" scaleX="0.9393615051820736" scaleY="1.0908957528265486" strokeType="OUTSIDE" strokeWidth="0.0" text="COLPO MORTALE" />
     <Text id="firstPlayer" fx:id="firstPoint" fill="WHITE" font="$x1" layoutX="300.0" layoutY="141.0" scaleX="1.4618334499650105" scaleY="1.3540381791483114" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />
     <Text id="firstPlayer" fx:id="secondPoint" fill="WHITE" font="$x1" layoutX="300.0" layoutY="208.0" scaleX="1.4618334499650105" scaleY="1.3540381791483114" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />

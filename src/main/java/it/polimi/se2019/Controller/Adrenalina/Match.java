@@ -184,6 +184,7 @@ public class Match extends Thread {
 
         while (!finish) {
 
+
             for (Player player : connectedPlayers) {
 
                 if (!terminator) {
@@ -198,6 +199,7 @@ public class Match extends Thread {
                     Interaction.placeLoot();
                     Interaction.placeWeapons();
                     lastPlayer = player;
+
                 } else {
 
                     if (!player.getNickname().equalsIgnoreCase("Terminator")) {
@@ -219,6 +221,8 @@ public class Match extends Thread {
 
                 }
             }
+
+
 
         }
 

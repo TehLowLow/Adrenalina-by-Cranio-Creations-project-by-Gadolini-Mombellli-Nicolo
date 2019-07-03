@@ -308,6 +308,22 @@ public class GUI extends Application implements Runnable {
 
     public void showMainStage(String message) {
 
+
+        if(message.contains("indicandone il numero")){
+
+            String newMessage = message.replace("indicandone il numero", ".");
+            message = newMessage;
+
+        }
+
+        if(message.contains("digitandone il nome")){
+
+            String newMessage = message.replace("digitandone il nome:", "cliccandoci sopra.");
+            message = newMessage;
+
+        }
+
+
         try {
 
             FXMLLoader loader = new FXMLLoader();

@@ -1877,18 +1877,28 @@ public class Map2UIController implements Initializable {
         }
 
         if (playerboardValue.equalsIgnoreCase("4")) {
+            PBSkull1.setVisible(true);
             PBSkull2.setVisible(true);
         }
 
         if (playerboardValue.equalsIgnoreCase("2")) {
+            PBSkull1.setVisible(true);
+            PBSkull2.setVisible(true);
             PBSkull3.setVisible(true);
         }
 
         if (playerboardValue.equalsIgnoreCase("1")) {
+            PBSkull1.setVisible(true);
+            PBSkull2.setVisible(true);
+            PBSkull3.setVisible(true);
             PBSkull4.setVisible(true);
         }
 
         if (playerboardValue.equalsIgnoreCase("0")) {
+            PBSkull1.setVisible(true);
+            PBSkull2.setVisible(true);
+            PBSkull3.setVisible(true);
+            PBSkull4.setVisible(true);
             PBSkull5.setVisible(true);
         }
 
