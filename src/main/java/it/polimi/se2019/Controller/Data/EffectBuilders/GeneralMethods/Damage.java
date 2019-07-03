@@ -26,7 +26,7 @@ public class Damage {
 
     public static void giveDamage(int damageAmount, Player user, Player target) {
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < damageAmount; i++) {
 
             giveOneDamage(user, target);
 
