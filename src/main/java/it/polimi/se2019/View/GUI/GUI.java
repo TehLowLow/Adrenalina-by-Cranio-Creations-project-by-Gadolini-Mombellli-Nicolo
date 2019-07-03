@@ -18,6 +18,7 @@ import java.net.Socket;
 import java.util.Observable;
 import java.util.Observer;
 
+import static it.polimi.se2019.Network.RMI.Client.RMIClient.Game;
 import static java.lang.Thread.sleep;
 
 public class GUI extends Application implements Runnable {

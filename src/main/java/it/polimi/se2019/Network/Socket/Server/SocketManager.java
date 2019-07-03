@@ -7,7 +7,7 @@ import java.net.Socket;
 
 import static it.polimi.se2019.Network.Server.*;
 
-public class Manager extends Thread {
+public class SocketManager extends Thread {
 
     //Estende thread perche almeno posso creare un executor che fa partire in parallelo i thread
 
@@ -15,7 +15,7 @@ public class Manager extends Thread {
     private String response;
 
 
-    public Manager(Player player) {
+    public SocketManager(Player player) {
 
         this.toPoll = player;
 
