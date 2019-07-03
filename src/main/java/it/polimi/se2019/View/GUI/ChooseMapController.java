@@ -3,7 +3,7 @@ package it.polimi.se2019.View.GUI;
 import java.io.DataOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
-
+import it.polimi.se2019.View.GUI.GUI;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -37,7 +37,16 @@ public class ChooseMapController implements Initializable {
         try {
             Bloom bloom = new Bloom();
             map1.setEffect(bloom);
-            out.writeUTF("1");
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "1";
+                GUI.answeredRMI = true;
+            }
+
+            else {
+                out.writeUTF("1");
+            }
         }
         catch(Exception e){
 

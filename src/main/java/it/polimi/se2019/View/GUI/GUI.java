@@ -24,7 +24,12 @@ public class GUI extends Application implements Runnable {
 
     private static Stage primaryStage;
     private static AnchorPane rootLayout;
+
     public static DataOutputStream out;
+
+    public static boolean RMI = false;
+    public static boolean answeredRMI = false;
+    public static String RMIAnswer = "null";
 
     public int chosenMap;
     public int chosenSkulls;

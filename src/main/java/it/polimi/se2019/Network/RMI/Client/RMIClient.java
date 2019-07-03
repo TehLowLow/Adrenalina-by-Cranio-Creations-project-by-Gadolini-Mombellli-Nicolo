@@ -6,6 +6,7 @@ import it.polimi.se2019.Network.RMI.RMILoggerInterface;
 import it.polimi.se2019.Network.RMI.Server.RMIServerInterface;
 import it.polimi.se2019.View.GUI.GUI;
 import it.polimi.se2019.View.Parser;
+import javafx.application.Platform;
 
 import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
 import static it.polimi.se2019.Network.Server.RMIPORT;
@@ -36,6 +37,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     private String psw;
     private int localPort;
     private int value;
+    private Runnable gui;
     private boolean isGui = false;
     private boolean answered = false;
 
@@ -106,12 +108,11 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
         if(isGui){
 
-            Runnable gui = new GUI();
+            gui = new GUI();
 
-
-
-
-
+            GUI.RMI = true;
+            Thread executingGui = new Thread(gui);
+            executingGui.start();
 
         }
 
@@ -197,17 +198,41 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     @Override
     public String sendMsgWithAnswer(String msg) {
 
+        GUI.answeredRMI = false;
+        GUI.RMIAnswer = "null";
 
-        System.out.println(msg);
-        Scanner scanner = new Scanner(System.in);
-        return scanner.nextLine();
+        if(isGui){
+
+            System.out.println(msg);
+            Platform.runLater(() -> ((GUI) gui).update(msg));
+
+            while(!GUI.answeredRMI){
+                continue;
+            }
+
+            return(GUI.RMIAnswer);
+        }
+
+        else {
+            System.out.println(msg);
+            Scanner scanner = new Scanner(System.in);
+            return scanner.nextLine();
+        }
 
     }
 
     @Override
     public void sendMsg(String msg) {
 
-        System.out.println(msg);
+        if(isGui) {
+
+            System.out.println(msg);
+            Platform.runLater(() -> ((GUI) gui).update(msg));
+        }
+
+        else {
+            System.out.println(msg);
+        }
 
 
     }
