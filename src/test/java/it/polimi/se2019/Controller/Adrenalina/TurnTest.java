@@ -206,6 +206,7 @@ public class TurnTest {
         answers.add("aaa");
         answers.add("3");
         answers.add("1");
+        answers.add("blu");
         answers.add("no");
         answers.add("si");
         answers.add("si");
@@ -228,7 +229,52 @@ public class TurnTest {
 
         player.getPlayerboard().getPowerups().add(teleporter);
         Turn t = new Turn();
+        t.terminatorKilled = true;
         t.firstTerminator(player);
+
+
+        assertFalse(player.getPosition().equals(Board.getLimbo()));
+        assertTrue(terminator.getPosition().equals(Board.getMap().getRedRoom().getCells().get(2)));
+        assertEquals(1, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+
+
+
+    }
+
+    @Test
+    public void frenzyTerminator(){
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+
+        Player user = Server.connectedPlayers.get(0);
+        Player terminator = Server.connectedPlayers.get(Server.connectedPlayers.size()-1);
+        terminator.setNickname("Terminator");
+
+        answers.add("blu");
+        answers.add("no");
+        answers.add("si");
+        answers.add("si");
+        answers.add("1");
+        answers.add("player1");
+        answers.add("muovi");
+        answers.add("1");
+        answers.add("0");
+        answers.add("no");
+        answers.add("muovi");
+        answers.add("1");
+        answers.add("0");
+        answers.add("no");
+        TestBot.initAnswers(answers);
+
+        Player player = Server.connectedPlayers.get(0);
+        BlueTeleporterBuilder teleporterBuilder = new BlueTeleporterBuilder();
+        Powerup teleporter = teleporterBuilder.build();
+        teleporter.setEffect(new TeleporterEffect());
+
+        player.getPlayerboard().getPowerups().add(teleporter);
+        Turn t = new Turn();
+        t.terminatorKilled = true;
+        t.frenzy(player, false, true);
 
 
         assertFalse(player.getPosition().equals(Board.getLimbo()));

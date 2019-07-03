@@ -27,7 +27,7 @@ public class Turn extends Thread{
 
     private Board board = new Board();
 
-    private boolean terminatorKilled = false;
+    public boolean terminatorKilled = false;
 
     private boolean interrupt = false;
 
@@ -176,7 +176,7 @@ public class Turn extends Thread{
             if (spawnTerminator.equalsIgnoreCase("giallo")) {
 
                 Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getYellowRoom().getCells().get(0));
-                Server.updateAll("Il Terminator è respawnato nella Spawn Cell blu!");
+                Server.updateAll("Il Terminator è respawnato nella Spawn Cell gialla!");
 
 
             }
@@ -472,6 +472,67 @@ public class Turn extends Thread{
 
         boolean usedPowerUp;
         boolean terminatorPerformed = false;
+
+        if (terminator && terminatorKilled) {
+
+
+            String spawnTerminator = Server.updateWithAnswer(player, "Scegli un colore tra rosso, blu e giallo per far rinascere il Terminator nella corrispondente Spawn Cell");
+
+
+            boolean spawned = false;
+
+            if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")) {
+
+                spawned = true;
+
+            }
+
+
+            while (!spawned) {
+
+                Server.update(player, Message.inputError());
+                spawnTerminator = Server.updateWithAnswer(player, "Scegli un colore tra rosso, blu e giallo per far rinascere il Terminator nella corrispondente Spawn Cell");
+
+                if (spawnTerminator.equalsIgnoreCase("rosso") || spawnTerminator.equalsIgnoreCase("blu") || spawnTerminator.equalsIgnoreCase("giallo")) {
+
+                    spawned = true;
+
+                }
+            }
+
+            if (spawnTerminator.equalsIgnoreCase("rosso")) {
+
+                Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getRedRoom().getCells().get(0));
+                Server.updateAll("Il Terminator è respawnato nella Spawn Cell rossa!");
+
+
+            }
+
+
+            if (spawnTerminator.equalsIgnoreCase("blu")) {
+
+                Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getBlueRoom().getCells().get(0));
+                Server.updateAll("Il Terminator è respawnato nella Spawn Cell blu!");
+
+
+            }
+
+            if (spawnTerminator.equalsIgnoreCase("giallo")) {
+
+                Server.connectedPlayers.get(Server.connectedPlayers.size() - 1).setPosition(Board.getMap().getYellowRoom().getCells().get(0));
+                Server.updateAll("Il Terminator è respawnato nella Spawn Cell gialla!");
+
+
+            }
+
+
+            terminatorKilled = false;
+
+
+        }
+
+
+
 
         for (int i = 0; i < 3; i++) {
 

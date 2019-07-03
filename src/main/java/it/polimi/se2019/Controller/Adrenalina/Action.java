@@ -212,7 +212,6 @@ public class Action {
             CopyOnWriteArrayList<String> possibleActions = new CopyOnWriteArrayList<>();
 
             possibleActions.add("Spara");
-            possibleActions.add("Muovi");
             possibleActions.add("Raccogli");
 
 
