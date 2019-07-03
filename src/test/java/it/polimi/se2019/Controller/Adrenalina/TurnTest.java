@@ -79,16 +79,24 @@ public class TurnTest {
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("aaa");
         answers.add("3");
-        answers.add("0");
+        answers.add("1");
+        answers.add("no");
         answers.add("muovi");
         answers.add("1");
         answers.add("0");
+        answers.add("no");
         answers.add("muovi");
         answers.add("1");
         answers.add("0");
+        answers.add("no");
         TestBot.initAnswers(answers);
 
         Player player = Server.connectedPlayers.get(0);
+        BlueTeleporterBuilder teleporterBuilder = new BlueTeleporterBuilder();
+        Powerup teleporter = teleporterBuilder.build();
+        teleporter.setEffect(new TeleporterEffect());
+
+        player.getPlayerboard().getPowerups().add(teleporter);
         Turn t = new Turn();
         t.first(player);
 
