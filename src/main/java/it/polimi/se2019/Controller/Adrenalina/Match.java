@@ -432,7 +432,7 @@ public class Match extends Thread {
         int mapNumber = voti.indexOf(max) + 1;
 
         MapSetup mapSetup = new MapSetup();
-        board.setMap(mapSetup.build(mapNumber));
+        Board.setMap(mapSetup.build(mapNumber));
 
         for (Player player : connectedPlayers) {
 
