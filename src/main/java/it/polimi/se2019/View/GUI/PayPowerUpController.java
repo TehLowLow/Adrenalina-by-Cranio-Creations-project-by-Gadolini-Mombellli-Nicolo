@@ -382,7 +382,15 @@ public class PayPowerUpController implements Initializable {
     public void choosePU0(){
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "0";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("0");
+        }
             pu1.getScene().getWindow().hide();
         }
         catch(Exception e){
@@ -396,7 +404,15 @@ public class PayPowerUpController implements Initializable {
     public void choosePU1(){
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "1";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("1");
+        }
             pu1.getScene().getWindow().hide();
         }
         catch(Exception e){
@@ -410,7 +426,15 @@ public class PayPowerUpController implements Initializable {
     public void choosePU2(){
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "2";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("2");
+        }
             pu1.getScene().getWindow().hide();
         }
         catch(Exception e){

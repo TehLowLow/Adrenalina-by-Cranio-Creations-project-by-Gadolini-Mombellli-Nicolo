@@ -29,7 +29,17 @@ public class ChooseExtraGrenade implements Initializable {
     public void chooseBasic() {
 
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "base";
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF("base");
+        }
             basic.setDisable(true);
             extra.setDisable(true);
             basic.getScene().getWindow().hide();
@@ -43,7 +53,16 @@ public class ChooseExtraGrenade implements Initializable {
     public void chooseExtra() {
 
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "extra";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("extra");
+        }
             basic.setDisable(true);
             extra.setDisable(true);
             extra.getScene().getWindow().hide();

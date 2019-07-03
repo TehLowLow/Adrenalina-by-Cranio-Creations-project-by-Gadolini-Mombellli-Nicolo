@@ -207,7 +207,11 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
             Platform.runLater(() -> ((GUI) gui).update(msg));
 
             while(!GUI.answeredRMI){
-                continue;
+                try {
+                    sleep(200);
+                    continue;
+                }
+                catch(Exception e){}
             }
 
             return(GUI.RMIAnswer);

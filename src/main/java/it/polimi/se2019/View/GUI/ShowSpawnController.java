@@ -41,7 +41,16 @@ public class ShowSpawnController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "0";
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF("0");
+        }
             firstPU.setEffect(new Bloom());
             firstPU.getScene().getWindow().hide();
         }
@@ -56,7 +65,16 @@ public class ShowSpawnController implements Initializable {
 
         try {
 
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "1";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("1");
+        }
             secondPU.setEffect(new Bloom());
             secondPU.getScene().getWindow().hide();
         }
@@ -71,7 +89,15 @@ public class ShowSpawnController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "2";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("2");
+        }
             thirdPU.setEffect(new Bloom());
             thirdPU.getScene().getWindow().hide();
         }
@@ -86,7 +112,16 @@ public class ShowSpawnController implements Initializable {
 
         try {
 
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "3";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("3");
+        }
             fourthPU.setEffect(new Bloom());
             fourthPU.getScene().getWindow().hide();
         }

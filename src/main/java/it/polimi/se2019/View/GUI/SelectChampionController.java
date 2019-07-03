@@ -84,7 +84,15 @@ public class SelectChampionController implements Initializable {
         if(oneSelected){
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = championName;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF(championName);
+            }
             }
 
             catch(Exception e){

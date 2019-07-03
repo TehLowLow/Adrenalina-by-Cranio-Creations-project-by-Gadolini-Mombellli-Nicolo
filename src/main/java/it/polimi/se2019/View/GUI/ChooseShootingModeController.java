@@ -23,7 +23,15 @@ public class ChooseShootingModeController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "base";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("base");
+        }
             base.getScene().getWindow().hide();
 
         } catch (Exception e) {
@@ -35,7 +43,15 @@ public class ChooseShootingModeController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "alternativo";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("alternativo");
+        }
             base.getScene().getWindow().hide();
 
         } catch (Exception e) {

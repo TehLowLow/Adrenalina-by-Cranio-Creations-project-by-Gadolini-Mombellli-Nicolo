@@ -2953,319 +2953,528 @@ public class Map4UIController implements Initializable {
         }
 
 
-        // ----- AZIONI DEI CONTROLLI ----///
+    // ----- AZIONI DEI CONTROLLI ----///
 
-        @FXML
-        public void moveAction () {
+    @FXML
+    public void moveAction () {
 
-            try {
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "muovi";
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF("muovi");
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void shotAction () {
+    }
 
-            try {
+    @FXML
+    public void shotAction () {
+
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "spara";
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF("spara");
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void pickupAction () {
+    }
 
-            try {
+    @FXML
+    public void pickupAction () {
+
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "raccogli";
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF("raccogli");
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        ////
+    }
 
-        @FXML
-        public void choseSprog () {
+    ////
 
-            try {
+    @FXML
+    public void choseSprog () {
+
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = sprogUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(sprogUser);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void choseViolet () {
 
-            try {
+    }
+
+    @FXML
+    public void choseViolet () {
+
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = violettaUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(violettaUser);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void choseDestructor () {
-            try {
+
+    }
+
+    @FXML
+    public void choseDestructor () {
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = destructorUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(destructorUser);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void choseBanshee () {
+    }
 
-            try {
+    @FXML
+    public void choseBanshee () {
+
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = bansheeUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(bansheeUser);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void choseDozer () {
 
-            try {
+    }
+
+    @FXML
+    public void choseDozer () {
+
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = dozerUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(dozerUser);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        ///
+
+    }
+
+    ///
 
 
-        @FXML
-        public void noAction () {
+    @FXML
+    public void noAction () {
 
-            try {
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "no";
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF("no");
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void yesAction () {
+    }
 
-            try {
+    @FXML
+    public void yesAction () {
+
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "si";
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF("si");
-            } catch (Exception e) {
-
             }
+        } catch (Exception e) {
 
         }
 
+    }
 
-        @FXML
-        public void chooseBlueWeapon1 () {
 
-            try {
+    @FXML
+    public void chooseBlueWeapon1 () {
+
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = blueWeapon1name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(blueWeapon1name);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
 
-        @FXML
-        public void chooseBlueWeapon2 () {
+    @FXML
+    public void chooseBlueWeapon2 () {
 
-            try {
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = blueWeapon2name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(blueWeapon2name);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
-        @FXML
-        public void chooseBlueWeapon3 () {
+    @FXML
+    public void chooseBlueWeapon3 () {
 
-            try {
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = blueWeapon3name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(blueWeapon3name);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
-        @FXML
-        public void chooseWeapon1 () {
+    @FXML
+    public void chooseWeapon1 () {
 
-            try {
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = weapon1;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(weapon1);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
-        @FXML
-        public void chooseWeapon2 () {
+    @FXML
+    public void chooseWeapon2 () {
 
-            try {
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = weapon2;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(weapon2);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
-        @FXML
-        public void chooseWeapon3 () {
+    @FXML
+    public void chooseWeapon3 () {
 
-            try {
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = weapon3;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(weapon3);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+    }
 
-        ///
+    ///
 
-        @FXML
-        public void chooseYellowWeapon1 () {
+    @FXML
+    public void chooseYellowWeapon1 () {
 
-            try {
+        try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowWeapon1name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(yellowWeapon1name);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void chooseYellowWeapon2 () {
+    }
 
-            try {
+    @FXML
+    public void chooseYellowWeapon2 () {
+
+        try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowWeapon2name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
 
                 out.writeUTF(yellowWeapon2name);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void chooseYellowWeapon3 () {
+    }
 
-            try {
+    @FXML
+    public void chooseYellowWeapon3 () {
 
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowWeapon3name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(yellowWeapon3name);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        //
+    }
 
-        @FXML
-        public void chooseRedWeapon1 () {
+    //
 
-            try {
+    @FXML
+    public void chooseRedWeapon1 () {
+
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = redWeapon1name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
 
                 out.writeUTF(redWeapon1name);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void chooseRedWeapon2 () {
+    }
 
-            try {
+    @FXML
+    public void chooseRedWeapon2 () {
 
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = redWeapon2name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(redWeapon2name);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void chooseRedWeapon3 () {
+    }
 
-            try {
+    @FXML
+    public void chooseRedWeapon3 () {
 
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = redWeapon3name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(redWeapon3name);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        //
+    }
 
-        @FXML
-        public void choosePU1 () {
+    //
 
-            try {
+    @FXML
+    public void choosePU1 () {
+
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = pu1;
+                GUI.answeredRMI = true;
+            }
+
+            else {
 
                 out.writeUTF(pu1);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void choosePU2 () {
+    }
 
-            try {
+    @FXML
+    public void choosePU2 () {
+
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = pu2;
+                GUI.answeredRMI = true;
+            }
+
+            else {
 
                 out.writeUTF(pu2);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        @FXML
-        public void choosePU3 () {
+    }
 
-            try {
+    @FXML
+    public void choosePU3 () {
 
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = pu3;
+                GUI.answeredRMI = true;
+            }
+
+            else {
                 out.writeUTF(pu3);
-
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        //
+    }
 
         @FXML
         public void chooseBlueSpawnCell () {
 
             try {
 
+
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = blueSpawnCellIndex;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF(blueSpawnCellIndex);
+            }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3280,7 +3489,16 @@ public class Map4UIController implements Initializable {
 
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = blueLootCellIndex;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
+
                 out.writeUTF(blueLootCellIndex);
+            }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3297,7 +3515,15 @@ public class Map4UIController implements Initializable {
 
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = redSpawnCellIndex;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF(redSpawnCellIndex);
+            }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3312,7 +3538,16 @@ public class Map4UIController implements Initializable {
 
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = redLootCellIndex;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF(redLootCellIndex);
+            }
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3328,7 +3563,15 @@ public class Map4UIController implements Initializable {
 
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = yellowSpawnCellIndex;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF(yellowSpawnCellIndex);
+            }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3343,7 +3586,16 @@ public class Map4UIController implements Initializable {
 
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = yellowLootCell1Index;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
+
                 out.writeUTF(yellowLootCell1Index);
+            }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3359,7 +3611,15 @@ public class Map4UIController implements Initializable {
 
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = yellowLootCell2Index;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF(yellowLootCell2Index);
+            }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3374,7 +3634,16 @@ public class Map4UIController implements Initializable {
 
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = yellowLootCell3Index;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
+
                 out.writeUTF(yellowLootCell3Index);
+            }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3389,7 +3658,15 @@ public class Map4UIController implements Initializable {
 
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = whiteLootCell1Index;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF(whiteLootCell1Index);
+            }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3404,7 +3681,15 @@ public class Map4UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = whiteLootCell2Index;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(whiteLootCell2Index);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3419,7 +3704,16 @@ public class Map4UIController implements Initializable {
 
             try {
 
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = greenLootCellIndex;
+                    GUI.answeredRMI = true;
+                }
+
+                else {
+
                 out.writeUTF(greenLootCellIndex);
+            }
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -3434,7 +3728,15 @@ public class Map4UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = purpleLootCellIndex;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(purpleLootCellIndex);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3449,7 +3751,15 @@ public class Map4UIController implements Initializable {
         public void chooseRedAmmo () {
 
             try {
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = "rosso";
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF("rosso");
+            }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -3459,7 +3769,15 @@ public class Map4UIController implements Initializable {
         public void chooseBlueAmmo () {
 
             try {
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = "blu";
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF("blu");
+            }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -3469,7 +3787,15 @@ public class Map4UIController implements Initializable {
         public void chooseYellowAmmo () {
 
             try {
+                if(GUI.RMI) {
+
+                    GUI.RMIAnswer = "giallo";
+                    GUI.answeredRMI = true;
+                }
+
+                else {
                 out.writeUTF("giallo");
+            }
             } catch (Exception e) {
                 e.printStackTrace();
             }

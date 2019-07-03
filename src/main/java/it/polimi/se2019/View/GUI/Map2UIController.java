@@ -2824,7 +2824,16 @@ public class Map2UIController implements Initializable {
     public void moveAction() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "muovi";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("muovi");
+        }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2835,7 +2844,16 @@ public class Map2UIController implements Initializable {
     public void shotAction() {
 
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "spara";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("spara");
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2846,7 +2864,15 @@ public class Map2UIController implements Initializable {
     public void pickupAction() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "raccogli";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("raccogli");
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2859,7 +2885,17 @@ public class Map2UIController implements Initializable {
     public void choseSprog() {
 
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = sprogUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF(sprogUser);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2871,7 +2907,16 @@ public class Map2UIController implements Initializable {
     public void choseViolet() {
 
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = violettaUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(violettaUser);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2882,7 +2927,16 @@ public class Map2UIController implements Initializable {
     @FXML
     public void choseDestructor() {
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = destructorUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(destructorUser);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2893,7 +2947,15 @@ public class Map2UIController implements Initializable {
     public void choseBanshee() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = bansheeUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(bansheeUser);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2905,7 +2967,16 @@ public class Map2UIController implements Initializable {
     public void choseDozer() {
 
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = dozerUser;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(dozerUser);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2920,7 +2991,15 @@ public class Map2UIController implements Initializable {
     public void noAction() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "no";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("no");
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2931,7 +3010,15 @@ public class Map2UIController implements Initializable {
     public void yesAction() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "si";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("si");
+        }
         } catch (Exception e) {
 
         }
@@ -2943,7 +3030,15 @@ public class Map2UIController implements Initializable {
     public void chooseBlueWeapon1() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = blueWeapon1name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(blueWeapon1name);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2954,7 +3049,15 @@ public class Map2UIController implements Initializable {
     public void chooseBlueWeapon2() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = blueWeapon2name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(blueWeapon2name);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2964,7 +3067,15 @@ public class Map2UIController implements Initializable {
     public void chooseBlueWeapon3() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = blueWeapon3name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(blueWeapon3name);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2974,7 +3085,15 @@ public class Map2UIController implements Initializable {
     public void chooseWeapon1() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = weapon1;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(weapon1);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2984,7 +3103,15 @@ public class Map2UIController implements Initializable {
     public void chooseWeapon2() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = weapon2;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(weapon2);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -2994,7 +3121,15 @@ public class Map2UIController implements Initializable {
     public void chooseWeapon3() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = weapon3;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(weapon3);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -3007,7 +3142,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowWeapon1name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(yellowWeapon1name);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3020,7 +3163,16 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowWeapon2name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF(yellowWeapon2name);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3033,7 +3185,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowWeapon3name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(yellowWeapon3name);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3048,7 +3208,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = redWeapon1name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(redWeapon1name);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3061,7 +3229,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = redWeapon2name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(redWeapon2name);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3074,7 +3250,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = redWeapon3name;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(redWeapon3name);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3089,8 +3273,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
-            out.writeUTF(pu1);
+            if(GUI.RMI) {
 
+                GUI.RMIAnswer = pu1;
+                GUI.answeredRMI = true;
+            }
+
+            else {
+            out.writeUTF(pu1);
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -3102,7 +3293,16 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = pu2;
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF(pu2);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3115,7 +3315,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = pu3;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(pu3);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3129,8 +3337,16 @@ public class Map2UIController implements Initializable {
     public void chooseBlueSpawnCell() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = blueSpawnCellIndex;
+                GUI.answeredRMI = true;
+            }
+
+            else {
 
             out.writeUTF(blueSpawnCellIndex);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3145,7 +3361,17 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = blueLootCell1Index;
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF(blueLootCell1Index);
+        }
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3160,7 +3386,16 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = blueLootCell2Index;
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF(blueLootCell2Index);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3175,7 +3410,16 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = redSpawnCellIndex;
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF(redSpawnCellIndex);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3190,7 +3434,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = redLootCellIndex;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(redLootCellIndex);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3206,7 +3458,16 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowSpawnCellIndex;
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF(yellowSpawnCellIndex);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3221,7 +3482,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowLootCell1Index;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(yellowLootCell1Index);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3237,7 +3506,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowLootCell2Index;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(yellowLootCell2Index);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3252,7 +3529,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = yellowLootCell3Index;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(yellowLootCell3Index);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3267,7 +3552,15 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = whiteLootCellIndex;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(whiteLootCellIndex);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3282,7 +3575,16 @@ public class Map2UIController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = greenLootCellIndex;
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF(greenLootCellIndex);
+        }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -3296,7 +3598,15 @@ public class Map2UIController implements Initializable {
     public void chooseRedAmmo() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "rosso";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("rosso");
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -3306,7 +3616,15 @@ public class Map2UIController implements Initializable {
     public void chooseBlueAmmo() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "blu";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("blu");
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -3316,7 +3634,15 @@ public class Map2UIController implements Initializable {
     public void chooseYellowAmmo() {
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "giallo";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("giallo");
+        }
         } catch (Exception e) {
             e.printStackTrace();
         }

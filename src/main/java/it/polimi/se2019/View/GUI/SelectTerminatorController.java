@@ -16,9 +16,18 @@ public class SelectTerminatorController implements Initializable {
     @FXML
    public void selectClassica(){
 
-       try{
+       try {
+
+           if(GUI.RMI) {
+
+               GUI.RMIAnswer = "classica";
+               GUI.answeredRMI = true;
+           }
+
+           else {
 
            out.writeUTF("classica");
+       }
        }catch(Exception e){
 
        }
@@ -29,9 +38,18 @@ public class SelectTerminatorController implements Initializable {
    @FXML
    public void selectTerminator(){
 
-       try{
+       try {
+
+           if(GUI.RMI) {
+
+               GUI.RMIAnswer = "terminator";
+               GUI.answeredRMI = true;
+           }
+
+           else {
 
            out.writeUTF("terminator");
+       }
        }catch(Exception e){
 
        }

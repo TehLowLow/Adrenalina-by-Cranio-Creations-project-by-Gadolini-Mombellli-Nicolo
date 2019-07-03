@@ -62,7 +62,16 @@ public class ChooseMapController implements Initializable {
         try {
             Bloom bloom = new Bloom();
             map2.setEffect(bloom);
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "2";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("2");
+        }
         }
         catch(Exception e){
 
@@ -80,7 +89,17 @@ public class ChooseMapController implements Initializable {
 
             Bloom bloom = new Bloom();
             map3.setEffect(bloom);
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "3";
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF("3");
+        }
         }
         catch(Exception e){
 
@@ -98,7 +117,18 @@ public class ChooseMapController implements Initializable {
 
             Bloom bloom = new Bloom();
             map4.setEffect(bloom);
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "4";
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF("4");
+
+        }
         }
         catch(Exception e){
 

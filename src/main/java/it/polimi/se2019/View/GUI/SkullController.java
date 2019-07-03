@@ -99,7 +99,15 @@ public class SkullController implements Initializable {
 
         try {
 
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = chosenNumber;
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF(chosenNumber);
+        }
         }
         catch(Exception e){
 

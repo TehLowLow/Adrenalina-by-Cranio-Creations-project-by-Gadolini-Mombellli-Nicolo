@@ -27,8 +27,18 @@ public class ChooseStepsController implements Initializable {
     @FXML
     public void chosen1(){
 
-        try{
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "1";
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF("1");
+        }
             chose1.setDisable(true);
             chose2.setDisable(true);
             chose3.setDisable(true);
@@ -42,8 +52,18 @@ public class ChooseStepsController implements Initializable {
     @FXML
     public void chosen2(){
 
-        try{
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "2";
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF("2");
+        }
             chose1.setDisable(true);
             chose2.setDisable(true);
             chose3.setDisable(true);
@@ -58,8 +78,18 @@ public class ChooseStepsController implements Initializable {
     @FXML
     public void chosen3(){
 
-        try{
+        try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "3";
+                GUI.answeredRMI = true;
+            }
+
+            else {
+
             out.writeUTF("3");
+        }
             chose1.setDisable(true);
             chose2.setDisable(true);
             chose3.setDisable(true);

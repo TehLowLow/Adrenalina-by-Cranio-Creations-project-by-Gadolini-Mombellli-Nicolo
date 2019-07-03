@@ -16,7 +16,16 @@ public class ChooseRoomController implements Initializable {
     public void selectRed(){
 
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "rosso";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("rosso");
+        }
         }
         catch(Exception e){
 
@@ -28,7 +37,16 @@ public class ChooseRoomController implements Initializable {
     public void selectYellow(){
 
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "giallo";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("giallo");
+        }
         }
         catch(Exception e){
 
@@ -40,7 +58,16 @@ public class ChooseRoomController implements Initializable {
     public void selectBlue(){
 
         try {
+
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "blu";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("blu");
+        }
         }
         catch(Exception e){
 
@@ -52,7 +79,15 @@ public class ChooseRoomController implements Initializable {
     public void selectGreen(){
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "verde";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("verde");
+        }
         }
         catch(Exception e){
 
@@ -64,7 +99,15 @@ public class ChooseRoomController implements Initializable {
     public void selectWhite(){
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "bianco";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("bianco");
+        }
         }
         catch(Exception e){
 
@@ -76,7 +119,15 @@ public class ChooseRoomController implements Initializable {
     public void selectPurple(){
 
         try {
+            if(GUI.RMI) {
+
+                GUI.RMIAnswer = "viola";
+                GUI.answeredRMI = true;
+            }
+
+            else {
             out.writeUTF("viola");
+        }
         }
         catch(Exception e){
 
