@@ -49,6 +49,17 @@ public class Match extends Thread {
 
     private boolean finish = false;
 
+    public static boolean first = false;
+    public static boolean firstTerminator = false;
+    public static boolean standard = false;
+    public static boolean frenzy = false;
+    public static Player executor = new Player();
+    public static boolean terminator = false;
+    public static boolean afterFirstPlayer = false;
+    public static boolean skipTurn = false;
+    public static Object lock = new Object();
+    public static boolean timeElapsed = false;
+
     /*
      * ---------- METHODS ----------
      */
@@ -80,10 +91,9 @@ public class Match extends Thread {
     public void run() {
 
 
-        Turn t = new Turn();
         chooseMap();
         chooseSkulls();
-        boolean terminator = chooseMode();
+        terminator = chooseMode();
 
         /*
         inizializzo board
@@ -158,11 +168,28 @@ public class Match extends Thread {
 
         for (Player player : connectedPlayers) {
 
+            timeElapsed = false;
+
+            executor = player;
+
 
             if (!terminator) {
 
                 updateAll("Primo turno per " + player.getNickname());
-                t.first(player);
+                Runnable timer = new Timer();
+                Thread time = new Thread(timer);
+                time.start();
+                Runnable turn = new Turn();
+                Thread firstTurn = new Thread(turn);
+                first = true;
+                firstTurn.start();
+                try {
+                    synchronized (lock) {
+                        lock.wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 Interaction.placeLoot();
                 Interaction.placeWeapons();
 
@@ -171,7 +198,20 @@ public class Match extends Thread {
                 if (!player.getNickname().equalsIgnoreCase("Terminator")) {
 
                     updateAll("Primo turno per " + player.getNickname());
-                    t.firstTerminator(player);
+                    Runnable timer = new Timer();
+                    Thread time = new Thread(timer);
+                    time.start();
+                    Runnable turn = new Turn();
+                    Thread firstTerminatorTurn = new Thread(turn);
+                    firstTerminator = true;
+                    firstTerminatorTurn.start();
+                    try {
+                        synchronized (lock) {
+                            lock.wait();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     Interaction.placeLoot();
                     Interaction.placeWeapons();
 
@@ -184,10 +224,14 @@ public class Match extends Thread {
 
         while (!finish) {
 
-
             for (Player player : connectedPlayers) {
 
-                if (!terminator) {
+                executor = player;
+
+
+                if (!player.getNickname().equalsIgnoreCase("Terminator")) {
+
+
                     finish = checkFrenzy();
                     if (finish) {
                         updateAll("Inizia la Frenesia Finale!");
@@ -195,34 +239,28 @@ public class Match extends Thread {
                     }
 
                     updateAll("Ora è il turno di " + player.getNickname());
-                    t.standard(player, false);
+                    Runnable timer = new Timer();
+                    Thread time = new Thread(timer);
+                    time.start();
+                    Runnable turn = new Turn();
+                    Thread standardTurn = new Thread(turn);
+                    standard = true;
+                    standardTurn.start();
+                    try {
+                        synchronized (lock) {
+                            lock.wait();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     Interaction.placeLoot();
                     Interaction.placeWeapons();
                     lastPlayer = player;
 
-                } else {
-
-                    if (!player.getNickname().equalsIgnoreCase("Terminator")) {
-
-
-                        finish = checkFrenzy();
-                        if (finish) {
-                            updateAll("Inizia la Frenesia Finale!");
-                            continue;
-                        }
-
-                        updateAll("Ora è il turno di " + player.getNickname());
-                        t.standard(player, true);
-                        Interaction.placeLoot();
-                        Interaction.placeWeapons();
-                        lastPlayer = player;
-
-                    }
-
                 }
+
+
             }
-
-
 
         }
 
@@ -281,7 +319,7 @@ public class Match extends Thread {
             }
         }
 
-        boolean afterFirstPlayer = false;
+        afterFirstPlayer = false;
 
         for (Player player : connectedPlayers) {
 
@@ -291,20 +329,26 @@ public class Match extends Thread {
             }
 
 
-            if (!terminator) {
+            if (!player.getNickname().equalsIgnoreCase("Terminator")) {
 
                 updateAll("Turno della Frenesia Finale per " + player.getNickname());
-                t.frenzy(player, afterFirstPlayer, false);
-            } else {
-
-                if (!player.getNickname().equalsIgnoreCase("Terminator")){
-
-                    updateAll("Turno della Frenesia Finale per " + player.getNickname());
-                    t.frenzy(player, afterFirstPlayer, true);
-
+                Runnable timer = new Timer();
+                Thread time = new Thread(timer);
+                time.start();
+                Runnable turn = new Turn();
+                Thread frenzyTurn = new Thread(turn);
+                frenzy = true;
+                frenzyTurn.start();
+                try {
+                    synchronized (lock) {
+                        lock.wait();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
 
             }
+
 
         }
 

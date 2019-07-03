@@ -13,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * This class represents the player's turn in the match
  */
 
-public class Turn {
+public class Turn extends Thread{
 
     /*
     ------------FIELDS-------------------------
@@ -29,6 +29,9 @@ public class Turn {
 
     private boolean terminatorKilled = false;
 
+    private boolean interrupt = false;
+
+    private Object threadKiller = new Object();
 
     /**
      * At the end of the turn, those players must be respawned.
@@ -76,12 +79,7 @@ public class Turn {
     */
 
 
-    /**
-     * @param time is the max time usable for the turn.
-     *             When it's over, the turn is skipped.
-     */
-    public void timer(int time) {
-    }
+
 
 
     /**
@@ -129,7 +127,10 @@ public class Turn {
         boolean terminatorPerformed = false;
 
 
+
+
         if (terminator && terminatorKilled) {
+
 
             String spawnTerminator = Server.updateWithAnswer(player, "Scegli un colore tra rosso, blu e giallo per far rinascere il Terminator nella corrispondente Spawn Cell");
 
@@ -186,7 +187,6 @@ public class Turn {
 
         }
 
-
         for (int i = 0; i < 3; i++) {
 
             usedPowerUp = Action.usePowerUp(player);
@@ -203,6 +203,7 @@ public class Turn {
                 terminatorPerformed = Action.performTerminator(player, false);
             }
         }
+
 
         Action.perform(player);
 
@@ -375,6 +376,7 @@ public class Turn {
 
 
         }
+
 
         boolean chosen = false;
 
@@ -663,4 +665,56 @@ public class Turn {
     }
 
 
+    @Override
+    public void run() {
+
+        if (Match.first){
+
+            first(Match.executor);
+            Match.first = false;
+
+            synchronized (Match.lock) {
+                Match.lock.notify();
+            }
+
+        }
+
+
+        if (Match.firstTerminator){
+
+            firstTerminator(Match.executor);
+            Match.firstTerminator = false;
+
+            synchronized (Match.lock) {
+                Match.lock.notify();
+            }
+
+        }
+
+
+        if (Match.frenzy){
+
+            frenzy(Match.executor, Match.afterFirstPlayer, Match.terminator);
+            Match.frenzy = false;
+            synchronized (Match.lock) {
+                Match.lock.notify();
+            }
+
+        }
+
+
+        if (Match.standard){
+
+            standard(Match.executor, Match.terminator);
+            Match.standard = false;
+            synchronized (Match.lock) {
+                Match.lock.notify();
+            }
+
+
+        }
+
+
+
+    }
 }
