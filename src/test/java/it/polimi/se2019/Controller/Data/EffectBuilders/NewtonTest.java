@@ -3,7 +3,6 @@ package it.polimi.se2019.Controller.Data.EffectBuilders;
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Powerup;
-import it.polimi.se2019.Model.Weapon;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.Network.TestBot;
 import org.junit.Before;
@@ -11,7 +10,7 @@ import org.junit.Test;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class NewtonTest {
 
@@ -23,7 +22,7 @@ public class NewtonTest {
     }
 
     @Test
-    public void applyEffect(){
+    public void applyEffectSx(){
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("sinistra");
@@ -42,6 +41,83 @@ public class NewtonTest {
        newton.setEffect(new Newton());
        newton.getEffect().applyEffect(user, targets);
        assertTrue(player1.getPosition().equals(Board.getMap().getRedRoom().getCells().get(0)));
+
+
+    }
+
+
+
+    @Test
+    public void applyEffectDx(){
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("destra");
+        answers.add("0");
+        TestBot.initAnswers(answers);
+
+        Player user = Server.connectedPlayers.get(0);
+        Player player1 = Server.connectedPlayers.get(1);
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
+        targets.add(player1);
+
+        player1.setPosition(Board.getMap().getRedRoom().getCells().get(2));
+
+
+        Powerup newton = new Powerup();
+        newton.setEffect(new Newton());
+        newton.getEffect().applyEffect(user, targets);
+        assertTrue(player1.getPosition().equals(Board.getMap().getYellowRoom().getCells().get(1)));
+
+
+    }
+
+
+    @Test
+    public void applyEffectUp(){
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("basso");
+        answers.add("alto");
+        answers.add("0");
+        TestBot.initAnswers(answers);
+
+        Player user = Server.connectedPlayers.get(0);
+        Player player1 = Server.connectedPlayers.get(1);
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
+        targets.add(player1);
+
+        player1.setPosition(Board.getMap().getRedRoom().getCells().get(2));
+
+
+        Powerup newton = new Powerup();
+        newton.setEffect(new Newton());
+        newton.getEffect().applyEffect(user, targets);
+        assertTrue(player1.getPosition().equals(Board.getMap().getBlueRoom().getCells().get(0)));
+
+
+    }
+
+
+    @Test
+    public void applyEffectDown(){
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("basso");
+        answers.add("0");
+        TestBot.initAnswers(answers);
+
+        Player user = Server.connectedPlayers.get(0);
+        Player player1 = Server.connectedPlayers.get(1);
+        CopyOnWriteArrayList <Player> targets = new CopyOnWriteArrayList<>();
+        targets.add(player1);
+
+        player1.setPosition(Board.getMap().getYellowRoom().getCells().get(1));
+
+
+        Powerup newton = new Powerup();
+        newton.setEffect(new Newton());
+        newton.getEffect().applyEffect(user, targets);
+        assertTrue(player1.getPosition().equals(Board.getMap().getYellowRoom().getCells().get(0)));
 
 
     }
