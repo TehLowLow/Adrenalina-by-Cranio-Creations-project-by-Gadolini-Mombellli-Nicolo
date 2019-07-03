@@ -1,5 +1,6 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
+import com.sun.corba.se.spi.copyobject.CopyobjectDefaults;
 import it.polimi.se2019.Controller.Data.EffectBuilders.BasicFlamethrower;
 import it.polimi.se2019.Controller.Data.EffectBuilders.ConfigurationTest;
 import it.polimi.se2019.Controller.Data.EffectBuilders.LockRifleEffect;
@@ -7,6 +8,7 @@ import it.polimi.se2019.Controller.Data.LootBuilders.PrbBuilder;
 import it.polimi.se2019.Controller.Data.PowerUpBuilder.BlueTagbackGrenadeBuilder;
 import it.polimi.se2019.Controller.Data.PowerUpBuilder.BlueTeleporterBuilder;
 import it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons.LockRifleBuilder;
+import it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons.WhisperBuilder;
 import it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons.FlamethrowerBuilder;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
@@ -17,6 +19,7 @@ import org.junit.Test;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ActionTest {
 
@@ -45,7 +48,7 @@ public class ActionTest {
     }
 
     @Test
-    public void performPickUpWeapon(){
+    public void performPickUpWeapon() {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("raccogli");
@@ -59,7 +62,7 @@ public class ActionTest {
 
         Cell spawn = (SpawnCell) Board.getMap().getBlueRoom().getCells().get(0);
 
-        ((SpawnCell)spawn).getAvailableWeapons().add(flamethrower);
+        ((SpawnCell) spawn).getAvailableWeapons().add(flamethrower);
 
         Player player = Server.connectedPlayers.get(0);
 
@@ -72,7 +75,7 @@ public class ActionTest {
     }
 
     @Test
-    public void performPickUpLoot(){
+    public void performPickUpLoot() {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("Raccogli");
@@ -103,7 +106,7 @@ public class ActionTest {
 
 
     @Test
-    public void performUnavailableShot(){
+    public void performUnavailableShot() {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("Spara");
@@ -132,7 +135,7 @@ public class ActionTest {
     }
 
     @Test
-    public void performAvailableShot(){
+    public void performAvailableShot() {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("spara");
@@ -159,12 +162,12 @@ public class ActionTest {
     }
 
     @Test
-    public void performEnhancedPickUp(){
+    public void performEnhancedPickUp() {
 
         Player player = Server.connectedPlayers.get(0);
         player.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
 
-        for (int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
 
             player.getPlayerboard().getDamage().add(new Token());
             player.getPlayerboard().getDamage().get(i).setChampionName("Violetta");
@@ -189,7 +192,6 @@ public class ActionTest {
         ((SpawnCell) spawn).getAvailableWeapons().add(flamethrower);
 
 
-
         Action.perform(player);
 
         assertEquals(1, player.getPlayerboard().getWeapons().size());
@@ -199,13 +201,13 @@ public class ActionTest {
 
 
     @Test
-    public void performEnhancedShot(){
+    public void performEnhancedShot() {
 
         Player player = Server.connectedPlayers.get(0);
         player.setPosition(Board.getMap().getRedRoom().getCells().get(1));
 
 
-        for (int i=0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
 
             player.getPlayerboard().getDamage().add(new Token());
             player.getPlayerboard().getDamage().get(i).setChampionName("Violetta");
@@ -237,9 +239,6 @@ public class ActionTest {
         assertEquals(1, Server.connectedPlayers.get(1).getPlayerboard().getMarker().size());
 
 
-
-
-
     }
 
 
@@ -258,17 +257,16 @@ public class ActionTest {
         assertEquals(Board.getMap().getWhiteRoom().getCells().get(1), player.getPosition());
 
 
-
     }
 
 
     @Test
-    public void performFrenzyPickUp(){
+    public void performFrenzyPickUp() {
 
         Player player = Server.connectedPlayers.get(0);
         player.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
 
-        for (int i=0; i<3; i++){
+        for (int i = 0; i < 3; i++) {
 
             player.getPlayerboard().getDamage().add(new Token());
             player.getPlayerboard().getDamage().get(i).setChampionName("Violetta");
@@ -293,7 +291,6 @@ public class ActionTest {
         ((SpawnCell) spawn).getAvailableWeapons().add(flamethrower);
 
 
-
         Action.performFrenzy(player, false);
 
         assertEquals(1, player.getPlayerboard().getWeapons().size());
@@ -302,7 +299,7 @@ public class ActionTest {
     }
 
     @Test
-    public void performEnhancedFrenzyPickUp(){
+    public void performEnhancedFrenzyPickUp() {
 
         Player player = Server.connectedPlayers.get(0);
         player.setPosition(Board.getMap().getRedRoom().getCells().get(0));
@@ -327,7 +324,6 @@ public class ActionTest {
         ((SpawnCell) spawn).getAvailableWeapons().add(flamethrower);
 
 
-
         Action.performFrenzy(player, true);
 
         assertEquals(1, player.getPlayerboard().getWeapons().size());
@@ -336,7 +332,7 @@ public class ActionTest {
     }
 
     @Test
-    public void performFrenzyShot(){
+    public void performFrenzyShot() {
 
         Player player = Server.connectedPlayers.get(0);
         player.setPosition(Board.getMap().getRedRoom().getCells().get(1));
@@ -375,9 +371,8 @@ public class ActionTest {
     }
 
 
-
     @Test
-    public void performEnhancedFrenzyShot(){
+    public void performEnhancedFrenzyShot() {
 
         Player player = Server.connectedPlayers.get(0);
         player.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
@@ -418,9 +413,6 @@ public class ActionTest {
     }
 
 
-
-
-
     @Test
     public void reloadNotAffordable() {
 
@@ -440,7 +432,7 @@ public class ActionTest {
     }
 
     @Test
-    public void reloadAffordable(){
+    public void reloadAffordable() {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("si");
@@ -485,7 +477,7 @@ public class ActionTest {
     }
 
     @Test
-    public void usePowerUpAvailable(){
+    public void usePowerUpAvailable() {
 
         BlueTeleporterBuilder blueTeleporterBuilder = new BlueTeleporterBuilder();
         Powerup blueTeleporter = blueTeleporterBuilder.build();
@@ -511,4 +503,110 @@ public class ActionTest {
         assertEquals(Board.getMap().getBlueRoom().getCells().get(1), player.getPosition());
 
     }
+
+    @Test
+    public void perform() {
+
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("spara");
+        answers.add("muovi");
+        answers.add("Raccogli");
+
+
+        TestBot.initAnswers(answers);
+        Player player = Server.connectedPlayers.get(0);
+
+
+    }
+
+    @Test
+    public void performFrenzy() {
+
+
+
+
+
+
+
+
+
+    }
+
+    @Test
+    public void performTerminator() {
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+    @Test
+    public void reload() {
+
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("si");
+        answers.add("Fucile di precisione");
+
+        TestBot.initAnswers(answers);
+        Player player = Server.connectedPlayers.get(0);
+
+        WhisperBuilder wb = new WhisperBuilder();
+
+        Weapon fdp = wb.build();
+
+        fdp.setLoaded(false);
+
+        CopyOnWriteArrayList<Weapon> wp = new CopyOnWriteArrayList<>();
+
+        wp.add(fdp);
+
+        Rybamount wallet = new Rybamount();
+
+        wallet.setBlueCubes(3);
+        wallet.setYellowCubes(3);
+        wallet.setRedCubes(3);
+
+        player.getPlayerboard().setAmmoCubes(wallet);
+
+        player.getPlayerboard().setWeapons(wp);
+
+        Action.reload(player);
+
+        //assertTrue(fdp.isLoaded());
+        assertEquals(1, wallet.getBlue());
+        assertEquals(3, wallet.getRed());
+        assertEquals(2, wallet.getYellow());
+
+
+    }
+
+    @Test
+    public void usePowerUp() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
 }

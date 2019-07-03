@@ -3,11 +3,11 @@ package it.polimi.se2019.Network;
 
 import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Player;
-import it.polimi.se2019.Network.RMI.Client.RMIClient;
 import it.polimi.se2019.Network.RMI.Client.RMIClientInterface;
 import it.polimi.se2019.Network.RMI.RMILogger;
 import it.polimi.se2019.Network.RMI.Server.RMIServer;
-import it.polimi.se2019.Network.Socket.Server.Manager;
+import it.polimi.se2019.Network.RMI.Server.RmiManager;
+import it.polimi.se2019.Network.Socket.Server.SocketManager;
 import it.polimi.se2019.Network.Socket.Server.SocketServer;
 import it.polimi.se2019.Network.Socket.SocketLogger;
 import it.polimi.se2019.View.CLI.CLIprinter;
@@ -18,9 +18,9 @@ import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.Hashtable;
 import java.util.Scanner;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -208,8 +208,8 @@ public class Server {
 
             } catch (SocketException e) {
 
-                Manager manager = new Manager(player);
-                manager.start();
+                SocketManager socketManager = new SocketManager(player);
+                socketManager.start();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -222,6 +222,12 @@ public class Server {
                 Registry registry = LocateRegistry.getRegistry((String) playerClient.get(player.getNickname()), player.getPORT());
                 RMIClientInterface rmiplayer = (RMIClientInterface) registry.lookup(player.getNickname());
                 return rmiplayer.sendMsgWithAnswer(msg);
+
+            } catch (RemoteException e) {
+
+                RmiManager rmiManager = new RmiManager(player);
+                rmiManager.start();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -261,26 +267,47 @@ public class Server {
 
         if (msg.equals("Polling")) {
 
-            Socket stream = (Socket) playerClient.get(player.getPORT());
+            if (player.getConnectionTech().equalsIgnoreCase("socket")) {
 
-            try {
+                Socket stream = (Socket) playerClient.get(player.getPORT());
 
-                DataOutputStream out = new DataOutputStream(stream.getOutputStream());
-                DataInputStream echo = new DataInputStream(stream.getInputStream());
-                out.writeInt(200);
-                System.out.println(echo.readUTF());
+                try {
 
-            } catch (SocketException e) {
+                    DataOutputStream out = new DataOutputStream(stream.getOutputStream());
+                    DataInputStream echo = new DataInputStream(stream.getInputStream());
+                    out.writeInt(200);
+                    System.out.println(echo.readUTF());
 
-                Manager manager = new Manager(player);
-                manager.start();
+                } catch (SocketException e) {
 
-            } catch (Exception e) {
-                e.printStackTrace();
+                    SocketManager socketManager = new SocketManager(player);
+                    socketManager.start();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+
+                try {
+                    Registry registry = LocateRegistry.getRegistry((String) playerClient.get(player.getNickname()), player.getPORT());
+                    RMIClientInterface rmiplayer = (RMIClientInterface) registry.lookup(player.getNickname());  //TODO fixato questo il progetto è finito
+                    rmiplayer.sendMsg("200");
+
+                } catch (RemoteException re) {
+
+                    RmiManager rmiManager = new RmiManager(player);
+                    rmiManager.start();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+
+                }
+
             }
+        }
 
-
-        } else if (player.getConnectionTech().equalsIgnoreCase("socket")) {
+        if (player.getConnectionTech().equalsIgnoreCase("socket")) {
             Socket stream = (Socket) playerClient.get(player.getPORT());
 
             try {
@@ -293,8 +320,8 @@ public class Server {
 
             } catch (SocketException e) {
 
-                Manager manager = new Manager(player);
-                manager.start();
+                SocketManager socketManager = new SocketManager(player);
+                socketManager.start();
 
             } catch (Exception e) {
                 e.printStackTrace();
