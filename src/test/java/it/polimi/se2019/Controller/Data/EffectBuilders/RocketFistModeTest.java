@@ -60,29 +60,56 @@ public class RocketFistModeTest {
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
 
         answers.add("sinistra");
-        answers.add("si");
-        answers.add("player2");
-        answers.add("si");
-        answers.add("si");
         answers.add("player1");
+
+
+        answers.add("basso");
+        answers.add("player2");
+
+
+        answers.add("alto");
+        answers.add("player3");
+
+
+        answers.add("destra");
+        answers.add("player4");
 
 
         TestBot.initAnswers(answers);
 
-        Player shooter = Server.connectedPlayers.get(0);
+        Player user = Server.connectedPlayers.get(0);
         Player target1 = Server.connectedPlayers.get(1);
         Player target2 = Server.connectedPlayers.get(2);
+        Player target3 = Server.connectedPlayers.get(3);
+        Player target4 = Server.connectedPlayers.get(4);
 
-        Weapon glove = new Weapon();
+        user.setPosition(Board.getMap().getBlueRoom().getCells().get(0));
+        target1.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        target2.setPosition(Board.getMap().getRedRoom().getCells().get(2));
+        target3.setPosition(Board.getMap().getRedRoom().getCells().get(1));
+        target4.setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
 
-        glove.setAlternativeEffect(new RocketFistMode());
 
-        target1.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
-        target2.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
+        Weapon flamethrower = new Weapon();
+        flamethrower.setBaseEffect(new BasicFlamethrower());
 
-        CopyOnWriteArrayList<Player> targets = glove.getAlternativeEffect().getTargets(shooter);
-        assertEquals(2, targets.size());
+        CopyOnWriteArrayList<Player> targets = flamethrower.getBaseEffect().getTargets(user);
 
+        assertTrue(targets.contains(target1));
+
+        targets = flamethrower.getBaseEffect().getTargets(user);
+
+        assertTrue(targets.contains(target2));
+
+        user.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
+
+        targets = flamethrower.getBaseEffect().getTargets(user);
+
+        assertTrue(targets.contains(target3));
+
+        targets = flamethrower.getBaseEffect().getTargets(user);
+
+        assertTrue(targets.contains(target4));
     }
 
     @Test
