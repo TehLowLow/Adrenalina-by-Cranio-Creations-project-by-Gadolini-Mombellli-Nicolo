@@ -218,8 +218,17 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
         }
 
         else {
-            System.out.println(msg);
+
             Scanner scanner = new Scanner(System.in);
+            if (msg.contains("$")) {
+                String[] tokens = msg.split("\\$");
+                System.out.println(tokens[0]);
+
+            }
+            else {
+                System.out.println(msg);
+            }
+
             return scanner.nextLine();
         }
 
@@ -235,7 +244,14 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
         }
 
         else {
-            System.out.println(msg);
+
+            if (msg.contains("$")) {
+                String[] tokens = msg.split("\\$");
+                System.out.println(tokens[0]);
+            }
+            else {
+                System.out.println(msg);
+            }
         }
 
 
