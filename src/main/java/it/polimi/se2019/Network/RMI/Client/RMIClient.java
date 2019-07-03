@@ -237,6 +237,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     @Override
     public void sendMsg(String msg) {
 
+
         if(isGui) {
 
             System.out.println(msg);

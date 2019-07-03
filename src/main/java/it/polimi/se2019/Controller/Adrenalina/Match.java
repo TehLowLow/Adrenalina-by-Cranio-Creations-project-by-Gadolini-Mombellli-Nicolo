@@ -367,6 +367,7 @@ public class Match extends Thread {
         this.players = players;
     }
 
+
     /**
      * Setter for the board used in the current match.
      *

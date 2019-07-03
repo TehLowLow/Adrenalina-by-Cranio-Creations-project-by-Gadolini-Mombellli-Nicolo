@@ -9,9 +9,11 @@ import org.junit.Test;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static it.polimi.se2019.Network.Server.connectedPlayers;
 import static org.junit.Assert.*;
 
 public class MatchTest {
+
 
     @Before
     public void prepareEnvironment() {
@@ -20,8 +22,26 @@ public class MatchTest {
 
     }
 
+
     @Test
     public void chooseMap() {
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+
+        answers.add("1");
+        answers.add("2");
+        answers.add("2");
+        answers.add("3");
+        answers.add("4");
+
+        TestBot.initAnswers(answers);
+
+        Match match = new Match();
+        match.chooseMap();
+
+        assertEquals((long) 2, (long) Board.getMap().getMapID());
+
+
     }
 
     @Test
@@ -43,15 +63,38 @@ public class MatchTest {
         assertEquals(6, Board.getMortalBlowTrack().size());
 
 
+
     }
 
     @Test
     public void chooseChampion() {
+
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+
+        answers.add("Sprog");
+        answers.add("Dozer");
+        answers.add("Violetta");
+        answers.add("Banshee");
+        answers.add(":D-strutt-or3");
+
+        TestBot.initAnswers(answers);
+
+        Match match = new Match();
+        match.chooseChampion(false);
+
+
+
+
+        assertEquals("Sprog" , connectedPlayers.get(0).getPlayerboard().getChampionName());
+        assertEquals("Dozer", connectedPlayers.get(1).getPlayerboard().getChampionName());
+        assertEquals("Violetta", connectedPlayers.get(2).getPlayerboard().getChampionName());
+        assertEquals("Banshee", connectedPlayers.get(3).getPlayerboard().getChampionName());
+        assertEquals(":D-strutt-or3", connectedPlayers.get(4).getPlayerboard().getChampionName());
+
+
     }
 
-    @Test
-    public void chooseFirstPlayer() {
-    }
 
     @Test
     public void chooseMode() {
