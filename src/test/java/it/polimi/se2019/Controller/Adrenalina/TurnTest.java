@@ -76,6 +76,8 @@ public class TurnTest {
     public void firstSpawnNoTerminator(){
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("aaa");
+        answers.add("3");
         answers.add("0");
         answers.add("muovi");
         answers.add("1");
@@ -91,6 +93,51 @@ public class TurnTest {
 
 
         assertFalse(player.getPosition().equals(Board.getLimbo()));
+
+
+    }
+
+    @Test
+    public void frenzyNoTerminator(){
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("muovi");
+        answers.add("1");
+        answers.add("0");
+        answers.add("muovi");
+        answers.add("1");
+        answers.add("0");
+        answers.add("0");
+
+        TestBot.initAnswers(answers);
+
+
+
+
+
+        Turn t = new Turn();
+
+        Player player = Server.connectedPlayers.get(0);
+
+        BlueTagbackGrenadeBuilder tagbackGrenadeBuilder = new BlueTagbackGrenadeBuilder();
+        Powerup tagBack = tagbackGrenadeBuilder.build();
+        tagBack.setEffect(new TagBackGrenadeEffect());
+
+        player.getPlayerboard().getPowerups().add(tagBack);
+
+        Player killed = Server.connectedPlayers.get(1);
+
+        for (int i=0; i<12; i++) {
+
+            Token token = new Token();
+            token.setChampionName("champion0");
+            killed.getPlayerboard().getDamage().add(token);
+        }
+
+        t.frenzy(player,false,false);
+
+        assertTrue(player.getPosition().equals(Board.getMap().getBlueRoom().getCells().get(0)));
+        assertTrue(killed.getPlayerboard().getDamage().size()==0);
 
 
     }
