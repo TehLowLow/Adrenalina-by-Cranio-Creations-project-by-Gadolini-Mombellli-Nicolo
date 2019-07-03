@@ -23,7 +23,7 @@ public class TargetingScopeEffectTest {
 
 
     @Test
-    public void applyEffect() {
+    public void applyEffect1() {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
 
@@ -42,6 +42,64 @@ public class TargetingScopeEffectTest {
         targeting.setEffect(new TargetingScopeEffect());
 
         shooter.getPlayerboard().getAmmoCubes().setYellowCubes(1);
+
+        targeting.getEffect().applyEffect(shooter, targets);
+
+        assertEquals(1, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(0, shooter.getPlayerboard().getAmmoCubes().getYellow());
+
+
+    }
+
+    @Test
+    public void applyEffect2() {
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+
+        answers.add("blu");
+        answers.add("player1");
+
+        TestBot.initAnswers(answers);
+
+
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
+
+        Player shooter = Server.connectedPlayers.get(0);
+        targets.add(Server.connectedPlayers.get(1));
+
+        Powerup targeting = new Powerup();
+        targeting.setEffect(new TargetingScopeEffect());
+
+        shooter.getPlayerboard().getAmmoCubes().setBlueCubes(1);
+
+        targeting.getEffect().applyEffect(shooter, targets);
+
+        assertEquals(1, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
+        assertEquals(0, shooter.getPlayerboard().getAmmoCubes().getYellow());
+
+
+    }
+
+    @Test
+    public void applyEffect3() {
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+
+        answers.add("rosso");
+        answers.add("player1");
+
+        TestBot.initAnswers(answers);
+
+
+        CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
+
+        Player shooter = Server.connectedPlayers.get(0);
+        targets.add(Server.connectedPlayers.get(1));
+
+        Powerup targeting = new Powerup();
+        targeting.setEffect(new TargetingScopeEffect());
+
+        shooter.getPlayerboard().getAmmoCubes().setRedCubes(1);
 
         targeting.getEffect().applyEffect(shooter, targets);
 
