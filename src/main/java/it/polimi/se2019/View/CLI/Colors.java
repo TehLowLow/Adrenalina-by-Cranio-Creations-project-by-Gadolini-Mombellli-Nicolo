@@ -25,7 +25,7 @@ public class Colors {
     static final String ANSI_BLUE_BACKGROUND = "\u001B[34m";
     static final String ANSI_PURPLE_BACKGROUND = "\u001B[35m";
     static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-    static final String ANSI_WHITE_BACKGROUND = "\u001B[30m";
+    static final String ANSI_WHITE_BACKGROUND = "\u001B[0m";
 
 
     static Map map = Board.getMap();

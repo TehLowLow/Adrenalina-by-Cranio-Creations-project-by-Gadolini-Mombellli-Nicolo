@@ -23,6 +23,7 @@ public class SocketClient extends Client implements Runnable {
     private int gamePort;
     private int localPort;
     private int signal;
+    private Runnable gui;
 
 
     private static DataOutputStream out;
@@ -64,9 +65,11 @@ public class SocketClient extends Client implements Runnable {
         streamInit();
 
         askGui();
-        Runnable gui = new GUI();
+
 
         if (useGui) {
+
+             gui = new GUI();  //TODO spostare nell if;
 
             GUI.out = out;
             Thread executingGui = new Thread(gui);

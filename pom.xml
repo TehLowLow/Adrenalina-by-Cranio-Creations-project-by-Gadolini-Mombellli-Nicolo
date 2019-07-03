@@ -61,7 +61,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>it.polimi.se2019.App</mainClass>
+                            <mainClass>it.polimi.se2019.BootStrap</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
