@@ -16,21 +16,32 @@ public class BasicFlameThrowerTest {
 
 
     @Before
-    public void preparePlayers(){
+    public void preparePlayers() {
 
         ConfigurationTest.createTestConfiguration();
 
     }
 
     @Test
-    public void getTargetsTest(){
+    public void getTargetsTest() {
 
-        CopyOnWriteArrayList <String> answers = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+
+        answers.add("sinistra");
+        answers.add("player1");
+
+
+        answers.add("basso");
+        answers.add("player2");
+
+
+        answers.add("alto");
+        answers.add("player3");
+
 
         answers.add("destra");
-        answers.add("player1");
-        answers.add("si");
-        answers.add("player3");
+        answers.add("player4");
+
 
         TestBot.initAnswers(answers);
 
@@ -40,26 +51,38 @@ public class BasicFlameThrowerTest {
         Player target3 = Server.connectedPlayers.get(3);
         Player target4 = Server.connectedPlayers.get(4);
 
-        user.setPosition(Board.getMap().getBlueRoom().getCells().get(1));
+        user.setPosition(Board.getMap().getBlueRoom().getCells().get(0));
         target1.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
-        target4.setPosition(Board.getMap().getBlueRoom().getCells().get(2));
-        target2.setPosition(Board.getMap().getRedRoom().getCells().get(0));
+        target2.setPosition(Board.getMap().getRedRoom().getCells().get(2));
+        target3.setPosition(Board.getMap().getRedRoom().getCells().get(1));
+        target4.setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
+
 
         Weapon flamethrower = new Weapon();
         flamethrower.setBaseEffect(new BasicFlamethrower());
 
-        CopyOnWriteArrayList <Player> targets = flamethrower.getBaseEffect().getTargets(user);
+        CopyOnWriteArrayList<Player> targets = flamethrower.getBaseEffect().getTargets(user);
 
-        assertTrue(targets.contains(target3));
         assertTrue(targets.contains(target1));
 
+        targets = flamethrower.getBaseEffect().getTargets(user);
 
+        assertTrue(targets.contains(target2));
 
+        user.setPosition(Board.getMap().getWhiteRoom().getCells().get(0));
+
+        targets = flamethrower.getBaseEffect().getTargets(user);
+
+        assertTrue(targets.contains(target3));
+
+        targets = flamethrower.getBaseEffect().getTargets(user);
+
+        assertTrue(targets.contains(target4));
 
     }
 
     @Test
-    public void applyEffectTest(){
+    public void applyEffectTest() {
 
         Player user = Server.connectedPlayers.get(0);
         Player target = Server.connectedPlayers.get(1);
