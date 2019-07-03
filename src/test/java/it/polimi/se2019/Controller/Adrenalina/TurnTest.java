@@ -141,4 +141,12 @@ public class TurnTest {
 
 
     }
+
+    @Test
+    public void firstTerminator(){
+
+        Player user = Server.connectedPlayers.get(0);
+        Player terminator = Server.connectedPlayers.get(Server.connectedPlayers.size()-1);
+
+    }
 }
