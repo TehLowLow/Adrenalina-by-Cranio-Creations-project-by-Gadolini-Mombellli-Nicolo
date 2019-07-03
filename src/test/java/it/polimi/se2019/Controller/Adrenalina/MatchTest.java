@@ -63,7 +63,6 @@ public class MatchTest {
         assertEquals(6, Board.getMortalBlowTrack().size());
 
 
-
     }
 
     @Test
@@ -78,15 +77,33 @@ public class MatchTest {
         answers.add("Banshee");
         answers.add(":D-strutt-or3");
 
+        answers.add("Sprog");
+        answers.add("Dozer");
+        answers.add("Violetta");
+        answers.add("Banshee");
+        answers.add(":D-strutt-or3");
+
         TestBot.initAnswers(answers);
+
 
         Match match = new Match();
         match.chooseChampion(false);
 
 
+        assertEquals("Sprog", connectedPlayers.get(0).getPlayerboard().getChampionName());
+        assertEquals("Dozer", connectedPlayers.get(1).getPlayerboard().getChampionName());
+        assertEquals("Violetta", connectedPlayers.get(2).getPlayerboard().getChampionName());
+        assertEquals("Banshee", connectedPlayers.get(3).getPlayerboard().getChampionName());
+        assertEquals(":D-strutt-or3", connectedPlayers.get(4).getPlayerboard().getChampionName());
 
 
-        assertEquals("Sprog" , connectedPlayers.get(0).getPlayerboard().getChampionName());
+        connectedPlayers.get(0).setFirstPlayer(true);
+        connectedPlayers.get(4).setNickname("Terminator");
+
+        match.chooseChampion(true);
+
+
+        assertEquals("Sprog", connectedPlayers.get(0).getPlayerboard().getChampionName());
         assertEquals("Dozer", connectedPlayers.get(1).getPlayerboard().getChampionName());
         assertEquals("Violetta", connectedPlayers.get(2).getPlayerboard().getChampionName());
         assertEquals("Banshee", connectedPlayers.get(3).getPlayerboard().getChampionName());
