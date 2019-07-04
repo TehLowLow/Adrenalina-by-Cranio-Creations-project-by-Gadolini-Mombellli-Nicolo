@@ -49,6 +49,7 @@ public class Lobby extends Thread {
                 }
 
                 try {
+
                     sleep(500);
                     time -= 500;
 

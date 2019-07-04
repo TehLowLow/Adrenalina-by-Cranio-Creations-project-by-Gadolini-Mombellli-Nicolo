@@ -55,7 +55,7 @@ public class RMIServer extends Server implements RMIServerInterface, Runnable {
 
         playerClient.put(userName, hostname);
 
-        System.out.println("test");
+        //System.out.println("test");
 
     }
 
