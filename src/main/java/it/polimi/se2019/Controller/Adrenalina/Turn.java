@@ -725,9 +725,13 @@ public class Turn extends Thread{
 
     }
 
-
+    /**
+     * This method is used to perform all the types of turn: the first one, the standard one and the frenzy one.
+     */
     @Override
     public void run() {
+
+
 
         if (Match.first){
 

@@ -14,7 +14,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class BasicTractorBeam extends Effect {
 
-
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect. It can be the user itself.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 

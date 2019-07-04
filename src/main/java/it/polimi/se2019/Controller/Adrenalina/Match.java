@@ -3,6 +3,7 @@ package it.polimi.se2019.Controller.Adrenalina;
 import it.polimi.se2019.Controller.Setup.BoardSetup;
 import it.polimi.se2019.Controller.Setup.MapSetup;
 import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.util.Collections;
@@ -169,43 +170,45 @@ public class Match extends Thread {
 
         for (Player player : connectedPlayers) {
 
-            timeElapsed = false;
+            if (player.isConnected() && !player.getNickname().equalsIgnoreCase("Terminator")){
 
-            executor = player;
+                timeElapsed = false;
+
+                executor = player;
 
 
-            if (!terminator) {
+                if (!terminator) {
 
-                updateAll("Primo turno per " + player.getNickname());
-                Runnable timer = new Timer();
-                Thread time = new Thread(timer);
-                time.start();
-                Runnable turn = new Turn();
-                Thread firstTurn = new Thread(turn);
-                first = true;
-                firstTurn.start();
-                try {
-                    synchronized (lock) {
-                        lock.wait();
+                    int connected = 0;
+
+                    for (Player player1: Server.connectedPlayers){
+
+                        if (player1.isConnected() && !player1.getNickname().equalsIgnoreCase("Terminator")){
+
+                            connected++;
+
+                        }
+
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Interaction.placeLoot();
-                Interaction.placeWeapons();
 
-            } else {
+                    if (connected<3){
 
-                if (!player.getNickname().equalsIgnoreCase("Terminator")) {
+                        Check.winner();
+                        return;
+
+                    }
+
+
+
 
                     updateAll("Primo turno per " + player.getNickname());
                     Runnable timer = new Timer();
                     Thread time = new Thread(timer);
                     time.start();
                     Runnable turn = new Turn();
-                    Thread firstTerminatorTurn = new Thread(turn);
-                    firstTerminator = true;
-                    firstTerminatorTurn.start();
+                    Thread firstTurn = new Thread(turn);
+                    first = true;
+                    firstTurn.start();
                     try {
                         synchronized (lock) {
                             lock.wait();
@@ -215,6 +218,52 @@ public class Match extends Thread {
                     }
                     Interaction.placeLoot();
                     Interaction.placeWeapons();
+
+                } else {
+
+                    if (!player.getNickname().equalsIgnoreCase("Terminator")) {
+
+
+                        int connected = 0;
+
+                        for (Player player1:Server.connectedPlayers){
+
+                            if (player1.isConnected() && !player1.getNickname().equalsIgnoreCase("Terminator")){
+
+                                connected++;
+
+                            }
+
+                        }
+
+                        if (connected<3){
+
+                            Check.winner();
+                            return;
+
+                        }
+
+
+                        updateAll("Primo turno per " + player.getNickname());
+                        Runnable timer = new Timer();
+                        Thread time = new Thread(timer);
+                        time.start();
+                        Runnable turn = new Turn();
+                        Thread firstTerminatorTurn = new Thread(turn);
+                        firstTerminator = true;
+                        firstTerminatorTurn.start();
+                        try {
+                            synchronized (lock) {
+                                lock.wait();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        Interaction.placeLoot();
+                        Interaction.placeWeapons();
+
+                    }
+
 
                 }
 
@@ -227,36 +276,63 @@ public class Match extends Thread {
 
             for (Player player : connectedPlayers) {
 
-                executor = player;
+                if (player.isConnected() && !player.getNickname().equalsIgnoreCase("Terminator")){
+
+                    executor = player;
 
 
-                if (!player.getNickname().equalsIgnoreCase("Terminator")) {
+                    if (!player.getNickname().equalsIgnoreCase("Terminator")) {
 
 
-                    finish = checkFrenzy();
-                    if (finish) {
-                        updateAll("Inizia la Frenesia Finale!");
-                        continue;
-                    }
-
-                    updateAll("Ora è il turno di " + player.getNickname());
-                    Runnable timer = new Timer();
-                    Thread time = new Thread(timer);
-                    time.start();
-                    Runnable turn = new Turn();
-                    Thread standardTurn = new Thread(turn);
-                    standard = true;
-                    standardTurn.start();
-                    try {
-                        synchronized (lock) {
-                            lock.wait();
+                        finish = checkFrenzy();
+                        if (finish) {
+                            updateAll("Inizia la Frenesia Finale!");
+                            continue;
                         }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+
+
+                        int connected = 0;
+
+                        for (Player player1:Server.connectedPlayers){
+
+                            if (player1.isConnected() && !player1.getNickname().equalsIgnoreCase("Terminator")){
+
+                                connected++;
+
+                            }
+
+                        }
+
+                        if (connected<3){
+
+                            Check.winner();
+                            return;
+
+                        }
+
+
+
+                        updateAll("Ora è il turno di " + player.getNickname());
+                        Runnable timer = new Timer();
+                        Thread time = new Thread(timer);
+                        time.start();
+                        Runnable turn = new Turn();
+                        Thread standardTurn = new Thread(turn);
+                        standard = true;
+                        standardTurn.start();
+                        try {
+                            synchronized (lock) {
+                                lock.wait();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        Interaction.placeLoot();
+                        Interaction.placeWeapons();
+                        lastPlayer = player;
+
                     }
-                    Interaction.placeLoot();
-                    Interaction.placeWeapons();
-                    lastPlayer = player;
+
 
                 }
 
@@ -324,29 +400,55 @@ public class Match extends Thread {
 
         for (Player player : connectedPlayers) {
 
-            //Durante l'ultimo giro, se sono dopo il primo giocatore devo fare azioni diverse.
-            if (player.isFirstPlayer()) {
-                afterFirstPlayer = true;
-            }
 
+            if (player.isConnected() && !player.getNickname().equalsIgnoreCase("Terminator")){
 
-            if (!player.getNickname().equalsIgnoreCase("Terminator")) {
+                int connected = 0;
 
-                updateAll("Turno della Frenesia Finale per " + player.getNickname());
-                Runnable timer = new Timer();
-                Thread time = new Thread(timer);
-                time.start();
-                Runnable turn = new Turn();
-                Thread frenzyTurn = new Thread(turn);
-                frenzy = true;
-                frenzyTurn.start();
-                try {
-                    synchronized (lock) {
-                        lock.wait();
+                for (Player player1:Server.connectedPlayers){
+
+                    if (player1.isConnected() && !player1.getNickname().equalsIgnoreCase("Terminator")){
+
+                        connected++;
+
                     }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+
                 }
+
+                if (connected<3){
+
+                    Check.winner();
+                    return;
+
+                }
+
+
+                //Durante l'ultimo giro, se sono dopo il primo giocatore devo fare azioni diverse.
+                if (player.isFirstPlayer()) {
+                    afterFirstPlayer = true;
+                }
+
+
+                if (!player.getNickname().equalsIgnoreCase("Terminator")) {
+
+                    updateAll("Turno della Frenesia Finale per " + player.getNickname());
+                    Runnable timer = new Timer();
+                    Thread time = new Thread(timer);
+                    time.start();
+                    Runnable turn = new Turn();
+                    Thread frenzyTurn = new Thread(turn);
+                    frenzy = true;
+                    frenzyTurn.start();
+                    try {
+                        synchronized (lock) {
+                            lock.wait();
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
 
             }
 

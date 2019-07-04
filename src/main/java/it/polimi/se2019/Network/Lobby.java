@@ -3,9 +3,6 @@ package it.polimi.se2019.Network;
 import it.polimi.se2019.Controller.Adrenalina.Match;
 import it.polimi.se2019.Model.Player;
 
-
-import java.net.Socket;
-
 import static it.polimi.se2019.Network.Server.*;
 
 public class Lobby extends Thread {
@@ -18,12 +15,34 @@ public class Lobby extends Thread {
 
 
         int time = lobbyTimer * 1000;
+        boolean wait = true;
 
         while (!matchStarted && time >= 0) {
 
+            if (connectedPlayers.size() < 3){
+
+                wait = true;
+
+            }
+
+
+
             if (connectedPlayers.size() >= 3) {
 
+                if (wait){
+
+                    try {
+                        sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    wait = false;
+
+                }
+
                 for (Player player : connectedPlayers) {
+
 
                     update(player, "Polling");
 

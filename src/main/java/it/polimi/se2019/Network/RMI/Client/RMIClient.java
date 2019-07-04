@@ -5,23 +5,21 @@ import it.polimi.se2019.Network.Client;
 import it.polimi.se2019.Network.RMI.RMILoggerInterface;
 import it.polimi.se2019.Network.RMI.Server.RMIServerInterface;
 import it.polimi.se2019.View.GUI.GUI;
-import it.polimi.se2019.View.Parser;
 import javafx.application.Platform;
-
-import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
-import static it.polimi.se2019.Network.Server.RMIPORT;
-import static java.lang.Thread.sleep;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.net.InetAddress;
-import java.rmi.Naming;
 import java.rmi.NoSuchObjectException;
 import java.rmi.Remote;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Scanner;
+
+import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
+import static it.polimi.se2019.Network.Server.RMIPORT;
+import static java.lang.Thread.sleep;
 
 
 public class RMIClient extends Client implements Runnable, RMIClientInterface, Remote {
@@ -169,13 +167,23 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
             String pathfile = System.getProperty("user.home") + "\\Desktop";
 
-            File file = new File(pathfile + "\\rmiClient" + user + ".bat");
+            File file = new File(pathfile + "\\rmiClient " + user + " .bat");
 
             FileWriter fw = new FileWriter(file, true);
 
             fw.write("javaw rmiregistry " + localPort + "\n" + "cmd \\k");
 
             fw.close();
+
+            pathfile = pathfile + "\\rmiClient " + user + " .bat";
+
+            ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/k", "rmiClient " + user + " .bat");
+
+            File dir = new File(pathfile);
+
+            processBuilder.directory(dir);
+
+            Process process = processBuilder.start();
 
             try {
                 sleep(10 * 1000);

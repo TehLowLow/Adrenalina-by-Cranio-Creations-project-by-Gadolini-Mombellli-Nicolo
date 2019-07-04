@@ -36,7 +36,7 @@ import java.util.concurrent.Executors;
 public class Server {
 
 
-    private static volatile int clientPort = 50000;
+    private static volatile int clientPort = 52000;
     public static final int LOGINSOCKETPORT = 55000;
     public static final int LOGINRMIPORT = 56000;
     public static final int RMIPORT = 59000;
@@ -101,6 +101,11 @@ public class Server {
         player.setNickname(u);
         player.setConnectionAlive(true);
         player.setConnectionTech(connection);
+        if (connection.equalsIgnoreCase("rmi")){
+
+            player.setPORT(calcPorts());
+
+        }
         registrations.put(u, p);
         connectedPlayers.add(player);
         System.out.println("Ho aggiunto " + u);
