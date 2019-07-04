@@ -32,7 +32,7 @@ public class Lobby extends Thread {
                 if (wait){
 
                     try {
-                        sleep(10000);
+                        sleep(2*1000);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

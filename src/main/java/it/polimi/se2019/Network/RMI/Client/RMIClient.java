@@ -179,11 +179,9 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
             Process process = Runtime.getRuntime().exec("cmd /c start cmd.exe /k" + pathfile);
 
-            System.out.println(process.isAlive());
-
 
             try {
-                sleep(10 * 1000);
+                sleep(2 * 1000);
             } catch (Exception e) {
                 e.printStackTrace();
             }
