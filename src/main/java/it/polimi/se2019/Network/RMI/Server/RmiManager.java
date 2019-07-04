@@ -14,8 +14,6 @@ public class RmiManager extends Thread {
     public RmiManager(Player player) {
 
         this.toPoll = player;
-
-
     }
 
 
@@ -31,7 +29,6 @@ public class RmiManager extends Thread {
             registrations.remove(toPoll.getNickname());
 
         }
-
     }
 
 

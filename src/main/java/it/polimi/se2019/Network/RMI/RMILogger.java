@@ -13,7 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 import static it.polimi.se2019.Network.Server.*;
 
-public class  RMILogger implements Logger, Runnable, RMILoggerInterface {
+public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
 
     private static String userName;
@@ -102,7 +102,7 @@ public class  RMILogger implements Logger, Runnable, RMILoggerInterface {
 
         for (Player player : connectedPlayers) {
 
-            if (player.getNickname().equals(userName)) {
+            if (player.getNickname().equals(userName) && player.isConnected()) {
 
                 System.out.println("Utente gia registrato con queste credenziali");
 
@@ -111,25 +111,20 @@ public class  RMILogger implements Logger, Runnable, RMILoggerInterface {
         }
 
 
-        if (registrations.get(userName) != null) { //player disconnesso che tenta di riconnettersi.
+        if (registrations.get(userName) != null && passWord.equals(registrations.get(userName)) && matchStarted) { //player disconnesso che tenta di riconnettersi.
 
-            if (passWord.equals(registrations.get(userName))) {
 
-                System.out.println("Bentornato " + userName); //successo
-                return true;
-            } else {
+            System.out.println("Bentornato " + userName); //successo
+            return true;
 
-                System.out.println("password errata!"); //errore
-                return false;
+        } else {
 
-            }
+            System.out.println("Credenziali errate!"); //errore
+            return false;
+
         }
 
-        System.out.println("Errore nelle credenziali");
-        return false;
-
-
-    }
+}
 
     public synchronized int getGamePort(String s) {
 
