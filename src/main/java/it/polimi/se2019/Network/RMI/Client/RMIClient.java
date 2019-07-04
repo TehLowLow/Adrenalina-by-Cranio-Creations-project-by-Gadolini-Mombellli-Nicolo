@@ -65,8 +65,12 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
                     if (value != -1) {
                         localPort = Logger.getGamePort(user);
-                        System.out.println("la mia porta di gioco è " + localPort);
+                        System.out.println("La mia porta di gioco è " + localPort);
                         logged = true;
+                    }else{
+
+                        System.out.println("Errore durante il login, digita di nuovo le tue credenziali.");
+
                     }
 
                 } catch (NullPointerException e) {
@@ -149,7 +153,6 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
                     if (gServer != null) {
                         Game = gServer;
                         Game.addPlayerHN(user, InetAddress.getLocalHost().getHostName());
-                        Game.sendMsg("bella");
                         connected = true;
                     }
                 } catch (Exception e) {
@@ -177,7 +180,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
             pathfile = pathfile + "\\rmiClient_" + user + ".bat";
 
-            Process process = Runtime.getRuntime().exec("cmd /c start cmd.exe /k" + pathfile);
+            Runtime.getRuntime().exec("cmd /c start cmd.exe /k" + pathfile);  //TODO testare
 
 
             try {
