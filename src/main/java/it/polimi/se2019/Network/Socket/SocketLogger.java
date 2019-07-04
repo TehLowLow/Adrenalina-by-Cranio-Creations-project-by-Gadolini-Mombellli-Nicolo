@@ -115,7 +115,7 @@ public class SocketLogger implements Logger, Runnable {
                 }
                 return false;
                 //Se il match è ancora in fase di lobby lo aggiungo fra i player
-            } else if (connectedSize() < 5) {  //TODO 1
+            } else if (connectedSize() < 5) {
                 temp = newPlayer(userName, passWord, "Socket");
                 try {
                     out.writeUTF("Aggiunto " + userName);

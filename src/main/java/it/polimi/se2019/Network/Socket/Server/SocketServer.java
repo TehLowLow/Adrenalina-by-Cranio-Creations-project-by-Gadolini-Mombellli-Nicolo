@@ -1,6 +1,7 @@
 package it.polimi.se2019.Network.Socket.Server;
 
 
+import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 
 import java.io.DataInputStream;
@@ -28,8 +29,28 @@ public class SocketServer extends Server implements Runnable {
 
         try {
 
+
+
             gamerChannel = mySocket.accept();
+
+            in = new DataInputStream(gamerChannel.getInputStream());
+
+            String name = in.readUTF();
+            int port = in.readInt();
+
+            for (Player player : connectedPlayers) {
+
+                if (player.getNickname().equalsIgnoreCase(name)) {
+
+                    player.setPORT(port);
+
+                }
+
+
+            }
+
             playerClient.put(gamerChannel.getPort(), gamerChannel); //lego numero di porta e socket.
+
 
         } catch (Exception e) {
             e.printStackTrace();

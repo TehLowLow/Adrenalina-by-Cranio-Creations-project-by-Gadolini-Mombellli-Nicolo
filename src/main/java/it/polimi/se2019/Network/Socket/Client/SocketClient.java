@@ -12,6 +12,7 @@ import java.net.Socket;
 import java.util.Scanner;
 
 import static it.polimi.se2019.Network.Server.*;
+import static java.lang.Thread.sleep;
 
 
 public class SocketClient extends Client implements Runnable {
@@ -24,6 +25,7 @@ public class SocketClient extends Client implements Runnable {
     private int localPort;
     private int signal;
     private Runnable gui;
+    private String user;
 
 
     private static DataOutputStream out;
@@ -45,8 +47,9 @@ public class SocketClient extends Client implements Runnable {
 
             streamInit();
 
-            System.out.println(in.readUTF());   //inserisci user
-            out.writeUTF(scanner.nextLine());   //mando user
+            System.out.println(in.readUTF());
+            user = scanner.nextLine();
+            out.writeUTF(user);   //mando user
             System.out.println(in.readUTF());   //inserisci psw
             out.writeUTF(scanner.nextLine());   //mando psw
             System.out.println(in.readUTF());   //"aggiunto user"
@@ -60,16 +63,23 @@ public class SocketClient extends Client implements Runnable {
             e.printStackTrace();
         }
 
-        connectGame();
+        connectGame(user);
 
         streamInit();
 
         askGui();
 
+        try {
+            out.writeUTF(user);
+            out.writeInt(client.getLocalPort());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
         if (useGui) {
 
-             gui = new GUI();  //TODO spostare nell if;
+            gui = new GUI();  //TODO spostare nell if;
 
             GUI.out = out;
             Thread executingGui = new Thread(gui);
@@ -179,16 +189,17 @@ public class SocketClient extends Client implements Runnable {
     }
 
 
-    private synchronized void connectGame() {
+    private synchronized void connectGame(String name) {
 
         connected = false; //Test per resettare connected, da decidere se inserirlo da qualche altra parte.
 
         while (!connected) {
 
             try {
-                InetAddress gameserver = InetAddress.getLocalHost();
-                client = new Socket(host, SOCKETPORT, gameserver, localPort); // "192.168.0.202" ----> IP del server remoto per game LAN
+                //InetAddress gameserver = InetAddress.getLocalHost();
+                client = new Socket(host, SOCKETPORT); // "192.168.0.202" ----> IP del server remoto per game LAN
                 connected = true;
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
