@@ -32,6 +32,9 @@ public class GUI extends Application implements Runnable {
     public static boolean answeredRMI = false;
     public static String RMIAnswer = "null";
 
+    public static String jarPath = GUI.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+    public static String resourcesPath = "";
+
     public int chosenMap;
     public int chosenSkulls;
 
@@ -48,6 +51,9 @@ public class GUI extends Application implements Runnable {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+
+        String cleanedPath = jarPath.replaceAll("adrenalina-1\\.0-SNAPSHOT\\.jar", "");
+       resourcesPath = "file://" + cleanedPath + "assets/";
 
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Adrenalina");

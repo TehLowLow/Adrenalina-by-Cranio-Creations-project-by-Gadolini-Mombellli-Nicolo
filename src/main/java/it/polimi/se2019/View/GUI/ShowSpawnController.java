@@ -219,84 +219,84 @@ public class ShowSpawnController implements Initializable {
 
         if(firstPUName.equalsIgnoreCase("Raggio Cinetico Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_028.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Mirino Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_025.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Granata Venom Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_022.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Teletrasporto Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0211.png");
             firstPU.setImage(image);
 
         }
         
         if(firstPUName.equalsIgnoreCase("Raggio Cinetico Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_029.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Mirino Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_026.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Granata Venom Rossa")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_023.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Teletrasporto Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0212.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Raggio Cinetico Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0210.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Mirino Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_027.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Granata Venom Gialla")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_024.png");
             firstPU.setImage(image);
 
         }
 
         if(firstPUName.equalsIgnoreCase("Teletrasporto Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0213.png");
             firstPU.setImage(image);
 
         }
@@ -306,84 +306,84 @@ public class ShowSpawnController implements Initializable {
 
         if(secondPUName.equalsIgnoreCase("Raggio Cinetico Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_028.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Mirino Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_025.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Granata Venom Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_022.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Teletrasporto Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0211.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Raggio Cinetico Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_029.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Mirino Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_026.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Granata Venom Rossa")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_023.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Teletrasporto Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0212.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Raggio Cinetico Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0210.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Mirino Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_027.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Granata Venom Gialla")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_024.png");
             secondPU.setImage(image);
 
         }
 
         if(secondPUName.equalsIgnoreCase("Teletrasporto Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0213.png");
             secondPU.setImage(image);
 
         }
@@ -392,84 +392,84 @@ public class ShowSpawnController implements Initializable {
 
         if(thirdPUName.equalsIgnoreCase("Raggio Cinetico Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_028.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Mirino Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_025.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Granata Venom Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_022.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Teletrasporto Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0211.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Raggio Cinetico Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_029.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Mirino Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_026.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Granata Venom Rossa")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_023.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Teletrasporto Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0212.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Raggio Cinetico Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0210.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Mirino Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_027.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Granata Venom Gialla")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_024.png");
             thirdPU.setImage(image);
 
         }
 
         if(thirdPUName.equalsIgnoreCase("Teletrasporto Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0213.png");
             thirdPU.setImage(image);
 
         }
@@ -478,84 +478,84 @@ public class ShowSpawnController implements Initializable {
 
         if(fourthPUName.equalsIgnoreCase("Raggio Cinetico Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_028.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Mirino Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_025.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Granata Venom Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_022.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Teletrasporto Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0211.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Raggio Cinetico Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_029.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Mirino Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_026.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Granata Venom Rossa")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_023.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Teletrasporto Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0212.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Raggio Cinetico Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0210.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Mirino Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_027.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Granata Venom Gialla")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_024.png");
             fourthPU.setImage(image);
 
         }
 
         if(fourthPUName.equalsIgnoreCase("Teletrasporto Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0213.png");
             fourthPU.setImage(image);
 
         }

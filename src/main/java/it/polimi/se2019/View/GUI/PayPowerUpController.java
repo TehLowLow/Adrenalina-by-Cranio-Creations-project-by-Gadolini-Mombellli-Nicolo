@@ -120,84 +120,84 @@ public class PayPowerUpController implements Initializable {
 
         if(pu0Name.equalsIgnoreCase("Raggio Cinetico Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_028.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Mirino Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_025.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Granata Venom Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_022.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Teletrasporto Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0211.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Raggio Cinetico Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_029.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Mirino Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_026.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Granata Venom Rossa")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_023.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Teletrasporto Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0212.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Raggio Cinetico Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0210.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Mirino Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_027.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Granata Venom Gialla")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_024.png");
             pu0.setImage(image);
 
         }
 
         if(pu0Name.equalsIgnoreCase("Teletrasporto Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0213.png");
             pu0.setImage(image);
 
         }
@@ -207,84 +207,84 @@ public class PayPowerUpController implements Initializable {
 
         if(pu1Name.equalsIgnoreCase("Raggio Cinetico Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_028.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Mirino Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_025.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Granata Venom Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_022.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Teletrasporto Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0211.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Raggio Cinetico Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_029.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Mirino Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_026.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Granata Venom Rossa")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_023.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Teletrasporto Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0212.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Raggio Cinetico Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0210.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Mirino Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_027.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Granata Venom Gialla")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_024.png");
             pu1.setImage(image);
 
         }
 
         if(pu1Name.equalsIgnoreCase("Teletrasporto Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0213.png");
             pu1.setImage(image);
 
         }
@@ -293,84 +293,84 @@ public class PayPowerUpController implements Initializable {
 
         if(pu2Name.equalsIgnoreCase("Raggio Cinetico Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_028.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Mirino Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_025.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Granata Venom Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_022.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Teletrasporto Blu")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0211.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Raggio Cinetico Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_029.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Mirino Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_026.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Granata Venom Rossa")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_023.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Teletrasporto Rosso")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0212.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Raggio Cinetico Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0210.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Mirino Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_027.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Granata Venom Gialla")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_024.png");
             pu2.setImage(image);
 
         }
 
         if(pu2Name.equalsIgnoreCase("Teletrasporto Giallo")){
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0213.png");
             pu2.setImage(image);
 
         }

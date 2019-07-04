@@ -3,6 +3,7 @@ package it.polimi.se2019.Network.Socket.Client;
 import it.polimi.se2019.Network.Client;
 import it.polimi.se2019.View.GUI.GUI;
 import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -80,6 +81,8 @@ public class SocketClient extends Client implements Runnable {
         if (useGui) {
 
             gui = new GUI();  //TODO spostare nell if;
+
+            JFXPanel panel = new JFXPanel();
 
             GUI.out = out;
             Thread executingGui = new Thread(gui);

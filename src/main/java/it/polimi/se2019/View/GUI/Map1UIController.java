@@ -167,8 +167,8 @@ public class Map1UIController implements Initializable {
 
     String whiteLootCell1Index = "empty";
     String whiteLootCell2Index = "empty";
-    
-    
+
+
 
 
     /*
@@ -356,8 +356,8 @@ public class Map1UIController implements Initializable {
 
     public int whiteLootCell2BansheeX = 515;
     public int whiteLootCell2BansheeY = 495;
-    
-    
+
+
 
 
     /*
@@ -1604,11 +1604,16 @@ public class Map1UIController implements Initializable {
     @FXML
     public void initUI() {
 
+
         nicknameText.setText(nickname);
+
+        //System.out.println("Provo a stampare il path");
+
+        //System.out.println(Map1UIController.class.getProtectionDomain().getCodeSource().getLocation().getPath());
 
         if(firstPlayer.equalsIgnoreCase("true")){
 
-            Image image = new Image("/assets/Icons/First_ico.png");
+            Image image = new Image(GUI.resourcesPath + "Icons/First_ico.png");
             firstplayer.setImage(image);
             firstplayer.setVisible(true);
 
@@ -1616,7 +1621,7 @@ public class Map1UIController implements Initializable {
 
         if (championName.equalsIgnoreCase("dozer")) {
 
-            Image image = new Image("/assets/Playerboards/Dozer_PB.png");
+            Image image = new Image(GUI.resourcesPath + "Playerboards/Dozer_PB.png");
             playerboardImage.setImage(image);
             dozerUser = nickname;
 
@@ -1624,7 +1629,7 @@ public class Map1UIController implements Initializable {
 
         if (championName.equalsIgnoreCase("violetta")) {
 
-            Image image = new Image("/assets/Playerboards/Violet_PB.png");
+            Image image = new Image(GUI.resourcesPath + "Playerboards/Violet_PB.png");
             playerboardImage.setImage(image);
             violettaUser = nickname;
 
@@ -1632,7 +1637,7 @@ public class Map1UIController implements Initializable {
 
         if (championName.equalsIgnoreCase("sprog")) {
 
-            Image image = new Image("/assets/Playerboards/Sprog_PB.png");
+            Image image = new Image(GUI.resourcesPath + "Playerboards/Sprog_PB.png");
             playerboardImage.setImage(image);
             sprogUser = nickname;
 
@@ -1640,7 +1645,7 @@ public class Map1UIController implements Initializable {
 
         if (championName.equalsIgnoreCase("banshee")) {
 
-            Image image = new Image("/assets/Playerboards/Banshee_PB.png");
+            Image image = new Image(GUI.resourcesPath + "Playerboards/Banshee_PB.png");
             playerboardImage.setImage(image);
             bansheeUser = nickname;
 
@@ -1648,7 +1653,7 @@ public class Map1UIController implements Initializable {
 
         if (championName.equalsIgnoreCase("d-strutt-or3")) {
 
-            Image image = new Image("/assets/Playerboards/Destructor_PB.png");
+            Image image = new Image(GUI.resourcesPath + "Playerboards/Destructor_PB.png");
             playerboardImage.setImage(image);
             destructorUser = nickname;
 
@@ -2413,90 +2418,90 @@ public class Map1UIController implements Initializable {
     public Image getWeaponImage(String weaponName) {
 
         if (weaponName.equalsIgnoreCase("Martello ionico")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_022.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_022.png");
         }
 
         if (weaponName.equalsIgnoreCase("Spada fotonica")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_023.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_023.png");
         }
 
         if (weaponName.equalsIgnoreCase("Cyberguanto")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_024.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_024.png");
         }
 
         if (weaponName.equalsIgnoreCase("Fucile a pompa")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_025.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_025.png");
         }
 
         if (weaponName.equalsIgnoreCase("Fucile laser")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_026.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_026.png");
         }
 
         if (weaponName.equalsIgnoreCase("zx-2")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_027.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_027.png");
         }
 
         if (weaponName.equalsIgnoreCase("onda d'urto")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_028.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_028.png");
         }
 
         if (weaponName.equalsIgnoreCase("cannone vortex")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_029.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_029.png");
         }
 
         if (weaponName.equalsIgnoreCase("razzo termico")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0210.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0210.png");
         }
 
         if (weaponName.equalsIgnoreCase("Lanciarazzi")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0211.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0211.png");
         }
 
         if (weaponName.equalsIgnoreCase("Lanciagranate")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0212.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0212.png");
         }
 
         if (weaponName.equalsIgnoreCase("Lanciafiamme")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0213.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0213.png");
         }
 
         if (weaponName.equalsIgnoreCase("Vulcanizzatore")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0214.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0214.png");
         }
 
         if (weaponName.equalsIgnoreCase("Raggio solare")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0215.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0215.png");
         }
 
         if (weaponName.equalsIgnoreCase("Torpedine")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0216.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0216.png");
         }
 
         if (weaponName.equalsIgnoreCase("Raggio traente")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0217.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0217.png");
         }
 
         if (weaponName.equalsIgnoreCase("Fucile di precisione")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0218.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0218.png");
         }
 
         if (weaponName.equalsIgnoreCase("Fucile al plasma")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0219.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0219.png");
         }
 
         if (weaponName.equalsIgnoreCase("Mitragliatrice")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0220.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0220.png");
         }
 
         if (weaponName.equalsIgnoreCase("distruttore")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0221.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0221.png");
         }
 
         if (weaponName.equalsIgnoreCase("falce protonica")) {
-            return new Image("/assets/Weapons/AD_weapons_IT_0222.png");
+            return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0222.png");
         }
 
-        return new Image("/assets/Weapons/AD_weapons_IT_0225.png");
+        return new Image(GUI.resourcesPath + "Weapons/AD_weapons_IT_0225.png");
     }
 
     @FXML
@@ -2504,89 +2509,89 @@ public class Map1UIController implements Initializable {
 
         if (PUName.equalsIgnoreCase("Raggio Cinetico Blu")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_028.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_028.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Mirino Blu")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_025.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_025.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Granata Venom Blu")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_022.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_022.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Teletrasporto Blu")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0211.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0211.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Raggio Cinetico Rosso")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_029.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_029.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Mirino Rosso")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_026.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_026.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Granata Venom Rossa")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_023.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_023.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Teletrasporto Rosso")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0212.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0212.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Raggio Cinetico Giallo")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0210.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0210.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Mirino Giallo")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_027.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_027.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Granata Venom Gialla")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_024.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_024.png");
             return image;
 
         }
 
         if (PUName.equalsIgnoreCase("Teletrasporto Giallo")) {
 
-            Image image = new Image("/assets/Powerups/AD_powerups_IT_0213.png");
+            Image image = new Image(GUI.resourcesPath + "Powerups/AD_powerups_IT_0213.png");
             return image;
 
         }
 
-        return new Image("/assets/Powerups/AD_Powerups_IT_02.png");
+        return new Image(GUI.resourcesPath + "Powerups/AD_Powerups_IT_02.png");
 
 
     }
@@ -2595,54 +2600,54 @@ public class Map1UIController implements Initializable {
     public Image getLootTileImage(String name) {
 
         if (name.equalsIgnoreCase("brr")) {
-            return new Image("/assets/Loot/AD_ammo_0413.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_0413.png");
         }
 
         if (name.equalsIgnoreCase("byy")) {
-            return new Image("/assets/Loot/AD_ammo_0412.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_0412.png");
         }
 
         if (name.equalsIgnoreCase("pbb")) {
-            return new Image("/assets/Loot/AD_ammo_0422.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_0422.png");
         }
 
         if (name.equalsIgnoreCase("prb")) {
-            return new Image("/assets/Loot/AD_ammo_0428.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_0428.png");
         }
 
         if (name.equalsIgnoreCase("prr")) {
-            return new Image("/assets/Loot/AD_ammo_0430.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_0430.png");
         }
 
         if (name.equalsIgnoreCase("pyb")) {
-            return new Image("/assets/Loot/AD_ammo_0427.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_0427.png");
         }
 
         if (name.equalsIgnoreCase("pyr")) {
-            return new Image("/assets/Loot/AD_ammo_0432.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_0432.png");
         }
 
         if (name.equalsIgnoreCase("pyy")) {
-            return new Image("/assets/loot/AD_ammo_0429.png");
+            return new Image(GUI.resourcesPath + "loot/AD_ammo_0429.png");
         }
 
         if (name.equalsIgnoreCase("rbb")) {
-            return new Image("/assets/Loot/AD_ammo_0410.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_0410.png");
         }
 
         if (name.equalsIgnoreCase("ryy")) {
-            return new Image("/assets/loot/AD_ammo_0417.png");
+            return new Image(GUI.resourcesPath + "loot/AD_ammo_0417.png");
         }
 
         if (name.equalsIgnoreCase("ybb")) {
-            return new Image("/assets/Loot/AD_ammo_0414.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_0414.png");
         }
 
         if (name.equalsIgnoreCase("yrr")) {
-            return new Image("/assets/Loot/AD_ammo_043.png");
+            return new Image(GUI.resourcesPath + "Loot/AD_ammo_043.png");
         }
 
-        return new Image("/assets/Loot/AD_ammo_04.png");
+        return new Image(GUI.resourcesPath + "Loot/AD_ammo_04.png");
 
 
     }
@@ -2651,27 +2656,27 @@ public class Map1UIController implements Initializable {
     public Image getTokenImage(String championName) {
 
         if (championName.equalsIgnoreCase("dozer")) {
-            return new Image("/assets/Placeable/Dozer_Mk.png");
+            return new Image(GUI.resourcesPath + "Placeable/Dozer_Mk.png");
         }
 
         if (championName.equalsIgnoreCase("violetta")) {
-            return new Image("/assets/Placeable/Violet_Mk.png");
+            return new Image(GUI.resourcesPath + "Placeable/Violet_Mk.png");
         }
 
         if (championName.equalsIgnoreCase("banshee")) {
-            return new Image("/assets/Placeable/Banshee_Mk.png");
+            return new Image(GUI.resourcesPath + "Placeable/Banshee_Mk.png");
         }
 
         if (championName.equalsIgnoreCase("sprog")) {
-            return new Image("/assets/Placeable/Sprog_Mk.png");
+            return new Image(GUI.resourcesPath + "Placeable/Sprog_Mk.png");
         }
 
         if (championName.equalsIgnoreCase(":d-strutt-or3")) {
-            return new Image("/assets/Placeable/Destructor_Mk.png");
+            return new Image(GUI.resourcesPath + "Placeable/Destructor_Mk.png");
         }
 
         if (championName.equalsIgnoreCase("skull")) {
-            return new Image("/assets/Placeable/RedSkull.png");
+            return new Image(GUI.resourcesPath + "Placeable/RedSkull.png");
         }
 
         return null;
