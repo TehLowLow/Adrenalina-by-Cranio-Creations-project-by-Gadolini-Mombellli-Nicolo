@@ -29,8 +29,6 @@ public class SocketServer extends Server implements Runnable {
 
         try {
 
-
-
             gamerChannel = mySocket.accept();
 
             in = new DataInputStream(gamerChannel.getInputStream());
@@ -43,10 +41,9 @@ public class SocketServer extends Server implements Runnable {
                 if (player.getNickname().equalsIgnoreCase(name)) {
 
                     player.setPORT(port);
+                    player.setConnectionAlive(true);
 
                 }
-
-
             }
 
             playerClient.put(gamerChannel.getPort(), gamerChannel); //lego numero di porta e socket.

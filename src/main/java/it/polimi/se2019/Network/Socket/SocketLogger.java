@@ -119,8 +119,8 @@ public class SocketLogger implements Logger, Runnable {
                 temp = newPlayer(userName, passWord, "Socket");
                 try {
                     out.writeUTF("Aggiunto " + userName);
-                    out.writeInt(temp.getPORT());
-                    out.writeInt(SOCKETPORT);
+                    //out.writeInt(temp.getPORT());
+                    //out.writeInt(SOCKETPORT);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -101,11 +101,8 @@ public class Server {
         player.setNickname(u);
         player.setConnectionAlive(true);
         player.setConnectionTech(connection);
-        //player.setPORT(calcPorts());
         registrations.put(u, p);
         connectedPlayers.add(player);
-
-
         System.out.println("Ho aggiunto " + u);
 
         return player;

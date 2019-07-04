@@ -48,6 +48,10 @@ public class Player {
      */
     private String connectionTech;
 
+
+    /**
+     * The port on which the network will find the remote player.
+     */
     private int PORT;
 
     /**

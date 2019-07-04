@@ -37,7 +37,7 @@ public class SocketClient extends Client implements Runnable {
     @Override
     public void run() {
 
-        System.out.println("hai avviato una connessione socket");
+        System.out.println("Hai avviato una connessione Socket. \n");
 
         connectLogger();
 
@@ -53,10 +53,10 @@ public class SocketClient extends Client implements Runnable {
             System.out.println(in.readUTF());   //inserisci psw
             out.writeUTF(scanner.nextLine());   //mando psw
             System.out.println(in.readUTF());   //"aggiunto user"
-            localPort = in.readInt();           //Porta locale per il nuovo login.
+            /*localPort = in.readInt();           //Porta locale per il nuovo login.
             System.out.println(localPort);
             gamePort = in.readInt();            //Porta del game server.
-            System.out.println(gamePort);
+            System.out.println(gamePort);*/
 
 
         } catch (Exception e) {

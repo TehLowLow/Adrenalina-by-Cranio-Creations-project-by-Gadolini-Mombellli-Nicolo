@@ -28,13 +28,13 @@ public class Client {
 
         //Un player che a inizio partita si connette può solo riconnettersi con la prima tecnologia scelta.
 
-        System.out.println("Inserisci il nome del pc Host sul quale è in esecuzione il server:");
+        System.out.println("Inserisci il nome del Pc Host sul quale è in esecuzione il server:");
         Scanner scanner = new Scanner(System.in);
         host = scanner.nextLine();
 
 
 
-        System.out.println("Scegli come connetterti al server. Digita 'Socket' o 'RMI':  ");
+        System.out.println("Scegli come connetterti al server. Digita Socket o RMI:  ");
         initConnection();//qua vengono lanciati i thread.
     }
 
@@ -81,7 +81,7 @@ public class Client {
             } else {
 
                 //stampa la stringa di errore.
-                System.err.println("input invalido, riscrivi attentamente che connessione desideri");
+                System.err.println("Input invalido, riscrivi attentamente che connessione desideri");
 
             }
         }
