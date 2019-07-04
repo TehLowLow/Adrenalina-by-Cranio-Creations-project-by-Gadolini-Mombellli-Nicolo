@@ -104,7 +104,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
             askGui();
         }
 
-        if(isGui){
+        if (isGui) {
 
             gui = new GUI();
 
@@ -167,23 +167,20 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
             String pathfile = System.getProperty("user.home") + "\\Desktop";
 
-            File file = new File(pathfile + "\\rmiClient " + user + " .bat");
+            File file = new File(pathfile + "\\rmiClient_" + user + ".bat");
 
             FileWriter fw = new FileWriter(file, true);
 
-            fw.write("javaw rmiregistry " + localPort + "\n" + "cmd \\k");
+            fw.write("javaw rmiregistry " + localPort + "\n");
 
             fw.close();
 
-            pathfile = pathfile + "\\rmiClient " + user + " .bat";
+            pathfile = pathfile + "\\rmiClient_" + user + ".bat";
 
-            ProcessBuilder processBuilder = new ProcessBuilder("cmd", "/k", "rmiClient " + user + " .bat");
+            Process process = Runtime.getRuntime().exec("cmd /c start cmd.exe /k" + pathfile);
 
-            File dir = new File(pathfile);
+            System.out.println(process.isAlive());
 
-            processBuilder.directory(dir);
-
-            Process process = processBuilder.start();
 
             try {
                 sleep(10 * 1000);
@@ -209,31 +206,28 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
         GUI.answeredRMI = false;
         GUI.RMIAnswer = "null";
 
-        if(isGui){
+        if (isGui) {
 
             System.out.println(msg);
             Platform.runLater(() -> ((GUI) gui).update(msg));
 
-            while(!GUI.answeredRMI){
+            while (!GUI.answeredRMI) {
                 try {
                     sleep(200);
                     continue;
+                } catch (Exception e) {
                 }
-                catch(Exception e){}
             }
 
-            return(GUI.RMIAnswer);
-        }
-
-        else {
+            return (GUI.RMIAnswer);
+        } else {
 
             Scanner scanner = new Scanner(System.in);
             if (msg.contains("$")) {
                 String[] tokens = msg.split("\\$");
                 System.out.println(tokens[0]);
 
-            }
-            else {
+            } else {
                 System.out.println(msg);
             }
 
@@ -246,19 +240,16 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     public void sendMsg(String msg) {
 
 
-        if(isGui) {
+        if (isGui) {
 
             System.out.println(msg);
             Platform.runLater(() -> ((GUI) gui).update(msg));
-        }
-
-        else {
+        } else {
 
             if (msg.contains("$")) {
                 String[] tokens = msg.split("\\$");
                 System.out.println(tokens[0]);
-            }
-            else {
+            } else {
                 System.out.println(msg);
             }
         }

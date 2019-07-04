@@ -32,6 +32,7 @@
 
 		src/main/java/it/polimi/se2019/View/**/*,
 		src/main/java/it/polimi/se2019/Network/**/*
+        src/main/java/it/polimi/se2019/BootStrap
 
 	</sonar.exclusions>
 	

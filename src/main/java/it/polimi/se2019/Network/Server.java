@@ -101,7 +101,7 @@ public class Server {
         player.setNickname(u);
         player.setConnectionAlive(true);
         player.setConnectionTech(connection);
-        if (connection.equalsIgnoreCase("rmi")){
+        if (connection.equalsIgnoreCase("rmi")) {
 
             player.setPORT(calcPorts());
 
@@ -134,18 +134,21 @@ public class Server {
 
         boolean correct = false;
 
+        if (lobbyTimer < 11) {
 
-        while (!correct) {
 
-            System.out.println("Il timer specificato è troppo breve per permettere ai giocatori che utilizzano" +
-                    " RMI di connettersi, specifica un timer maggiore di 10:");
+            while (!correct) {
 
-            lobbyTimer = scanner.nextInt();
+                System.out.println("Il timer specificato è troppo breve per permettere ai giocatori che utilizzano" +
+                        " RMI di connettersi, specifica un timer maggiore di 10:");
 
-            if (lobbyTimer >= 10) {
-                correct = true;
+                lobbyTimer = scanner.nextInt();
+
+                if (lobbyTimer >= 10) {
+                    correct = true;
+                }
+
             }
-
         }
 
 
