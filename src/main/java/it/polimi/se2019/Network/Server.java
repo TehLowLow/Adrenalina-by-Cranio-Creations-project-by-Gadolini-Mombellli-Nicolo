@@ -101,6 +101,9 @@ public class Server {
         player.setNickname(u);
         player.setConnectionAlive(true);
         player.setConnectionTech(connection);
+        if (connection.equalsIgnoreCase("RMI")) {
+            player.setPORT(calcPorts());
+        }
         registrations.put(u, p);
         connectedPlayers.add(player);
         System.out.println("Ho aggiunto " + u);
@@ -124,8 +127,24 @@ public class Server {
 
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Specificare timer per la durata della lobby (in secondi): ");
+        System.out.println("Specificare di seguito un valore Timer per la durata della Lobby (in secondi) maggiore di 10: ");
         lobbyTimer = scanner.nextInt();
+
+        boolean correct = false;
+
+
+        while (!correct) {
+
+            System.out.println("Il timer specificato è troppo breve per permettere ai giocatori che utilizzano" +
+                    " RMI di connettersi, specifica un timer maggiore di 10:");
+
+            lobbyTimer = scanner.nextInt();
+
+            if (lobbyTimer >= 10) {
+                correct = true;
+            }
+
+        }
 
 
         //Avvio il logger di rmi

@@ -177,6 +177,8 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
             fw.close();
 
+
+
             try {
                 sleep(10 * 1000);
             } catch (Exception e) {
