@@ -12,7 +12,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class BasicHellion extends Effect {
 
 
-
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -36,6 +40,11 @@ public class BasicHellion extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player thant wants to use the effect.
+     * @return the targets to shot.
+     */
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 

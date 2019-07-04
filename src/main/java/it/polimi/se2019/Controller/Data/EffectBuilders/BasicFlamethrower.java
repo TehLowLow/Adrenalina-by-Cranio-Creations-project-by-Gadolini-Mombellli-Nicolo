@@ -1,14 +1,15 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
-import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
-import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Model.Cell;
+import it.polimi.se2019.Model.Connection;
+import it.polimi.se2019.Model.Effect;
+import it.polimi.se2019.Model.Player;
+import it.polimi.se2019.Network.Server;
+import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import it.polimi.se2019.Network.Server;
-import it.polimi.se2019.View.*;
 
 
 public class BasicFlamethrower extends Effect {
@@ -230,7 +231,11 @@ public class BasicFlamethrower extends Effect {
         return false;
     }
 
-
+    /**
+     *
+     * @param user is who has to shot.
+     * @return true if he has available targets.
+     */
     public boolean hasTargets(Player user) {
 
         CopyOnWriteArrayList<Player> players = Server.connectedPlayers;
@@ -254,6 +259,12 @@ public class BasicFlamethrower extends Effect {
     }
 
 
+    /**
+     *
+     * @param cell is the user's position
+     * @param direction is the direction to check
+     * @return true if in the direction there aren't any edges or walls
+     */
     protected static boolean directionFree(Cell cell, String direction) {
 
         if (direction.equalsIgnoreCase("alto")) {
@@ -284,6 +295,12 @@ public class BasicFlamethrower extends Effect {
 
     }
 
+    /**
+     *
+     * @param cell user's position.
+     * @param direction direction to check
+     * @return the connected cell in that direction.
+     * */
     protected static Cell returnConnectedCell(Cell cell, String direction) {
 
         if (direction.equalsIgnoreCase("alto")) {
@@ -305,6 +322,11 @@ public class BasicFlamethrower extends Effect {
         return cell;
     }
 
+    /**
+     *
+     * @param cell is a cell in the map
+     * @return the players that are in that cell.
+     */
     protected static CopyOnWriteArrayList<Player> getPlayersInCell(Cell cell) {
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
@@ -319,6 +341,12 @@ public class BasicFlamethrower extends Effect {
 
         return targets;
     }
+
+    /**
+     *
+     * @param user is who has to shot
+     * @return the cells in the four cardinal directions.
+     */
 
     protected static CopyOnWriteArrayList <Cell> getCardinalCells(Player user){
 

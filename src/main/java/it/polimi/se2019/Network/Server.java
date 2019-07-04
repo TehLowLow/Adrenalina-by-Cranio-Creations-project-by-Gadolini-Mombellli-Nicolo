@@ -144,7 +144,7 @@ public class Server {
 
                 lobbyTimer = scanner.nextInt();
 
-                if (lobbyTimer >= 10) {
+                if (lobbyTimer > 10) {
                     correct = true;
                 }
 

@@ -40,7 +40,7 @@ public class BasicHeatSeeker extends Effect {
      * Looks for the target of the Heatseeker.
      *
      * @param user the Player thant wants to use the effect.
-     * @return
+     * @return the targets.
      */
 
     @Override
@@ -69,7 +69,11 @@ public class BasicHeatSeeker extends Effect {
 
     }
 
-
+    /**
+     *
+     * @param user is who has to shot.
+     * @return true if the weapon has available targets.
+     */
     public boolean hasTargets(Player user) {
 
         CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);

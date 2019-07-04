@@ -288,6 +288,12 @@ public class InputCheck {
 
     }
 
+    /**
+     *
+     * @param powerup is the user's answer.
+     * @return true if the user entered a correct powerup name.
+     */
+
     public static boolean correctPowerUp(String powerup) {
 
         if (powerup.equalsIgnoreCase("Granata venom") || powerup.equalsIgnoreCase("Mirino") || powerup.equalsIgnoreCase("Raggio cinetico") || powerup.equalsIgnoreCase("Teletrasporto")) {

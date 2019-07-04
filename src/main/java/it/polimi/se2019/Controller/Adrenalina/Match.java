@@ -755,7 +755,7 @@ public class Match extends Thread {
     /**
      * Asks the players which game mode they want to play.
      *
-     * @return
+     * @return true if they choose classic mode, false if they choose terminator.
      */
 
     public static boolean chooseMode() {
