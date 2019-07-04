@@ -136,7 +136,6 @@ public class Server {
 
         if (lobbyTimer < 11) {
 
-
             while (!correct) {
 
                 System.out.println("Il timer specificato è troppo breve per permettere ai giocatori che utilizzano" +
@@ -144,7 +143,7 @@ public class Server {
 
                 lobbyTimer = scanner.nextInt();
 
-                if (lobbyTimer >= 10) {
+                if (lobbyTimer > 10) {
                     correct = true;
                 }
 
