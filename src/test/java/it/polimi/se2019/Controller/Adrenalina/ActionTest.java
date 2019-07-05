@@ -1,15 +1,14 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
 import com.sun.corba.se.spi.copyobject.CopyobjectDefaults;
-import it.polimi.se2019.Controller.Data.EffectBuilders.BasicFlamethrower;
-import it.polimi.se2019.Controller.Data.EffectBuilders.ConfigurationTest;
-import it.polimi.se2019.Controller.Data.EffectBuilders.LockRifleEffect;
+import it.polimi.se2019.Controller.Data.EffectBuilders.*;
 import it.polimi.se2019.Controller.Data.LootBuilders.PrbBuilder;
 import it.polimi.se2019.Controller.Data.PowerUpBuilder.BlueTagbackGrenadeBuilder;
 import it.polimi.se2019.Controller.Data.PowerUpBuilder.BlueTeleporterBuilder;
 import it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons.LockRifleBuilder;
 import it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons.WhisperBuilder;
 import it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons.FlamethrowerBuilder;
+import it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons.ShotgunBuilder;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.Network.TestBot;
@@ -501,6 +500,55 @@ public class ActionTest {
 
         assertEquals(true, result);
         assertEquals(Board.getMap().getBlueRoom().getCells().get(1), player.getPosition());
+
+    }
+
+    @Test
+    public void performBasicAndAlternative() {
+
+        //longbarrel basicshotgun
+
+
+        ShotgunBuilder sb = new ShotgunBuilder();
+        Weapon shotgun = sb.build();
+        shotgun.setLoaded(true);
+        shotgun.setBaseEffect(new BasicShotgun());
+        shotgun.setAlternativeEffect(new LongBarrelMode());
+
+        CopyOnWriteArrayList<Weapon> wp = new CopyOnWriteArrayList<>();
+
+        wp.add(shotgun);
+
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("spara");
+        answers.add("Fucile a pompa");
+        answers.add("base");
+        answers.add("player1");
+        answers.add("si");
+        answers.add("destra");
+        answers.add("spara");
+        answers.add("alternativa");
+        answers.add("player1");
+
+        TestBot.initAnswers(answers);
+
+        Player shooter = Server.connectedPlayers.get(0);
+        Player target = Server.connectedPlayers.get(1);
+
+        shooter.getPlayerboard().setWeapons(wp);
+
+        shooter.setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
+        target.setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
+
+        Action.perform(shooter);
+
+        shotgun.setLoaded(true);
+
+        Action.perform(shooter);
+
+        assertEquals(5, target.getPlayerboard().getDamage().size());
+
 
     }
 
