@@ -98,14 +98,14 @@
     </TabPane>
     <Text fill="BLACK" layoutX="1053.0" layoutY="192.0" scaleX="1.9495756209778596" scaleY="1.7865736120033857" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipaggiamenti">
       <font>
-        <Font name="System Bold" size="12.0" />
+        <Font name="Space Ranger" size="12.0" fx:id="x6"/>
       </font>
     </Text>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="252.0" layoutX="1217.0" layoutY="172.0" opacity="0.35" stroke="BLACK" strokeType="INSIDE" width="147.122802734375" />
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLACK" height="31.0" layoutX="1217.0" layoutY="172.0" opacity="0.61" stroke="BLACK" strokeType="INSIDE" width="139.513671875" />
     <Text fill="WHITE" layoutX="1244.0" layoutY="195.0" scaleX="1.2064053662796932" scaleY="1.165345080763583" strokeType="OUTSIDE" strokeWidth="0.0" text="Munizioni">
       <font>
-        <Font name="System Bold" size="20.0" fx:id="x6" />
+        <Font name="Space Ranger" size="12.0" />
       </font>
     </Text>
     <ImageView fx:id="blueAmmo" fitHeight="40.855072677043275" fitWidth="46.21311569213867" layoutX="1226.0" layoutY="217.0" onMouseClicked="#chooseBlueAmmo" pickOnBounds="true" preserveRatio="true">
@@ -144,7 +144,7 @@
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.552734375" layoutX="0.0" layoutY="658.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="165.8499755859375" />
     <Text fill="WHITE" layoutX="2.0" layoutY="652.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giocatore:">
       <font>
-        <Font name="System Bold" size="25.0" fx:id="x2" />
+        <Font name="Space Ranger" size="12.0" fx:id="x2" />
       </font>
     </Text>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="46.552734375" layoutX="231.0" layoutY="658.0" opacity="0.37" stroke="BLACK" strokeType="INSIDE" width="139.513671875" />
@@ -435,7 +435,7 @@
     </ImageView>
     <Text fx:id="mb1Overkill" fill="WHITE" layoutX="73.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false">
       <font>
-        <Font name="System Bold" size="15.0" fx:id="x7" />
+        <Font name="OldSansBlack" size="12.0" fx:id="x7" />
       </font>
     </Text>
     <Text fx:id="mb2Overkill" fill="WHITE" font="$x7" layoutX="108.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="x2" visible="false" />
@@ -472,7 +472,7 @@
     </ImageView>
     <Button layoutX="1241.0" layoutY="434.0" mnemonicParsing="false" onAction="#yesAction" prefHeight="37.0382080078125" prefWidth="76.0" text="SI" textFill="$x9">
       <font>
-        <Font name="System Bold" size="16.0" fx:id="x8" />
+        <Font name="Space Ranger" size="12.0" fx:id="x8" />
       </font>
     </Button>
     <Button font="$x8" layoutX="1241.0" layoutY="487.0" mnemonicParsing="false" onAction="#noAction" prefHeight="38.0" prefWidth="76.0" text="NO" textFill="RED" />

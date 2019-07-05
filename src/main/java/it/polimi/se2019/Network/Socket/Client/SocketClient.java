@@ -143,7 +143,6 @@ public class SocketClient extends Client implements Runnable {
 
                     String received = in.readUTF();
 
-
                     if (useGui) {
                         System.out.println(received);
                         Platform.runLater(() -> ((GUI) gui).update(received));

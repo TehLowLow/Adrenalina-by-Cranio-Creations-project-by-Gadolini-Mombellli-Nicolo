@@ -98,14 +98,14 @@
     </TabPane>
     <Text fill="BLACK" layoutX="1053.0" layoutY="192.0" scaleX="1.9495756209778596" scaleY="1.7865736120033857" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipaggiamenti">
       <font>
-        <Font name="System Bold" size="12.0" />
+        <Font name="Space Ranger" size="12.0" />
       </font>
     </Text>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="252.0" layoutX="1217.0" layoutY="172.0" opacity="0.35" stroke="BLACK" strokeType="INSIDE" width="147.122802734375" />
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="BLACK" height="31.0" layoutX="1217.0" layoutY="172.0" opacity="0.61" stroke="BLACK" strokeType="INSIDE" width="139.513671875" />
     <Text fill="WHITE" layoutX="1244.0" layoutY="195.0" scaleX="1.2064053662796932" scaleY="1.165345080763583" strokeType="OUTSIDE" strokeWidth="0.0" text="Munizioni">
       <font>
-        <Font name="System Bold" size="20.0" fx:id="x6" />
+        <Font name="Space Ranger" size="12.0" />
       </font>
     </Text>
     <ImageView fx:id="blueAmmo" fitHeight="40.855072677043275" fitWidth="46.21311569213867" layoutX="1226.0" layoutY="217.0" onMouseClicked="#chooseBlueAmmo" pickOnBounds="true" preserveRatio="true">

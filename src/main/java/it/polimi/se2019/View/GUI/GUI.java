@@ -338,7 +338,7 @@ public class GUI extends Application implements Runnable {
 
         }
 
-        if(message.contains("per posizionare il terminator")){
+        if(message.contains("per posizionare il Terminator")){
 
             String newMessage = "Clicca su un cubo munizione (rosso, blu, giallo) per posizionare il terminator nella cella di quel colore.";
             message = newMessage;

@@ -89,7 +89,7 @@
         </Tab>
       </tabs>
     </TabPane>
-    <Text fill="BLACK" layoutX="1053.0" layoutY="192.0" scaleX="1.9495756209778596" scaleY="1.7865736120033857" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipaggiamenti">
+    <Text fill="BLACK" layoutX="1046.0" layoutY="179.0" scaleX="1.9495756209778596" scaleY="1.7865736120033857" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipaggiamenti" wrappingWidth="93.1041967868805">
       <font>
         <Font name="Space Ranger" size="12.0" />
       </font>
