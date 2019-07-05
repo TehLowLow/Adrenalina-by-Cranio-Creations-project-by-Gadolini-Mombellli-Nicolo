@@ -7,7 +7,18 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * this class allows to choose one player to hit from an array of possible targets
+ */
+
 public class ChoosePlayer {
+
+    /**
+     *
+     * @param user is who hits
+     * @param possibleTargets from which the user selects the target
+     * @return the selected target
+     */
 
     public static Player one(Player user, CopyOnWriteArrayList<Player> possibleTargets){
 

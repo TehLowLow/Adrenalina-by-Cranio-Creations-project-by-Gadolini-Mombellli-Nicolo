@@ -11,9 +11,17 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * targeting scope effect
+ */
+
 public class TargetingScopeEffect extends Effect {
 
-
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -70,10 +78,22 @@ public class TargetingScopeEffect extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return null
+     */
+
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
         return null;
     }
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return false
+     */
 
     @Override
     public boolean hasTargets(Player user) {

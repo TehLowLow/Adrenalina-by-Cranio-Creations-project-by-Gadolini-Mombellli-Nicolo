@@ -13,11 +13,24 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Controller.Adrenalina.Check.visibleSquares;
 
+/**
+ * vortex cannon effect
+ */
+
 public class VortexCannon extends Effect {
 
    //Creo un vortice. Lo tratto come un player perché è comodo da spostare.
 
-   private static Player vortex;
+    /**
+     * The vortex is treated as a player
+     */
+    private static Player vortex;
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
 
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
@@ -120,7 +133,12 @@ public class VortexCannon extends Effect {
 
     }
 
-
+    /**
+     *
+     * @param user of the effect
+     * @param newTargets are the targets from whict the user has to select
+     * @return the targets
+     */
 
     private CopyOnWriteArrayList <Player> getNewTargets(Player user, CopyOnWriteArrayList<Player> newTargets) {
 
@@ -194,6 +212,13 @@ public class VortexCannon extends Effect {
 
     }
 
+    /**
+     *
+     * @param target is the first target
+     * @param user of the action
+     * @return true if the user has other targets to hit.
+     */
+
     private boolean hasNewTargets(Player target, Player user) {
 
         CopyOnWriteArrayList <Cell> targetCells = Check.reachableCells(vortex, 1);
@@ -211,6 +236,12 @@ public class VortexCannon extends Effect {
         return false;
 
     }
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of vortex cannon
+     */
 
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
@@ -322,6 +353,12 @@ public class VortexCannon extends Effect {
         return finalTarget;
     }
 
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the user has someone to hit with vortex cannon
+     */
+
     @Override
     public boolean hasTargets(Player user) {
 
@@ -354,6 +391,11 @@ public class VortexCannon extends Effect {
 
         return false;
     }
+
+    /**
+     * adds to the array the cells far one step
+     * @param cells are the parameter to check
+     */
 
     private void addUnitDistance(CopyOnWriteArrayList <Cell> cells){
 

@@ -13,7 +13,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.*;
 
+/**
+ * this class manages the damages and the markers
+ */
+
 public class Damage {
+
+    /**
+     * This method gives a damage from the user to the target
+     * @param user who damages
+     * @param target the damaged
+     */
 
     private static void giveOneDamage(Player user, Player target) {
 
@@ -23,6 +33,14 @@ public class Damage {
         damages.add(damage);
         target.getPlayerboard().setDamage(damages);
     }
+
+
+    /**
+     * This method gives damages from the user to the target and checks the markers and the usable powerups
+     * @param damageAmount is the amount of damages
+     * @param user is who damages
+     * @param target is the damaged
+     */
 
     public static void giveDamage(int damageAmount, Player user, Player target) {
 
@@ -211,6 +229,12 @@ public class Damage {
 
     }
 
+    /**
+     * Gives one user marker to the target
+     * @param user is who marks
+     * @param target is the marked
+     */
+
     private static void giveOneMarker(Player user, Player target) {
 
         Token marker = new Token();
@@ -220,6 +244,13 @@ public class Damage {
         target.getPlayerboard().setMarker(markers);
 
     }
+
+    /**
+     * Gives more user markers to the target
+     * @param markerAmount is the n of the markers
+     * @param user is who marks
+     * @param target is the marked
+     */
 
     public static void giveMarker(int markerAmount, Player user, Player target) {
 

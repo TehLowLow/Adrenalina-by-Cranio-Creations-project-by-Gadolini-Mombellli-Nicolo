@@ -11,9 +11,17 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * alternative effect of the zx-2
+ */
+
 public class ScannerMode extends Effect {
 
-
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -22,6 +30,12 @@ public class ScannerMode extends Effect {
         }
 
     }
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the scanner mode
+     */
 
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
@@ -68,6 +82,11 @@ public class ScannerMode extends Effect {
     }
 
 
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the scanner mode has targets.
+     */
     @Override
     public boolean hasTargets(Player user) {
 

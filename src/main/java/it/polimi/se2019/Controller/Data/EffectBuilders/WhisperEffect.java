@@ -1,21 +1,28 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
 import it.polimi.se2019.Controller.Adrenalina.Check;
-import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Connection;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
-import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import static it.polimi.se2019.Network.Server.connectedPlayers;
 import static it.polimi.se2019.Network.Server.update;
 
+/**
+ * whisper effect
+ */
+
 public class WhisperEffect extends Effect {
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -38,6 +45,12 @@ public class WhisperEffect extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the whisper
+     */
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -62,7 +75,7 @@ public class WhisperEffect extends Effect {
             verifico che non sia a distanza unitaria
              */
 
-            if(unitDistace(player, user)){
+            if(unitDistance(player, user)){
                 possibleTargets.remove(player);
             }
 
@@ -74,6 +87,12 @@ public class WhisperEffect extends Effect {
         return targets;
 
     }
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the whisper can shot somebody.
+     */
 
     @Override
     public boolean hasTargets(Player user) {
@@ -135,8 +154,13 @@ public class WhisperEffect extends Effect {
 
     }
 
-
-    private boolean unitDistace(Player target, Player user) {
+    /**
+     *
+     * @param target of the whisper
+     * @param user of the weapon
+     * @return true if user and target are one cell far
+     */
+    private boolean unitDistance(Player target, Player user) {
 
 
         Connection up = user.getPosition().getUpConnection();

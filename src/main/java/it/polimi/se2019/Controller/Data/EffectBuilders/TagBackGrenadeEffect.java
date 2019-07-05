@@ -11,6 +11,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class TagBackGrenadeEffect extends Effect {
 
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
+
     public void applyEffect(Player user,  CopyOnWriteArrayList <Player> targets){
 
         if(Check.visiblePlayers(user).contains(targets.get(0))) {
@@ -18,10 +24,22 @@ public class TagBackGrenadeEffect extends Effect {
         }
     }
 
+    /**
+     *
+     * @param player is the user of the effect.
+     * @return null
+     */
+
     public CopyOnWriteArrayList<Player> getTargets(Player player){
 
         return null;
     }
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return false
+     */
 
     public boolean hasTargets(Player user){
         return false;

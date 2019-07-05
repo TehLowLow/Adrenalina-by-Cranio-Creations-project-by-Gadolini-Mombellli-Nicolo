@@ -15,7 +15,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
+/**
+ * Thor effect
+ */
+
 public class THOR extends Effect {
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -78,6 +88,12 @@ public class THOR extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the THOR.
+     */
+
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -91,6 +107,12 @@ public class THOR extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if there are some visible targets.
+     */
+
     @Override
     public boolean hasTargets(Player user) {
 
@@ -100,7 +122,12 @@ public class THOR extends Effect {
         return false;
     }
 
-
+    /**
+     *
+     * @param user of the effect
+     * @param damaged from the basic effect
+     * @return true if the damaged can see some players different from the user and the user can use the second effect
+     */
 
     public boolean canUseChainReaction(Player user, Player damaged){
 
@@ -138,6 +165,13 @@ public class THOR extends Effect {
     }
 
 
+    /**
+     *
+     * @param user of the effect
+     * @param damaged from the basic effect
+     * @return the targets of the chain reaction
+     */
+
     public CopyOnWriteArrayList<Player> chainReactionGetTargets(Player user, Player damaged){
 
         CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
@@ -161,6 +195,12 @@ public class THOR extends Effect {
 
     }
 
+    /**
+     * applies the chain reaction
+     * @param user of the effect
+     * @param targets of the chain reaction
+     */
+
     public void applyChainReaction(Player user, CopyOnWriteArrayList<Player> targets){
 
         for (Player player:targets){
@@ -176,6 +216,15 @@ public class THOR extends Effect {
         }
 
     }
+
+    /**
+     *
+     * @param user of the effect
+     * @param damaged from the basic effect
+     * @param damagedChainReaction from the chain reaction
+     * @param usedReaction is true if the player has performed the chain reaction
+     * @return true if the user can perform high voltage
+     */
 
     public boolean canUseHighVoltage(Player user, Player damaged, CopyOnWriteArrayList <Player> damagedChainReaction, boolean usedReaction){
 
@@ -225,6 +274,15 @@ public class THOR extends Effect {
         return false;
     }
 
+
+    /**
+     *
+     * @param user of the effect
+     * @param damagedChainReaction from the chain reaction
+     * @param firstDamaged is the damaged from the basic effect
+     * @return the targets for high voltage
+     */
+
     public CopyOnWriteArrayList<Player> highVoltageGetTargets(Player user, Player damagedChainReaction, Player firstDamaged){
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
@@ -265,6 +323,12 @@ public class THOR extends Effect {
 
     }
 
+
+    /**
+     * applies high voltage mode
+     * @param user of the effect
+     * @param targets of high voltage
+     */
 
     public void applyHighVoltage(Player user, CopyOnWriteArrayList<Player> targets){
 
