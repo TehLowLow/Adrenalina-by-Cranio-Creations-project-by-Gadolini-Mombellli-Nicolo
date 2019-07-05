@@ -138,7 +138,6 @@ public class SocketClient extends Client implements Runnable {
 
                 try {//update
 
-                    out.flush();
                     out.writeInt(signal); //Echo al server
 
                     String received = in.readUTF();
@@ -165,7 +164,6 @@ public class SocketClient extends Client implements Runnable {
 
                 try {
 
-                    out.flush();
                     out.writeInt(signal);
                     String received = in.readUTF();
 
