@@ -139,7 +139,10 @@ public class SocketClient extends Client implements Runnable {
                 try {//update
 
                     out.writeInt(signal); //Echo al server
+
                     String received = in.readUTF();
+                    GUI.echoReceived = true;
+
 
                     if (useGui) {
                         System.out.println(received);
@@ -163,12 +166,21 @@ public class SocketClient extends Client implements Runnable {
 
                 try {
                     out.writeInt(signal);
-                    String received = in.readUTF();
+
+                    Object lock = new Object();
+
+                    String received;
+
+                    synchronized (lock) {
+                        received = in.readUTF();
+                        GUI.echoReceived = true;
+                    }
 
                     if (useGui) {
 
                         System.out.println(received);
                         Platform.runLater(() -> ((GUI) gui).update(received));
+
                     } else {
 
                         //Nel caso in cui ci sia la stringa da parsare con la mappa...
