@@ -138,10 +138,10 @@ public class SocketClient extends Client implements Runnable {
 
                 try {//update
 
+                    out.flush();
                     out.writeInt(signal); //Echo al server
 
                     String received = in.readUTF();
-                    GUI.echoReceived = true;
 
 
                     if (useGui) {
@@ -165,16 +165,10 @@ public class SocketClient extends Client implements Runnable {
             } else if (signal == 2) {//updatewithanswer
 
                 try {
+
+                    out.flush();
                     out.writeInt(signal);
-
-                    Object lock = new Object();
-
-                    String received;
-
-                    synchronized (lock) {
-                        received = in.readUTF();
-                        GUI.echoReceived = true;
-                    }
+                    String received = in.readUTF();
 
                     if (useGui) {
 

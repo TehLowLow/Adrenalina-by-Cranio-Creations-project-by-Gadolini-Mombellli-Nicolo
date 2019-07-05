@@ -38,7 +38,6 @@ public class GUI extends Application implements Runnable {
     public int chosenMap;
     public int chosenSkulls;
 
-    public static boolean echoReceived = false;
 
     Map1UIController map1UIController;
     Map2UIController map2UIController;
@@ -772,12 +771,6 @@ public class GUI extends Application implements Runnable {
 }
 
     public void update(String message) {
-
-        while(!echoReceived){
-            continue;
-        }
-
-        echoReceived = false;
 
         if (message.contains("combattere")) {
             showChooseMap();
