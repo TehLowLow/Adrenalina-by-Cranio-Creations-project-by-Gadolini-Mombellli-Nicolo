@@ -10,9 +10,16 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Printer;
 
+/**
+ * Class that prints the CLI, useful for testing purposes.
+ */
 public class CLItest {
 
 
+    /**
+     * Prints the CLI.
+     * @param args
+     */
     public static void main(String[] args) {
 
         //Map1Builder map1 = new Map1Builder();

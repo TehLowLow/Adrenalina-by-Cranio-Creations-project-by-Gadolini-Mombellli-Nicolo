@@ -6,9 +6,16 @@ package it.polimi.se2019.View.CLI;
 import static it.polimi.se2019.View.CLI.Colors.*;
 import static it.polimi.se2019.View.CLI.Location.*;
 
+/**
+ * Prints an ascii art of the map3.
+ */
 public class Map3StringRep {
 
 
+    /**
+     * prints an ascii art of the map3.
+     * @return an ascii art of the map3, representing also the players in the cells.
+     */
     public static String map3() {
         return
 

@@ -4,9 +4,17 @@ package it.polimi.se2019.View.CLI;
 
 import static it.polimi.se2019.View.CLI.Colors.*;
 import static it.polimi.se2019.View.CLI.Location.*;
+
+/**
+ * Prints an ascii art of the map2.
+ */
 public class Map2StringRep {
 
 
+    /**
+     * prints an ascii art of the map2.
+     * @return an ascii art of the map2, representing also the players in the cells.
+     */
     static String map2() {
 
 

@@ -4,8 +4,16 @@ import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Map;
 import it.polimi.se2019.Model.Player;
 
+/**
+ * Prints the CLI.
+ */
 public class CLIprinter {
 
+    /**
+     * Prints the CLI from a specified player's point of view
+     * @param player
+     * @return
+     */
     public static String print(Player player){
 
         Map map = Board.getMap();

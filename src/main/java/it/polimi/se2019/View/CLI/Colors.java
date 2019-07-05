@@ -4,6 +4,10 @@ import it.polimi.se2019.Model.Board;
 import it.polimi.se2019.Model.Map;
 import it.polimi.se2019.Model.Room;
 
+
+/**
+ * This class is used to define the basic colours used in the CLI.
+ */
 public class Colors {
 
 

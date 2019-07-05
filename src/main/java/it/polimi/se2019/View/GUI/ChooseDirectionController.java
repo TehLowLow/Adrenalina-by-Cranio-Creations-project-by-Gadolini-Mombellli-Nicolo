@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 
 public class ChooseDirectionController implements Initializable {
 
+
     DataOutputStream out;
 
     @FXML

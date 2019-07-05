@@ -8,6 +8,9 @@ import java.io.DataOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the choose steps window.
+ */
 public class ChooseStepsController implements Initializable {
 
     DataOutputStream out;

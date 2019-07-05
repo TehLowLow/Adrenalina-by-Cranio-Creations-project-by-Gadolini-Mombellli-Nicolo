@@ -9,6 +9,9 @@ import javafx.scene.control.TextArea;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the common dialog window.
+ */
 public class CommonDialogController implements Initializable {
 
     @FXML

@@ -8,9 +8,16 @@ import it.polimi.se2019.Model.Room;
 import static it.polimi.se2019.View.CLI.Colors.*;
 import static it.polimi.se2019.View.CLI.Location.*;
 
+/**
+ * Prints an ascii art of the map4.
+ */
 public class Map4StringRep {
 
 
+    /**
+     * prints an ascii art of the map4.
+     * @return an ascii art of the map4, representing also the players in the cells.
+     */
     public static String map4() {
 
         return

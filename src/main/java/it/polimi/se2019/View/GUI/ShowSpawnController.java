@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Controller class for the respawn window.
+ */
 public class ShowSpawnController implements Initializable {
 
     public DataOutputStream out;

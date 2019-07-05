@@ -5,6 +5,10 @@ import it.polimi.se2019.Network.Server;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * This class converts the game status into a string that is parsed by the GUI.
+ */
+
 public class GameStringRep {
 
 /*
@@ -13,6 +17,11 @@ alla CLI, ed è separata da essa dal carattere '$'. Ogni sezione, separata da *,
 codificata e inviata.
  */
 
+    /**
+     * Prints the representation of the game's status from a defined player's point of view.
+     * @param player
+     * @return
+     */
     public static String print(Player player){
 
         String GUIData = "";

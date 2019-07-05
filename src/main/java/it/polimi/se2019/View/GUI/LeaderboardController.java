@@ -10,6 +10,9 @@ import java.util.ResourceBundle;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.Arrays;
 
+/**
+ * Controller class for the leaderboard window.
+ */
 public class LeaderboardController implements Initializable {
 
 

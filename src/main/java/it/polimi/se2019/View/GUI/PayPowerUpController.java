@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the choose power up window.
+ */
 public class PayPowerUpController implements Initializable {
 
     DataOutputStream out;

@@ -5,11 +5,19 @@ import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Model.Room;
 import it.polimi.se2019.Network.Server;
 
+
+/**
+ * This class contains the methods that can determine a player's position.
+ */
 public class Location {
 
-    //Questa classe contiene i metodi che permettono alle classi "MapStringRep" di capire se in una determinata cella
-    //è presente o meno un giocatore, e nel caso stamparlo. Non mi veniva in mente un nome migliore da darle.
 
+    /**
+     * Gets a cell from a room.
+     * @param room the room of the cell
+     * @param name the name of the cell
+     * @return the cell found.
+     */
     public static Cell getCell(Room room, String name){
 
         Cell foundCell = null;
@@ -23,6 +31,11 @@ public class Location {
         return foundCell;
     }
 
+    /**
+     * Prints the first row of a cell of a room in the CLI.
+     * @param cell the cell that must be printed.
+     * @return a string that eventually contains the name of a player on that cell.
+     */
     public static String firstRow(Cell cell){
 
         String str = "                        ";
@@ -49,6 +62,11 @@ public class Location {
 
     }
 
+    /**
+     * Prints the first row of a cell of a room in the CLI.
+     * @param cell the cell that must be printed.
+     * @return a string that eventually contains the name of a player on that cell.
+     */
     public static String secondRow(Cell cell){
 
         String str = "                        ";
@@ -74,6 +92,12 @@ public class Location {
         return str;
     }
 
+
+    /**
+     * Prints the first row of a cell of a room in the CLI.
+     * @param cell the cell that must be printed.
+     * @return a string that eventually contains the name of a player on that cell.
+     */
     public static String thirdRow(Cell cell){
 
         String str = "                        ";
@@ -99,6 +123,11 @@ public class Location {
         return str;
     }
 
+    /**
+     * Prints the first row of a cell of a room in the CLI.
+     * @param cell the cell that must be printed.
+     * @return a string that eventually contains the name of a player on that cell.
+     */
     public static String fourthRow(Cell cell){
 
         String str = "                        ";
@@ -128,6 +157,11 @@ public class Location {
         return str;
     }
 
+    /**
+     * Prints the first row of a cell of a room in the CLI.
+     * @param cell the cell that must be printed.
+     * @return a string that eventually contains the name of a player on that cell.
+     */
     public static String fifthRow(Cell cell){
 
         String str = "                        ";

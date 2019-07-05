@@ -7,6 +7,9 @@ import java.io.DataOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the chooseRoom window.
+ */
 public class ChooseRoomController implements Initializable {
 
 

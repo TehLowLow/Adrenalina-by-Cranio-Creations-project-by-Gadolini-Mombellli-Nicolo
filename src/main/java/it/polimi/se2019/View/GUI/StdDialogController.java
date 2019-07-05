@@ -9,6 +9,9 @@ import java.awt.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the standard dialog window.
+ */
 public class StdDialogController implements Initializable {
 
     GUI gui;

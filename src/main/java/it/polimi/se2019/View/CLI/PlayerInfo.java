@@ -4,8 +4,16 @@ import it.polimi.se2019.Model.*;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * This class prints the interface for the player, showing damages, weapons and powerups available.
+ */
 public class PlayerInfo {
 
+    /**
+     * This method gets the information of a player.
+     * @param player the player whose information must be retrieved.
+     * @return a string representing player's info.
+     */
     public static String getInfo(Player player){
 
         CopyOnWriteArrayList<Token> damages = player.getPlayerboard().getDamage();
@@ -20,6 +28,11 @@ public class PlayerInfo {
 
     }
 
+    /**
+     * Prints player's champion name
+     * @param championName the champion name
+     * @return a string representing the championName;
+     */
     private static String printChampionName(String championName){
 
         return "---------------" + championName + "---------------\n";
@@ -27,12 +40,22 @@ public class PlayerInfo {
     }
 
 
+    /**
+     * Prints player's score
+     * @param score the champion's name
+     * @return a string representing the championName;
+     */
     private static String printScore(int score){
 
         return "Punteggio: " + score + "\n";
 
     }
 
+    /**
+     * Prints player's damages
+     * @param damages the champion's damages
+     * @return a string representing the champion's damages;
+     */
     private static String printDamages(CopyOnWriteArrayList<Token> damages){
 
         int nDamages = damages.size();
@@ -116,6 +139,11 @@ public class PlayerInfo {
 
 
 
+    /**
+     * Prints player's champion markers
+     * @param markers the champion markers
+     * @return a string representing the markers;
+     */
     private static String printMarkers(CopyOnWriteArrayList<Token> markers){
 
         int nMarkers = markers.size();
@@ -201,6 +229,11 @@ public class PlayerInfo {
 
     }
 
+    /**
+     * Prints player's weapons
+     * @param weapons the champion name
+     * @return a string representing the weapons;
+     */
     private static String printWeapons(CopyOnWriteArrayList<Weapon> weapons){
 
         String finalString = "Le tue armi sono:\n";
@@ -226,6 +259,11 @@ public class PlayerInfo {
     }
 
 
+    /**
+     * Prints player's powerups;
+     * @param powerups the champion name
+     * @return a string representing the powerups;
+     */
     private static String printPowerups(CopyOnWriteArrayList<Powerup> powerups){
 
         String finalString = "I tuoi potenziamenti sono:\n";
@@ -240,6 +278,11 @@ public class PlayerInfo {
 
     }
 
+    /**
+     * Prints player's ammunitions;
+     * @param cubes the champion name
+     * @return a string representing the ammunitions;
+     */
     private static String printCubes(Rybamount cubes){
 
         return "Munizioni :\nRosse: " + cubes.getRed() + "\nBlu: " + cubes.getBlue() + "\nGialle: " + cubes.getYellow() + "\n";
