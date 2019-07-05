@@ -15,26 +15,56 @@ import java.util.Scanner;
 import static it.polimi.se2019.Network.Server.*;
 import static java.lang.Thread.sleep;
 
+/**
+ * This class extends the client with all the functionalities that are needed to handle a Socket connection to the game server.
+ */
 
 public class SocketClient extends Client implements Runnable {
 
 
+    /**
+     * True if a player is granted access to a server
+     */
     private boolean connected = false;
-
+    /**
+     * Stores the socket onto which the player can listen for and send messages.
+     */
     private static Socket client;
-    private int gamePort;
-    private int localPort;
+
+    /**
+     * Used for distinction between the various updates from the server.
+     */
     private int signal;
+
+    /**
+     * Thread that starts the gui
+     */
     private Runnable gui;
+
+    /**
+     * The name of the player.
+     */
     private String user;
 
-
+    /**
+     * The outputstream that writes onto the socket.
+     */
     private static DataOutputStream out;
+
+    /**
+     * The inputstream where the client listen for an update.
+     */
     private static DataInputStream in;
 
+    /**
+     * True if the palyer wants to use the GUI.
+     */
     private boolean useGui = false;
 
 
+    /**
+     * After the player chooses the socket connection, this method starts the login routine and then manages all the communications.
+     */
     @Override
     public void run() {
 
@@ -64,7 +94,7 @@ public class SocketClient extends Client implements Runnable {
             e.printStackTrace();
         }
 
-        connectGame(user);
+        connectGame();
 
         streamInit();
 
@@ -168,7 +198,9 @@ public class SocketClient extends Client implements Runnable {
         }
     }
 
-
+    /**
+     * Connects to the login server.
+     */
     private synchronized void connectLogger() {
 
         //Il ciclo while evita che il client crashi perchè la connessione è non disponibile.
@@ -192,7 +224,10 @@ public class SocketClient extends Client implements Runnable {
     }
 
 
-    private synchronized void connectGame(String name) {
+    /**
+     * Connects to the game server.
+     */
+    private synchronized void connectGame() {
 
         connected = false; //Test per resettare connected, da decidere se inserirlo da qualche altra parte.
 
@@ -209,7 +244,9 @@ public class SocketClient extends Client implements Runnable {
         }
     }
 
-
+    /**
+     * Starts the streams connected to the client socket.
+     */
     private static void streamInit() {
 
         try {
@@ -221,6 +258,9 @@ public class SocketClient extends Client implements Runnable {
 
     }
 
+    /**
+     * Asks the player if he wants to use the gui.
+     */
     private void askGui() {
 
         System.out.println("Vuoi usare la GUI?");
@@ -248,8 +288,3 @@ public class SocketClient extends Client implements Runnable {
     }
 }
 
-//Per connettersi il codice funziona, serve solo controllare che il pc abbia:
-//1) la scheda di rete connessa alla lan come primaria, e si nota debuggando connect game, se il valore che becca il getlocalhost non combacia sistemare
-//2) impostando la rete come privata windows setta il pc come visibile nella lan
-//3) l' hostname sostituisce l' ip, meglio come soluzione dinamica.
-//4) molti problemi spariscono con del buon tinkering nel pannello di rete e di schede di rete.

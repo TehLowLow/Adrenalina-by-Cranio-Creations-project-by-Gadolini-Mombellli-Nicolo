@@ -13,17 +13,33 @@ import java.rmi.server.UnicastRemoteObject;
 
 import static it.polimi.se2019.Network.Server.*;
 
+/**
+ * This class is used for validation of credentials of a player.
+ */
+
+
 public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
-
+    /**
+     * The username written by the player.
+     */
     private static String userName;
-
+    /**
+     * The password written by the player.
+     */
     private static String passWord;
 
+    /**
+     * Temporary player instance used for creating a new dedicated player instance inside connectedPlayers.
+     */
     Player temp;
 
 
     @Override
+
+    /**
+     * Starts the server-side for the login routine.
+     */
     public void run() {
         //In questo thread devo avviare un registry, accettare una connessione alla volta, e verificare il login.
 
@@ -33,6 +49,9 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
     }
 
 
+    /**
+     * In this method occurs the initialization of the server's registry.
+     */
     private synchronized void initServer() {
 
         try { //avvio il server registry
@@ -52,7 +71,14 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
     }
 
-
+    /**
+     * Remote method, can be invoked by the remote client. Verifies the credentials of a player and returns a value status
+     * of the login.
+     *
+     * @param u is the username of the remote player.
+     * @param p is the passwor dof the remote player.
+     * @return the login result that is the game port.
+     */
     @Override
     public synchronized int verify(String u, String p) {
 
@@ -63,7 +89,11 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
     }
 
-
+    /**
+     * Checks the credentials of a player.
+     *
+     * @return the RMI game port if the player is granted access into the game.
+     */
     @Override
     public synchronized int logIn() {
 
@@ -78,6 +108,12 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
     }
 
 
+    /**
+     * This is the method that actually looks for errors during the login process. It looks for double connections, credentials errors and
+     * creates new instances fro each new player.
+     *
+     * @return true if the player is granted access.
+     */
     @Override
     public synchronized boolean checkConnections() {
 
@@ -124,8 +160,14 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
 
         }
 
-}
+    }
 
+    /**
+     * Returns a game port onto which the client will open his local registry.
+     *
+     * @param s is the username of the player.
+     * @return the player selected port.
+     */
     public synchronized int getGamePort(String s) {
 
         for (Player player : connectedPlayers) {
@@ -138,11 +180,6 @@ public class RMILogger implements Logger, Runnable, RMILoggerInterface {
         }
         return 0;
     }
-
-
 }
 
 
-//TODO 2: failsafe per evitare aggiunte sopra i 5 giocatori, da rivedere una volta creato il thread per la verifica delle connessioni.
-//TODO 3: tutti i println sono stampati sulla cli del server come debug, i metodi che dovranno ritornare roba all' utente dovranno sfruttare i canali di rete.
-//TODO 4: BUG Uno user che sbaglia la psw viene disconnesso dal registry, invece dovrebbe rimanere connesso. Inoltre il server lo rileva come doppia connessione BUG

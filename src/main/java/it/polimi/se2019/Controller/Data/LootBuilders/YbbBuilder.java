@@ -12,6 +12,9 @@ public class YbbBuilder {
      * There is the Loot object that will contain ybb.
      */
 
+        /**
+         * Represents a yellow and 2x blue cubes.
+         */
     private Loot ybb;
 
     /*

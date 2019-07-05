@@ -73,9 +73,14 @@ public class Board implements java.io.Serializable{
      */
     private static Map map;
 
-
+    /**
+     * This is the room where unspawned players will be placed.
+     */
     private static Cell limbo;
 
+    /**
+     * This instance represents the terminator as a player.
+     */
     private static Player terminator;
 
     /*
@@ -175,6 +180,9 @@ public class Board implements java.io.Serializable{
         return mortalBlowTrackValue;
     }
 
+    /**
+     * @return the terminator instance
+     */
     public static Player getTerminator(){
         return terminator;
     }
@@ -277,10 +285,18 @@ public class Board implements java.io.Serializable{
         weaponDeck = wDeck;
     }
 
+    /**
+     * Sets the Board's Mortal Blow Track reference.
+     * @param mBlowTrackValue is the arraylist that will contain the mortal blows values.
+     */
     public static void setMortalBlowTrackValue(CopyOnWriteArrayList<Integer> mBlowTrackValue) {
         mortalBlowTrackValue = mBlowTrackValue;
     }
 
+    /**
+     * Sets the terminator instance on the board.
+     * @param player is the instance of class Player that is created as a Terminator
+     */
     public static void setTerminator(Player player){
         terminator = player;
     }

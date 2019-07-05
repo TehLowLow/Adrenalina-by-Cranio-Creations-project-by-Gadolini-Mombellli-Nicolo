@@ -12,6 +12,9 @@ public class PrrBuilder {
      * There is the Loot object that will contain prr.
      */
 
+    /**
+     * Represents a Powerup and 2x red cubes.
+     */
     private Loot prr;
 
     /*

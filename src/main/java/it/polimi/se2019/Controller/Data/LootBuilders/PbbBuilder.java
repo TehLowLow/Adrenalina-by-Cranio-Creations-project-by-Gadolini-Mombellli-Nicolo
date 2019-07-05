@@ -11,7 +11,9 @@ public class PbbBuilder {
      *--------------------FIELDS-----------------------------
      * There is the Loot object that will contain pbb.
      */
-
+    /**
+     * Represents a PowerUp and 2x blue cubes.
+     */
     private Loot pbb;
 
     /*

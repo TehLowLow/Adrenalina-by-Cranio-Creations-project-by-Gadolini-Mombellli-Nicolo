@@ -13,7 +13,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * This class represents the player's turn in the match
  */
 
-public class Turn extends Thread{
+public class Turn extends Thread {
 
     /*
     ------------FIELDS-------------------------
@@ -25,13 +25,16 @@ public class Turn extends Thread{
 
     private CopyOnWriteArrayList<Powerup> drewPowerUp;
 
+    /**
+     * The board of the game.
+     */
     private Board board = new Board();
 
+    /**
+     * True if the terminator has been killed during the turn.
+     */
     public boolean terminatorKilled = false;
 
-    private boolean interrupt = false;
-
-    private Object threadKiller = new Object();
 
     /**
      * At the end of the turn, those players must be respawned.
@@ -48,39 +51,6 @@ public class Turn extends Thread{
     /*
     -----------------METHODS--------------------
      */
-
-
-    /*
-    ------------------GETTERS--------------------
-     */
-
-    public CopyOnWriteArrayList<Powerup> getDrewPowerUp() {
-        return drewPowerUp;
-    }
-
-    public Weapon getSwitchedWeapon() {
-        return switchedWeapon;
-    }
-
-    /*
-    -----------------SETTERS-----------------------
-     */
-
-    public void setDrewPowerUp(CopyOnWriteArrayList<Powerup> drewPowerUp) {
-        this.drewPowerUp = drewPowerUp;
-    }
-
-    public void setSwitchedWeapon(Weapon switchedWeapon) {
-        this.switchedWeapon = switchedWeapon;
-    }
-
-    /*
-    ----------------OTHER METHODS-------------------
-    */
-
-
-
-
 
     /**
      * this method allows the player to play the first turn
@@ -125,8 +95,6 @@ public class Turn extends Thread{
 
         boolean usedPowerUp;
         boolean terminatorPerformed = false;
-
-
 
 
         if (terminator && terminatorKilled) {
@@ -532,8 +500,6 @@ public class Turn extends Thread{
         }
 
 
-
-
         for (int i = 0; i < 3; i++) {
 
             usedPowerUp = Action.usePowerUp(player);
@@ -732,8 +698,7 @@ public class Turn extends Thread{
     public void run() {
 
 
-
-        if (Match.first){
+        if (Match.first) {
 
             first(Match.executor);
             Match.first = false;
@@ -745,7 +710,7 @@ public class Turn extends Thread{
         }
 
 
-        if (Match.firstTerminator){
+        if (Match.firstTerminator) {
 
             firstTerminator(Match.executor);
             Match.firstTerminator = false;
@@ -757,7 +722,7 @@ public class Turn extends Thread{
         }
 
 
-        if (Match.frenzy){
+        if (Match.frenzy) {
 
             frenzy(Match.executor, Match.afterFirstPlayer, Match.terminator);
             Match.frenzy = false;
@@ -768,7 +733,7 @@ public class Turn extends Thread{
         }
 
 
-        if (Match.standard){
+        if (Match.standard) {
 
             standard(Match.executor, Match.terminator);
             Match.standard = false;
@@ -778,7 +743,6 @@ public class Turn extends Thread{
 
 
         }
-
 
 
     }

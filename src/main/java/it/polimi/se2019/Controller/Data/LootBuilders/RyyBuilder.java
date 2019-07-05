@@ -12,6 +12,10 @@ public class RyyBuilder {
      * There is the Loot object that will contain ryy.
      */
 
+
+    /**
+     * Represents a red and 2x yellow cubes.
+     */
     private Loot ryy;
 
     /*

@@ -7,12 +7,18 @@ import java.net.Socket;
 
 import static it.polimi.se2019.Network.Server.*;
 
+/**
+ * This class manages the disconnection of a client
+ */
+
 public class SocketManager extends Thread {
 
     //Estende thread perche almeno posso creare un executor che fa partire in parallelo i thread
 
+    /**
+     * The player to manage.
+     */
     private Player toPoll;
-    private String response;
 
 
     public SocketManager(Player player) {
@@ -21,6 +27,10 @@ public class SocketManager extends Thread {
 
     }
 
+    /**
+     * Removes the connected player's client from the clients list, and sets is status as not connected.
+     * If the disconnection happens during the lobby, every signle instance of the player is removed, and his nickname is freed.
+     */
     @Override
     public void run() {
 

@@ -289,7 +289,6 @@ public class InputCheck {
     }
 
     /**
-     *
      * @param powerup is the user's answer.
      * @return true if the user entered a correct powerup name.
      */

@@ -12,6 +12,10 @@ public class YrrBuilder {
      * There is the Loot object that will contain yrr.
      */
 
+    /**
+     * Represents a yellow and 2x red cubes.
+     */
+
     private Loot yrr;
 
     /*

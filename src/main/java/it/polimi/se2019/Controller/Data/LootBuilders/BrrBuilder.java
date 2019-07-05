@@ -1,4 +1,5 @@
 package it.polimi.se2019.Controller.Data.LootBuilders;
+
 import it.polimi.se2019.Model.*;
 
 /**
@@ -12,6 +13,10 @@ public class BrrBuilder {
      * There is the Loot object that will contain brr.
      */
 
+    /**
+     * Represents a 2xRed and Blue cubes
+     */
+
     private Loot brr;
 
     /*
@@ -20,10 +25,11 @@ public class BrrBuilder {
 
     /**
      * Builder method for brr
+     *
      * @return the reference to the brr object, with its fields filled.
      */
 
-    public Loot build(){
+    public Loot build() {
 
         /*
          * brr object as an instance of Loot.
@@ -60,7 +66,6 @@ public class BrrBuilder {
 
         return brr;
     }
-
 
 
 }

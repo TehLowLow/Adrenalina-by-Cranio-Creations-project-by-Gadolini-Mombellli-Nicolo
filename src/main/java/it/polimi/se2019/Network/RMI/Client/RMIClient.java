@@ -21,25 +21,83 @@ import static it.polimi.se2019.Network.Server.LOGINRMIPORT;
 import static it.polimi.se2019.Network.Server.RMIPORT;
 import static java.lang.Thread.sleep;
 
+/**
+ * This subclass extends client and adds all the methods used for a match played with an RMI connection from the client to the server.
+ * This class is responsible of starting the login routine and initializing the local rmiregistry used for dual channel connection.
+ */
+
 
 public class RMIClient extends Client implements Runnable, RMIClientInterface, Remote {
 
+    /**
+     * Is the remote interface of the server responsible for the login of a player..
+     */
     static RMILoggerInterface Logger;
+
+    /**
+     * Temporary interface used for connections.
+     */
     public static RMILoggerInterface rServer;
+
+    /**
+     * Is the remote interface of the server responsible for all the match interactions.
+     */
     public static RMIServerInterface Game;
+
+    /**
+     * Temporary interface used for connections.
+     */
     public static RMIServerInterface gServer;
 
+    /**
+     * True if the client establishes an rmi channel
+     */
     private boolean connected = false;
+
+    /**
+     * True if the player succesfully logs into a game server.
+     */
     private boolean logged = false;
+
+    /**
+     * Temporary string that stores the username of the player.
+     */
     private String user;
+
+    /**
+     * Temprorary string that stores the password of the player.
+     */
     private String psw;
+
+    /**
+     * Stores the local port of the player's pc connected to the game server.
+     */
     private int localPort;
+
+    /**
+     * Result of a login routine, used as a flag for failures.
+     */
     private int value;
+
+    /**
+     * GUI thread responsible of starting the main stage of a match player using the GUI over RMI.
+     */
     private Runnable gui;
+
+    /**
+     * True if the player wants to use the  GUI.
+     */
     private boolean isGui = false;
+
+    /**
+     * True if the player has answered an UpdateWithAnswer invocation.
+     */
     private boolean answered = false;
 
 
+    /**
+     * Starts the rmiClient.
+     */
     @Override
     public void run() {
 
@@ -67,7 +125,7 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
                         localPort = Logger.getGamePort(user);
                         System.out.println("La mia porta di gioco è " + localPort);
                         logged = true;
-                    }else{
+                    } else {
 
                         System.out.println("Errore durante il login, digita di nuovo le tue credenziali.");
 
@@ -120,6 +178,11 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
     }
 
+    /**
+     * Manages the connection routine to a server. Finds the remote registry and stores its location.
+     *
+     * @param port is the port where to look for a remote registry.
+     */
 
     private synchronized void connect(int port) {
 
@@ -164,6 +227,12 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     }
 
 
+    /**
+     * Starts automatically the local registry of a player when granted access to a game server. This happens to grant
+     * dual-channel comunication between client and server.
+     *
+     * @param User is the player that has been logged into a game server.
+     */
     private void initLocalRegistry(String User) {
 
         try {
@@ -201,6 +270,12 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
         }
     }
 
+
+    /**
+     * Remote method used by UpdateWithAnswer. When invoked, prints a message and waits for an answer.
+     * @param msg is the message coming from the server.
+     * @return the answer of the player.
+     */
     @Override
     public String sendMsgWithAnswer(String msg) {
 
@@ -237,6 +312,10 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
 
     }
 
+    /**
+     * This method is invoked from the server. Used for printing simple messages without the need of an answer.
+     * @param msg is the message from the server.
+     */
     @Override
     public void sendMsg(String msg) {
 
@@ -259,6 +338,9 @@ public class RMIClient extends Client implements Runnable, RMIClientInterface, R
     }
 
 
+    /**
+     * Asks a player if he wants to use the GUI during the match.
+     */
     private synchronized void askGui() {
 
         System.out.println("Vuoi usare la gui? Si/No");

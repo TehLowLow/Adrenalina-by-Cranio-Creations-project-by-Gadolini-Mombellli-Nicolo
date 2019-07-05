@@ -12,6 +12,9 @@ public class PrbBuilder {
      * There is the Loot object that will contain prb.
      */
 
+    /**
+     * Represents a PowerUp, yellow and blue cubes.
+     */
     private Loot prb;
 
 

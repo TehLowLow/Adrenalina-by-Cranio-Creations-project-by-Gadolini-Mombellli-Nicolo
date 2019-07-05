@@ -12,6 +12,9 @@ public class RbbBuilder {
      * There is the Loot object that will contain rbb.
      */
 
+    /**
+     * Represents a red and 2x blue cubes.
+     */
     private Loot rbb;
 
     /*

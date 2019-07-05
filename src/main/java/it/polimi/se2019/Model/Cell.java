@@ -15,18 +15,34 @@ public abstract class Cell implements java.io.Serializable{
     /*
      * Connections on the four directions, stored in a Connection Object.
      */
+
+    /**
+     * Stores the type of upper connection of a cell.
+     */
     private Connection upConnection;
+
+    /**
+     * Stores the type of lower connection of a cell.
+     */
     private Connection downConnection;
+
+    /**
+     * Stores the type of left connection of a cell.
+     */
     private Connection leftConnection;
+
+    /**
+     * Stores the type of right connection of a cell.
+     */
     private Connection rightConnection;
 
-    /*
-    Name that identifies the cell.
+    /**
+     * Identifier name of a cell.
      */
     private String name;
 
-    /*
-    Colour of the cell
+    /**
+     * Color of the cell.
      */
 
     private int colour;
