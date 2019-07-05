@@ -1,13 +1,12 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
-import com.sun.corba.se.spi.copyobject.CopyobjectDefaults;
 import it.polimi.se2019.Controller.Data.EffectBuilders.*;
 import it.polimi.se2019.Controller.Data.LootBuilders.PrbBuilder;
 import it.polimi.se2019.Controller.Data.PowerUpBuilder.BlueTagbackGrenadeBuilder;
 import it.polimi.se2019.Controller.Data.PowerUpBuilder.BlueTeleporterBuilder;
 import it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons.LockRifleBuilder;
-import it.polimi.se2019.Controller.Data.WeaponBuilders.BlueWeapons.WhisperBuilder;
 import it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons.FlamethrowerBuilder;
+import it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons.HeatseekerBuilder;
 import it.polimi.se2019.Controller.Data.WeaponBuilders.YellowWeapons.ShotgunBuilder;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
@@ -18,7 +17,6 @@ import org.junit.Test;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class ActionTest {
 
@@ -52,7 +50,10 @@ public class ActionTest {
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("raccogli");
         answers.add("no");
+        answers.add("m");
         answers.add("lanciafiamme");
+        answers.add("aa");
+        answers.add("Distruttore");
 
         TestBot.initAnswers(answers);
 
@@ -64,6 +65,27 @@ public class ActionTest {
         ((SpawnCell) spawn).getAvailableWeapons().add(flamethrower);
 
         Player player = Server.connectedPlayers.get(0);
+
+        LockRifleBuilder lockRifleBuilder1 = new LockRifleBuilder();
+        Weapon lockrifle1 = lockRifleBuilder1.build();
+        lockrifle1.setLoaded(false);
+        lockrifle1.setBaseEffect(new LockRifleEffect());
+        player.getPlayerboard().getWeapons().add(lockrifle1);
+
+
+        LockRifleBuilder lockRifleBuilder2 = new LockRifleBuilder();
+        Weapon lockrifle2 = lockRifleBuilder2.build();
+        lockrifle2.setLoaded(false);
+        lockrifle2.setBaseEffect(new LockRifleEffect());
+        player.getPlayerboard().getWeapons().add(lockrifle2);
+
+
+        LockRifleBuilder lockRifleBuilder3 = new LockRifleBuilder();
+        Weapon lockrifle3 = lockRifleBuilder3.build();
+        lockrifle3.setLoaded(false);
+        lockrifle3.setBaseEffect(new LockRifleEffect());
+        player.getPlayerboard().getWeapons().add(lockrifle3);
+
 
         Action.perform(player);
 
@@ -138,7 +160,9 @@ public class ActionTest {
 
         CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
         answers.add("spara");
+        answers.add("a");
         answers.add("distruttore");
+        answers.add("b");
         answers.add("player1");
         TestBot.initAnswers(answers);
 
@@ -157,6 +181,52 @@ public class ActionTest {
         assertEquals(2, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
         assertEquals(1, Server.connectedPlayers.get(1).getPlayerboard().getMarker().size());
 
+
+    }
+
+
+    @Test
+    public void shotWithOnlyBase(){
+
+        CopyOnWriteArrayList<String> answers = new CopyOnWriteArrayList<>();
+        answers.add("m");
+        answers.add("spara");
+        answers.add("w");
+        answers.add("Distruttore");
+        answers.add("Razzo termico");
+        answers.add("t");
+        answers.add("player1");
+
+        TestBot.initAnswers(answers);
+
+
+        HeatseekerBuilder heatseekerBuilder = new HeatseekerBuilder();
+        Weapon heatseeker = heatseekerBuilder.build();
+        heatseeker.setLoaded(true);
+        heatseeker.setBaseEffect(new BasicHeatSeeker());
+
+        Player user = Server.connectedPlayers.get(0);
+
+        user.getPlayerboard().getWeapons().add(heatseeker);
+
+
+
+        LockRifleBuilder lockRifleBuilder = new LockRifleBuilder();
+        Weapon lockrifle = lockRifleBuilder.build();
+        lockrifle.setLoaded(false);
+        lockrifle.setBaseEffect(new LockRifleEffect());
+
+
+
+        user.getPlayerboard().getWeapons().add(lockrifle);
+
+
+
+        user.setPosition(Board.getMap().getYellowRoom().getCells().get(0));
+
+        Action.perform(user);
+
+        assertEquals(3, Server.connectedPlayers.get(1).getPlayerboard().getDamage().size());
 
     }
 
@@ -526,9 +596,10 @@ public class ActionTest {
         answers.add("base");
         answers.add("player1");
         answers.add("si");
-        answers.add("destra");
+        answers.add("sinistra");
         answers.add("spara");
-        answers.add("alternativa");
+        answers.add("Fucile a pompa");
+        answers.add("alternativo");
         answers.add("player1");
 
         TestBot.initAnswers(answers);
@@ -538,9 +609,6 @@ public class ActionTest {
 
         shooter.getPlayerboard().setWeapons(wp);
 
-        shooter.setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
-        target.setPosition(Board.getMap().getWhiteRoom().getCells().get(1));
-
         Action.perform(shooter);
 
         shotgun.setLoaded(true);
@@ -548,6 +616,7 @@ public class ActionTest {
         Action.perform(shooter);
 
         assertEquals(5, target.getPlayerboard().getDamage().size());
+        assertEquals(Board.getMap().getBlueRoom().getCells().get(2), target.getPosition());
 
 
     }
