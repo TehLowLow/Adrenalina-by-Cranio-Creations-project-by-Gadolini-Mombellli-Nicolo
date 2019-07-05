@@ -5,8 +5,15 @@ import it.polimi.se2019.Model.Player;
 
 import static it.polimi.se2019.Network.Server.*;
 
+/**
+ * This class is responsible of managing the lobby routine, starting the timer that will start the game after it's expired.
+ */
+
 public class Lobby extends Thread {
 
+    /**
+     * Starts the lobby routine.
+     */
     @Override
     public synchronized void run() {
 
@@ -75,6 +82,5 @@ public class Lobby extends Thread {
 }
 
 
-//Questa classe avvia il polling ogni x millisec, cosi da triggerare la Socketexception o la futura RMIHandler
-//solamente da quando ci saranno 3 o piu players. Inoltre quando la size sale sopra i 3 avvia anche il timer
+
 
