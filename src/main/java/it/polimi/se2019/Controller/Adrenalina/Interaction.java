@@ -1,18 +1,13 @@
 package it.polimi.se2019.Controller.Adrenalina;
 
-import it.polimi.se2019.Controller.Adrenalina.Exceptions.*;
-
+import it.polimi.se2019.Controller.Adrenalina.Exceptions.EmptyDeckException;
+import it.polimi.se2019.Controller.Adrenalina.Exceptions.LimitPowerUpException;
 import it.polimi.se2019.Controller.Data.RoomBuilders.Colour;
 import it.polimi.se2019.Model.*;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
-
-import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
-
-import static it.polimi.se2019.Network.Server.update;
-import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
 /**
  * this class contains the methods to manage the links
@@ -425,7 +420,7 @@ public class Interaction {
      *
      * @param player            is the player playing the turn.
      * @param availablePowerups are all the powerups that the player has in the hand.
-     * @return
+     * @return the value of the powerup
      */
 
     private static int convertPowerUp(Player player, CopyOnWriteArrayList<Powerup> availablePowerups) {

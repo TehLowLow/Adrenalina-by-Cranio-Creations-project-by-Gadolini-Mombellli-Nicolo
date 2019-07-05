@@ -36,7 +36,7 @@ public class BasicFurnace extends Effect{
         /**
          * Looks for the target (or targets) of the Furnace.
          * @param user the Player thant wants to use the effect.
-         * @return
+         * @return the targets of the effect
          */
 
         @Override

@@ -10,6 +10,7 @@ public class MapSetup {
 
     /**
      * Creates a map collecting all the rooms.
+     * @param mapNumber is an int representing the map.
      * @return a complete map.
      */
     public Map build(int mapNumber) {

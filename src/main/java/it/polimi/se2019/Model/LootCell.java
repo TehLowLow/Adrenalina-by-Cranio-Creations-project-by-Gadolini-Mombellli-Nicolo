@@ -36,7 +36,7 @@ public class LootCell extends Cell {
 
     /**
      * Checks if a loot has been taken or not, and proceeds to refill the cell
-     * @param lootAvailable
+     * @param lootAvailable is the status of the loot
      */
     public void setLoot(Loot lootAvailable) {
         this.lootAvailable = lootAvailable;

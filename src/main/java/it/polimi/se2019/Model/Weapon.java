@@ -209,6 +209,7 @@ public class Weapon {
     /**
      * This method is responsible for reloading the weapon, changing the status of the boolean variable loaded, leaving
      * to the controller the task of  checking if the player can afford the reload and updating the player amount of ammo.
+     * @param loaded is the state of the weapon
      */
 
     public void setLoaded(boolean loaded) {

@@ -15,7 +15,7 @@ public class TestBot {
 
     /**
      * Adds all the answers inside the test into the TestBot answers array.
-     * @param answersToSet
+     * @param answersToSet sets the answers for testbot
      */
 
     public static void initAnswers(CopyOnWriteArrayList <String> answersToSet){

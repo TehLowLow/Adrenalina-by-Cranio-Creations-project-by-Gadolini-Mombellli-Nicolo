@@ -649,8 +649,6 @@ public class Check {
      * This method runs after the final frenzy, and checks (/resolve) all the last points remaining on the board.
      * Then it proceeds to sum up the points of each player and declare a winner
      * (or a chart with the points of all the players).
-     *
-     * @return the winner.
      */
     public static void winner() {
 

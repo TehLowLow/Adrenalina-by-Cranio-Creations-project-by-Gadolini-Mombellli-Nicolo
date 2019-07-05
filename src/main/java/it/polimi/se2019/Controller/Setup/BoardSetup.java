@@ -14,8 +14,6 @@ public class BoardSetup {
 
     /**
      * Creates the map from all the data.
-     *
-     * @return the complete map.
      */
 
     public void build() {

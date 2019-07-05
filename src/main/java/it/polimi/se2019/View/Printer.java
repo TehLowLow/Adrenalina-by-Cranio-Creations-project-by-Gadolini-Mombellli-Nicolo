@@ -188,7 +188,8 @@ public class Printer {
 
     /**
      * This method converts an integer representing a colour to a string.
-     * @param colour
+     * @param colour is an integer representing the colour
+     * @return the converted integer into a string
      */
     public static String colour(int colour){
 

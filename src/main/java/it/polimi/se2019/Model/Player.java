@@ -188,7 +188,7 @@ public class Player {
     /**
      * Sets the first player.
      *
-     * @param firstPlayer
+     * @param firstPlayer sets the first player boolean
      */
     public void setFirstPlayer(boolean firstPlayer) {
         this.firstPlayer = firstPlayer;
@@ -197,7 +197,7 @@ public class Player {
     /**
      * Setter for the connectionAlive field.
      *
-     * @param connectionAlive
+     * @param connectionAlive sets the status of the connection
      */
     public void setConnectionAlive(boolean connectionAlive) {
         this.connectionAlive = connectionAlive;

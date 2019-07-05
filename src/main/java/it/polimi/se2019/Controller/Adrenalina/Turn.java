@@ -90,6 +90,7 @@ public class Turn extends Thread {
      * this method allows the player to play a standard turn
      *
      * @param player is the player who has to play the turn
+     * @param terminator is true if the player is playing the terminator mode
      */
     public void standard(Player player, boolean terminator) {
 
@@ -283,6 +284,7 @@ public class Turn extends Thread {
      * allows the player to spawn in the map for the first time
      *
      * @param player is the player that has to spawn
+     * @param terminator if the player is playing the terminator mode
      */
 
     private void firstSpawn(Player player, boolean terminator) {
@@ -431,6 +433,8 @@ public class Turn extends Thread {
      * it allows the player to play his FinalFrenzy turn
      *
      * @param player is who has to play the FinalFrenzy turn
+     * @param afterFirstPlayer represents if you play after the first player
+     * @param terminator is true if the player has to perform a frenzy terminator turn
      */
 
     public void frenzy(Player player, boolean afterFirstPlayer, boolean terminator) {

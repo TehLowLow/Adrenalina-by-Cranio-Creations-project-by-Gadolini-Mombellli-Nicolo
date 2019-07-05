@@ -193,6 +193,7 @@ public class InputCheck {
      */
 
     /**
+     * @param input of the user
      * @return true if a player enterd the correct integer between 0 and 2 included.
      */
     public static boolean chooseTurretTripodTarget(String input) {
@@ -213,6 +214,8 @@ public class InputCheck {
 
 
     /**
+     * @param input     of the user
+     * @param champions is the array to check
      * @return true if a player entered the correct champion name.
      */
     public static boolean chooseChampion(String input, CopyOnWriteArrayList<String> champions) {
@@ -236,6 +239,8 @@ public class InputCheck {
      */
 
     /**
+     * @param input   of the user
+     * @param weapons to check
      * @return true if a player entered the correct name of a weapon.
      */
 
@@ -261,6 +266,7 @@ public class InputCheck {
      */
 
     /**
+     * @param input of the user
      * @return true if the player entered a valid answer between base and alternative.
      */
 
@@ -275,6 +281,7 @@ public class InputCheck {
     }
 
     /**
+     * @param action input of the user
      * @return true if a player entered a valid action name.
      */
 
@@ -308,6 +315,7 @@ public class InputCheck {
      */
 
     /**
+     * @param input of the user
      * @return true if a player  entered a valid move of a frenzy action.
      */
 
@@ -324,6 +332,8 @@ public class InputCheck {
     }
 
     /**
+     * @param input         of the user
+     * @param usableWeapons are the weapon to check
      * @return true if a player can reload a weapon during the frenzy action.
      */
 
@@ -343,6 +353,7 @@ public class InputCheck {
     }
 
     /**
+     * @param input of the user
      * @return true if the player entered a valid game mode.
      */
 

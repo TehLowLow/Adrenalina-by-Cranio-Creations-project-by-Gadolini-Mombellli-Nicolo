@@ -43,7 +43,7 @@ public class CozyFireMode extends Effect {
      * Looks for the target (or targets) of the alternative effect.
      *
      * @param user the Player thant wants to use the effect.
-     * @return
+     * @return the targets of the effect
      */
 
     @Override

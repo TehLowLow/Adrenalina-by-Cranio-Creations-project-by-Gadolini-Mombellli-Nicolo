@@ -32,7 +32,7 @@ public class Loot {
 
     /**
      * Return the reward that a player is given from a loot card
-     * @return
+     * @return the reward value of the rybamount
      */
     public Rybamount getRewardValue() {
         return rewardValue;
@@ -67,7 +67,7 @@ public class Loot {
 
     /**
      * Sets the powerup to true if the loot card rewards a player with it
-     * @param powerUp
+     * @param powerUp represents the status of the loot
      */
     public void setPowerUp(boolean powerUp) {
         this.powerUp = powerUp;

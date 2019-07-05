@@ -95,6 +95,7 @@ public abstract class Cell implements java.io.Serializable{
 
     /**
      * Getter for the cell's colour.
+     * @return the colour of the cell
      */
 
     public int getColour(){
