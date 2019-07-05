@@ -12,6 +12,9 @@ public class ByyBuilder {
      * There is the Loot object that will contain byy.
      */
 
+    /**
+     * Represents a blue and 2x yellow cubes.
+     */
     private Loot byy;
 
 

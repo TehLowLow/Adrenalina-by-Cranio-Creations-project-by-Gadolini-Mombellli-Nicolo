@@ -14,8 +14,19 @@ public abstract class Effect {
      * They represent the cost on red/blue/yellow ammo cubes, the name of the effect and its description.
      */
 
+    /**
+     * The cost of the effect of the card, either basic, alternative or optional.
+     */
     private Rybamount cost;
+
+    /**
+     * The name of the specific effect.
+     */
     private String name;
+
+    /**
+     * The description of the specific effect.
+     */
     private String description;
 
     /*
@@ -25,14 +36,24 @@ public abstract class Effect {
     /*
      * ---------------------- GETTERS
      */
+
+    /**
+     * @return the cost of the specific effect.
+     */
     public Rybamount getCost() {
         return cost;
     }
 
+    /**
+     * @return the name of the specific effect.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * @return the description of the specific effect.
+     */
     public String getDescription() {
         return description;
     }
@@ -43,6 +64,7 @@ public abstract class Effect {
 
     /**
      * Sets the cost of a specified effect.
+     *
      * @param cost is the cost of the effect
      */
     public void setCost(Rybamount cost) {
@@ -51,6 +73,7 @@ public abstract class Effect {
 
     /**
      * Sets the name of the effect
+     *
      * @param name is the name of the effect
      */
     public void setName(String name) {
@@ -59,6 +82,7 @@ public abstract class Effect {
 
     /**
      * Sets the description of an effect
+     *
      * @param description is the description of the effect
      */
     public void setDescription(String description) {

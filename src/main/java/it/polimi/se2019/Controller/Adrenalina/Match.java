@@ -51,15 +51,54 @@ public class Match extends Thread {
 
     private boolean finish = false;
 
+    /**
+     * It's true if it's the first turn for a player.
+     */
     public static boolean first = false;
+
+    /**
+     * It's true if it's the first turn of a player playing as the terminator.
+     */
     public static boolean firstTerminator = false;
+
+    /**
+     * True if the turn needs to be standard.
+     */
     public static boolean standard = false;
+
+    /**
+     * True if the turn needs to be Frenzy.
+     */
     public static boolean frenzy = false;
+
+    /**
+     * The player that will play the turn.
+     */
     public static Player executor = new Player();
+
+    /**
+     * True if the match is a terminator match.
+     */
     public static boolean terminator = false;
+
+    /**
+     * True if the player will play the frenzy turn after the first player.
+     */
     public static boolean afterFirstPlayer = false;
+
+    /**
+     * True if a player isn't connected to the match, and needs to be skipped
+     */
     public static boolean skipTurn = false;
+
+    /**
+     * Lock object used as a blocker for the turn timer.
+     */
     public static Object lock = new Object();
+
+    /**
+     * True if a player elapses the time to make all the actions during his turn.
+     */
     public static boolean timeElapsed = false;
 
     /*

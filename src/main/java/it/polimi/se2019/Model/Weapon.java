@@ -44,6 +44,9 @@ public class Weapon {
      */
     private CopyOnWriteArrayList<Effect> optionalEffect;
 
+    /**
+     * The cost of an alternative effect of a card.
+     */
     private Rybamount alternativeEffectCost;
 
     /*
@@ -127,6 +130,11 @@ public class Weapon {
         return optionalEffect;
     }
 
+
+    /**
+     *
+     * @return the alternative effect's cost.
+     */
     public Rybamount getAlternativeEffectCost(){
 
         return this.alternativeEffectCost;
@@ -207,6 +215,11 @@ public class Weapon {
         this.loaded = loaded;
     }
 
+
+    /**
+     * Sets the alternative effect's cost.
+     * @param aCost is the cost of the effect.
+     */
     public void setAlternativeCost(Rybamount aCost) {
 
         this.alternativeEffectCost = aCost;

@@ -3,6 +3,10 @@ package it.polimi.se2019.Network.RMI.Server;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
+/**
+ * This interface contains all the methods that a remote client can invoke with remote calls.
+ */
+
 public interface RMIServerInterface extends Remote {
 
 

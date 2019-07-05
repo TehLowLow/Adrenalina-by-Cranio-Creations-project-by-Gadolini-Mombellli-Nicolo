@@ -12,6 +12,9 @@ public class PyyBuilder {
      * There is the Loot object that will contain pyy.
      */
 
+    /**
+     * Represents a Powerup and 2x yellow cubes.
+     */
     private Loot pyy;
 
     /*

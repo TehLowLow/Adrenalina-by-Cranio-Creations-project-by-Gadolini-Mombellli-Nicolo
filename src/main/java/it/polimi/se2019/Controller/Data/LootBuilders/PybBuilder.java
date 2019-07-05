@@ -12,6 +12,9 @@ public class PybBuilder {
      * There is the Loot object that will contain pyb.
      */
 
+    /**
+     * Represents a Powerup, yellow and blue cubes.
+     */
     private Loot pyb;
 
     /*

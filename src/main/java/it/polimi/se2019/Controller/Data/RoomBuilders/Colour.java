@@ -2,6 +2,7 @@ package it.polimi.se2019.Controller.Data.RoomBuilders;
 
 /**
  * This class represents the Colour that has to be assigned to the rooms and the cells.
+ * Each Color is linked to an integer.
  */
 
 public class Colour {

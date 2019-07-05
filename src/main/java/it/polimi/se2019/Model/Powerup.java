@@ -40,6 +40,9 @@ public class Powerup {
      */
     private Effect effect;
 
+    /**
+     * The color of the powerup.
+     */
     private int colour;
 
 
@@ -81,6 +84,10 @@ public class Powerup {
      */
     public Effect getEffect() {return effect;}
 
+    /**
+     *
+     * @return the color of the powerup.
+     */
     public int getColour(){
         return colour;
     }
@@ -116,6 +123,10 @@ public class Powerup {
      */
     public void setEffect(Effect effect) {this.effect = effect;}
 
+    /**
+     * Sets the powerup's color.
+     * @param set is the number of the color.
+     */
     public void setColour(int set){
 
         colour = set;

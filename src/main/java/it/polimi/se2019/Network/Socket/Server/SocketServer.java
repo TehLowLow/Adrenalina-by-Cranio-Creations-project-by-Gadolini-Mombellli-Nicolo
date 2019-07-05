@@ -9,6 +9,9 @@ import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * This class is the extension of the server
+ */
 
 public class SocketServer extends Server implements Runnable {
 

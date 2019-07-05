@@ -12,6 +12,9 @@ public class PyrBuilder {
      * There is the Loot object that will contain pyr.
      */
 
+    /**
+     * Represents a PowerUp, red and yellow cubes.
+     */
     private Loot pyr;
 
     /*

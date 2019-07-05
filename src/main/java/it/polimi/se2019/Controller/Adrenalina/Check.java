@@ -866,11 +866,11 @@ public class Check {
          */
 
 
-        /**
-         * This class is a temporary data structure that helps during the resolution of the game.
-         */
-
         class PotentialWinner {
+
+            /**
+             * This class is a temporary data structure that helps during the resolution of the game.
+             */
 
             Player player;
 
@@ -1090,7 +1090,6 @@ public class Check {
                  */
 
             schermataFinale = schermataFinale + "Nome: " + potentialWinner.player.getNickname() + " - Punteggio Totale: " + potentialWinner.points + " - Punti tracciato colpo mortale: " + potentialWinner.scoreOnMortalBlowTrack + " -\n";
-
 
 
         }
@@ -1485,6 +1484,10 @@ public class Check {
 
 
 class PlayerWithScore {
+
+    /**
+     * Temporary data structure used for the calculation of the scores.
+     */
 
 
     Player player;

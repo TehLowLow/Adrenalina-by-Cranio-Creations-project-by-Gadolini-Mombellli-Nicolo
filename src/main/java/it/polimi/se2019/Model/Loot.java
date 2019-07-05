@@ -21,6 +21,9 @@ public class Loot {
      */
    private boolean powerUp;
 
+    /**
+     * The name of the loot tile.
+     */
    private String name;
 
     /*
@@ -69,6 +72,11 @@ public class Loot {
     public void setPowerUp(boolean powerUp) {
         this.powerUp = powerUp;
     }
+
+    /**
+     *
+     * @param name is the name to assign to the loot tile.
+     */
 
     public void setName(String name){
 

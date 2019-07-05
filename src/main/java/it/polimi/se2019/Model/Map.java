@@ -24,11 +24,29 @@ public class Map implements java.io.Serializable {
      * Rooms of the map.
      */
 
+    /**
+     * Instance of a green room on the map.
+     */
     private Room greenRoom;
+    /**
+     * Instance of a red room on the map.
+     */
     private Room redRoom;
+    /**
+     * Instance of a yellow room on the map.
+     */
     private Room yellowRoom;
+    /**
+     * Instance of a white room on the map.
+     */
     private Room whiteRoom;
+    /**
+     * Instance of a purple room on the map.
+     */
     private Room purpleRoom;
+    /**
+     * Instance of a blue room on the map.
+     */
     private Room blueRoom;
 
 
