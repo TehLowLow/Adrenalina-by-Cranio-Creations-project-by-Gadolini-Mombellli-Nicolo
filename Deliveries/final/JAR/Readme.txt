@@ -35,24 +35,27 @@ Indice:
 Il progetto implementa secondo il documento di specifiche le seguenti funzionalità:
 
 	-)Regole complete di gioco:
-	-)Command Line Interface;
-	-)Graphic User Interface con JavaFX;
+	-)Command Line Interface (CLI);
+	-)Graphical User Interface con JavaFX (GUI);
 	-)Connettività Socket;
-	-)Connettività Remote Method Invocation;
+	-)Connettività Remote Method Invocation (RMI);
 	-)Funzionalità avanzata Terminator.
 
 
 2)ISTRUZIONI ALL'AVVIO:
 
-La cartella Adrenalina (path git) contiene il file Jar eseguibile unico per client e 
-Server e una cartella assets per le risorse grafiche.
+Scaricare la cartella Adrenalina (ing-sw-2019-Gadolini-Mombelli-Nicolo/Deliveries/final/JAR/Adrenalina), 
+contenente il file .jar eseguibile, unico per client e server, e una cartella "assets" per le risorse grafiche.
 
-Il gioco è ottimizzato per essere eseguito tramite Windows PowerShell nella sua parte
-di grafica, tuttavia per la corretta visualizzazione e completa esperienza tramite Command 
-Line è consigliabile che il gioco venga eseguito tramite Shell Linux.
-Nella cartella principale sono inseriti dei Launcher che si occupano di eseguire il jar 
-attraverso la shell corretta in tutte le sue modalità di Server e Client e con le due 
-interfacce utente CLI e GUI.
+In tale cartella sono inclusi degli script launcher, per il client e per il server, che si occupano di eseguire il .jar 
+attraverso la shell più performante in base alla modalità scelta (CLI o GUI).
+
+Si consiglia infatti di eseguire l'applicativo tramite Windows PowerShell. 
+Tuttavia, nel caso si volesse utilizzare l'interfaccia tramite riga di comando (CLI), 
+al fine di avere un'esperienza utente più completa è consigliabile eseguire l'applicativo
+in un terminale che garantisca la corretta visualizzazione di colori codificati tramite ANSI escape codes. 
+A tal proposito, si suggerisce l'utilizzo della shell Linux, disponibile oggi anche su sistemi
+operativi Windows.
 
 Di seguito le istruzioni nel caso si preferisca l'avvio manuale del Client e del Server.
 
@@ -62,28 +65,32 @@ Di seguito le istruzioni nel caso si preferisca l'avvio manuale del Client e del
 	Per avviare il server di gioco:
 
 		-)Navigare nella cartella Adrenalina;
-		-)Premere Shift + Tasto destro del Mouse all' interno della cartella;
+		-)Premere Shift + Tasto destro del Mouse all' interno della cartella Adrenalina;
 		-)Avviare la Windows PowerShell;
-		-)Digitare    java -jar ./nomeFileJar.jar server  
+		-)Digitare    java -jar ./adrenalina-1.0-SNAPSHOT.jar server  
 		-)Il server si avvia, e attende che l' utente interagisca;
 
 	2.2)Avvio del Client
 
-	L' avvio del client è del tutto analogo all' avvio del server, l'unica discrepanza
-	sta nel comando da inserire nella powershell.
+	La procedura di avvio del client è del tutto analoga a quella di avvio del server.
 
-	Digitare    java -jar ./nomeFileJar.jar 
+		-)Navigare nella cartella Adrenalina;
+		-)Premere Shift + Tasto destro del Mouse all' interno della cartella Adrenalina;
+		-)Avviare la Windows PowerShell;
+		-)Digitare    java -jar ./adrenalina-1.0-SNAPSHOT.jar
+		-)Il client è ora avviato.
 	
-	Il client si avvia senza passare nessun parametro al comando da inserire a PowerShell.
+	(Il client si avvia senza passare nessun parametro al file .jar)
 
-
+Una volta che sono presenti cinque giocatori (o alla scadenza del timer del server quando sono presenti più di tre giocatori)
+la partita si avvia. Da questo momento è possibile giocare.
 
 3)NOTE
 
 
-	3.1)La connessione del client al server avviene su rete locale, percui avviata la finestra del Client 
+	3.1) - La connessione del client al server avviene su rete locale. Una volta avviata la finestra del Client, 
 	    viene richiesto di inserire il nome della macchina Host su cui è in esecuzione il server. Tale 
-	    nome è il nome che il dispositivo assume nella rete (ad esempio DESKTOP-A1B2CD3)  e non il 
+	    nome è il nome che il dispositivo assume nella rete (ad esempio DESKTOP-A1B2CD3), e non il 
             nome dell' utente di windows o il nickname del player.
 		
 	    Per ottenere tale nome:
@@ -93,22 +100,22 @@ Di seguito le istruzioni nel caso si preferisca l'avvio manuale del Client e del
 		-)Destra mouse su Questo Pc;
 		-)Proprietà;
 
-	    Su Win10 il nome dell' host è quello denominato "Nome Computer" sotto alla sezione
+	    Su Windows 10 il nome dell' host è quello denominato "Nome Computer" sotto alla sezione
 	 
     	    "Impostazioni Relative a Nome Computer, Dominio e Gruppo di Lavoro"
 
-	    Il server non è case-sensitive, percui il nome può essere inserito con qualsiasi combinazione di lettere
+	    Il server non è case-sensitive, per cui il nome può essere inserito con qualsiasi combinazione di lettere
 	    maiuscole e/o minuscole.
 
 	
-	3.2)Per una corretta visualizzazione della grafica di gioco (GUI) è necessario non estrarre o rinominare il contenuto 
-	    della cartella Adrenalina, bensì è sufficiente limitarsi ad eseguire i passi descritti sopra ai punti 2.1 e 2.2.
+	3.2) - Per una corretta visualizzazione della grafica di gioco (GUI) è necessario non estrarre o rinominare il contenuto 
+	    della cartella Adrenalina. Tale cartella può però essere posizionata in qualsiasi directory si preferisca.
 	    
 	
 	
-	3.3)Per i limiti imposti da GitHub sulla dimensione del singolo File, non è stato possibile creare una cartella .zip unica
-	    in cui mettere asset e JAR. Sarà sufficiente scaricare la cartella Adrenalina e il JAR sarà al suo interno.	
-
+	3.3) - Per i limiti imposti da GitHub sulla dimensione del singolo file, non è stato possibile creare una cartella .zip unica
+	    in cui mettere assets e JAR. La cartella "Adrenalina" può comunque essere scaricata, convertita 
+	    in un file .zip e distribuita.
 	
 
 
