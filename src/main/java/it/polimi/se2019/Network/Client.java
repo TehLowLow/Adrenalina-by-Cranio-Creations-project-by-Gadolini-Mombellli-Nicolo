@@ -13,9 +13,10 @@ import java.util.Scanner;
 
 public class Client {
 
-    private static String response;
-    static SocketClient sClient = new SocketClient();
-    static RMIClient rClient = new RMIClient();
+    /**
+     * Is the name of the pc of the player.
+     */
+
     public static String host;
 
 

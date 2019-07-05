@@ -36,22 +36,79 @@ import java.util.concurrent.Executors;
 public class Server {
 
 
+    /**
+     * The RMI initial static port, this value will be incremented after each rmi connected client.
+     */
     private static volatile int clientPort = 52000;
+
+    /**
+     * Static port where a socket client needs to connect to perform the login routine.
+     */
     public static final int LOGINSOCKETPORT = 55000;
+
+    /**
+     * Static port where an RMI client needs to connect to perform the login routine.
+     */
     public static final int LOGINRMIPORT = 56000;
+
+    /**
+     * Static port where an RMI client needs to connect to perform the game routine.
+     */
     public static final int RMIPORT = 59000;
+
+    /**
+     * Static port where a socket client needs to connect to perform the game routine.
+     */
     public static final int SOCKETPORT = 60000;
+
+    /**
+     * It's the value prompted by anyone responsible of starting a server.
+     */
     public static int lobbyTimer;
+
+    /**
+     * True if the server has ended its login routine and has started a match.
+     */
     public static volatile boolean matchStarted = false;
+
+    /**
+     * True if all the needed conditions are met for the match to be declared as finished, and the winner leaderboard needs to be resolved.
+     */
     public static volatile boolean matchFinished = false;
+
+    /**
+     * Serversocket dedicated to login purposes.
+     */
     private static ServerSocket loginSocket;
+
+    /**
+     * Serversocket dedicated to game purposes.
+     */
     private static ServerSocket gameSocket;
+
+    /**
+     * True if all the coditions to start a Match are met.
+     */
     public static boolean start = false;
-    public static Hashtable registrations = new Hashtable();  //associazione user psw
-    public static Hashtable playerClient = new Hashtable();  //associazione fra giocatore e suo client
+
+    /**
+     * This hashtable is responsible of keeping all the username and password associations needed for login purposes.
+     */
+    public static Hashtable registrations = new Hashtable();
+
+    /**
+     * This hashtable is responsible of keeping all the player and corresponding clients associations for network messaging.
+     */
+    public static Hashtable playerClient = new Hashtable();
+
+    /**
+     * This array stores all the connected players of the specific match.
+     */
     public static CopyOnWriteArrayList<Player> connectedPlayers = new CopyOnWriteArrayList<>();  //Arraylist di player connessi.
 
-
+    /**
+     * This interface is used for messaging purposes, specifically this will contain the player that will get messages from the server.
+     */
     private static RMIClientInterface rmiplayer;
 
     /**
