@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
@@ -16,7 +17,7 @@
         <Image url="@assets/cover/background.jpg" />
       </image>
     </ImageView>
-    <Text fill="#f2f0f0" layoutX="69.0" layoutY="52.0" scaleX="0.9424497151156742" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLASSIFICA FINALE" wrappingWidth="488.13671875">
+    <Text fill="#f2f0f0" layoutX="165.0" layoutY="52.0" scaleX="0.9424497151156742" scaleY="1.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VINCITORI" wrappingWidth="488.13671875">
       <font>
         <Font name="System Bold" size="48.0" />
       </font>
@@ -84,5 +85,13 @@
     <Text id="firstPlayer" fx:id="thirdMB" fill="WHITE" font="$x1" layoutX="457.0" layoutY="253.0" scaleX="1.4618334499650105" scaleY="1.3540381791483114" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />
     <Text id="firstPlayer" fx:id="fourthMB" fill="WHITE" font="$x1" layoutX="457.0" layoutY="298.0" scaleX="1.4618334499650105" scaleY="1.3540381791483114" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />
     <Text id="firstPlayer" fx:id="fifthMB" fill="WHITE" font="$x1" layoutX="457.0" layoutY="346.0" scaleX="1.4618334499650105" scaleY="1.3540381791483114" strokeType="OUTSIDE" strokeWidth="0.0" text="0" visible="false" />
+    <ImageView fitHeight="46.00001525878906" fitWidth="47.93278771522417" layoutX="26.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
+      <effect>
+        <SepiaTone />
+      </effect>
+      <image>
+        <Image url="@assets/Points/2PT.png" />
+      </image>
+    </ImageView>
   </children>
 </AnchorPane>

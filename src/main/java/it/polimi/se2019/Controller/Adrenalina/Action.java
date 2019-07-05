@@ -1792,7 +1792,7 @@ public class Action {
 
         }
 
-        updateAll("Il Terminator ha sparato a" + target.getNickname());
+        updateAll("Il Terminator ha sparato a " + target.getNickname());
 
     }
 
