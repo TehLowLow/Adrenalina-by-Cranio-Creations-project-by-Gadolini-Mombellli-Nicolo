@@ -384,7 +384,7 @@ public class Server {
             }
         }
 
-        if (player.getConnectionTech().equalsIgnoreCase("socket")) {
+        if (player.getConnectionTech().equalsIgnoreCase("socket")  && !msg.equalsIgnoreCase("polling")) {
             Socket stream = (Socket) playerClient.get(player.getPORT());
 
             try {
@@ -403,7 +403,7 @@ public class Server {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if (player.getConnectionTech().equalsIgnoreCase("RMI")) {
+        } else if (player.getConnectionTech().equalsIgnoreCase("RMI") && !msg.equalsIgnoreCase("polling")) {
 
             try {
 

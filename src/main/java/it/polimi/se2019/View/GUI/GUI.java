@@ -49,6 +49,8 @@ public class GUI extends Application implements Runnable {
     public String toWrite;
 
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 

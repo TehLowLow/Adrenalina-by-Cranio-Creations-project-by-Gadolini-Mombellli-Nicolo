@@ -196,7 +196,10 @@ public class SocketClient extends Client implements Runnable {
             } else if (signal == 200) {
 
                 try {
+
                     out.writeUTF("200 OK");
+
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
