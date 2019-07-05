@@ -22,7 +22,8 @@ Indice:
 |_____3.1 Note sul Nome Host del Server nella rete
 |
 |_____3.2 Note sul Nome File e percorso.
-
+|
+|_____3.3 Note su GitHub e .zip
 -------------------------------------------------------------------------------
 
 1)FUNZIONALITA' IMPLEMENTATE:
@@ -98,6 +99,11 @@ Di seguito le istruzioni nel caso si preferisca l'avvio manuale del Client e del
 	
 	3.2)Per una corretta visualizzazione della grafica di gioco (GUI) è necessario non estrarre o rinominare il contenuto 
 	    della cartella Adrenalina, bensì è sufficiente limitarsi ad eseguire i passi descritti sopra ai punti 2.1 e 2.2.
+	    
+	
+	
+	3.3)Per i limiti imposti da GitHub sulla dimensione del singolo File, non è stato possibile creare una cartella .zip unica
+	    in cui mettere asset e JAR. Sarà sufficiente scaricare la cartella Adrenalina e il JAR sarà al suo interno.	
 
 	
 
