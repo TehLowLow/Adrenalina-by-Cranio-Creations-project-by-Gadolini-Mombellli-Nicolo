@@ -8,6 +8,9 @@ import java.io.DataOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the shooting mode window.
+ */
 public class ChooseShootingModeController implements Initializable {
 
     public ChooseShootingModeController() {

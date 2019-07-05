@@ -15,6 +15,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class that manages the main user interface. It parses the data received by the network and loads the
+ * graphic resources neededs. In order to send an answer, there are methods with specific purposes assigned to the graphic
+ * elements.
+ */
 public class Map3UIController implements Initializable {
 
     public DataOutputStream out;

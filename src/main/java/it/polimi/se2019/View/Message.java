@@ -5,6 +5,9 @@ import it.polimi.se2019.Network.Server;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * This clas defines all the messages that are sent through the network and shown to the user. Italian language only.
+ */
 public class Message {
 
     public static String start() {

@@ -9,6 +9,9 @@ import java.io.DataOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * This is the controller for the extra grenade window.
+ */
 public class ChooseExtraGrenade implements Initializable {
 
     DataOutputStream out;

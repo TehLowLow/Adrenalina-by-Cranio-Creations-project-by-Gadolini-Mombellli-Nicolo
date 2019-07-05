@@ -8,6 +8,9 @@ import java.io.DataOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the selection of the champion.
+ */
 public class SelectChampionController implements Initializable {
 
     public DataOutputStream out;

@@ -7,6 +7,9 @@ import java.io.DataOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller class for the window that asks if the players want to use the Terminator.
+ */
 public class SelectTerminatorController implements Initializable {
 
     @FXML

@@ -12,6 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 
+/**
+ * Controller class for the chooseMap window.
+ */
 public class ChooseMapController implements Initializable {
 
     public DataOutputStream out;

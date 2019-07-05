@@ -6,6 +6,9 @@ import it.polimi.se2019.Model.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
+/**
+ * Print class used for testing purposes.
+ */
 public class Printer {
 
 

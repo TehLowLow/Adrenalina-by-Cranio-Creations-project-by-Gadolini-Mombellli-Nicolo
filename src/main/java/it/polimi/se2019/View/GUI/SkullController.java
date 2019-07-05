@@ -10,6 +10,11 @@ import java.io.DataOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+/**
+ * Controller class for the number of skulls window.
+ *
+ */
 public class SkullController implements Initializable {
 
 
