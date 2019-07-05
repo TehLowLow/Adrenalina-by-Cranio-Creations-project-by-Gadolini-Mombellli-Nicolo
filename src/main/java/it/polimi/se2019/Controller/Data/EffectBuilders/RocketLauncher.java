@@ -10,10 +10,24 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * rocket launcher effect
+ */
+
 public class RocketLauncher extends Effect {
+
+    /**
+     * targets of the warhead mode
+     */
 
     static CopyOnWriteArrayList<Player> warheadTargets;
 
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
 
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
@@ -110,6 +124,11 @@ public class RocketLauncher extends Effect {
 
     }
 
+    /**
+     * applies rocket jump
+     * @param user of the effect
+     */
+
     private void applyRocketJump(Player user) {
 
         CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(user, 2);
@@ -145,6 +164,12 @@ public class RocketLauncher extends Effect {
         Interaction.pay(user, bill);
 
     }
+
+    /**
+     * applies the basic effect
+     * @param user of the effect
+     * @param targets of the effect
+     */
 
     private void applyBaseEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -233,6 +258,12 @@ public class RocketLauncher extends Effect {
 
     }
 
+    /**
+     * moves the target as the grenade launcher
+     * @param user of the effect
+     * @param target of the rocket launcher
+     */
+
     private void moveTarget(Player user, Player target) {
 
         //Riutilizzo lo stesso metodo del lanciagranate.
@@ -240,6 +271,12 @@ public class RocketLauncher extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the rocket launcher
+     */
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -273,6 +310,8 @@ public class RocketLauncher extends Effect {
 
     }
 
+
+
     private CopyOnWriteArrayList<Player> getVisibleOtherSquares(Player user) {
 
         CopyOnWriteArrayList<Player> visiblePlayers = Check.visiblePlayers(user);
@@ -291,6 +330,12 @@ public class RocketLauncher extends Effect {
         return visiblePlayers;
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if he can shot somebody.
+     */
     //TODO: Vedere test. Questo metodo non funziona perché il player può muoversi se ha il cubo blu, e nel caso può mirare ad altri bersagli.
     @Override
     public boolean hasTargets(Player user) {

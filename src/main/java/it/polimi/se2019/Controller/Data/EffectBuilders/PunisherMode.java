@@ -10,7 +10,18 @@ import it.polimi.se2019.Network.Server;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * alternative effect for the tractor beam
+ */
+
 public class PunisherMode extends Effect {
+
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
 
 
     @Override
@@ -26,6 +37,13 @@ public class PunisherMode extends Effect {
 
 
     }
+
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the array of the targets that will be hit with the punisher mode.
+     */
 
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
@@ -50,6 +68,12 @@ public class PunisherMode extends Effect {
         targets.add(ChoosePlayer.one(user, possibleTargets));
         return targets;
     }
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the user can shot someone.
+     */
 
     @Override
     public boolean hasTargets(Player user) {

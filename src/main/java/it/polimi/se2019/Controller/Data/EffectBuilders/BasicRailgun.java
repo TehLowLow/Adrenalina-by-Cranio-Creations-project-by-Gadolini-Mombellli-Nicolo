@@ -11,8 +11,18 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * basic effect of the railgun.
+ */
+
+
 public class BasicRailgun extends Effect {
 
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -24,6 +34,11 @@ public class BasicRailgun extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets that will be hit.
+     */
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -71,6 +86,12 @@ public class BasicRailgun extends Effect {
         return chosenTargets;
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the Railgun can shot somebody.
+     */
     @Override
     public boolean hasTargets(Player user) {
 
@@ -89,6 +110,13 @@ public class BasicRailgun extends Effect {
         return false;
     }
 
+
+    /**
+     * This method gets the cells in the selected cardinal direction next to the user position.
+     * @param user is who has to shot.
+     * @param direction is one of the four cardinal directions
+     * @return an array of cells in the selected direction.
+     */
     private CopyOnWriteArrayList <Cell> getCellsDirection(Player user, String direction){
 
         CopyOnWriteArrayList <Cell> targetCells = new CopyOnWriteArrayList<>();
@@ -151,6 +179,12 @@ public class BasicRailgun extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user is the Player who has to use the effect
+     * @return an array of the cells in the four cardinal directions next to the user position
+     */
     private CopyOnWriteArrayList <Cell> cardinalCells(Player user){
 
         CopyOnWriteArrayList <Cell> targetCells = new CopyOnWriteArrayList<>();

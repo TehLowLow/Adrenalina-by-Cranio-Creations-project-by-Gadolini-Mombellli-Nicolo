@@ -1,19 +1,28 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
-import it.polimi.se2019.Controller.Adrenalina.Check;
 import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
-import it.polimi.se2019.Controller.Data.WeaponBuilders.RedWeapons.FlamethrowerBuilder;
-import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Model.Cell;
+import it.polimi.se2019.Model.Connection;
+import it.polimi.se2019.Model.Effect;
+import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
 import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * alternative effect for the power glove
+ */
+
 public class RocketFistMode extends Effect {
 
-    String direction;
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
 
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
@@ -28,6 +37,12 @@ public class RocketFistMode extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the effect.
+     */
 
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
@@ -145,6 +160,11 @@ public class RocketFistMode extends Effect {
     }
 
 
+    /**
+     *
+     * @param user of the effect
+     * @return the target
+     */
     private static Player selectTarget(Player user){
 
         CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
@@ -191,6 +211,12 @@ public class RocketFistMode extends Effect {
         return null;
 
     }
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true
+     */
 
     @Override
     public boolean hasTargets(Player user) {

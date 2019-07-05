@@ -1,18 +1,25 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
 
-import it.polimi.se2019.Controller.Adrenalina.Check;
-import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
-import it.polimi.se2019.Model.*;
+import it.polimi.se2019.Model.Effect;
+import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
-import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
+
+/**
+ * alternative mode for the hellion
+ */
+
 
 public class NanoTracerMode extends Effect {
 
 
-    private CopyOnWriteArrayList<Player> possibleTargets;
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
 
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
@@ -36,6 +43,12 @@ public class NanoTracerMode extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the nano tracer mode
+     */
+
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -44,6 +57,11 @@ public class NanoTracerMode extends Effect {
         return effect.getTargets(user);
     }
 
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the user has someone to hit.
+     */
     @Override
     public boolean hasTargets(Player user) {
 

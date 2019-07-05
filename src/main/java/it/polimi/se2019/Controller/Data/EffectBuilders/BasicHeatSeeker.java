@@ -20,7 +20,7 @@ public class BasicHeatSeeker extends Effect {
      * Applies the effect of the Heatseeker to the target.
      *
      * @param user    the Player that wants to apply the effect.
-     * @param targets the target of the effect. It can be the user itself.
+     * @param targets the target of the effect.
      */
 
     @Override

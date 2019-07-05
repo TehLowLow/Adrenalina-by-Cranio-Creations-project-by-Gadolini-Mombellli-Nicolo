@@ -11,9 +11,17 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * alternative effect of the railgun
+ */
+
 public class PiercingMode extends Effect {
 
-
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -25,6 +33,11 @@ public class PiercingMode extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the piercing mode.
+     */
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -70,6 +83,12 @@ public class PiercingMode extends Effect {
         return chosenTargets;
     }
 
+    /**
+     *
+     * @param user of the effect
+     * @param possibleTargets to choose.
+     * @return the chosen targets.
+     */
 
     public CopyOnWriteArrayList<Player> choseTargets(Player user, CopyOnWriteArrayList <Player> possibleTargets){
 
@@ -105,6 +124,11 @@ public class PiercingMode extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the effect has targets to hit.
+     */
     @Override
     public boolean hasTargets(Player user) {
 
@@ -122,6 +146,14 @@ public class PiercingMode extends Effect {
 
         return false;
     }
+
+
+    /**
+     *
+     * @param user of the effect
+     * @param direction chosen by the user
+     * @return the cells in the selected direction
+     */
 
     private CopyOnWriteArrayList <Cell> getCellsDirection(Player user, String direction){
 
@@ -186,6 +218,12 @@ public class PiercingMode extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user of the effect
+     * @return the four cardinal direction cells near the target position
+     */
     private CopyOnWriteArrayList <Cell> cardinalCells(Player user){
 
         CopyOnWriteArrayList <Cell> targetCells = new CopyOnWriteArrayList<>();

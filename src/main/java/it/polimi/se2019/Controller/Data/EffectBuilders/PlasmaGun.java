@@ -14,7 +14,17 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * plasma gun effect
+ */
+
 public class PlasmaGun extends Effect {
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
 
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
@@ -111,6 +121,11 @@ public class PlasmaGun extends Effect {
 
     }
 
+    /**
+     * Performs the phase move
+     * @param user of the effect
+     */
+
     private void phaseMove(Player user) {
 
         CopyOnWriteArrayList <Cell> reachableCells = Check.reachableCells(user, 2);
@@ -146,6 +161,12 @@ public class PlasmaGun extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return an array containing the targets of the plasma gun.
+     */
+
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -156,6 +177,12 @@ public class PlasmaGun extends Effect {
 
         return targets;
     }
+
+    /**
+     *
+     * @param user of the effect
+     * @return true if there is someone visible
+     */
 
     public boolean someTargetsAvailable(Player user){
 
@@ -168,6 +195,12 @@ public class PlasmaGun extends Effect {
         return true;
 
     }
+
+    /**
+     *
+     * @param user the effect.
+     * @return false if the user, using phase move, could reach a cell where he can't hit anybody.
+     */
 
     //Questa funzione ritorna false se il player, usando phasemove, raggiungerebbe un punto in cui non può colpire nessuno.
     public boolean isPhaseAvailable(Player user){
@@ -196,6 +229,12 @@ public class PlasmaGun extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the user can shot somebody.
+     */
     @Override
     public boolean hasTargets(Player user) {
 

@@ -9,9 +9,17 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * basic effect of the shotgun.
+ */
+
 public class BasicShotgun extends Effect{
 
-
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
 
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets){
 
@@ -41,6 +49,11 @@ public class BasicShotgun extends Effect{
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return an array containing the targets of the effect.
+     */
 
     public CopyOnWriteArrayList<Player> getTargets(Player user){
 
@@ -82,6 +95,12 @@ public class BasicShotgun extends Effect{
         return chosenTarget;
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the effect has targets to shot, false otherwise.
+     */
     public boolean hasTargets(Player user){
 
         for(Player target : Server.connectedPlayers){

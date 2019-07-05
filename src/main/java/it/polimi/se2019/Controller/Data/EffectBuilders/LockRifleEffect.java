@@ -15,9 +15,18 @@ import static it.polimi.se2019.Controller.Adrenalina.InputCheck.correctYesNo;
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
+/**
+ * Lock Rifle effect
+ */
+
+
 public class LockRifleEffect extends Effect {
 
-
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -74,6 +83,12 @@ public class LockRifleEffect extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the effect.
+     */
+
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -97,6 +112,12 @@ public class LockRifleEffect extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the effect has targets to shot.
+     */
     @Override
     public boolean hasTargets(Player user) {
 
@@ -106,6 +127,13 @@ public class LockRifleEffect extends Effect {
 
         return false;
     }
+
+    /**
+     *
+     * @param user of the effect.
+     * @param alreadyHit is an array of the players hit by the basic effect
+     * @return the targets of the optional effect.
+     */
 
     public CopyOnWriteArrayList<Player> getOptionalEffectTargets(Player user, CopyOnWriteArrayList<Player> alreadyHit) {
 
@@ -126,6 +154,11 @@ public class LockRifleEffect extends Effect {
 
     }
 
+    /**
+     *
+     * @param user of the optional effect.
+     * @param targets of the optional effect.
+     */
 
     public void applyOptionalEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -147,6 +180,12 @@ public class LockRifleEffect extends Effect {
 
 
     }
+
+    /**
+     *
+     * @param user of the optional effect.
+     * @return true if the optional effect can be used, false otherwise.
+     */
 
     public boolean canUseOptionalEffect(Player user) {
 

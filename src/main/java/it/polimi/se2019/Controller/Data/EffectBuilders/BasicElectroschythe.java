@@ -10,11 +10,16 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import static it.polimi.se2019.Network.Server.connectedPlayers;
 import static it.polimi.se2019.Network.Server.update;
 
+
+/**
+ * basic effect of the elecroschythe.
+ */
+
 public class BasicElectroschythe extends Effect {
 
     /**
      * @param user the Player that wants to apply the effect.
-     * @param targets the targets of the effect. It can be the user itself.
+     * @param targets the targets of the effect.
      */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
