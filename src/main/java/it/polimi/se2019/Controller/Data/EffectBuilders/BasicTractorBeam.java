@@ -12,6 +12,10 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * basic effect of the tractor beam.
+ */
+
 public class BasicTractorBeam extends Effect {
 
     /**
@@ -50,6 +54,13 @@ public class BasicTractorBeam extends Effect {
     }
 
 
+    /**
+     *
+     * @param user of the effect.
+     * @param availableCells are the cells that are available for the effect.
+     * @return the cell selected by the user.
+     */
+
     public Cell chooseCell(Player user, CopyOnWriteArrayList <Cell> availableCells){
 
 
@@ -87,6 +98,12 @@ public class BasicTractorBeam extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return an array containing the targets of the effect.
+     */
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -129,6 +146,13 @@ public class BasicTractorBeam extends Effect {
         chosenTargets.add(ChoosePlayer.one(user, targets));
         return chosenTargets;
     }
+
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the effects has targets to hit.
+     */
 
     @Override
     public boolean hasTargets(Player user) {

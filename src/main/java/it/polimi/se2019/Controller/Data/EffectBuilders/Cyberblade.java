@@ -14,12 +14,29 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * This class represents the effect of the Cyberblade.
+ */
+
 public class Cyberblade extends Effect {
 
+    /**
+     * It's true if the user has already used the shadow step.
+     */
     boolean usedStep = false;
+
+
+    /**
+     * It's the cost of the slice dice.
+     */
     Rybamount diceCost = new Rybamount();
 
 
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -55,6 +72,11 @@ public class Cyberblade extends Effect {
 
     }
 
+    /**
+     *
+     * @param user of the effect.
+     * @return true if he wants to use the shadow step
+     */
     //Ritorna true se il giocatore vuole usare lo shadow step.
     private boolean askStep(Player user){
 
@@ -78,6 +100,12 @@ public class Cyberblade extends Effect {
 
     }
 
+
+    /**
+     * It performs the base effect of the cyberblade
+     * @param user of the effect
+     * @param targets is the array of the targets.
+     */
     //Dopo l'effetto, se l'utente ancora non ha usato la mossa, gli chiedo se vuole
     // usarla. Se si, usedStep va a true. Se non vuole, gli chiedo se vuole attivare
     //l'effetto secondario (se può).
@@ -135,7 +163,10 @@ public class Cyberblade extends Effect {
 
     }
 
-
+    /**
+     * Performs the shadow step
+     * @param user of the effect.
+     */
 
     private void shadowStep(Player user){
 
@@ -181,6 +212,12 @@ public class Cyberblade extends Effect {
 
     }
 
+
+    /**
+     * Asks the user if he wants to use the sliceDice
+     * @param user of the effect.
+     * @param targets of the effect-
+     */
     //Se l'utente ancora non ha usato la mossa, alla fine dell'effetto gli chiedo se vuole usarla.
     private void sliceDice(Player user, CopyOnWriteArrayList<Player> targets){
 
@@ -258,6 +295,12 @@ public class Cyberblade extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return an empty array of targets.
+     */
+
     //In quest'arma, il metodo getTargets ritorna un CopyOnWriteArrayList vuoto, poiché i bersagli dipendono
     //dal fatto che l'utente può scegliere di muoversi o meno. Essi vengono quindi recuperati in applyEffect
     //con il metodo getCurrentTargets. Questo metodo va tuttavia lasciato per rendere l'arma consistente con le altre
@@ -268,6 +311,12 @@ public class Cyberblade extends Effect {
         return new CopyOnWriteArrayList<Player>();
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the user has targets to hit.
+     */
     @Override
     public boolean hasTargets(Player user) {
 

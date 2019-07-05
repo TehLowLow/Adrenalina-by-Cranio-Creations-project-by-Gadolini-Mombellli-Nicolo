@@ -44,6 +44,12 @@ public class BBQMode extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the array of the effect targets.
+     */
+
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
         CopyOnWriteArrayList<Player> possibleTargets = new CopyOnWriteArrayList<>();
@@ -101,6 +107,12 @@ public class BBQMode extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the BBQMode has someone to hit.
+     */
 
     public boolean hasTargets(Player user) {
 

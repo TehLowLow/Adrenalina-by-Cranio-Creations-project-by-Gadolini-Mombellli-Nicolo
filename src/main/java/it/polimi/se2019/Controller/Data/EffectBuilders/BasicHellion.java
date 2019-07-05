@@ -9,6 +9,10 @@ import it.polimi.se2019.Network.Server;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * basic effect of the hellion
+ */
+
 public class BasicHellion extends Effect {
 
 
@@ -67,6 +71,12 @@ public class BasicHellion extends Effect {
         return chosenTarget;
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the weapon has targets to shot.
+     */
     @Override
     public boolean hasTargets(Player user) {
 

@@ -11,9 +11,18 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+
+/**
+ * basic effect of the shockwave
+ */
+
 public class BasicShockwave extends Effect {
 
-
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -23,6 +32,12 @@ public class BasicShockwave extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return an array with the targets of the effect.
+     */
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -88,6 +103,12 @@ public class BasicShockwave extends Effect {
         return chosenTargets;
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the effect has targets to hit.
+     */
     public boolean hasTargets(Player user){
 
         CopyOnWriteArrayList<Cell> reachableCells = Check.reachableCells(user, 1);

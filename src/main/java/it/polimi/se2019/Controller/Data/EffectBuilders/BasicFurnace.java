@@ -18,7 +18,7 @@ public class BasicFurnace extends Effect{
         /**
          * Applies the effect of the Furnace to the target (or targets).
          * @param user the Player that wants to apply the effect.
-         * @param targets the target of the effect. It can be the user itself.
+         * @param targets the target of the effect.
          */
 
         @Override

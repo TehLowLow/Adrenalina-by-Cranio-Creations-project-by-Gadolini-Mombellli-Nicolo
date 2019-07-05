@@ -14,9 +14,21 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * grenade launcher effect.
+ */
+
+
 public class GrenadeLauncher extends Effect {
 
     private boolean moved = false;
+
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
 
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
@@ -194,6 +206,13 @@ public class GrenadeLauncher extends Effect {
 
     }
 
+    /**
+     *
+     * @param user is the player who has to use the effect.
+     * @return an array containing the targets of the extra grenade mode.
+     */
+
+
     private CopyOnWriteArrayList<Player> getTargetsExtraGrenade(Player user) {
 
         CopyOnWriteArrayList<Cell> visibleSquares = Check.visibleSquares(user);
@@ -260,6 +279,13 @@ public class GrenadeLauncher extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user of the effect.
+     * @return true if the extra grenade can shot someone.
+     */
+
     private boolean hasTargetsExtraGrenade(Player user) {
 
         CopyOnWriteArrayList targets = new CopyOnWriteArrayList();
@@ -285,6 +311,12 @@ public class GrenadeLauncher extends Effect {
 
     }
 
+    /**
+     * Applies the effect of the extra grenade mode.
+     * @param user of the effect.
+     * @param targets of the extra grenade.
+     */
+
     private void applyExtraGrenade(Player user, CopyOnWriteArrayList<Player> targets) {
 
 
@@ -294,6 +326,13 @@ public class GrenadeLauncher extends Effect {
 
     }
 
+
+    /**
+     * gives one damage to the targets
+     * @param user of the effect.
+     * @param targets of the effect.
+     */
+
     static void giveDamage(Player user, CopyOnWriteArrayList<Player> targets) {
         for (Player target : targets) {
 
@@ -301,6 +340,12 @@ public class GrenadeLauncher extends Effect {
 
         }
     }
+
+    /**
+     * It applies the base effect of the weapon
+     * @param user of the basic effect.
+     * @param targets of the effect.
+     */
 
     private void applyBaseEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -328,6 +373,12 @@ public class GrenadeLauncher extends Effect {
         return;
 
     }
+
+    /**
+     * Allows to move the target
+     * @param user of the effect
+     * @param target that can be moved.
+     */
 
     public static void moveTarget(Player user, Player target) {
 
@@ -375,6 +426,13 @@ public class GrenadeLauncher extends Effect {
 
     }
 
+    /**
+     *
+     * @param target of the effect
+     * @param direction is the direction chosen by the user.
+     * @return the cell near to the target position in the selected direction.
+     */
+
     public static Cell getCell(Player target, String direction) {
 
         if (direction.equalsIgnoreCase("alto")) {
@@ -397,6 +455,12 @@ public class GrenadeLauncher extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the effect.
+     */
+
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -408,6 +472,12 @@ public class GrenadeLauncher extends Effect {
 
         return chosenTarget;
     }
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the user can shot somebody.
+     */
 
     @Override
     public boolean hasTargets(Player user) {

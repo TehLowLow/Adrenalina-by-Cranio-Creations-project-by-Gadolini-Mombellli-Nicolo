@@ -16,7 +16,19 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import static it.polimi.se2019.Network.Server.update;
 import static it.polimi.se2019.Network.Server.updateWithAnswer;
 
+/**
+ * Effect of the Machine gun
+ */
+
+
 public class MachineGunEffect extends Effect {
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
+
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -91,6 +103,13 @@ public class MachineGunEffect extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return an array containing the targets of the basic effect
+     */
+
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -160,6 +179,12 @@ public class MachineGunEffect extends Effect {
         return targets;
     }
 
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the basic effect has someone to shot.
+     */
+
     @Override
     public boolean hasTargets(Player user) {
 
@@ -172,6 +197,11 @@ public class MachineGunEffect extends Effect {
         }
     }
 
+    /**
+     *
+     * @param user of the focus shot.
+     * @return true if the user can use the focus shot.
+     */
 
     public boolean canUseFocusShot(Player user) {
 
@@ -193,6 +223,13 @@ public class MachineGunEffect extends Effect {
         return false;
     }
 
+    /**
+     *
+     * @param user of the focus shot.
+     * @param possibleTargets are the targets that can be hit with the focus shot
+     * @return the focus shot targets.
+     */
+
     public CopyOnWriteArrayList<Player> focusShotGetTargets(Player user, CopyOnWriteArrayList<Player> possibleTargets) {
 
         CopyOnWriteArrayList<Player> targets = new CopyOnWriteArrayList<>();
@@ -204,7 +241,11 @@ public class MachineGunEffect extends Effect {
 
     }
 
-
+    /**
+     * Applies the focus shot
+     * @param user of the effect
+     * @param targets of the focus shot.
+     */
     public void applyFocusShot(Player user, CopyOnWriteArrayList<Player> targets) {
 
         if (targets == null) {
@@ -233,6 +274,14 @@ public class MachineGunEffect extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user of the effect
+     * @param focusShot is true if the user has already used the focus shot
+     * @param focusShotTargets are the targets of the focus shot
+     * @return true if he can use the turret tripod
+     */
 
     public synchronized boolean canUseTurretTripod(Player user, boolean focusShot, CopyOnWriteArrayList<Player> focusShotTargets) {
 
@@ -279,6 +328,15 @@ public class MachineGunEffect extends Effect {
         return false;
     }
 
+
+    /**
+     *
+     * @param user of the turret tripod
+     * @param focusShot is true if the user has used the focus shot
+     * @param focusShotTargets targets of the focus shot
+     * @param basicTargets targets of the basic effect
+     * @return the targets for the turret tripod effect
+     */
 
     CopyOnWriteArrayList<Player> turretTripodGetTargets(Player user, boolean focusShot, CopyOnWriteArrayList<Player> focusShotTargets, CopyOnWriteArrayList<Player> basicTargets) {
 
@@ -460,7 +518,11 @@ public class MachineGunEffect extends Effect {
         return targets;
     }
 
-
+    /**
+     * applies turret tripod
+     * @param user of the effect
+     * @param targets of the turret tripod
+     */
     public void applyTurretTripod(Player user, CopyOnWriteArrayList<Player> targets) {
 
         Rybamount cost = new Rybamount();

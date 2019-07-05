@@ -1,17 +1,23 @@
 package it.polimi.se2019.Controller.Data.EffectBuilders;
-import it.polimi.se2019.Controller.Adrenalina.InputCheck;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.ChoosePlayer;
 import it.polimi.se2019.Controller.Data.EffectBuilders.GeneralMethods.Damage;
 import it.polimi.se2019.Model.Effect;
 import it.polimi.se2019.Model.Player;
 import it.polimi.se2019.Network.Server;
-import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * basic effect of the sledgehammer.
+ */
+
 public class BasicSledgehammer extends Effect {
 
-
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -21,6 +27,12 @@ public class BasicSledgehammer extends Effect {
 
     }
 
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return an array containing the targets that will be hit by the user.
+     */
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -41,6 +53,12 @@ public class BasicSledgehammer extends Effect {
         return chosenTarget;
     }
 
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the effect has targets to hit.
+     */
     @Override
     public boolean hasTargets(Player user) {
 

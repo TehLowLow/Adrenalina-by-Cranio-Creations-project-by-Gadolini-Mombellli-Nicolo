@@ -98,23 +98,22 @@ public abstract class Effect {
     /**
      * This is the algorithm of the specific effect. It is an abstract method because it must be defined
      * by the class that implements Effect.
-     *
-     * @param user    the Player that wants to apply the effect.
-     * @param targets the targets of the effect. It can be the user itself.
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
      */
     public abstract void applyEffect(Player user, CopyOnWriteArrayList<Player> targets);
 
     /**
      * This returns the possible targets of an effect.
-     *
-     * @param user the Player thant wants to use the effect.
+     * @param user the Player that wants to use the effect.
      * @return an CopyOnWriteArrayList of possible targets.
      */
     public abstract CopyOnWriteArrayList<Player> getTargets(Player user);
 
     /**
-     * @param user is the player that will check for targets.
-     * @return true if the player has one or more reachables targets.
+     * Checks if the user has targets to shot.
+     * @param user the player who has to use the effect.
+     * @return true if the effect has targets to hit.
      */
     public abstract boolean hasTargets(Player user);
 

@@ -8,8 +8,17 @@ import it.polimi.se2019.Model.Player;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * basic effect of the zx-2
+ */
+
 public class BasicZX2 extends Effect {
 
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -17,6 +26,13 @@ public class BasicZX2 extends Effect {
         Damage.giveMarker(2, user, targets.get(0));
 
     }
+
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return an array containing the targets to hit.
+     */
 
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
@@ -32,6 +48,12 @@ public class BasicZX2 extends Effect {
         return target;
 
     }
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the effect has targets to hit, false otherwise.
+     */
 
     @Override
     public boolean hasTargets(Player user) {

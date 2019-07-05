@@ -10,7 +10,17 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import static it.polimi.se2019.Network.Server.*;
 
+/**
+ * alternative effect for the electroSchythe
+ */
+
 public class ReaperMode extends Effect {
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -34,6 +44,12 @@ public class ReaperMode extends Effect {
         }
 
     }
+
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the effect.
+     */
 
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
@@ -66,6 +82,12 @@ public class ReaperMode extends Effect {
 
 
     }
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true if the user has some targets to shot.
+     */
 
     @Override
     public boolean hasTargets(Player user) {

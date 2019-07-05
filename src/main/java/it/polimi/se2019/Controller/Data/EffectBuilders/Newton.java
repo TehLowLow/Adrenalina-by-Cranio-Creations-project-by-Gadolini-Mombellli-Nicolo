@@ -9,8 +9,18 @@ import it.polimi.se2019.View.Message;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
+/**
+ * Effect of the newton Powerup
+ */
+
 public class Newton extends Effect {
 
+
+    /**
+     *
+     * @param user the Player that wants to apply the effect.
+     * @param targets the targets of the effect.
+     */
     @Override
     public void applyEffect(Player user, CopyOnWriteArrayList<Player> targets) {
 
@@ -49,6 +59,13 @@ public class Newton extends Effect {
 
 
     }
+
+    /**
+     *
+     * @param user of the powerup
+     * @param target is who has to be moved.
+     * @return the cells in the selected direction.
+     */
 
     private CopyOnWriteArrayList <Cell> getDirectionCells(Player user, Player target){
 
@@ -155,6 +172,12 @@ public class Newton extends Effect {
 
     }
 
+    /**
+     *
+     * @param user the Player that wants to use the effect.
+     * @return the targets of the effect.
+     */
+
     @Override
     public CopyOnWriteArrayList<Player> getTargets(Player user) {
 
@@ -180,6 +203,13 @@ public class Newton extends Effect {
 
         return target;
     }
+
+
+    /**
+     *
+     * @param user the player who has to use the effect.
+     * @return true
+     */
 
     @Override
     public boolean hasTargets(Player user) {
