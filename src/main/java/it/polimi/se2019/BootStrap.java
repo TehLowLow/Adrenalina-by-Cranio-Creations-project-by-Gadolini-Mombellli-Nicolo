@@ -24,13 +24,3 @@ public class BootStrap {
 
 
 
-//Per avviare da cmd:
-
-//Aprire la cartella ing-sw....
-//Shift + Dx Apri shell linux
-// ./StartServer  oppure ./StartClient e via
-
-
-//Progetto per domani:
-
-//Creare batch che da Desktop faccia partire il cmd e faccia i comandi qua sopra
