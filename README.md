@@ -9,7 +9,7 @@ Adrenalina
  The General Purpose
  ----------------------
  
- The purpose of this project is to develop the basics skills of team working, software design and problem solving needed by a 
+ The purpose of this project is to develop the basic skills of team working, software design and problem solving needed by a 
  junior engineer to be able to work under precise specifications and deadlines.
  This was achieved during the semester by having a couple of professors that on a weekly basis commissioned a task and evaluated
  the result the next week.
@@ -29,7 +29,7 @@ Adrenalina
 The rules of the game are quite extended, but can be summarized in a couple of fundamentals:
 
 1. Each player has 10 hitpoints. After a player loses all of them, he dies and respawns.
-2. In a signle match, respawns are finite. After that, the game ends and the player with highest score wins.
+2. In a single match, respawns are finite. After that, the game ends and the player with highest score wins.
 3. Players can travel from room to room, and can shoot or hit only visible players.
 4. If either a weapon or a power-up says so, rule 3 can be deceived :+1:.
 5. Each player can have only three weapons simultaneously.
