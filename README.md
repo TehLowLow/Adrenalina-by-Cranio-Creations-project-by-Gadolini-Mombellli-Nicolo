@@ -77,6 +77,7 @@ IDE and Verification Software
 ------------------------------
 
 All the code was written in Java 8 using JetBrain's IntelliJ as the main Integrated Developement Environment.
+The code comes also with a JavaDoc Library written for almost all the classes.
 The requirements regarding testing and _coding principles_ (duplications, bugs, weaknesses, test coverage) were all handled
 by Sonar's SonarQube and SonarLint plugin.
 Libraries imports were managed via Maven Plugin.
