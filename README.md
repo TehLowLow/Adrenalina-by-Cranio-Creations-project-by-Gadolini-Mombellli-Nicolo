@@ -102,11 +102,11 @@ Any kind of material concerning specifications, detailed rules, developement or 
 Contributors
 ------------
 
-Lorenzo Gadolini ---> *[@TehLowLow](https://github.com/TehLowLow)*.
+**Lorenzo Gadolini** ---> *[@TehLowLow](https://github.com/TehLowLow)*.
 
-Gioele Mombelli ---> *[@lolepls](https://github.com/lolepls)*.
+**Gioele Mombelli** ---> *[@lolepls](https://github.com/lolepls)*.
 
-Daniele Nicolò --->*[@Dany97](https://github.com/Dany97)*.
+**Daniele Nicolò** --->*[@Dany97](https://github.com/Dany97)*.
 
 *Politecnico Di Milano*
 
